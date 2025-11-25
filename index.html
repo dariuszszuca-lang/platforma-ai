@@ -120,20 +120,36 @@
     <div class="bg-gradient-orb w-[600px] h-[600px] bg-blue-600 top-[-200px] left-[-100px] animate-blob"></div>
     <div class="bg-gradient-orb w-[700px] h-[700px] bg-purple-600 bottom-[-100px] right-[-200px] animate-blob animation-delay-2000"></div>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-3xl font-display font-bold tracking-tighter flex items-center gap-2">
-                <i data-lucide="cpu" class="text-brand-primary w-8 h-8"></i>
-                A-I MODE
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl transition-all duration-300">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            
+            <div class="flex items-center gap-3 pl-2">
+                <div class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2">
+                    A-I MODE
+                </div>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
-                <a href="#levels" class="hover:text-brand-primary transition">Ścieżki Rozwoju</a>
-                <a href="#services" class="hover:text-brand-primary transition">Rozwiązania</a>
-                <a href="#workshops" class="hover:text-brand-primary transition">Warsztaty</a>
+
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="#levels" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Ścieżki</a>
+                <a href="#services" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Rozwiązania</a>
+                <a href="#workshops" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Warsztaty</a>
             </div>
-            <a href="#contact" class="px-6 py-2 bg-white text-black hover:bg-brand-primary rounded-full text-sm font-bold transition shadow-lg shadow-white/10">
-                Działajmy
+
+            <div class="md:hidden flex-1 flex justify-end pr-4">
+                 <button class="text-gray-300 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                 </button>
+            </div>
+
+            <a href="#contact" class="hidden md:flex group relative px-6 py-2.5 bg-white text-black rounded-full text-sm font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                <span class="relative z-10 group-hover:text-brand-primary transition-colors">Działajmy</span>
+                <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
             </a>
+
         </div>
     </nav>
 
