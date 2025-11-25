@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS | AI-First Ecosystem</title>
+    <title>A-I MODE | AI-First Ecosystem</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +23,10 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#020203', // Jeszcze głębsza czerń
+                            dark: '#020203', 
                             primary: '#00f3ff', // Neon Cyan
                             secondary: '#bd00ff', // Neon Purple
-                            surface: 'rgba(255, 255, 255, 0.12)' // Jaśniejsza baza dla kart
+                            surface: 'rgba(255, 255, 255, 0.12)' 
                         }
                     },
                     animation: {
@@ -57,16 +57,15 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphism Classes - Updated for lighter look */
+        /* Glassmorphism Classes */
         .glass {
-            background: rgba(255, 255, 255, 0.08); /* Jaśniejsze tło */
+            background: rgba(255, 255, 255, 0.08); 
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.15); /* Wyraźniejsza krawędź */
+            border: 1px solid rgba(255, 255, 255, 0.15); 
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Specjalne jaśniejsze karty dla sekcji */
         .glass-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
             backdrop-filter: blur(20px);
@@ -85,7 +84,7 @@
         .bg-gradient-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px); /* Większy blur dla miękkości */
+            filter: blur(100px); 
             opacity: 0.35;
             z-index: -1;
         }
@@ -105,7 +104,6 @@
             scrollbar-width: none;
         }
 
-        /* Utility for reveal animation */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -126,7 +124,7 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="text-3xl font-display font-bold tracking-tighter flex items-center gap-2">
                 <i data-lucide="cpu" class="text-brand-primary w-8 h-8"></i>
-                NEXUS
+                A-I MODE
             </div>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
                 <a href="#levels" class="hover:text-brand-primary transition">Ścieżki Rozwoju</a>
@@ -147,13 +145,13 @@
                 SYSTEM OPERACYJNY DLA BIZNESU PRZYSZŁOŚCI
             </div>
 
-            <h1 class="text-5xl md:text-7xl lg:text-9xl font-display font-bold leading-none mb-8 tracking-tight">
-                NIE WDRAŻAJ AI.<br>
-                <span class="gradient-text">STAŃ SIĘ NIĄ.</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-8 tracking-tight">
+                Wykorzystaj możliwości najnowszych rozwiązań AI.<br>
+                <span class="gradient-text">Zmień myślenie na AI-First.</span>
             </h1>
 
             <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                Platforma, która zmienia firmy w autonomiczne organizmy. Od automatyzacji nudy po strategiczną dominację.
+                Platforma edukacyjno-rozwojowa, która zmienia podejście do AI. Od pomysłu do biznesu przyszłości.
             </p>
 
             <div class="flex flex-col md:flex-row gap-5 justify-center">
@@ -496,7 +494,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
-                <div class="mb-4 md:mb-0">&copy; 2024 NEXUS AI. All rights reserved.</div>
+                <div class="mb-4 md:mb-0">&copy; 2025 A-I MODE. All rights reserved.</div>
                 <div class="space-x-6">
                     <a href="#" class="hover:text-white transition">Polityka Prywatności</a>
                     <a href="#" class="hover:text-white transition">Regulamin</a>
@@ -509,7 +507,7 @@
         // Initialize Icons
         lucide.createIcons();
 
-        // Reveal Animation on Scroll
+        // Reveal Animation
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
