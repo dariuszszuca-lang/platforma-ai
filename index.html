@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-I MODE | AI-First Ecosystem</title>
+    <title>AI-Team | Next Gen Solutions</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -129,7 +128,7 @@
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </div>
                 <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2">
-                    A-I MODE
+                    AI-Team
                 </div>
             </div>
 
@@ -139,26 +138,19 @@
                 <a href="#workshops" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Warsztaty</a>
             </div>
 
-            <div class="md:hidden flex-1 flex justify-end pr-4">
-                 <button class="text-gray-300 hover:text-white">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                 </button>
-            </div>
-
             <a href="#contact" class="hidden md:flex group relative px-6 py-2.5 bg-white text-black rounded-full text-sm font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                 <span class="relative z-10 group-hover:text-brand-primary transition-colors">Działajmy</span>
                 <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
             </a>
-
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center pt-20 relative">
+    <section class="min-h-screen flex items-center justify-center pt-32 relative">
         <div class="max-w-6xl mx-auto px-6 text-center z-10">
             
             <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                SYSTEM OPERACYJNY DLA BIZNESU PRZYSZŁOŚCI
+                OPERACYJNE WDROŻENIA AI
             </div>
 
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-8 tracking-tight">
@@ -167,7 +159,7 @@
             </h1>
 
             <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                Platforma edukacyjno-rozwojowa, która zmienia podejście do AI. Od pomysłu do biznesu przyszłości.
+                Twoja firma na autopilocie. Katalogujemy wiedzę, automatyzujemy procesy, wdrażamy zespoły cyfrowe.
             </p>
 
             <div class="flex flex-col md:flex-row gap-5 justify-center">
@@ -185,13 +177,15 @@
         <div class="max-w-4xl mx-auto px-6">
             <div class="glass p-8 rounded-3xl shadow-2xl reveal relative border border-white/10">
                 <div class="text-center mb-6">
-                    <h2 class="text-2xl font-display font-bold">Masz wyzwanie? <span class="text-brand-secondary">AI ma rozwiązanie.</span></h2>
+                    <h2 class="text-3xl font-display font-bold mb-2">Masz wyzwanie? <span class="text-brand-secondary">AI ma rozwiązanie.</span></h2>
+                    <p class="text-gray-400">Wpisz, co chcesz zrobić, a pokażemy Ci narzędzia.</p>
                 </div>
-                <div class="relative group">
+                
+                <div class="relative group mb-8">
                     <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                     <div class="relative flex items-center bg-black rounded-xl px-6 py-5 border border-white/10">
                         <i data-lucide="sparkles" class="text-brand-primary w-6 h-6 mr-4 animate-pulse"></i>
-                        <input type="text" id="ai-search" placeholder="Np. Jak zautomatyzować pozyskiwanie leadów na LinkedIn?" 
+                        <input type="text" id="ai-search" placeholder="Np. Chcę stworzyć grafiki do reklam..." 
                                class="w-full bg-transparent text-lg text-white placeholder-gray-500 focus:outline-none font-display">
                         <button class="bg-white/10 p-2 rounded-lg hover:bg-white/20 transition">
                             <i data-lucide="arrow-right" class="text-white"></i>
@@ -199,8 +193,30 @@
                     </div>
                 </div>
                 
-                <div id="search-results" class="mt-6 space-y-3 opacity-0 transition-opacity duration-500">
+                <div id="search-results-container" class="opacity-0 transition-all duration-500 hidden">
+                    
+                    <div class="mb-6">
+                        <div class="text-xs font-mono text-gray-500 mb-3 uppercase tracking-widest">Sugerowane Narzędzia</div>
+                        <div id="tools-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            </div>
                     </div>
+
+                    <div class="bg-brand-secondary/10 border border-brand-secondary/30 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-secondary rounded-full flex items-center justify-center text-white shrink-0">
+                                <i data-lucide="help-circle" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Nie wiesz jak tego użyć?</h4>
+                                <p class="text-sm text-gray-300">Te narzędzia wymagają konfiguracji. Skonsultuj to z nami.</p>
+                            </div>
+                        </div>
+                        <a id="email-consult" href="#" class="px-6 py-3 bg-brand-secondary hover:bg-brand-secondary/80 text-white font-bold rounded-lg transition whitespace-nowrap">
+                            Wyślij pytanie do AI-Team
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -261,71 +277,6 @@
         </div>
     </section>
 
-    <section class="py-20 border-y border-white/10 overflow-hidden bg-white/5">
-        <div class="max-w-7xl mx-auto px-6 mb-10 flex justify-between items-end reveal">
-            <div>
-                <h2 class="text-3xl font-display font-bold">Biblioteka Promptów</h2>
-                <p class="text-gray-400 mt-2">To nie magia. To precyzyjna inżynieria języka.</p>
-            </div>
-            <a href="#" class="text-brand-primary font-bold hover:text-white transition hidden md:flex items-center gap-2">
-                Otwórz Katalog <i data-lucide="external-link" class="w-4 h-4"></i>
-            </a>
-        </div>
-        
-        <div class="flex space-x-6 overflow-x-auto pb-8 px-6 no-scrollbar reveal">
-            <div class="flex-none w-96 glass-card p-6 rounded-2xl cursor-pointer group">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="bg-blue-500/20 text-blue-200 text-xs px-3 py-1 rounded-full border border-blue-500/30">Marketing</span>
-                    <i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i>
-                </div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-primary transition">Viral LinkedIn Post Generator</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4">
-                    <p class="text-xs text-gray-400 font-mono line-clamp-3">
-                        Act as an expert ghostwriter specializing in B2B tech. Analyze the attached style guide and generate a post that...
-                    </p>
-                </div>
-                <div class="flex justify-between items-center text-xs text-gray-500">
-                    <span>Model: <span class="text-gray-300">GPT-4o</span></span>
-                    <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 4.9</span>
-                </div>
-            </div>
-
-            <div class="flex-none w-96 glass-card p-6 rounded-2xl cursor-pointer group">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="bg-purple-500/20 text-purple-200 text-xs px-3 py-1 rounded-full border border-purple-500/30">Sprzedaż</span>
-                    <i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i>
-                </div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-secondary transition">Cold Email Sequence</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4">
-                    <p class="text-xs text-gray-400 font-mono line-clamp-3">
-                        Create a 4-step email sequence for a SaaS product targeting CFOs. Focus on pain points related to...
-                    </p>
-                </div>
-                <div class="flex justify-between items-center text-xs text-gray-500">
-                    <span>Model: <span class="text-gray-300">Claude 3.5</span></span>
-                    <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 5.0</span>
-                </div>
-            </div>
-
-            <div class="flex-none w-96 glass-card p-6 rounded-2xl cursor-pointer group">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="bg-green-500/20 text-green-200 text-xs px-3 py-1 rounded-full border border-green-500/30">Operacje</span>
-                    <i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i>
-                </div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-primary transition">Umowa B2B Analyzer</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4">
-                    <p class="text-xs text-gray-400 font-mono line-clamp-3">
-                        Review the attached contract for potential risks regarding IP ownership and termination clauses. Highlight...
-                    </p>
-                </div>
-                <div class="flex justify-between items-center text-xs text-gray-500">
-                    <span>Model: <span class="text-gray-300">GPT-4 Turbo</span></span>
-                    <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 4.8</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="services" class="py-24 max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center gap-16 mb-40 reveal">
             <div class="w-full md:w-1/2">
@@ -334,16 +285,6 @@
                 <p class="text-gray-300 text-lg mb-8 leading-relaxed">
                     Tradycyjny proces to miesiące. My używamy AI-First Design. Generujemy strukturę, piszemy copy sprzedażowe i kodujemy. Wynik? Ultranowoczesna strona, która sprzedaje.
                 </p>
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                        <div class="text-2xl font-bold text-white mb-1">10x</div>
-                        <div class="text-xs text-gray-400">Szybsze wdrożenie</div>
-                    </div>
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                        <div class="text-2xl font-bold text-white mb-1">SEO</div>
-                        <div class="text-xs text-gray-400">Zoptymalizowane pod Google</div>
-                    </div>
-                </div>
                 <button class="text-brand-primary font-bold hover:text-white transition flex items-center text-lg group">
                     Zobacz Portfolio <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition"></i>
                 </button>
@@ -369,18 +310,8 @@
                 <div class="inline-block px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-bold rounded mb-4">AI AUTOMATION</div>
                 <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Asystenci Operacyjni.<br>Twoja Cyfrowa Załoga.</h2>
                 <p class="text-gray-300 text-lg mb-8 leading-relaxed">
-                    Wyobraź sobie handlowca, który odpisuje w 3 sekundy o 2:00 w nocy. Albo asystentkę, która kategoryzuje faktury i wrzuca je do systemu. To nie SF. To standard.
+                    Wyobraź sobie handlowca, który odpisuje w 3 sekundy o 2:00 w nocy. Albo asystentkę, która kategoryzuje faktury i wrzuca je do systemu.
                 </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center text-gray-200 bg-white/5 p-3 rounded-lg border border-white/5">
-                        <i data-lucide="bot" class="w-5 h-5 mr-3 text-brand-secondary"></i>
-                        Bot Sprzedażowy (Trening na Twojej ofercie)
-                    </li>
-                    <li class="flex items-center text-gray-200 bg-white/5 p-3 rounded-lg border border-white/5">
-                        <i data-lucide="file-text" class="w-5 h-5 mr-3 text-brand-secondary"></i>
-                        Automatyczna Analiza Dokumentów
-                    </li>
-                </ul>
                 <button class="text-brand-secondary font-bold hover:text-white transition flex items-center text-lg group">
                     Skonsultuj Wdrożenie <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition"></i>
                 </button>
@@ -388,13 +319,6 @@
             <div class="w-full md:w-1/2 relative group">
                 <div class="absolute -inset-1 bg-gradient-to-bl from-brand-secondary to-purple-800 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                 <div class="h-[450px] glass-card rounded-2xl relative overflow-hidden flex items-center justify-center border border-white/10 bg-black">
-                     <div class="absolute inset-0 flex items-center justify-center opacity-10">
-                        <svg class="w-full h-full" viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="40" stroke="white" stroke-width="0.5" fill="none" />
-                            <circle cx="50" cy="50" r="30" stroke="white" stroke-width="0.5" fill="none" />
-                            <circle cx="50" cy="50" r="20" stroke="white" stroke-width="0.5" fill="none" />
-                        </svg>
-                     </div>
                     <div class="relative z-10 text-center">
                         <div class="w-24 h-24 bg-brand-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-md border border-brand-secondary/50 shadow-[0_0_30px_rgba(189,0,255,0.3)] animate-pulse">
                             <i data-lucide="brain-circuit" class="w-12 h-12 text-brand-secondary"></i>
@@ -510,7 +434,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
-                <div class="mb-4 md:mb-0">&copy; 2025 A-I MODE. All rights reserved.</div>
+                <div class="mb-4 md:mb-0">&copy; 2025 AI-Team. All rights reserved.</div>
                 <div class="space-x-6">
                     <a href="#" class="hover:text-white transition">Polityka Prywatności</a>
                     <a href="#" class="hover:text-white transition">Regulamin</a>
@@ -578,38 +502,59 @@
             }
         }
 
-        // Search Simulation
+        // --- NEW SEARCH LOGIC ---
         const searchInput = document.getElementById('ai-search');
-        const resultsDiv = document.getElementById('search-results');
+        const resultsContainer = document.getElementById('search-results-container');
+        const toolsList = document.getElementById('tools-list');
+        const emailBtn = document.getElementById('email-consult');
+
+        // Fake database of tools (Simulation)
+        const generateToolsHTML = (tools) => {
+            return tools.map(tool => `
+                <div class="glass p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition cursor-pointer border border-white/5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-brand-primary/20 rounded-lg flex items-center justify-center text-brand-primary font-bold">AI</div>
+                        <div>
+                            <div class="font-bold text-white text-lg">${tool}</div>
+                            <div class="text-xs text-gray-400">Zobacz narzędzie</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="text-gray-500 w-5 h-5"></i>
+                </div>
+            `).join('');
+        }
 
         searchInput.addEventListener('input', (e) => {
-            if(e.target.value.length > 2) {
-                resultsDiv.style.opacity = '1';
-                resultsDiv.innerHTML = `
-                    <div class="glass p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition cursor-pointer border border-white/5">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-brand-primary/20 rounded-lg flex items-center justify-center text-brand-primary"><i data-lucide="zap" class="w-5 h-5"></i></div>
-                            <div>
-                                <div class="font-bold text-white">Generator Leadów LinkedIn</div>
-                                <div class="text-xs text-gray-400">Blueprint Automation • No-Code</div>
-                            </div>
-                        </div>
-                        <i data-lucide="chevron-right" class="text-gray-500 w-5 h-5"></i>
-                    </div>
-                    <div class="glass p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition cursor-pointer border border-white/5">
-                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-brand-secondary/20 rounded-lg flex items-center justify-center text-brand-secondary"><i data-lucide="bot" class="w-5 h-5"></i></div>
-                            <div>
-                                <div class="font-bold text-white">Bot Sprzedażowy AI</div>
-                                <div class="text-xs text-gray-400">Usługa Wdrożeniowa • Python/API</div>
-                            </div>
-                        </div>
-                        <i data-lucide="chevron-right" class="text-gray-500 w-5 h-5"></i>
-                    </div>
-                `;
+            const val = e.target.value.toLowerCase();
+            
+            if(val.length > 2) {
+                resultsContainer.classList.remove('hidden');
+                setTimeout(() => resultsContainer.classList.remove('opacity-0'), 50);
+
+                // Logic for "grafiki" / "reklam"
+                if (val.includes('grafik') || val.includes('reklam') || val.includes('obraz')) {
+                    toolsList.innerHTML = generateToolsHTML(['Manus', 'Nano Banana', 'Veo 3']);
+                } 
+                // Logic for automation
+                else if (val.includes('auto') || val.includes('faktur') || val.includes('mail')) {
+                    toolsList.innerHTML = generateToolsHTML(['Make.com', 'n8n', 'OpenAI API']);
+                } 
+                // Default fallback
+                else {
+                    toolsList.innerHTML = generateToolsHTML(['ChatGPT Team', 'Perplexity', 'Claude 3']);
+                }
+
+                // Update Email Link dynamically
+                const subject = encodeURIComponent(`Pytanie o wdrożenie: ${e.target.value}`);
+                const body = encodeURIComponent(`Cześć, znalazłem narzędzia, ale potrzebuję pomocy z wdrożeniem tematu: "${e.target.value}". Proszę o kontakt.`);
+                emailBtn.href = `mailto:dariusz.szuca@gmail.com?subject=${subject}&body=${body}`;
+
+                // Re-init icons for new elements
+                lucide.createIcons();
+
             } else {
-                resultsDiv.style.opacity = '0';
-                setTimeout(() => resultsDiv.innerHTML = '', 500);
+                resultsContainer.classList.add('opacity-0');
+                setTimeout(() => resultsContainer.classList.add('hidden'), 500);
             }
         });
     </script>
