@@ -35,7 +35,6 @@
                         'blob': 'blob 10s infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
                     },
                     keyframes: {
                         blob: {
@@ -47,10 +46,6 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '200% 0' },
-                            '100%': { backgroundPosition: '-200% 0' }
                         }
                     }
                 }
@@ -118,26 +113,27 @@
 
         .btn-cosmic:hover {
             border-color: #00f3ff;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
             text-shadow: 0 0 8px rgba(255,255,255,0.8);
         }
 
         /* Purple Variant for Strategist */
         .btn-cosmic-purple:hover {
             border-color: #bd00ff;
-            box-shadow: 0 0 20px rgba(189, 0, 255, 0.3);
+            box-shadow: 0 0 30px rgba(189, 0, 255, 0.4);
         }
         .btn-cosmic-purple::before {
             background: linear-gradient(90deg, transparent, rgba(189, 0, 255, 0.4), transparent);
         }
 
-        /* Builder Variant (White) */
+        /* White Variant for Builder */
         .btn-cosmic-white {
             background: white;
             color: black;
+            border: none;
         }
         .btn-cosmic-white:hover {
-            box-shadow: 0 0 25px rgba(255,255,255,0.5);
+            box-shadow: 0 0 30px rgba(255,255,255,0.6);
             transform: scale(1.02);
         }
 
@@ -224,31 +220,46 @@
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center pt-32 relative">
-        <div class="max-w-6xl mx-auto px-6 text-center z-10">
+    <section class="min-h-screen flex items-center pt-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
             
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(0,243,255,0.2)]">
-                <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-fast"></span>
-                SYSTEM OPERACYJNY PRZYSZŁOŚCI
+            <div class="text-left order-2 lg:order-1">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(0,243,255,0.2)]">
+                    <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-fast"></span>
+                    SYSTEM OPERACYJNY PRZYSZŁOŚCI
+                </div>
+
+                <h1 class="text-4xl md:text-6xl lg:text-8xl font-display font-bold leading-tight mb-8 tracking-tight">
+                    Wykorzystaj możliwości najnowszych rozwiązań AI.<br>
+                    <span class="gradient-text">Zmień myślenie na AI-First.</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl leading-relaxed font-light">
+                    Twoja firma wspierana dream teamem asystentów AI.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#levels" class="px-10 py-5 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(0,243,255,0.5)] transition transform hover:-translate-y-1 border border-brand-primary text-center">
+                        Wybierz swoją drogę
+                    </a>
+                    <a href="#search-engine" class="px-10 py-5 glass text-white text-lg font-bold rounded-xl hover:bg-white/20 transition flex items-center justify-center gap-2 border border-white/20 group">
+                        <i data-lucide="search" class="w-5 h-5 group-hover:scale-110 transition"></i> Znajdź rozwiązanie
+                    </a>
+                </div>
             </div>
 
-            <h1 class="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight mb-8 tracking-tight">
-                Wykorzystaj możliwości najnowszych rozwiązań AI.<br>
-                <span class="gradient-text">Zmień myślenie na AI-First.</span>
-            </h1>
-
-            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                Twoja firma wspierana dream teamem asystentów AI.
-            </p>
-
-            <div class="flex flex-col md:flex-row gap-5 justify-center">
-                <a href="#levels" class="px-10 py-5 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(0,243,255,0.5)] transition transform hover:-translate-y-1 border border-brand-primary">
-                    Wybierz swoją drogę
-                </a>
-                <a href="#search-engine" class="px-10 py-5 glass text-white text-lg font-bold rounded-xl hover:bg-white/20 transition flex items-center gap-2 border border-white/20 group">
-                    <i data-lucide="search" class="w-5 h-5 group-hover:scale-110 transition"></i> Znajdź rozwiązanie
-                </a>
+            <div class="relative h-[500px] lg:h-[700px] order-1 lg:order-2 w-full flex items-center justify-center">
+                <div class="absolute inset-0 bg-brand-primary/10 blur-[100px] rounded-full opacity-30 animate-pulse-fast"></div>
+                
+                <spline-viewer 
+                    url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    class="w-full h-full scale-110 lg:scale-125"
+                    loading-anim-type="none"
+                ></spline-viewer>
+                
+                <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-[#020203] to-transparent z-10 pointer-events-none"></div>
             </div>
+
         </div>
     </section>
 
@@ -275,17 +286,14 @@
                 </div>
                 
                 <div id="search-results-container" class="opacity-0 transition-all duration-500 hidden">
-                    
                     <div class="mb-2 flex justify-between items-end">
                         <div class="text-[10px] font-mono text-brand-primary mb-3 uppercase tracking-widest flex items-center gap-2">
                             <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
                             Znalezione Rozwiązania (SOTA)
                         </div>
                     </div>
-
                     <div id="tools-list" class="space-y-3">
                         </div>
-
                     <div class="mt-6 bg-brand-secondary/5 border border-brand-secondary/20 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 bg-brand-secondary/20 rounded-full flex items-center justify-center text-brand-secondary shrink-0 border border-brand-secondary/30">
@@ -300,7 +308,6 @@
                             Zapytaj AI-Team
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -334,11 +341,6 @@
                             <span class="absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full bg-black border border-gray-600 group-hover:border-brand-primary group-hover:bg-brand-primary transition duration-500 delay-75"></span>
                             <h4 class="text-sm font-bold text-gray-200">Szybka Kreacja</h4>
                             <p class="text-xs text-gray-500">Google AI Studio.</p>
-                        </div>
-                        <div class="relative pl-6 py-2">
-                            <span class="absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full bg-black border border-gray-600 group-hover:border-brand-primary group-hover:bg-brand-primary transition duration-700 delay-150"></span>
-                            <h4 class="text-sm font-bold text-gray-200">Bezpieczeństwo</h4>
-                            <p class="text-xs text-gray-500">Ochrona danych w AI.</p>
                         </div>
                     </div>
 
@@ -375,11 +377,6 @@
                             <h4 class="text-sm font-bold text-white">AI Agents</h4>
                             <p class="text-xs text-gray-400">Manus & Lindy.</p>
                         </div>
-                        <div class="relative pl-6 py-2">
-                            <span class="absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full bg-gray-800 border border-white group-hover:bg-white transition duration-700 delay-150"></span>
-                            <h4 class="text-sm font-bold text-white">Web Apps</h4>
-                            <p class="text-xs text-gray-400">Generowanie UI/UX.</p>
-                        </div>
                     </div>
 
                     <div class="mt-auto">
@@ -413,11 +410,6 @@
                             <span class="absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full bg-black border border-gray-600 group-hover:border-brand-secondary group-hover:bg-brand-secondary transition duration-500 delay-75"></span>
                             <h4 class="text-sm font-bold text-gray-200">Enterprise RAG</h4>
                             <p class="text-xs text-gray-500">Google AI Studio.</p>
-                        </div>
-                        <div class="relative pl-6 py-2">
-                            <span class="absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full bg-black border border-gray-600 group-hover:border-brand-secondary group-hover:bg-brand-secondary transition duration-700 delay-150"></span>
-                            <h4 class="text-sm font-bold text-gray-200">Avatar AI</h4>
-                            <p class="text-xs text-gray-500">Personalizacja Wideo.</p>
                         </div>
                     </div>
 
