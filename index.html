@@ -629,102 +629,222 @@
         </div>
     </section>
 
-    <section id="bento" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 text-center reveal">
-                <h2 class="text-4xl font-display font-bold mb-4">Efekty Wdrożeń</h2>
-                <p class="text-gray-400">Liczby nie kłamią. Oto co zyskujesz.</p>
+    <!-- SEKCJA: TWÓJ AI DREAM TEAM -->
+    <section id="team" class="py-24 relative z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-primary/5 via-transparent to-brand-secondary/5"></div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-secondary/30">
+                    <span class="w-2 h-2 rounded-full bg-brand-secondary animate-pulse"></span>
+                    PRACUJĄ 24/7 BEZ PRZERW
+                </div>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Twój <span class="gradient-text">AI Dream Team</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">5 wyspecjalizowanych asystentów AI. Każdy ekspert w swojej dziedzinie. Razem zastępują cały dział.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px]">
-                
-                <div class="md:col-span-2 md:row-span-2 glass-card p-8 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center gap-2 text-brand-primary mb-2">
-                            <i data-lucide="trending-up" class="w-5 h-5"></i>
-                            <span class="font-bold text-sm tracking-wide">Wzrost Produktywności</span>
+
+            <!-- TEAM SHOWCASE -->
+            <div class="relative">
+                <!-- Central Hub -->
+                <div class="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 items-center justify-center border border-white/20 z-10">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">TY</div>
+                        <div class="text-[10px] text-gray-400">FOUNDER</div>
+                    </div>
+                </div>
+
+                <!-- Connection Lines (decorative) -->
+                <div class="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]">
+                    <svg class="w-full h-full" viewBox="0 0 600 600">
+                        <circle cx="300" cy="300" r="200" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
+                        <circle cx="300" cy="300" r="250" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                    </svg>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+
+                    <!-- CEO -->
+                    <div class="glass-card p-6 rounded-3xl group hover:border-yellow-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('ceo')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-3xl group-hover:bg-yellow-500/20 transition"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 flex items-center justify-center mb-4 border border-yellow-500/30 group-hover:scale-110 transition">
+                                <span class="text-2xl">👔</span>
+                            </div>
+                            <div class="text-xs text-yellow-500 font-mono mb-1">@CEO</div>
+                            <h3 class="text-lg font-bold text-white mb-2">Chief Executive Officer</h3>
+                            <p class="text-xs text-gray-400 mb-4">Strategia, planowanie, delegowanie. Myśli jak Jeff Bezos.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-yellow-500/10 rounded text-[10px] text-yellow-500">Strategia</span>
+                                <span class="px-2 py-1 bg-yellow-500/10 rounded text-[10px] text-yellow-500">Decyzje</span>
+                            </div>
                         </div>
-                        <div class="text-5xl font-display font-bold text-white">+300%</div>
-                        <p class="text-gray-400 text-sm mt-2">Średni wynik po 3 miesiącach współpracy.</p>
                     </div>
-                    <div class="flex items-end gap-2 mt-4 h-32 w-full">
-                        <div class="w-1/5 bg-white/10 h-[30%] rounded-t transition-all duration-1000 group-hover:h-[40%]"></div>
-                        <div class="w-1/5 bg-white/10 h-[45%] rounded-t transition-all duration-1000 group-hover:h-[55%]"></div>
-                        <div class="w-1/5 bg-white/10 h-[40%] rounded-t transition-all duration-1000 group-hover:h-[50%]"></div>
-                        <div class="w-1/5 bg-white/10 h-[60%] rounded-t transition-all duration-1000 group-hover:h-[70%]"></div>
-                        <div class="w-1/5 bg-brand-primary h-[85%] rounded-t shadow-[0_0_20px_rgba(0,243,255,0.5)] transition-all duration-1000 group-hover:h-[100%]"></div>
+
+                    <!-- COO -->
+                    <div class="glass-card p-6 rounded-3xl group hover:border-blue-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('coo')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center mb-4 border border-blue-500/30 group-hover:scale-110 transition">
+                                <span class="text-2xl">⚙️</span>
+                            </div>
+                            <div class="text-xs text-blue-500 font-mono mb-1">@COO</div>
+                            <h3 class="text-lg font-bold text-white mb-2">Chief Operating Officer</h3>
+                            <p class="text-xs text-gray-400 mb-4">Operacje, procesy, automatyzacje. Execution > Strategy.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-blue-500/10 rounded text-[10px] text-blue-500">Procesy</span>
+                                <span class="px-2 py-1 bg-blue-500/10 rounded text-[10px] text-blue-500">Automatyzacje</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CSO -->
+                    <div class="glass-card p-6 rounded-3xl group hover:border-green-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('cso')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mb-4 border border-green-500/30 group-hover:scale-110 transition">
+                                <span class="text-2xl">💰</span>
+                            </div>
+                            <div class="text-xs text-green-500 font-mono mb-1">@CSO</div>
+                            <h3 class="text-lg font-bold text-white mb-2">Chief Sales Officer</h3>
+                            <p class="text-xs text-gray-400 mb-4">Sprzedaż, pipeline, wyceny. Pomaganie > wciskanie.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-green-500/10 rounded text-[10px] text-green-500">Sprzedaż</span>
+                                <span class="px-2 py-1 bg-green-500/10 rounded text-[10px] text-green-500">Follow-up</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CMO -->
+                    <div class="glass-card p-6 rounded-3xl group hover:border-pink-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('cmo')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl group-hover:bg-pink-500/20 transition"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-600/20 flex items-center justify-center mb-4 border border-pink-500/30 group-hover:scale-110 transition">
+                                <span class="text-2xl">📣</span>
+                            </div>
+                            <div class="text-xs text-pink-500 font-mono mb-1">@CMO</div>
+                            <h3 class="text-lg font-bold text-white mb-2">Chief Marketing Officer</h3>
+                            <p class="text-xs text-gray-400 mb-4">Marketing, content, kampanie. Leady > lajki.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-pink-500/10 rounded text-[10px] text-pink-500">Content</span>
+                                <span class="px-2 py-1 bg-pink-500/10 rounded text-[10px] text-pink-500">Kampanie</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GHOST -->
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('ghost')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-cyan-600/20 flex items-center justify-center mb-4 border border-brand-primary/30 group-hover:scale-110 transition">
+                                <span class="text-2xl">👻</span>
+                            </div>
+                            <div class="text-xs text-brand-primary font-mono mb-1">@GHOST</div>
+                            <h3 class="text-lg font-bold text-white mb-2">Personal Ghost Writer</h3>
+                            <p class="text-xs text-gray-400 mb-4">Pisze i odpowiada jak Ty. Twój cyfrowy klon.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-brand-primary/10 rounded text-[10px] text-brand-primary">Maile</span>
+                                <span class="px-2 py-1 bg-brand-primary/10 rounded text-[10px] text-brand-primary">Odpowiedzi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="mt-16 glass p-6 rounded-2xl border border-white/10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-white">5</div>
+                        <div class="text-xs text-gray-400">Asystentów AI</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-primary">24/7</div>
+                        <div class="text-xs text-gray-400">Dostępność</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-green-500">~50k PLN</div>
+                        <div class="text-xs text-gray-400">Wartość zespołu/mies</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-secondary">&lt;500 PLN</div>
+                        <div class="text-xs text-gray-400">Twój koszt/mies</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="glass-card p-6 flex flex-col items-center justify-center text-center group">
-                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-brand-secondary/20 transition">
-                        <i data-lucide="clock" class="w-8 h-8 text-brand-secondary"></i>
-                    </div>
-                    <div class="text-3xl font-bold text-white">24/7</div>
-                    <p class="text-xs text-gray-400 mt-1">Czas pracy Agenta</p>
-                </div>
-
-                <div class="glass-card p-6 flex flex-col items-center justify-center text-center group">
-                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-green-500"></i>
-                    </div>
-                    <div class="text-3xl font-bold text-white">0%</div>
-                    <p class="text-xs text-gray-400 mt-1">Błędów w fakturach</p>
-                </div>
-
-                <div class="md:col-span-2 glass-card p-6 font-mono text-sm relative overflow-hidden flex flex-col justify-center">
-                    <div class="text-xs text-gray-500 mb-2">/ai-agent/process.py</div>
-                    <div class="text-gray-300">
-                        <span class="text-brand-primary">def</span> <span class="text-yellow-400">automate_sales</span>():<br>
-                        &nbsp;&nbsp;leads = crm.get_new_leads()<br>
-                        &nbsp;&nbsp;<span class="text-brand-primary">for</span> lead <span class="text-brand-primary">in</span> leads:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;profile = ai.analyze(lead)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;email = ai.generate(profile)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">print</span>("Lead processed successfully")
-                    </div>
-                    <div class="absolute top-0 right-0 p-4 opacity-20">
-                        <i data-lucide="terminal" class="w-24 h-24"></i>
-                    </div>
-                </div>
-
+            <div class="text-center mt-10">
+                <a href="#products" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-black font-bold rounded-xl hover:shadow-[0_0_40px_rgba(0,243,255,0.4)] transition">
+                    Zbuduj swój AI Team <i data-lucide="users" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="py-20 border-y border-white/10 overflow-hidden bg-white/5 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 mb-12 text-center reveal">
-            <h2 class="text-3xl font-display font-bold">Biblioteka Promptów</h2>
-            <p class="text-gray-400 mt-2">Zoptymalizowane pod modele reasoning (o1, Opus).</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6 px-6 reveal">
-            <div class="w-full md:w-96 glass-card p-6 rounded-2xl cursor-pointer group hover:bg-white/5 transition duration-300">
-                <div class="flex justify-between items-start mb-4"><span class="bg-blue-500/20 text-blue-200 text-xs px-3 py-1 rounded-full border border-blue-500/30">Sprzedaż</span><i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i></div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-primary transition">Idealny Webinar Sprzedażowy - Checklista</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4 text-left"><p class="text-xs text-gray-400 font-mono line-clamp-3">Kompletna checklista tworzenia idealnego webinaru sprzedażowego od A do Z. Ze względu na ogromną długość, prezentujemy najważniejsze elementy...</p></div>
-                <div class="flex justify-between items-center text-xs text-gray-500"><span>Model: <span class="text-gray-300">Claude Opus</span></span><span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 5.0</span></div>
-            </div>
-            <div class="w-full md:w-96 glass-card p-6 rounded-2xl cursor-pointer group hover:bg-white/5 transition duration-300">
-                <div class="flex justify-between items-start mb-4"><span class="bg-purple-500/20 text-purple-200 text-xs px-3 py-1 rounded-full border border-purple-500/30">Biznes</span><i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i></div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-secondary transition">System Negatywnych Wydatków</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4 text-left"><p class="text-xs text-gray-400 font-mono line-clamp-3">AI będzie działać jako Twój CEO Assistant, który każdy wydatek przekształca w inwestycję z minimum 2x zwrotem w 90 dni...</p></div>
-                <div class="flex justify-between items-center text-xs text-gray-500"><span>Model: <span class="text-gray-300">GPT-5.1</span></span><span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 5.0</span></div>
-            </div>
-            <div class="w-full md:w-96 glass-card p-6 rounded-2xl cursor-pointer group hover:bg-white/5 transition duration-300">
-                <div class="flex justify-between items-start mb-4"><span class="bg-green-500/20 text-green-200 text-xs px-3 py-1 rounded-full border border-green-500/30">Prompt Engineering</span><i data-lucide="copy" class="w-5 h-5 text-gray-400 group-hover:text-white transition"></i></div>
-                <h4 class="font-bold text-xl mb-3 group-hover:text-brand-primary transition">Generator Promptów (K-R-A-F-T)</h4>
-                <div class="bg-black/40 p-3 rounded-lg border border-white/5 mb-4 text-left"><p class="text-xs text-gray-400 font-mono line-clamp-3">Generator promptów według metodyki K-R-A-F-T. Najpierw tworzy plan do zatwierdzenia, potem generuje finalny prompt...</p></div>
-                <div class="flex justify-between items-center text-xs text-gray-500"><span>Model: <span class="text-gray-300">Gemini 3</span></span><span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-500 fill-yellow-500"></i> 4.9</span></div>
-            </div>
-        </div>
-        <div class="text-center mt-10">
-             <a href="https://www.notion.so/SuperPrompt-Power-Pack-100-Prompt-w-d87a26002a27476d8252cf5162cc2ef9?source=copy_link" target="_blank" class="inline-flex flex-col items-center group">
-                <div class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)] flex items-center gap-2">
-                    Otwórz Pełny Katalog <i data-lucide="external-link" class="w-4 h-4"></i>
+    <!-- SEKCJA: AI W AKCJI - LIVE DEMO -->
+    <section id="demo" class="py-24 relative z-10 bg-gradient-to-b from-transparent via-black to-transparent">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-green-500/30">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    LIVE DEMO
                 </div>
-                <div class="text-xs text-gray-500 mt-3 group-hover:text-white transition">
-                    + Nowe prompty co tydzień. Pełny dostęp: 19 PLN / tydzień.
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Zobacz <span class="text-green-500">AI w akcji</span></h2>
+                <p class="text-gray-400">Wpisz swój problem biznesowy. AI pokaże jak go rozwiązać.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border-2 border-green-500/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
+
+                <div class="relative">
+                    <!-- Input -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-300 mb-3">Opisz swój problem lub wyzwanie:</label>
+                        <textarea id="demo-input" rows="3" placeholder="Np. Spędzam 3 godziny dziennie na odpowiadanie na maile klientów..." class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-green-500 transition placeholder-gray-600 resize-none text-lg"></textarea>
+                    </div>
+
+                    <!-- Industry selector -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-300 mb-3">Twoja branża:</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="selectDemoIndustry(this, 'ecommerce')" class="demo-industry px-4 py-2 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition">E-commerce</button>
+                            <button onclick="selectDemoIndustry(this, 'uslugi')" class="demo-industry px-4 py-2 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition">Usługi</button>
+                            <button onclick="selectDemoIndustry(this, 'consulting')" class="demo-industry px-4 py-2 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition">Consulting</button>
+                            <button onclick="selectDemoIndustry(this, 'saas')" class="demo-industry px-4 py-2 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition">SaaS</button>
+                            <button onclick="selectDemoIndustry(this, 'other')" class="demo-industry px-4 py-2 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition">Inna</button>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <button onclick="runDemo()" class="w-full py-4 bg-green-500 text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transition flex items-center justify-center gap-3 text-lg">
+                        <i data-lucide="play" class="w-5 h-5"></i>
+                        Pokaż rozwiązanie AI
+                    </button>
+
+                    <!-- Result -->
+                    <div id="demo-result" class="hidden mt-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                                <i data-lucide="bot" class="w-5 h-5 text-green-500"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">AI Team Response</div>
+                                <div class="text-xs text-gray-500">Analiza w czasie rzeczywistym</div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4" id="demo-output">
+                            <!-- Dynamic content here -->
+                        </div>
+
+                        <div class="mt-6 p-4 bg-brand-primary/10 rounded-xl border border-brand-primary/30">
+                            <p class="text-sm text-gray-300">
+                                <strong class="text-brand-primary">Chcesz wdrożyć to rozwiązanie?</strong><br>
+                                <a href="#products" class="text-brand-primary hover:underline">Zamów konsultację</a> - pokażę Ci jak to zrobić krok po kroku.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -1792,6 +1912,249 @@ Profesjonalny ale przystępny, bez korporacyjnego żargonu.`;
                 <div class="glass p-3 rounded-lg border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition">${uc}</div>
             `).join('');
             document.getElementById('usecase-result').classList.remove('hidden');
+        }
+
+        // ===== AI DREAM TEAM =====
+        const teamData = {
+            'ceo': {
+                name: 'AI CEO',
+                title: 'Chief Executive Officer',
+                emoji: '👔',
+                color: 'yellow-500',
+                description: 'Twój strategiczny partner. Rozumie całość biznesu, planuje kwartały, deleguje zadania do reszty zespołu.',
+                capabilities: [
+                    'Tworzenie strategii kwartalnej',
+                    'Rozkładanie złożonych zadań na zespół',
+                    'Podejmowanie trudnych decyzji',
+                    'Priorytetyzacja - co robić TERAZ'
+                ],
+                example: '"@CEO potrzebuję plan na zwiększenie przychodów w Q1" → otrzymasz rozpisany plan z konkretnymi akcjami dla COO, CSO i CMO'
+            },
+            'coo': {
+                name: 'AI COO',
+                title: 'Chief Operating Officer',
+                emoji: '⚙️',
+                color: 'blue-500',
+                description: 'Specjalista od operacji. Automatyzuje procesy, eliminuje wąskie gardła, dba o efektywność.',
+                capabilities: [
+                    'Projektowanie automatyzacji (Make, n8n)',
+                    'Optymalizacja procesów',
+                    'Eliminacja powtarzalnych zadań',
+                    'Zarządzanie czasem i priorytetami'
+                ],
+                example: '"@COO spędzam 2h dziennie na fakturach" → dostaniesz gotowy workflow automatyzujący cały proces'
+            },
+            'cso': {
+                name: 'AI CSO',
+                title: 'Chief Sales Officer',
+                emoji: '💰',
+                color: 'green-500',
+                description: 'Twój handlowiec który nigdy nie śpi. Pisze follow-upy, przygotowuje oferty, zamyka deale.',
+                capabilities: [
+                    'Pisanie ofert i wycen',
+                    'Sekwencje follow-up (5+ touchpointów)',
+                    'Scoring leadów',
+                    'Negocjacje i obiekcje'
+                ],
+                example: '"@CSO przygotuj ofertę na wdrożenie AI dla e-commerce" → gotowa oferta PDF z cenami i zakresem'
+            },
+            'cmo': {
+                name: 'AI CMO',
+                title: 'Chief Marketing Officer',
+                emoji: '📣',
+                color: 'pink-500',
+                description: 'Twój dział marketingu. Tworzy content, planuje kampanie, generuje leady.',
+                capabilities: [
+                    'Content na 8 platform z 1 tematu',
+                    'Kampanie lead generation',
+                    'SEO i copywriting',
+                    'Analiza konkurencji'
+                ],
+                example: '"@CMO potrzebuję content na tydzień o AI w małej firmie" → 30 treści na wszystkie platformy'
+            },
+            'ghost': {
+                name: 'AI GHOST',
+                title: 'Personal Ghost Writer',
+                emoji: '👻',
+                color: 'brand-primary',
+                description: 'Pisze i odpowiada jak TY. Nauczony Twojego stylu, słownictwa, sposobu myślenia.',
+                capabilities: [
+                    'Odpowiadanie na maile w Twoim stylu',
+                    'Pisanie DM i wiadomości',
+                    'Komentarze na social media',
+                    'Samodoskonalenie ("zapamiętaj", "to nie ja")'
+                ],
+                example: '"@GHOST odpowiedz na tego maila" → odpowiedź brzmiąca dokładnie jak Ty ją napisał'
+            }
+        };
+
+        function showTeamMember(memberId) {
+            const member = teamData[memberId];
+            openToolModal('team-' + memberId);
+        }
+
+        // Add team members to toolsData
+        Object.keys(teamData).forEach(key => {
+            const m = teamData[key];
+            toolsData['team-' + key] = {
+                title: m.name,
+                icon: 'user',
+                color: m.color,
+                description: m.title,
+                content: `
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-20 h-20 rounded-2xl bg-${m.color}/20 flex items-center justify-center text-4xl border border-${m.color}/30">
+                                ${m.emoji}
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">${m.name}</h3>
+                                <p class="text-sm text-gray-400">${m.title}</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-300">${m.description}</p>
+
+                        <div>
+                            <h4 class="font-bold text-white mb-3">Co potrafi:</h4>
+                            <ul class="space-y-2">
+                                ${m.capabilities.map(c => `
+                                    <li class="flex items-start gap-2 text-sm text-gray-400">
+                                        <i data-lucide="check" class="w-4 h-4 text-${m.color} shrink-0 mt-0.5"></i>
+                                        ${c}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="glass p-4 rounded-xl border border-${m.color}/30 bg-${m.color}/5">
+                            <h4 class="font-bold text-white mb-2 text-sm">Przykład użycia:</h4>
+                            <p class="text-sm text-gray-400 font-mono">${m.example}</p>
+                        </div>
+
+                        <a href="#products" onclick="closeToolModal()" class="block w-full py-4 bg-${m.color} text-black font-bold rounded-xl text-center hover:opacity-90 transition">
+                            Chcę takiego asystenta
+                        </a>
+                    </div>
+                `
+            };
+        });
+
+        // ===== LIVE DEMO =====
+        let selectedIndustry = '';
+
+        function selectDemoIndustry(btn, industry) {
+            document.querySelectorAll('.demo-industry').forEach(b => {
+                b.classList.remove('bg-green-500/20', 'border-green-500', 'text-green-500');
+                b.classList.add('border-white/10', 'text-gray-400');
+            });
+            btn.classList.remove('border-white/10', 'text-gray-400');
+            btn.classList.add('bg-green-500/20', 'border-green-500', 'text-green-500');
+            selectedIndustry = industry;
+        }
+
+        function runDemo() {
+            const input = document.getElementById('demo-input').value;
+            if (!input.trim()) {
+                alert('Wpisz swój problem!');
+                return;
+            }
+
+            const solutions = {
+                'mail': {
+                    problem: 'Zbyt dużo czasu na maile',
+                    analysis: 'Twój problem to klasyczny przypadek "inbox overload". Większość maili to powtarzalne pytania.',
+                    solution: [
+                        { agent: '@GHOST', task: 'Nauczy się Twojego stylu i będzie odpowiadać za Ciebie' },
+                        { agent: '@COO', task: 'Zaprojektuje automatyzację sortowania i kategoryzacji' },
+                        { agent: '@CEO', task: 'Ustawi priorytety - które maile wymagają Twojej uwagi' }
+                    ],
+                    result: 'Redukcja czasu na maile o 80%. Z 3h → 30 min dziennie.',
+                    tools: ['Claude', 'Make.com', 'Gmail API']
+                },
+                'content': {
+                    problem: 'Brak systematyczności w tworzeniu treści',
+                    analysis: 'Prowadzisz wiele platform bez systemu. To prowadzi do wypalenia i niskiej jakości.',
+                    solution: [
+                        { agent: '@CMO', task: 'Stworzy Content Machine - 1 temat na 8 formatów' },
+                        { agent: '@GHOST', task: 'Napisze treści w Twoim stylu' },
+                        { agent: '@COO', task: 'Zautomatyzuje publikację' }
+                    ],
+                    result: '30+ treści tygodniowo zamiast chaotycznych 3-5.',
+                    tools: ['Claude', 'Notion', 'Make.com', 'Buffer']
+                },
+                'sprzedaz': {
+                    problem: 'Niska konwersja / brak follow-upów',
+                    analysis: '80% sprzedaży zamyka się po 5+ kontaktach. Prawdopodobnie rezygnujesz zbyt wcześnie.',
+                    solution: [
+                        { agent: '@CSO', task: 'Zaprojektuje 7-etapową sekwencję follow-up' },
+                        { agent: '@COO', task: 'Zautomatyzuje wysyłkę i przypomnienia' },
+                        { agent: '@GHOST', task: 'Napisze spersonalizowane wiadomości' }
+                    ],
+                    result: '3x więcej zamkniętych deali przy tym samym ruchu.',
+                    tools: ['Claude', 'Make.com', 'CRM']
+                },
+                'default': {
+                    problem: 'Złożony problem biznesowy',
+                    analysis: 'Twój problem wymaga analizy przez cały zespół AI.',
+                    solution: [
+                        { agent: '@CEO', task: 'Rozłoży problem na części i zaplanuje strategię' },
+                        { agent: '@COO', task: 'Znajdzie procesy do zautomatyzowania' },
+                        { agent: '@CMO', task: 'Zaproponuje działania marketingowe' },
+                        { agent: '@CSO', task: 'Przygotuje strategię sprzedażową' }
+                    ],
+                    result: 'Kompleksowe rozwiązanie dopasowane do Twojej sytuacji.',
+                    tools: ['Claude', 'Make.com', 'Notion']
+                }
+            };
+
+            // Detect type
+            let solutionKey = 'default';
+            const inputLower = input.toLowerCase();
+            if (inputLower.includes('mail') || inputLower.includes('odpowiad')) solutionKey = 'mail';
+            else if (inputLower.includes('content') || inputLower.includes('treś') || inputLower.includes('post')) solutionKey = 'content';
+            else if (inputLower.includes('sprze') || inputLower.includes('klient') || inputLower.includes('lead') || inputLower.includes('konwersj')) solutionKey = 'sprzedaz';
+
+            const sol = solutions[solutionKey];
+
+            const output = `
+                <div class="glass p-4 rounded-xl border border-yellow-500/30 bg-yellow-500/5">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-yellow-500 font-bold">🔍 Diagnoza:</span>
+                    </div>
+                    <p class="text-sm text-gray-300">${sol.analysis}</p>
+                </div>
+
+                <div class="glass p-4 rounded-xl border border-blue-500/30 bg-blue-500/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-blue-500 font-bold">🛠️ Plan działania:</span>
+                    </div>
+                    <div class="space-y-2">
+                        ${sol.solution.map(s => `
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 bg-white/10 rounded text-xs font-mono text-white">${s.agent}</span>
+                                <span class="text-sm text-gray-300">${s.task}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="glass p-4 rounded-xl border border-green-500/30 bg-green-500/5">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-green-500 font-bold">📈 Spodziewany efekt:</span>
+                    </div>
+                    <p class="text-lg font-bold text-white">${sol.result}</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="text-xs text-gray-500">Narzędzia:</span>
+                    ${sol.tools.map(t => `<span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">${t}</span>`).join('')}
+                </div>
+            `;
+
+            document.getElementById('demo-output').innerHTML = output;
+            document.getElementById('demo-result').classList.remove('hidden');
+            lucide.createIcons();
         }
 
         // Initialize
