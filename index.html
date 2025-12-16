@@ -216,6 +216,109 @@
             line-height: 1;
         }
 
+        /* Testimonial cards - bez transform żeby nie znikały */
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 50%, rgba(0,243,255,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0,243,255,0.15);
+        }
+        .testimonial-card:hover::before { opacity: 1; }
+
+        /* Cosmic glow behind cards */
+        .cosmic-glow {
+            position: relative;
+        }
+        .cosmic-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,243,255,0.2) 0%, transparent 60%);
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .cosmic-glow:hover::before { opacity: 1; }
+
+        /* Ambient cosmic orbs - background decoration */
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .cosmic-orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,243,255,0.3) 0%, transparent 70%);
+            top: 10%;
+            left: -10%;
+        }
+        .cosmic-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,243,255,0.2) 0%, transparent 70%);
+            top: 40%;
+            right: -5%;
+            animation-delay: -7s;
+        }
+        .cosmic-orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0,200,230,0.25) 0%, transparent 70%);
+            bottom: 20%;
+            left: 10%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 10px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+
+        /* Enhanced card glow on entire page */
+        .glow-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glow-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, transparent 40%, rgba(0,243,255,0.15) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(8px);
+        }
+        .glow-card:hover::after { opacity: 1; }
+
         .loader {
             width: 24px; height: 24px; border: 2px solid #FFF;
             border-bottom-color: transparent; border-radius: 50%;
@@ -226,6 +329,13 @@
     </style>
 </head>
 <body class="antialiased selection:bg-brand-primary selection:text-black relative">
+
+    <!-- Cosmic Ambient Orbs - floating background glow -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="cosmic-orb cosmic-orb-1"></div>
+        <div class="cosmic-orb cosmic-orb-2"></div>
+        <div class="cosmic-orb cosmic-orb-3"></div>
+    </div>
 
     <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
         <div class="absolute inset-0 bg-grid-pattern"></div>
@@ -296,8 +406,8 @@
         <div class="max-w-4xl mx-auto px-6">
             <div class="glass p-8 rounded-3xl shadow-2xl reveal relative border border-white/10 bg-black/40">
                 <div class="text-center mb-8">
-                    <h2 class="text-3xl font-display font-bold mb-2">Masz wyzwanie? <span class="text-brand-secondary">Znajdź narzędzie.</span></h2>
-                    <p class="text-gray-400">Silnik rekomendacji oparty o najnowsze premiery AI.</p>
+                    <h2 class="text-3xl font-display font-bold mb-2">Masz wyzwanie? <span class="text-brand-primary">AI ma rozwiązanie.</span></h2>
+                    <p class="text-gray-400">Opisz problem, a znajdziemy najlepsze narzędzie.</p>
                 </div>
                 <div class="relative group mb-8">
                     <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -682,27 +792,11 @@
 
             <!-- TEAM SHOWCASE -->
             <div class="relative">
-                <!-- Central Hub -->
-                <div class="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 items-center justify-center border border-white/20 z-10">
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">TY</div>
-                        <div class="text-[10px] text-gray-400">FOUNDER</div>
-                    </div>
-                </div>
-
-                <!-- Connection Lines (decorative) -->
-                <div class="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]">
-                    <svg class="w-full h-full" viewBox="0 0 600 600">
-                        <circle cx="300" cy="300" r="200" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
-                        <circle cx="300" cy="300" r="250" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-                    </svg>
-                </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
 
                     <!-- CEO -->
-                    <div class="glass-card p-6 rounded-3xl group hover:border-yellow-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('ceo')">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-3xl group-hover:bg-yellow-500/20 transition"></div>
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden cosmic-glow" onclick="showTeamMember('ceo')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/30 transition"></div>
                         <div class="relative">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 flex items-center justify-center mb-4 border border-yellow-500/30 group-hover:scale-110 transition">
                                 <span class="text-2xl">👔</span>
@@ -718,7 +812,7 @@
                     </div>
 
                     <!-- COO -->
-                    <div class="glass-card p-6 rounded-3xl group hover:border-blue-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('coo')">
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden cosmic-glow" onclick="showTeamMember('coo')">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition"></div>
                         <div class="relative">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center mb-4 border border-blue-500/30 group-hover:scale-110 transition">
@@ -735,7 +829,7 @@
                     </div>
 
                     <!-- CSO -->
-                    <div class="glass-card p-6 rounded-3xl group hover:border-green-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('cso')">
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden cosmic-glow" onclick="showTeamMember('cso')">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition"></div>
                         <div class="relative">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mb-4 border border-green-500/30 group-hover:scale-110 transition">
@@ -752,7 +846,7 @@
                     </div>
 
                     <!-- CMO -->
-                    <div class="glass-card p-6 rounded-3xl group hover:border-pink-500/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('cmo')">
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden cosmic-glow" onclick="showTeamMember('cmo')">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl group-hover:bg-pink-500/20 transition"></div>
                         <div class="relative">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-600/20 flex items-center justify-center mb-4 border border-pink-500/30 group-hover:scale-110 transition">
@@ -769,7 +863,7 @@
                     </div>
 
                     <!-- GHOST -->
-                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden" onclick="showTeamMember('ghost')">
+                    <div class="glass-card p-6 rounded-3xl group hover:border-brand-primary/50 transition cursor-pointer relative overflow-hidden cosmic-glow" onclick="showTeamMember('ghost')">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition"></div>
                         <div class="relative">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-cyan-600/20 flex items-center justify-center mb-4 border border-brand-primary/30 group-hover:scale-110 transition">
@@ -889,145 +983,126 @@
     <!-- SEKCJA: OPINIE - LUDZKIE HISTORIE -->
     <section class="py-24 max-w-7xl mx-auto px-6 relative z-10">
         <div class="mb-16 text-center reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-white/10">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30">
+                <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
                 PRAWDZIWE HISTORIE
             </div>
-            <h2 class="text-4xl font-display font-bold mb-4">Co mówią ludzie</h2>
+            <h2 class="text-4xl font-display font-bold mb-4">Co mówią <span class="text-brand-primary">ludzie</span></h2>
             <p class="text-gray-400">Bez filtra. Bez edycji. Szczere opinie.</p>
         </div>
 
-        <div class="columns-1 md:columns-3 gap-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <!-- Ania - freelancerka -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl border-brand-primary/30 bg-brand-primary/5">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-xl">👩‍💻</div>
-                    <div>
-                        <div class="font-bold text-white">Ania</div>
-                        <div class="text-xs text-gray-400">Freelancerka, copywriter</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-pink-500/20">👩‍💻</div>
+                        <div>
+                            <div class="font-bold text-white">Ania</div>
+                            <div class="text-xs text-gray-400">Freelancerka, copywriter</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Szczerze? Bałam się że AI mnie zastąpi. Teraz używam go jako asystenta i robię 3x więcej zleceń. Ironia losu - zarabiam więcej dzięki temu, czego się bałam."</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="calendar" class="w-3 h-3"></i>
-                    <span>Klientka od 3 miesięcy</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Szczerze? Bałam się że AI mnie zastąpi. Teraz używam go jako asystenta i robię 3x więcej zleceń. Ironia losu - zarabiam więcej dzięki temu, czego się bałam."</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                        <span>Klientka od 3 miesięcy</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Michał - właściciel agencji -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-xl">👨‍💼</div>
-                    <div>
-                        <div class="font-bold text-white">Michał</div>
-                        <div class="text-xs text-gray-400">Właściciel agencji marketingowej</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-blue-500/20">👨‍💼</div>
+                        <div>
+                            <div class="font-bold text-white">Michał</div>
+                            <div class="text-xs text-gray-400">Właściciel agencji marketingowej</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Nie wiedziałem od czego zacząć. 100 narzędzi, 1000 tutoriali. Darek pokazał mi 3 rzeczy i powiedział 'zacznij od tego'. Po miesiącu mam działający system. Czasem prostota wygrywa."</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="trending-up" class="w-3 h-3"></i>
-                    <span>ROI w 3 tygodnie</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Nie wiedziałem od czego zacząć. 100 narzędzi, 1000 tutoriali. Darek pokazał mi 3 rzeczy i powiedział 'zacznij od tego'. Po miesiącu mam działający system."</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="trending-up" class="w-3 h-3"></i>
+                        <span>ROI w 3 tygodnie</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Kasia - e-commerce -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-xl">👩‍🦰</div>
-                    <div>
-                        <div class="font-bold text-white">Kasia</div>
-                        <div class="text-xs text-gray-400">Sklep online z kosmetykami</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-green-500/20">👩‍🦰</div>
+                        <div>
+                            <div class="font-bold text-white">Kasia</div>
+                            <div class="text-xs text-gray-400">Sklep online z kosmetykami</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Mój mąż mówił że to strata pieniędzy. Teraz pyta czy może też dostać 'tego bota co odpowiada za mnie na maile' 😂 Agent obsługuje 70% zapytań klientów."</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="message-circle" class="w-3 h-3"></i>
-                    <span>70% mniej maili do odpowiedzi</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Mój mąż mówił że to strata pieniędzy. Teraz pyta czy może też dostać 'tego bota co odpowiada za mnie na maile' 😂 Agent obsługuje 70% zapytań."</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="message-circle" class="w-3 h-3"></i>
+                        <span>70% mniej maili do odpowiedzi</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Tomek - konsultant -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl border-green-500/30 bg-green-500/5">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-xl">🧔</div>
-                    <div>
-                        <div class="font-bold text-white">Tomek</div>
-                        <div class="text-xs text-gray-400">Konsultant biznesowy</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-yellow-500/20">🧔</div>
+                        <div>
+                            <div class="font-bold text-white">Tomek</div>
+                            <div class="text-xs text-gray-400">Konsultant biznesowy</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Pisanie ofert zajmowało mi cały dzień. Teraz mam szablon + AI i wyrzucam 3 oferty dziennie. Klienci myślą że mam zespół. Mam - AI Team 😎"</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="zap" class="w-3 h-3"></i>
-                    <span>Z 1 oferty/dzień → 3 oferty/dzień</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Pisanie ofert zajmowało mi cały dzień. Teraz mam szablon + AI i wyrzucam 3 oferty dziennie. Klienci myślą że mam zespół. Mam - AI Team 😎"</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="zap" class="w-3 h-3"></i>
+                        <span>Z 1 oferty/dzień → 3 oferty/dzień</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Magda - coach -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl">👱‍♀️</div>
-                    <div>
-                        <div class="font-bold text-white">Magda</div>
-                        <div class="text-xs text-gray-400">Coach, trenerka rozwoju</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-purple-500/20">👱‍♀️</div>
+                        <div>
+                            <div class="font-bold text-white">Magda</div>
+                            <div class="text-xs text-gray-400">Coach, trenerka rozwoju</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Content był moją zmorą. Wstaję rano, odpalam prompt, idę na kawę, wracam - mam posty na tydzień. To jest magia, nie technologia."</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="coffee" class="w-3 h-3"></i>
-                    <span>30 postów/tydzień bez stresu</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Content był moją zmorą. Wstaję rano, odpalam prompt, idę na kawę, wracam - mam posty na tydzień. To jest magia, nie technologia."</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="coffee" class="w-3 h-3"></i>
+                        <span>30 postów/tydzień bez stresu</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Paweł - programista -->
-            <div class="break-inside-avoid glass-card p-6 rounded-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-full flex items-center justify-center text-xl">🧑‍💻</div>
-                    <div>
-                        <div class="font-bold text-white">Paweł</div>
-                        <div class="text-xs text-gray-400">Programista, side project</div>
+            <div class="testimonial-card p-6 cosmic-glow">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-gray-500 to-brand-primary rounded-full flex items-center justify-center text-xl shadow-lg shadow-gray-500/20">🧑‍💻</div>
+                        <div>
+                            <div class="font-bold text-white">Paweł</div>
+                            <div class="text-xs text-gray-400">Programista, side project</div>
+                        </div>
                     </div>
-                </div>
-                <p class="text-sm text-gray-300 leading-relaxed mb-4">"Byłem sceptyczny bo sam używam AI. Ale tutaj chodzi o SYSTEM, nie o pojedyncze prompty. Mam teraz CEO, COO i CMO w jednym oknie. Mind = blown."</p>
-                <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <i data-lucide="brain" class="w-3 h-3"></i>
-                    <span>Sceptyk → ewangelista</span>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">"Byłem sceptyczny bo sam używam AI. Ale tutaj chodzi o SYSTEM, nie o pojedyncze prompty. Mam teraz CEO, COO i CMO w jednym oknie. Mind = blown."</p>
+                    <div class="flex items-center gap-2 text-xs text-brand-primary/70">
+                        <i data-lucide="brain" class="w-3 h-3"></i>
+                        <span>Sceptyk → ewangelista</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
-
-    <footer id="contact" class="border-t border-white/10 bg-black pt-20 pb-10 relative z-10">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-display font-bold mb-4">Gotowy na upgrade?</h2>
-            <p class="text-gray-400 mb-12">Skontaktuj się bezpośrednio.</p>
-            
-            <div class="flex flex-col md:flex-row justify-center gap-6 mb-20">
-                <a href="mailto:dariusz.szuca@gmail.com" class="glass-card p-6 rounded-2xl hover:bg-white/10 transition group w-full md:w-auto min-w-[250px] border border-white/10">
-                    <i data-lucide="mail" class="w-8 h-8 mx-auto mb-4 text-gray-400 group-hover:text-brand-secondary transition"></i>
-                    <div class="text-lg font-bold">Email</div>
-                    <div class="text-sm text-gray-500 group-hover:text-gray-300">dariusz.szuca@gmail.com</div>
-                </a>
-                
-                <a href="https://wa.me/48730600383" class="glass-card p-6 rounded-2xl hover:bg-white/10 transition group w-full md:w-auto min-w-[250px] border border-white/10">
-                    <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-4 text-gray-400 group-hover:text-green-400 transition"></i>
-                    <div class="text-lg font-bold">WhatsApp</div>
-                    <div class="text-sm text-gray-500 group-hover:text-gray-300">+48 730 600 383</div>
-                </a>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
-                <div class="mb-4 md:mb-0">&copy; 2025 AI-Team. All rights reserved.</div>
-                <div class="space-x-6 flex items-center">
-                   <div class="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/5">
-                       <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                       <span class="text-[10px] text-gray-400 uppercase tracking-wide">Live: Gemini 3 • GPT-5.1 • Opus</span>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- SEKCJA: PAKIETY - FINAL CTA -->
     <section id="pricing" class="py-24 bg-black relative z-10">
@@ -1043,7 +1118,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <!-- PAKIET 1: SuperPrompt Pack -->
-                <div class="glass-card p-8 rounded-3xl border border-white/10 hover:border-brand-primary/50 transition group relative">
+                <div class="glass-card p-8 rounded-3xl border border-white/10 hover:border-brand-primary/50 transition group relative cosmic-glow">
                     <div class="absolute -top-3 left-6 px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-gray-400">STARTER</div>
                     <div class="mb-6">
                         <div class="w-14 h-14 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-4 border border-brand-primary/30">
@@ -1084,7 +1159,7 @@
                 </div>
 
                 <!-- PAKIET 2: Konsultacja - HIGHLIGHTED -->
-                <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/50 bg-brand-primary/5 transition group relative transform md:-translate-y-4 md:scale-105">
+                <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/50 bg-brand-primary/5 transition group relative transform md:-translate-y-4 md:scale-105 cosmic-glow">
                     <div class="absolute -top-3 left-6 px-3 py-1 bg-brand-primary rounded-full text-xs font-bold text-black">NAJPOPULARNIEJSZY</div>
                     <div class="mb-6">
                         <div class="w-14 h-14 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-4 border border-brand-primary/30">
@@ -1127,7 +1202,7 @@
                 </div>
 
                 <!-- PAKIET 3: AI Team Setup -->
-                <div class="glass-card p-8 rounded-3xl border border-white/10 hover:border-brand-primary/50 transition group relative">
+                <div class="glass-card p-8 rounded-3xl border border-white/10 hover:border-brand-primary/50 transition group relative cosmic-glow">
                     <div class="absolute -top-3 left-6 px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-brand-primary">PREMIUM</div>
                     <div class="mb-6">
                         <div class="w-14 h-14 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-4 border border-brand-primary/30">
@@ -1172,12 +1247,57 @@
             <!-- Gwarancja -->
             <div class="mt-16 text-center">
                 <div class="inline-flex items-center gap-3 px-6 py-3 glass rounded-full border border-white/10">
-                    <i data-lucide="shield-check" class="w-5 h-5 text-green-500"></i>
+                    <i data-lucide="shield-check" class="w-5 h-5 text-brand-primary"></i>
                     <span class="text-sm text-gray-300"><strong class="text-white">14 dni gwarancji</strong> - nie działa? Zwracam kasę, bez pytań.</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- FOOTER: GOTOWY NA UPGRADE -->
+    <footer id="contact" class="border-t border-brand-primary/20 bg-black pt-20 pb-10 relative z-10">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/5 via-transparent to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative">
+            <h2 class="text-4xl font-display font-bold mb-4">Gotowy na <span class="text-brand-primary">upgrade</span>?</h2>
+            <p class="text-gray-400 mb-12">Opisz swój problem lub skontaktuj się bezpośrednio.</p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                <button onclick="openContactForm()" class="testimonial-card p-6 hover:border-brand-primary/50 transition group w-full md:w-auto min-w-[250px] cosmic-glow">
+                    <div class="relative z-10">
+                        <i data-lucide="bot" class="w-8 h-8 mx-auto mb-4 text-brand-primary"></i>
+                        <div class="text-lg font-bold text-white">AI Asystent</div>
+                        <div class="text-sm text-gray-500 group-hover:text-gray-300">Opisz czego potrzebujesz</div>
+                    </div>
+                </button>
+
+                <a href="mailto:dariusz.szuca@gmail.com" class="testimonial-card p-6 hover:border-brand-primary/50 transition group w-full md:w-auto min-w-[250px] cosmic-glow">
+                    <div class="relative z-10">
+                        <i data-lucide="mail" class="w-8 h-8 mx-auto mb-4 text-gray-400 group-hover:text-brand-primary transition"></i>
+                        <div class="text-lg font-bold text-white">Email</div>
+                        <div class="text-sm text-gray-500 group-hover:text-gray-300">dariusz.szuca@gmail.com</div>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/48730600383" class="testimonial-card p-6 hover:border-brand-primary/50 transition group w-full md:w-auto min-w-[250px] cosmic-glow">
+                    <div class="relative z-10">
+                        <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-4 text-gray-400 group-hover:text-green-400 transition"></i>
+                        <div class="text-lg font-bold text-white">WhatsApp</div>
+                        <div class="text-sm text-gray-500 group-hover:text-gray-300">+48 730 600 383</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
+                <div class="mb-4 md:mb-0">&copy; 2025 AI-Team. All rights reserved.</div>
+                <div class="space-x-6 flex items-center">
+                   <div class="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 rounded-full border border-brand-primary/20">
+                       <span class="w-1.5 h-1.5 bg-brand-primary rounded-full animate-pulse"></span>
+                       <span class="text-[10px] text-gray-400 uppercase tracking-wide">Live: Gemini 3 • GPT-5.1 • Opus</span>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- MODAL DLA ŚCIEŻEK -->
     <div id="level-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
