@@ -762,11 +762,17 @@
                         <h3 class="text-xl font-display font-bold mb-2 text-white/60">Coś wielkiego...</h3>
                         <p class="text-gray-500 text-sm mb-6">Trzecia mini-apka już wkrótce. Zapisz się, żeby nie przegapić.</p>
 
-                        <div class="w-full space-y-3">
-                            <input type="email" placeholder="Twój email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-secondary/50 transition placeholder-gray-600 text-center">
-                            <button class="w-full py-3 bg-brand-secondary/20 border border-brand-secondary/40 text-brand-secondary font-bold rounded-xl hover:bg-brand-secondary/30 transition text-sm">
+                        <form id="mystery-form" action="https://formspree.io/dariusz.szuca@gmail.com" method="POST" class="w-full space-y-3">
+                            <input type="hidden" name="_subject" value="🔮 Nowy zapis na tajemniczy produkt #3 - AI-Team">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="email" name="email" required placeholder="Twój email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-secondary/50 transition placeholder-gray-600 text-center">
+                            <button type="submit" class="w-full py-3 bg-brand-secondary/20 border border-brand-secondary/40 text-brand-secondary font-bold rounded-xl hover:bg-brand-secondary/30 transition text-sm">
                                 Powiadom mnie
                             </button>
+                        </form>
+                        <div id="mystery-success" class="hidden text-center py-4">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-green-500 mx-auto mb-2"></i>
+                            <p class="text-sm text-green-400">Zapisano! Powiadomimy Cię.</p>
                         </div>
                     </div>
 
@@ -2777,6 +2783,41 @@ Wysłano z ai-team.pl`
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
+        });
+
+        // Mystery product form (AJAX submission)
+        document.getElementById('mystery-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const successDiv = document.getElementById('mystery-success');
+
+            // Show loading
+            submitBtn.innerHTML = '<span class="animate-pulse">Wysyłanie...</span>';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Success - show message
+                    form.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    lucide.createIcons();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Error - reset button
+                submitBtn.innerHTML = 'Powiadom mnie';
+                submitBtn.disabled = false;
+                alert('Coś poszło nie tak. Spróbuj ponownie.');
+            }
         });
     </script>
 
