@@ -319,6 +319,53 @@
         }
         .glow-card:hover::after { opacity: 1; }
 
+        /* === SECTION GLOW EFFECTS === */
+        .section-glow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 1200px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-glow-top {
+            top: -100px;
+        }
+
+        .section-glow-bottom {
+            bottom: -100px;
+        }
+
+        .section-glow-cyan {
+            background: radial-gradient(ellipse at center, rgba(0, 243, 255, 0.25) 0%, rgba(0, 243, 255, 0.08) 40%, transparent 70%);
+        }
+
+        .section-glow-purple {
+            background: radial-gradient(ellipse at center, rgba(189, 0, 255, 0.2) 0%, rgba(189, 0, 255, 0.06) 40%, transparent 70%);
+        }
+
+        .section-glow-mixed {
+            background: radial-gradient(ellipse at 30% 50%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(189, 0, 255, 0.15) 0%, transparent 50%);
+        }
+
+        .section-glow-white {
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 70%);
+        }
+
+        /* Subtle line separator with glow */
+        .glow-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), rgba(189, 0, 255, 0.3), transparent);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), 0 0 40px rgba(189, 0, 255, 0.1);
+        }
+
         .loader {
             width: 24px; height: 24px; border: 2px solid #FFF;
             border-bottom-color: transparent; border-radius: 50%;
@@ -403,6 +450,7 @@
     </section>
 
     <section id="search-engine" class="py-24 relative z-10">
+        <div class="section-glow section-glow-top section-glow-cyan"></div>
         <div class="max-w-4xl mx-auto px-6">
             <div class="glass p-8 rounded-3xl shadow-2xl reveal relative border border-white/10 bg-black/40">
                 <div class="text-center mb-8">
@@ -433,6 +481,8 @@
 
     <!-- SEKCJA NARZĘDZIA -->
     <section id="tools" class="py-24 relative z-10">
+        <div class="section-glow section-glow-top section-glow-purple"></div>
+        <div class="section-glow section-glow-bottom section-glow-cyan"></div>
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-secondary/30">
@@ -529,6 +579,7 @@
 
     <!-- SEKCJA PRODUKTY -->
     <section id="products" class="py-24 relative z-10 bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent">
+        <div class="section-glow section-glow-bottom section-glow-purple"></div>
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Produkty & Usługi</h2>
@@ -627,6 +678,7 @@
 
     <!-- SEKCJA: MINI-APKI -->
     <section id="mini-apps" class="py-24 relative z-10">
+        <div class="section-glow section-glow-top section-glow-mixed"></div>
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-6 reveal">
                 <span class="inline-block px-4 py-1 bg-brand-secondary/10 border border-brand-secondary/30 rounded-full text-xs font-medium text-brand-secondary mb-4">NOWOŚĆ</span>
@@ -812,6 +864,8 @@
 
     <!-- SEKCJA: TAK POMAGAM KLIENTOM -->
     <section id="cases" class="py-24 relative z-10">
+        <div class="section-glow section-glow-top section-glow-cyan"></div>
+        <div class="section-glow section-glow-bottom section-glow-purple"></div>
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30">
@@ -964,6 +1018,7 @@
 
     <!-- SEKCJA: TWÓJ AI DREAM TEAM -->
     <section id="team" class="py-24 relative z-10 overflow-hidden">
+        <div class="section-glow section-glow-top section-glow-purple"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-brand-primary/5 via-transparent to-brand-primary/3"></div>
         <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center mb-16 reveal">
@@ -1099,6 +1154,7 @@
 
     <!-- SEKCJA: AI W AKCJI - LIVE DEMO -->
     <section id="demo" class="py-24 relative z-10 bg-gradient-to-b from-transparent via-black to-transparent">
+        <div class="section-glow section-glow-top section-glow-cyan"></div>
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12 reveal">
                 <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-green-500/30">
@@ -1167,6 +1223,7 @@
 
     <!-- SEKCJA: OPINIE - LUDZKIE HISTORIE -->
     <section class="py-24 max-w-7xl mx-auto px-6 relative z-10">
+        <div class="section-glow section-glow-top section-glow-white"></div>
         <div class="mb-16 text-center reveal">
             <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30">
                 <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
@@ -1291,6 +1348,7 @@
 
     <!-- SEKCJA: PAKIETY - FINAL CTA -->
     <section id="pricing" class="py-24 bg-black relative z-10">
+        <div class="section-glow section-glow-top section-glow-mixed"></div>
         <div class="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-brand-primary/5 via-transparent to-brand-primary/3"></div>
 
