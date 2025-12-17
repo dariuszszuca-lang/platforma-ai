@@ -1290,6 +1290,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
                 <div class="mb-4 md:mb-0">&copy; 2025 AI-Team. All rights reserved.</div>
                 <div class="space-x-6 flex items-center">
+                   <a href="privacy.html" class="text-gray-500 hover:text-brand-primary transition">Polityka prywatności</a>
                    <div class="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 rounded-full border border-brand-primary/20">
                        <span class="w-1.5 h-1.5 bg-brand-primary rounded-full animate-pulse"></span>
                        <span class="text-[10px] text-gray-400 uppercase tracking-wide">Live: Gemini 3 • GPT-5.1 • Opus</span>
@@ -2597,6 +2598,75 @@ Wysłano z ai-team.pl`
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[200] p-4 bg-black/95 backdrop-blur-lg border-t border-white/10 transform translate-y-full transition-transform duration-500">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="cookie" class="w-6 h-6 text-brand-primary shrink-0"></i>
+                <p>Używamy plików cookies, aby zapewnić najlepsze doświadczenia na naszej stronie.
+                   <a href="privacy.html" class="text-brand-primary hover:underline">Dowiedz się więcej</a>
+                </p>
+            </div>
+            <div class="flex gap-3 shrink-0">
+                <button onclick="declineCookies()" class="px-4 py-2 text-sm text-gray-400 hover:text-white border border-white/10 rounded-lg hover:border-white/30 transition">
+                    Odrzuć
+                </button>
+                <button onclick="acceptCookies()" class="px-4 py-2 text-sm bg-brand-primary text-black font-medium rounded-lg hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] transition">
+                    Akceptuję
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE ICON (pokazuje się po zamknięciu banera) -->
+    <button id="cookie-icon" onclick="showCookieBanner()" class="fixed bottom-4 left-4 z-[200] w-12 h-12 bg-black/90 backdrop-blur border border-white/10 rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:border-brand-primary/50 hover:scale-110 group" title="Ustawienia cookies">
+        <i data-lucide="cookie" class="w-5 h-5 text-gray-400 group-hover:text-brand-primary transition"></i>
+    </button>
+
+    <script>
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieIcon = document.getElementById('cookie-icon');
+
+        function showCookieBanner() {
+            cookieBanner.classList.remove('translate-y-full');
+            cookieIcon.classList.add('opacity-0', 'pointer-events-none');
+            lucide.createIcons();
+        }
+
+        function hideCookieBanner() {
+            cookieBanner.classList.add('translate-y-full');
+            setTimeout(() => {
+                cookieIcon.classList.remove('opacity-0', 'pointer-events-none');
+            }, 300);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideCookieBanner();
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            hideCookieBanner();
+        }
+
+        // Check consent on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // First visit - show banner after 1 second
+                setTimeout(() => {
+                    showCookieBanner();
+                }, 1000);
+            } else {
+                // Already made choice - show icon
+                cookieIcon.classList.remove('opacity-0', 'pointer-events-none');
+            }
             lucide.createIcons();
         });
     </script>
