@@ -2119,6 +2119,9 @@
         }
 
         // Lead Magnet form handler
+        // ZMIEŃ TEN LINK NA SWÓJ PDF (Google Drive, Dropbox, lub hosting)
+        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai.pdf';
+
         function handleLeadMagnet(e) {
             e.preventDefault();
             const form = e.target;
@@ -2134,20 +2137,27 @@
             // Show loading
             const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="loader"></span> Wysyłam...';
+            btn.innerHTML = '<span class="loader"></span> Pobieram...';
             btn.disabled = true;
 
-            // Simulate API call (replace with real endpoint)
+            // Short delay, then open PDF
             setTimeout(() => {
-                // Reset form
-                form.reset();
-                btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i> Sprawdź swoją skrzynkę!';
+                // Open PDF in new tab
+                window.open(RAPORT_PDF_URL, '_blank');
+
+                // Update button
+                btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i> Pobrano!';
                 btn.classList.remove('bg-brand-primary');
                 btn.classList.add('bg-green-500');
                 lucide.createIcons();
 
-                // Show success message
-                alert('Dziękuję! Raport został wysłany na Twój adres email: ' + data.email);
+                // Save lead data to localStorage
+                const leads = JSON.parse(localStorage.getItem('ai_team_leads') || '[]');
+                leads.push({ ...data, timestamp: new Date().toISOString() });
+                localStorage.setItem('ai_team_leads', JSON.stringify(leads));
+
+                // Reset form
+                form.reset();
 
                 // Reset button after 3s
                 setTimeout(() => {
@@ -2157,7 +2167,7 @@
                     btn.disabled = false;
                     lucide.createIcons();
                 }, 3000);
-            }, 1500);
+            }, 800);
         }
     </script>
 
