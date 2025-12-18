@@ -24,9 +24,10 @@
                     colors: {
                         brand: {
                             dark: '#020203',
-                            primary: '#ff6b00', // Neon Orange - główny
-                            secondary: '#ff8c00', // Dark Orange
-                            light: '#ffa500', // Amber
+                            primary: '#f97316', // Vivid Orange (jak eduheros)
+                            secondary: '#ea580c', // Deep Orange
+                            light: '#fb923c', // Light Orange
+                            accent: '#ffedd5', // Orange tint
                             surface: 'rgba(255, 255, 255, 0.12)'
                         }
                     },
@@ -116,10 +117,10 @@
         }
 
         .glass-card:hover {
-            background: linear-gradient(145deg, rgba(255,107,0,0.08) 0%, rgba(255,255,255,0.04) 100%);
-            border-color: rgba(255, 107, 0, 0.3);
+            background: linear-gradient(145deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,0.04) 100%);
+            border-color: rgba(249, 115, 22, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px -10px rgba(255,107,0,0.15), 0 10px 20px -10px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px -10px rgba(249,115,22,0.15), 0 10px 20px -10px rgba(0,0,0,0.5);
         }
 
         /* WOW BUTTON - COSMIC STYLE */
@@ -141,7 +142,7 @@
             left: -100%;
             width: 300%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.4), transparent);
             transition: left 0.7s ease;
             z-index: 0;
         }
@@ -151,19 +152,19 @@
         }
 
         .btn-cosmic:hover {
-            border-color: #ff6b00;
-            box-shadow: 0 0 30px rgba(255, 107, 0, 0.4);
+            border-color: #f97316;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
             text-shadow: 0 0 8px rgba(255,255,255,0.8);
         }
 
-        .btn-cosmic-secondary:hover { border-color: #ff8c00; box-shadow: 0 0 30px rgba(255, 140, 0, 0.4); }
-        .btn-cosmic-secondary::before { background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.4), transparent); }
+        .btn-cosmic-secondary:hover { border-color: #ea580c; box-shadow: 0 0 30px rgba(234, 88, 12, 0.4); }
+        .btn-cosmic-secondary::before { background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.4), transparent); }
 
         .btn-cosmic-white { background: white; color: black; border: none; }
         .btn-cosmic-white:hover { box-shadow: 0 0 30px rgba(255,255,255,0.6); transform: scale(1.02); }
 
         .gradient-text {
-            background: linear-gradient(to right, #ff6b00, #ffa500);
+            background: linear-gradient(to right, #f97316, #fb923c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -192,7 +193,7 @@
             inset: -1px;
             border-radius: 1.5rem;
             padding: 1px;
-            background: linear-gradient(135deg, transparent 40%, rgba(255, 107, 0, 0.3) 100%);
+            background: linear-gradient(135deg, transparent 40%, rgba(249, 115, 22, 0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -207,10 +208,10 @@
         .case-number {
             font-size: 4rem;
             font-weight: 800;
-            background: linear-gradient(180deg, rgba(255,107,0,0.2) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(249,115,22,0.2) 0%, transparent 100%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: rgba(255,107,0,0.15);
+            color: rgba(249,115,22,0.15);
             position: absolute;
             top: -10px;
             right: 20px;
@@ -231,13 +232,13 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, transparent 50%, rgba(255,107,0,0.1) 100%);
+            background: linear-gradient(135deg, transparent 50%, rgba(249,115,22,0.1) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
         .testimonial-card:hover {
-            border-color: rgba(255, 107, 0, 0.4);
-            box-shadow: 0 0 30px rgba(255,107,0,0.15);
+            border-color: rgba(249, 115, 22, 0.4);
+            box-shadow: 0 0 30px rgba(249,115,22,0.15);
         }
         .testimonial-card:hover::before { opacity: 1; }
 
@@ -253,7 +254,7 @@
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(255,107,0,0.2) 0%, transparent 60%);
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.2) 0%, transparent 60%);
             filter: blur(40px);
             z-index: -1;
             opacity: 0;
@@ -273,14 +274,14 @@
         .cosmic-orb-1 {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(255,107,0,0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
             top: 10%;
             left: -10%;
         }
         .cosmic-orb-2 {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(255,107,0,0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
             top: 40%;
             right: -5%;
             animation-delay: -7s;
@@ -312,7 +313,7 @@
             position: absolute;
             inset: -2px;
             border-radius: inherit;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,107,0,0.15) 100%);
+            background: linear-gradient(135deg, transparent 40%, rgba(249,115,22,0.15) 100%);
             z-index: -1;
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -384,7 +385,7 @@
                 <a href="#pricing" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Ścieżki</a>
                 <a href="#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Zespół</a>
             </div>
-            <button onclick="openContactForm()" class="hidden md:flex group relative px-6 py-2.5 bg-brand-primary text-black rounded-full text-sm font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] items-center gap-2">
+            <button onclick="openContactForm()" class="hidden md:flex group relative px-6 py-2.5 bg-brand-primary text-black rounded-full text-sm font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] items-center gap-2">
                 <i data-lucide="bot" class="w-4 h-4"></i>
                 <span class="relative z-10">AI Asystent</span>
             </button>
@@ -393,13 +394,13 @@
 
     <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden z-10">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(255,107,0,0.2)]">
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
                 <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-fast"></span>
                 PROFESJONALNE ROZWIĄZANIA AI DLA FIRM
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight mb-8 tracking-tight">
-                Strony, systemy i automatyzacje
-                <span class="gradient-text block mt-2">w dniach, nie miesiącach.</span>
+                Wykorzystaj możliwości najnowszych rozwiązań AI.
+                <span class="gradient-text block mt-2">Zmień myślenie na AI-First.</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
                 Zero teorii. Gotowe rozwiązania, które działają od pierwszego dnia. Dzięki AI.
@@ -422,7 +423,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                <a href="#products" class="px-10 py-4 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(255,107,0,0.5)] transition transform hover:-translate-y-1 border border-brand-primary text-center">
+                <a href="#products" class="px-10 py-4 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transition transform hover:-translate-y-1 border border-brand-primary text-center">
                     Zobacz rozwiązania
                 </a>
                 <button onclick="openContactForm()" class="px-10 py-4 glass text-white text-lg font-bold rounded-xl hover:bg-white/20 transition flex items-center justify-center gap-2 border border-white/20 group">
@@ -712,7 +713,7 @@
                             Mobile-first design
                         </li>
                     </ul>
-                    <button onclick="openContactForm()" class="w-full py-3 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition text-sm">
+                    <button onclick="openContactForm()" class="w-full py-3 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition text-sm">
                         Zapytaj o wycenę
                     </button>
                 </div>
@@ -800,7 +801,7 @@
                             Panel administracyjny
                         </li>
                     </ul>
-                    <button onclick="openContactForm()" class="w-full py-3 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition text-sm">
+                    <button onclick="openContactForm()" class="w-full py-3 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition text-sm">
                         Zapytaj o wycenę
                     </button>
                 </div>
@@ -913,7 +914,7 @@
             <!-- CTA -->
             <div class="mt-12 text-center">
                 <p class="text-gray-400 mb-4">Potrzebujesz podobnego systemu dla swojej firmy?</p>
-                <button onclick="openContactForm()" class="px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,107,0,0.5)] transition">
+                <button onclick="openContactForm()" class="px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition">
                     Porozmawiajmy o Twoich potrzebach
                 </button>
             </div>
@@ -1129,7 +1130,7 @@
             </div>
 
             <div class="text-center mt-12">
-                <button onclick="openContactForm()" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,107,0,0.5)] transition">
+                <button onclick="openContactForm()" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition">
                     Porozmawiaj o swoim projekcie <i data-lucide="message-circle" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -1265,7 +1266,7 @@
             </div>
 
             <div class="text-center mt-10">
-                <button onclick="openContactForm()" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_40px_rgba(255,107,0,0.4)] transition">
+                <button onclick="openContactForm()" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.4)] transition">
                     Zbuduj swój AI Team <i data-lucide="users" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -1559,7 +1560,7 @@
                 <p class="text-gray-400 mb-8 max-w-lg mx-auto">
                     Opowiesz o swoim biznesie. Zaproponuję rozwiązanie. Dostaniesz wycenę w 24h.
                 </p>
-                <button onclick="openContactForm()" class="px-12 py-5 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(255,107,0,0.5)] transition transform hover:-translate-y-1">
+                <button onclick="openContactForm()" class="px-12 py-5 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transition transform hover:-translate-y-1">
                     Umów rozmowę
                 </button>
             </div>
@@ -1653,7 +1654,7 @@
 
                             <div class="space-y-3">
                                 <input type="email" placeholder="Twój adres email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-center placeholder-gray-600">
-                                <button id="modal-cta-btn" class="w-full bg-brand-primary text-black font-bold py-3 rounded-lg hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition">
+                                <button id="modal-cta-btn" class="w-full bg-brand-primary text-black font-bold py-3 rounded-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition">
                                     Odbierz Dostęp
                                 </button>
                             </div>
@@ -1757,7 +1758,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,107,0,0.5)] transition flex items-center justify-center gap-2 text-lg">
+                            <button type="submit" class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition flex items-center justify-center gap-2 text-lg">
                                 <i data-lucide="send" class="w-5 h-5"></i>
                                 Wyślij wiadomość
                             </button>
@@ -1887,7 +1888,7 @@
 
             if (plan === 'async') {
                 bg.style.transform = 'translateX(0)';
-                bg.style.backgroundColor = '#ff6b00';
+                bg.style.backgroundColor = '#f97316';
                 btnAsync.classList.remove('text-gray-400');
                 btnAsync.classList.add('text-black');
                 btnLive.classList.add('text-gray-400');
@@ -1900,7 +1901,7 @@
                 cardLive.style.transform = 'scale(0.95)';
             } else {
                 bg.style.transform = 'translateX(100%)'; 
-                bg.style.backgroundColor = '#ff8c00'; 
+                bg.style.backgroundColor = '#ea580c'; 
                 btnAsync.classList.add('text-gray-400');
                 btnAsync.classList.remove('text-black');
                 btnLive.classList.remove('text-gray-400');
@@ -2029,7 +2030,7 @@
                                 <option value="gemini">Gemini (Google)</option>
                             </select>
                         </div>
-                        <button onclick="generatePrompt()" class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition flex items-center justify-center gap-2">
+                        <button onclick="generatePrompt()" class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2">
                             <i data-lucide="sparkles" class="w-5 h-5"></i> Generuj Prompt
                         </button>
                         <div id="prompt-gen-result" class="hidden">
@@ -2977,7 +2978,7 @@ Wysłano z ai-team.pl`
                 <button onclick="declineCookies()" class="px-4 py-2 text-sm text-gray-400 hover:text-white border border-white/10 rounded-lg hover:border-white/30 transition">
                     Odrzuć
                 </button>
-                <button onclick="acceptCookies()" class="px-4 py-2 text-sm bg-brand-primary text-black font-medium rounded-lg hover:shadow-[0_0_15px_rgba(255,107,0,0.4)] transition">
+                <button onclick="acceptCookies()" class="px-4 py-2 text-sm bg-brand-primary text-black font-medium rounded-lg hover:shadow-[0_0_15px_rgba(249,115,22,0.4)] transition">
                     Akceptuję
                 </button>
             </div>
