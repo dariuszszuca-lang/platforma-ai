@@ -440,11 +440,17 @@ Zaznacz, co już masz:
 
 Jeśli chcesz wdrożyć którekolwiek z tych rozwiązań, ale brakuje Ci czasu lub wiedzy technicznej — mogę Ci pomóc.
 
+**Co robimy:**
+- Pracujemy w terminalu z najnowszymi narzędziami AI
+- Wdrażamy gotowe rozwiązania (automatyzacje, chatboty, integracje)
+- Budujemy strony internetowe i aplikacje webowe
+- Tworzymy mini-systemy (CRM, dashboardy, bazy danych)
+
 **Darmowa rozmowa (15 min):** Powiesz mi o swoich wyzwaniach, a ja zaproponuję konkretne rozwiązania.
 
 **Kontakt:**
-- Strona: ai-team.dev
-- Email: darek@ai-team.dev
+- Strona: ai-team.pl
+- Email: dariusz.szuca@gmail.com
 
 ---
 
