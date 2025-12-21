@@ -352,6 +352,86 @@
             animation: rotation 1s linear infinite;
         }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- LIGHT THEME OVERRIDES --- */
+        .theme-light {
+            --bg-main: #f8fafc; /* slate-50 */
+            --text-main: #0f172a; /* slate-900 */
+            --text-muted: #475569; /* slate-600 */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --card-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        .theme-light body {
+            background-color: var(--bg-main) !important;
+            color: var(--text-main) !important;
+        }
+        
+        .theme-light .bg-\[\#020203\] {
+            background-color: var(--bg-main) !important;
+        }
+
+        .theme-light .text-white {
+            color: var(--text-main) !important;
+        }
+
+        .theme-light .text-gray-300,
+        .theme-light .text-gray-400,
+        .theme-light .text-gray-500 {
+            color: var(--text-muted) !important;
+        }
+
+        .theme-light .glass {
+            background: var(--glass-bg) !important;
+            border-color: var(--glass-border) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+        }
+
+        .theme-light .glass-card {
+            background: var(--card-bg) !important;
+            border-color: var(--glass-border) !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .theme-light .bg-white\/5,
+        .theme-light .bg-white\/10 {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+        
+        .theme-light .bg-black\/40 {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .theme-light .border-white\/10,
+        .theme-light .border-white\/5 {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* Specific overrides for light mode visibility */
+        .theme-light .bg-gradient-orb-white {
+            opacity: 0.5;
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%);
+        }
+        
+        .theme-light input, 
+        .theme-light textarea, 
+        .theme-light select {
+            color: var(--text-main) !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(0,0,0,0.1) !important;
+        }
+        
+        .theme-light input::placeholder,
+        .theme-light textarea::placeholder {
+            color: #94a3b8 !important; /* slate-400 */
+        }
+
+        /* Nav overrides */
+        .theme-light nav .glass {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(12px) !important;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-primary selection:text-black relative">
@@ -380,11 +460,12 @@
                 <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors">AI-Team</div>
             </div>
             <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
-                <a href="#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
-                <a href="#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Produkty</a>
-                <a href="#pricing" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Ścieżki</a>
-                <a href="#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Zespół</a>
+                <a href="#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300" data-i18n="nav_tools">Narzędzia</a>
+                <a href="#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300" data-i18n="nav_products">Produkty</a>
+                <a href="#pricing" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300" data-i18n="nav_paths">Ścieżki</a>
+                <a href="#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300" data-i18n="nav_team">Zespół</a>
             </div>
+            
             <button onclick="openContactForm()" class="hidden md:flex group relative px-6 py-2.5 bg-brand-primary text-black rounded-full text-sm font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] items-center gap-2">
                 <i data-lucide="bot" class="w-4 h-4"></i>
                 <span class="relative z-10">AI Asystent</span>
@@ -396,13 +477,13 @@
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
                 <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-fast"></span>
-                PROFESJONALNE ROZWIĄZANIA AI DLA FIRM
+                <span data-i18n="hero_badge">PROFESJONALNE ROZWIĄZANIA AI DLA FIRM</span>
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight mb-8 tracking-tight">
-                Wykorzystaj możliwości najnowszych rozwiązań AI.
-                <span class="gradient-text block mt-2">Zmień myślenie na AI-First.</span>
+                <span data-i18n="hero_h1">Wykorzystaj możliwości najnowszych rozwiązań AI.</span>
+                <span class="gradient-text block mt-2" data-i18n="hero_h1_span">Zmień myślenie na AI-First.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
+            <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed font-light" data-i18n="hero_p">
                 Zero teorii. Gotowe rozwiązania, które działają od pierwszego dnia. Dzięki AI.
             </p>
 
@@ -423,11 +504,11 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                <a href="#products" class="px-10 py-4 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transition transform hover:-translate-y-1 border border-brand-primary text-center">
+                <a href="#products" class="px-10 py-4 bg-brand-primary text-black text-lg font-bold rounded-xl hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transition transform hover:-translate-y-1 border border-brand-primary text-center" data-i18n="hero_btn_solutions">
                     Zobacz rozwiązania
                 </a>
                 <button onclick="openContactForm()" class="px-10 py-4 glass text-white text-lg font-bold rounded-xl hover:bg-white/20 transition flex items-center justify-center gap-2 border border-white/20 group">
-                    <i data-lucide="calendar" class="w-5 h-5 group-hover:scale-110 transition"></i> Bezpłatna rozmowa (15 min)
+                    <i data-lucide="calendar" class="w-5 h-5 group-hover:scale-110 transition"></i> <span data-i18n="hero_btn_call">Bezpłatna rozmowa (15 min)</span>
                 </button>
             </div>
         </div>
@@ -3683,8 +3764,10 @@ Wysłano z ai-team.pl`
                 // Already made choice - show icon
                 cookieIcon.classList.remove('opacity-0', 'pointer-events-none');
             }
+            
             lucide.createIcons();
         });
+
     </script>
 </body>
 </html>
