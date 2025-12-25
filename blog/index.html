@@ -22,8 +22,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
                     }
                 }
             }
@@ -31,17 +32,18 @@
     </script>
     <style>
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            background-color: #020203;
             min-height: 100vh;
         }
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .article-card:hover {
             transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(249, 115, 22, 0.3);
         }
     </style>
 </head>
@@ -81,21 +83,21 @@
             <!-- Featured Post -->
             <section class="mb-12">
                 <h2 class="text-sm uppercase tracking-wider text-primary mb-4">Najnowszy artykuł</h2>
-                <a href="ai-dla-malej-firmy.html" class="glass rounded-xl p-6 block article-card transition duration-300">
+                <a href="chatgpt-dla-poczatkujacych.html" class="glass rounded-xl p-6 block article-card transition duration-300">
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Poradnik</span>
                         <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Dla początkujących</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3 group-hover:text-primary">
-                        AI dla małej firmy - od czego zacząć w 2025
+                        ChatGPT dla początkujących - pierwszy prompt krok po kroku
                     </h3>
                     <p class="text-gray-300 mb-4">
-                        Praktyczny przewodnik dla właścicieli małych firm, którzy chcą wdrożyć AI bez wydawania fortuny i bez zostania ekspertem od technologii. 3 konkretne kroki + case study.
+                        Jak napisać swój pierwszy prompt, który da Ci użyteczną odpowiedź. Formuła ROLA + KONTEKST + ZADANIE + FORMAT + 5 gotowych promptów do użycia.
                     </p>
                     <div class="flex items-center gap-4 text-gray-400 text-sm">
                         <span>Grudzień 2025</span>
                         <span>|</span>
-                        <span>8 min czytania</span>
+                        <span>10 min czytania</span>
                     </div>
                 </a>
             </section>
@@ -121,19 +123,23 @@
                         </div>
                     </a>
 
-                    <!-- Placeholder for future articles -->
-                    <div class="glass rounded-lg p-5 opacity-50">
+                    <!-- Article 2 -->
+                    <a href="chatgpt-dla-poczatkujacych.html" class="glass rounded-lg p-5 block article-card transition duration-300">
                         <div class="flex flex-col md:flex-row md:items-center gap-4">
                             <div class="flex-1">
                                 <div class="flex gap-2 mb-2">
-                                    <span class="px-2 py-0.5 bg-gray-500/20 text-gray-400 rounded text-xs">Wkrótce</span>
+                                    <span class="px-2 py-0.5 bg-primary/20 text-primary rounded text-xs">Poradnik</span>
                                 </div>
-                                <h3 class="text-lg font-semibold mb-2 text-gray-400">ChatGPT dla początkujących - pierwszy prompt</h3>
-                                <p class="text-gray-500 text-sm">Jak pisać skuteczne prompty, które dają dobre wyniki za pierwszym razem</p>
+                                <h3 class="text-lg font-semibold mb-2">ChatGPT dla początkujących - pierwszy prompt</h3>
+                                <p class="text-gray-400 text-sm">Formuła ROLA + KONTEKST + ZADANIE + FORMAT + 5 gotowych promptów do użycia</p>
+                            </div>
+                            <div class="text-gray-500 text-sm whitespace-nowrap">
+                                10 min
                             </div>
                         </div>
-                    </div>
+                    </a>
 
+                    <!-- Placeholder for future articles -->
                     <div class="glass rounded-lg p-5 opacity-50">
                         <div class="flex flex-col md:flex-row md:items-center gap-4">
                             <div class="flex-1">
