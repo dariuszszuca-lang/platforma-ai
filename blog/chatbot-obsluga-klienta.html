@@ -140,9 +140,27 @@
             margin: 0.5rem 0;
             margin-right: 2rem;
         }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            transform-origin: top center;
+        }
+        .horizon-glow {
+            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
+            filter: blur(100px); z-index: -1; opacity: 0.6;
+        }
     </style>
 </head>
 <body class="text-white">
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow"></div>
+    </div>
     <!-- Navigation -->
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
         <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
