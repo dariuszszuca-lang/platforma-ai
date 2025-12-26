@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jak napisać ofertę z ChatGPT - gotowe prompty i przykłady | AI-TEAM.PL</title>
+    <meta name="description" content="Jak napisać profesjonalną ofertę handlową z pomocą ChatGPT. Gotowe prompty, struktura oferty i przykłady dla różnych branż.">
+    <meta name="keywords" content="oferta ChatGPT, jak napisać ofertę, oferta handlowa AI, ChatGPT oferta przykład">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jak napisać ofertę z ChatGPT - gotowe prompty i przykłady">
+    <meta property="og:description" content="Jak napisać profesjonalną ofertę handlową z pomocą ChatGPT. Gotowe prompty i przykłady.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ai-team.pl/blog/oferta-chatgpt.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020203;
+            min-height: 100vh;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .prose-custom h2 {
+            color: #fb923c;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom h3 {
+            color: #fdba74;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .prose-custom p {
+            color: #e2e8f0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .prose-custom ul, .prose-custom ol {
+            color: #e2e8f0;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom li {
+            margin-bottom: 0.5rem;
+        }
+        .prose-custom strong {
+            color: #f1f5f9;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border-left: 4px solid #f97316;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .prompt-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        .prompt-label {
+            color: #10b981;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .example-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    AI-TEAM.PL
+                </a>
+                <div class="flex gap-4">
+                    <a href="../index.html#narzedzia" class="text-gray-300 hover:text-white transition">Narzędzia</a>
+                    <a href="../index.html#workshops" class="text-gray-300 hover:text-white transition">Warsztaty</a>
+                    <a href="index.html" class="text-gray-300 hover:text-white transition">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-3xl mx-auto px-4">
+
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-6">
+                <a href="../index.html" class="hover:text-white">Strona główna</a>
+                <span class="mx-2">/</span>
+                <a href="index.html" class="hover:text-white">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-300">Oferta z ChatGPT</span>
+            </div>
+
+            <!-- Header -->
+            <header class="mb-10">
+                <div class="flex gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Sprzedaż</span>
+                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Dla początkujących</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Jak napisać ofertę z ChatGPT - gotowe prompty i przykłady
+                </h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Profesjonalna oferta handlowa w 15 minut zamiast 2 godzin. Gotowe prompty, sprawdzona struktura i przykłady dla różnych branż.
+                </p>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                    <span>Darek | AI-TEAM.PL</span>
+                    <span>|</span>
+                    <span>Grudzień 2025</span>
+                    <span>|</span>
+                    <span>10 min czytania</span>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="prose-custom">
+
+                <div class="highlight-box">
+                    <p class="text-lg mb-0"><strong>W skrócie:</strong> Dobra oferta handlowa to nie lista cech produktu - to historia o problemie klienta i Twoim rozwiązaniu. ChatGPT pomoże Ci napisać taką ofertę w minuty, nie godziny. Pokażę Ci dokładnie jak.</p>
+                </div>
+
+                <h2>Dlaczego większość ofert nie działa?</h2>
+
+                <p>Typowa oferta małej firmy wygląda tak:</p>
+                <ul>
+                    <li>"Jesteśmy na rynku od 10 lat"</li>
+                    <li>"Oferujemy najwyższą jakość"</li>
+                    <li>"Nasi klienci są zadowoleni"</li>
+                    <li>Lista usług z cenami</li>
+                </ul>
+
+                <p><strong>Problem?</strong> Klient nie szuka firmy z 10-letnim doświadczeniem. Klient szuka rozwiązania swojego problemu.</p>
+
+                <p>Dobra oferta odpowiada na pytania:</p>
+                <ul>
+                    <li>Rozumiesz mój problem?</li>
+                    <li>Czy potrafisz go rozwiązać?</li>
+                    <li>Dlaczego Ty, a nie konkurencja?</li>
+                    <li>Ile to kosztuje i co dokładnie dostaję?</li>
+                </ul>
+
+                <h2>Struktura oferty która sprzedaje (PASTOR)</h2>
+
+                <p>Używam frameworku PASTOR - sprawdzonej struktury ofert sprzedażowych:</p>
+
+                <ul>
+                    <li><strong>P - Problem:</strong> Nazwij ból klienta</li>
+                    <li><strong>A - Amplify:</strong> Pokaż konsekwencje nierozwiązania</li>
+                    <li><strong>S - Story/Solution:</strong> Opowiedz historię rozwiązania</li>
+                    <li><strong>T - Testimonials:</strong> Dowody że to działa</li>
+                    <li><strong>O - Offer:</strong> Co dokładnie oferujesz</li>
+                    <li><strong>R - Response:</strong> Wezwanie do działania</li>
+                </ul>
+
+                <p>ChatGPT zna ten framework. Wystarczy mu powiedzieć.</p>
+
+                <h2>Mega-prompt do tworzenia ofert</h2>
+
+                <p>Oto prompt, którego używam do tworzenia ofert dla moich klientów:</p>
+
+                <div class="prompt-box">
+                    <p class="prompt-label">Skopiuj i użyj</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Napisz ofertę handlową używając struktury PASTOR.<br><br>
+
+                        <strong>Moja firma:</strong> [nazwa, czym się zajmujesz]<br>
+                        <strong>Usługa/produkt:</strong> [co oferujesz w tej ofercie]<br>
+                        <strong>Klient docelowy:</strong> [kto to jest, jaka firma/osoba]<br>
+                        <strong>Główny problem klienta:</strong> [największy ból który rozwiązujesz]<br>
+                        <strong>Konsekwencje nierozwiązania:</strong> [co się stanie jeśli nie kupią]<br>
+                        <strong>Twoje rozwiązanie:</strong> [jak rozwiązujesz problem]<br>
+                        <strong>Dowody/wyniki:</strong> [case study, liczby, testimoniale]<br>
+                        <strong>Cena:</strong> [ile kosztuje]<br>
+                        <strong>CTA:</strong> [co klient ma zrobić - zadzwonić, napisać, umówić się]<br><br>
+
+                        Format oferty:<br>
+                        - Nagłówek przyciągający uwagę (o kliencie, nie o Tobie)<br>
+                        - Sekcja problemu (2-3 zdania)<br>
+                        - Sekcja rozwiązania (co oferujesz i jak działa)<br>
+                        - Dowody (case study lub testimonial)<br>
+                        - Szczegóły oferty (co dokładnie zawiera, cena)<br>
+                        - CTA (jasne wezwanie do działania)<br><br>
+
+                        Styl: profesjonalny ale ludzki, bez korporacyjnego żargonu. Pisz "Ty" nie "Państwo". Maksymalnie 500 słów.
+                    </p>
+                </div>
+
+                <h2>Przykład: Oferta usług remontowych</h2>
+
+                <p>Pokażę Ci jak wygląda oferta wygenerowana tym promptem:</p>
+
+                <div class="example-box">
+                    <p class="text-primary font-semibold text-lg mb-4">Remont bez stresu - skończony na czas, w budżecie</p>
+
+                    <p class="text-gray-300 mb-4"><strong>Znasz to uczucie?</strong> Remont, który miał trwać miesiąc, ciągnie się już trzeci. Ekipa znika na kilka dni bez słowa. Koszty rosną z każdym tygodniem. A Ty wciąż nie możesz wprowadzić się do własnego mieszkania.</p>
+
+                    <p class="text-gray-300 mb-4"><strong>Ile Cię to kosztuje?</strong> Nie tylko pieniądze - ale nerwy, czas, przekładane plany. Kolejny miesiąc wynajmu. Kolejne przeprosiny przed rodziną.</p>
+
+                    <p class="text-gray-300 mb-4"><strong>Jest inny sposób.</strong> Remonty z Tomkiem to:</p>
+                    <ul class="text-gray-300 mb-4">
+                        <li>Harmonogram z konkretnymi datami (i konsekwencje za opóźnienia)</li>
+                        <li>Codzienny raport ze zdjęciami na WhatsApp</li>
+                        <li>Stała ekipa - nie zlecam podwykonawcom</li>
+                        <li>Gwarancja ceny - żadnych "niespodzianek"</li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-4"><strong>Ostatni remont:</strong> Mieszkanie 65m² w Gdańsku - kompleksowy remont w 6 tygodni (zamiast deklarowanych przez konkurencję 8-10). Pani Magda: "Pierwszy remont w życiu który skończył się przed terminem. Polecam wszystkim znajomym."</p>
+
+                    <p class="text-gray-300 mb-4"><strong>Co dostajesz:</strong></p>
+                    <ul class="text-gray-300 mb-4">
+                        <li>Bezpłatna wycena na miejscu (w ciągu 48h)</li>
+                        <li>Szczegółowy kosztorys (pozycja po pozycji)</li>
+                        <li>Harmonogram z datami</li>
+                        <li>Gwarancja 2 lata na robociznę</li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-4"><strong>Ceny:</strong> Od 800 zł/m² (kompleksowy remont)</p>
+
+                    <p class="text-primary font-semibold">Zadzwoń: 500-XXX-XXX lub napisz: tomek@remonty.pl<br>Bezpłatna wycena w ciągu 48h.</p>
+                </div>
+
+                <h2>3 warianty promptów dla różnych sytuacji</h2>
+
+                <h3>Prompt #1: Oferta na szybko (email)</h3>
+
+                <div class="prompt-box">
+                    <p class="prompt-label">Krótka oferta mailowa</p>
+                    <p class="text-gray-300 text-sm">
+                        Napisz krótką ofertę email (max 150 słów).<br><br>
+                        Kontekst: Klient [opis sytuacji] pytał o [usługa/produkt].<br>
+                        Moja firma: [opis]<br>
+                        Co oferuję: [szczegóły]<br>
+                        Cena: [kwota]<br><br>
+                        Email ma: przywitać, odnieść się do problemu klienta, przedstawić rozwiązanie, podać cenę, zaproponować następny krok.
+                    </p>
+                </div>
+
+                <h3>Prompt #2: Oferta PDF (formalna)</h3>
+
+                <div class="prompt-box">
+                    <p class="prompt-label">Pełna oferta do PDF</p>
+                    <p class="text-gray-300 text-sm">
+                        Napisz formalną ofertę handlową do PDF.<br><br>
+                        Sekcje:<br>
+                        1. Strona tytułowa (tytuł oferty, dla kogo, data)<br>
+                        2. Streszczenie wykonawcze (3-4 zdania)<br>
+                        3. Zrozumienie potrzeb klienta<br>
+                        4. Proponowane rozwiązanie<br>
+                        5. Zakres prac (bullet points)<br>
+                        6. Harmonogram<br>
+                        7. Inwestycja (cena z rozbiciem)<br>
+                        8. Dlaczego my (3 powody)<br>
+                        9. Następne kroki<br><br>
+                        Dane: [uzupełnij wszystkie informacje o projekcie]
+                    </p>
+                </div>
+
+                <h3>Prompt #3: Oferta follow-up</h3>
+
+                <div class="prompt-box">
+                    <p class="prompt-label">Przypomnienie o ofercie</p>
+                    <p class="text-gray-300 text-sm">
+                        Napisz email follow-up do oferty wysłanej [X dni] temu.<br><br>
+                        Kontekst: Wysłałem ofertę na [usługa] za [cena]. Klient nie odpowiedział.<br><br>
+                        Email ma: przypomnieć o ofercie bez nachalności, dodać nową wartość (case study, promocja, deadline), zaproponować rozmowę.<br><br>
+                        Ton: pomocny, nie desperacki. Max 100 słów.
+                    </p>
+                </div>
+
+                <h2>Personalizacja - klucz do skuteczności</h2>
+
+                <p>Generyczna oferta z AI = generyczne wyniki. Oto jak personalizować:</p>
+
+                <h3>Dodaj lokalne odniesienia</h3>
+                <p>"Pracujemy głównie z firmami z Trójmiasta - znamy lokalny rynek i specyfikę."</p>
+
+                <h3>Dodaj konkretne liczby</h3>
+                <p>Zamiast "oszczędność czasu" → "oszczędność 5h tygodniowo"</p>
+                <p>Zamiast "szybka realizacja" → "realizacja w 7 dni roboczych"</p>
+
+                <h3>Dodaj imię klienta i jego firmę</h3>
+                <p>"Drogi Panie Marku, analizując stronę ABC Sp. z o.o. zauważyłem..."</p>
+
+                <h3>Odnieś się do rozmowy</h3>
+                <p>"Jak rozmawialiśmy w czwartek, Pana głównym wyzwaniem jest..."</p>
+
+                <h2>Błędy w ofertach (i jak ich unikać)</h2>
+
+                <h3>Błąd #1: Skupienie na sobie</h3>
+                <p><strong>Źle:</strong> "Mamy 10 lat doświadczenia i 500 zadowolonych klientów"</p>
+                <p><strong>Dobrze:</strong> "Rozwiążemy Twój problem X dzięki metodzie Y"</p>
+
+                <h3>Błąd #2: Brak konkretów</h3>
+                <p><strong>Źle:</strong> "Oferujemy kompleksowe usługi marketingowe"</p>
+                <p><strong>Dobrze:</strong> "Stworzymy 12 postów miesięcznie + 2 artykuły na blog + raport wyników"</p>
+
+                <h3>Błąd #3: Ukrywanie ceny</h3>
+                <p><strong>Źle:</strong> "Cena do ustalenia indywidualnie"</p>
+                <p><strong>Dobrze:</strong> "Inwestycja: 3000 zł netto / miesięcznie" (lub widełki "od 2500 do 4000 zł")</p>
+
+                <h3>Błąd #4: Brak CTA</h3>
+                <p><strong>Źle:</strong> Oferta kończy się ceną</p>
+                <p><strong>Dobrze:</strong> "Zadzwoń teraz: 500-XXX-XXX lub odpowiedz na tego maila - odezwę się w ciągu 2h"</p>
+
+                <h2>Szybki workflow tworzenia oferty</h2>
+
+                <p><strong>Krok 1 (2 min):</strong> Zbierz informacje</p>
+                <ul>
+                    <li>Kim jest klient? (branża, wielkość, problem)</li>
+                    <li>Co dokładnie oferujesz?</li>
+                    <li>Jaka cena?</li>
+                    <li>Jaki ma być następny krok?</li>
+                </ul>
+
+                <p><strong>Krok 2 (5 min):</strong> Użyj mega-prompta</p>
+                <ul>
+                    <li>Wklej prompt</li>
+                    <li>Uzupełnij wszystkie pola</li>
+                    <li>Wygeneruj ofertę</li>
+                </ul>
+
+                <p><strong>Krok 3 (5 min):</strong> Personalizuj</p>
+                <ul>
+                    <li>Dodaj imię klienta</li>
+                    <li>Dodaj odniesienia do rozmowy</li>
+                    <li>Sprawdź czy liczby się zgadzają</li>
+                    <li>Dostosuj ton do klienta</li>
+                </ul>
+
+                <p><strong>Krok 4 (3 min):</strong> Formatowanie</p>
+                <ul>
+                    <li>Skopiuj do dokumentu/maila</li>
+                    <li>Dodaj logo</li>
+                    <li>Sprawdź czy dobrze wygląda</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>Łączny czas:</strong> 15 minut. Tradycyjnie: 1-2 godziny.</p>
+                </div>
+
+                <h2>Case study: Od 1 oferty dziennie do 5</h2>
+
+                <p>Marcin prowadzi agencję marketingową. Przed AI:</p>
+                <ul>
+                    <li>1-2 godziny na każdą ofertę</li>
+                    <li>Maksymalnie 1 oferta dziennie</li>
+                    <li>Często odkładał pisanie ofert "na później"</li>
+                    <li>Tracił leady przez opóźnienia</li>
+                </ul>
+
+                <p><strong>Po wdrożeniu ChatGPT:</strong></p>
+                <ul>
+                    <li>15-20 minut na ofertę</li>
+                    <li>4-5 ofert dziennie</li>
+                    <li>Odpowiedź w dniu zapytania</li>
+                    <li>Konwersja: +40% (szybsza odpowiedź = wyższa konwersja)</li>
+                </ul>
+
+                <p><strong>Co zmienił:</strong></p>
+                <ol>
+                    <li>Stworzył 3 szablony promptów (mała/średnia/duża oferta)</li>
+                    <li>Przygotował bazę case studies do wklejania</li>
+                    <li>Ustalił zasadę: oferta wychodzi tego samego dnia</li>
+                </ol>
+
+                <h2>Twój następny krok</h2>
+
+                <p>Nie czytaj więcej - zrób to:</p>
+
+                <ol>
+                    <li>Skopiuj mega-prompt z tego artykułu</li>
+                    <li>Pomyśl o ostatnim kliencie który pytał o ofertę</li>
+                    <li>Uzupełnij prompt jego danymi</li>
+                    <li>Wygeneruj ofertę w ChatGPT</li>
+                    <li>Personalizuj i wyślij</li>
+                </ol>
+
+                <p>Za 15 minut będziesz miał gotową ofertę. A za tydzień - własny system tworzenia ofert w minuty.</p>
+
+                <!-- CTA Box -->
+                <div class="cta-box">
+                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz więcej szablonów?</h3>
+                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> co tydzień wysyłam gotowy szablon do użycia w biznesie - oferty, maile, posty. Dołącz i zacznij oszczędzać czas.</p>
+                    <a href="../index.html#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+                        Zapisz się do AI Radar
+                    </a>
+                </div>
+
+                <h2>Podsumowanie</h2>
+
+                <ul>
+                    <li><strong>Struktura PASTOR</strong> - sprawdzony framework który działa</li>
+                    <li><strong>Mega-prompt</strong> - skopiuj i używaj do każdej oferty</li>
+                    <li><strong>Personalizacja</strong> - dodaj imię, liczby, lokalne odniesienia</li>
+                    <li><strong>15 minut</strong> - tyle zajmuje profesjonalna oferta z AI</li>
+                    <li><strong>Szybkość = konwersja</strong> - im szybciej wyślesz, tym większa szansa</li>
+                </ul>
+
+            </div>
+
+            <!-- Author Box -->
+            <div class="glass rounded-xl p-6 mt-10">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">
+                        D
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Darek</h4>
+                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
+                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI dla małych firm z Trójmiasta. Prowadzę warsztaty stacjonarne w Sopocie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Articles -->
+            <div class="mt-10">
+                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="chatgpt-dla-poczatkujacych.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Podstawy</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">ChatGPT dla początkujących</h4>
+                    </a>
+                    <a href="ai-w-marketingu.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Marketing</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">AI w marketingu małej firmy</h4>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="glass py-8 mt-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 AI-TEAM.PL - Centrum wiedzy o AI dla małych firm</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition">Strona główna</a>
+                <a href="../index.html#narzedzia" class="text-gray-400 hover:text-white transition">Narzędzia</a>
+                <a href="../index.html#workshops" class="text-gray-400 hover:text-white transition">Warsztaty</a>
+                <a href="../privacy.html" class="text-gray-400 hover:text-white transition">Polityka prywatności</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI w marketingu małej firmy - praktyczny przewodnik 2025 | AI-TEAM.PL</title>
+    <meta name="description" content="Jak wykorzystać AI w marketingu małej firmy. Praktyczne narzędzia i strategie: content, social media, email marketing, SEO - bez dużego budżetu.">
+    <meta name="keywords" content="AI w marketingu, sztuczna inteligencja marketing, AI dla małych firm, marketing AI narzędzia">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI w marketingu małej firmy - praktyczny przewodnik 2025">
+    <meta property="og:description" content="Jak wykorzystać AI w marketingu małej firmy. Praktyczne narzędzia bez dużego budżetu.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ai-team.pl/blog/ai-w-marketingu.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020203;
+            min-height: 100vh;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .prose-custom h2 {
+            color: #fb923c;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom h3 {
+            color: #fdba74;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .prose-custom p {
+            color: #e2e8f0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .prose-custom ul, .prose-custom ol {
+            color: #e2e8f0;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom li {
+            margin-bottom: 0.5rem;
+        }
+        .prose-custom strong {
+            color: #f1f5f9;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border-left: 4px solid #f97316;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .tool-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin: 1rem 0;
+        }
+        .tool-card:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    AI-TEAM.PL
+                </a>
+                <div class="flex gap-4">
+                    <a href="../index.html#narzedzia" class="text-gray-300 hover:text-white transition">Narzędzia</a>
+                    <a href="../index.html#workshops" class="text-gray-300 hover:text-white transition">Warsztaty</a>
+                    <a href="index.html" class="text-gray-300 hover:text-white transition">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-3xl mx-auto px-4">
+
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-6">
+                <a href="../index.html" class="hover:text-white">Strona główna</a>
+                <span class="mx-2">/</span>
+                <a href="index.html" class="hover:text-white">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-300">AI w marketingu</span>
+            </div>
+
+            <!-- Header -->
+            <header class="mb-10">
+                <div class="flex gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Marketing</span>
+                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Dla średniozaawansowanych</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    AI w marketingu małej firmy - praktyczny przewodnik 2025
+                </h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Jak wykorzystać sztuczną inteligencję w marketingu bez zatrudniania agencji i bez dużego budżetu. Content, social media, email, SEO - wszystko z AI.
+                </p>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                    <span>Darek | AI-TEAM.PL</span>
+                    <span>|</span>
+                    <span>Grudzień 2025</span>
+                    <span>|</span>
+                    <span>15 min czytania</span>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="prose-custom">
+
+                <div class="highlight-box">
+                    <p class="text-lg mb-0"><strong>W skrócie:</strong> AI może zastąpić połowę pracy marketingowej w małej firmie. Nie chodzi o sztuczki - chodzi o konkretne narzędzia do contentu, social media, emaili i SEO. W tym artykule pokażę Ci dokładnie które i jak ich używać.</p>
+                </div>
+
+                <h2>Dlaczego AI zmienia marketing małych firm?</h2>
+
+                <p>Jeszcze 3 lata temu marketing małej firmy wymagał:</p>
+                <ul>
+                    <li>Copywritera (2000-5000 zł/mies)</li>
+                    <li>Grafika (1500-3000 zł/mies)</li>
+                    <li>Specjalisty social media (2000-4000 zł/mies)</li>
+                    <li>Lub Twojego czasu (10-20h tygodniowo)</li>
+                </ul>
+
+                <p>Dziś? <strong>AI może zrobić 70% tej pracy</strong> za koszt kawy miesięcznie.</p>
+
+                <p>Nie mówię, że AI zastąpi wszystko. Ale może:</p>
+                <ul>
+                    <li>Napisać pierwszy draft każdego tekstu</li>
+                    <li>Wygenerować dziesiątki wariantów nagłówków</li>
+                    <li>Stworzyć grafiki w minuty zamiast godzin</li>
+                    <li>Zaplanować kalendarz publikacji</li>
+                    <li>Zoptymalizować treści pod SEO</li>
+                </ul>
+
+                <h2>Mapa AI w marketingu - co gdzie użyć</h2>
+
+                <p>Oto przegląd obszarów marketingu i narzędzi AI dla każdego:</p>
+
+                <h3>1. Content Marketing (teksty)</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Najlepsze narzędzia:</p>
+                    <ul class="mb-3">
+                        <li><strong>ChatGPT</strong> - uniwersalne, najlepsze na start</li>
+                        <li><strong>Claude</strong> - lepsze dla dłuższych tekstów</li>
+                        <li><strong>Jasper</strong> - dedykowane do marketingu (drogie)</li>
+                    </ul>
+                    <p class="text-primary font-semibold mb-2">Do czego:</p>
+                    <ul class="mb-0">
+                        <li>Artykuły na blog</li>
+                        <li>Opisy produktów/usług</li>
+                        <li>Teksty na stronę www</li>
+                        <li>Case studies</li>
+                    </ul>
+                </div>
+
+                <p><strong>Moja rekomendacja:</strong> ChatGPT Plus (100 zł/mies) wystarczy dla 90% małych firm.</p>
+
+                <h3>2. Social Media</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Najlepsze narzędzia:</p>
+                    <ul class="mb-3">
+                        <li><strong>ChatGPT</strong> - generowanie postów</li>
+                        <li><strong>Canva AI</strong> - grafiki do postów</li>
+                        <li><strong>Buffer/Later</strong> - planowanie (z AI)</li>
+                    </ul>
+                    <p class="text-primary font-semibold mb-2">Do czego:</p>
+                    <ul class="mb-0">
+                        <li>Posty na LinkedIn, FB, Instagram</li>
+                        <li>Grafiki i karuzele</li>
+                        <li>Harmonogram publikacji</li>
+                        <li>Odpowiedzi na komentarze</li>
+                    </ul>
+                </div>
+
+                <h3>3. Email Marketing</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Najlepsze narzędzia:</p>
+                    <ul class="mb-3">
+                        <li><strong>ChatGPT</strong> - treść maili</li>
+                        <li><strong>Mailchimp AI</strong> - optymalizacja wysyłki</li>
+                        <li><strong>Beehiiv</strong> - newsletter z AI</li>
+                    </ul>
+                    <p class="text-primary font-semibold mb-2">Do czego:</p>
+                    <ul class="mb-0">
+                        <li>Sekwencje powitalne</li>
+                        <li>Newslettery</li>
+                        <li>Maile sprzedażowe</li>
+                        <li>Tematy maili (subject lines)</li>
+                    </ul>
+                </div>
+
+                <h3>4. SEO i Optymalizacja</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Najlepsze narzędzia:</p>
+                    <ul class="mb-3">
+                        <li><strong>ChatGPT</strong> - research słów kluczowych</li>
+                        <li><strong>Surfer SEO</strong> - optymalizacja treści</li>
+                        <li><strong>Semrush AI</strong> - analiza konkurencji</li>
+                    </ul>
+                    <p class="text-primary font-semibold mb-2">Do czego:</p>
+                    <ul class="mb-0">
+                        <li>Znajdowanie słów kluczowych</li>
+                        <li>Optymalizacja artykułów</li>
+                        <li>Meta opisy</li>
+                        <li>Struktura nagłówków</li>
+                    </ul>
+                </div>
+
+                <h3>5. Grafika i Wideo</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Najlepsze narzędzia:</p>
+                    <ul class="mb-3">
+                        <li><strong>Canva AI</strong> - grafiki, prezentacje</li>
+                        <li><strong>Midjourney</strong> - unikalne ilustracje</li>
+                        <li><strong>Runway</strong> - edycja wideo</li>
+                    </ul>
+                    <p class="text-primary font-semibold mb-2">Do czego:</p>
+                    <ul class="mb-0">
+                        <li>Posty graficzne</li>
+                        <li>Bannery reklamowe</li>
+                        <li>Ilustracje do artykułów</li>
+                        <li>Krótkie wideo</li>
+                    </ul>
+                </div>
+
+                <h2>Praktyczny workflow - jak używam AI w marketingu</h2>
+
+                <p>Pokażę Ci mój rzeczywisty proces tworzenia contentu z AI:</p>
+
+                <h3>Krok 1: Research (10 min)</h3>
+                <p>Zaczynam od ChatGPT:</p>
+
+                <div class="tool-card">
+                    <p class="text-green-400 text-sm mb-2">Prompt:</p>
+                    <p class="text-gray-300 font-mono text-sm">"Jestem ekspertem od AI dla małych firm. Jakie 10 pytań najczęściej zadają właściciele małych firm o wykorzystanie AI w marketingu? Podaj pytania które ludzie wpisują w Google."</p>
+                </div>
+
+                <p>Dostaję listę tematów na kolejne artykuły i posty.</p>
+
+                <h3>Krok 2: Struktura (5 min)</h3>
+
+                <div class="tool-card">
+                    <p class="text-green-400 text-sm mb-2">Prompt:</p>
+                    <p class="text-gray-300 font-mono text-sm">"Napisz strukturę artykułu na temat [temat]. Artykuł dla właścicieli małych firm, praktyczny, bez teorii. Podaj: tytuł SEO, nagłówki H2 i H3, główne punkty każdej sekcji."</p>
+                </div>
+
+                <h3>Krok 3: Pierwszy draft (15 min)</h3>
+
+                <div class="tool-card">
+                    <p class="text-green-400 text-sm mb-2">Prompt:</p>
+                    <p class="text-gray-300 font-mono text-sm">"Napisz artykuł według tej struktury. Styl: bezpośredni, praktyczny, z przykładami. Używaj 'Ty' zamiast 'Pan/Pani'. Każda sekcja musi mieć konkretną akcję do podjęcia. Długość: 1500-2000 słów."</p>
+                </div>
+
+                <h3>Krok 4: Edycja i personalizacja (20 min)</h3>
+                <p>Tu wchodzi moja praca:</p>
+                <ul>
+                    <li>Dodaję własne przykłady i case studies</li>
+                    <li>Poprawiam ton na bardziej "mój"</li>
+                    <li>Dodaję lokalne konteksty (Trójmiasto)</li>
+                    <li>Sprawdzam fakty i linki</li>
+                </ul>
+
+                <h3>Krok 5: Grafiki (10 min)</h3>
+                <p>Canva AI: "Stwórz grafikę na blog o AI w marketingu, styl minimalistyczny, kolory pomarańczowy i czarny"</p>
+
+                <h3>Krok 6: Dystrybucja (5 min)</h3>
+                <p>ChatGPT: "Napisz 3 warianty posta na LinkedIn promującego ten artykuł. Każdy z innym hookiem."</p>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>Łączny czas:</strong> ~65 minut na pełny artykuł + grafiki + posty social media. Bez AI: 4-6 godzin.</p>
+                </div>
+
+                <h2>5 promptów marketingowych do użycia dziś</h2>
+
+                <h3>Prompt #1: Post na LinkedIn</h3>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">
+                        Jestem [Twoja rola] w [branża]. Napisz post na LinkedIn o [temat].<br><br>
+                        Format: Hook (zdanie otwierające przyciągające uwagę), 3-5 głównych punktów z emoji, konkluzja z pytaniem do czytelników.<br><br>
+                        Styl: profesjonalny ale ludzki, bez korporacyjnego żargonu. Max 150 słów.
+                    </p>
+                </div>
+
+                <h3>Prompt #2: Email powitalny</h3>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">
+                        Napisz email powitalny dla nowego subskrybenta newslettera o [temat].<br><br>
+                        Email musi: przedstawić mnie jako [kim jesteś], wyjaśnić czego mogą się spodziewać, dać jedną wartościową wskazówkę od razu, zachęcić do odpowiedzi.<br><br>
+                        Ton: ciepły, bezpośredni, jak od znajomego. Max 200 słów.
+                    </p>
+                </div>
+
+                <h3>Prompt #3: Opis usługi</h3>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">
+                        Napisz opis usługi [nazwa usługi] na stronę www.<br><br>
+                        Klient docelowy: [opis]. Główny problem który rozwiązuje: [problem]. 3 korzyści: [korzyść 1], [korzyść 2], [korzyść 3].<br><br>
+                        Format: nagłówek, 2-3 akapity, bullet points z korzyściami, CTA. Ton: pewny siebie ale nie arogancki.
+                    </p>
+                </div>
+
+                <h3>Prompt #4: Tematy na blog (content plan)</h3>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">
+                        Jestem [Twoja rola] targetuję [grupa docelowa].<br><br>
+                        Podaj 20 tematów na artykuły blogowe które:<br>
+                        1. Odpowiadają na pytania moich klientów<br>
+                        2. Mają potencjał SEO<br>
+                        3. Pokazują moją ekspertyzę<br><br>
+                        Dla każdego tematu podaj: tytuł, główne słowo kluczowe, krótki opis (1 zdanie).
+                    </p>
+                </div>
+
+                <h3>Prompt #5: Analiza konkurencji</h3>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">
+                        Przeanalizuj stronę [URL konkurenta] pod kątem marketingu.<br><br>
+                        Oceń: komunikację (jak mówią do klientów), USP (co ich wyróżnia), słabe punkty (gdzie mogę być lepszy), pomysły które mogę zaadaptować.<br><br>
+                        Podaj konkretne rekomendacje dla mojej firmy [opis Twojej firmy].
+                    </p>
+                </div>
+
+                <h2>Case study: Salon beauty - od 0 do 50 postów miesięcznie</h2>
+
+                <p>Magda prowadzi salon kosmetyczny. Przed AI:</p>
+                <ul>
+                    <li>0-2 posty miesięcznie (brak czasu)</li>
+                    <li>Brak bloga</li>
+                    <li>Brak newslettera</li>
+                    <li>Marketing = polecenia klientek</li>
+                </ul>
+
+                <p><strong>Co wdrożyliśmy (3 miesiące):</strong></p>
+
+                <p><strong>Miesiąc 1:</strong></p>
+                <ul>
+                    <li>ChatGPT do postów na Instagram - 3x w tygodniu</li>
+                    <li>Canva AI do grafik - szablony z AI</li>
+                    <li>Czas: 2h tygodniowo (zamiast "nie mam czasu")</li>
+                </ul>
+
+                <p><strong>Miesiąc 2:</strong></p>
+                <ul>
+                    <li>Dodaliśmy blog - 2 artykuły miesięcznie</li>
+                    <li>Newsletter - wysyłka co 2 tygodnie</li>
+                    <li>Automatyzacja: nowy post = automatyczny email</li>
+                </ul>
+
+                <p><strong>Miesiąc 3:</strong></p>
+                <ul>
+                    <li>50+ postów w różnych kanałach</li>
+                    <li>6 artykułów na blogu</li>
+                    <li>Lista mailowa: 200+ osób</li>
+                    <li>3 nowe klientki z Instagrama</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>Efekt:</strong> Z 0 do 50+ treści miesięcznie. Koszt: ChatGPT (100 zł) + Canva Pro (50 zł) = 150 zł/mies. Czas: 3h tygodniowo.</p>
+                </div>
+
+                <h2>Ile kosztuje AI marketing? (realne liczby)</h2>
+
+                <p><strong>Budżet minimalny (0-100 zł/mies):</strong></p>
+                <ul>
+                    <li>ChatGPT darmowy + Canva darmowa</li>
+                    <li>Możliwości: podstawowe posty i teksty</li>
+                    <li>Ograniczenia: limity użycia, brak zaawansowanych funkcji</li>
+                </ul>
+
+                <p><strong>Budżet optymalny (150-300 zł/mies):</strong></p>
+                <ul>
+                    <li>ChatGPT Plus: 100 zł</li>
+                    <li>Canva Pro: 50 zł</li>
+                    <li>Buffer (scheduler): 60 zł</li>
+                    <li>Możliwości: pełny content marketing</li>
+                </ul>
+
+                <p><strong>Budżet rozszerzony (500-1000 zł/mies):</strong></p>
+                <ul>
+                    <li>Powyższe + Surfer SEO: 200 zł</li>
+                    <li>Midjourney: 50 zł</li>
+                    <li>Jasper: 200 zł</li>
+                    <li>Możliwości: profesjonalny marketing jak agencja</li>
+                </ul>
+
+                <h2>Błędy w AI marketingu (i jak ich uniknąć)</h2>
+
+                <h3>Błąd #1: Publikowanie bez edycji</h3>
+                <p><strong>Problem:</strong> AI generuje generyczny tekst</p>
+                <p><strong>Rozwiązanie:</strong> Zawsze dodawaj swoje przykłady, styl, lokalny kontekst</p>
+
+                <h3>Błąd #2: Brak spójności</h3>
+                <p><strong>Problem:</strong> Każdy post brzmi inaczej</p>
+                <p><strong>Rozwiązanie:</strong> Stwórz "prompt bazowy" z Twoim stylem i używaj go zawsze</p>
+
+                <h3>Błąd #3: Ignorowanie danych</h3>
+                <p><strong>Problem:</strong> Publikujesz ale nie sprawdzasz co działa</p>
+                <p><strong>Rozwiązanie:</strong> Co tydzień sprawdź: które posty mają najwięcej reakcji? Rób więcej takich</p>
+
+                <h3>Błąd #4: Wszystko naraz</h3>
+                <p><strong>Problem:</strong> Próbujesz być wszędzie</p>
+                <p><strong>Rozwiązanie:</strong> Zacznij od 1 kanału. Opanuj go. Potem następny</p>
+
+                <h2>Plan wdrożenia AI w marketingu (4 tygodnie)</h2>
+
+                <p><strong>Tydzień 1:</strong> Social Media</p>
+                <ul>
+                    <li>Załóż ChatGPT + Canva</li>
+                    <li>Stwórz 4 posty na cały tydzień</li>
+                    <li>Zaplanuj publikację</li>
+                </ul>
+
+                <p><strong>Tydzień 2:</strong> Content</p>
+                <ul>
+                    <li>Napisz 1 artykuł na blog z AI</li>
+                    <li>Stwórz 4 posty promujące artykuł</li>
+                    <li>Zmierz ruch</li>
+                </ul>
+
+                <p><strong>Tydzień 3:</strong> Email</p>
+                <ul>
+                    <li>Napisz email powitalny</li>
+                    <li>Stwórz formularz zapisu</li>
+                    <li>Pierwszy newsletter</li>
+                </ul>
+
+                <p><strong>Tydzień 4:</strong> Optymalizacja</p>
+                <ul>
+                    <li>Sprawdź co działa</li>
+                    <li>Stwórz szablony promptów</li>
+                    <li>Zaplanuj kolejny miesiąc</li>
+                </ul>
+
+                <!-- CTA Box -->
+                <div class="cta-box">
+                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz gotowe prompty marketingowe?</h3>
+                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> co tydzień wysyłam gotowy prompt marketingowy + przykład użycia. Dołącz do 500+ przedsiębiorców którzy oszczędzają czas na marketingu.</p>
+                    <a href="../index.html#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+                        Zapisz się do AI Radar
+                    </a>
+                </div>
+
+                <h2>Podsumowanie</h2>
+
+                <p>AI w marketingu małej firmy to nie przyszłość - to teraźniejszość. Kluczowe wnioski:</p>
+
+                <ul>
+                    <li><strong>Zacznij od ChatGPT + Canva</strong> - to wystarczy na 90% potrzeb</li>
+                    <li><strong>AI pisze drafty, Ty dodajesz osobowość</strong> - nigdy nie publikuj bez edycji</li>
+                    <li><strong>Jeden kanał naraz</strong> - opanuj go, potem następny</li>
+                    <li><strong>Mierz i optymalizuj</strong> - AI pomaga, ale Ty decydujesz co działa</li>
+                    <li><strong>Budżet 150-300 zł/mies</strong> - zamienia Cię w jednoosobową agencję</li>
+                </ul>
+
+                <p>Zacznij dziś. Jeden post z AI. Potem następny. Za miesiąc będziesz się dziwić jak żyłeś bez tego.</p>
+
+            </div>
+
+            <!-- Author Box -->
+            <div class="glass rounded-xl p-6 mt-10">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">
+                        D
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Darek</h4>
+                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
+                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI dla małych firm z Trójmiasta. Prowadzę warsztaty stacjonarne w Sopocie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Articles -->
+            <div class="mt-10">
+                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="chatgpt-dla-poczatkujacych.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Podstawy</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">ChatGPT dla początkujących</h4>
+                    </a>
+                    <a href="automatyzacja-bez-kodowania.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Automatyzacja</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">Make i Zapier dla małych firm</h4>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="glass py-8 mt-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 AI-TEAM.PL - Centrum wiedzy o AI dla małych firm</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition">Strona główna</a>
+                <a href="../index.html#narzedzia" class="text-gray-400 hover:text-white transition">Narzędzia</a>
+                <a href="../index.html#workshops" class="text-gray-400 hover:text-white transition">Warsztaty</a>
+                <a href="../privacy.html" class="text-gray-400 hover:text-white transition">Polityka prywatności</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

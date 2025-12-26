@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsługa klienta z AI - chatboty dla małych firm | AI-TEAM.PL</title>
+    <meta name="description" content="Jak wdrożyć chatbota AI do obsługi klienta w małej firmie. Przegląd narzędzi, koszty, praktyczne przykłady i krok po kroku instrukcja.">
+    <meta name="keywords" content="chatbot obsługa klienta, AI obsługa klienta, chatbot dla firmy, automatyzacja obsługi klienta">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Obsługa klienta z AI - chatboty dla małych firm">
+    <meta property="og:description" content="Jak wdrożyć chatbota AI do obsługi klienta. Przegląd narzędzi i praktyczne przykłady.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ai-team.pl/blog/chatbot-obsluga-klienta.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020203;
+            min-height: 100vh;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .prose-custom h2 {
+            color: #fb923c;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom h3 {
+            color: #fdba74;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .prose-custom p {
+            color: #e2e8f0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .prose-custom ul, .prose-custom ol {
+            color: #e2e8f0;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose-custom li {
+            margin-bottom: 0.5rem;
+        }
+        .prose-custom strong {
+            color: #f1f5f9;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border-left: 4px solid #f97316;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .tool-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin: 1rem 0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comparison-table th {
+            color: #fb923c;
+            font-weight: 600;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+        }
+        .chat-example {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .chat-user {
+            background: rgba(249, 115, 22, 0.2);
+            border-radius: 1rem 1rem 0.25rem 1rem;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            margin-left: 2rem;
+        }
+        .chat-bot {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem 1rem 1rem 0.25rem;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            margin-right: 2rem;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    AI-TEAM.PL
+                </a>
+                <div class="flex gap-4">
+                    <a href="../index.html#narzedzia" class="text-gray-300 hover:text-white transition">Narzędzia</a>
+                    <a href="../index.html#workshops" class="text-gray-300 hover:text-white transition">Warsztaty</a>
+                    <a href="index.html" class="text-gray-300 hover:text-white transition">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-3xl mx-auto px-4">
+
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-6">
+                <a href="../index.html" class="hover:text-white">Strona główna</a>
+                <span class="mx-2">/</span>
+                <a href="index.html" class="hover:text-white">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-300">Chatbot obsługa klienta</span>
+            </div>
+
+            <!-- Header -->
+            <header class="mb-10">
+                <div class="flex gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Automatyzacja</span>
+                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Średniozaawansowany</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Obsługa klienta z AI - chatboty dla małych firm
+                </h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Jak wdrożyć chatbota AI który odpowiada na pytania klientów 24/7. Bez programowania, bez dużego budżetu, z konkretnymi narzędziami.
+                </p>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                    <span>Darek | AI-TEAM.PL</span>
+                    <span>|</span>
+                    <span>Grudzień 2025</span>
+                    <span>|</span>
+                    <span>12 min czytania</span>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="prose-custom">
+
+                <div class="highlight-box">
+                    <p class="text-lg mb-0"><strong>W skrócie:</strong> Chatbot AI może przejąć 60-80% powtarzalnych pytań od klientów. Odpowiada 24/7, nigdy nie jest zmęczony i kosztuje mniej niż pracownik na pół etatu. Pokażę Ci jak wdrożyć go w Twojej firmie.</p>
+                </div>
+
+                <h2>Co chatbot AI może zrobić dla Twojej firmy?</h2>
+
+                <p>Nowoczesne chatboty AI to nie te irytujące "boty" z przed 5 lat. Dzisiejsze narzędzia potrafią:</p>
+
+                <ul>
+                    <li><strong>Odpowiadać na pytania</strong> - o produkty, ceny, godziny otwarcia</li>
+                    <li><strong>Umawiać spotkania</strong> - integracja z kalendarzem</li>
+                    <li><strong>Zbierać dane kontaktowe</strong> - kwalifikować leady</li>
+                    <li><strong>Rozwiązywać proste problemy</strong> - instrukcje, FAQ</li>
+                    <li><strong>Przekierowywać do człowieka</strong> - gdy sprawa jest skomplikowana</li>
+                </ul>
+
+                <p>A wszystko to <strong>24 godziny na dobę, 7 dni w tygodniu</strong>.</p>
+
+                <h2>Przykład rozmowy z chatbotem AI</h2>
+
+                <p>Oto jak może wyglądać rozmowa z chatbotem w salonie kosmetycznym:</p>
+
+                <div class="chat-example">
+                    <div class="chat-user">
+                        <p class="text-sm mb-0">Cześć, ile kosztuje makijaż permanentny brwi?</p>
+                    </div>
+                    <div class="chat-bot">
+                        <p class="text-sm mb-0">Cześć! Makijaż permanentny brwi w naszym salonie kosztuje od 800 do 1200 zł, w zależności od techniki. Najpopularniejsza jest metoda microblading (800 zł) i ombre brows (1000 zł). Cena zawiera konsultację i retusz po 4-6 tygodniach. Chcesz umówić się na bezpłatną konsultację?</p>
+                    </div>
+                    <div class="chat-user">
+                        <p class="text-sm mb-0">Tak, kiedy macie wolne terminy?</p>
+                    </div>
+                    <div class="chat-bot">
+                        <p class="text-sm mb-0">W tym tygodniu mamy wolne terminy: środa 15:00, czwartek 10:00 i 14:00, piątek 11:00. Który Ci odpowiada? Mogę od razu zarezerwować.</p>
+                    </div>
+                    <div class="chat-user">
+                        <p class="text-sm mb-0">Czwartek 14:00</p>
+                    </div>
+                    <div class="chat-bot">
+                        <p class="text-sm mb-0">Świetnie! Rezerwuję czwartek 14:00. Potrzebuję Twoje imię i numer telefonu do potwierdzenia.</p>
+                    </div>
+                </div>
+
+                <p><strong>Efekt:</strong> Klient umówiony, dane zebrane, zero czasu pracownika. A było 23:30 w niedzielę.</p>
+
+                <h2>Narzędzia do chatbotów AI - porównanie</h2>
+
+                <p>Oto przegląd narzędzi dla małych firm:</p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Narzędzie</th>
+                        <th>Cena/mies</th>
+                        <th>Dla kogo</th>
+                        <th>Poziom trudności</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Tidio</strong></td>
+                        <td>od 0 zł (free) do 120 zł</td>
+                        <td>E-commerce, usługi</td>
+                        <td>Łatwy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chatbase</strong></td>
+                        <td>od 80 zł</td>
+                        <td>Firmy usługowe</td>
+                        <td>Łatwy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Botpress</strong></td>
+                        <td>od 0 zł (free)</td>
+                        <td>Zaawansowani</td>
+                        <td>Średni</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intercom</strong></td>
+                        <td>od 300 zł</td>
+                        <td>SaaS, duże firmy</td>
+                        <td>Średni</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ManyChat</strong></td>
+                        <td>od 60 zł</td>
+                        <td>Social media</td>
+                        <td>Łatwy</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>Moja rekomendacja dla małych firm:</strong> Tidio lub Chatbase. Łatwe w konfiguracji, przystępna cena, integracja z popularnymi platformami.</p>
+                </div>
+
+                <h2>Tidio - krok po kroku</h2>
+
+                <p>Pokażę Ci jak wdrożyć chatbota na przykładzie Tidio (bo ma darmowy plan):</p>
+
+                <h3>Krok 1: Załóż konto</h3>
+                <p>Wejdź na tidio.com i załóż darmowe konto. Darmowy plan pozwala na 50 rozmów miesięcznie - wystarczy na start.</p>
+
+                <h3>Krok 2: Dodaj do strony</h3>
+                <p>Tidio daje Ci kod do wklejenia na stronę. Wygląda tak:</p>
+
+                <div class="tool-card">
+                    <p class="text-gray-300 font-mono text-sm">&lt;script src="//code.tidio.co/xxxxx.js" async&gt;&lt;/script&gt;</p>
+                </div>
+
+                <p>Wklej go przed &lt;/body&gt; na każdej stronie. Jeśli masz WordPress - jest wtyczka.</p>
+
+                <h3>Krok 3: Skonfiguruj wiadomość powitalną</h3>
+                <p>W panelu Tidio → Chatboty → Nowy chatbot. Ustaw:</p>
+                <ul>
+                    <li><strong>Trigger:</strong> "Gdy ktoś wchodzi na stronę"</li>
+                    <li><strong>Opóźnienie:</strong> 5 sekund</li>
+                    <li><strong>Wiadomość:</strong> "Cześć! Masz pytania? Chętnie pomogę 😊"</li>
+                </ul>
+
+                <h3>Krok 4: Dodaj FAQ</h3>
+                <p>Najważniejszy krok. Wpisz pytania które klienci zadają najczęściej:</p>
+                <ul>
+                    <li>"Ile kosztuje [usługa]?"</li>
+                    <li>"Gdzie jesteście?"</li>
+                    <li>"Jakie macie godziny otwarcia?"</li>
+                    <li>"Jak mogę się umówić?"</li>
+                </ul>
+
+                <p>Dla każdego pytania napisz odpowiedź. Tidio nauczy się rozpoznawać podobne pytania.</p>
+
+                <h3>Krok 5: Włącz AI</h3>
+                <p>Tidio ma wbudowane AI (w płatnych planach). Włącz opcję "AI odpowiedzi" - bot będzie odpowiadał na pytania których nie przewidziałeś, bazując na treści Twojej strony.</p>
+
+                <h2>Chatbase - alternatywa z GPT</h2>
+
+                <p>Chatbase to narzędzie które tworzy chatbota na bazie Twoich dokumentów. Idealne jeśli masz dużo treści (cennik PDF, regulamin, FAQ).</p>
+
+                <h3>Jak działa:</h3>
+                <ol>
+                    <li>Wrzucasz dokumenty (PDF, URL strony, tekst)</li>
+                    <li>Chatbase "uczy się" z nich</li>
+                    <li>Odpowiada na pytania bazując na Twoich treściach</li>
+                </ol>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Przykład użycia:</p>
+                    <p class="text-gray-300">Firma prawnicza wrzuciła 50 stron FAQ. Chatbot teraz odpowiada na pytania typu "Czy potrzebuję prawnika do rozwodu?" - bazując na dokładnie tych odpowiedziach które firma przygotowała.</p>
+                </div>
+
+                <h2>5 scenariuszy użycia chatbota w małej firmie</h2>
+
+                <h3>Scenariusz #1: FAQ 24/7</h3>
+                <p><strong>Problem:</strong> Klienci dzwonią z tymi samymi pytaniami</p>
+                <p><strong>Rozwiązanie:</strong> Chatbot odpowiada na 80% pytań automatycznie</p>
+                <p><strong>Efekt:</strong> Mniej telefonów, więcej czasu na ważne sprawy</p>
+
+                <h3>Scenariusz #2: Umawianie wizyt</h3>
+                <p><strong>Problem:</strong> Klienci piszą o różnych porach, czekają na odpowiedź</p>
+                <p><strong>Rozwiązanie:</strong> Chatbot pokazuje wolne terminy i rezerwuje</p>
+                <p><strong>Efekt:</strong> Wizyty umawiane 24/7, zero opóźnień</p>
+
+                <h3>Scenariusz #3: Kwalifikacja leadów</h3>
+                <p><strong>Problem:</strong> Dużo zapytań, mało czasu na wszystkie</p>
+                <p><strong>Rozwiązanie:</strong> Chatbot zadaje pytania kwalifikujące (budżet, termin, potrzeby)</p>
+                <p><strong>Efekt:</strong> Dostajesz tylko "gorące" leady z kompletem informacji</p>
+
+                <h3>Scenariusz #4: Obsługa po sprzedaży</h3>
+                <p><strong>Problem:</strong> Klienci pytają o status zamówienia, zwroty</p>
+                <p><strong>Rozwiązanie:</strong> Chatbot integruje się z systemem i daje status</p>
+                <p><strong>Efekt:</strong> Klient ma odpowiedź natychmiast</p>
+
+                <h3>Scenariusz #5: Zbieranie opinii</h3>
+                <p><strong>Problem:</strong> Mało recenzji, klienci zapominają</p>
+                <p><strong>Rozwiązanie:</strong> Chatbot po X dniach pyta o opinię</p>
+                <p><strong>Efekt:</strong> Więcej recenzji, lepsza widoczność</p>
+
+                <h2>Błędy w chatbotach (i jak ich unikać)</h2>
+
+                <h3>Błąd #1: Bot udaje człowieka</h3>
+                <p><strong>Problem:</strong> Klient czuje się oszukany gdy dowiaduje się że rozmawia z botem</p>
+                <p><strong>Rozwiązanie:</strong> Jasno powiedz "Jestem asystentem AI". Klienci to akceptują, nie lubią bycia oszukanym</p>
+
+                <h3>Błąd #2: Brak opcji "połącz z człowiekiem"</h3>
+                <p><strong>Problem:</strong> Klient utknie w pętli z botem który nie rozumie</p>
+                <p><strong>Rozwiązanie:</strong> Zawsze dawaj opcję "Porozmawiaj z konsultantem"</p>
+
+                <h3>Błąd #3: Za dużo pytań naraz</h3>
+                <p><strong>Problem:</strong> Bot zadaje 10 pytań, klient się zniechęca</p>
+                <p><strong>Rozwiązanie:</strong> Maksymalnie 3-4 pytania. Resztę może zadać człowiek</p>
+
+                <h3>Błąd #4: Brak aktualizacji</h3>
+                <p><strong>Problem:</strong> Ceny się zmieniły, bot podaje stare</p>
+                <p><strong>Rozwiązanie:</strong> Co miesiąc przeglądaj odpowiedzi bota</p>
+
+                <h3>Błąd #5: Zbyt formalne odpowiedzi</h3>
+                <p><strong>Problem:</strong> Bot brzmi jak robot, odstrasza</p>
+                <p><strong>Rozwiązanie:</strong> Pisz odpowiedzi jak rozmawia Twój najlepszy pracownik</p>
+
+                <h2>Case study: Gabinet dentystyczny</h2>
+
+                <p>Gabinet dentystyczny w Gdyni wdrożył chatbota. Przed:</p>
+                <ul>
+                    <li>50+ telefonów dziennie (w tym te same pytania)</li>
+                    <li>Recepcjonistka przeciążona</li>
+                    <li>Klienci czekali na linii</li>
+                    <li>Po godzinach = zero kontaktu</li>
+                </ul>
+
+                <p><strong>Co wdrożyli:</strong></p>
+                <ul>
+                    <li>Tidio na stronie</li>
+                    <li>30 odpowiedzi FAQ (ceny zabiegów, godziny, dojazd)</li>
+                    <li>Integracja z Calendly do umawiania</li>
+                    <li>Przekierowanie do telefonu dla pilnych spraw</li>
+                </ul>
+
+                <p><strong>Po 3 miesiącach:</strong></p>
+                <ul>
+                    <li>30% mniej telefonów</li>
+                    <li>150+ rozmów z chatbotem miesięcznie</li>
+                    <li>20 wizyt miesięcznie umawianych po godzinach</li>
+                    <li>Recepcjonistka: "Wreszcie mam czas na pacjentów w gabinecie"</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>ROI:</strong> Koszt Tidio: 120 zł/mies. 20 wizyt × średnia wartość 300 zł = 6000 zł. Zwrot: 50x.</p>
+                </div>
+
+                <h2>Ile kosztuje chatbot? (realne liczby)</h2>
+
+                <p><strong>Opcja darmowa (0 zł):</strong></p>
+                <ul>
+                    <li>Tidio Free: 50 rozmów/mies</li>
+                    <li>Ograniczone funkcje AI</li>
+                    <li>Wystarczy dla mikro-firm (do 100 odwiedzin/mies)</li>
+                </ul>
+
+                <p><strong>Opcja podstawowa (60-150 zł/mies):</strong></p>
+                <ul>
+                    <li>Tidio lub Chatbase</li>
+                    <li>Nielimitowane rozmowy</li>
+                    <li>AI odpowiedzi</li>
+                    <li>Integracje (Calendly, CRM)</li>
+                </ul>
+
+                <p><strong>Opcja zaawansowana (200-500 zł/mies):</strong></p>
+                <ul>
+                    <li>Intercom lub dedykowane rozwiązanie</li>
+                    <li>Zaawansowane AI</li>
+                    <li>Głęboka personalizacja</li>
+                    <li>Dla większych firm</li>
+                </ul>
+
+                <h2>Krok po kroku: Twój pierwszy chatbot (1 godzina)</h2>
+
+                <p><strong>0:00-0:10 - Przygotowanie</strong></p>
+                <ul>
+                    <li>Spisz 10 najczęstszych pytań klientów</li>
+                    <li>Napisz odpowiedzi na każde</li>
+                </ul>
+
+                <p><strong>0:10-0:20 - Konto i instalacja</strong></p>
+                <ul>
+                    <li>Załóż konto na Tidio</li>
+                    <li>Dodaj kod na stronę</li>
+                </ul>
+
+                <p><strong>0:20-0:40 - Konfiguracja</strong></p>
+                <ul>
+                    <li>Ustaw wiadomość powitalną</li>
+                    <li>Dodaj FAQ</li>
+                    <li>Skonfiguruj wygląd (kolory, pozycja)</li>
+                </ul>
+
+                <p><strong>0:40-0:50 - Testowanie</strong></p>
+                <ul>
+                    <li>Przetestuj na swojej stronie</li>
+                    <li>Zadaj pytania jako klient</li>
+                    <li>Popraw odpowiedzi</li>
+                </ul>
+
+                <p><strong>0:50-1:00 - Publikacja</strong></p>
+                <ul>
+                    <li>Włącz chatbota</li>
+                    <li>Ustaw powiadomienia (gdy bot nie wie odpowiedzi)</li>
+                    <li>Gotowe!</li>
+                </ul>
+
+                <h2>Następny krok: Wdróż chatbota dziś</h2>
+
+                <p>Nie czekaj na "idealny moment". Zacznij od prostego:</p>
+
+                <ol>
+                    <li>Załóż konto na Tidio (darmowe)</li>
+                    <li>Dodaj do strony</li>
+                    <li>Wpisz 5 najczęstszych pytań + odpowiedzi</li>
+                    <li>Włącz</li>
+                </ol>
+
+                <p>Rozbudowywać możesz później. Ważne żebyś zaczął. Dziś wieczorem Twój chatbot może już zbierać pierwsze leady.</p>
+
+                <!-- CTA Box -->
+                <div class="cta-box">
+                    <h3 class="text-xl font-bold text-primary mb-3">Potrzebujesz pomocy z chatbotem?</h3>
+                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> dzielę się praktycznymi poradami o automatyzacji obsługi klienta. Dołącz i dowiedz się jak oszczędzać czas na powtarzalnych zadaniach.</p>
+                    <a href="../index.html#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+                        Zapisz się do AI Radar
+                    </a>
+                </div>
+
+                <h2>Podsumowanie</h2>
+
+                <ul>
+                    <li><strong>Chatbot AI</strong> może przejąć 60-80% powtarzalnych pytań</li>
+                    <li><strong>Tidio lub Chatbase</strong> - najlepsze opcje dla małych firm</li>
+                    <li><strong>Koszt 60-150 zł/mies</strong> - mniej niż godzina pracy pracownika</li>
+                    <li><strong>1 godzina na setup</strong> - wystarczy na podstawową konfigurację</li>
+                    <li><strong>Kluczowe:</strong> Nie udawaj człowieka, daj opcję połączenia z konsultantem, aktualizuj odpowiedzi</li>
+                </ul>
+
+                <p>Zacznij od prostego bota z 5-10 pytaniami FAQ. Rozbudowuj gdy zobaczysz wyniki.</p>
+
+            </div>
+
+            <!-- Author Box -->
+            <div class="glass rounded-xl p-6 mt-10">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">
+                        D
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Darek</h4>
+                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
+                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI dla małych firm z Trójmiasta. Prowadzę warsztaty stacjonarne w Sopocie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Articles -->
+            <div class="mt-10">
+                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="automatyzacja-bez-kodowania.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Automatyzacja</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">Make i Zapier dla małych firm</h4>
+                    </a>
+                    <a href="ai-dla-malej-firmy.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Podstawy</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">AI dla małej firmy - od czego zacząć</h4>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="glass py-8 mt-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 AI-TEAM.PL - Centrum wiedzy o AI dla małych firm</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition">Strona główna</a>
+                <a href="../index.html#narzedzia" class="text-gray-400 hover:text-white transition">Narzędzia</a>
+                <a href="../index.html#workshops" class="text-gray-400 hover:text-white transition">Warsztaty</a>
+                <a href="../privacy.html" class="text-gray-400 hover:text-white transition">Polityka prywatności</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
