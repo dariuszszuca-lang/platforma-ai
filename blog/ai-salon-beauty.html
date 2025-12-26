@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI dla salonu beauty - praktyczny przewodnik dla kosmetyczek | AI-TEAM.PL</title>
+    <meta name="description" content="Jak wykorzystać AI w salonie kosmetycznym. Automatyzacja rezerwacji, marketing w social media, obsługa klienta - konkretne narzędzia i przykłady.">
+    <meta name="keywords" content="AI salon beauty, AI salon kosmetyczny, sztuczna inteligencja kosmetyka, automatyzacja salon beauty">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="AI dla salonu beauty - praktyczny przewodnik dla kosmetyczek">
+    <meta property="og:description" content="Jak wykorzystać AI w salonie kosmetycznym. Konkretne narzędzia i przykłady.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ai-team.pl/blog/ai-salon-beauty.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        brand: { dark: '#020203', primary: '#f97316', secondary: '#ea580c', light: '#fb923c' },
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020203; min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .prose-custom h2 { color: #fb923c; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+        .prose-custom h3 { color: #fdba74; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .prose-custom p { color: #e2e8f0; line-height: 1.8; margin-bottom: 1rem; }
+        .prose-custom ul, .prose-custom ol { color: #e2e8f0; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .prose-custom li { margin-bottom: 0.5rem; }
+        .prose-custom strong { color: #f1f5f9; }
+        .highlight-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border-left: 4px solid #f97316; padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .tool-card { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; }
+        .prompt-box { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0; font-family: 'Monaco', 'Menlo', monospace; }
+        .cta-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; }
+    </style>
+</head>
+<body class="text-white">
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="../index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter group-hover:text-brand-primary transition-colors">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="../index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="../index.html#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Produkty</a>
+                <a href="../index.html#pricing" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Ścieżki</a>
+                <a href="../index.html#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Zespół</a>
+                <a href="../index.html#workshops" class="px-5 py-2 text-sm font-medium text-brand-secondary hover:text-white hover:bg-brand-secondary/20 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="./" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="pt-32 pb-16">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-gray-400 text-sm mb-6">
+                <a href="../index.html" class="hover:text-white">Strona główna</a>
+                <span class="mx-2">/</span>
+                <a href="index.html" class="hover:text-white">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-300">AI dla salonu beauty</span>
+            </div>
+
+            <header class="mb-10">
+                <div class="flex gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Branżowy</span>
+                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Beauty</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    AI dla salonu beauty - praktyczny przewodnik dla kosmetyczek
+                </h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Jak wykorzystać sztuczną inteligencję w salonie kosmetycznym. Rezerwacje, marketing, obsługa klienta - wszystko co zaoszczędzi Ci czas i zwiększy zyski.
+                </p>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                    <span>Darek | AI-TEAM.PL</span>
+                    <span>|</span>
+                    <span>Grudzień 2025</span>
+                    <span>|</span>
+                    <span>12 min czytania</span>
+                </div>
+            </header>
+
+            <div class="prose-custom">
+
+                <div class="highlight-box">
+                    <p class="text-lg mb-0"><strong>W skrócie:</strong> Salon beauty to idealne miejsce na AI - powtarzalne pytania klientek, potrzeba ciągłego contentu na social media, rezerwacje 24/7. Pokażę Ci konkretne narzędzia które wdrożysz w weekend.</p>
+                </div>
+
+                <h2>Dlaczego salon beauty + AI to idealne połączenie?</h2>
+
+                <p>Prowadzisz salon i pewnie znasz te problemy:</p>
+                <ul>
+                    <li>Klientki piszą o 22:00 pytając o terminy</li>
+                    <li>Te same pytania: "Ile kosztuje?", "Jak długo trwa?", "Czy boli?"</li>
+                    <li>Brak czasu na Instagram (a trzeba wrzucać posty)</li>
+                    <li>Pisanie opisów zabiegów zajmuje wieczność</li>
+                    <li>Odpowiadanie na DM-ki zamiast robienia zabiegów</li>
+                </ul>
+
+                <p><strong>AI może przejąć 70% tej pracy.</strong> Nie zastąpi Twoich rąk przy zabiegu, ale zastąpi Cię przy klawiaturze.</p>
+
+                <h2>5 obszarów gdzie AI pomoże Twojemu salonowi</h2>
+
+                <h3>1. Odpowiadanie na pytania klientek (chatbot)</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Problem:</p>
+                    <p class="text-gray-300 mb-3">Klientki pytają o ceny, terminy, przygotowanie do zabiegu - często te same pytania.</p>
+
+                    <p class="text-primary font-semibold mb-2">Rozwiązanie:</p>
+                    <p class="text-gray-300 mb-3">Chatbot na stronie i w Messengerze który odpowiada 24/7.</p>
+
+                    <p class="text-primary font-semibold mb-2">Narzędzie:</p>
+                    <p class="text-gray-300 mb-0">Tidio (od 0 zł) lub ManyChat (od 60 zł/mies)</p>
+                </div>
+
+                <p><strong>Przykładowe pytania które chatbot obsłuży:</strong></p>
+                <ul>
+                    <li>"Ile kosztuje makijaż permanentny brwi?"</li>
+                    <li>"Jak się przygotować do depilacji laserowej?"</li>
+                    <li>"Czy macie wolne terminy w sobotę?"</li>
+                    <li>"Gdzie jesteście?"</li>
+                    <li>"Czy można zapłacić kartą?"</li>
+                </ul>
+
+                <h3>2. Posty na Instagram i Facebook</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Problem:</p>
+                    <p class="text-gray-300 mb-3">Trzeba wrzucać regularnie, ale nie ma czasu ani pomysłów.</p>
+
+                    <p class="text-primary font-semibold mb-2">Rozwiązanie:</p>
+                    <p class="text-gray-300 mb-3">ChatGPT generuje posty, Canva AI robi grafiki.</p>
+
+                    <p class="text-primary font-semibold mb-2">Narzędzia:</p>
+                    <p class="text-gray-300 mb-0">ChatGPT (100 zł/mies) + Canva Pro (50 zł/mies)</p>
+                </div>
+
+                <p><strong>Prompt do postów na Instagram:</strong></p>
+
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Jestem właścicielką salonu kosmetycznego w [miasto]. Specjalizuję się w [zabiegi].<br><br>
+                        Napisz post na Instagram o [temat, np. "pielęgnacja brwi po makijażu permanentnym"].<br><br>
+                        Format: Hook (pytanie lub ciekawostka), 3-4 porady, zachęta do umówienia wizyty.<br>
+                        Dodaj 5-7 hashtagów.<br>
+                        Styl: przyjazny, jak rozmowa z koleżanką. Max 150 słów.
+                    </p>
+                </div>
+
+                <h3>3. Opisy zabiegów na stronę</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Problem:</p>
+                    <p class="text-gray-300 mb-3">Strona ma kiepskie opisy albo ich brak. Klientki nie wiedzą czego się spodziewać.</p>
+
+                    <p class="text-primary font-semibold mb-2">Rozwiązanie:</p>
+                    <p class="text-gray-300 mb-3">ChatGPT napisze profesjonalne opisy w 5 minut.</p>
+                </div>
+
+                <p><strong>Prompt do opisów zabiegów:</strong></p>
+
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Napisz opis zabiegu [nazwa zabiegu] na stronę salonu kosmetycznego.<br><br>
+                        Zawrzyj:<br>
+                        - Co to jest i jak działa (2-3 zdania)<br>
+                        - Dla kogo jest przeznaczony<br>
+                        - Jak wygląda zabieg krok po kroku<br>
+                        - Efekty (co klientka zyska)<br>
+                        - Czas trwania i cena<br>
+                        - Przeciwwskazania<br><br>
+                        Styl: profesjonalny ale przystępny. Bez straszenia. Max 300 słów.
+                    </p>
+                </div>
+
+                <h3>4. Rezerwacje online 24/7</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Problem:</p>
+                    <p class="text-gray-300 mb-3">Klientki chcą rezerwować wieczorem/w weekend, a Ty nie odbierasz telefonu.</p>
+
+                    <p class="text-primary font-semibold mb-2">Rozwiązanie:</p>
+                    <p class="text-gray-300 mb-3">System rezerwacji online + chatbot który kieruje do rezerwacji.</p>
+
+                    <p class="text-primary font-semibold mb-2">Narzędzia:</p>
+                    <p class="text-gray-300 mb-0">Booksy, Calendly, lub Versum (dedykowane dla beauty)</p>
+                </div>
+
+                <h3>5. Odpowiedzi na opinie i komentarze</h3>
+
+                <div class="tool-card">
+                    <p class="text-primary font-semibold mb-2">Problem:</p>
+                    <p class="text-gray-300 mb-3">Trzeba odpowiadać na Google, Facebook, Instagram - każda odpowiedź to czas.</p>
+
+                    <p class="text-primary font-semibold mb-2">Rozwiązanie:</p>
+                    <p class="text-gray-300 mb-3">ChatGPT generuje spersonalizowane odpowiedzi w sekundy.</p>
+                </div>
+
+                <p><strong>Prompt do odpowiedzi na opinie:</strong></p>
+
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Klientka zostawiła opinię: "[wklej treść opinii]"<br><br>
+                        Napisz ciepłą odpowiedź od właścicielki salonu. Podziękuj za opinię, odnieś się do konkretów które wymieniła, zaproś ponownie.<br><br>
+                        Styl: osobisty, ciepły, profesjonalny. Max 50 słów.
+                    </p>
+                </div>
+
+                <h2>Tygodniowy plan wdrożenia AI w salonie</h2>
+
+                <p><strong>Dzień 1-2: Chatbot</strong></p>
+                <ul>
+                    <li>Załóż konto na Tidio</li>
+                    <li>Dodaj do strony</li>
+                    <li>Wpisz 15-20 najczęstszych pytań + odpowiedzi</li>
+                    <li>Dodaj link do rezerwacji</li>
+                </ul>
+
+                <p><strong>Dzień 3-4: Content na social media</strong></p>
+                <ul>
+                    <li>Załóż ChatGPT + Canva</li>
+                    <li>Wygeneruj 8 postów na 2 tygodnie</li>
+                    <li>Stwórz grafiki w Canva</li>
+                    <li>Zaplanuj publikację</li>
+                </ul>
+
+                <p><strong>Dzień 5-6: Opisy zabiegów</strong></p>
+                <ul>
+                    <li>Lista wszystkich zabiegów</li>
+                    <li>Wygeneruj opisy w ChatGPT</li>
+                    <li>Dodaj na stronę</li>
+                </ul>
+
+                <p><strong>Dzień 7: Optymalizacja</strong></p>
+                <ul>
+                    <li>Sprawdź czy chatbot działa</li>
+                    <li>Popraw odpowiedzi które nie pasują</li>
+                    <li>Zaplanuj kolejny tydzień contentu</li>
+                </ul>
+
+                <h2>Case study: Salon "Brow Studio" w Gdańsku</h2>
+
+                <p>Magda prowadzi salon specjalizujący się w makijażu permanentnym. Przed AI:</p>
+                <ul>
+                    <li>2h dziennie na odpowiadanie na wiadomości</li>
+                    <li>0-2 posty na Instagram miesięcznie</li>
+                    <li>Brak opisów zabiegów na stronie</li>
+                    <li>Stracone rezerwacje (klientki pisały po godzinach)</li>
+                </ul>
+
+                <p><strong>Co wdrożyła:</strong></p>
+                <ol>
+                    <li>Tidio z 25 odpowiedziami FAQ</li>
+                    <li>ChatGPT do postów (12/mies)</li>
+                    <li>Booksy do rezerwacji</li>
+                    <li>Opisy wszystkich zabiegów z AI</li>
+                </ol>
+
+                <p><strong>Efekty po 2 miesiącach:</strong></p>
+                <ul>
+                    <li>Odpowiadanie na wiadomości: z 2h do 30 min dziennie</li>
+                    <li>Posty: z 2 do 12 miesięcznie</li>
+                    <li>Rezerwacje online: +35% (wieczorne i weekendowe)</li>
+                    <li>Chatbot obsłużył 400+ rozmów</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p class="mb-0"><strong>Koszt:</strong> Tidio (120 zł) + ChatGPT (100 zł) + Canva (50 zł) + Booksy (100 zł) = 370 zł/mies.<br><strong>Oszczędność czasu:</strong> ~40h miesięcznie. <strong>Dodatkowe rezerwacje:</strong> ~8-10 miesięcznie.</p>
+                </div>
+
+                <h2>Gotowe prompty dla salonu beauty</h2>
+
+                <h3>Prompt: Post "przed i po"</h3>
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Napisz post na Instagram do zdjęcia przed/po zabiegu [nazwa zabiegu].<br>
+                        Podkreśl: naturalny efekt, zadowolenie klientki, profesjonalizm.<br>
+                        Dodaj CTA do rezerwacji. Max 100 słów + hashtagi.
+                    </p>
+                </div>
+
+                <h3>Prompt: Odpowiedź na pytanie o cenę</h3>
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Klientka pyta: "Ile kosztuje [zabieg]?"<br>
+                        Napisz odpowiedź która: poda cenę [X zł], wyjaśni co zawiera, zachęci do rezerwacji konsultacji.<br>
+                        Ton: przyjazny, bez wciskania. Max 50 słów.
+                    </p>
+                </div>
+
+                <h3>Prompt: Przypomnienie o wizycie</h3>
+                <div class="prompt-box">
+                    <p class="text-gray-300 text-sm">
+                        Napisz SMS przypominający o wizycie w salonie kosmetycznym.<br>
+                        Data: [data], godzina: [godzina], zabieg: [zabieg].<br>
+                        Dodaj info o przygotowaniu jeśli potrzebne. Max 160 znaków.
+                    </p>
+                </div>
+
+                <h2>Ile to kosztuje? (budżet dla salonu)</h2>
+
+                <p><strong>Opcja minimalna (150 zł/mies):</strong></p>
+                <ul>
+                    <li>ChatGPT Plus: 100 zł</li>
+                    <li>Canva Pro: 50 zł</li>
+                    <li>Tidio: darmowy plan</li>
+                </ul>
+
+                <p><strong>Opcja optymalna (350-400 zł/mies):</strong></p>
+                <ul>
+                    <li>ChatGPT Plus: 100 zł</li>
+                    <li>Canva Pro: 50 zł</li>
+                    <li>Tidio płatny: 120 zł</li>
+                    <li>Booksy/Versum: 80-130 zł</li>
+                </ul>
+
+                <p><strong>ROI:</strong> Jedna dodatkowa klientka miesięcznie (średni zabieg 300 zł) = zwrot kosztów. Wszystko powyżej = czysty zysk + oszczędność czasu.</p>
+
+                <h2>Następny krok</h2>
+
+                <p>Zacznij od jednego obszaru. Moja rekomendacja dla salonu beauty:</p>
+
+                <ol>
+                    <li><strong>Tydzień 1:</strong> ChatGPT do postów na Instagram (najszybszy efekt)</li>
+                    <li><strong>Tydzień 2:</strong> Chatbot na stronę/Messenger</li>
+                    <li><strong>Tydzień 3:</strong> System rezerwacji online</li>
+                </ol>
+
+                <p>Za miesiąc będziesz miała działający system który pracuje gdy Ty robisz zabiegi.</p>
+
+                <div class="cta-box">
+                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz więcej porad dla branży beauty?</h3>
+                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> regularnie piszę o AI dla małych firm - w tym dla salonów beauty. Dołącz i otrzymuj praktyczne tipy co tydzień.</p>
+                    <a href="../index.html#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+                        Zapisz się do AI Radar
+                    </a>
+                </div>
+
+                <h2>Podsumowanie</h2>
+
+                <ul>
+                    <li><strong>Chatbot</strong> - odpowiada na pytania 24/7, kieruje do rezerwacji</li>
+                    <li><strong>ChatGPT</strong> - posty, opisy zabiegów, odpowiedzi na opinie</li>
+                    <li><strong>Canva AI</strong> - grafiki do social media w minuty</li>
+                    <li><strong>System rezerwacji</strong> - klientki rezerwują gdy chcą</li>
+                    <li><strong>Budżet 150-400 zł/mies</strong> - zwraca się w jednej dodatkowej rezerwacji</li>
+                </ul>
+
+                <p>AI nie zastąpi Twoich umiejętności przy zabiegu. Ale zastąpi godziny przy telefonie i komputerze.</p>
+
+            </div>
+
+            <div class="glass rounded-xl p-6 mt-10">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">D</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Darek</h4>
+                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
+                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI dla małych firm z Trójmiasta. Prowadzę warsztaty stacjonarne w Sopocie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10">
+                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="chatbot-obsluga-klienta.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Automatyzacja</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">Chatboty dla małych firm</h4>
+                    </a>
+                    <a href="ai-w-marketingu.html" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
+                        <span class="text-primary text-sm">Marketing</span>
+                        <h4 class="font-semibold group-hover:text-primary transition">AI w marketingu małej firmy</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer class="glass py-8 mt-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 AI-TEAM.PL - Centrum wiedzy o AI dla małych firm</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition">Strona główna</a>
+                <a href="../index.html#narzedzia" class="text-gray-400 hover:text-white transition">Narzędzia</a>
+                <a href="../index.html#workshops" class="text-gray-400 hover:text-white transition">Warsztaty</a>
+                <a href="../privacy.html" class="text-gray-400 hover:text-white transition">Polityka prywatności</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

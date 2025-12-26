@@ -15,13 +15,28 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://ai-team.pl/blog/chatgpt-dla-poczatkujacych.html">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
                     colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                        },
                         primary: '#f97316',
                         secondary: '#ea580c',
                         light: '#fb923c',
@@ -117,23 +132,28 @@
 </head>
 <body class="text-white">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass">
-        <div class="max-w-4xl mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <a href="../index.html" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    AI-TEAM.PL
-                </a>
-                <div class="flex gap-4">
-                    <a href="../index.html#narzedzia" class="text-gray-300 hover:text-white transition">Narzędzia</a>
-                    <a href="../index.html#workshops" class="text-gray-300 hover:text-white transition">Warsztaty</a>
-                    <a href="index.html" class="text-gray-300 hover:text-white transition">Blog</a>
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="../index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
                 </div>
+                <div class="text-xl font-display font-bold tracking-tighter group-hover:text-brand-primary transition-colors">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="../index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="../index.html#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Produkty</a>
+                <a href="../index.html#pricing" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Ścieżki</a>
+                <a href="../index.html#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Zespół</a>
+                <a href="../index.html#workshops" class="px-5 py-2 text-sm font-medium text-brand-secondary hover:text-white hover:bg-brand-secondary/20 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="./" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
             </div>
         </div>
     </nav>
 
     <!-- Article -->
-    <article class="pt-24 pb-16">
+    <article class="pt-32 pb-16">
         <div class="max-w-3xl mx-auto px-4">
 
             <!-- Breadcrumb -->
