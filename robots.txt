@@ -1,0 +1,6 @@
+# Robots.txt for ai-team.pl
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ai-team.pl/sitemap.xml
