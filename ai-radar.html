@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>AI Radar - cotygodniowy newsletter o AI dla biznesu | AI-TEAM.PL</title>
+    <meta name="description" content="Dołącz do AI Radar - co tydzień praktyczny tip o AI, który wdrożysz w 10 minut. Zero teorii, same konkrety dla małych firm i freelancerów.">
+    <meta name="keywords" content="newsletter AI, sztuczna inteligencja dla firm, ChatGPT tips, AI w biznesie, automatyzacja">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/ai-radar.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Radar - cotygodniowy newsletter o AI">
+    <meta property="og:description" content="Praktyczny tip o AI co tydzień. Zero teorii, same konkrety.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/ai-radar.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020203; min-height: 100vh; }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            transform-origin: top center;
+        }
+        .horizon-glow {
+            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
+            filter: blur(100px); z-index: -1; opacity: 0.6;
+        }
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatOrb 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .cosmic-orb-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
+            top: 10%; left: -10%;
+        }
+        .cosmic-orb-2 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
+            top: 50%; right: -5%;
+            animation-delay: -7s;
+        }
+        .cosmic-orb-3 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(251,146,60,0.2) 0%, transparent 70%);
+            bottom: 20%; left: 10%;
+            animation-delay: -14s;
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 10px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+        .radar-pulse {
+            animation: radarPulse 2s ease-in-out infinite;
+        }
+        @keyframes radarPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); }
+        }
+    </style>
+</head>
+<body class="text-white antialiased selection:bg-brand-primary selection:text-black relative">
+    <!-- Cosmic Ambient Orbs -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="cosmic-orb cosmic-orb-1"></div>
+        <div class="cosmic-orb cosmic-orb-2"></div>
+        <div class="cosmic-orb cosmic-orb-3"></div>
+    </div>
+
+    <!-- Background Grid -->
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow animate-pulse-slow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors whitespace-nowrap">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="pakiet-startowy-ai.html" class="px-5 py-2 text-sm font-medium text-brand-primary hover:text-white hover:bg-brand-primary/20 rounded-full transition-all duration-300 whitespace-nowrap">Pakiet AI</a>
+                <a href="index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="index.html#workshops" class="px-5 py-2 text-sm font-medium text-brand-secondary hover:text-white hover:bg-brand-secondary/20 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="sniadanie-ai.html" class="px-4 py-2 text-sm font-medium text-yellow-400 hover:text-white hover:bg-yellow-400/20 rounded-full transition-all duration-300 whitespace-nowrap">Śniadanie</a>
+                <a href="blog/" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                <span class="mx-2">/</span>
+                <span class="text-brand-primary">AI Radar</span>
+            </div>
+
+            <div class="text-center mb-12">
+                <!-- Radar Icon -->
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-primary/20 border border-brand-primary/30 mb-8 radar-pulse">
+                    <i data-lucide="radar" class="w-10 h-10 text-brand-primary"></i>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 tracking-tight">
+                    <span class="gradient-text">AI Radar</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-4">
+                    Cotygodniowy newsletter o AI dla biznesu
+                </p>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    Co tydzień praktyczny tip, który wdrożysz w 10 minut.<br>
+                    Zero teorii. Same konkrety.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section class="py-8 relative z-10">
+        <div class="max-w-xl mx-auto px-6">
+            <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/30">
+                <form action="https://formsubmit.co/dariusz.szuca@gmail.com" method="POST" class="space-y-4">
+                    <input type="hidden" name="_subject" value="Nowy subskrybent AI Radar!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://ai-team.pl/ai-radar.html?zapisano=1">
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Imię</label>
+                        <input type="text" name="imie"
+                               class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
+                               placeholder="Jak masz na imię?">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Email *</label>
+                        <input type="email" name="email" required
+                               class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
+                               placeholder="twoj@email.pl">
+                    </div>
+
+                    <button type="submit"
+                            class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2 text-lg">
+                        <i data-lucide="mail-plus" class="w-5 h-5"></i>
+                        Dołącz do AI Radar
+                    </button>
+
+                    <p class="text-gray-500 text-xs text-center">
+                        Bez spamu. Wypisujesz się jednym klikiem.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="py-16 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-12">Co dostajesz co tydzień?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tip -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 bg-brand-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="lightbulb" class="w-7 h-7 text-brand-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Praktyczny tip</h3>
+                    <p class="text-gray-400 text-sm">Jeden konkretny sposób na użycie AI w biznesie. Do wdrożenia od razu.</p>
+                </div>
+
+                <!-- Prompt -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 bg-brand-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="message-square-code" class="w-7 h-7 text-brand-secondary"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Gotowy prompt</h3>
+                    <p class="text-gray-400 text-sm">Przetestowany prompt do ChatGPT. Kopiujesz, wklejasz, działa.</p>
+                </div>
+
+                <!-- Tool -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 bg-brand-light/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="wrench" class="w-7 h-7 text-brand-light"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Narzędzie tygodnia</h3>
+                    <p class="text-gray-400 text-sm">Jedno narzędzie AI które testuję i polecam. Bez ściemy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Who -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- For who -->
+                <div class="glass-card p-6 rounded-2xl border border-green-500/20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Dla Ciebie, jeśli:</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500">→</span>
+                            <span>Prowadzisz małą firmę lub freelance</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500">→</span>
+                            <span>Chcesz oszczędzać czas dzięki AI</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500">→</span>
+                            <span>Wolisz konkrety od teorii</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500">→</span>
+                            <span>Masz 5 minut tygodniowo na naukę</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Not for who -->
+                <div class="glass-card p-6 rounded-2xl border border-red-500/20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="x" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">NIE dla Ciebie, jeśli:</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500">→</span>
+                            <span>Jesteś ekspertem AI/ML</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500">→</span>
+                            <span>Szukasz kodu i technicznych detali</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500">→</span>
+                            <span>Masz już 100 newsletterów</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500">→</span>
+                            <span>Nie lubisz praktycznych porad</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Issue -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-8">Przykładowy mail</h2>
+
+            <div class="glass-card p-6 rounded-2xl border border-white/10">
+                <div class="flex items-center gap-3 mb-4 pb-4 border-b border-white/10">
+                    <div class="w-10 h-10 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="radar" class="w-5 h-5 text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-white text-sm">AI Radar #42</p>
+                        <p class="text-gray-500 text-xs">od: Darek z AI-Team</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-gray-300 text-sm">
+                    <p><strong class="text-white">Tip tygodnia:</strong> Jak pisać maile 3x szybciej</p>
+                    <p>Zamiast pisać maila od zera, wklej do ChatGPT: "Napisz profesjonalny mail do klienta który pyta o [temat]. Ton: przyjazny ale konkretny. Max 5 zdań."</p>
+                    <p><strong class="text-white">Prompt:</strong></p>
+                    <div class="bg-black/40 p-3 rounded-lg font-mono text-xs text-brand-light">
+                        Jesteś moim asystentem do maili biznesowych...<br>
+                        [pełny prompt w newsletterze]
+                    </div>
+                    <p><strong class="text-white">Narzędzie:</strong> Superhuman AI - jeśli piszesz dużo maili, to game-changer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 relative z-10">
+        <div class="max-w-xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-display font-bold mb-4">Dołącz do AI Radar</h2>
+            <p class="text-gray-400 mb-8">Pierwszy mail dostaniesz w najbliższy poniedziałek.</p>
+
+            <a href="#" onclick="document.querySelector('form input[type=email]').focus(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+               class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition">
+                <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                Zapisz się teraz
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8 border-t border-white/10 relative z-10 mt-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex h-3 w-3">
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                    </div>
+                    <span class="font-display font-bold">AI-Team</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                    <a href="pakiet-startowy-ai.html" class="hover:text-white transition">Pakiet AI</a>
+                    <a href="sniadanie-ai.html" class="hover:text-white transition">Śniadanie AI</a>
+                    <a href="blog/" class="hover:text-white transition">Blog</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2025 AI-TEAM.PL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Check if just signed up
+        if (window.location.search.includes('zapisano=1')) {
+            alert('Dzięki za zapis! Pierwszy AI Radar dostaniesz w najbliższy poniedziałek.');
+            history.replaceState({}, '', window.location.pathname);
+        }
+    </script>
+</body>
+</html>
