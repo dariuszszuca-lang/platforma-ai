@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Śniadanie AI w Sopocie - darmowe warsztaty dla przedsiębiorców | AI-TEAM.PL</title>
+    <meta name="description" content="Darmowe śniadanie biznesowe z warsztatem AI w Sopocie. 8 miejsc, kawa, konkretna wiedza. Dla właścicieli małych firm i freelancerów.">
+    <meta name="keywords" content="śniadanie biznesowe Sopot, warsztaty AI Trójmiasto, ChatGPT szkolenie, AI dla firm Gdańsk">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/sniadanie-ai.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Śniadanie AI w Sopocie - darmowe warsztaty">
+    <meta property="og:description" content="8 miejsc, kawa, konkretna wiedza o AI. Dla właścicieli małych firm.">
+    <meta property="og:type" content="event">
+    <meta property="og:url" content="https://ai-team.pl/sniadanie-ai.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020203; min-height: 100vh; }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            transform-origin: top center;
+        }
+        .horizon-glow {
+            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
+            filter: blur(100px); z-index: -1; opacity: 0.6;
+        }
+        .participant-card {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-white antialiased">
+    <!-- Background -->
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow animate-pulse-slow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="pakiet-startowy-ai.html" class="px-5 py-2 text-sm font-medium text-brand-primary hover:text-white hover:bg-brand-primary/20 rounded-full transition-all duration-300">Pakiet AI</a>
+                <a href="index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="index.html#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Produkty</a>
+                <a href="index.html#workshops" class="px-5 py-2 text-sm font-medium text-brand-secondary hover:text-white hover:bg-brand-secondary/20 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="blog/" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                <span class="mx-2">/</span>
+                <span class="text-brand-primary">Śniadanie AI</span>
+            </div>
+
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span>ZAPISY OTWARTE</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 tracking-tight">
+                    Śniadanie <span class="gradient-text">AI</span> w Sopocie
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Kawa, rogaliki i konkretna wiedza o AI.<br>
+                    Dla właścicieli małych firm i freelancerów.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Left: Details -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h2 class="text-2xl font-display font-bold mb-6">Szczegóły</h2>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="calendar" class="w-5 h-5 text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Sobota, styczeń 2025</p>
+                                <p class="text-gray-400 text-sm">Dokładna data wkrótce</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">9:00 - 10:30</p>
+                                <p class="text-gray-400 text-sm">90 minut konkretów</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Sopot, ul. Pułaskiego 7</p>
+                                <p class="text-gray-400 text-sm">2 minuty od Monciaka</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="badge-check" class="w-5 h-5 text-green-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Darmowe</p>
+                                <p class="text-gray-400 text-sm">Kawa i rogaliki na koszt organizatora</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-white/10 my-6">
+
+                    <h3 class="font-bold text-white mb-3">Co zrobimy:</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>ChatGPT od zera - realne użycie, nie teoria</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>3 narzędzia które oszczędzą Ci 5h tygodniowo</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>Q&A - odpowiem na Twoje pytania</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Participants List -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-display font-bold">Lista uczestników</h2>
+                        <div class="flex items-center gap-2 px-3 py-1 bg-brand-primary/20 rounded-full">
+                            <span class="text-brand-primary font-bold text-lg">2</span>
+                            <span class="text-gray-400 text-sm">/ 8 miejsc</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="w-full bg-white/10 rounded-full h-2 mb-6">
+                        <div class="bg-gradient-to-r from-brand-primary to-brand-light h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+                    </div>
+
+                    <!-- Participants -->
+                    <div class="space-y-3 mb-6">
+                        <!-- Participant 1 -->
+                        <div class="participant-card flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10">
+                            <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center text-black font-bold">
+                                T
+                            </div>
+                            <div>
+                                <p class="font-medium text-white">Tomek</p>
+                                <p class="text-gray-500 text-sm">Tom's Gar&Go</p>
+                            </div>
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 ml-auto"></i>
+                        </div>
+
+                        <!-- Participant 2 -->
+                        <div class="participant-card flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10" style="animation-delay: 0.1s">
+                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+                                K
+                            </div>
+                            <div>
+                                <p class="font-medium text-white">Karolina</p>
+                                <p class="text-gray-500 text-sm">Harmony Place</p>
+                            </div>
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 ml-auto"></i>
+                        </div>
+
+                        <!-- Empty slots -->
+                        <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-dashed border-white/10 opacity-50">
+                            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="user-plus" class="w-5 h-5 text-gray-500"></i>
+                            </div>
+                            <p class="text-gray-500 text-sm">Wolne miejsce</p>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-dashed border-white/10 opacity-50">
+                            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="user-plus" class="w-5 h-5 text-gray-500"></i>
+                            </div>
+                            <p class="text-gray-500 text-sm">Wolne miejsce</p>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-dashed border-white/10 opacity-30">
+                            <div class="w-10 h-10 bg-white/10 rounded-full"></div>
+                            <p class="text-gray-600 text-sm">+4 więcej miejsc</p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-500 text-xs text-center">
+                        Lista aktualizowana na bieżąco
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/30">
+                <h2 class="text-2xl font-display font-bold mb-2 text-center">Zapisz się na listę</h2>
+                <p class="text-gray-400 text-center mb-6">Zostało 6 wolnych miejsc</p>
+
+                <form action="https://formsubmit.co/darek@ai-team.pl" method="POST" class="space-y-4">
+                    <input type="hidden" name="_subject" value="Nowy zapis na Śniadanie AI!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://ai-team.pl/sniadanie-ai.html?zapisano=1">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Imię *</label>
+                            <input type="text" name="imie" required
+                                   class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
+                                   placeholder="Twoje imię">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Firma</label>
+                            <input type="text" name="firma"
+                                   class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
+                                   placeholder="Nazwa firmy (opcjonalnie)">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Email *</label>
+                        <input type="email" name="email" required
+                               class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
+                               placeholder="twoj@email.pl">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Czego chcesz się dowiedzieć o AI? (opcjonalnie)</label>
+                        <textarea name="pytanie" rows="2"
+                                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition resize-none"
+                                  placeholder="Np. Jak używać ChatGPT do pisania ofert?"></textarea>
+                    </div>
+
+                    <button type="submit"
+                            class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2">
+                        <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+                        Zapisuję się!
+                    </button>
+
+                    <p class="text-gray-500 text-xs text-center">
+                        Po zapisie dostaniesz email z potwierdzeniem i szczegółami.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Who Section -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- For who -->
+                <div class="glass-card p-6 rounded-2xl border border-green-500/20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Dla kogo to jest</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>→ Prowadzisz małą firmę lub freelance</li>
+                        <li>→ Słyszysz o AI, ale nie wiesz jak zacząć</li>
+                        <li>→ Chcesz konkretnie, bez ściemy</li>
+                        <li>→ Działasz w Trójmieście lub okolicach</li>
+                    </ul>
+                </div>
+
+                <!-- Not for who -->
+                <div class="glass-card p-6 rounded-2xl border border-red-500/20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="x" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Dla kogo NIE jest</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>→ Szukasz zaawansowanych promptów</li>
+                        <li>→ Jesteś programistą AI</li>
+                        <li>→ Chcesz tylko networking bez nauki</li>
+                        <li>→ Nie możesz przyjść osobiście</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Host Section -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center text-black text-2xl font-bold shrink-0">
+                        D
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Darek</h3>
+                        <p class="text-brand-primary text-sm mb-2">AI-TEAM.PL</p>
+                        <p class="text-gray-400 text-sm">
+                            Pomagam małym firmom wdrażać AI bez wydawania fortuny.
+                            Buduję strony, systemy i automatyzacje 60-80% taniej niż agencje.
+                            Działam w Trójmieście.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8 border-t border-white/10 relative z-10 mt-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex h-3 w-3">
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                    </div>
+                    <span class="font-display font-bold">AI-Team</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                    <a href="pakiet-startowy-ai.html" class="hover:text-white transition">Pakiet AI</a>
+                    <a href="blog/" class="hover:text-white transition">Blog</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2025 AI-TEAM.PL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Check if just signed up
+        if (window.location.search.includes('zapisano=1')) {
+            alert('Dzięki za zapis! Sprawdź email - wyślę szczegóły wkrótce.');
+            history.replaceState({}, '', window.location.pathname);
+        }
+    </script>
+</body>
+</html>
