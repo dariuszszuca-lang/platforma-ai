@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakiet Startowy AI - 12 najlepszych narzędzi dla Twojej firmy | AI-TEAM.PL</title>
+    <meta name="description" content="Sprawdzony zestaw 12 najlepszych narzędzi AI dla freelancerów i małych firm. Przetestowane, darmowe lub tanie - zacznij korzystać od dziś.">
+    <meta name="keywords" content="narzędzia AI, pakiet startowy AI, ChatGPT, Claude, Perplexity, Canva AI, narzędzia sztucznej inteligencji">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/pakiet-startowy-ai.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Pakiet Startowy AI - 12 narzędzi do rozpoczęcia pracy z AI">
+    <meta property="og:description" content="Sprawdzony zestaw najlepszych narzędzi AI dla małych firm. Przetestowane, darmowe - zacznij od dziś.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/pakiet-startowy-ai.html">
+    <meta property="og:image" content="https://ai-team.pl/assets/pakiet-startowy-ai-og.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                        },
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020203;
+            min-height: 100vh;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: linear-gradient(145deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,0.04) 100%);
+            border-color: rgba(249, 115, 22, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(249,115,22,0.15), 0 10px 20px -10px rgba(0,0,0,0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            transform-origin: top center;
+        }
+        .horizon-glow {
+            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
+            filter: blur(100px); z-index: -1; opacity: 0.6;
+        }
+        .section-glow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            max-width: 1000px;
+            height: 200px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 220, 0.05) 40%, transparent 70%);
+        }
+        .section-glow-top { top: -60px; }
+        .section-glow-bottom { bottom: -60px; }
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .cosmic-orb-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
+            top: 10%; left: -10%;
+        }
+        .cosmic-orb-2 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
+            top: 40%; right: -5%;
+            animation-delay: -7s;
+        }
+        .tool-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 20px;
+        }
+        .category-header {
+            position: relative;
+            padding-left: 1rem;
+        }
+        .category-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #f97316, #ea580c);
+            border-radius: 2px;
+        }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Pakiet Startowy AI - Najlepsze narzedzia AI",
+        "description": "Sprawdzony zestaw 12 najlepszych narzedzi AI dla freelancerow i malych firm",
+        "numberOfItems": 12,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ChatGPT"},
+            {"@type": "ListItem", "position": 2, "name": "Claude"},
+            {"@type": "ListItem", "position": 3, "name": "Perplexity AI"},
+            {"@type": "ListItem", "position": 4, "name": "DALL-E 3"},
+            {"@type": "ListItem", "position": 5, "name": "Canva AI"},
+            {"@type": "ListItem", "position": 6, "name": "Gamma"},
+            {"@type": "ListItem", "position": 7, "name": "Notion AI"},
+            {"@type": "ListItem", "position": 8, "name": "Otter.ai"},
+            {"@type": "ListItem", "position": 9, "name": "Make.com"},
+            {"@type": "ListItem", "position": 10, "name": "ElevenLabs"},
+            {"@type": "ListItem", "position": 11, "name": "Descript"},
+            {"@type": "ListItem", "position": 12, "name": "Copy.ai"}
+        ]
+    }
+    </script>
+</head>
+<body class="text-white antialiased">
+    <!-- Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="cosmic-orb cosmic-orb-1"></div>
+        <div class="cosmic-orb cosmic-orb-2"></div>
+    </div>
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow animate-pulse-slow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="index.html#products" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Produkty</a>
+                <a href="index.html#team" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Zespół</a>
+                <a href="index.html#workshops" class="px-5 py-2 text-sm font-medium text-brand-secondary hover:text-white hover:bg-brand-secondary/20 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="blog/" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                <span class="mx-2">/</span>
+                <span class="text-brand-primary">Pakiet Startowy AI</span>
+            </div>
+
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                    <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                    <span>SPRAWDZONY ZESTAW NARZĘDZI</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 tracking-tight">
+                    Pakiet Startowy <span class="gradient-text">AI</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    12 najlepszych narzędzi AI dla freelancerów i małych firm. Przetestowane, sprawdzone,
+                    z darmowymi planami - możesz zacząć korzystać już dziś.
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap justify-center gap-8 mb-12 text-sm">
+                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
+                        <i data-lucide="package" class="w-5 h-5 text-brand-primary"></i>
+                        <span class="text-gray-300"><strong class="text-white">12</strong> narzędzi</span>
+                    </div>
+                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
+                        <i data-lucide="layers" class="w-5 h-5 text-brand-secondary"></i>
+                        <span class="text-gray-300"><strong class="text-white">6</strong> kategorii</span>
+                    </div>
+                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
+                        <i data-lucide="badge-check" class="w-5 h-5 text-green-400"></i>
+                        <span class="text-gray-300"><strong class="text-white">100%</strong> przetestowane</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Sections -->
+    <main class="pb-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- Category 1: Asystenci konwersacyjni -->
+            <section class="mb-20">
+                <div class="section-glow section-glow-top"></div>
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-brand-primary"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Asystenci konwersacyjni</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Twój osobisty asystent do pisania, analizy i burzy mózgów</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ChatGPT -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-brand-primary text-black">MUST HAVE</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-xl flex items-center justify-center border border-emerald-500/30 shrink-0">
+                                <i data-lucide="bot" class="w-7 h-7 text-emerald-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">ChatGPT</h3>
+                                <p class="text-gray-500 text-xs mb-3">OpenAI</p>
+                                <p class="text-gray-400 text-sm mb-4">Najpopularniejszy asystent AI. Pisanie tekstów, analiza dokumentów, burza mózgów, tłumaczenia. Darmowa wersja wystarczy na start.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Plus: $20/mies.</span>
+                                </div>
+                                <a href="https://chat.openai.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj ChatGPT <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-brand-secondary text-white">REKOMENDOWANE</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-amber-500/20 to-orange-600/10 rounded-xl flex items-center justify-center border border-amber-500/30 shrink-0">
+                                <i data-lucide="sparkles" class="w-7 h-7 text-amber-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Claude</h3>
+                                <p class="text-gray-500 text-xs mb-3">Anthropic</p>
+                                <p class="text-gray-400 text-sm mb-4">Najlepszy do długich dokumentów i analiz. Świetny styl pisania, mniej "AI-owy". Idealny do content marketingu i copywritingu.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Pro: $20/mies.</span>
+                                </div>
+                                <a href="https://claude.ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Claude <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category 2: Research & Wyszukiwanie -->
+            <section class="mb-20">
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="search" class="w-6 h-6 text-brand-secondary"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Research i wyszukiwanie</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Szybkie wyszukiwanie informacji ze źródłami</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Perplexity -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-blue-500 text-white">TOP</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-cyan-600/10 rounded-xl flex items-center justify-center border border-blue-500/30 shrink-0">
+                                <i data-lucide="globe" class="w-7 h-7 text-blue-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Perplexity AI</h3>
+                                <p class="text-gray-400 text-sm mb-4">Wyszukiwarka AI ze źródłami. Zadajesz pytanie - dostajesz odpowiedź z linkami. Idealny do researchu i fact-checkingu.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy</span>
+                                </div>
+                                <a href="https://perplexity.ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Perplexity <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category 3: Obrazy i grafika -->
+            <section class="mb-20">
+                <div class="section-glow section-glow-bottom"></div>
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="image" class="w-6 h-6 text-purple-400"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Obrazy i grafika</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Generowanie obrazów i projektowanie grafik</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- DALL-E -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500/20 to-pink-600/10 rounded-xl flex items-center justify-center border border-purple-500/30 shrink-0">
+                                <i data-lucide="image-plus" class="w-7 h-7 text-purple-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">DALL-E 3</h3>
+                                <p class="text-gray-500 text-xs mb-3">OpenAI (w ChatGPT)</p>
+                                <p class="text-gray-400 text-sm mb-4">Generator obrazów od OpenAI. Prosty w użyciu - opisujesz co chcesz, dostajesz obraz. Dostępny w ChatGPT Plus.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">W ChatGPT Plus</span>
+                                </div>
+                                <a href="https://chat.openai.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Otwórz ChatGPT <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canva -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-brand-primary text-black">MUST HAVE</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-blue-600/10 rounded-xl flex items-center justify-center border border-cyan-500/30 shrink-0">
+                                <i data-lucide="palette" class="w-7 h-7 text-cyan-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Canva AI</h3>
+                                <p class="text-gray-500 text-xs mb-3">Canva</p>
+                                <p class="text-gray-400 text-sm mb-4">Projektowanie grafik bez bycia grafikiem. AI generuje obrazy, usuwa tła, proponuje layouty. Posty, prezentacje, ulotki - wszystko.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Pro: 55 zl/mies.</span>
+                                </div>
+                                <a href="https://canva.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Canva <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category 4: Prezentacje i dokumenty -->
+            <section class="mb-20">
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="presentation" class="w-6 h-6 text-yellow-400"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Prezentacje i dokumenty</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Tworzenie prezentacji i organizacja wiedzy</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Gamma -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-yellow-500 text-black">HOT</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-yellow-500/20 to-orange-600/10 rounded-xl flex items-center justify-center border border-yellow-500/30 shrink-0">
+                                <i data-lucide="layout-template" class="w-7 h-7 text-yellow-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Gamma</h3>
+                                <p class="text-gray-500 text-xs mb-3">Gamma App</p>
+                                <p class="text-gray-400 text-sm mb-4">Prezentacje w 2 minuty. Wpisujesz temat - AI generuje całą prezentację z grafikami. Koniec z godzinami w PowerPoint.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Pro: $10/mies.</span>
+                                </div>
+                                <a href="https://gamma.app" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Gamma <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notion AI -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-gray-500/20 to-gray-600/10 rounded-xl flex items-center justify-center border border-gray-500/30 shrink-0">
+                                <i data-lucide="notebook" class="w-7 h-7 text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Notion AI</h3>
+                                <p class="text-gray-500 text-xs mb-3">Notion</p>
+                                <p class="text-gray-400 text-sm mb-4">Notatki i baza wiedzy z AI. Podsumowuje dokumenty, generuje treści, odpowiada na pytania o Twoje dane. Świetny do organizacji firmy.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">AI: $10/mies.</span>
+                                </div>
+                                <a href="https://notion.so" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Notion <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category 5: Audio i wideo -->
+            <section class="mb-20">
+                <div class="section-glow section-glow-top"></div>
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="video" class="w-6 h-6 text-red-400"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Audio i wideo</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Transkrypcje, lektor AI, edycja wideo</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Otter.ai -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-indigo-600/10 rounded-xl flex items-center justify-center border border-blue-500/30 shrink-0">
+                                <i data-lucide="mic" class="w-7 h-7 text-blue-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Otter.ai</h3>
+                                <p class="text-gray-400 text-sm mb-4">Automatyczna transkrypcja spotkań. Nagrywasz spotkanie - masz gotowe notatki. Działa z Zoom, Meet, Teams.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                </div>
+                                <a href="https://otter.ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Otter <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ElevenLabs -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-red-500 text-white">WOW</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-red-500/20 to-pink-600/10 rounded-xl flex items-center justify-center border border-red-500/30 shrink-0">
+                                <i data-lucide="audio-waveform" class="w-7 h-7 text-red-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">ElevenLabs</h3>
+                                <p class="text-gray-400 text-sm mb-4">Lektor AI nie do odróżnienia od człowieka. Wpisujesz tekst - dostajesz profesjonalne nagranie. Świetny do kursów i wideo.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                </div>
+                                <a href="https://elevenlabs.io" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj ElevenLabs <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Descript -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-green-500/20 to-emerald-600/10 rounded-xl flex items-center justify-center border border-green-500/30 shrink-0">
+                                <i data-lucide="scissors" class="w-7 h-7 text-green-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Descript</h3>
+                                <p class="text-gray-400 text-sm mb-4">Edycja wideo jak edycja tekstu. Usuwasz słowa z transkrypcji - znikają z wideo. Magiczne usuwanie "eee" i pauz.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                </div>
+                                <a href="https://descript.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Descript <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category 6: Automatyzacje i copywriting -->
+            <section class="mb-20">
+                <div class="category-header mb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="workflow" class="w-6 h-6 text-brand-light"></i>
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">Automatyzacje i copywriting</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm ml-9">Automatyzuj powtarzalne zadania i pisz szybciej</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Make.com -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <span class="tool-badge bg-brand-primary text-black">POWER USER</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-violet-500/20 to-purple-600/10 rounded-xl flex items-center justify-center border border-violet-500/30 shrink-0">
+                                <i data-lucide="git-branch" class="w-7 h-7 text-violet-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Make.com</h3>
+                                <p class="text-gray-500 text-xs mb-3">(dawniej Integromat)</p>
+                                <p class="text-gray-400 text-sm mb-4">Automatyzacje bez kodowania. Połącz Gmail, Slack, CRM, Arkusze Google - i niech pracują za Ciebie. Oszczędzisz godziny.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Core: $9/mies.</span>
+                                </div>
+                                <a href="https://make.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Make <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Copy.ai -->
+                    <div class="glass-card p-6 rounded-2xl relative group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-pink-500/20 to-rose-600/10 rounded-xl flex items-center justify-center border border-pink-500/30 shrink-0">
+                                <i data-lucide="pen-tool" class="w-7 h-7 text-pink-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Copy.ai</h3>
+                                <p class="text-gray-400 text-sm mb-4">Generator tekstów marketingowych. Opisy produktów, posty social media, maile sprzedażowe - w kilka sekund. Setki szablonów.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
+                                </div>
+                                <a href="https://copy.ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
+                                    Wypróbuj Copy.ai <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="mt-20">
+                <div class="glass-card p-8 md:p-12 rounded-3xl border-2 border-brand-primary/30 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-light"></div>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">
+                        Potrzebujesz pomocy z wdrożeniem?
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                        Jeśli nie wiesz od czego zacząć lub chcesz wdrożyć AI w swojej firmie kompleksowo - porozmawiajmy. Bezpłatna konsultacja 15 minut.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="index.html#tools" class="px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition">
+                            Wypróbuj nasze narzędzia AI
+                        </a>
+                        <a href="index.html" class="px-8 py-4 glass border border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                            Umów rozmowę
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass py-8 border-t border-white/10 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex h-3 w-3">
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                    </div>
+                    <span class="font-display font-bold">AI-Team</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                    <a href="blog/" class="hover:text-white transition">Blog</a>
+                    <a href="privacy.html" class="hover:text-white transition">Polityka prywatności</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2025 AI-TEAM.PL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
