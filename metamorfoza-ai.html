@@ -125,37 +125,7 @@
             50% { transform: translate(-10px, 10px) scale(0.95); }
             75% { transform: translate(15px, 15px) scale(1.02); }
         }
-        .before-after {
-            position: relative;
-            overflow: hidden;
-        }
-        .before-after::before {
-            content: 'PRZED';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #ef4444;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
-            z-index: 10;
-        }
-        .before-after::after {
-            content: 'PO';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #22c55e;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
-            z-index: 10;
-        }
-    </style>
+        </style>
 </head>
 <body class="text-white antialiased selection:bg-brand-primary selection:text-black relative">
     <!-- Cosmic Ambient Orbs -->
@@ -213,7 +183,7 @@
                     Wejdź ze swoją stroną w erę AI
                 </p>
                 <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                    Pokazuję firmom z Trójmiasta jak może wyglądać ich nowoczesna strona.<br>
+                    Pokazuję firmom jak może wyglądać ich nowoczesna strona.<br>
                     Projekt za darmo. Wdrożenie? Tylko jeśli chcesz.
                 </p>
             </div>
@@ -230,7 +200,7 @@
                 <div class="glass-card p-6 rounded-2xl text-center">
                     <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-brand-primary font-bold text-xl">1</div>
                     <h3 class="font-bold text-white mb-2">Wybieram firmę</h3>
-                    <p class="text-gray-400 text-sm">Szukam lokalnych firm ze stronami, które potrzebują odświeżenia</p>
+                    <p class="text-gray-400 text-sm">Szukam firm ze stronami, które potrzebują odświeżenia</p>
                 </div>
 
                 <!-- Step 2 -->
@@ -320,54 +290,6 @@
         </div>
     </section>
 
-    <!-- Portfolio / Case Studies -->
-    <section class="py-16 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-2xl font-display font-bold text-center mb-4">Metamorfozy</h2>
-            <p class="text-gray-400 text-center mb-12">Przykłady projektów before/after</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1 - Placeholder -->
-                <div class="glass-card rounded-3xl overflow-hidden">
-                    <div class="before-after aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                        <div class="text-center">
-                            <i data-lucide="scissors" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i>
-                            <p class="text-gray-500 text-sm">Salon fryzjerski Gdańsk</p>
-                            <p class="text-gray-600 text-xs">Wkrótce</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-white mb-2">Studio Fryzjerskie</h3>
-                        <p class="text-gray-400 text-sm mb-4">Strona z 2015 → nowoczesny design z rezerwacją online</p>
-                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-500/20 text-yellow-500 rounded-full text-xs">
-                            <i data-lucide="clock" class="w-3 h-3"></i>
-                            W realizacji
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Project 2 - Placeholder -->
-                <div class="glass-card rounded-3xl overflow-hidden">
-                    <div class="before-after aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                        <div class="text-center">
-                            <i data-lucide="car" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i>
-                            <p class="text-gray-500 text-sm">Warsztat samochodowy</p>
-                            <p class="text-gray-600 text-xs">Wkrótce</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-white mb-2">Warsztat samochodowy</h3>
-                        <p class="text-gray-400 text-sm mb-4">Brak strony → profesjonalna wizytówka z formularzem</p>
-                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-xs">
-                            <i data-lucide="calendar" class="w-3 h-3"></i>
-                            Planowane
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA -->
     <section class="py-16 relative z-10">
         <div class="max-w-2xl mx-auto px-6">
@@ -387,10 +309,6 @@
                         Email
                     </a>
                 </div>
-
-                <p class="text-gray-500 text-sm mt-6">
-                    Działam w Trójmieście: Gdańsk, Sopot, Gdynia
-                </p>
             </div>
         </div>
     </section>
