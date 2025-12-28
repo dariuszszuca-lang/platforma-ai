@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Metamorfoza AI - Wejdź ze swoją stroną w erę AI | AI-TEAM.PL</title>
+    <meta name="description" content="Darmowe projekty nowych stron dla firm z Trójmiasta. Pokazujemy jak może wyglądać Twoja nowoczesna strona. Bez zobowiązań.">
+    <meta name="keywords" content="metamorfoza strony, redesign www, nowa strona internetowa, strona dla firmy Trójmiasto">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/metamorfoza-ai.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Metamorfoza AI - darmowy projekt nowej strony">
+    <meta property="og:description" content="Pokazujemy jak może wyglądać Twoja nowoczesna strona. Bez zobowiązań.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/metamorfoza-ai.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020203; min-height: 100vh; }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(249, 115, 22, 0.3);
+            transform: translateY(-4px);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            transform-origin: top center;
+        }
+        .horizon-glow {
+            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
+            filter: blur(100px); z-index: -1; opacity: 0.6;
+        }
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatOrb 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .cosmic-orb-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
+            top: 10%; left: -10%;
+        }
+        .cosmic-orb-2 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
+            top: 50%; right: -5%;
+            animation-delay: -7s;
+        }
+        .cosmic-orb-3 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(251,146,60,0.2) 0%, transparent 70%);
+            bottom: 20%; left: 10%;
+            animation-delay: -14s;
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 10px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+        .before-after {
+            position: relative;
+            overflow: hidden;
+        }
+        .before-after::before {
+            content: 'PRZED';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+        .before-after::after {
+            content: 'PO';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="text-white antialiased selection:bg-brand-primary selection:text-black relative">
+    <!-- Cosmic Ambient Orbs -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="cosmic-orb cosmic-orb-1"></div>
+        <div class="cosmic-orb cosmic-orb-2"></div>
+        <div class="cosmic-orb cosmic-orb-3"></div>
+    </div>
+
+    <!-- Background Grid -->
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow animate-pulse-slow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
+        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
+            <a href="index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                </div>
+                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors whitespace-nowrap">AI-Team</div>
+            </a>
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-1 border border-white/5">
+                <a href="index.html#tools" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Narzędzia</a>
+                <a href="index.html#workshops" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Warsztaty</a>
+                <a href="ai-radar.html" class="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">AI Radar</a>
+                <a href="blog/" class="px-5 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Breadcrumb -->
+            <div class="text-gray-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                <span class="mx-2">/</span>
+                <span class="text-brand-primary">Metamorfoza AI</span>
+            </div>
+
+            <div class="text-center mb-12">
+                <!-- Icon -->
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-primary/20 border border-brand-primary/30 mb-8">
+                    <i data-lucide="sparkles" class="w-10 h-10 text-brand-primary"></i>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 tracking-tight">
+                    <span class="gradient-text">Metamorfoza AI</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-4">
+                    Wejdź ze swoją stroną w erę AI
+                </p>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    Pokazuję firmom z Trójmiasta jak może wyglądać ich nowoczesna strona.<br>
+                    Projekt za darmo. Wdrożenie? Tylko jeśli chcesz.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-12">Jak to działa?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-brand-primary font-bold text-xl">1</div>
+                    <h3 class="font-bold text-white mb-2">Wybieram firmę</h3>
+                    <p class="text-gray-400 text-sm">Szukam lokalnych firm ze stronami, które potrzebują odświeżenia</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-brand-primary font-bold text-xl">2</div>
+                    <h3 class="font-bold text-white mb-2">Tworzę projekt</h3>
+                    <p class="text-gray-400 text-sm">Projektuję nową, nowoczesną wersję strony z AI</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-brand-primary font-bold text-xl">3</div>
+                    <h3 class="font-bold text-white mb-2">Pokazuję efekt</h3>
+                    <p class="text-gray-400 text-sm">Publikuję before/after i wysyłam właścicielowi</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-green-500 font-bold text-xl">4</div>
+                    <h3 class="font-bold text-white mb-2">Decyzja</h3>
+                    <p class="text-gray-400 text-sm">Chcesz wdrożyć? Pomagam. Nie? Projekt jest Twój za darmo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- For business -->
+                <div class="glass-card p-8 rounded-3xl border border-green-500/20">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="building-2" class="w-6 h-6 text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Dla Twojej firmy</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                            <span>Darmowy projekt nowej strony</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                            <span>Zobaczysz jak może wyglądać Twoja firma online</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                            <span>Zero zobowiązań - projekt jest Twój</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5 shrink-0"></i>
+                            <span>Wdrożenie od 1000 zł (tylko jeśli chcesz)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- What you get -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="package" class="w-6 h-6 text-brand-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Co dostajesz za 1000 zł?</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="globe" class="w-5 h-5 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>Nowa, nowoczesna strona internetowa</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="smartphone" class="w-5 h-5 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>Responsywna (działa na telefonie)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="bot" class="w-5 h-5 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>Automatyzacje AI (autoresponder, powiadomienia)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="headphones" class="w-5 h-5 text-brand-primary mt-0.5 shrink-0"></i>
+                            <span>30 dni wsparcia po wdrożeniu</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Case Studies -->
+    <section class="py-16 relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-4">Metamorfozy</h2>
+            <p class="text-gray-400 text-center mb-12">Przykłady projektów before/after</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 - Placeholder -->
+                <div class="glass-card rounded-3xl overflow-hidden">
+                    <div class="before-after aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <i data-lucide="scissors" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i>
+                            <p class="text-gray-500 text-sm">Salon fryzjerski Gdańsk</p>
+                            <p class="text-gray-600 text-xs">Wkrótce</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-white mb-2">Studio Fryzjerskie</h3>
+                        <p class="text-gray-400 text-sm mb-4">Strona z 2015 → nowoczesny design z rezerwacją online</p>
+                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-500/20 text-yellow-500 rounded-full text-xs">
+                            <i data-lucide="clock" class="w-3 h-3"></i>
+                            W realizacji
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Placeholder -->
+                <div class="glass-card rounded-3xl overflow-hidden">
+                    <div class="before-after aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <i data-lucide="car" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i>
+                            <p class="text-gray-500 text-sm">Warsztat samochodowy</p>
+                            <p class="text-gray-600 text-xs">Wkrótce</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-white mb-2">Warsztat samochodowy</h3>
+                        <p class="text-gray-400 text-sm mb-4">Brak strony → profesjonalna wizytówka z formularzem</p>
+                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-xs">
+                            <i data-lucide="calendar" class="w-3 h-3"></i>
+                            Planowane
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 relative z-10">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="glass-card p-8 md:p-12 rounded-3xl border-2 border-brand-primary/30 text-center">
+                <h2 class="text-2xl md:text-3xl font-display font-bold mb-4">Chcesz metamorfozę dla swojej firmy?</h2>
+                <p class="text-gray-400 mb-8">Napisz do mnie - zrobię darmowy projekt Twojej nowej strony</p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/48730600383?text=Cześć! Interesuje mnie Metamorfoza AI dla mojej firmy."
+                       class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-500 text-white font-bold rounded-xl hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] transition">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:dariusz.szuca@gmail.com?subject=Metamorfoza AI - zapytanie"
+                       class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        Email
+                    </a>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-6">
+                    Działam w Trójmieście: Gdańsk, Sopot, Gdynia
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-12">Pytania i odpowiedzi</h2>
+
+            <div class="space-y-4">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-white mb-2">Czy to naprawdę za darmo?</h3>
+                    <p class="text-gray-400 text-sm">Tak. Projekt nowej strony jest darmowy. Płacisz tylko jeśli zdecydujesz się na wdrożenie.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-white mb-2">Co jeśli mi się nie spodoba?</h3>
+                    <p class="text-gray-400 text-sm">Zero problemu. Projekt jest Twój - możesz go pokazać innemu wykonawcy lub po prostu zostawić jako inspirację.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-white mb-2">Ile trwa zrobienie projektu?</h3>
+                    <p class="text-gray-400 text-sm">Zazwyczaj 2-3 dni. Wdrożenie gotowej strony to kolejne 3-7 dni.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-white mb-2">Dlaczego to robisz?</h3>
+                    <p class="text-gray-400 text-sm">Buduję portfolio i pomagam lokalnym firmom. Win-win - Ty dostajesz projekt, ja pokazuję co potrafię.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8 border-t border-white/10 relative z-10 mt-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex h-3 w-3">
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
+                    </div>
+                    <span class="font-display font-bold">AI-Team</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="index.html" class="hover:text-white transition">Strona główna</a>
+                    <a href="pakiet-startowy-ai.html" class="hover:text-white transition">Pakiet AI</a>
+                    <a href="ai-radar.html" class="hover:text-white transition">AI Radar</a>
+                    <a href="blog/" class="hover:text-white transition">Blog</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2025 AI-TEAM.PL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
