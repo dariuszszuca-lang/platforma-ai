@@ -198,24 +198,23 @@
     <section class="py-8 relative z-10">
         <div class="max-w-xl mx-auto px-6">
             <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/30">
-                <form action="https://formsubmit.co/dariusz.szuca@gmail.com" method="POST" class="space-y-4">
-                    <input type="hidden" name="_subject" value="Nowy subskrybent AI Radar!">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://ai-team.pl/ai-radar.html?zapisano=1">
-
+                <form id="ai-radar-form" action="https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe" method="post" target="_blank" class="space-y-4">
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Imię</label>
-                        <input type="text" name="imie"
+                        <input type="text" name="fields[name]" required
                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
                                placeholder="Jak masz na imię?">
                     </div>
 
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Email *</label>
-                        <input type="email" name="email" required
+                        <input type="email" name="fields[email]" required
                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
                                placeholder="twoj@email.pl">
                     </div>
+
+                    <input type="hidden" name="ml-submit" value="1">
+                    <input type="hidden" name="anticsrf" value="true">
 
                     <button type="submit"
                             class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2 text-lg">
@@ -227,6 +226,15 @@
                         Bez spamu. Wypisujesz się jednym klikiem.
                     </p>
                 </form>
+
+                <!-- Success message -->
+                <div id="ai-radar-success" class="hidden text-center py-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                        <i data-lucide="check" class="w-8 h-8 text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Dziękuję!</h3>
+                    <p class="text-gray-300">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+                </div>
             </div>
         </div>
     </section>
@@ -398,11 +406,16 @@
     <script>
         lucide.createIcons();
 
-        // Check if just signed up
-        if (window.location.search.includes('zapisano=1')) {
-            alert('Dzięki za zapis! Pierwszy AI Radar dostaniesz w najbliższy poniedziałek.');
-            history.replaceState({}, '', window.location.pathname);
-        }
+        // Handle form submission
+        document.getElementById('ai-radar-form').addEventListener('submit', function(e) {
+            localStorage.setItem('aiStartSubscribed', 'true');
+            setTimeout(() => {
+                document.getElementById('ai-radar-form').classList.add('hidden');
+                document.getElementById('ai-radar-success').classList.remove('hidden');
+                lucide.createIcons();
+            }, 1000);
+        });
     </script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 </body>
 </html>

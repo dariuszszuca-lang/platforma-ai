@@ -4006,5 +4006,126 @@ Wysłano z ai-team.pl`
         });
 
     </script>
+
+    <!-- EXIT INTENT POPUP - AI Start na 5 -->
+    <div id="exit-popup" class="fixed inset-0 z-[300] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeExitPopup()"></div>
+
+        <!-- Popup Content -->
+        <div class="relative bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-2xl p-8 max-w-md mx-4 transform scale-95 transition-transform duration-300" id="exit-popup-content">
+            <!-- Close Button -->
+            <button onclick="closeExitPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Header -->
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-brand-primary/20 rounded-full mb-4">
+                    <i data-lucide="rocket" class="w-8 h-8 text-brand-primary"></i>
+                </div>
+                <h3 class="text-2xl font-display font-bold text-white mb-2">Poczekaj!</h3>
+                <p class="text-gray-300">Dołącz do darmowego kursu <span class="text-brand-primary font-semibold">AI Start na 5</span> i zacznij oszczędzać czas już w tym tygodniu.</p>
+            </div>
+
+            <!-- Benefits -->
+            <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                <li class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-brand-primary"></i>
+                    5 dni praktycznej wiedzy o AI
+                </li>
+                <li class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-brand-primary"></i>
+                    Gotowe prompty do użycia od razu
+                </li>
+                <li class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-brand-primary"></i>
+                    Zero teorii - same konkrety
+                </li>
+            </ul>
+
+            <!-- Form -->
+            <form id="exit-popup-form" class="space-y-3" action="https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe" method="post" target="_blank">
+                <input type="text" name="fields[name]" placeholder="Twoje imię" required
+                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-brand-primary transition">
+                <input type="email" name="fields[email]" placeholder="Twój email" required
+                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-brand-primary transition">
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
+                <button type="submit" class="w-full py-3 bg-brand-primary text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] transition transform hover:scale-[1.02]">
+                    Zaczynam kurs!
+                </button>
+            </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="exit-popup-success" class="hidden text-center py-4">
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-full mb-3">
+                    <i data-lucide="check" class="w-6 h-6 text-green-500"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">Dziękuję!</h4>
+                <p class="text-gray-300">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center mt-4">Bez spamu. Wypisujesz się jednym kliknięciem.</p>
+        </div>
+    </div>
+
+    <script>
+        // Exit Intent Popup Logic
+        const exitPopup = document.getElementById('exit-popup');
+        const exitPopupContent = document.getElementById('exit-popup-content');
+        let popupShown = false;
+
+        function showExitPopup() {
+            if (popupShown) return;
+            if (localStorage.getItem('exitPopupClosed')) return;
+            if (localStorage.getItem('aiStartSubscribed')) return;
+
+            popupShown = true;
+            exitPopup.classList.remove('opacity-0', 'pointer-events-none');
+            exitPopupContent.classList.remove('scale-95');
+            exitPopupContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeExitPopup() {
+            exitPopup.classList.add('opacity-0', 'pointer-events-none');
+            exitPopupContent.classList.add('scale-95');
+            exitPopupContent.classList.remove('scale-100');
+            document.body.style.overflow = '';
+            localStorage.setItem('exitPopupClosed', 'true');
+        }
+
+        // Exit intent detection (mouse leaving viewport at top)
+        document.addEventListener('mouseout', (e) => {
+            if (e.clientY < 10 && e.relatedTarget === null) {
+                showExitPopup();
+            }
+        });
+
+        // Also show after 45 seconds on page (fallback for mobile)
+        setTimeout(() => {
+            if (!popupShown && !localStorage.getItem('exitPopupClosed') && !localStorage.getItem('aiStartSubscribed')) {
+                showExitPopup();
+            }
+        }, 45000);
+
+        // Handle form submission
+        document.getElementById('exit-popup-form').addEventListener('submit', function(e) {
+            localStorage.setItem('aiStartSubscribed', 'true');
+            setTimeout(() => {
+                document.getElementById('exit-popup-form').classList.add('hidden');
+                document.getElementById('exit-popup-success').classList.remove('hidden');
+                lucide.createIcons();
+            }, 1000);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeExitPopup();
+        });
+    </script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 </body>
 </html>
