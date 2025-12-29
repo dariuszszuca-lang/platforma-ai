@@ -198,25 +198,22 @@
     <section class="py-8 relative z-10">
         <div class="max-w-xl mx-auto px-6">
             <div class="glass-card p-8 rounded-3xl border-2 border-brand-primary/30">
-                <form id="ai-radar-form" action="https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe" method="post" target="_blank" class="space-y-4">
+                <form id="ai-radar-form" class="space-y-4">
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Imię</label>
-                        <input type="text" name="fields[name]" required
+                        <input type="text" id="radar-name" required
                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
                                placeholder="Jak masz na imię?">
                     </div>
 
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Email *</label>
-                        <input type="email" name="fields[email]" required
+                        <input type="email" id="radar-email" required
                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition"
                                placeholder="twoj@email.pl">
                     </div>
 
-                    <input type="hidden" name="ml-submit" value="1">
-                    <input type="hidden" name="anticsrf" value="true">
-
-                    <button type="submit"
+                    <button type="submit" id="radar-submit-btn"
                             class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2 text-lg">
                         <i data-lucide="mail-plus" class="w-5 h-5"></i>
                         Dołącz do AI Radar
@@ -233,7 +230,17 @@
                         <i data-lucide="check" class="w-8 h-8 text-green-500"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Dziękuję!</h3>
-                    <p class="text-gray-300">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+                    <p class="text-gray-300 mb-4">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-left">
+                        <p class="text-sm text-gray-400 mb-2">Nie widzisz maila? Sprawdź folder:</p>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Oferty / Promocje</li>
+                            <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Powiadomienia</li>
+                            <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Spam</li>
+                        </ul>
+                        <p class="text-xs text-gray-500 mt-3">Przenieś mail do głównej skrzynki, żeby kolejne trafiały tam automatycznie.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -406,16 +413,40 @@
     <script>
         lucide.createIcons();
 
-        // Handle form submission
-        document.getElementById('ai-radar-form').addEventListener('submit', function(e) {
-            localStorage.setItem('aiStartSubscribed', 'true');
-            setTimeout(() => {
+        // Handle form submission via AJAX
+        document.getElementById('ai-radar-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('radar-submit-btn');
+            const name = document.getElementById('radar-name').value;
+            const email = document.getElementById('radar-email').value;
+
+            btn.innerHTML = '<span class="animate-pulse">Zapisuję...</span>';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('fields[name]', name);
+                formData.append('fields[email]', email);
+                formData.append('ml-submit', '1');
+                formData.append('anticsrf', 'true');
+
+                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                localStorage.setItem('aiStartSubscribed', 'true');
                 document.getElementById('ai-radar-form').classList.add('hidden');
                 document.getElementById('ai-radar-success').classList.remove('hidden');
                 lucide.createIcons();
-            }, 1000);
+            } catch (error) {
+                btn.innerHTML = '<i data-lucide="mail-plus" class="w-5 h-5"></i> Dołącz do AI Radar';
+                btn.disabled = false;
+                lucide.createIcons();
+            }
         });
     </script>
-    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 </body>
 </html>

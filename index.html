@@ -4045,14 +4045,12 @@ Wysłano z ai-team.pl`
             </ul>
 
             <!-- Form -->
-            <form id="exit-popup-form" class="space-y-3" action="https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe" method="post" target="_blank">
-                <input type="text" name="fields[name]" placeholder="Twoje imię" required
+            <form id="exit-popup-form" class="space-y-3">
+                <input type="text" id="popup-name" placeholder="Twoje imię" required
                     class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-brand-primary transition">
-                <input type="email" name="fields[email]" placeholder="Twój email" required
+                <input type="email" id="popup-email" placeholder="Twój email" required
                     class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-brand-primary transition">
-                <input type="hidden" name="ml-submit" value="1">
-                <input type="hidden" name="anticsrf" value="true">
-                <button type="submit" class="w-full py-3 bg-brand-primary text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] transition transform hover:scale-[1.02]">
+                <button type="submit" id="popup-submit-btn" class="w-full py-3 bg-brand-primary text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] transition transform hover:scale-[1.02]">
                     Zaczynam kurs!
                 </button>
             </form>
@@ -4063,7 +4061,16 @@ Wysłano z ai-team.pl`
                     <i data-lucide="check" class="w-6 h-6 text-green-500"></i>
                 </div>
                 <h4 class="text-xl font-bold text-white mb-2">Dziękuję!</h4>
-                <p class="text-gray-300">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+                <p class="text-gray-300 mb-4">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+                <div class="bg-white/5 border border-white/10 rounded-lg p-4 text-left">
+                    <p class="text-sm text-gray-400 mb-2">Nie widzisz maila? Sprawdź folder:</p>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Oferty / Promocje</li>
+                        <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Powiadomienia</li>
+                        <li class="flex items-center gap-2"><i data-lucide="folder" class="w-4 h-4 text-brand-primary"></i> Spam</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3">Przenieś mail do głównej skrzynki, żeby kolejne trafiały tam automatycznie.</p>
+                </div>
             </div>
 
             <p class="text-xs text-gray-500 text-center mt-4">Bez spamu. Wypisujesz się jednym kliknięciem.</p>
@@ -4111,14 +4118,38 @@ Wysłano z ai-team.pl`
             }
         }, 45000);
 
-        // Handle form submission
-        document.getElementById('exit-popup-form').addEventListener('submit', function(e) {
-            localStorage.setItem('aiStartSubscribed', 'true');
-            setTimeout(() => {
+        // Handle form submission via AJAX
+        document.getElementById('exit-popup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('popup-submit-btn');
+            const name = document.getElementById('popup-name').value;
+            const email = document.getElementById('popup-email').value;
+
+            btn.innerHTML = '<span class="animate-pulse">Zapisuję...</span>';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('fields[name]', name);
+                formData.append('fields[email]', email);
+                formData.append('ml-submit', '1');
+                formData.append('anticsrf', 'true');
+
+                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                localStorage.setItem('aiStartSubscribed', 'true');
                 document.getElementById('exit-popup-form').classList.add('hidden');
                 document.getElementById('exit-popup-success').classList.remove('hidden');
                 lucide.createIcons();
-            }, 1000);
+            } catch (error) {
+                btn.innerHTML = 'Zaczynam kurs!';
+                btn.disabled = false;
+            }
         });
 
         // Close on Escape key
