@@ -248,35 +248,108 @@
 
     <!-- What You Get -->
     <section class="py-16 relative z-10">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-2xl font-display font-bold text-center mb-12">Co dostajesz co tydzień?</h2>
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-4">Co dostajesz w każdym wydaniu?</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Każdy newsletter to kompletny pakiet wiedzy o AI - od newsów po gotowe do wdrożenia rozwiązania.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Tip -->
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="w-14 h-14 bg-brand-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="lightbulb" class="w-7 h-7 text-brand-primary"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Gorące Newsy -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="flame" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Gorące Newsy</h3>
                     </div>
-                    <h3 class="font-bold text-white mb-2">Praktyczny tip</h3>
-                    <p class="text-gray-400 text-sm">Jeden konkretny sposób na użycie AI w biznesie. Do wdrożenia od razu.</p>
+                    <p class="text-gray-400 text-sm">3 najważniejsze nowości ze świata AI z ostatniego tygodnia. Krótko i na temat.</p>
                 </div>
 
-                <!-- Prompt -->
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="w-14 h-14 bg-brand-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="message-square-code" class="w-7 h-7 text-brand-secondary"></i>
+                <!-- Narzędzie Tygodnia -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="wrench" class="w-5 h-5 text-brand-primary"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Narzędzie Tygodnia</h3>
                     </div>
-                    <h3 class="font-bold text-white mb-2">Gotowy prompt</h3>
-                    <p class="text-gray-400 text-sm">Przetestowany prompt do ChatGPT. Kopiujesz, wklejasz, działa.</p>
+                    <p class="text-gray-400 text-sm">Jedno narzędzie AI które przetestowałem. Zalety, wady, cena - bez ściemy.</p>
                 </div>
 
-                <!-- Tool -->
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="w-14 h-14 bg-brand-light/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="wrench" class="w-7 h-7 text-brand-light"></i>
+                <!-- Prompt Dnia -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="message-square-code" class="w-5 h-5 text-purple-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Prompt Dnia</h3>
                     </div>
-                    <h3 class="font-bold text-white mb-2">Narzędzie tygodnia</h3>
-                    <p class="text-gray-400 text-sm">Jedno narzędzie AI które testuję i polecam. Bez ściemy.</p>
+                    <p class="text-gray-400 text-sm">Gotowy prompt do ChatGPT/Claude. Kopiuj → wklej → działa.</p>
+                </div>
+
+                <!-- 3 Szybkie Tipy -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">3 Szybkie Tipy</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Krótkie triki które wdrożysz w 5 minut. Zero teorii.</p>
+                </div>
+
+                <!-- Automatyzacja Tygodnia -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="workflow" class="w-5 h-5 text-blue-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Automatyzacja Tygodnia</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Mini tutorial Make/Zapier który oszczędzi Ci godziny pracy.</p>
+                </div>
+
+                <!-- Z Warsztatu Darka -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="flask-conical" class="w-5 h-5 text-green-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Z Warsztatu Darka</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Moje osobiste eksperymenty, porażki i sukcesy z AI. Bez filtra.</p>
+                </div>
+
+                <!-- Warto Obejrzeć -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="play-circle" class="w-5 h-5 text-pink-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Warto Obejrzeć</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Polecane filmy, podcasty i artykuły o AI z ostatniego tygodnia.</p>
+                </div>
+
+                <!-- Pytanie od Czytelnika -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="help-circle" class="w-5 h-5 text-cyan-500"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Q&A</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Odpowiadam na pytania czytelników. Możesz też zadać swoje!</p>
+                </div>
+
+                <!-- Co u nas słychać -->
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="calendar" class="w-5 h-5 text-brand-secondary"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Co u nas słychać</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Nadchodzące warsztaty, wydarzenia i nowości od AI-Team.</p>
                 </div>
             </div>
         </div>
@@ -347,29 +420,92 @@
 
     <!-- Example Issue -->
     <section class="py-12 relative z-10">
-        <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-2xl font-display font-bold text-center mb-8">Przykładowy mail</h2>
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-2xl font-display font-bold text-center mb-8">Przykładowe wydanie</h2>
 
             <div class="glass-card p-6 rounded-2xl border border-white/10">
-                <div class="flex items-center gap-3 mb-4 pb-4 border-b border-white/10">
-                    <div class="w-10 h-10 bg-brand-primary/20 rounded-full flex items-center justify-center">
-                        <i data-lucide="radar" class="w-5 h-5 text-brand-primary"></i>
+                <!-- Header -->
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="radar" class="w-6 h-6 text-brand-primary"></i>
                     </div>
                     <div>
-                        <p class="font-bold text-white text-sm">AI Radar #42</p>
-                        <p class="text-gray-500 text-xs">od: Darek z AI-Team</p>
+                        <p class="font-bold text-white">AI Radar #42</p>
+                        <p class="text-gray-500 text-sm">od: Darek z AI-Team • 5 min czytania</p>
                     </div>
                 </div>
 
-                <div class="space-y-4 text-gray-300 text-sm">
-                    <p><strong class="text-white">Tip tygodnia:</strong> Jak pisać maile 3x szybciej</p>
-                    <p>Zamiast pisać maila od zera, wklej do ChatGPT: "Napisz profesjonalny mail do klienta który pyta o [temat]. Ton: przyjazny ale konkretny. Max 5 zdań."</p>
-                    <p><strong class="text-white">Prompt:</strong></p>
-                    <div class="bg-black/40 p-3 rounded-lg font-mono text-xs text-brand-light">
-                        Jesteś moim asystentem do maili biznesowych...<br>
-                        [pełny prompt w newsletterze]
+                <!-- Intro -->
+                <div class="mb-6">
+                    <p class="text-gray-300 text-sm">Cześć! W tym wydaniu:</p>
+                    <ul class="text-gray-400 text-sm mt-2 space-y-1">
+                        <li>• OpenAI wypuściło nowy model o3</li>
+                        <li>• Narzędzie które automatyzuje posty na social media</li>
+                        <li>• Prompt do pisania ofert handlowych</li>
+                    </ul>
+                </div>
+
+                <!-- Gorące Newsy -->
+                <div class="mb-5 pb-5 border-b border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="flame" class="w-4 h-4 text-red-500"></i>
+                        <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Gorące Newsy</span>
                     </div>
-                    <p><strong class="text-white">Narzędzie:</strong> Superhuman AI - jeśli piszesz dużo maili, to game-changer.</p>
+                    <div class="space-y-2 text-sm text-gray-300">
+                        <p>🤖 <strong class="text-white">OpenAI o3</strong> - nowy model rozumowania który przebija wszystko</p>
+                        <p>🔧 <strong class="text-white">Claude Projects</strong> - Anthropic dodał foldery do rozmów</p>
+                        <p>💰 <strong class="text-white">Perplexity Pro</strong> - teraz za 20$ zamiast 40$</p>
+                    </div>
+                </div>
+
+                <!-- Narzędzie Tygodnia -->
+                <div class="mb-5 pb-5 border-b border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="wrench" class="w-4 h-4 text-brand-primary"></i>
+                        <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">Narzędzie Tygodnia</span>
+                    </div>
+                    <p class="text-white font-semibold mb-1">Buffer AI Assistant</p>
+                    <p class="text-gray-400 text-sm">Pisze posty na social media w Twoim stylu. Testowałem tydzień - oszczędza 3h tygodniowo...</p>
+                </div>
+
+                <!-- Prompt Dnia -->
+                <div class="mb-5 pb-5 border-b border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="message-square-code" class="w-4 h-4 text-purple-500"></i>
+                        <span class="text-xs font-bold text-purple-500 uppercase tracking-wider">Prompt Dnia</span>
+                    </div>
+                    <p class="text-white font-semibold mb-2">Generator ofert handlowych</p>
+                    <div class="bg-black/40 p-3 rounded-lg font-mono text-xs text-brand-light">
+                        Jesteś copywriterem B2B. Napisz ofertę dla [branża] która...<br>
+                        <span class="text-gray-500">[pełny prompt w newsletterze]</span>
+                    </div>
+                </div>
+
+                <!-- 3 Szybkie Tipy -->
+                <div class="mb-5 pb-5 border-b border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="zap" class="w-4 h-4 text-yellow-500"></i>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-wider">3 Szybkie Tipy</span>
+                    </div>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li>⚡ Dodaj "krok po kroku" do każdego promptu</li>
+                        <li>⚡ ChatGPT lepiej działa rano (mniej obciążone serwery)</li>
+                        <li>⚡ Zawsze proś o 3 warianty odpowiedzi</li>
+                    </ul>
+                </div>
+
+                <!-- Z Warsztatu Darka -->
+                <div class="mb-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="flask-conical" class="w-4 h-4 text-green-500"></i>
+                        <span class="text-xs font-bold text-green-500 uppercase tracking-wider">Z Warsztatu Darka</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">W tym tygodniu próbowałem zautomatyzować follow-upy do klientów. Pierwsza wersja była katastrofą - AI pisało jak robot. Po 3 iteracjach...</p>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center pt-4 border-t border-white/10">
+                    <p class="text-gray-500 text-xs">...i jeszcze więcej w pełnym wydaniu!</p>
                 </div>
             </div>
         </div>
