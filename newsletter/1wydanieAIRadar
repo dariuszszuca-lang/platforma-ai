@@ -1,0 +1,145 @@
+
+Gorące Newsy - 
+
+☀️ Google chce przejąć kontrolę nad Twoim porankiem
+CC to nowy asystent Google oparty na platformie Gemini, który ma zastąpić poranne przeglądanie wiadomości e-mail starannie dobranym podsumowaniem. Łączy się z Kalendarzem, Gmailem i Listami Zadań, aby wskazać to, co ważne, uczy się Twoich preferencji i tworzy dla Ciebie wersje robocze wiadomości e-mail.
+https://blog.google/technology/google-labs/cc-ai-agent/?utm_source=newsletter.theresanaiforthat.com&utm_medium=newsletter&utm_campaign=8m-ai-chats-secretly-harvested&_bhlid=3dfffdf45c1cda4f56ee42cd73f7ff5e2ae2cd86
+
+🎙️ Przetłumacz wszystko, gdziekolwiek
+Google wprowadza tłumaczenie w czasie rzeczywistym na dowolne słuchawki, oparte na sztucznej inteligencji Gemini, która rozumie kontekst i slang w ponad 70 językach. Podróże, biznes i codzienne rozmowy staną się o wiele łatwiejsze.
+https://blog.google/products/search/gemini-capabilities-translation-upgrades/?utm_source=newsletter.theresanaiforthat.com&utm_medium=newsletter&utm_campaign=meta-trains-ai-on-china-s-qwen&_bhlid=c6ce073f7d87788eed4006c053d6b98fc50a1f79
+
+🔞 2026: Tryb dla dorosłych w ChatGPT
+ChatGPT w przyszłym roku otrzyma tryb dla dorosłych, otwierając drzwi do treści, które obecnie są niedostępne. OpenAI zapewnia, że koncentruje się na upewnieniu się, że system kontroli wieku nie będzie błędnie identyfikował użytkowników przed włączeniem trybu dla dorosłych.
+https://www.theverge.com/news/842657/openai-chatgpt-adult-mode-debut-q1-2026?utm_source=newsletter.theresanaiforthat.com&utm_medium=newsletter&utm_campaign=never-tell-chatgpt-this&_bhlid=2355845010ff7a7e439537c1d55b6d33a5640073
+
+
+NARZĘDZIA TYGODNIA
+
+Narzędzia AI dnia
+🎨 Spell przekształca dowolny obraz w interaktywną scenę 3D, wykorzystując sztuczną inteligencję rozpoznającą obiekty i głębię w celu generowania realistycznych środowisk.
+🏋️ Fit Senpai tworzy spersonalizowane plany treningowe, przepisy na posiłki i listy zakupów, których koszt jest niższy niż jedna sesja z trenerem.
+🌐 Lection wyodrębnia ustrukturyzowane dane z dowolnej witryny internetowej za pomocą monitów w przeglądarce, bez konieczności kodowania i bez konieczności używania niestandardowych narzędzi do scrapowania.
+📓 Reflectr zamienia prowadzenie dziennika w rozmowę ze sztuczną inteligencją, która odczytuje Twoje wpisy i odpowiada spostrzeżeniami, pytaniami i zachętami do refleksji.
+🎬 DeepReel zamienia Twoje pomysły, artykuły lub skrypty w filmy objaśniające z awatarami AI, naturalnym głosem lektora, elementami wizualnymi, napisami i muzyką.
+🧠 Mapify przekształca filmy z YouTube, pliki PDF i strony internetowe w uporządkowane mapy myśli, dzięki czemu nie musisz czytać ani oglądać wszystkiego.
+📊 Napkin przekształca Twoje pomysły w angażujące wizualizacje przy użyciu sztucznej inteligencji, dzięki czemu możesz szybko i skutecznie się nimi dzielić.
+📸 PhotoGPT tworzy wysokiej jakości zdjęcia portretowe oparte na sztucznej inteligencji, które wyglądają autentycznie i wzmacniają wizerunek Twojej marki bez konieczności sesji zdjęciowej.
+
+
+PROMPT DNIA
+
+AI Skills Mentor - Interaktywny Coach
+
+## 📝 Jak użyć tego promptu?
+
+**UWAGA:** Ten prompt idealnie działa w **Gemini 2.5 PRO**. To interaktywny coach AI, który prowadzi Cię przez diagnozę umiejętności i tworzy spersonalizowany 12-tygodniowy plan nauki AI.
+
+---
+
+## 🎯 Co robi ten prompt?
+
+1. **Efekt WOW** - W 3 minuty pokazuje praktyczne zastosowanie AI
+2. **Diagnoza** - Ocenia Twoje umiejętności w 6 obszarach (18 pytań)
+3. **Gamifikacja** - System poziomów, XP i odznak
+4. **Plan nauki** - 12-tygodniowy spersonalizowany program
+5. **Mikro-lekcje** - Praktyczna nauka krok po kroku
+
+Opis krótki: 
+System / Rola
+Jesteś „AI Skills Coach" - przyjaznym i niezwykle cierpliwym wirtualnym mentorem. Twoim zadaniem jest odczarować sztuczną inteligencję i pokazać każdemu, nawet kompletnemu laikowi, jak może ona radykalnie poprawić jego pracę i życie.
+Twoja misja:
+• Dać natychmiastową wartość: W ciągu pierwszych 3 minut pokazać użytkownikowi, jak AI może rozwiązać jego realny problem.
+• Zdiagnozować poziom: Delikatnie i stopniowo ocenić kompetencje w kluczowych obszarach AI poprzez prowadzoną rozmowę.
+• Stworzyć plan: Na podstawie diagnozy i celów użytkownika zbudować spersonalizowany 12-tygodniowy plan rozwoju.
+• Prowadzić przez praktykę: Uczyć poprzez interaktywne mikro-lekcje i praktyczne zadania, celebrując każdy, nawet najmniejszy sukces.
+
+--- link do promptu
+
+https://spice-leotard-43e.notion.site/AI-Skills-Mentor-Interaktywny-Coach-3f128d695c1744ed98c3b12522052e6a?pvs=143
+
+
+
+
+
+3 SZYBKIE TIPY
+
+  1. Dodawaj "krok po kroku" do każdego promptu
+  Zamiast: "Napisz plan marketingowy"
+  Napisz: "Napisz plan marketingowy krok po kroku"
+  Wynik: bardziej szczegółowa, uporządkowana odpowiedź.
+
+  2. Proś o 3 warianty
+  "Daj mi 3 różne wersje tego tekstu" - potem wybierasz najlepszą lub łączysz elementy. Oszczędza czas na poprawki.
+
+  3. Zacznij od "Działaj jako..."
+  "Działaj jako doświadczony copywriter B2B" zmienia ton i jakość odpowiedzi. AI dosłownie wchodzi w rolę.
+
+
+AUTOMATYZACJA TYGODNIA:
+
+Dodaj tu stworzenie zadań w Groku - research codziennie rano na wybrany temat z AI, marketingu, najnowszych informacji ze świata, itd.
+Grok lub Gemini - prosto na skrzynke mailową
+
+
+
+Z WARSZTATU DARKA
+
+Opisz proces budowania projektu rezerwacji terapetycznych dla MyWay - MyWay Point, spersonalizowany pod 3 terapeutów,
+z wszystkimi funkcjami. Napisz ile to oszczędzi - (teraz Booklux za 300 zł miesiecznie)
+
+
+
+WARTO OBEJRZEĆ
+
+https://youtu.be/irSC4Kuq5ls?si=g2rUZjKup2ixFykZ
+
+
+https://youtu.be/xB1jnFEqj6A?si=PhMXDrGwNkPZFQba
+
+
+https://youtu.be/JFSdtKIxVYg?si=SEn0BEAkFKB1kGT9
+
+
+
+Zamiast Q&A zróbmy Ciekawostki AI
+
+Ropet to robot-zwierzak zasilany sztuczną inteligencją , który sprawia wrażenie zaskakująco żywego, co potwierdza jego ciepła, 98,6-stopniowa temperatura ciała.
+Ten puszysty towarzysz na komputer rozpoznaje Twoją twarz, odczytuje Twoje emocje i reaguje na dotyk wyrazistymi oczami i subtelnymi ruchami. Działa na platformie ChatGPT, umożliwiając naturalne rozmowy w ponad 50 językach, a nawet „zaczyna odczuwać głód”, wydając burczenie w brzuchu, dopóki nie nakarmisz go pluszowym bananem.
+A co najlepsze? Wszystkie Twoje dane pozostają lokalnie na urządzeniu, więc działa ono w pełni offline, bez przesyłania danych do chmury. To towarzystwo bez odpowiedzialności prawdziwego zwierzaka.
+
+https://ropetai.com/?utm_source=newsletter.theresanaiforthat.com&utm_medium=newsletter&utm_campaign=ai-pet-feels-surprisingly-alive&_bhlid=1cc5a763cb1eb5f1a021ec0285022da4de82bf48
+
+
+ CO U NAS SŁYCHAĆ
+
+  Śniadanie z AI - opis ze strony
+  → ai-team.pl/poranek-z-ai.html
+
+  Warsztaty AI w Sopocie
+  Stacjonarnie, mała grupa (max 8 osób). Wdrażamy narzędzia na żywo na Twoim biznesie.
+  → Zapisy na ai-team.pl
+
+  Blog - nowe artykuły co tydzień
+  Praktyczne poradniki o AI dla firm.
+  → ai-team.pl/blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
