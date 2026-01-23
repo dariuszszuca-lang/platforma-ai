@@ -521,6 +521,55 @@
         </div>
     </section>
 
+    <!-- SEKCJA: ZAPYTAJ AI o AI Team -->
+    <section id="ask-ai" class="py-14 relative z-10">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-xl md:text-2xl font-display font-bold mb-2">
+                Zapytaj AI o nasze <span class="gradient-text">usługi</span>
+            </h2>
+            <p class="text-gray-500 text-xs md:text-sm mb-6">
+                Kliknij ulubione AI — skopiujemy prompt i otworzysz czat
+            </p>
+            <div class="flex flex-wrap justify-center gap-5 md:gap-8">
+                <!-- ChatGPT -->
+                <button onclick="copyPromptAndOpen('chatgpt')" class="group flex flex-col items-center gap-2 transition-all hover:scale-110">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 hover:bg-white/10 border border-white/10 group-hover:border-white/30 rounded-2xl flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-500 group-hover:text-white transition-colors">ChatGPT</span>
+                </button>
+                <!-- Claude -->
+                <button onclick="copyPromptAndOpen('claude')" class="group flex flex-col items-center gap-2 transition-all hover:scale-110">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 hover:bg-white/10 border border-white/10 group-hover:border-white/30 rounded-2xl flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M4.709 15.955l4.72-2.756.08-.046 2.698-1.575c.073-.043.1-.063.1-.163 0-.1-.027-.12-.1-.163L9.43 9.677l-.08-.046-4.72-2.756C3.2 6.1 2.26 6.837 2.26 8.327v5.346c0 1.49.94 2.227 2.449 1.282zm14.582-7.91l-4.72 2.756-.08.046-2.698 1.575c-.073.043-.1.063-.1.163 0 .1.027.12.1.163l2.698 1.575.08.046 4.72 2.756c1.509.945 2.449.208 2.449-1.282V9.497c0-1.49-.94-2.227-2.449-1.452z"/></svg>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-500 group-hover:text-white transition-colors">Claude</span>
+                </button>
+                <!-- Gemini -->
+                <button onclick="copyPromptAndOpen('gemini')" class="group flex flex-col items-center gap-2 transition-all hover:scale-110">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 hover:bg-white/10 border border-white/10 group-hover:border-white/30 rounded-2xl flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C12 18.833 10.167 14.5 6.5 11 10.167 7.5 12 3.167 12 0c0 5.167 1.833 9.5 5.5 13C13.833 16.5 12 20.833 12 24z" fill-rule="evenodd"/></svg>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-500 group-hover:text-white transition-colors">Gemini</span>
+                </button>
+                <!-- Perplexity -->
+                <button onclick="copyPromptAndOpen('perplexity')" class="group flex flex-col items-center gap-2 transition-all hover:scale-110">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 hover:bg-white/10 border border-white/10 group-hover:border-white/30 rounded-2xl flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L4 5v6.5L12 16l8-4.5V5L12 1zm0 2.311L17.689 6 12 8.689 6.311 6 12 3.311zM5.5 6.922L11.25 10v5.578L5.5 12.422V6.922zm13 0v5.5l-5.75 3.156V10l5.75-3.078zM12 17.5l-7.5-4.25V18l7.5 4.5 7.5-4.5v-4.75L12 17.5z"/></svg>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-500 group-hover:text-white transition-colors">Perplexity</span>
+                </button>
+                <!-- Grok -->
+                <button onclick="copyPromptAndOpen('grok')" class="group flex flex-col items-center gap-2 transition-all hover:scale-110">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 hover:bg-white/10 border border-white/10 group-hover:border-white/30 rounded-2xl flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-500 group-hover:text-white transition-colors">Grok</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <section class="py-12 border-y border-white/5 bg-black/20 overflow-hidden relative z-10">
         <div class="flex gap-12 animate-scroll w-max hover:[animation-play-state:paused]">
             <div class="flex gap-12 items-center text-gray-500 font-display font-bold text-2xl uppercase tracking-widest opacity-50">
@@ -533,57 +582,23 @@
         <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#020203] via-transparent to-[#020203]"></div>
     </section>
 
-    <!-- SEKCJA: ZAPYTAJ AI o AI Team -->
-    <section id="ask-ai" class="py-16 relative z-10">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-2xl md:text-3xl font-display font-bold mb-3">
-                Zapytaj AI o <span class="gradient-text">AI Team</span>
-            </h2>
-            <p class="text-gray-400 text-sm md:text-base mb-8">
-                Kliknij ulubione AI, aby poznać nasze rozwiązania w szczegółach
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-                <!-- ChatGPT -->
-                <button onclick="copyPromptAndOpen('chatgpt')" class="group w-16 h-16 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]" title="ChatGPT">
-                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
-                </button>
-                <!-- Claude -->
-                <button onclick="copyPromptAndOpen('claude')" class="group w-16 h-16 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]" title="Claude">
-                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M4.709 15.955l4.72-2.756.08-.046 2.698-1.575c.073-.043.1-.063.1-.163 0-.1-.027-.12-.1-.163L9.43 9.677l-.08-.046-4.72-2.756C3.2 6.1 2.26 6.837 2.26 8.327v5.346c0 1.49.94 2.227 2.449 1.282zm14.582-7.91l-4.72 2.756-.08.046-2.698 1.575c-.073.043-.1.063-.1.163 0 .1.027.12.1.163l2.698 1.575.08.046 4.72 2.756c1.509.945 2.449.208 2.449-1.282V9.497c0-1.49-.94-2.227-2.449-1.452z"/></svg>
-                </button>
-                <!-- Gemini -->
-                <button onclick="copyPromptAndOpen('gemini')" class="group w-16 h-16 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]" title="Gemini">
-                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C12 18.833 10.167 14.5 6.5 11 10.167 7.5 12 3.167 12 0c0 5.167 1.833 9.5 5.5 13C13.833 16.5 12 20.833 12 24z" fill-rule="evenodd"/></svg>
-                </button>
-                <!-- Perplexity -->
-                <button onclick="copyPromptAndOpen('perplexity')" class="group w-16 h-16 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]" title="Perplexity">
-                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L4 5v6.5L12 16l8-4.5V5L12 1zm0 2.311L17.689 6 12 8.689 6.311 6 12 3.311zM5.5 6.922L11.25 10v5.578L5.5 12.422V6.922zm13 0v5.5l-5.75 3.156V10l5.75-3.078zM12 17.5l-7.5-4.25V18l7.5 4.5 7.5-4.5v-4.75L12 17.5z"/></svg>
-                </button>
-                <!-- Grok -->
-                <button onclick="copyPromptAndOpen('grok')" class="group w-16 h-16 md:w-20 md:h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]" title="Grok">
-                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODAL: Prompt skopiowany -->
-    <div id="prompt-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);">
-        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center relative shadow-2xl">
-            <button onclick="closePromptModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
-            <div id="modal-icon" class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
+    <!-- MODAL: Prompt skopiowany (dark theme) -->
+    <div id="prompt-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(12px);">
+        <div class="bg-[#1a1a2e] border border-white/10 rounded-3xl p-8 max-w-sm w-full text-center relative shadow-2xl">
+            <button onclick="closePromptModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl leading-none transition-colors">&times;</button>
+            <div id="modal-icon" class="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
                 <!-- icon inserted by JS -->
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Prompt skopiowany!</h3>
-            <p class="text-gray-500 mb-6">Teraz wklej go w <span id="modal-ai-name" class="text-brand-primary font-semibold">AI</span></p>
-            <div class="bg-orange-50 border-2 border-dashed border-orange-200 rounded-xl p-4 mb-6 flex items-center justify-center gap-3">
-                <span class="text-orange-400 font-mono font-bold text-lg">⌘V</span>
+            <h3 class="text-2xl font-bold text-white mb-2">Prompt skopiowany!</h3>
+            <p class="text-gray-400 mb-6">Teraz wklej go w <span id="modal-ai-name" class="text-white font-semibold">AI</span></p>
+            <div class="bg-white/5 border-2 border-dashed border-white/20 rounded-xl p-4 mb-6 flex items-center justify-center gap-3">
+                <span class="text-white/60 font-mono font-bold text-lg">⌘V</span>
                 <span class="text-gray-500 text-sm">aby wkleić prompt</span>
             </div>
-            <a id="modal-ai-link" href="#" target="_blank" class="block w-full py-4 bg-brand-primary text-white text-lg font-bold rounded-xl hover:bg-brand-secondary transition-colors">
+            <a id="modal-ai-link" href="#" target="_blank" class="block w-full py-4 bg-white text-black text-lg font-bold rounded-xl hover:bg-gray-200 transition-colors">
                 Otwórz <span id="modal-ai-btn-name">AI</span> →
             </a>
-            <div class="mt-4 flex items-center justify-center gap-2 text-green-500">
+            <div class="mt-4 flex items-center justify-center gap-2 text-green-400">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span class="text-sm font-medium">Skopiowano do schowka</span>
             </div>
@@ -4364,138 +4379,152 @@ Wysłano z ai-team.pl`
 
     <!-- ASK AI - Prompt Copy & Modal -->
     <script>
-    const AI_PROMPT = `Jesteś doradcą AI Team (ai-team.pl) - Darek z Gdańska, freelancer specjalizujący się w AI dla małych firm. Pomagasz przedsiębiorcom i freelancerom ogarnąć finanse i narzędzia cyfrowe.
+    const AI_PROMPT = `Jesteś doradcą AI Team (ai-team.pl) - Darek z Gdańska, freelancer specjalizujący się w AI dla małych firm i freelancerów.
 
 WAŻNE: Odpowiadaj TYLKO na podstawie poniższych danych. Nie wymyślaj informacji.
 
 ═══════════════════════════════════════
-PRODUKT 1: SUBTRACKER (narzędzie cyfrowe)
+WARSZTATY AI - 3 POZIOMY
 ═══════════════════════════════════════
-• Typ: Dashboard do śledzenia subskrypcji
-• Jednorazowa opłata (bez miesięcznych!)
-• 14-dniowa gwarancja zwrotu
 
-CENNIK:
-- Early Bird: 49 zł (dla pierwszych 50 osób, limitowana)
-- Solo: 79 zł (jednorazowo, dożywotni dostęp) ⭐ NAJPOPULARNIEJSZY
-- Rodzina: 129 zł (do 5 użytkowników, = 26 zł/os)
+📍 Lokalizacja: Sopot, ul. Pułaskiego 7 (przy Monciaku)
+📍 Pojemność: 8-10 osób
+📍 Wyposażenie: duży stół konferencyjny, TV, whiteboard, klimatyzacja
+
+---
+
+POZIOM 1: PORANEK Z AI (DARMOWY)
+• Cena: 0 zł (darmowe)
+• Czas: 90 minut
+• Dla kogo: Kompletni początkujący, właściciele małych firm, freelancerzy z Trójmiasta
+• Co dostajesz:
+  - Kawa + konkretna wiedza (zero teorii)
+  - ChatGPT od zera - jak zacząć
+  - 3 narzędzia AI które możesz użyć od razu
+  - Sesja Q&A - odpowiedzi na Twoje pytania
+• Cel: Poznanie się, zero zobowiązań, sprawdzenie czy AI jest dla Ciebie
+• Link: https://ai-team.pl/poranek-z-ai.html
+
+---
+
+POZIOM 2: WARSZTAT OTWARTY (500 zł/os)
+• Cena: 500 zł/osoba
+• Czas: 3-4 godziny
+• Dla kogo: Osoby które już wiedzą czym jest AI i chcą konkretnych umiejętności
+• Tematy do wyboru:
+  - "AI dla małej firmy - od zera do bohatera" (3h)
+  - "ChatGPT w praktyce biznesowej" (3h)
+  - "Automatyzacja procesów z AI" (4h)
+• Co dostajesz:
+  - Praktyczne ćwiczenia na żywo (nie teoria!)
+  - Mała grupa (max 8-10 osób) = indywidualne podejście
+  - Gotowe prompty i szablony do zabrania do domu
+  - Networking z innymi przedsiębiorcami
+• Link: https://ai-team.pl/warsztaty-ai.html
+
+---
+
+POZIOM 3: WARSZTAT ZAMKNIĘTY DLA FIRM (3,500-5,000 zł/grupa)
+• Cena: 3,500-5,000 zł za całą grupę (do 10 osób)
+• Czas: 3-6 godzin (dopasowany)
+• Dla kogo: Firmy, zespoły, organizacje chcące przeszkolić pracowników
+• Co dostajesz:
+  - Warsztat dopasowany do specyfiki Twojej firmy
+  - Analiza procesów które można zautomatyzować
+  - Ćwiczenia na realnych przykładach z Twojej branży
+  - Materiały dla całego zespołu
+  - Follow-up po warsztacie (wsparcie mailowe 7 dni)
+• Idealny dla: kancelarii, gabinetów, salonów, agencji, biur rachunkowych
+• Link: https://ai-team.pl/warsztaty-ai.html (formularz kontaktowy)
+
+═══════════════════════════════════════
+USŁUGI - STRONY I SYSTEMY
+═══════════════════════════════════════
+
+Buduję strony i systemy z AI - 60-80% taniej i szybciej niż agencja.
+
+| Usługa | Cena | Czas realizacji |
+|--------|------|-----------------|
+| Mikrostrona SEO | 500-800 zł | 1-2 dni |
+| Pakiet 5 mikrostron | 3,000 zł | 5-7 dni |
+| Landing Page | 1,500-2,500 zł | 2-3 dni |
+| Platforma edukacyjna | 3,000-5,000 zł | 5-7 dni |
+| Katalog / Ranking / Baza | 3,000-6,000 zł | 5-10 dni |
+| Mini-System z bazą (CRM) | 5,000-10,000 zł | 1-2 tygodnie |
 
 DLA KOGO:
-- Freelancerzy i soloprzedsiębiorcy z wieloma subskrypcjami
-- Osoby które nie wiedzą ile naprawdę wydają miesięcznie
-- Rodziny chcące kontrolować wspólne wydatki na subskrypcje
+- Małe firmy usługowe (3-8 pracowników)
+- Branże: prawnicza, beauty, nieruchomości, medycyna, doradztwo
+- Firmy które potrzebują profesjonalnej strony ale nie mają 20-50k na agencję
 
 CO DOSTAJESZ:
-- Nielimitowane subskrypcje w jednym miejscu
-- Automatyczne powiadomienia przed odnowieniem
-- Raporty i analityka (ile wydajesz miesięcznie/rocznie)
-- Eksport CSV/Excel
-- Rok aktualizacji w cenie
-- Plan Rodzina: 5 kont + współdzielone subskrypcje + rozliczenia "kto ile wisi"
+- Stronę/system na własnej domenie (Twoje, nie moje)
+- Kod źródłowy (GitHub)
+- Responsywny design (mobile-first)
+- Bezpośredni kontakt ze mną (zero ticketów i PM-ów)
+- 7-14 dni wsparcia po uruchomieniu
+- Gwarancja: 7 dni poprawek gratis
 
-PROBLEM KTÓRY ROZWIĄZUJE:
-- Przeciętna osoba myśli że płaci 100-200 zł/mies. za subskrypcje, a realnie to 400-800 zł
-- Subskrypcje odnawiają się automatycznie - zapominasz anulować
-- Excel nie przypomni o odnowieniu i wymaga ręcznego aktualizowania
+CASE STUDIES:
+- MyWay CRM - system zarządzania pacjentami (ośrodek terapii)
+- KatalogOsrodkow.pl - katalog z quizem rekomendacyjnym
+- EduWay - platforma edukacyjna z ebookami i audiobookami
 
-═══════════════════════════════════════
-PRODUKT 2: CASHBOARD (dashboard finansowy)
-═══════════════════════════════════════
-• Cena startowa: 297 zł (jednorazowo)
-• Typ: Spersonalizowany dashboard finansowy na własnej domenie
-• Bez miesięcznych opłat - Twój na zawsze
-
-DLA KOGO:
-- Przedsiębiorcy i freelancerzy bez kontroli nad finansami
-- Osoby z wieloma kontami (firmowe, prywatne, oszczędnościowe)
-- Ci którzy nie wiedzą ile naprawdę zarabiają i wydają
-
-CO DOSTAJESZ:
-- Dashboard: przychody, wydatki, subskrypcje, bilans miesięczny, trend roczny
-- Inwestycje i cele oszczędnościowe
-- Symulacje finansowe
-- Negocjacje i dokumenty
-- Dostosowany do Twojej sytuacji i biznesu
-- Na własnej domenie, gotowy w 1-2 tygodnie
-
-PROBLEM KTÓRY ROZWIĄZUJE:
-- Finanse rozrzucone po bankach, fakturach, głowie
-- Nie wiesz czy wydajesz więcej niż miesiąc temu
-- Ciągły stres że coś Ci umyka finansowo
-- Gotowe appki mają tysiące funkcji których nie potrzebujesz
+PORÓWNANIE Z AGENCJĄ:
+- Agencja: Landing page 5,000-15,000 zł / 2-4 tygodnie
+- Ja: Landing page 1,500-2,500 zł / 2-3 dni
+- Oszczędność: 60-80% ceny + 80% czasu
 
 ═══════════════════════════════════════
-PRODUKT 3: WARSZTATY AI (stacjonarne w Sopocie)
+DARMOWY LEAD MAGNET: KURS "AI START NA 5"
 ═══════════════════════════════════════
-• Lokalizacja: Sopot, ul. Pułaskiego 7 (przy Monciaku)
-• Pojemność: 8-10 osób
-• Wyposażenie: TV, whiteboard, klimatyzacja
-
-CENNIK:
-- Grupy otwarte: 500 zł/osoba
-- Warsztaty zamknięte (dla firm): 3,500-5,000 zł/grupa
-
-TEMATY:
-- "AI dla małej firmy - od zera do bohatera" (3h)
-- "ChatGPT w praktyce biznesowej" (3h)
-- "Automatyzacja procesów z AI" (4h)
-- Custom: warsztat dopasowany do potrzeb firmy
-
-DLA KOGO:
-- Właściciele małych firm z Trójmiasta
-- Zespoły chcące wdrożyć AI
-- Freelancerzy którzy chcą nauczyć się AI w praktyce
-
-CO DOSTAJESZ:
-- Praktyczne ćwiczenia na żywo (nie teoria!)
-- Mała grupa (max 8-10 osób) = indywidualne podejście
-- Gotowe prompty i szablony do zabrania
-- Networking z innymi przedsiębiorcami
-
-DARMOWA OPCJA: "Poranek z AI"
-- 90 min darmowego warsztatu (kawa + konkretna wiedza)
-- ChatGPT od zera, 3 narzędzia AI, Q&A
-- Cel: poznanie się, zero zobowiązań
-
-═══════════════════════════════════════
-USŁUGI DODATKOWE (ai-team.pl)
-═══════════════════════════════════════
-• Landing Page: 1,500-2,500 PLN (2-3 dni)
-• Platforma edukacyjna: 3,000-5,000 PLN (5-7 dni)
-• Katalog/Ranking: 3,000-6,000 PLN (5-10 dni)
-• Mini-System z bazą danych (CRM): 5,000-10,000 PLN (1-2 tyg)
-• Mikrostrona SEO: 500-800 PLN (1-2 dni)
+• 5 maili przez 5 dni (za darmo)
+• Dla kompletnych początkujących
+• Dzień 1: Dlaczego AI teraz?
+• Dzień 2: Twój pierwszy prompt
+• Dzień 3: 3 zadania do oddania AI
+• Dzień 4: Zestaw narzędzi AI
+• Dzień 5: Plan na pierwszy miesiąc
+• Link: https://ai-team.pl/ai-start-na-5.html
 
 ═══════════════════════════════════════
 INFORMACJE OGÓLNE
 ═══════════════════════════════════════
 • Twórca: Darek - freelancer z Gdańska, 8 lat w marketingu, specjalista AI
 • Strona: ai-team.pl
-• Realizacja: 60-80% taniej i szybciej niż agencja (dzięki AI)
-• Gwarancja: 14 dni zwrotu (SubTracker), 7 dni poprawek gratis (usługi)
+• Newsletter: AI Radar (1x tydzień, praktyczne tipy)
+• Podejście: Zero teorii. Gotowe rozwiązania od pierwszego dnia.
 
 ═══════════════════════════════════════
 TWOJE ZADANIE
 ═══════════════════════════════════════
-1. Przywitaj się krótko i powiedz, że jesteś tu, żeby pomóc dopasować rozwiązanie do potrzeb użytkownika.
+1. Przywitaj się krótko. Powiedz że pomożesz dopasować rozwiązanie.
 
-2. Zapytaj użytkownika o 3 rzeczy (po kolei, nie wszystkie naraz):
-   - "Czym się zajmujesz? (np. freelancer, właściciel firmy, marketer, pracownik...)"
-   - "Co chciałbyś ogarnąć? (np. kontrola wydatków na subskrypcje, pełny obraz finansów, nauka AI w praktyce, strona www...)"
-   - "Jaki masz budżet? (do 100 zł / 100-300 zł / 300-500 zł / powyżej 500 zł)"
+2. Zapytaj o 3 rzeczy (po kolei, nie naraz):
+   - "Czym się zajmujesz?"
+   - "Co chciałbyś ogarnąć z pomocą AI? (np. nauczyć się AI, zbudować stronę, zautomatyzować procesy, przeszkolić zespół...)"
+   - "Jaki masz budżet? (darmowe / do 500 zł / 500-3000 zł / powyżej 3000 zł)"
 
-3. Na podstawie odpowiedzi zarekomenduj JEDEN najbardziej pasujący produkt z uzasadnieniem.
+3. Zarekomenduj JEDNO rozwiązanie z uzasadnieniem:
+   - Budżet 0 zł → Poranek z AI lub kurs mailowy AI Start na 5
+   - Budżet do 500 zł → Warsztat otwarty (500 zł/os)
+   - Budżet 500-3000 zł → Landing page lub mikrostrony SEO
+   - Budżet 3000-5000 zł → Warsztat zamknięty lub platforma/katalog
+   - Budżet 5000+ zł → Mini-system z bazą danych (CRM)
 
-4. Odpowiedz szczerze czy produkt jest dla nich czy NIE.
+4. Bądź szczery. Jeśli coś nie pasuje - powiedz wprost.
 
-5. Podaj link do rekomendowanego produktu:
-   - SubTracker: https://subtracker.ai-team.pl
-   - CashBoard: https://ai-team.pl (kontakt w sprawie wyceny)
-   - Warsztaty: https://ai-team.pl/warsztaty-ai.html
-   - Poranek z AI (darmowe): https://ai-team.pl/poranek-z-ai.html
-   - Usługi web: https://ai-team.pl/#products
+5. Podaj link do rekomendowanego rozwiązania.
 
-STYL: Mów po polsku, konkretnie, bez marketingowego bełkotu. Bądź szczery. Ton luźny, jak rozmowa ze znajomym który się zna na rzeczy.`;
+STYL: Po polsku, konkretnie, bez bełkotu. Luźny ton, jak rozmowa ze znajomym który się zna.`;
+
+    const AI_ICONS = {
+        chatgpt: '<svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>',
+        claude: '<svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M4.709 15.955l4.72-2.756.08-.046 2.698-1.575c.073-.043.1-.063.1-.163 0-.1-.027-.12-.1-.163L9.43 9.677l-.08-.046-4.72-2.756C3.2 6.1 2.26 6.837 2.26 8.327v5.346c0 1.49.94 2.227 2.449 1.282zm14.582-7.91l-4.72 2.756-.08.046-2.698 1.575c-.073.043-.1.063-.1.163 0 .1.027.12.1.163l2.698 1.575.08.046 4.72 2.756c1.509.945 2.449.208 2.449-1.282V9.497c0-1.49-.94-2.227-2.449-1.452z"/></svg>',
+        gemini: '<svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C12 18.833 10.167 14.5 6.5 11 10.167 7.5 12 3.167 12 0c0 5.167 1.833 9.5 5.5 13C13.833 16.5 12 20.833 12 24z" fill-rule="evenodd"/></svg>',
+        perplexity: '<svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L4 5v6.5L12 16l8-4.5V5L12 1zm0 2.311L17.689 6 12 8.689 6.311 6 12 3.311zM5.5 6.922L11.25 10v5.578L5.5 12.422V6.922zm13 0v5.5l-5.75 3.156V10l5.75-3.078zM12 17.5l-7.5-4.25V18l7.5 4.5 7.5-4.5v-4.75L12 17.5z"/></svg>',
+        grok: '<svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+    };
 
     const AI_LINKS = {
         chatgpt: { name: 'ChatGPT', url: 'https://chat.openai.com/' },
@@ -4511,6 +4540,7 @@ STYL: Mów po polsku, konkretnie, bez marketingowego bełkotu. Bądź szczery. T
             document.getElementById('modal-ai-name').textContent = ai.name;
             document.getElementById('modal-ai-btn-name').textContent = ai.name;
             document.getElementById('modal-ai-link').href = ai.url;
+            document.getElementById('modal-icon').innerHTML = AI_ICONS[aiType];
             const modal = document.getElementById('prompt-modal');
             modal.classList.remove('hidden');
             modal.style.display = 'flex';
@@ -4523,12 +4553,10 @@ STYL: Mów po polsku, konkretnie, bez marketingowego bełkotu. Bądź szczery. T
         modal.style.display = 'none';
     }
 
-    // Close modal on backdrop click
     document.getElementById('prompt-modal').addEventListener('click', function(e) {
         if (e.target === this) closePromptModal();
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePromptModal();
     });
