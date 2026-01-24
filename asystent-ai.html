@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Asystent AI - Postaw go w weekend | AI-TEAM.PL</title>
+    <meta name="description" content="Instrukcja krok po kroku jak postawić asystenta AI który pisze maile, robi oferty i prowadzi social media za Ciebie. W weekend. Za 18 euro.">
+    <meta name="keywords" content="asystent AI, Claude, AI dla firmy, automatyzacja biznesu, AI asystent biznesowy">
+    <meta name="author" content="AI-TEAM.PL">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/asystent-ai.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Asystent AI - Postaw go w weekend">
+    <meta property="og:description" content="Instrukcja jak postawić asystenta AI który pisze maile, robi oferty i prowadzi social media. W weekend. Za 18 euro.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/asystent-ai.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0f',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 2s infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0a0a0f; min-height: 100vh; }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(249, 115, 22, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f97316, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-text-blue {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glow-btn {
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 60px rgba(249, 115, 22, 0.5);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .chat-bubble {
+            position: relative;
+        }
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 12px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 8px solid rgba(255,255,255,0.08);
+        }
+        .assistant-card {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .assistant-card:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+        .mockup-window {
+            background: #1a1a2e;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .mockup-toolbar {
+            background: rgba(255,255,255,0.05);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: #f97316;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .section-glow {
+            position: relative;
+        }
+        .section-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-white antialiased">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden flex items-center min-h-[85vh]">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand-primary/8 rounded-full blur-[150px]"></div>
+            <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px]"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto px-6 pt-24 pb-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-brand-light mb-8">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        Instrukcja krok po kroku
+                    </div>
+                    <h1 class="font-display text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        <span class="gradient-text">Asystent AI</span><br>
+                        <span class="text-white/90 text-3xl md:text-4xl">w weekend. Za 18 euro.</span>
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Niech pisze maile, robi oferty i prowadzi social media za Ciebie. W Twoim stylu. Z Twoimi cenami. Bez zmyślania.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://buy.stripe.com/dRm9ASbvMeuGc3marA1kA0v" class="glow-btn inline-block bg-brand-primary hover:bg-brand-secondary text-white font-bold px-8 py-4 rounded-xl text-lg text-center">
+                            Chcę to mieć &rarr;
+                        </a>
+                        <a href="#zaglądaj" class="inline-block border border-white/20 hover:border-white/40 text-white/80 font-medium px-8 py-4 rounded-xl text-lg text-center transition-all">
+                            Zobacz co w środku
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">197 PLN &middot; Dostęp od razu &middot; Notion</p>
+                </div>
+                <!-- MOCKUP -->
+                <div class="animate-float hidden md:block">
+                    <div class="mockup-window shadow-2xl">
+                        <div class="mockup-toolbar">
+                            <div class="mockup-dot bg-red-400/80"></div>
+                            <div class="mockup-dot bg-yellow-400/80"></div>
+                            <div class="mockup-dot bg-green-400/80"></div>
+                            <span class="text-gray-500 text-xs ml-3 font-mono">Claude &middot; Mój Asystent Biznesowy</span>
+                        </div>
+                        <div class="p-5 space-y-4">
+                            <div class="flex gap-3">
+                                <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center text-xs shrink-0">D</div>
+                                <div class="bg-white/5 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-300 max-w-[260px]">
+                                    Odpowiedz na tego maila w moim stylu
+                                </div>
+                            </div>
+                            <div class="flex gap-3 justify-end">
+                                <div class="bg-brand-primary/10 border border-brand-primary/20 rounded-xl rounded-tr-sm px-4 py-2.5 text-sm text-gray-200 max-w-[280px]">
+                                    <p class="mb-1">Hej Marek!</p>
+                                    <p class="text-gray-400 text-xs">Fajnie że pogadaliśmy. Nowa strona - 5 dni, 2500 zł. Wyślij logo i ruszamy.</p>
+                                    <p class="text-gray-500 text-xs mt-1">Darek</p>
+                                </div>
+                                <div class="w-7 h-7 rounded-full bg-brand-primary/20 flex items-center justify-center text-xs shrink-0">AI</div>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600 text-xs pl-10">
+                                <span class="typing-cursor"></span>
+                                <span>Gotowa do wysłania</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-3 gap-4">
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold gradient-text mb-1">10-15h</div>
+                <div class="text-gray-500 text-sm">oszczędności / tydzień</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold gradient-text mb-1">2 dni</div>
+                <div class="text-gray-500 text-sm">żeby postawić</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold gradient-text mb-1">18 €</div>
+                <div class="text-gray-500 text-sm">miesięcznie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 ASYSTENTÓW - KAFELKI -->
+    <section class="max-w-5xl mx-auto px-6 py-16 section-glow">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">5 asystentów. Jeden system.</h2>
+            <p class="text-gray-400 text-lg">Tak wygląda mój setup. Nauczę Cię jak go zbudować.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="assistant-card rounded-2xl p-5 text-center bg-gradient-to-b from-blue-500/10 to-blue-500/5 border border-blue-500/20">
+                <div class="text-4xl mb-3">🧠</div>
+                <div class="font-bold text-sm text-blue-300">@STRATEGIA</div>
+                <div class="text-gray-500 text-xs mt-1">Planuje tydzień</div>
+            </div>
+            <div class="assistant-card rounded-2xl p-5 text-center bg-gradient-to-b from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20">
+                <div class="text-4xl mb-3">⚙️</div>
+                <div class="font-bold text-sm text-emerald-300">@OPERACYJNY</div>
+                <div class="text-gray-500 text-xs mt-1">Co zrobić teraz</div>
+            </div>
+            <div class="assistant-card rounded-2xl p-5 text-center bg-gradient-to-b from-amber-500/10 to-amber-500/5 border border-amber-500/20">
+                <div class="text-4xl mb-3">💰</div>
+                <div class="font-bold text-sm text-amber-300">@SPRZEDAŻ</div>
+                <div class="text-gray-500 text-xs mt-1">Lejek i wyceny</div>
+            </div>
+            <div class="assistant-card rounded-2xl p-5 text-center bg-gradient-to-b from-purple-500/10 to-purple-500/5 border border-purple-500/20">
+                <div class="text-4xl mb-3">📣</div>
+                <div class="font-bold text-sm text-purple-300">@MARKETING</div>
+                <div class="text-gray-500 text-xs mt-1">Posty i leady</div>
+            </div>
+            <div class="assistant-card rounded-2xl p-5 text-center bg-gradient-to-b from-rose-500/10 to-rose-500/5 border border-rose-500/20 col-span-2 md:col-span-1">
+                <div class="text-4xl mb-3">👤</div>
+                <div class="font-bold text-sm text-rose-300">@KLON</div>
+                <div class="text-gray-500 text-xs mt-1">Pisze jak Ty</div>
+            </div>
+        </div>
+
+        <div class="mt-8 glass-card rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+            <div class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="font-bold text-white">7:00</span> @KLON &rarr; maile
+            </div>
+            <div class="hidden md:block text-gray-700">&bull;</div>
+            <div class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="font-bold text-white">8:00</span> @OPERACYJNY &rarr; 3 zadania
+            </div>
+            <div class="hidden md:block text-gray-700">&bull;</div>
+            <div class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="font-bold text-white">9:00</span> @SPRZEDAŻ &rarr; oferty
+            </div>
+            <div class="hidden md:block text-gray-700">&bull;</div>
+            <div class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="font-bold text-white">PN</span> @MARKETING &rarr; posty na tydzień
+            </div>
+        </div>
+    </section>
+
+    <!-- ZAJRZYJ DO ŚRODKA - PRZYKŁADY -->
+    <section id="zaglądaj" class="max-w-5xl mx-auto px-6 py-16">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Zajrzyj do środka</h2>
+            <p class="text-gray-400 text-lg">Prawdziwe przykłady z instrukcji. Tak wygląda praca z asystentem.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Przykład 1: Oferta -->
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="bg-amber-500/10 border-b border-amber-500/20 px-5 py-3 flex items-center gap-2">
+                    <span class="text-amber-400 text-lg">💰</span>
+                    <span class="text-amber-300 text-sm font-semibold">Rozdział 4: Oferty w 2 minuty</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Ty piszesz:</div>
+                        <div class="bg-white/5 rounded-lg px-4 py-3 font-mono text-sm text-gray-300">
+                            <span class="text-brand-light">OFERTA:</span> Marek, kancelaria prawna Gdynia, strona z 2018, "rozsądny budżet"
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Claude odpowiada:</div>
+                        <div class="bg-brand-primary/5 border border-brand-primary/10 rounded-lg px-4 py-3 text-sm text-gray-300 space-y-2">
+                            <p>Hej Marek!</p>
+                            <p class="text-gray-400">Fajnie że pogadaliśmy. Strona z 2018 dziś odstrasza.</p>
+                            <p class="text-gray-400">Nowa strona dla kancelarii. Nowoczesny design, responsywna. <span class="text-white font-medium">5-7 dni. 2,500 PLN.</span></p>
+                            <p class="text-gray-400">Wyślij logo i teksty. Resztą się zajmę.</p>
+                            <p class="text-gray-500">Darek</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykład 2: Social Media -->
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="bg-purple-500/10 border-b border-purple-500/20 px-5 py-3 flex items-center gap-2">
+                    <span class="text-purple-400 text-lg">📣</span>
+                    <span class="text-purple-300 text-sm font-semibold">Rozdział 5: Posty na tydzień</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Ty piszesz:</div>
+                        <div class="bg-white/5 rounded-lg px-4 py-3 font-mono text-sm text-gray-300">
+                            <span class="text-purple-300">POSTY:</span> Temat: automatyzacja w małej firmie. 5 postów LinkedIn.
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Claude daje 5 gotowych:</div>
+                        <div class="space-y-2">
+                            <div class="bg-purple-500/5 border border-purple-500/10 rounded-lg px-4 py-2.5 text-sm">
+                                <span class="text-purple-300 text-xs">PN:</span> <span class="text-gray-400">"Wiesz co mnie wkurzało? Że robiłem to samo co wczoraj..."</span>
+                            </div>
+                            <div class="bg-purple-500/5 border border-purple-500/10 rounded-lg px-4 py-2.5 text-sm">
+                                <span class="text-purple-300 text-xs">WT:</span> <span class="text-gray-400">"3 rzeczy które zautomatyzowałem w tym miesiącu..."</span>
+                            </div>
+                            <div class="bg-purple-500/5 border border-purple-500/10 rounded-lg px-4 py-2.5 text-sm">
+                                <span class="text-purple-300 text-xs">ŚR:</span> <span class="text-gray-400">"Wszyscy mówią: zacznij od CRM. Ja mówię: zacznij od..."</span>
+                            </div>
+                            <div class="text-gray-600 text-xs text-center">+ czwartek i piątek</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykład 3: Obsługa klienta -->
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="bg-emerald-500/10 border-b border-emerald-500/20 px-5 py-3 flex items-center gap-2">
+                    <span class="text-emerald-400 text-lg">💬</span>
+                    <span class="text-emerald-300 text-sm font-semibold">Rozdział 6: Obsługa klienta</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Klient pisze:</div>
+                        <div class="bg-white/5 rounded-lg px-4 py-3 text-sm text-gray-300 italic">
+                            "Ile kosztuje u Was strona? I jak szybko mogę ją mieć?"
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Asystent (w Twoim stylu):</div>
+                        <div class="bg-emerald-500/5 border border-emerald-500/10 rounded-lg px-4 py-3 text-sm text-gray-300 space-y-2">
+                            <p>Hej!</p>
+                            <p class="text-gray-400">Strona od <span class="text-white">1,500 PLN</span>. Gotowa w <span class="text-white">2-5 dni</span> zależnie od zakresu.</p>
+                            <p class="text-gray-400">Napisz czego potrzebujesz - wycenię konkretnie.</p>
+                            <p class="text-gray-500">Darek</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykład 4: Styl.md -->
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="bg-rose-500/10 border-b border-rose-500/20 px-5 py-3 flex items-center gap-2">
+                    <span class="text-rose-400 text-lg">🎨</span>
+                    <span class="text-rose-300 text-sm font-semibold">Rozdział 2: Twój plik styl.md</span>
+                </div>
+                <div class="p-5">
+                    <div class="text-xs text-gray-500 mb-3 uppercase tracking-wider">Tak wygląda Twój dokument stylu:</div>
+                    <div class="bg-white/5 rounded-lg px-4 py-3 font-mono text-xs text-gray-400 space-y-1">
+                        <p><span class="text-rose-300">Ton:</span> Luźny, jak do kumpla</p>
+                        <p><span class="text-rose-300">Zdania:</span> Krótkie, 1-2 linijki</p>
+                        <p><span class="text-rose-300">Powitanie:</span> "Hej" - nigdy "Szanowny Panie"</p>
+                        <p><span class="text-rose-300">Unikam:</span> Marketingowego bełkotu</p>
+                        <p><span class="text-rose-300">Podpis:</span> "Darek" w mailach</p>
+                        <p class="pt-2 border-t border-white/5 mt-2"><span class="text-rose-300">Moje prawdziwe maile:</span></p>
+                        <p class="text-gray-500">[3-5 wiadomości które wysłałeś]</p>
+                    </div>
+                    <div class="mt-3 text-xs text-gray-500 flex items-center gap-2">
+                        <span class="text-rose-400">*</span> To klucz. Claude uczy się pisać JAK TY.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="max-w-3xl mx-auto px-6 py-16">
+        <div class="glass-card rounded-3xl p-8 md:p-12">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Znasz to?</h2>
+            <div class="space-y-5 text-lg text-gray-400">
+                <p>Siedzisz nad mailem do klienta <span class="text-white">20 minut</span>. Potem piszesz ofertę od zera. Potem wymyślasz post na LinkedIn. Potem odpowiadasz na te same pytania co wczoraj.</p>
+                <p><span class="text-white">8 godzin minęło.</span> A firma nie ruszyła do przodu ani o krok.</p>
+                <div class="bg-brand-primary/5 border border-brand-primary/20 rounded-xl p-5 my-6">
+                    <p class="text-white font-medium text-lg">Co gdybyś miał kogoś, kto robi to za Ciebie?<br>W Twoim stylu? Z Twoimi cenami? Bez zmyślania?</p>
+                </div>
+                <p>Nie bota. Nie kolejną appkę za 99$/mies.<br>Asystenta który <span class="text-brand-light font-semibold">ZNA Twoją firmę</span>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CO DOSTANIESZ - ROZDZIAŁY -->
+    <section class="max-w-4xl mx-auto px-6 py-16 section-glow">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Co jest w środku</h2>
+            <p class="text-gray-400 text-lg">7 rozdziałów + bonus. Sobota + niedziela.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-300 font-mono font-bold text-sm shrink-0">01</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Dlaczego Claude</h3>
+                    <p class="text-gray-500 text-sm">Claude vs ChatGPT. Projekty. Ścieżka rozwoju (5 poziomów).</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-300 font-mono font-bold text-sm shrink-0">02</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Naucz AI kim jesteś</h3>
+                    <p class="text-gray-500 text-sm">4 dokumenty: profil, persona, oferta, styl. Gotowe szablony.</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-300 font-mono font-bold text-sm shrink-0">03</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Pierwszy test</h3>
+                    <p class="text-gray-500 text-sm">5 scenariuszy testowych. System poprawek. Feedback loop.</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-300 font-mono font-bold text-sm shrink-0">04</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Oferty i wyceny</h3>
+                    <p class="text-gray-500 text-sm">Szablon briefu. 3 warianty. Follow-upy. 2 min zamiast 1h.</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-300 font-mono font-bold text-sm shrink-0">05</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Social media</h3>
+                    <p class="text-gray-500 text-sm">1 temat → 5 postów. Hooki. 4 platformy. 30 min na tydzień.</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-300 font-mono font-bold text-sm shrink-0">06</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Obsługa klienta</h3>
+                    <p class="text-gray-500 text-sm">FAQ, kwalifikacja, szablony sytuacyjne, follow-upy.</p>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-300 font-mono font-bold text-sm shrink-0">07</div>
+                <div>
+                    <h3 class="font-semibold mb-1">Automatyzacja</h3>
+                    <p class="text-gray-500 text-sm">Rutyna poranna. Claude Code. AI First. Twój techniczny wspólnik.</p>
+                </div>
+            </div>
+            <div class="rounded-xl p-5 flex items-start gap-4 bg-gradient-to-r from-brand-primary/10 to-amber-500/10 border border-brand-primary/30">
+                <div class="w-10 h-10 rounded-lg bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center text-brand-light text-lg shrink-0">★</div>
+                <div>
+                    <h3 class="font-semibold mb-1 text-brand-light">Bonus: 5 asystentów AI</h3>
+                    <p class="text-gray-400 text-sm">Mój pełny setup. Jak wygląda mój dzień. Krok po kroku.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ŚCIEŻKA ROZWOJU -->
+    <section class="max-w-4xl mx-auto px-6 py-16">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Ścieżka rozwoju</h2>
+            <p class="text-gray-400 text-lg">Zaczniesz od poziomu 1. Dojdziesz tak daleko jak chcesz.</p>
+        </div>
+
+        <div class="relative">
+            <!-- Connection line -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand-primary/50 via-purple-500/50 to-blue-500/50 hidden md:block"></div>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-brand-primary/20 border-2 border-brand-primary flex items-center justify-center font-bold text-brand-light shrink-0">1</div>
+                    <div class="glass-card rounded-xl p-4 flex-1">
+                        <div class="font-semibold">Projekt z wiedzą o firmie</div>
+                        <div class="text-gray-500 text-sm">To stawiamy w weekend. Maile, oferty, posty.</div>
+                        <div class="text-xs text-brand-light mt-1 font-medium">← JESTEŚ TUTAJ</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 border-2 border-amber-500/40 flex items-center justify-center font-bold text-amber-300 shrink-0">2</div>
+                    <div class="glass-card rounded-xl p-4 flex-1">
+                        <div class="font-semibold">Wiele projektów</div>
+                        <div class="text-gray-500 text-sm">Osobny projekt na klienta, social, sprzedaż.</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-purple-500/20 border-2 border-purple-500/40 flex items-center justify-center font-bold text-purple-300 shrink-0">3</div>
+                    <div class="glass-card rounded-xl p-4 flex-1">
+                        <div class="font-semibold">Skille (umiejętności)</div>
+                        <div class="text-gray-500 text-sm">Uczysz Claude'a nowych supemocy.</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/20 border-2 border-blue-500/40 flex items-center justify-center font-bold text-blue-300 shrink-0">4</div>
+                    <div class="glass-card rounded-xl p-4 flex-1">
+                        <div class="font-semibold">Claude Code</div>
+                        <div class="text-gray-500 text-sm">Automatyzuje procesy, buduje systemy. Na Twoim komputerze.</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-cyan-500/20 border-2 border-cyan-500/40 flex items-center justify-center font-bold text-cyan-300 shrink-0">5</div>
+                    <div class="glass-card rounded-xl p-4 flex-1">
+                        <div class="font-semibold">Zespół asystentów</div>
+                        <div class="text-gray-500 text-sm">5 specjalistów AI. Koordynuje ich jeden główny.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DLA KOGO -->
+    <section class="max-w-3xl mx-auto px-6 py-16">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Dla kogo to jest</h2>
+
+        <div class="space-y-4">
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <span class="text-2xl">👨‍💼</span>
+                <div>
+                    <div class="font-semibold">Freelancerzy i jednoosobowe firmy</div>
+                    <div class="text-gray-500 text-sm">Którzy robią wszystko sami i nie mają czasu na rozwój.</div>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <span class="text-2xl">🏢</span>
+                <div>
+                    <div class="font-semibold">Właściciele małych firm (3-8 osób)</div>
+                    <div class="text-gray-500 text-sm">Księgowi, coachowie, prawnicy, fizjoterapeuci, architekci.</div>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <span class="text-2xl">🤔</span>
+                <div>
+                    <div class="font-semibold">Próbowałeś ChatGPT i "nie zadziałało"</div>
+                    <div class="text-gray-500 text-sm">Bo brakowało systemu. Nie narzędzia.</div>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                <span class="text-2xl">🙅</span>
+                <div>
+                    <div class="font-semibold">Nie-technicy którzy chcą AI bez kodowania</div>
+                    <div class="text-gray-500 text-sm">Jeśli umiesz wysłać maila - poradzisz sobie z tym.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 p-6 rounded-xl bg-red-500/5 border border-red-500/20">
+            <h3 class="font-semibold text-red-400 mb-3">To NIE jest dla Ciebie jeśli:</h3>
+            <div class="space-y-2 text-gray-500 text-sm">
+                <p>&#10007; Szukasz magicznego przycisku "zarabiaj bez pracy"</p>
+                <p>&#10007; Nie masz 2 godzin w weekend żeby to postawić</p>
+                <p>&#10007; Prowadzisz korporację z działem IT</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTOR -->
+    <section class="max-w-3xl mx-auto px-6 py-16">
+        <div class="glass-card rounded-3xl p-8 md:p-12">
+            <div class="flex items-start gap-5 mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary/30 to-amber-500/20 flex items-center justify-center text-2xl font-bold text-brand-light shrink-0">D</div>
+                <div>
+                    <h2 class="font-display text-2xl font-bold">Darek</h2>
+                    <p class="text-gray-500">45 lat &middot; Freelancer &middot; Marketing AI &middot; Gdańsk</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-gray-400">
+                <p>8 lat w marketingu. Prowadzę projekty dla ośrodka terapii uzależnień - CRM, rezerwacje, platforma edukacyjna, social media, newsletter. Wszystko budowane z AI.</p>
+                <p>W tym tygodniu połączyłem CRM klienta z systemem rezerwacji i GetResponse. <span class="text-white">5 kroków automatycznie. 2 dni roboty z Claude Code.</span></p>
+                <p class="text-white font-medium">Nie jestem programistą. Jestem marketerem który nauczył się używać AI jako wspólnika.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EFEKTY -->
+    <section class="max-w-4xl mx-auto px-6 py-16 section-glow">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Po weekendzie masz</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200">Asystenta który pisze maile <span class="text-brand-light">w Twoim stylu</span></span>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200">Oferty w <span class="text-brand-light">2 minuty</span> zamiast godziny</span>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200">Tydzień postów w <span class="text-brand-light">30 minut</span></span>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200">Follow-upy. <span class="text-brand-light">Koniec</span> traconych kontaktów</span>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200">Rutyna poranna: <span class="text-brand-light">15 min</span> i inbox czysty</span>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg">✓</div>
+                <span class="text-gray-200"><span class="text-brand-light">10-15 godzin</span> tygodniowo z powrotem</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / CENA -->
+    <section id="kup" class="max-w-2xl mx-auto px-6 py-16">
+        <div class="relative rounded-3xl overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-primary/10 to-transparent"></div>
+            <div class="relative glass-card rounded-3xl p-8 md:p-12 text-center border-brand-primary/30">
+                <div class="inline-flex items-center gap-2 bg-brand-primary/10 border border-brand-primary/20 rounded-full px-4 py-1.5 text-sm text-brand-light mb-6">
+                    Instrukcja "Asystent AI"
+                </div>
+                <div class="text-6xl font-bold mb-2">197 <span class="text-2xl text-gray-400">PLN</span></div>
+                <p class="text-gray-500 mb-10">Jednorazowo. Dostęp od razu. Notion.</p>
+
+                <div class="space-y-3 text-left max-w-sm mx-auto mb-10">
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>7 rozdziałów krok po kroku</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>Gotowe szablony i prompty do skopiowania</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>Bonus: Mój setup 5 asystentów AI</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>Przykłady z prawdziwych projektów</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>Ścieżka rozwoju do Claude Code</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-200">
+                        <span class="text-brand-primary text-lg">✓</span>
+                        <span>Aktualizacje (Notion = zawsze najnowsza wersja)</span>
+                    </div>
+                </div>
+
+                <a href="https://buy.stripe.com/dRm9ASbvMeuGc3marA1kA0v" class="glow-btn inline-block bg-brand-primary hover:bg-brand-secondary text-white font-bold px-12 py-5 rounded-xl text-xl w-full md:w-auto">
+                    Kupuję &rarr;
+                </a>
+
+                <p class="text-gray-600 text-xs mt-6">Płatność przez Stripe. Faktura VAT na życzenie.</p>
+            </div>
+        </div>
+
+        <!-- BONUS: WARSZTATY -->
+        <div class="mt-8 glass-card rounded-2xl p-6 md:p-8 border-emerald-500/20 bg-gradient-to-r from-emerald-500/5 to-transparent">
+            <div class="flex items-start gap-4">
+                <div class="text-3xl shrink-0">🎁</div>
+                <div>
+                    <h3 class="font-bold text-lg text-emerald-300 mb-2">Bonus: Instrukcja = zniżka na warsztaty</h3>
+                    <p class="text-gray-300 mb-3">Prowadzę warsztaty AI na żywo w Sopocie (małe grupy, 6-8 osób). Normalna cena: <span class="text-white font-semibold">500 PLN</span>.</p>
+                    <p class="text-gray-300 mb-3">Jeśli kupisz tę instrukcję, a potem zdecydujesz się na warsztat - <span class="text-white font-semibold">odliczam Ci 197 PLN od ceny</span>. Czyli warsztat za <span class="text-emerald-300 font-bold">~300 PLN</span> zamiast 500.</p>
+                    <p class="text-gray-500 text-sm">Krótko: nic nie tracisz. Albo korzystasz z instrukcji sam, albo przychodzisz na warsztat z rabatem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NIE JESTEŚ ZDECYDOWANY -->
+    <section class="max-w-2xl mx-auto px-6 py-16">
+        <div class="text-center mb-8">
+            <p class="text-lg text-gray-400 mb-2">Jeżeli dalej nie jesteś zdecydowany, po prostu napisz do mnie.</p>
+            <p class="text-gray-500">Pogadamy o tym, czy to ma sens dla Twojego biznesu.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="https://www.linkedin.com/in/dariuszszuca/" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 bg-[#0A66C2]/10 border border-[#0A66C2]/30 rounded-xl text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Napisz na LinkedIn
+            </a>
+            <a href="mailto:darek@ai-team.pl" class="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-gray-300 hover:bg-white/10 transition-all font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                darek@ai-team.pl
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-3xl mx-auto px-6 py-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-12 text-center">Pytania</h2>
+
+        <div class="space-y-4">
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="font-semibold mb-2">Czy muszę umieć programować?</h3>
+                <p class="text-gray-500 text-sm">Nie. Jeśli umiesz wysłać maila - poradzisz sobie. Wszystko krok po kroku, bez żargonu.</p>
+            </div>
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="font-semibold mb-2">Czy Claude jest darmowy?</h3>
+                <p class="text-gray-500 text-sm">Jest darmowa wersja na start. Gdy zaczniesz na poważnie - Pro za 18 euro/mies wystarczy.</p>
+            </div>
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="font-semibold mb-2">Ile czasu potrzebuję na wdrożenie?</h3>
+                <p class="text-gray-500 text-sm">Weekend. Sobota: fundament + testy. Niedziela: rozbudowa. Po weekendzie masz system.</p>
+            </div>
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="font-semibold mb-2">Czym to się różni od "promptów" z internetu?</h3>
+                <p class="text-gray-500 text-sm">To nie prompty. To kompletny SYSTEM - od struktury, przez szablony, po automatyzację. Asystent który zna TWOJĄ firmę.</p>
+            </div>
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="font-semibold mb-2">W jakim formacie to dostaję?</h3>
+                <p class="text-gray-500 text-sm">Strona Notion z pełnym dostępem. Zawsze aktualna. Czytasz na telefonie lub komputerze.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="max-w-3xl mx-auto px-6 py-16 text-center">
+        <p class="text-gray-500 text-xl mb-2">82% przedsiębiorców wie że AI mogłoby pomóc.</p>
+        <p class="text-gray-500 text-xl mb-8">6% faktycznie tego używa.</p>
+        <p class="text-3xl font-bold mb-10 gradient-text">Wejdź do tych 6%.</p>
+        <a href="https://buy.stripe.com/dRm9ASbvMeuGc3marA1kA0v" class="glow-btn inline-block bg-brand-primary hover:bg-brand-secondary text-white font-bold px-12 py-5 rounded-xl text-xl">
+            Chcę to mieć &rarr;
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-12 text-center">
+        <p class="text-gray-600 text-sm">ai-team.pl &middot; Darek &middot; Gdańsk 2026</p>
+        <a href="index.html" class="text-gray-600 text-sm hover:text-brand-light mt-2 inline-block">Strona główna</a>
+    </footer>
+
+</body>
+</html>
