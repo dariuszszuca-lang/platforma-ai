@@ -3501,8 +3501,29 @@
             }
         });
 
-        // Prompt Generator - AI Powered
+        // Prompt Generator - AI Powered with Payments
         const DAILY_FREE_LIMIT = 3;
+
+        function getLicense() {
+            const stored = localStorage.getItem('promptGenLicense');
+            if (!stored) return null;
+            return JSON.parse(stored);
+        }
+
+        function hasPaidAccess() {
+            const license = getLicense();
+            if (!license) return false;
+            // Pro = unlimited (-1), Starter = check credits
+            if (license.credits === -1) return true;
+            return license.credits > 0;
+        }
+
+        function useCredit() {
+            const license = getLicense();
+            if (!license || license.credits === -1) return; // Pro = unlimited
+            license.credits -= 1;
+            localStorage.setItem('promptGenLicense', JSON.stringify(license));
+        }
 
         function getGenerationsToday() {
             const stored = localStorage.getItem('promptGenUsage');
@@ -3522,8 +3543,39 @@
         }
 
         function getRemainingGenerations() {
+            // Check paid first
+            const license = getLicense();
+            if (license) {
+                if (license.credits === -1) return '∞';
+                return license.credits;
+            }
+            // Free tier
             const usage = getGenerationsToday();
             return Math.max(0, DAILY_FREE_LIMIT - usage.count);
+        }
+
+        function canGenerate() {
+            if (hasPaidAccess()) return true;
+            const usage = getGenerationsToday();
+            return usage.count < DAILY_FREE_LIMIT;
+        }
+
+        async function buyPlan(plan) {
+            try {
+                const response = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan })
+                });
+
+                if (!response.ok) throw new Error('Checkout error');
+
+                const data = await response.json();
+                window.location.href = data.url;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Wystąpił błąd. Spróbuj ponownie.');
+            }
         }
 
         async function generatePrompt() {
@@ -3538,16 +3590,26 @@
                 return;
             }
 
-            // Check rate limit
-            const remaining = getRemainingGenerations();
-            if (remaining <= 0) {
+            // Check if can generate
+            if (!canGenerate()) {
                 resultDiv.classList.remove('hidden');
-                outputDiv.innerHTML = `<div class="text-center py-4">
-                    <p class="text-yellow-400 mb-2">Wykorzystałeś darmowy limit na dziś (${DAILY_FREE_LIMIT}/dzień)</p>
-                    <p class="text-gray-400 text-sm mb-4">Wróć jutro lub odblokuj nielimitowany dostęp</p>
-                    <a href="#contact" onclick="closeToolModal()" class="inline-block px-6 py-3 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition">
-                        Odblokuj pełną wersję →
-                    </a>
+                outputDiv.innerHTML = `<div class="text-center py-6">
+                    <p class="text-yellow-400 text-lg mb-2">Wykorzystałeś darmowy limit</p>
+                    <p class="text-gray-400 text-sm mb-6">Wybierz plan i generuj bez ograniczeń:</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="buyPlan('starter')" class="p-4 glass rounded-xl border border-white/10 hover:border-orange-500/50 transition text-left">
+                            <p class="font-bold text-white">Starter</p>
+                            <p class="text-2xl font-bold text-orange-400">19 PLN</p>
+                            <p class="text-xs text-gray-400">50 generacji</p>
+                        </button>
+                        <button onclick="buyPlan('pro')" class="p-4 glass rounded-xl border border-orange-500/50 hover:border-orange-500 transition text-left relative overflow-hidden">
+                            <span class="absolute top-1 right-1 text-[10px] bg-orange-500 text-black px-2 py-0.5 rounded-full font-bold">POPULAR</span>
+                            <p class="font-bold text-white">Pro</p>
+                            <p class="text-2xl font-bold text-orange-400">29 PLN<span class="text-sm text-gray-400">/mies</span></p>
+                            <p class="text-xs text-gray-400">Bez limitu</p>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-4">Płatność przez Stripe • BLIK • Karta</p>
                 </div>`;
                 return;
             }
@@ -3574,17 +3636,28 @@
 
                 const data = await response.json();
 
-                // Increment usage
-                incrementGenerations();
-                const newRemaining = getRemainingGenerations();
+                // Use credit or increment free usage
+                if (hasPaidAccess()) {
+                    useCredit();
+                } else {
+                    incrementGenerations();
+                }
 
+                const remaining = getRemainingGenerations();
                 outputDiv.textContent = data.prompt;
                 resultDiv.classList.remove('hidden');
 
                 // Show remaining
                 const remainingInfo = document.getElementById('prompt-remaining-info');
                 if (remainingInfo) {
-                    remainingInfo.textContent = `Pozostało ${newRemaining}/${DAILY_FREE_LIMIT} darmowych generacji dziś`;
+                    const license = getLicense();
+                    if (license && license.credits === -1) {
+                        remainingInfo.innerHTML = '<span class="text-green-400">Plan Pro</span> • Bez limitu';
+                    } else if (license) {
+                        remainingInfo.textContent = `Pozostało ${remaining} generacji (Starter)`;
+                    } else {
+                        remainingInfo.textContent = `Pozostało ${remaining}/${DAILY_FREE_LIMIT} darmowych dziś`;
+                    }
                 }
 
             } catch (error) {
