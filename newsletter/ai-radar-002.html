@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI RADAR #2 - Newsletter o AI dla Twojego biznesu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            padding: 5px 0;
+            color: #1e3a5f;
+            font-size: 15px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1e3a5f;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .news-item {
+            margin-bottom: 25px;
+        }
+
+        .news-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-item h3 {
+            color: #1e3a5f;
+        }
+
+        .tool-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #1e3a5f;
+        }
+
+        .tool-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .tool-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .meta-item {
+            font-size: 14px;
+        }
+
+        .meta-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .prompt-box {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .tip-box {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .tip-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1e3a5f;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .automation-steps {
+            counter-reset: step;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .automation-steps li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 12px;
+        }
+
+        .automation-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 28px;
+            height: 28px;
+            background: #e8f0f8;
+            color: #1e3a5f;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .case-study {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f0f8 100%);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .case-study h3 {
+            color: #1e3a5f;
+            font-size: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #1e3a5f;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .resources-list {
+            list-style: none;
+        }
+
+        .resources-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .resources-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .resource-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .resource-link {
+            font-size: 13px;
+            color: #1e3a5f;
+        }
+
+        .qa-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .qa-question {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .events-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .event-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .event-title {
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 8px;
+        }
+
+        .event-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .event-link {
+            font-size: 13px;
+            color: #1e3a5f;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer-name {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .footer-site {
+            color: #1e3a5f;
+            font-size: 14px;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        a {
+            color: #1e3a5f;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI RADAR</h1>
+            <p>Newsletter o AI dla Twojego biznesu | Wydanie #2 | Styczen 2026</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <p>Czesc!</p>
+                <p>Nowy rok, nowe mozliwosci. W tym wydaniu: przelomowe zmiany u Anthropic, narzedzie ktore samo wykonuje zadania, i moj wlasny projekt SaaS - od pomyslu do dzialajacej aplikacji.</p>
+
+                <div class="toc">
+                    <h3>W tym wydaniu</h3>
+                    <ul>
+                        <li>Anthropic Cowork - programowanie bez programowania</li>
+                        <li>Zapier Agents - automatyzacje ktore mysla</li>
+                        <li>Prompt do analizy konkurencji</li>
+                        <li>Case study: jak zbudowalem Subtracker w 2 tygodnie</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GORACE NEWSY -->
+            <div class="section">
+                <div class="section-title">Gorace Newsy</div>
+
+                <div class="news-item">
+                    <h3>1. Anthropic uruchomil Cowork (12 stycznia)</h3>
+                    <p>Rewolucja dla osob nietechnicznych. Cowork to Claude Code dla zwyklych uzytkownikow - AI ktory sam pisze kod, tworzy pliki, buduje aplikacje. Mowisz co chcesz, on wykonuje. Bez znajomosci programowania mozesz teraz tworzyc wlasne narzedzia.</p>
+                    <p>Dostepne dla subskrybentow Claude Pro ($20/mies).</p>
+                </div>
+
+                <div class="news-item">
+                    <h3>2. Claude Opus 4.5 - nowy lider rankingow</h3>
+                    <p>Najnowszy model Anthropic przeskoczyl GPT-5.2 w wiekszosci benchmarkow. Szczegolnie silny w rozumowaniu, analizie dokumentow i pisaniu kodu. Jesli jeszcze korzystasz tylko z ChatGPT - czas przetestowac alternatywe.</p>
+                </div>
+
+                <div class="news-item">
+                    <h3>3. Gemini 3 z generatywnym UI</h3>
+                    <p>Google pokazal cos nowego: AI ktory nie tylko odpowiada tekstem, ale generuje interaktywne interfejsy. Pytasz o wykres sprzedazy - dostajesz klikalne wizualizacje. Na razie w fazie testow, ale kierunek ciekawy.</p>
+                </div>
+            </div>
+
+            <!-- NARZEDZIE TYGODNIA -->
+            <div class="section">
+                <div class="section-title">Narzedzie Tygodnia</div>
+
+                <div class="tool-box">
+                    <h3>Zapier Agents</h3>
+                    <p><strong>Co to robi:</strong> Autonomiczne automatyzacje ktore same podejmuja decyzje i wykonuja wieloetapowe zadania.</p>
+                    <p><strong>Dla kogo:</strong> Wlasciciele malych firm ktorzy chca zautomatyzowac powtarzalne procesy bez zatrudniania asystenta.</p>
+
+                    <p style="margin-top: 15px;"><strong>Jak to dziala:</strong></p>
+                    <ol class="automation-steps">
+                        <li>Opisujesz zadanie slowami (np. "Gdy klient zamowi produkt, sprawdz stan magazynu, jesli malo - zamow u dostawcy")</li>
+                        <li>Agent sam laczy aplikacje i wykonuje kroki</li>
+                        <li>Uczy sie z Twoich poprawek</li>
+                    </ol>
+
+                    <div class="tool-meta">
+                        <div class="meta-item"><span class="meta-label">Cena:</span> od $69/mies</div>
+                        <div class="meta-item"><span class="meta-label">Ocena:</span> 7/10</div>
+                        <div class="meta-item"><span class="meta-label">Link:</span> zapier.com/agents</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT DNIA -->
+            <div class="section">
+                <div class="section-title">Prompt Dnia</div>
+
+                <h3>Analiza konkurencji</h3>
+                <p>Skopiuj do ChatGPT lub Claude:</p>
+
+                <div class="prompt-box">Jestes analitykiem biznesowym specjalizujacym sie w analizie konkurencji.
+
+Przeprowadz analize konkurencji dla:
+- Moja firma: [NAZWA I KROTKI OPIS]
+- Branza: [TWOJA BRANZA]
+- Glowni konkurenci: [WYMIEN 2-3 KONKURENTOW]
+
+Analiza powinna zawierac:
+
+1. POZYCJONOWANIE
+Jak kazdy konkurent sie pozycjonuje?
+
+2. MOCNE STRONY
+Co robia dobrze? Czego moge sie nauczyc?
+
+3. SLABE STRONY
+Gdzie maja luki? Gdzie moge byc lepszy?
+
+4. CENNIK
+Jak sie pozycjonuja cenowo?
+
+5. KOMUNIKACJA
+Jaki ton glosu? Gdzie sa aktywni online?
+
+6. REKOMENDACJE
+3 konkretne dzialania do wdrozenia.
+
+Badz konkretny. Unikaj ogolnikow.</div>
+
+                <p style="margin-top: 15px;"><strong>Tip:</strong> Przed uzyciem przejrzyj strony konkurentow i wklej fragmenty ich ofert jako kontekst.</p>
+            </div>
+
+            <!-- 3 SZYBKIE TIPY -->
+            <div class="section">
+                <div class="section-title">3 Szybkie Tipy</div>
+
+                <div class="tip-box">
+                    <span class="tip-number">1</span>
+                    <span class="tip-title">Uzywaj Claude do dlugich dokumentow</span>
+                    <p style="margin-top: 8px; margin-bottom: 0;">ChatGPT ma limit kontekstu ok. 128k tokenow, Claude - 200k. Jesli analizujesz dlugie umowy czy raporty - Claude lepiej zachowa spojnosc.</p>
+                </div>
+
+                <div class="tip-box">
+                    <span class="tip-number">2</span>
+                    <span class="tip-title">Eksportuj historie rozmow</span>
+                    <p style="margin-top: 8px; margin-bottom: 0;">Rob to regularnie - masz backup cennych promptow. W ChatGPT: Ustawienia > Dane > Eksportuj dane.</p>
+                </div>
+
+                <div class="tip-box">
+                    <span class="tip-number">3</span>
+                    <span class="tip-title">Testuj te same prompty w roznych modelach</span>
+                    <p style="margin-top: 8px; margin-bottom: 0;">Jeden model moze zle zrozumiec polecenie, inny zrozumie idealnie. Zamiast godzine poprawiac prompt - sprobuj w konkurencyjnym narzedziu.</p>
+                </div>
+            </div>
+
+            <!-- AUTOMATYZACJA TYGODNIA -->
+            <div class="section">
+                <div class="section-title">Automatyzacja Tygodnia</div>
+
+                <h3>Inteligentna segregacja maili</h3>
+
+                <p><strong>Problem:</strong> Skrzynka peka w szwach. Wazne maile tona miedzy newsletterami. Tracisz czas na sortowanie.</p>
+
+                <p style="margin-top: 15px;"><strong>Rozwiazanie (Make.com + AI):</strong></p>
+
+                <ol class="automation-steps">
+                    <li><strong>Trigger:</strong> Nowy mail w Gmail</li>
+                    <li><strong>Action 1:</strong> Wyslij tresc do Claude API: "Sklasyfikuj: PILNE / KLIENT / NEWSLETTER / SPAM"</li>
+                    <li><strong>Action 2:</strong> Automatycznie przeniesc do odpowiedniego folderu</li>
+                    <li><strong>Action 3:</strong> Jesli PILNE - wyslij powiadomienie na telefon</li>
+                </ol>
+
+                <div class="tool-meta">
+                    <div class="meta-item"><span class="meta-label">Efekt:</span> Zero rozpraszaczy w skrzynce</div>
+                    <div class="meta-item"><span class="meta-label">Koszt:</span> ~$2-5/mies</div>
+                    <div class="meta-item"><span class="meta-label">Setup:</span> 30 minut</div>
+                </div>
+            </div>
+
+            <!-- CASE STUDY -->
+            <div class="section">
+                <div class="section-title">Z Warsztatu Darka</div>
+
+                <div class="case-study">
+                    <h3>Case Study: Subtracker</h3>
+                    <p>Przez ostatnie 2 tygodnie zbudowalem wlasna aplikacje SaaS do sledzenia subskrypcji.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">40h</div>
+                            <div class="stat-label">Czas pracy</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">$20</div>
+                            <div class="stat-label">Calkowity koszt</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3000</div>
+                            <div class="stat-label">Linii kodu</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">80%</div>
+                            <div class="stat-label">Napisane przez AI</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Co sie nauczylem:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>AI radzi sobie z 80% kodu, ale ostatnie 20% wymaga ludzkiego debugowania</li>
+                        <li>Dokumentacja to podstawa - AI nie zgadnie czego chcesz</li>
+                        <li>MVP > perfekcja - lepiej wypuscic cos dzialajacego niz polerowac w nieskonczonosc</li>
+                    </ul>
+
+                    <a href="https://subtracker.app" class="cta-button">Sprawdz Subtracker</a>
+                </div>
+            </div>
+
+            <!-- WARTO PRZECZYTAC -->
+            <div class="section">
+                <div class="section-title">Warto Przeczytac</div>
+
+                <ul class="resources-list">
+                    <li>
+                        <div class="resource-title">"State of AI 2026" - raport</div>
+                        <div class="resource-desc">Coroczne podsumowanie branzy AI. Trendy, liczby, prognozy.</div>
+                    </li>
+                    <li>
+                        <div class="resource-title">Dokumentacja Claude - prompting guide</div>
+                        <div class="resource-desc">Oficjalny poradnik jak pisac skuteczne prompty.</div>
+                        <div class="resource-link">docs.anthropic.com/claude/docs/prompt-engineering</div>
+                    </li>
+                    <li>
+                        <div class="resource-title">"Building AI Products" - newsletter Lennyego</div>
+                        <div class="resource-desc">Praktyczne porady jak budowac produkty z AI.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Q&A -->
+            <div class="section">
+                <div class="section-title">Q&A</div>
+
+                <div class="qa-box">
+                    <div class="qa-question">"Czy warto placic $20/mies za Claude Pro skoro jest darmowy ChatGPT?"</div>
+
+                    <p><strong>Darmowy ChatGPT wystarczy do:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Prostych pytan i odpowiedzi</li>
+                        <li>Krotkich tekstow</li>
+                        <li>Okazjonalnego uzycia</li>
+                    </ul>
+
+                    <p><strong>Claude Pro warto gdy:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Pracujesz z dlugimi dokumentami</li>
+                        <li>Potrzebujesz konsystentnej jakosci</li>
+                        <li>Uzywasz AI codziennie do pracy</li>
+                        <li>Chcesz dostep do najnowszych funkcji</li>
+                    </ul>
+
+                    <p><strong>Moja zasada:</strong> jesli AI oszczedza Ci wiecej niz 2h miesiecznie - subskrypcja sie zwraca.</p>
+                </div>
+            </div>
+
+            <!-- CO U NAS -->
+            <div class="section" style="border-bottom: none;">
+                <div class="section-title">Co U Nas</div>
+
+                <div class="events-grid">
+                    <div class="event-item">
+                        <div class="event-title">Poranek z AI - darmowe spotkanie</div>
+                        <div class="event-desc">90 minut praktycznej wiedzy o AI. Sopot, mala grupa.</div>
+                        <div class="event-link">ai-team.pl/poranek-z-ai.html</div>
+                    </div>
+
+                    <div class="event-item">
+                        <div class="event-title">Warsztaty AI dla firm</div>
+                        <div class="event-desc">Stacjonarnie w Sopocie lub online. Wdrazamy narzedzia na Twoim biznesie.</div>
+                        <div class="event-link">ai-team.pl/warsztaty</div>
+                    </div>
+
+                    <div class="event-item">
+                        <div class="event-title">Blog - nowe artykuly</div>
+                        <div class="event-desc">Praktyczne poradniki bez technicznego zargonu.</div>
+                        <div class="event-link">ai-team.pl/blog</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-name">Darek</div>
+            <div class="footer-site">AI-Team.pl</div>
+            <div class="footer-note">Jesli ten newsletter byl przydatny - przeslij go komus kto tez szuka praktycznej wiedzy o AI.</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+=====================================================
+AI RADAR #2 - BLOKI DO MAILERLITE
+=====================================================
+
+INSTRUKCJA:
+1. W MailerLite: Campaigns > Create campaign
+2. Wybierz: Drag & drop editor
+3. Dodawaj bloki "Text" i wklejaj poniższe sekcje
+4. Kolory: granatowy #1e3a5f, szary #666666
+5. Font: dowolny bezszeryfowy (Arial, Helvetica)
+
+=====================================================
+BLOK 1: NAGŁÓWEK (użyj bloku "Header" lub "Text")
+=====================================================
+
+AI RADAR
+Newsletter o AI dla Twojego biznesu | Wydanie #2 | Styczeń 2026
+
+[Tło: granatowe #1e3a5f, tekst biały, wycentrowany]
+
+=====================================================
+BLOK 2: WSTĘP
+=====================================================
+
+Cześć!
+
+Nowy rok, nowe możliwości. W tym wydaniu: przełomowe zmiany u Anthropic, narzędzie które samo wykonuje zadania, i mój własny projekt SaaS - od pomysłu do działającej aplikacji.
+
+W tym wydaniu:
+• Anthropic Cowork - programowanie bez programowania
+• Zapier Agents - automatyzacje które myślą
+• Prompt do analizy konkurencji
+• Case study: jak zbudowałem Subtracker w 2 tygodnie
+
+=====================================================
+BLOK 3: GORĄCE NEWSY (nagłówek + tekst)
+=====================================================
+
+GORĄCE NEWSY
+─────────────
+
+1. Anthropic uruchomił Cowork (12 stycznia)
+
+Rewolucja dla osób nietechnicznych. Cowork to Claude Code dla zwykłych użytkowników - AI który sam pisze kod, tworzy pliki, buduje aplikacje. Mówisz co chcesz, on wykonuje. Bez znajomości programowania możesz teraz tworzyć własne narzędzia.
+
+Dostępne dla subskrybentów Claude Pro ($20/mies).
+
+
+2. Claude Opus 4.5 - nowy lider rankingów
+
+Najnowszy model Anthropic przeskoczył GPT-5.2 w większości benchmarków. Szczególnie silny w rozumowaniu, analizie dokumentów i pisaniu kodu. Jeśli jeszcze korzystasz tylko z ChatGPT - czas przetestować alternatywę.
+
+
+3. Gemini 3 z generatywnym UI
+
+Google pokazał coś nowego: AI który nie tylko odpowiada tekstem, ale generuje interaktywne interfejsy. Pytasz o wykres sprzedaży - dostajesz klikalne wizualizacje. Na razie w fazie testów, ale kierunek ciekawy.
+
+=====================================================
+BLOK 4: NARZĘDZIE TYGODNIA (blok z tłem #f8f9fa)
+=====================================================
+
+NARZĘDZIE TYGODNIA
+─────────────
+
+Zapier Agents
+
+Co to robi: Autonomiczne automatyzacje które same podejmują decyzje i wykonują wieloetapowe zadania.
+
+Dla kogo: Właściciele małych firm którzy chcą zautomatyzować powtarzalne procesy bez zatrudniania asystenta.
+
+Jak to działa:
+1. Opisujesz zadanie słowami (np. "Gdy klient zamówi produkt, sprawdź stan magazynu, jeśli mało - zamów u dostawcy")
+2. Agent sam łączy aplikacje i wykonuje kroki
+3. Uczy się z Twoich poprawek
+
+Cena: od $69/mies
+Ocena: 7/10
+Link: zapier.com/agents
+
+=====================================================
+BLOK 5: PROMPT DNIA
+=====================================================
+
+PROMPT DNIA
+─────────────
+
+Analiza konkurencji
+
+Skopiuj do ChatGPT lub Claude:
+
+---
+
+Jesteś analitykiem biznesowym specjalizującym się w analizie konkurencji.
+
+Przeprowadź analizę konkurencji dla:
+- Moja firma: [NAZWA I KRÓTKI OPIS]
+- Branża: [TWOJA BRANŻA]
+- Główni konkurenci: [WYMIEŃ 2-3 KONKURENTÓW]
+
+Analiza powinna zawierać:
+
+1. POZYCJONOWANIE - Jak każdy konkurent się pozycjonuje?
+2. MOCNE STRONY - Co robią dobrze? Czego mogę się nauczyć?
+3. SŁABE STRONY - Gdzie mają luki? Gdzie mogę być lepszy?
+4. CENNIK - Jak się pozycjonują cenowo?
+5. KOMUNIKACJA - Jaki ton głosu? Gdzie są aktywni online?
+6. REKOMENDACJE - 3 konkretne działania do wdrożenia.
+
+Bądź konkretny. Unikaj ogólników.
+
+---
+
+Tip: Przed użyciem przejrzyj strony konkurentów i wklej fragmenty ich ofert jako kontekst.
+
+=====================================================
+BLOK 6: 3 SZYBKIE TIPY
+=====================================================
+
+3 SZYBKIE TIPY
+─────────────
+
+1. Używaj Claude do długich dokumentów
+ChatGPT ma limit kontekstu ok. 128k tokenów, Claude - 200k. Jeśli analizujesz długie umowy czy raporty - Claude lepiej zachowa spójność.
+
+2. Eksportuj historię rozmów
+Rób to regularnie - masz backup cennych promptów. W ChatGPT: Ustawienia > Dane > Eksportuj dane.
+
+3. Testuj te same prompty w różnych modelach
+Jeden model może źle zrozumieć polecenie, inny zrozumie idealnie. Zamiast godzinę poprawiać prompt - spróbuj w konkurencyjnym narzędziu.
+
+=====================================================
+BLOK 7: AUTOMATYZACJA TYGODNIA
+=====================================================
+
+AUTOMATYZACJA TYGODNIA
+─────────────
+
+Inteligentna segregacja maili
+
+Problem: Skrzynka pęka w szwach. Ważne maile toną między newsletterami. Tracisz czas na sortowanie.
+
+Rozwiązanie (Make.com + AI):
+
+1. Trigger: Nowy mail w Gmail
+2. Action 1: Wyślij treść do Claude API: "Sklasyfikuj: PILNE / KLIENT / NEWSLETTER / SPAM"
+3. Action 2: Automatycznie przenieś do odpowiedniego folderu
+4. Action 3: Jeśli PILNE - wyślij powiadomienie na telefon
+
+Efekt: Zero rozpraszaczy w skrzynce
+Koszt: ~$2-5/mies
+Setup: 30 minut
+
+=====================================================
+BLOK 8: CASE STUDY (blok z tłem #e8f0f8)
+=====================================================
+
+Z WARSZTATU DARKA
+─────────────
+
+Case Study: Subtracker
+
+Przez ostatnie 2 tygodnie zbudowałem własną aplikację SaaS do śledzenia subskrypcji.
+
+LICZBY:
+• Czas pracy: 40h
+• Całkowity koszt: $20
+• Linii kodu: 3000
+• Napisane przez AI: 80%
+
+Co się nauczyłem:
+• AI radzi sobie z 80% kodu, ale ostatnie 20% wymaga ludzkiego debugowania
+• Dokumentacja to podstawa - AI nie zgadnie czego chcesz
+• MVP > perfekcja - lepiej wypuścić coś działającego niż polerować w nieskończoność
+
+[BUTTON] Sprawdź Subtracker → https://subtracker.app
+
+=====================================================
+BLOK 9: WARTO PRZECZYTAĆ
+=====================================================
+
+WARTO PRZECZYTAĆ
+─────────────
+
+"State of AI 2026" - raport
+Coroczne podsumowanie branży AI. Trendy, liczby, prognozy.
+
+Dokumentacja Claude - prompting guide
+Oficjalny poradnik jak pisać skuteczne prompty.
+→ docs.anthropic.com/claude/docs/prompt-engineering
+
+"Building AI Products" - newsletter Lenny'ego
+Praktyczne porady jak budować produkty z AI.
+
+=====================================================
+BLOK 10: Q&A
+=====================================================
+
+Q&A
+─────────────
+
+"Czy warto płacić $20/mies za Claude Pro skoro jest darmowy ChatGPT?"
+
+Darmowy ChatGPT wystarczy do:
+• Prostych pytań i odpowiedzi
+• Krótkich tekstów
+• Okazjonalnego użycia
+
+Claude Pro warto gdy:
+• Pracujesz z długimi dokumentami
+• Potrzebujesz konsystentnej jakości
+• Używasz AI codziennie do pracy
+• Chcesz dostęp do najnowszych funkcji
+
+Moja zasada: jeśli AI oszczędza Ci więcej niż 2h miesięcznie - subskrypcja się zwraca.
+
+=====================================================
+BLOK 11: CO U NAS
+=====================================================
+
+CO U NAS
+─────────────
+
+Poranek z AI - darmowe spotkanie
+90 minut praktycznej wiedzy o AI. Sopot, mała grupa.
+→ ai-team.pl/poranek-z-ai.html
+
+Warsztaty AI dla firm
+Stacjonarnie w Sopocie lub online. Wdrażamy narzędzia na Twoim biznesie.
+→ ai-team.pl/warsztaty
+
+Blog - nowe artykuły
+Praktyczne poradniki bez technicznego żargonu.
+→ ai-team.pl/blog
+
+=====================================================
+BLOK 12: STOPKA (tło ciemne #1a1a1a, tekst biały)
+=====================================================
+
+Darek
+AI-Team.pl
+
+Jeśli ten newsletter był przydatny - prześlij go komuś kto też szuka praktycznej wiedzy o AI.
+
+=====================================================
+USTAWIENIA KAMPANII:
+=====================================================
+
+Nazwa kampanii: AI Radar #2 - Styczeń 2026
+Temat: AI Radar #2: Anthropic Cowork, Zapier Agents, Case Study Subtracker
+Od: Darek z AI-Team
+Email: darek@ai-team.pl
+Grupa: AI Radar
+
+=====================================================

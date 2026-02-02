@@ -149,24 +149,26 @@
                         <p class="text-gray-500 text-sm">Dostaniesz link do spotkania i przypomnienie</p>
                     </div>
 
-                    <!-- MailerLite Embedded Form -->
-                    <div class="ml-embedded" data-form="TWOJ_FORM_ID"></div>
-
-                    <!-- Fallback form jeśli MailerLite nie załaduje -->
-                    <form id="live-signup-form" class="space-y-4" style="display: none;">
+                    <!-- Formularz zapisu na LIVE -->
+                    <form id="live-signup-form" class="space-y-4">
                         <div>
-                            <input type="email" id="email" name="email" required
+                            <input type="email" id="ml-email" name="email" required
                                 placeholder="Twój email"
                                 class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-2 focus:ring-brand-primary/20 transition-all">
                         </div>
                         <div>
-                            <input type="text" id="name" name="name"
+                            <input type="text" id="ml-name" name="name"
                                 placeholder="Imię (opcjonalnie)"
                                 class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-2 focus:ring-brand-primary/20 transition-all">
                         </div>
-                        <button type="submit" class="glow-btn w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold px-8 py-4 rounded-xl text-lg transition-all">
+                        <button type="submit" id="ml-submit" class="glow-btn w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold px-8 py-4 rounded-xl text-lg transition-all">
                             Zapisuję się na LIVE &rarr;
                         </button>
+                        <div id="ml-success" class="hidden text-center py-4">
+                            <div class="text-3xl mb-2">🎉</div>
+                            <div class="text-green-400 font-semibold">Zapisano! Sprawdź maila.</div>
+                        </div>
+                        <div id="ml-error" class="hidden text-center py-2 text-red-400 text-sm"></div>
                     </form>
 
                     <p class="text-gray-600 text-xs text-center mt-4">Zero spamu. Tylko info o tym LIVE.</p>
@@ -641,36 +643,49 @@
         <a href="index.html" class="text-gray-600 text-sm hover:text-brand-light mt-2 inline-block">Strona główna</a>
     </footer>
 
-    <!-- MailerLite Universal Script -->
+    <!-- MailerLite Universal -->
     <script>
-        (function(w,d,e,u,f,l,n){
-            w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
-            l=d.createElement(e),l.async=1,l.src=u,
-            n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);
-        })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-        ml('account', 'TWOJ_ACCOUNT_ID');
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '2005256');
     </script>
 
     <script>
-        // Fallback: jeśli MailerLite się nie załaduje w 3 sek, pokaż prosty formularz
-        setTimeout(function() {
-            var mlForm = document.querySelector('.ml-embedded');
-            if (mlForm && mlForm.children.length === 0) {
-                document.getElementById('live-signup-form').style.display = 'block';
-                mlForm.style.display = 'none';
-            }
-        }, 3000);
-
-        // Obsługa fallback formularza
+        // Formularz zapisu - dodaje do grupy LIVE Narzedzia AI
         document.getElementById('live-signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            var email = document.getElementById('email').value;
-            var name = document.getElementById('name').value;
 
-            // Redirect do MailerLite landing page jako fallback
-            var url = 'https://subscribepage.io/TWOJ_PAGE_ID?email=' + encodeURIComponent(email);
-            if (name) url += '&name=' + encodeURIComponent(name);
-            window.location.href = url;
+            const email = document.getElementById('ml-email').value;
+            const name = document.getElementById('ml-name').value;
+            const submitBtn = document.getElementById('ml-submit');
+            const successDiv = document.getElementById('ml-success');
+            const errorDiv = document.getElementById('ml-error');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Zapisuję...';
+            errorDiv.classList.add('hidden');
+
+            // Użyj MailerLite ml() function
+            if (typeof ml !== 'undefined') {
+                ml('subscribe', {
+                    email: email,
+                    fields: { name: name },
+                    groups: ['178331852053940208'],
+                    success: function() {
+                        document.querySelectorAll('#live-signup-form input, #live-signup-form button').forEach(el => el.style.display = 'none');
+                        successDiv.classList.remove('hidden');
+                    },
+                    error: function() {
+                        errorDiv.textContent = 'Coś poszło nie tak. Spróbuj ponownie.';
+                        errorDiv.classList.remove('hidden');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Zapisuję się na LIVE &rarr;';
+                    }
+                });
+            } else {
+                // Fallback - otwórz stronę zapisu
+                alert('Dzięki! Przekieruję Cię do formularza zapisu.');
+                window.location.href = 'https://subscribepage.io/ai-team-live?email=' + encodeURIComponent(email);
+            }
         });
     </script>
 
