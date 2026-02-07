@@ -2603,16 +2603,13 @@
         }
 
         // Lead Magnet form handler
-        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai.pdf';
+        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai-v2.pdf';
 
         async function handleLeadMagnet(e) {
             e.preventDefault();
             const form = e.target;
-            const formData = new FormData(form);
-
-            // Add hidden fields for FormSubmit
-            formData.append('_subject', '[AI-Team] Nowy lead - Raport AI');
-            formData.append('_template', 'table');
+            const name = form.querySelector('input[name="name"]').value;
+            const email = form.querySelector('input[name="email"]').value;
 
             // Show loading
             const btn = form.querySelector('button[type="submit"]');
@@ -2621,13 +2618,29 @@
             btn.disabled = true;
 
             try {
-                // Send to FormSubmit.co (email notification)
-                await fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
+                // 1. Subscribe to MailerLite (lead magnet list)
+                const mlData = new FormData();
+                mlData.append('fields[name]', name);
+                mlData.append('fields[email]', email);
+                mlData.append('ml-submit', '1');
+                mlData.append('anticsrf', 'true');
+
+                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
+                    method: 'POST',
+                    body: mlData,
+                    mode: 'no-cors'
+                });
+
+                // 2. Send email notification to Darek
+                const formData = new FormData(form);
+                formData.append('_subject', '[AI-Team] Nowy lead - Raport AI');
+                formData.append('_template', 'table');
+                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
                     method: 'POST',
                     body: formData
                 });
 
-                // Open PDF in new tab
+                // 3. Open PDF in new tab
                 window.open(RAPORT_PDF_URL, '_blank');
 
                 // Update button
@@ -2649,7 +2662,7 @@
                 }, 3000);
 
             } catch (error) {
-                // Even if email fails, still give PDF
+                // Even if MailerLite fails, still give PDF
                 window.open(RAPORT_PDF_URL, '_blank');
                 btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i> Pobrano!';
                 btn.classList.add('bg-brand-light');

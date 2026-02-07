@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 Wdrożeń AI w Małej Firmie — ai-team.pl</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --orange: #ea580c;
+    --orange-light: #f97316;
+    --orange-bg: #fff7ed;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+    --text: #1e293b;
+    --text-muted: #475569;
+    --text-dim: #64748b;
+    --bg: #ffffff;
+    --bg-card: #f8fafc;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+  }
+
+  @page {
+    margin: 1.5cm 1.8cm;
+    size: A4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* COVER */
+  .cover {
+    text-align: center;
+    padding: 80px 20px 60px;
+    page-break-after: always;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .cover h1 span { color: var(--orange); }
+  .cover-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .cover-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 24px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .cover-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 16px;
+  }
+  .cover-info { text-align: left; }
+  .cover-name { font-weight: 700; font-size: 14px; color: var(--text); }
+  .cover-role { font-size: 12px; color: var(--text-dim); }
+  .cover-line {
+    width: 60px; height: 3px;
+    background: var(--orange);
+    margin: 40px auto 0;
+    border-radius: 2px;
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 40px 0 30px;
+  }
+  .intro-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .intro-box p { margin-bottom: 10px; color: var(--text-muted); font-size: 14px; }
+  .intro-box p:last-child { margin-bottom: 0; }
+  .intro-box strong { color: var(--text); }
+
+  /* LEGEND */
+  .legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0 24px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .legend-dot.red { background: var(--red); }
+  .legend-dot.green { background: var(--green); }
+  .legend-dot.blue { background: var(--blue); }
+  .legend-dot.orange { background: var(--orange); }
+
+  /* PART HEADERS */
+  .part-header {
+    padding: 30px 0 20px;
+    border-bottom: 3px solid var(--orange);
+    margin-bottom: 28px;
+    page-break-before: always;
+  }
+  .part-header:first-of-type { page-break-before: auto; }
+  .part-number {
+    font-size: 12px; font-weight: 700;
+    color: var(--orange); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .part-title { font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--text); }
+  .part-desc { color: var(--text-dim); font-size: 14px; }
+
+  h2 { font-size: 26px; font-weight: 800; margin-bottom: 16px; color: var(--text); }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+  p { margin-bottom: 12px; }
+
+  /* IMPL CARDS */
+  .impl-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 24px;
+    page-break-inside: avoid;
+    background: var(--bg);
+  }
+  .impl-top {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .impl-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--orange);
+    border-radius: 8px;
+    color: #fff; font-weight: 800; font-size: 15px; flex-shrink: 0;
+  }
+  .impl-title {
+    font-size: 17px; font-weight: 700; color: var(--text);
+  }
+
+  /* BA boxes */
+  .ba { border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; }
+  .ba-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .ba p { margin-bottom: 0; font-size: 13px; color: var(--text-muted); }
+  .ba-before { background: var(--red-bg); border-left: 3px solid var(--red); }
+  .ba-before .ba-label { color: var(--red); }
+  .ba-after { background: var(--green-bg); border-left: 3px solid var(--green); }
+  .ba-after .ba-label { color: var(--green); }
+
+  /* HOWTO */
+  .howto {
+    background: var(--blue-bg); border-radius: 8px;
+    padding: 14px 18px; margin: 12px 0;
+  }
+  .howto-label { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .howto p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .howto ol, .howto ul { padding-left: 18px; margin-bottom: 8px; }
+  .howto li { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+
+  /* PROMPT */
+  .prompt-label { font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin: 8px 0 4px; }
+  .prompt-block {
+    background: #1e293b; color: #e2e8f0;
+    border-radius: 6px; padding: 14px 16px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 11.5px; line-height: 1.6;
+    white-space: pre-wrap; word-break: break-word;
+    margin-bottom: 10px;
+  }
+
+  /* FLOW */
+  .flow-block {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 16px;
+    font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.8;
+    color: var(--text-muted); white-space: pre-wrap; margin-bottom: 10px;
+  }
+
+  /* TOOLS */
+  .tools-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .tool-badge {
+    display: inline-block; padding: 3px 10px;
+    background: var(--orange-bg); border: 1px solid #fed7aa;
+    border-radius: 5px; font-size: 11px; font-weight: 600; color: var(--orange);
+  }
+
+  /* META */
+  .meta-bar { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .meta-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  }
+  .meta-item.time { background: var(--blue-bg); color: var(--blue); }
+  .meta-item.save { background: var(--green-bg); color: var(--green); }
+
+  /* PRO TIP */
+  .pro-tip {
+    background: var(--orange-bg); border-left: 3px solid var(--orange);
+    border-radius: 0 6px 6px 0; padding: 10px 14px; margin-top: 12px;
+  }
+  .pro-tip-label { font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .pro-tip p { font-size: 12px; margin-bottom: 0; color: var(--text-muted); }
+
+  /* BONUS */
+  .bonus-card {
+    background: var(--orange-bg); border: 1px solid #fed7aa;
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+  .bonus-badge {
+    display: inline-block; background: var(--orange); color: #fff;
+    padding: 3px 10px; border-radius: 5px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .bonus-card h3 { font-size: 16px; margin-bottom: 6px; }
+  .bonus-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+
+  /* CTA */
+  .cta-section { text-align: center; padding: 40px 0; page-break-before: always; }
+  .cta-grid { display: grid; gap: 14px; margin: 24px 0; text-align: left; }
+  .cta-card {
+    border: 1px solid var(--border); border-radius: 10px; padding: 20px;
+    page-break-inside: avoid;
+  }
+  .cta-card h3 { font-size: 16px; margin-bottom: 6px; }
+  .cta-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .cta-price { font-size: 18px; font-weight: 800; color: var(--orange); }
+  .cta-link {
+    display: inline-block; margin-top: 20px; padding: 14px 36px;
+    background: var(--orange); color: #fff; text-decoration: none;
+    border-radius: 8px; font-weight: 700; font-size: 15px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center; padding: 30px 0; margin-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 12px;
+  }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Darmowy Raport 2026</div>
+  <h1>15 Wdrożeń AI<br>w <span>Małej Firmie</span></h1>
+  <p class="cover-sub">Praktyczny przewodnik z realnymi case studies, gotowymi promptami do skopiowania i konkretnymi oszczędnościami czasu.</p>
+  <div class="cover-author">
+    <div class="cover-avatar">DS</div>
+    <div class="cover-info">
+      <div class="cover-name">Dariusz Szuca</div>
+      <div class="cover-role">ai-team.pl · Marketing AI · 2026</div>
+    </div>
+  </div>
+  <div class="cover-line"></div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+<div class="container">
+  <div class="intro-box">
+    <p><strong>Jestem Darek.</strong> 45 lat, freelancer z Gdańska, 8 lat w marketingu. Od 2 lat pracuję wyłącznie z AI.</p>
+    <p>Nie teoretyzuję — wdrażam. Zbudowałem CRM dla klienta, prowadzę 8 stron internetowych, mam 6 asystentów AI którzy pracują za mnie równolegle.</p>
+    <p>Ten raport to nie lista "fajnych narzędzi". To <strong>15 rzeczy które SAM wdrożyłem</strong> — dla siebie lub klientów. Przy każdej: jak było PRZED, jak jest PO, i gotowy przepis do powtórzenia.</p>
+    <p><strong>Nie potrzebujesz budżetu. Nie potrzebujesz programisty. Potrzebujesz 15 minut.</strong></p>
+  </div>
+
+  <h3>Jak czytać ten raport</h3>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot red"></div><strong>ZANIM</strong> — jak wyglądał problem</div>
+    <div class="legend-item"><div class="legend-dot green"></div><strong>PO</strong> — co się zmieniło</div>
+    <div class="legend-item"><div class="legend-dot blue"></div><strong>JAK</strong> — krok po kroku</div>
+    <div class="legend-item"><div class="legend-dot orange"></div><strong>CZAS + OSZCZĘDNOŚĆ</strong></div>
+  </div>
+  <p style="color:var(--text-muted);">Zacznij od Części 1 — wdrożysz to w 15 minut. Dosłownie.</p>
+</div>
+</div>
+
+<!-- PART 1 -->
+<div class="container">
+  <div class="part-header">
+    <div class="part-number">Część 1</div>
+    <div class="part-title">Szybkie Wygrane</div>
+    <p class="part-desc">Wdrożenie w 15 min — 1 dzień. Zacznij od tego.</p>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">1</div><div class="impl-title">Cyfrowy bliźniak — AI odpowiada za Ciebie</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>1-2h dziennie na mailach, DM-kach, komentarzach. Każda odpowiedź wymagała myślenia o tonie i kontekście.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Cyfrowy bliźniak pisze w moim stylu. Wklejam wiadomość → gotowa odpowiedź w 30 sekund. Brzmi jak ja, nie jak AI.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li>Zbierz 10-15 swoich prawdziwych odpowiedzi (maile, komentarze)</li>
+        <li>Wklej do Claude/ChatGPT z promptem analizującym Twój styl</li>
+        <li>Zapisz wynik jako "instrukcję stylu"</li>
+        <li>Przy każdej wiadomości — podaj instrukcję + treść do odpowiedzi</li>
+      </ol>
+      <div class="prompt-label">Gotowy prompt</div>
+      <div class="prompt-block">Przeanalizuj te odpowiedzi i wyciągnij mój styl pisania:
+- Ton głosu (formalny/luźny/mieszany)
+- Typowe zwroty które powtarzam
+- Długość zdań, sposób otwierania i zamykania
+Spisz jako "Instrukcję stylu" którą mogę dać AI.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude Pro</span><span class="tool-badge">ChatGPT Plus</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 30 min setup</div><div class="meta-item save">💰 5-10h/tydzień</div></div>
+    <div class="pro-tip"><div class="pro-tip-label">Pro tip</div><p>Gdy AI odpowie idealnie — "zapamiętaj". Gdy źle — "to nie mój styl". System się uczy.</p></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">2</div><div class="impl-title">Deep Research — AI robi research za Ciebie</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Research zajmował pół dnia. 20 zakładek, czytanie artykułów, oddzielanie prawdy od bełkotu.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Jedno pytanie = raport jakby ktoś spędził 8 godzin. Ze źródłami, analizą, wnioskami.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <div class="prompt-label">Gotowy prompt</div>
+      <div class="prompt-block">Przeprowadź dogłębny research na temat: [TWÓJ TEMAT]
+1. STAN OBECNY — co wiemy na pewno (ze źródłami)
+2. KLUCZOWE DANE — liczby, statystyki, trendy
+3. PERSPEKTYWY EKSPERTÓW — co mówią autorytety
+4. PRAKTYCZNE WNIOSKI — co wynika dla małej firmy
+5. NASTĘPNE KROKI — co konkretnie zrobić
+Bądź krytyczny. Podawaj źródła.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude Pro</span><span class="tool-badge">Gemini Deep Research</span><span class="tool-badge">ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 5 min</div><div class="meta-item save">💰 4-8h/research</div></div>
+    <div class="pro-tip"><div class="pro-tip-label">Pro tip</div><p>Gemini Deep Research przeszukuje internet w czasie rzeczywistym — najlepszy do aktualnych tematów.</p></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">3</div><div class="impl-title">Content na miesiąc w 2 godziny</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Siadałem do posta, po 40 min pusty ekran. Posty raz na 2 tygodnie, zero zasięgów.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>W 2 godziny plan postów na miesiąc — LinkedIn, Facebook, newsletter. Z hookami i CTA.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li><strong>Research tematów (15 min)</strong> — branża, klienci, ich problemy</li>
+        <li><strong>Napisz posty (90 min)</strong> — po ~8 min na post z AI</li>
+        <li><strong>Zaplanuj (15 min)</strong> — Buffer lub LinkedIn scheduling</li>
+      </ol>
+      <div class="prompt-label">Prompt na plan</div>
+      <div class="prompt-block">Jestem [BRANŻA]. Klienci: [OPIS]. Problemy: [WYMIEŃ].
+Wygeneruj 12 tematów na posty LinkedIn.
+Każdy: hook (1 zdanie) + główny punkt + CTA.
+Mix: edukacja (5), case study (3), behind the scenes (2), opinia (2).</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude / ChatGPT</span><span class="tool-badge">Buffer (darmowy)</span><span class="tool-badge">Canva</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 2h / miesiąc</div><div class="meta-item save">💰 10-15h/miesiąc</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">4</div><div class="impl-title">Analiza dokumentów w 60 sekund</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Umowa na 30 stron = 1-2 godziny czytania i notatek.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>PDF do Claude → podsumowanie z wyłapanymi ryzykami w minutę.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <div class="prompt-block">Przeanalizuj ten dokument:
+1. PODSUMOWANIE (3-5 zdań)
+2. KLUCZOWE PUNKTY
+3. CZERWONE FLAGI (zapisy które mogą kosztować)
+4. UKRYTE KOSZTY
+5. PYTANIA DO WYJAŚNIENIA
+Pisz prostym językiem, nie prawniczym.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude Pro</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 2 minuty</div><div class="meta-item save">💰 1-2h/dokument</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">5</div><div class="impl-title">Nagłówki sprzedażowe jak z agencji</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>"Oferujemy profesjonalne usługi". Nikt nie klikał.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>10 propozycji z mechanizmami psychologicznymi. Wybieram najlepszy.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <div class="prompt-block">10 nagłówków na temat: [TEMAT]. Klient: [KTO]. Cel: [ZAKUP].
+Mechanizmy: liczba+korzyść, pytanie, how-to, strach przed stratą,
+social proof, kontrast, tajemnica, pilność, prostota, kontrowersja.
+Max 10 słów. Nie używaj: innowacyjny, unikalny, profesjonalny.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude / ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 5 minut</div><div class="meta-item save">💰 Nagłówek = 80% sukcesu</div></div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="part-header">
+    <div class="part-number">Część 2</div>
+    <div class="part-title">Automatyzacje Procesów</div>
+    <p class="part-desc">Wdrożenie w 1-7 dni. Raz ustawione — pracują 24/7.</p>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">6</div><div class="impl-title">Lejek sprzedażowy od A do Z</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Klient na stronie → formularz → odpowiedź po 2 dniach → kupił u konkurencji.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Raport do pobrania → 5 maili automatycznie → kontaktuję się tylko z zainteresowanymi.</p></div>
+    <div class="howto">
+      <div class="howto-label">Lejek dla usług</div>
+      <div class="flow-block">Artykuł/post → Lead magnet (raport/checklista)
+→ Sekwencja email (5 maili w 14 dni)
+→ Oferta konsultacji (darmowa 15 min)
+→ Propozycja współpracy</div>
+      <div class="prompt-label">Prompt na sekwencję</div>
+      <div class="prompt-block">5 emaili powitalnych. Lead magnet: [CO DOSTALI]. Cel: [ZAKUP].
+Email 1 (natychmiast): Podziękowanie + link + kim jestem
+Email 2 (dzień 2): 1 praktyczny tip
+Email 3 (dzień 5): Case study sukcesu
+Email 4 (dzień 8): Dlaczego "sam" nie działa
+Email 5 (dzień 12): Oferta + deadline
+Ton: przyjazny, bez naciskania.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">MailerLite (darmowy)</span><span class="tool-badge">Carrd.co (19$/rok)</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 1-2 dni</div><div class="meta-item save">💰 Pracuje 24/7</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">7</div><div class="impl-title">Automatyczne odpowiedzi na komentarze</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Komentarz pod postem → odpowiedź po 3 dniach. Albo zapomniałem.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>System kategoryzuje (pytanie/pochwała/hejt) → generuje odpowiedzi w stylu marki. Kopiuj i wklej.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li>Zbierz 20-30 typowych komentarzy</li>
+        <li>Podziel: <strong>A</strong> pytania o cenę, <strong>B</strong> pochwały, <strong>C</strong> merytoryczne, <strong>D</strong> spam</li>
+        <li>Dla każdej kategorii stwórz szablon odpowiedzi z AI</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude / ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 2-3h setup</div><div class="meta-item save">💰 3-5h/tydzień</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">8</div><div class="impl-title">Rezerwacje z automatyczną kwalifikacją</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>"Kiedy Pan może?" — 8 maili żeby umówić jedno spotkanie.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Klient klika link → widzi terminy → wybiera → potwierdzenie + SMS. Zero moich maili.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li>Cal.com (darmowy) — dodaj formularz kwalifikacyjny</li>
+        <li>Automatyzuj: potwierdzenie, przypomnienie 24h, email po spotkaniu</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Cal.com (darmowy)</span><span class="tool-badge">MailerLite</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 1-2h</div><div class="meta-item save">💰 3-5h/tydzień</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">9</div><div class="impl-title">Newsletter na autopilocie</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Wiedziałem że powinienem. Nie miałem czasu. Lista stała pusta.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Co poniedziałek newsletter wychodzi. Przygotowanie: 30 minut.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <div class="prompt-block">Cotygodniowy newsletter o [BRANŻA]:
+1. GORĄCY TEMAT — 1 news + komentarz (3 zdania)
+2. NARZĘDZIE TYGODNIA — co robi, ile kosztuje
+3. PROMPT DNIA — gotowy do skopiowania
+4. 3 SZYBKIE LINKI
+Ton: jak do kolegi. Max 500 słów.</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">MailerLite (darmowy)</span><span class="tool-badge">Claude / ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 30 min/tydzień</div><div class="meta-item save">💰 Lista = najcenniejszy asset</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">10</div><div class="impl-title">Monitoring rynku i konkurencji</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Nie wiedziałem co robi konkurencja. Reagowałem za późno.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Co tydzień AI-podsumowanie: trendy, konkurencja, okazje.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li>Google Alerts na firmę + konkurentów + słowa kluczowe</li>
+        <li>Co tydzień wrzuć alerty do AI z promptem analizującym</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Google Alerts (darmowy)</span><span class="tool-badge">Claude / ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 15 min/tydzień</div><div class="meta-item save">💰 Wczesne wykrywanie trendów</div></div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="part-header">
+    <div class="part-number">Część 3</div>
+    <div class="part-title">Systemy</div>
+    <p class="part-desc">Wdrożenie 1-2 tygodnie. Zmieniają sposób prowadzenia firmy.</p>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">11</div><div class="impl-title">Własny CRM dopasowany do branży</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>HubSpot za drogi. Excel to chaos po 50 kontaktach.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu (case study)</div><p>Dla klienta (ośrodek terapeutyczny) zbudowałem CRM: rejestracja, historia kontaktu, przypomnienia. Zamiast 3 Excelów — jedno miejsce. Jednorazowa opłata, zero abonamentu.</p></div>
+    <div class="howto">
+      <div class="howto-label">Opcje</div>
+      <p><strong>Szybka:</strong> Notion lub Airtable jako CRM (darmowe)</p>
+      <p><strong>Własna apka:</strong> Lovable/v0 wygeneruje MVP w kilka godzin</p>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Notion</span><span class="tool-badge">Airtable</span><span class="tool-badge">Lovable</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 1-3 dni / 1-2 tyg</div><div class="meta-item save">💰 5-10h/tydzień</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">12</div><div class="impl-title">Zespół AI asystentów z rolami</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Jedno okno AI, za każdym razem tłumaczenie kontekstu od nowa.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>6 asystentów: Strategia, Operacyjny, Sprzedaż, Marketing, Narzędzia, Klon. Każdy ma specjalizację i pliki.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak zacząć</div>
+      <ol>
+        <li>Zdecyduj jakich ról potrzebujesz (zacznij od 2-3)</li>
+        <li>Dla każdej roli: kim jest, co robi, jakie pliki czyta</li>
+        <li>Przy zadaniu — podaj AI odpowiednią instrukcję</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Claude Pro / Code</span><span class="tool-badge">ChatGPT Plus</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 2-4h/rolę</div><div class="meta-item save">💰 Zespół za koszt subskrypcji</div></div>
+    <div class="pro-tip"><div class="pro-tip-label">Pro tip</div><p>Zacznij od 2 ról: "Asystent pisania" i "Analityk". Resztę dodasz gdy zobaczysz czego brakuje.</p></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">13</div><div class="impl-title">Landing page + popup + lejek</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Strona: ładna wizytówka. Zero formularzy, zero powodu żeby zostawić maila.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Darmowy raport, popup łapie niezdecydowanych, leady trafiają do newslettera automatycznie.</p></div>
+    <div class="howto">
+      <div class="howto-label">Elementy</div>
+      <ol>
+        <li><strong>Lead magnet</strong> — checklista, raport, szablon</li>
+        <li><strong>Landing page</strong> — nagłówek + korzyści + formularz (TYLKO email)</li>
+        <li><strong>Popup exit-intent</strong> — inna treść niż na stronie</li>
+        <li><strong>Email</strong> — automatyczna sekwencja powitalna</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Carrd.co (19$/rok)</span><span class="tool-badge">MailerLite</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 1-2 dni</div><div class="meta-item save">💰 Leady 24/7</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">14</div><div class="impl-title">Chatbot na stronie</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>Klienci o 22:00, pytanie o ofertę, nikt nie odpowiada, wychodzą.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Chatbot odpowiada 24/7. Gdy nie zna odpowiedzi — zbiera dane i przekazuje.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <ol>
+        <li>Zbierz FAQ + cennik + opis usług</li>
+        <li>Wrzuć do Chatbase.co lub Tidio AI</li>
+        <li>Snippet na stronę (1 linia kodu)</li>
+      </ol>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Chatbase.co</span><span class="tool-badge">Tidio</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 3-5h</div><div class="meta-item save">💰 Leady 24/7</div></div>
+  </div>
+
+  <div class="impl-card">
+    <div class="impl-top"><div class="impl-num">15</div><div class="impl-title">Automatyczne raporty i dashboard</div></div>
+    <div class="ba ba-before"><div class="ba-label">Zanim</div><p>"Jak idzie sprzedaż?" — "Eee... chyba OK?" Decyzje na czuja.</p></div>
+    <div class="ba ba-after"><div class="ba-label">Po wdrożeniu</div><p>Co poniedziałek: ile leadów, spotkań, zamkniętych deali. Bez udziału.</p></div>
+    <div class="howto">
+      <div class="howto-label">Jak to zrobić</div>
+      <div class="prompt-block">Przeanalizuj dane sprzedażowe: [WKLEJ TABELĘ]
+1. PODSUMOWANIE — leady, zamknięte, wartość
+2. TREND — lepiej/gorzej niż zeszły tydzień
+3. TOP ŹRÓDŁO — skąd leady
+4. REKOMENDACJA — 1 rzecz do poprawienia</div>
+    </div>
+    <div class="tools-row"><span class="tool-badge">Google Sheets</span><span class="tool-badge">Claude / ChatGPT</span></div>
+    <div class="meta-bar"><div class="meta-item time">⏱ 30 min + 5 min/tydz</div><div class="meta-item save">💰 Lepsze decyzje</div></div>
+  </div>
+
+  <!-- BONUS -->
+  <div class="part-header">
+    <div class="part-number">Bonus</div>
+    <div class="part-title">3 Gotowe Prompty do Skopiowania</div>
+    <p class="part-desc">Te prompty sam używam codziennie. Kopiuj, wklej, dostosuj.</p>
+  </div>
+
+  <div class="bonus-card">
+    <div class="bonus-badge">Prompt #1</div>
+    <h3>Ulepszacz Promptów</h3>
+    <p>Masz prompt z "OK" wynikami? Dodaj ten tekst na końcu:</p>
+    <div class="prompt-block">Ulepsz mój prompt:
+1. Dodaj jasny cel i kryteria sukcesu
+2. Kontekst: dla kogo output, jak będzie użyty
+3. Rozpisz jako ponumerowane kroki
+4. Dodaj 2-3 przykłady wyniku
+5. Określ format odpowiedzi
+6. Dodaj "Czego unikać"
+Pokaż ulepszoną wersję i wyjaśnij zmiany.</div>
+  </div>
+
+  <div class="bonus-card">
+    <div class="bonus-badge">Prompt #2</div>
+    <h3>Analiza Bólów Klientów</h3>
+    <p>Zanim cokolwiek sprzedasz — poznaj prawdziwe problemy:</p>
+    <div class="prompt-block">Analiza bólów w branży: [BRANŻA], klient: [OPIS]
+1. TOP 5 BÓLÓW — co frustruje (z przykładami)
+2. NIEWYPOWIEDZIANE POTRZEBY — czego chcą ale nie mówią
+3. OBECNE ROZWIĄZANIA — jak radzą sobie (dlaczego nie działa)
+4. WYZWALACZE ZAKUPU — co powoduje szukanie rozwiązania
+5. OBIEKCJE — dlaczego jeszcze nie kupili
+Bazuj na danych. Podaj źródła.</div>
+  </div>
+
+  <div class="bonus-card">
+    <div class="bonus-badge">Prompt #3</div>
+    <h3>Generator Nagłówków Sprzedażowych</h3>
+    <p>Nagłówek decyduje o 80% sukcesu:</p>
+    <div class="prompt-block">10 nagłówków sprzedażowych.
+Produkt: [CO], Klient: [KTO], Korzyść: [ZYSK], Ból: [PROBLEM]
+Max 10 słów. Mechanizmy: liczby, pytania, strach, social proof,
+ciekawość, kontrast, tajemnica, pilność, prostota, kontrowersja.
+Nie używaj: innowacyjny, unikalny, profesjonalny.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Co dalej?</h2>
+    <p>Zacznij od JEDNEGO wdrożenia. Dziś. Punkt #1 lub #2 zajmą 15-30 minut.</p>
+
+    <div class="cta-grid">
+      <div class="cta-card">
+        <h3>Warsztat AI w Sopocie</h3>
+        <p>Praktyczny, 3-4h. Przynosisz laptop, wychodzisz z działającym systemem.</p>
+        <div class="cta-price">500 PLN</div>
+      </div>
+      <div class="cta-card">
+        <h3>Audyt strony sprzedażowej</h3>
+        <p>Checklisty psychologii, copywritingu i konwersji. Raport z konkretnymi zmianami.</p>
+        <div class="cta-price">Zapytaj o cenę</div>
+      </div>
+      <div class="cta-card">
+        <h3>Spersonalizowany CRM</h3>
+        <p>Dopasowany do branży. Zero abonamentu — Twój na zawsze.</p>
+        <div class="cta-price">2 500 PLN</div>
+      </div>
+    </div>
+
+    <a href="https://ai-team.pl" class="cta-link">ai-team.pl</a>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-dim);">dariusz.szuca@gmail.com</p>
+  </div>
+
+  <div class="footer">
+    <p>Raport: Dariusz Szuca | ai-team.pl | 2026</p>
+    <p>Wdrażam AI w małych firmach — żebyś mógł pracować mniej, a zarabiać więcej.</p>
+  </div>
+</div>
+
+</body>
+</html>
