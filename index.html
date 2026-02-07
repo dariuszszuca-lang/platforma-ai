@@ -6,6 +6,15 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <meta name="google-site-verification" content="typ3qaEk8-3x_x6EdIb6faw3zLDCDka22jz9Xih-Xuc" />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
     <title>AI dla firm — strony, systemy i automatyzacje z AI | AI-Team Gdańsk</title>
 
     <!-- SEO -->
@@ -2778,7 +2787,16 @@
                     body: formData
                 });
 
-                // 3. Open PDF in new tab
+                // 3. GA4 event tracking
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Magnet',
+                        event_label: 'Raport 15 sposobow AI',
+                        value: 1
+                    });
+                }
+
+                // 4. Open PDF in new tab
                 window.open(RAPORT_PDF_URL, '_blank');
 
                 // Update button
@@ -2838,7 +2856,7 @@
 
             <!-- ALTERNATYWY -->
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-sm">
-                <a href="https://wa.me/48730600383" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-white transition">
+                <a href="https://wa.me/48730600383" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-white transition" onclick="if(typeof gtag==='function')gtag('event','contact',{event_category:'WhatsApp',event_label:'CTA sekcja pricing'})">
                     <i data-lucide="message-circle" class="w-5 h-5 text-brand-light"></i>
                     <span>Napisz na WhatsApp</span>
                 </a>
@@ -2892,7 +2910,7 @@
                     </div>
                 </a>
 
-                <a href="https://wa.me/48730600383" class="testimonial-card p-6 hover:border-brand-primary/50 transition group w-full md:w-auto min-w-[250px] cosmic-glow">
+                <a href="https://wa.me/48730600383" class="testimonial-card p-6 hover:border-brand-primary/50 transition group w-full md:w-auto min-w-[250px] cosmic-glow" onclick="if(typeof gtag==='function')gtag('event','contact',{event_category:'WhatsApp',event_label:'CTA footer'})">
                     <div class="relative z-10">
                         <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-4 text-gray-400 group-hover:text-green-400 transition"></i>
                         <div class="text-lg font-bold text-white">WhatsApp</div>
@@ -2902,7 +2920,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/10 pt-8">
-                <div class="mb-4 md:mb-0">&copy; 2025 AI-Team. All rights reserved.</div>
+                <div class="mb-4 md:mb-0">&copy; 2026 AI-Team. All rights reserved.</div>
                 <div class="space-x-6 flex items-center">
                    <a href="ai-radar.html" class="text-green-500 hover:text-green-400 transition">Newsletter AI Radar</a>
                    <a href="privacy.html" class="text-gray-500 hover:text-brand-primary transition">Polityka prywatności</a>
@@ -4261,6 +4279,14 @@ Profesjonalny ale przystępny, bez korporacyjnego żargonu.`;
 
         // ===== CONTACT FORM =====
         function openContactForm() {
+            // GA4 event tracking
+            if (typeof gtag === 'function') {
+                gtag('event', 'begin_checkout', {
+                    event_category: 'Contact',
+                    event_label: 'Formularz kontaktowy otwarty'
+                });
+            }
+
             const modal = document.getElementById('contact-modal');
             const backdrop = document.getElementById('contact-modal-backdrop');
             const panel = document.getElementById('contact-modal-panel');
@@ -4322,6 +4348,15 @@ ${message}
 ---
 Wysłano z ai-team.pl`
             );
+
+            // GA4 event tracking
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'Contact Form',
+                    event_label: role || 'Formularz kontaktowy',
+                    value: 1
+                });
+            }
 
             window.location.href = `mailto:dariusz.szuca@gmail.com?subject=${subject}&body=${body}`;
 
@@ -4535,7 +4570,7 @@ Wysłano z ai-team.pl`
         function showExitPopup() {
             if (popupShown) return;
             if (localStorage.getItem('exitPopupClosed')) return;
-            if (localStorage.getItem('aiStartSubscribed')) return;
+            if (localStorage.getItem('raportSubscribed')) return;
 
             popupShown = true;
             exitPopup.classList.remove('opacity-0', 'pointer-events-none');
@@ -4562,7 +4597,7 @@ Wysłano z ai-team.pl`
 
         // Also show after 45 seconds on page (fallback for mobile)
         setTimeout(() => {
-            if (!popupShown && !localStorage.getItem('exitPopupClosed') && !localStorage.getItem('aiStartSubscribed')) {
+            if (!popupShown && !localStorage.getItem('exitPopupClosed') && !localStorage.getItem('raportSubscribed')) {
                 showExitPopup();
             }
         }, 45000);
@@ -4591,12 +4626,21 @@ Wysłano z ai-team.pl`
                     mode: 'no-cors'
                 });
 
-                localStorage.setItem('aiStartSubscribed', 'true');
+                localStorage.setItem('raportSubscribed', 'true');
                 document.getElementById('exit-popup-form').classList.add('hidden');
                 document.getElementById('exit-popup-success').classList.remove('hidden');
                 lucide.createIcons();
+
+                // GA4 event tracking
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Exit Popup',
+                        event_label: 'Raport 15 sposobow AI - popup',
+                        value: 1
+                    });
+                }
             } catch (error) {
-                btn.innerHTML = 'Zaczynam kurs!';
+                btn.innerHTML = 'Pobierz raport';
                 btn.disabled = false;
             }
         });
