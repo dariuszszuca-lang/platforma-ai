@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+
+    <title>15 sposobów wdrożenia AI w małej firmie — darmowy raport | AI-Team</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Pobierz darmowy raport: 15 sprawdzonych sposobów wdrożenia AI w małej firmie. Praktyczny przewodnik, zero teorii. Od AI-Team Gdańsk.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/raport">
+    <meta property="og:title" content="15 sposobów wdrożenia AI w małej firmie — darmowy raport">
+    <meta property="og:description" content="Praktyczny przewodnik dla małych firm i freelancerów. Pobierz za darmo.">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="15 sposobów wdrożenia AI w małej firmie — darmowy raport">
+    <meta name="twitter:description" content="Praktyczny przewodnik dla małych firm i freelancerów. Pobierz za darmo.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --brand-primary: #f97316;
+            --brand-light: #22c55e;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span { color: var(--brand-primary); }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            background: rgba(249,115,22,0.1);
+            border: 1px solid rgba(249,115,22,0.3);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brand-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--brand-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        h1 .highlight { color: var(--brand-primary); }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .benefits {
+            list-style: none;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .benefits li i {
+            color: var(--brand-primary);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input::placeholder { color: #64748b; }
+        .form-group input:focus { border-color: var(--brand-primary); }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--brand-primary);
+            color: black;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px rgba(249,115,22,0.5);
+            transform: scale(1.02);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .submit-btn.success {
+            background: var(--brand-light);
+        }
+
+        .privacy {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #475569;
+        }
+
+        .privacy a {
+            color: #64748b;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-link a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .back-link a:hover { color: var(--brand-primary); }
+
+        .loader {
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top-color: black;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/">AI<span>-Team</span></a>
+        </div>
+
+        <div class="card">
+            <div class="badge">
+                <span class="dot"></span>
+                Darmowy raport
+            </div>
+
+            <h1>15 sposobów wdrożenia <span class="highlight">AI</span> w małej firmie</h1>
+
+            <p class="subtitle">Praktyczny przewodnik dla właścicieli małych firm i freelancerów. Zero teorii, same konkrety. Pobierz za darmo.</p>
+
+            <ul class="benefits">
+                <li><i data-lucide="clock"></i> Oszczędź 10-15 godzin tygodniowo</li>
+                <li><i data-lucide="zap"></i> Wdrożenia, które działają od pierwszego dnia</li>
+                <li><i data-lucide="shield"></i> Bez wiedzy technicznej, bez kodowania</li>
+                <li><i data-lucide="file-text"></i> PDF gotowy do pobrania w 10 sekund</li>
+            </ul>
+
+            <form id="raport-form" onsubmit="handleRaportForm(event)">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Twoje imię" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Twój email" required>
+                </div>
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <i data-lucide="download" style="width:18px;height:18px"></i>
+                    Pobierz darmowy raport
+                </button>
+            </form>
+
+            <p class="privacy">Zero spamu. <a href="/privacy.html">Polityka prywatności</a></p>
+        </div>
+
+        <div class="back-link">
+            <a href="/">ai-team.pl</a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai-v2.pdf';
+
+        async function handleRaportForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('input[name="name"]').value;
+            const email = form.querySelector('input[name="email"]').value;
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<span class="loader"></span> Pobieram...';
+            btn.disabled = true;
+
+            try {
+                // 1. MailerLite subscription
+                const mlData = new FormData();
+                mlData.append('fields[name]', name);
+                mlData.append('fields[email]', email);
+                mlData.append('ml-submit', '1');
+                mlData.append('anticsrf', 'true');
+
+                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
+                    method: 'POST',
+                    body: mlData,
+                    mode: 'no-cors'
+                });
+
+                // 2. Email notification
+                const formData = new FormData(form);
+                formData.append('_subject', '[AI-Team] Nowy lead - Raport AI (landing)');
+                formData.append('_template', 'table');
+                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // 3. GA4 tracking
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Magnet',
+                        event_label: 'Raport 15 sposobow AI - landing',
+                        value: 1
+                    });
+                }
+
+                // 4. Open PDF
+                window.open(RAPORT_PDF_URL, '_blank');
+
+                // Success state
+                btn.innerHTML = '<i data-lucide="check" style="width:18px;height:18px"></i> Pobrano!';
+                btn.classList.add('success');
+                lucide.createIcons();
+                form.reset();
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('success');
+                    btn.disabled = false;
+                    lucide.createIcons();
+                }, 3000);
+
+            } catch (error) {
+                window.open(RAPORT_PDF_URL, '_blank');
+                btn.innerHTML = '<i data-lucide="check" style="width:18px;height:18px"></i> Pobrano!';
+                btn.classList.add('success');
+                btn.disabled = false;
+                lucide.createIcons();
+            }
+        }
+    </script>
+
+</body>
+</html>
