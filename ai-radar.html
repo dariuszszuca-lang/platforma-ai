@@ -5,18 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>AI Radar - cotygodniowy newsletter o AI dla biznesu | AI-TEAM.PL</title>
-    <meta name="description" content="Dołącz do AI Radar - co tydzień praktyczny tip o AI, który wdrożysz w 10 minut. Zero teorii, same konkrety dla małych firm i freelancerów.">
-    <meta name="keywords" content="newsletter AI, sztuczna inteligencja dla firm, ChatGPT tips, AI w biznesie, automatyzacja">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+
+    <title>AI Radar - newsletter o AI + darmowy raport | AI-TEAM.PL</title>
+    <meta name="description" content="Dołącz do AI Radar - cotygodniowy newsletter o AI dla biznesu. Bonus: darmowy raport '15 sposobów wdrożenia AI w małej firmie'. Zero teorii, same konkrety.">
+    <meta name="keywords" content="newsletter AI, sztuczna inteligencja dla firm, ChatGPT tips, AI w biznesie, automatyzacja, raport AI">
     <meta name="author" content="AI-TEAM.PL">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ai-team.pl/ai-radar.html">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="AI Radar - cotygodniowy newsletter o AI">
-    <meta property="og:description" content="Praktyczny tip o AI co tydzień. Zero teorii, same konkrety.">
+    <meta property="og:title" content="AI Radar - newsletter o AI + darmowy raport">
+    <meta property="og:description" content="Cotygodniowy newsletter o AI dla biznesu. Bonus: raport '15 sposobów wdrożenia AI w małej firmie'.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/ai-radar.html">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Radar - newsletter o AI + darmowy raport">
+    <meta name="twitter:description" content="Cotygodniowy newsletter o AI dla biznesu. Bonus: raport '15 sposobów wdrożenia AI'.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,40 +106,17 @@
             background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
             filter: blur(100px); z-index: -1; opacity: 0.6;
         }
-        .cosmic-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: floatOrb 20s ease-in-out infinite;
-            pointer-events: none;
-        }
-        .cosmic-orb-1 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
-            top: 10%; left: -10%;
-        }
-        .cosmic-orb-2 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
-            top: 50%; right: -5%;
-            animation-delay: -7s;
-        }
-        .cosmic-orb-3 {
-            width: 350px; height: 350px;
-            background: radial-gradient(circle, rgba(251,146,60,0.2) 0%, transparent 70%);
-            bottom: 20%; left: 10%;
-            animation-delay: -14s;
-        }
+        .cosmic-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: floatOrb 20s ease-in-out infinite; pointer-events: none; }
+        .cosmic-orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%); top: 10%; left: -10%; }
+        .cosmic-orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%); top: 50%; right: -5%; animation-delay: -7s; }
+        .cosmic-orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(251,146,60,0.2) 0%, transparent 70%); bottom: 20%; left: 10%; animation-delay: -14s; }
         @keyframes floatOrb {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(20px, -20px) scale(1.05); }
             50% { transform: translate(-10px, 10px) scale(0.95); }
             75% { transform: translate(15px, 15px) scale(1.02); }
         }
-        .radar-pulse {
-            animation: radarPulse 2s ease-in-out infinite;
-        }
+        .radar-pulse { animation: radarPulse 2s ease-in-out infinite; }
         @keyframes radarPulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
             50% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); }
@@ -154,7 +147,7 @@
                 </div>
                 <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors whitespace-nowrap">AI-Team</div>
             </a>
-                        <div class="hidden md:flex items-center bg-white/5 rounded-full px-2 border border-white/5">
+            <div class="hidden md:flex items-center bg-white/5 rounded-full px-2 border border-white/5">
                 <a href="index.html#products" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Oferta</a>
                 <a href="index.html#tools" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Narzędzia</a>
                 <a href="index.html#cases" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Portfolio</a>
@@ -164,7 +157,7 @@
 
             <a href="warsztaty-ai.html" class="hidden md:flex group relative px-6 py-2.5 bg-brand-primary text-black rounded-full text-sm font-bold transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] items-center gap-2 whitespace-nowrap">
                 <i data-lucide="calendar" class="w-4 h-4 flex-shrink-0"></i>
-                <span class="relative z-10">Warsztat 500 PLN</span>
+                <span class="relative z-10">Warsztaty AI</span>
             </a>
         </div>
     </nav>
@@ -198,6 +191,21 @@
                         <p class="text-lg leading-relaxed">
                             Każdy poniedziałek dostajesz <strong class="text-white">konkretne narzędzia, prompty i automatyzacje</strong> które wdrożysz od razu w swojej firmie.
                         </p>
+
+                        <!-- Bonus raport -->
+                        <div class="glass-card p-4 rounded-xl border-brand-primary/30">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-brand-primary/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="file-text" class="w-5 h-5 text-brand-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-semibold text-sm">Bonus za dołączenie:</p>
+                                    <p class="text-brand-light font-bold">Raport "15 sposobów wdrożenia AI w małej firmie"</p>
+                                    <p class="text-gray-500 text-xs mt-1">PDF do pobrania od razu po zapisie</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <ul class="space-y-2">
                             <li class="flex items-center gap-3">
                                 <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
@@ -213,7 +221,7 @@
                             </li>
                             <li class="flex items-center gap-3">
                                 <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
-                                <span>Automatyzacje Make/Zapier krok po kroku</span>
+                                <span>Automatyzacje krok po kroku</span>
                             </li>
                         </ul>
                         <p class="text-sm text-gray-500 pt-2">
@@ -242,7 +250,7 @@
                         <button type="submit" id="radar-submit-btn"
                                 class="w-full py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition flex items-center justify-center gap-2 text-lg">
                             <i data-lucide="mail-plus" class="w-5 h-5"></i>
-                            Dołącz do AI Radar
+                            Dołącz i pobierz raport
                         </button>
 
                         <p class="text-gray-500 text-xs text-center">
@@ -255,8 +263,8 @@
                         <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
                             <i data-lucide="check" class="w-8 h-8 text-green-500"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Dziękuję!</h3>
-                        <p class="text-gray-300 mb-4">Sprawdź skrzynkę - pierwszy mail już leci!</p>
+                        <h3 class="text-xl font-bold text-white mb-2">Gotowe!</h3>
+                        <p class="text-gray-300 mb-4">Raport otworzył się w nowej karcie. Pierwszy newsletter dostaniesz w poniedziałek.</p>
 
                         <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-left">
                             <p class="text-sm text-gray-400 mb-2">Nie widzisz maila? Sprawdź folder:</p>
@@ -280,7 +288,6 @@
             <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Każdy newsletter to kompletny pakiet wiedzy o AI - od newsów po gotowe do wdrożenia rozwiązania.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Gorące Newsy -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center">
@@ -291,7 +298,6 @@
                     <p class="text-gray-400 text-sm">3 najważniejsze nowości ze świata AI z ostatniego tygodnia. Krótko i na temat.</p>
                 </div>
 
-                <!-- Narzędzie Tygodnia -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center">
@@ -302,18 +308,16 @@
                     <p class="text-gray-400 text-sm">Jedno narzędzie AI które przetestowałem. Zalety, wady, cena - bez ściemy.</p>
                 </div>
 
-                <!-- Prompt Dnia -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
                             <i data-lucide="message-square-code" class="w-5 h-5 text-purple-500"></i>
                         </div>
-                        <h3 class="font-bold text-white">Prompt Dnia</h3>
+                        <h3 class="font-bold text-white">Prompt Tygodnia</h3>
                     </div>
-                    <p class="text-gray-400 text-sm">Gotowy prompt do ChatGPT/Claude. Kopiuj → wklej → działa.</p>
+                    <p class="text-gray-400 text-sm">Gotowy prompt do ChatGPT/Claude. Kopiuj, wklej, działa.</p>
                 </div>
 
-                <!-- 3 Szybkie Tipy -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center">
@@ -324,7 +328,6 @@
                     <p class="text-gray-400 text-sm">Krótkie triki które wdrożysz w 5 minut. Zero teorii.</p>
                 </div>
 
-                <!-- Automatyzacja Tygodnia -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
@@ -332,10 +335,9 @@
                         </div>
                         <h3 class="font-bold text-white">Automatyzacja Tygodnia</h3>
                     </div>
-                    <p class="text-gray-400 text-sm">Mini tutorial Make/Zapier który oszczędzi Ci godziny pracy.</p>
+                    <p class="text-gray-400 text-sm">Mini tutorial który oszczędzi Ci godziny pracy.</p>
                 </div>
 
-                <!-- Z Warsztatu Darka -->
                 <div class="glass-card p-5 rounded-2xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
@@ -345,39 +347,6 @@
                     </div>
                     <p class="text-gray-400 text-sm">Moje osobiste eksperymenty, porażki i sukcesy z AI. Bez filtra.</p>
                 </div>
-
-                <!-- Warto Obejrzeć -->
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center">
-                            <i data-lucide="play-circle" class="w-5 h-5 text-pink-500"></i>
-                        </div>
-                        <h3 class="font-bold text-white">Warto Obejrzeć</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm">Polecane filmy, podcasty i artykuły o AI z ostatniego tygodnia.</p>
-                </div>
-
-                <!-- Pytanie od Czytelnika -->
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                            <i data-lucide="help-circle" class="w-5 h-5 text-cyan-500"></i>
-                        </div>
-                        <h3 class="font-bold text-white">Q&A</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm">Odpowiadam na pytania czytelników. Możesz też zadać swoje!</p>
-                </div>
-
-                <!-- Co u nas słychać -->
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-brand-secondary/20 rounded-xl flex items-center justify-center">
-                            <i data-lucide="calendar" class="w-5 h-5 text-brand-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-white">Co u nas słychać</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm">Nadchodzące warsztaty, wydarzenia i nowości od AI-Team.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -386,7 +355,6 @@
     <section class="py-12 relative z-10">
         <div class="max-w-3xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- For who -->
                 <div class="glass-card p-6 rounded-2xl border border-green-500/20">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
@@ -395,26 +363,13 @@
                         <h3 class="font-bold text-white">Dla Ciebie, jeśli:</h3>
                     </div>
                     <ul class="space-y-2 text-gray-300 text-sm">
-                        <li class="flex items-start gap-2">
-                            <span class="text-green-500">→</span>
-                            <span>Prowadzisz małą firmę lub freelance</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-green-500">→</span>
-                            <span>Chcesz oszczędzać czas dzięki AI</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-green-500">→</span>
-                            <span>Wolisz konkrety od teorii</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-green-500">→</span>
-                            <span>Masz 5 minut tygodniowo na naukę</span>
-                        </li>
+                        <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">-</span><span>Prowadzisz małą firmę lub freelance</span></li>
+                        <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">-</span><span>Chcesz oszczędzać czas dzięki AI</span></li>
+                        <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">-</span><span>Wolisz konkrety od teorii</span></li>
+                        <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">-</span><span>Masz 5 minut tygodniowo na naukę</span></li>
                     </ul>
                 </div>
 
-                <!-- Not for who -->
                 <div class="glass-card p-6 rounded-2xl border border-red-500/20">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center">
@@ -423,116 +378,11 @@
                         <h3 class="font-bold text-white">NIE dla Ciebie, jeśli:</h3>
                     </div>
                     <ul class="space-y-2 text-gray-300 text-sm">
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-500">→</span>
-                            <span>Jesteś ekspertem AI/ML</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-500">→</span>
-                            <span>Szukasz kodu i technicznych detali</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-500">→</span>
-                            <span>Masz już 100 newsletterów</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-500">→</span>
-                            <span>Nie lubisz praktycznych porad</span>
-                        </li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">-</span><span>Jesteś ekspertem AI/ML</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">-</span><span>Szukasz kodu i technicznych detali</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">-</span><span>Masz już 100 newsletterów</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">-</span><span>Nie lubisz praktycznych porad</span></li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Example Issue -->
-    <section class="py-12 relative z-10">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-2xl font-display font-bold text-center mb-8">Przykładowe wydanie</h2>
-
-            <div class="glass-card p-6 rounded-2xl border border-white/10">
-                <!-- Header -->
-                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                    <div class="w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
-                        <i data-lucide="radar" class="w-6 h-6 text-brand-primary"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-white">AI Radar #42</p>
-                        <p class="text-gray-500 text-sm">od: Darek z AI-Team • 5 min czytania</p>
-                    </div>
-                </div>
-
-                <!-- Intro -->
-                <div class="mb-6">
-                    <p class="text-gray-300 text-sm">Cześć! W tym wydaniu:</p>
-                    <ul class="text-gray-400 text-sm mt-2 space-y-1">
-                        <li>• OpenAI wypuściło nowy model o3</li>
-                        <li>• Narzędzie które automatyzuje posty na social media</li>
-                        <li>• Prompt do pisania ofert handlowych</li>
-                    </ul>
-                </div>
-
-                <!-- Gorące Newsy -->
-                <div class="mb-5 pb-5 border-b border-white/5">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i data-lucide="flame" class="w-4 h-4 text-red-500"></i>
-                        <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Gorące Newsy</span>
-                    </div>
-                    <div class="space-y-2 text-sm text-gray-300">
-                        <p>🤖 <strong class="text-white">OpenAI o3</strong> - nowy model rozumowania który przebija wszystko</p>
-                        <p>🔧 <strong class="text-white">Claude Projects</strong> - Anthropic dodał foldery do rozmów</p>
-                        <p>💰 <strong class="text-white">Perplexity Pro</strong> - teraz za 20$ zamiast 40$</p>
-                    </div>
-                </div>
-
-                <!-- Narzędzie Tygodnia -->
-                <div class="mb-5 pb-5 border-b border-white/5">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i data-lucide="wrench" class="w-4 h-4 text-brand-primary"></i>
-                        <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">Narzędzie Tygodnia</span>
-                    </div>
-                    <p class="text-white font-semibold mb-1">Buffer AI Assistant</p>
-                    <p class="text-gray-400 text-sm">Pisze posty na social media w Twoim stylu. Testowałem tydzień - oszczędza 3h tygodniowo...</p>
-                </div>
-
-                <!-- Prompt Dnia -->
-                <div class="mb-5 pb-5 border-b border-white/5">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i data-lucide="message-square-code" class="w-4 h-4 text-purple-500"></i>
-                        <span class="text-xs font-bold text-purple-500 uppercase tracking-wider">Prompt Dnia</span>
-                    </div>
-                    <p class="text-white font-semibold mb-2">Generator ofert handlowych</p>
-                    <div class="bg-black/40 p-3 rounded-lg font-mono text-xs text-brand-light">
-                        Jesteś copywriterem B2B. Napisz ofertę dla [branża] która...<br>
-                        <span class="text-gray-500">[pełny prompt w newsletterze]</span>
-                    </div>
-                </div>
-
-                <!-- 3 Szybkie Tipy -->
-                <div class="mb-5 pb-5 border-b border-white/5">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i data-lucide="zap" class="w-4 h-4 text-yellow-500"></i>
-                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-wider">3 Szybkie Tipy</span>
-                    </div>
-                    <ul class="text-gray-300 text-sm space-y-1">
-                        <li>⚡ Dodaj "krok po kroku" do każdego promptu</li>
-                        <li>⚡ ChatGPT lepiej działa rano (mniej obciążone serwery)</li>
-                        <li>⚡ Zawsze proś o 3 warianty odpowiedzi</li>
-                    </ul>
-                </div>
-
-                <!-- Z Warsztatu Darka -->
-                <div class="mb-4">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i data-lucide="flask-conical" class="w-4 h-4 text-green-500"></i>
-                        <span class="text-xs font-bold text-green-500 uppercase tracking-wider">Z Warsztatu Darka</span>
-                    </div>
-                    <p class="text-gray-300 text-sm">W tym tygodniu próbowałem zautomatyzować follow-upy do klientów. Pierwsza wersja była katastrofą - AI pisało jak robot. Po 3 iteracjach...</p>
-                </div>
-
-                <!-- CTA -->
-                <div class="text-center pt-4 border-t border-white/10">
-                    <p class="text-gray-500 text-xs">...i jeszcze więcej w pełnym wydaniu!</p>
                 </div>
             </div>
         </div>
@@ -542,7 +392,7 @@
     <section class="py-16 relative z-10">
         <div class="max-w-xl mx-auto px-6 text-center">
             <h2 class="text-2xl font-display font-bold mb-4">Dołącz do AI Radar</h2>
-            <p class="text-gray-400 mb-8">Pierwszy mail dostaniesz w najbliższy poniedziałek.</p>
+            <p class="text-gray-400 mb-8">Newsletter w poniedziałek + raport PDF od razu.</p>
 
             <a href="#" onclick="document.querySelector('form input[type=email]').focus(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
                class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition">
@@ -562,7 +412,7 @@
                     </div>
                     <span class="font-display font-bold">AI-Team</span>
                 </div>
-                                <div class="flex gap-6 text-sm text-gray-400">
+                <div class="flex gap-6 text-sm text-gray-400">
                     <a href="index.html" class="hover:text-white transition">Strona główna</a>
                     <a href="blog/" class="hover:text-white transition">Blog</a>
                     <a href="privacy.html" class="hover:text-white transition">Prywatność</a>
@@ -575,7 +425,8 @@
     <script>
         lucide.createIcons();
 
-        // Handle form submission via AJAX
+        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai-v2.pdf';
+
         document.getElementById('ai-radar-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -587,6 +438,7 @@
             btn.disabled = true;
 
             try {
+                // 1. MailerLite subscription
                 const formData = new FormData();
                 formData.append('fields[name]', name);
                 formData.append('fields[email]', email);
@@ -599,13 +451,37 @@
                     mode: 'no-cors'
                 });
 
-                localStorage.setItem('aiStartSubscribed', 'true');
+                // 2. Email notification
+                const notifyData = new FormData(e.target);
+                notifyData.append('_subject', '[AI-Team] Nowy lead - AI Radar + Raport');
+                notifyData.append('_template', 'table');
+                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
+                    method: 'POST',
+                    body: notifyData
+                });
+
+                // 3. GA4 tracking
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Magnet',
+                        event_label: 'AI Radar + Raport 15 sposobow',
+                        value: 1
+                    });
+                }
+
+                // 4. Open PDF
+                window.open(RAPORT_PDF_URL, '_blank');
+
+                // 5. Show success
+                localStorage.setItem('aiRadarSubscribed', 'true');
                 document.getElementById('ai-radar-form').classList.add('hidden');
                 document.getElementById('ai-radar-success').classList.remove('hidden');
                 lucide.createIcons();
+
             } catch (error) {
-                btn.innerHTML = '<i data-lucide="mail-plus" class="w-5 h-5"></i> Dołącz do AI Radar';
-                btn.disabled = false;
+                window.open(RAPORT_PDF_URL, '_blank');
+                document.getElementById('ai-radar-form').classList.add('hidden');
+                document.getElementById('ai-radar-success').classList.remove('hidden');
                 lucide.createIcons();
             }
         });
