@@ -519,6 +519,26 @@
         }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+        /* Typing cursor */
+        .typing-cursor {
+            animation: blink-cursor 0.7s infinite;
+            color: #f97316;
+            font-weight: 300;
+        }
+        @keyframes blink-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Counter flash on complete */
+        .counter-done {
+            animation: counter-flash 0.6s ease-out;
+        }
+        @keyframes counter-flash {
+            0% { transform: scale(1.2); text-shadow: 0 0 20px rgba(249,115,22,0.6); }
+            100% { transform: scale(1); text-shadow: none; }
+        }
+
         /* --- LIGHT THEME OVERRIDES --- */
         .theme-light {
             --bg-main: #f8fafc; /* slate-50 */
@@ -641,7 +661,9 @@
     </nav>
 
     <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden z-10">
-        <div class="max-w-6xl mx-auto px-6 text-center">
+        <!-- Particle Constellation -->
+        <canvas id="particle-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity: 0.6; z-index: 0;"></canvas>
+        <div class="max-w-6xl mx-auto px-6 text-center relative" style="z-index: 1;">
             <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider animate-float border border-brand-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
                 <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse-fast"></span>
                 <span data-i18n="hero_badge">PROFESJONALNE ROZWIĄZANIA AI DLA FIRM</span>
@@ -686,19 +708,19 @@
         <div class="max-w-5xl mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">12+</div>
+                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1 stat-counter" data-target="12" data-suffix="+">0</div>
                     <div class="text-xs md:text-sm text-gray-500">Zrealizowanych projektów</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">60s</div>
+                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1 stat-counter" data-target="60" data-suffix="s">0</div>
                     <div class="text-xs md:text-sm text-gray-500">Quiz: ile tracisz?</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">2-14</div>
+                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1 stat-counter" data-target="14" data-prefix="2-" data-suffix="">0</div>
                     <div class="text-xs md:text-sm text-gray-500">Dni realizacji projektu</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">90%</div>
+                    <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1 stat-counter" data-target="90" data-suffix="%">0</div>
                     <div class="text-xs md:text-sm text-gray-500">Taniej niż agencja IT</div>
                 </div>
             </div>
@@ -3065,6 +3087,178 @@
             if (e.key === 'Escape') closeExitPopup();
         });
     </script>
+    <!-- === WOW EFFECTS: Particles + Typing + Counter === -->
+    <script>
+    // === 1. PARTICLE CONSTELLATION ===
+    (function() {
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const isMobile = window.innerWidth < 768;
+        const particleCount = isMobile ? 35 : 70;
+        const connectionDistance = isMobile ? 100 : 150;
+        const brandColor = [249, 115, 22];
+        let particles = [];
+        let animId;
+
+        function resize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    r: Math.random() * 2 + 0.5,
+                    o: Math.random() * 0.5 + 0.15
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${brandColor},${p.o})`;
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(${brandColor},${(1 - dist / connectionDistance) * 0.12})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            animId = requestAnimationFrame(draw);
+        }
+
+        // Stop animation when hero not visible (performance)
+        const heroObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                if (!animId) draw();
+            } else {
+                cancelAnimationFrame(animId);
+                animId = null;
+            }
+        }, { threshold: 0.1 });
+
+        const heroSection = canvas.closest('section');
+        if (heroSection) heroObserver.observe(heroSection);
+
+        window.addEventListener('resize', () => { resize(); createParticles(); });
+        resize();
+        createParticles();
+        draw();
+    })();
+
+    // === 2. TYPING EFFECT ===
+    (function() {
+        const el = document.querySelector('.gradient-text[data-i18n="hero_h1_span"]');
+        if (!el) return;
+
+        const line1 = 'AI-Ready.';
+        const line2 = 'Bądź gotowy na zmiany.';
+        el.innerHTML = '';
+        el.style.minHeight = '2.4em';
+
+        let i = 0;
+        let phase = 1; // 1 = line1, 2 = line2
+        let text = '';
+
+        function type() {
+            if (phase === 1) {
+                if (i < line1.length) {
+                    text += line1[i];
+                    el.innerHTML = text + '<span class="typing-cursor">|</span>';
+                    i++;
+                    setTimeout(type, 70 + Math.random() * 30);
+                } else {
+                    phase = 2;
+                    i = 0;
+                    text += '<br>';
+                    setTimeout(type, 400);
+                }
+            } else {
+                if (i < line2.length) {
+                    text += line2[i];
+                    el.innerHTML = text + '<span class="typing-cursor">|</span>';
+                    i++;
+                    setTimeout(type, 50 + Math.random() * 30);
+                } else {
+                    // Done — remove cursor after pause
+                    setTimeout(() => { el.innerHTML = text; }, 2000);
+                }
+            }
+        }
+
+        setTimeout(type, 600);
+    })();
+
+    // === 3. ANIMATED COUNTERS ON SCROLL ===
+    (function() {
+        const counters = document.querySelectorAll('.stat-counter');
+        if (!counters.length) return;
+
+        let animated = false;
+
+        function runCounters() {
+            if (animated) return;
+            animated = true;
+
+            counters.forEach(el => {
+                const target = parseInt(el.dataset.target) || 0;
+                const suffix = el.dataset.suffix || '';
+                const prefix = el.dataset.prefix || '';
+                const duration = 1800;
+                const start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                    const current = Math.round(target * eased);
+                    el.textContent = prefix + current + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.textContent = prefix + target + suffix;
+                        el.classList.add('counter-done');
+                    }
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+
+        const statsObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) runCounters();
+        }, { threshold: 0.5 });
+
+        const statsSection = counters[0].closest('section');
+        if (statsSection) statsObserver.observe(statsSection);
+    })();
+    </script>
+
     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 
 </body>
