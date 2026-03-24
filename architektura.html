@@ -15,10 +15,10 @@
       gtag('config', 'G-MX6DBXQ66D');
     </script>
 
-    <title>Architektura AI-Team — Mapa Systemu | AI-Team</title>
-    <meta name="description" content="Interaktywna mapa systemu AI-Team: 10 asystentów, 19 skilli, 11 narzędzi. Zobacz jak działa zespół AI w praktyce.">
-    <meta property="og:title" content="Architektura AI-Team — Mapa Systemu">
-    <meta property="og:description" content="Interaktywna mapa systemu AI-Team: asystenci, skille, narzędzia, infrastruktura.">
+    <title>Architektura AI-Team — Żywy Organizm Twojej Firmy | AI-Team</title>
+    <meta name="description" content="System AI który działa jak organizm: Serce (strategia), Głos (komunikacja), Kręgosłup (operacje), Tlen (sprzedaż). Zbuduj swój zespół AI.">
+    <meta property="og:title" content="Architektura AI-Team — Żywy Organizm Firmy">
+    <meta property="og:description" content="Nie prompty. System. 14 modułów AI które działają jak organy Twojej firmy.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
     <meta property="og:url" content="https://ai-team.pl/architektura">
 
@@ -73,7 +73,6 @@
             z-index: 1;
         }
 
-        /* Back link */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -88,7 +87,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
 
         header h1 {
@@ -105,6 +104,65 @@
             margin-top: 8px;
             font-size: 0.95rem;
         }
+
+        /* Manifesto */
+        .manifesto {
+            max-width: 680px;
+            margin: 0 auto 44px;
+            text-align: center;
+            padding: 28px 24px;
+            background: linear-gradient(135deg, rgba(255,64,129,0.04), rgba(0,212,255,0.04));
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+        }
+        .manifesto p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .manifesto strong {
+            color: #fff;
+        }
+        .manifesto .strike {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        /* Layer badge */
+        .layer-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .layer-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .layer-badge[data-layer="start"] {
+            background: rgba(0,230,118,0.1);
+            color: var(--accent-green);
+            border-color: rgba(0,230,118,0.2);
+        }
+        .layer-badge[data-layer="wzrost"] {
+            background: rgba(0,212,255,0.1);
+            color: var(--accent-cyan);
+            border-color: rgba(0,212,255,0.2);
+        }
+        .layer-badge[data-layer="organizm"] {
+            background: rgba(179,136,255,0.1);
+            color: var(--accent-purple);
+            border-color: rgba(179,136,255,0.2);
+        }
+        .layer-badge:hover { transform: translateY(-1px); }
+        .layer-badge.active { box-shadow: 0 0 12px rgba(255,255,255,0.1); }
 
         .tier { margin-bottom: 40px; }
 
@@ -178,34 +236,72 @@
         .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.1); }
         .card.active { border-color: rgba(255,255,255,0.15); }
 
+        /* Locked cards */
+        .card.locked {
+            opacity: 0.35;
+            filter: blur(1px);
+            cursor: default;
+        }
+        .card.locked:hover { transform: none; border-color: var(--card-border); }
+
         .card[data-color="cyan"]::before { background: var(--accent-cyan); }
-        .card[data-color="cyan"]:hover { box-shadow: 0 8px 30px rgba(0,212,255,var(--glow-strength)); }
+        .card[data-color="cyan"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(0,212,255,var(--glow-strength)); }
         .card[data-color="orange"]::before { background: var(--accent-orange); }
-        .card[data-color="orange"]:hover { box-shadow: 0 8px 30px rgba(255,138,0,var(--glow-strength)); }
+        .card[data-color="orange"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,138,0,var(--glow-strength)); }
         .card[data-color="green"]::before { background: var(--accent-green); }
-        .card[data-color="green"]:hover { box-shadow: 0 8px 30px rgba(0,230,118,var(--glow-strength)); }
+        .card[data-color="green"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(0,230,118,var(--glow-strength)); }
         .card[data-color="purple"]::before { background: var(--accent-purple); }
-        .card[data-color="purple"]:hover { box-shadow: 0 8px 30px rgba(179,136,255,var(--glow-strength)); }
+        .card[data-color="purple"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(179,136,255,var(--glow-strength)); }
         .card[data-color="pink"]::before { background: var(--accent-pink); }
-        .card[data-color="pink"]:hover { box-shadow: 0 8px 30px rgba(255,64,129,var(--glow-strength)); }
+        .card[data-color="pink"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,64,129,var(--glow-strength)); }
         .card[data-color="yellow"]::before { background: var(--accent-yellow); }
-        .card[data-color="yellow"]:hover { box-shadow: 0 8px 30px rgba(255,215,64,var(--glow-strength)); }
+        .card[data-color="yellow"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,215,64,var(--glow-strength)); }
         .card[data-color="red"]::before { background: var(--accent-red); }
-        .card[data-color="red"]:hover { box-shadow: 0 8px 30px rgba(255,82,82,var(--glow-strength)); }
+        .card[data-color="red"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,82,82,var(--glow-strength)); }
         .card[data-color="teal"]::before { background: var(--accent-teal); }
-        .card[data-color="teal"]:hover { box-shadow: 0 8px 30px rgba(100,255,218,var(--glow-strength)); }
+        .card[data-color="teal"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(100,255,218,var(--glow-strength)); }
         .card[data-color="blue"]::before { background: var(--accent-blue); }
-        .card[data-color="blue"]:hover { box-shadow: 0 8px 30px rgba(68,138,255,var(--glow-strength)); }
+        .card[data-color="blue"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(68,138,255,var(--glow-strength)); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
         .card-icon {
             width: 36px; height: 36px;
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.1rem;
-            margin-bottom: 12px;
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.08);
         }
+
+        .organ-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .layer-tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .layer-tag.start { background: rgba(0,230,118,0.15); color: var(--accent-green); }
+        .layer-tag.wzrost { background: rgba(0,212,255,0.15); color: var(--accent-cyan); }
+        .layer-tag.organizm { background: rgba(179,136,255,0.15); color: var(--accent-purple); }
+
         .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
         .card-subtitle { font-size: 0.75rem; font-weight: 500; margin-bottom: 8px; }
 
@@ -348,6 +444,7 @@
             .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
             header h1 { font-size: 1.6rem; }
             .stats { gap: 20px; }
+            .manifesto p { font-size: 0.92rem; }
         }
     </style>
 </head>
@@ -357,67 +454,82 @@
         <a href="/" class="back-link">&larr; ai-team.pl</a>
 
         <header>
-            <h1>Architektura AI-Team</h1>
-            <p>Kliknij moduł, żeby zobaczyć szczegóły i komendy</p>
+            <h1>Żywy Organizm Twojej Firmy</h1>
+            <p>System AI który pracuje jak ciało — każdy organ ma swoją rolę</p>
         </header>
+
+        <div class="manifesto">
+            <p>
+                <span class="strike">Prompty</span> to przeszłość.<br>
+                Przyszłość to <strong>systemy</strong> — połączone moduły które znają Twoją firmę,<br>
+                pamiętają kontekst i działają bez powtarzania się.
+            </p>
+        </div>
+
+        <!-- Layer filter -->
+        <div class="layer-bar">
+            <div class="layer-badge active" data-layer="all" onclick="filterLayer('all')">Wszystkie moduły</div>
+            <div class="layer-badge" data-layer="start" onclick="filterLayer('start')">START — minimum do działania</div>
+            <div class="layer-badge" data-layer="wzrost" onclick="filterLayer('wzrost')">WZROST — firma rośnie</div>
+            <div class="layer-badge" data-layer="organizm" onclick="filterLayer('organizm')">PEŁNY ORGANIZM</div>
+        </div>
 
         <div class="stats">
             <div class="stat">
-                <div class="stat-value">10</div>
-                <div class="stat-label">Asystentów</div>
+                <div class="stat-value">14</div>
+                <div class="stat-label">Organów</div>
             </div>
             <div class="stat">
                 <div class="stat-value">19</div>
                 <div class="stat-label">Skilli</div>
             </div>
             <div class="stat">
-                <div class="stat-value">11</div>
-                <div class="stat-label">Narzędzi</div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Warstwy</div>
             </div>
             <div class="stat">
                 <div class="stat-value">7</div>
-                <div class="stat-label">MCP Serwerów</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">15+</div>
-                <div class="stat-label">Repo GitHub</div>
+                <div class="stat-label">Integracji</div>
             </div>
         </div>
 
-        <!-- TIER 0: CORE -->
+        <!-- TIER 0: SERCE -->
         <div class="tier">
             <div class="tier-label">Centrum dowodzenia</div>
             <div class="grid grid-1">
-                <div class="card" data-color="cyan" data-module="core" onclick="toggleDetail('core')">
-                    <div class="card-icon">&#9881;</div>
+                <div class="card" data-color="red" data-module="core" data-layer="start" onclick="toggleDetail('core')">
+                    <div class="card-header">
+                        <div class="card-icon">&#10084;</div>
+                        <div><span class="organ-tag">Serce</span> <span class="layer-tag start">START</span></div>
+                    </div>
                     <div class="card-title">CEO Core</div>
-                    <div class="card-subtitle">Router i dispatcher</div>
-                    <div class="card-desc">Strategia, delegowanie, koordynacja całego zespołu</div>
+                    <div class="card-subtitle">Strategia i dispatch</div>
+                    <div class="card-desc">Centrum decyzyjne — analizuje, deleguje, koordynuje cały organizm</div>
                 </div>
             </div>
             <div class="detail-panel" id="detail-core">
                 <button class="detail-close" onclick="toggleDetail('core')">&#10005;</button>
-                <h3>CEO Core — Centrum Dowodzenia</h3>
+                <h3>Serce — CEO Core</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
-                    <p><span class="command-tag">/ceo</span> lub opisz złożony problem — CEO sam rozłoży na zespół</p>
+                    <p><span class="command-tag">/ceo</span> lub opisz złożony problem — Serce samo rozłoży na organy</p>
                 </div>
                 <div class="detail-section">
                     <h4>Co robi</h4>
                     <ul>
-                        <li>Analizuje zadanie i deleguje do odpowiedniego asystenta</li>
-                        <li>Koordynuje pracę kilku asystentów naraz</li>
+                        <li>Analizuje zadanie i deleguje do odpowiedniego organu</li>
+                        <li>Koordynuje pracę kilku organów naraz</li>
                         <li>Planowanie kwartalne, OKR-y, trudne decyzje</li>
-                        <li>Synteza odpowiedzi z całego zespołu</li>
+                        <li>Synteza odpowiedzi z całego organizmu</li>
                     </ul>
                 </div>
                 <div class="detail-section">
                     <h4>Przykładowy workflow</h4>
                     <div class="workflow-box">Ty: "Mam za dużo na głowie, nie wiem od czego zacząć"
-<strong>CEO</strong> analizuje sytuację
-  <span class="flow-arrow">→</span> deleguje do <strong>COO</strong> (plan działania)
-  <span class="flow-arrow">→</span> deleguje do <strong>CSO</strong> (szybka kasa)
-  <span class="flow-arrow">→</span> deleguje do <strong>CMO</strong> (content na tydzień)
+<strong>Serce</strong> analizuje sytuację
+  <span class="flow-arrow">→</span> pompuje do <strong>Kręgosłupa</strong> (plan działania)
+  <span class="flow-arrow">→</span> pompuje do <strong>Tlenu</strong> (szybka kasa)
+  <span class="flow-arrow">→</span> pompuje do <strong>Oddechu</strong> (content na tydzień)
   <span class="flow-arrow">→</span> zbiera odpowiedzi i daje Ci 1 plan</div>
                 </div>
             </div>
@@ -426,39 +538,61 @@
         <div class="connector"></div>
         <div class="connector-wide"></div>
 
-        <!-- TIER 1: C-SUITE -->
+        <!-- TIER 1: START LAYER -->
         <div class="tier">
-            <div class="tier-label">Zespół wykonawczy</div>
-            <div class="grid grid-3">
-                <div class="card" data-color="orange" data-module="coo" onclick="toggleDetail('coo')">
-                    <div class="card-icon">&#9889;</div>
+            <div class="tier-label">Warstwa START — minimum do działania</div>
+            <div class="grid grid-2">
+                <div class="card" data-color="pink" data-module="ghost" data-layer="start" onclick="toggleDetail('ghost')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128483;</div>
+                        <div><span class="organ-tag">Głos</span> <span class="layer-tag start">START</span></div>
+                    </div>
+                    <div class="card-title">GHOST</div>
+                    <div class="card-subtitle">Cyfrowy Bliźniak</div>
+                    <div class="card-desc">Pisze maile, DM-ki, komentarze — brzmi dokładnie jak Ty</div>
+                </div>
+                <div class="card" data-color="orange" data-module="coo" data-layer="start" onclick="toggleDetail('coo')">
+                    <div class="card-header">
+                        <div class="card-icon">&#9547;</div>
+                        <div><span class="organ-tag">Kręgosłup</span> <span class="layer-tag start">START</span></div>
+                    </div>
                     <div class="card-title">COO</div>
                     <div class="card-subtitle">Operacje i egzekucja</div>
-                    <div class="card-desc">Planowanie, procesy, wąskie gardła, automatyzacja</div>
+                    <div class="card-desc">Trzyma firmę prosto — planuje, organizuje, odblokuje</div>
                 </div>
-                <div class="card" data-color="green" data-module="cso" onclick="toggleDetail('cso')">
-                    <div class="card-icon">&#128176;</div>
-                    <div class="card-title">CSO</div>
-                    <div class="card-subtitle">Sprzedaż i lejki</div>
-                    <div class="card-desc">Lejki sprzedażowe, obiekcje, close, follow-up, metryki</div>
+            </div>
+
+            <div class="detail-panel" id="detail-ghost">
+                <button class="detail-close" onclick="toggleDetail('ghost')">&#10005;</button>
+                <h3>Głos — GHOST (Cyfrowy Bliźniak)</h3>
+                <div class="detail-section">
+                    <h4>Jak wywołać</h4>
+                    <p><span class="command-tag">/ghost</span> + wklej maila, DM-kę lub komentarz</p>
                 </div>
-                <div class="card" data-color="purple" data-module="cmo" onclick="toggleDetail('cmo')">
-                    <div class="card-icon">&#128227;</div>
-                    <div class="card-title">CMO</div>
-                    <div class="card-subtitle">Marketing i content</div>
-                    <div class="card-desc">Posty, kampanie, leady, newsletter, content machine</div>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <ul>
+                        <li>Odpowiada na maile, DM-ki, komentarze <strong>w Twoim stylu</strong></li>
+                        <li><strong>Self-tuning:</strong> "zapamiętaj" = idealnie, "to nie ja" = popraw</li>
+                        <li>Uczy się z każdej odpowiedzi którą wysłałeś</li>
+                        <li>Wszystkie inne organy czytają Głos żeby pisać jak Ty</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Dlaczego w START</h4>
+                    <p>Bez Głosu każdy organ pisze inaczej. Głos to DNA Twojej komunikacji — musi być od początku.</p>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-coo">
                 <button class="detail-close" onclick="toggleDetail('coo')">&#10005;</button>
-                <h3>COO — Brutalnie Skuteczny Dyrektor Operacyjny</h3>
+                <h3>Kręgosłup — COO (Dyrektor Operacyjny)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
                     <p><span class="command-tag">/coo</span> — gdy masz chaos, brak czasu, nie wiesz od czego zacząć</p>
                 </div>
                 <div class="detail-section">
-                    <h4>Menu COO</h4>
+                    <h4>Menu</h4>
                     <ul>
                         <li><strong>Plan dnia</strong> — konkretny plan z priorytetami na dzisiaj</li>
                         <li><strong>Plan tygodnia</strong> — rozkład całego tygodnia</li>
@@ -468,27 +602,63 @@
                     </ul>
                 </div>
                 <div class="detail-section">
-                    <h4>Filozofia</h4>
-                    <p>DONE > PERFECT. Zasada 2h: jeżeli zadanie zajmuje mniej niż 2h — rób TERAZ, nie planuj.</p>
+                    <h4>Dlaczego w START</h4>
+                    <p>Bez Kręgosłupa firma się rozłazi. To organ który trzyma porządek i egzekucję — reszta organów potrzebuje go do sprawnego działania.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector-wide"></div>
+
+        <!-- TIER 2: WZROST LAYER -->
+        <div class="tier">
+            <div class="tier-label">Warstwa WZROST — firma rośnie</div>
+            <div class="grid grid-3">
+                <div class="card" data-color="green" data-module="cso" data-layer="wzrost" onclick="toggleDetail('cso')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128168;</div>
+                        <div><span class="organ-tag">Tlen</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">CSO</div>
+                    <div class="card-subtitle">Sprzedaż i lejki</div>
+                    <div class="card-desc">Bez tlenu firma umiera — pompuje kasę do organizmu</div>
+                </div>
+                <div class="card" data-color="purple" data-module="cmo" data-layer="wzrost" onclick="toggleDetail('cmo')">
+                    <div class="card-header">
+                        <div class="card-icon">&#127788;</div>
+                        <div><span class="organ-tag">Oddech</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">CMO</div>
+                    <div class="card-subtitle">Marketing i content</div>
+                    <div class="card-desc">Bez oddechu nikt Cię nie widzi — content to widoczność</div>
+                </div>
+                <div class="card" data-color="teal" data-module="cto" data-layer="wzrost" onclick="toggleDetail('cto')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129471;</div>
+                        <div><span class="organ-tag">Szkielet</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">CTO</div>
+                    <div class="card-subtitle">Narzędzia i integracje</div>
+                    <div class="card-desc">Na szkielecie stoi wszystko — API, deploy, automatyzacje</div>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-cso">
                 <button class="detail-close" onclick="toggleDetail('cso')">&#10005;</button>
-                <h3>CSO — Chief Sales Officer</h3>
+                <h3>Tlen — CSO (Chief Sales Officer)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
                     <p><span class="command-tag">/cso</span> — gdy potrzebujesz kasy, kontaktów, zamknąć deal</p>
                 </div>
                 <div class="detail-section">
-                    <h4>Menu CSO (7 opcji)</h4>
+                    <h4>Menu (7 opcji)</h4>
                     <ul>
                         <li><strong>Odpowiedź na maila</strong> — draft sprzedażowy w Twoim stylu</li>
                         <li><strong>Kasa dziś</strong> — szybka akcja sprzedażowa na dzisiaj</li>
                         <li><strong>Trening sprzedażowy</strong> — symulacja rozmowy z klientem</li>
                         <li><strong>Audyt sprzedaży</strong> — gdzie tracisz kontakty</li>
                         <li><strong>Deep Research</strong> — analiza rynku/konkurencji</li>
-                        <li><strong>Sprzedaj więcej</strong> — upsell/cross-sell do istniejących</li>
+                        <li><strong>Sprzedaj więcej</strong> — upsell/cross-sell</li>
                         <li><strong>Metryki</strong> — co mierzyć i jak</li>
                     </ul>
                 </div>
@@ -496,7 +666,7 @@
 
             <div class="detail-panel" id="detail-cmo">
                 <button class="detail-close" onclick="toggleDetail('cmo')">&#10005;</button>
-                <h3>CMO — Chief Marketing Officer</h3>
+                <h3>Oddech — CMO (Chief Marketing Officer)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
                     <p><span class="command-tag">/cmo</span> — gdy potrzebujesz contentu, leadów, kampanii</p>
@@ -512,64 +682,25 @@
                 </div>
                 <div class="detail-section">
                     <h4>Filozofia</h4>
-                    <p>LEADY > LAJKI. Każda akcja musi mieć CTA. ROI albo śmierć. Content = wartość (save-worthy).</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="connector-wide"></div>
-
-        <!-- TIER 2: SPECIALISTS -->
-        <div class="tier">
-            <div class="tier-label">Specjaliści</div>
-            <div class="grid grid-5">
-                <div class="card" data-color="teal" data-module="cto" onclick="toggleDetail('cto')">
-                    <div class="card-icon">&#128295;</div>
-                    <div class="card-title">CTO</div>
-                    <div class="card-subtitle">Narzędzia i integracje</div>
-                    <div class="card-desc">API, deploy, GitHub, MCP, automatyzacje</div>
-                </div>
-                <div class="card" data-color="blue" data-module="cca" onclick="toggleDetail('cca')">
-                    <div class="card-icon">&#9729;</div>
-                    <div class="card-title">CCA</div>
-                    <div class="card-subtitle">Cloud Architect</div>
-                    <div class="card-desc">AWS, GCP, serverless, koszty, bezpieczeństwo</div>
-                </div>
-                <div class="card" data-color="pink" data-module="ghost" onclick="toggleDetail('ghost')">
-                    <div class="card-icon">&#128123;</div>
-                    <div class="card-title">GHOST</div>
-                    <div class="card-subtitle">Cyfrowy Bliźniak</div>
-                    <div class="card-desc">Maile, DM-ki, komentarze — pisze JAK TY</div>
-                </div>
-                <div class="card" data-color="yellow" data-module="pm" onclick="toggleDetail('pm')">
-                    <div class="card-icon">&#128203;</div>
-                    <div class="card-title">PM</div>
-                    <div class="card-subtitle">Product Manager</div>
-                    <div class="card-desc">Roadmapa, backlog, patient flow, 8 stron</div>
-                </div>
-                <div class="card" data-color="red" data-module="devil" onclick="toggleDetail('devil')">
-                    <div class="card-icon">&#128520;</div>
-                    <div class="card-title">Devil</div>
-                    <div class="card-subtitle">Advocate</div>
-                    <div class="card-desc">Stress-test pomysłów z 7 kątów ataku</div>
+                    <p>LEADY > LAJKI. Każda akcja musi mieć CTA. Content = wartość, nie puste posty.</p>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-cto">
                 <button class="detail-close" onclick="toggleDetail('cto')">&#10005;</button>
-                <h3>CTO — Chief Tools Officer</h3>
+                <h3>Szkielet — CTO (Chief Tools Officer)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
-                    <p><span class="command-tag">/cto</span> — API nie działa, deploy się wysypał, potrzebujesz klucza, nowe narzędzie</p>
+                    <p><span class="command-tag">/cto</span> — API nie działa, deploy się wysypał, nowe narzędzie</p>
                 </div>
                 <div class="detail-section">
-                    <h4>Menu CTO</h4>
+                    <h4>Menu</h4>
                     <ul>
                         <li><strong>Tech Audit</strong> — przegląd narzędzi: co masz, czego brakuje</li>
                         <li><strong>Mapa integracji</strong> — diagram połączeń, gdzie luki</li>
                         <li><strong>Łączenie narzędzi</strong> — MCP, API, Zapier/Make, skrypty</li>
-                        <li><strong>Sejf API</strong> — inwentarz kluczy, bezpieczne przechowywanie</li>
-                        <li><strong>Bezpieczeństwo</strong> — audit systemu, uprawnienia</li>
+                        <li><strong>Sejf API</strong> — inwentarz kluczy</li>
+                        <li><strong>Bezpieczeństwo</strong> — audit systemu</li>
                         <li><strong>Automatyzacja 24/7</strong> — skrypty, cron, harmonogramy</li>
                     </ul>
                 </div>
@@ -578,10 +709,55 @@
                     <p>GitHub, Vercel, Firebase, Stripe, GetResponse, MailerLite, Notion, Canva, Gemini API, Anthropic API, Telegram, Supabase, Resend</p>
                 </div>
             </div>
+        </div>
+
+        <div class="connector-wide"></div>
+
+        <!-- TIER 3: PEŁNY ORGANIZM -->
+        <div class="tier">
+            <div class="tier-label">Pełny organizm — system autonomiczny</div>
+            <div class="grid grid-4">
+                <div class="card" data-color="blue" data-module="cca" data-layer="organizm" onclick="toggleDetail('cca')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128737;</div>
+                        <div><span class="organ-tag">Tarcza</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">CCA</div>
+                    <div class="card-subtitle">Cloud Architect</div>
+                    <div class="card-desc">Chroni — koszty, bezpieczeństwo, infrastruktura</div>
+                </div>
+                <div class="card" data-color="yellow" data-module="pm" data-layer="organizm" onclick="toggleDetail('pm')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129504;</div>
+                        <div><span class="organ-tag">Mózg</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">PM</div>
+                    <div class="card-subtitle">Product Manager</div>
+                    <div class="card-desc">Myśli co budować dalej — roadmapa, backlog, priorytety</div>
+                </div>
+                <div class="card" data-color="red" data-module="devil" data-layer="organizm" onclick="toggleDetail('devil')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129298;</div>
+                        <div><span class="organ-tag">Gorączka</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Devil's Advocate</div>
+                    <div class="card-subtitle">Stress-test</div>
+                    <div class="card-desc">Sygnał alarmowy — zabija słabe pomysły z 7 kątów</div>
+                </div>
+                <div class="card" data-color="cyan" data-module="zmysly" data-layer="organizm" onclick="toggleDetail('zmysly')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128066;</div>
+                        <div><span class="organ-tag">Zmysły</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Inbox Triage</div>
+                    <div class="card-subtitle">Email AI Asystent</div>
+                    <div class="card-desc">Słucha co przychodzi — 7 Gmailów, AI klasyfikacja</div>
+                </div>
+            </div>
 
             <div class="detail-panel" id="detail-cca">
                 <button class="detail-close" onclick="toggleDetail('cca')">&#10005;</button>
-                <h3>CCA — Chief Cloud Architect</h3>
+                <h3>Tarcza — CCA (Cloud Architect)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
                     <p><span class="command-tag">/cca</span> — architektura chmury, koszty, bezpieczeństwo</p>
@@ -596,66 +772,33 @@
                         <li>Migracje i optymalizacja</li>
                     </ul>
                 </div>
-                <div class="detail-section">
-                    <h4>Różnica CTO vs CCA</h4>
-                    <p>CCA <strong>projektuje</strong> architekturę (co, gdzie, jak). CTO <strong>implementuje</strong> (buduje, łączy, deployuje).</p>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-ghost">
-                <button class="detail-close" onclick="toggleDetail('ghost')">&#10005;</button>
-                <h3>GHOST — Cyfrowy Bliźniak</h3>
-                <div class="detail-section">
-                    <h4>Jak wywołać</h4>
-                    <p><span class="command-tag">/ghost</span> + wklej maila, DM-kę lub komentarz</p>
-                </div>
-                <div class="detail-section">
-                    <h4>Co robi</h4>
-                    <ul>
-                        <li>Odpowiada na maile, DM-ki, komentarze <strong>w Twoim stylu</strong></li>
-                        <li><strong>Self-tuning:</strong> "zapamiętaj" = idealnie, "to nie ja" = popraw</li>
-                        <li>Uczy się z każdej odpowiedzi którą wysłałeś</li>
-                        <li>Inne asystenci (CMO, CSO) czytają GHOST.md żeby pisać jak Ty</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Przykład</h4>
-                    <div class="workflow-box">Ty: [wklejasz maila od klienta]
-<strong>GHOST:</strong> [czyta GHOST.md] → pisze odpowiedź w Twoim stylu
-Ty: "zapamiętaj" → GHOST zapisuje wzorzec
-Ty: "to nie ja" → GHOST koryguje styl</div>
-                </div>
             </div>
 
             <div class="detail-panel" id="detail-pm">
                 <button class="detail-close" onclick="toggleDetail('pm')">&#10005;</button>
-                <h3>PM — Product Manager MyWay</h3>
+                <h3>Mózg — PM (Product Manager)</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
-                    <p><span class="command-tag">/pm</span> — wszystko związane z produktem MyWay</p>
+                    <p><span class="command-tag">/pm</span> — wszystko związane z produktem</p>
                 </div>
                 <div class="detail-section">
                     <h4>Co robi</h4>
                     <ul>
                         <li><strong>Roadmapa</strong> — co budować dalej, priorytety</li>
                         <li><strong>Backlog</strong> — zbieranie i priorytetyzacja feature requestów</li>
-                        <li><strong>Patient Flow</strong> — audit ścieżki pacjenta przez 8 stron</li>
+                        <li><strong>Patient Flow</strong> — audit ścieżki klienta</li>
                         <li><strong>Sprint planning</strong> — co w tym tygodniu</li>
                         <li><strong>Product review</strong> — przegląd stron i funkcji</li>
                     </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Ekosystem MyWay (8 stron)</h4>
-                    <p>osrodek-myway.pl, edu-myway.pl, katalogosrodkow.pl, rankingosrodkowterapii.pl, MyWay CRM, MyWayPoint Rezerwacje, wygrajtrzezwezycie.pl, krystiannagaba.pl</p>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-devil">
                 <button class="detail-close" onclick="toggleDetail('devil')">&#10005;</button>
-                <h3>Devil's Advocate — Zabójca Słabych Pomysłów</h3>
+                <h3>Gorączka — Devil's Advocate</h3>
                 <div class="detail-section">
                     <h4>Jak wywołać</h4>
-                    <p><span class="command-tag">/devil</span> — "czy to ma sens?", nowy pomysł, ważna decyzja</p>
+                    <p><span class="command-tag">/devil</span> — nowy pomysł, ważna decyzja, "czy to ma sens?"</p>
                 </div>
                 <div class="detail-section">
                     <h4>7 kątów ataku</h4>
@@ -669,153 +812,15 @@ Ty: "to nie ja" → GHOST koryguje styl</div>
                         <li><strong>Premortem</strong> — wyobraź sobie że się nie udało, dlaczego?</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="connector-wide"></div>
-
-        <!-- TIER 3: CONTENT PIPELINE + NEW MODULES -->
-        <div class="tier">
-            <div class="tier-label">Content Pipeline i AI</div>
-            <div class="grid grid-3">
-                <div class="card" data-color="purple" data-module="posts" onclick="toggleDetail('posts')">
-                    <div class="card-icon">&#9997;</div>
-                    <div class="card-title">Posty Social</div>
-                    <div class="card-subtitle">LinkedIn, FB, Instagram</div>
-                    <div class="card-desc">Post Darek, Post MyWay, opisy rolek, repurposing</div>
-                </div>
-                <div class="card" data-color="green" data-module="articles" onclick="toggleDetail('articles')">
-                    <div class="card-icon">&#128196;</div>
-                    <div class="card-title">Artykuły SEO</div>
-                    <div class="card-subtitle">Blog i multi-site deploy</div>
-                    <div class="card-desc">Research SEO, pisanie, publikacja na 4 strony naraz</div>
-                </div>
-                <div class="card" data-color="orange" data-module="newsletter" onclick="toggleDetail('newsletter')">
-                    <div class="card-icon">&#128232;</div>
-                    <div class="card-title">Newsletter</div>
-                    <div class="card-subtitle">MyWay + AI Radar</div>
-                    <div class="card-desc">Tematy, HTML, zdjęcia, GetResponse API, scheduling</div>
+                <div class="detail-section">
+                    <h4>Dlaczego "Gorączka"</h4>
+                    <p>Gorączka to sygnał organizmu że coś jest nie tak. Ten organ podnosi temperaturę kiedy pomysł ma słabe punkty — lepiej to wiedzieć teraz niż po wdrożeniu.</p>
                 </div>
             </div>
 
-            <div class="detail-panel" id="detail-posts">
-                <button class="detail-close" onclick="toggleDetail('posts')">&#10005;</button>
-                <h3>Posty Social Media</h3>
-                <div class="detail-section">
-                    <h4>Komendy</h4>
-                    <ul>
-                        <li><span class="command-tag">/post-darek</span> — post w stylu Darka + CTA AI Radar</li>
-                        <li><span class="command-tag">/post-myway</span> — post w stylu Krystiana + stopka MyWay</li>
-                        <li><span class="command-tag">/social-post</span> — ogólny generator postów</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Jak użyć</h4>
-                    <div class="workflow-box">Ty: "Napisz post o AI w nieruchomościach"
-System: Dla kogo? Darek czy MyWay?
-Ty: "Dla mnie"
-<strong>/post-darek</strong> → czyta GHOST.md → pisze post → CTA: ai-team.pl/ai-radar
-
-Ty: "Opis rolki Krystiana" + wideo
-<strong>/post-myway</strong> → whisper transkrypcja → styl.md → opis z cytatem</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Content Engine (repurposing)</h4>
-                    <p>Jeden artykuł/rolka → 4-6 wariantów na różne platformy (LinkedIn, FB, IG, newsletter). Komenda: "rozmnóż" lub "zrób posty z artykułu".</p>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-articles">
-                <button class="detail-close" onclick="toggleDetail('articles')">&#10005;</button>
-                <h3>Artykuły SEO + Multi-Site Deploy</h3>
-                <div class="detail-section">
-                    <h4>Komendy</h4>
-                    <ul>
-                        <li><span class="command-tag">/artykul</span> — artykuł na blog (ai-team.pl lub MyWay)</li>
-                        <li><span class="command-tag">/publish-articles</span> — deploy na 4 strony MyWay naraz</li>
-                        <li><span class="command-tag">/seo-research</span> — keyword research PRZED pisaniem</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Multi-site deploy MyWay (4 strony)</h4>
-                    <div class="workflow-box"><strong>osrodek-myway.pl</strong> → React TSX + Route w App.tsx + Blog.tsx
-<strong>katalogosrodkow.pl</strong> → Static HTML w blog/slug/index.html
-<strong>rankingosrodkowterapii.pl</strong> → Static HTML w public/blog/slug/
-<strong>edu-myway.pl</strong> → Static HTML w blog/slug.html
-
-Każda strona ma INNY format — system to ogarnia automatycznie.</div>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-newsletter">
-                <button class="detail-close" onclick="toggleDetail('newsletter')">&#10005;</button>
-                <h3>Newsletter Pipeline</h3>
-                <div class="detail-section">
-                    <h4>Komendy</h4>
-                    <ul>
-                        <li><span class="command-tag">/newsletter-myway</span> — pełny cykl newslettera MyWay</li>
-                        <li><strong>AI Radar</strong> — cotygodniowy newsletter AI (poniedziałki, MailerLite)</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Pełny cykl newslettera MyWay</h4>
-                    <div class="workflow-box">1. Propozycja 3 tematów
-2. Pisanie HTML w stylu MyWay
-3. Generowanie zdjęć (Gemini)
-4. Upload obrazków do GetResponse CDN
-5. Wysłanie przez GetResponse API
-6. Zaplanowanie daty</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="connector-wide"></div>
-
-        <!-- TIER 4: TOOLS & AUTOMATION + NEW MODULES -->
-        <div class="tier">
-            <div class="tier-label">Narzędzia i automatyzacje</div>
-            <div class="grid grid-3">
-                <div class="card" data-color="cyan" data-module="mail" onclick="toggleDetail('mail')">
-                    <div class="card-icon">&#128231;</div>
-                    <div class="card-title">Inbox Triage</div>
-                    <div class="card-subtitle">Email AI Asystent</div>
-                    <div class="card-desc">7 Gmailów, AI klasyfikacja, Telegram z akcjami</div>
-                </div>
-                <div class="card" data-color="pink" data-module="fb" onclick="toggleDetail('fb')">
-                    <div class="card-icon">&#128172;</div>
-                    <div class="card-title">FB Komentarze</div>
-                    <div class="card-subtitle">Social AI Handler</div>
-                    <div class="card-desc">Klasyfikacja A/B/C/D, odpowiedzi w stylu Krystiana</div>
-                </div>
-                <div class="card" data-color="teal" data-module="realtools" onclick="toggleDetail('realtools')">
-                    <div class="card-icon">&#127968;</div>
-                    <div class="card-title">RealTools AI</div>
-                    <div class="card-subtitle">Nieruchomości</div>
-                    <div class="card-desc">Raport cen, kalkulator ROI, PUM, virtual staging</div>
-                </div>
-                <div class="card" data-color="yellow" data-module="gemini" onclick="toggleDetail('gemini')">
-                    <div class="card-icon">&#10024;</div>
-                    <div class="card-title">Gemini Tools</div>
-                    <div class="card-subtitle">Obrazy i Deep Research</div>
-                    <div class="card-desc">Generowanie obrazków, wideo, analiza rynku, Gemini API</div>
-                </div>
-                <div class="card" data-color="green" data-module="agents" onclick="toggleDetail('agents')">
-                    <div class="card-icon">&#129302;</div>
-                    <div class="card-title">Agent Builder</div>
-                    <div class="card-subtitle">Budowa agentów AI</div>
-                    <div class="card-desc">Skille Claude Code, custom commands, Agent Teams</div>
-                </div>
-                <div class="card" data-color="red" data-module="demo" onclick="toggleDetail('demo')">
-                    <div class="card-icon">&#127916;</div>
-                    <div class="card-title">Demo System</div>
-                    <div class="card-subtitle">Prezentacje na żywo</div>
-                    <div class="card-desc">Scenariusze warsztatowe, live demo, case studies</div>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-mail">
-                <button class="detail-close" onclick="toggleDetail('mail')">&#10005;</button>
-                <h3>Inbox Triage — Email AI Asystent v2</h3>
+            <div class="detail-panel" id="detail-zmysly">
+                <button class="detail-close" onclick="toggleDetail('zmysly')">&#10005;</button>
+                <h3>Zmysły — Inbox Triage</h3>
                 <div class="detail-section">
                     <h4>Jak uruchomić</h4>
                     <div class="workflow-box">cd tools/mail-asystent && ./run.sh</div>
@@ -827,199 +832,196 @@ Każda strona ma INNY format — system to ogarnia automatycznie.</div>
                         <li>AI klasyfikuje maile (Claude Haiku → Gemini fallback)</li>
                         <li>Wysyła na Telegram z przyciskami akcji</li>
                         <li>Akcje: Wyślij draft / Archiwizuj / Spam / Przypomnij 1h</li>
-                        <li>Drafty pisane w Twoim stylu (GHOST.md)</li>
-                        <li>Wysłane odpowiedzi logowane do replies-log.jsonl</li>
+                        <li>Drafty pisane Twoim Głosem (GHOST.md)</li>
                     </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Status</h4>
-                    <p><span class="status-badge status-active">Aktywne</span> konto dariusz-główny | <span class="status-badge status-partial">Brak App Password</span> 5 pozostałych kont</p>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-fb">
-                <button class="detail-close" onclick="toggleDetail('fb')">&#10005;</button>
-                <h3>FB Komentarze — Social AI Handler</h3>
-                <div class="detail-section">
-                    <h4>Jak uruchomić</h4>
-                    <div class="workflow-box">cd tools/fb-komentarze
-export ANTHROPIC_API_KEY=...
-python app.py
-# → localhost:5555</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Co robi</h4>
-                    <ul>
-                        <li>Analizuje komentarze FB i klasyfikuje (A/B/C/D)</li>
-                        <li>Generuje odpowiedzi w stylu Krystiana</li>
-                        <li>Interfejs webowy na localhost:5555</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="detail-panel" id="detail-realtools">
-                <button class="detail-close" onclick="toggleDetail('realtools')">&#10005;</button>
-                <h3>RealTools AI — Narzędzia Nieruchomościowe</h3>
-                <div class="detail-section">
-                    <h4>Jak uruchomić</h4>
-                    <div class="workflow-box">cd tools/realtools-ai && python app.py
-# → localhost:5557</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Funkcje</h4>
-                    <ul>
-                        <li><strong>Raport cen</strong> — dane RCN z podziałem na dzielnice</li>
-                        <li><strong>Kalkulator ROI</strong> — zwrot z inwestycji w nieruchomość</li>
-                        <li><strong>PUM</strong> — powierzchnia użytkowa mieszkania</li>
-                        <li><strong>Virtual Staging</strong> — slider przed/po</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- NEW: Gemini Tools -->
-            <div class="detail-panel" id="detail-gemini">
-                <button class="detail-close" onclick="toggleDetail('gemini')">&#10005;</button>
-                <h3>Gemini Tools — Obrazy i Deep Research</h3>
-                <div class="detail-section">
-                    <h4>Dostępne narzędzia</h4>
-                    <ul>
-                        <li><strong>MCP Image</strong> — generowanie obrazków przez Gemini API (zdjęcia do newsletterów, postów, artykułów)</li>
-                        <li><strong>Veo</strong> — generowanie krótkich wideo przez Gemini</li>
-                        <li><strong>Deep Research</strong> — głęboka analiza rynku, konkurencji, trendów (przez przeglądarkę)</li>
-                        <li><strong>Gemini API</strong> — fallback dla klasyfikacji maili, analiza obrazów</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Jak użyć</h4>
-                    <div class="workflow-box">Obrazki: "Wygeneruj zdjęcie do newslettera o trzeźwości"
-→ MCP Image generuje przez Gemini API
-
-Deep Research: <span class="command-tag">/cso</span> → opcja 5 (Deep Research)
-→ generuje prompt do przeglądarki
-→ analiza konkurencji, rynku, cen
-
-Wideo: "Zrób krótkie wideo promujące warsztat"
-→ Veo MCP generuje klip</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Status</h4>
-                    <p><span class="status-badge status-active">Aktywne</span> MCP Image + Veo skonfigurowane w mcp.json</p>
-                </div>
-            </div>
-
-            <!-- NEW: Agent Builder -->
-            <div class="detail-panel" id="detail-agents">
-                <button class="detail-close" onclick="toggleDetail('agents')">&#10005;</button>
-                <h3>Agent Builder — Budowa Agentów AI</h3>
-                <div class="detail-section">
-                    <h4>Co to jest</h4>
-                    <p>System do tworzenia i zarządzania specjalizowanymi agentami AI. Każdy asystent w tym systemie (CEO, COO, CSO...) to agent zbudowany w Agent Builderze.</p>
-                </div>
-                <div class="detail-section">
-                    <h4>Elementy systemu</h4>
-                    <ul>
-                        <li><strong>Commands</strong> (.claude/commands/) — szybkie skróty do wywołania asystenta</li>
-                        <li><strong>Skills</strong> (.claude/skills/) — 19 specjalizowanych workflow'ów</li>
-                        <li><strong>Personality Files</strong> (Asystenci-zespół/) — pełne definicje osobowości</li>
-                        <li><strong>Agent Teams</strong> — tryb wieloagentowy, kilka instancji równolegle</li>
-                        <li><strong>MCP Serwery</strong> — połączenia z zewnętrznymi narzędziami</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Jak zbudować nowego agenta</h4>
-                    <div class="workflow-box">1. Stwórz plik osobowości w Asystenci-zespół/NAZWA.md
-   (rola, filozofia, menu, protokoły, pliki do czytania)
-
-2. Dodaj command w .claude/commands/nazwa.md
-   (skrót /nazwa → ładuje plik osobowości)
-
-3. Dodaj skill w .claude/skills/nazwa.md
-   (triggery, workflow, format wyjściowy)
-
-4. Zarejestruj w CLAUDE.md
-   (opis roli, granice, kiedy używać)
-
-5. Gotowe — wpisujesz /nazwa i agent działa</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Agent Teams (praca równoległa)</h4>
-                    <p>Włączone w systemie. Pozwalają uruchomić kilku agentów naraz — np. CMO pisze posty, CSO przygotowuje maile sprzedażowe, a CTO deployuje stronę. Wszystko równolegle.</p>
-                </div>
-            </div>
-
-            <!-- NEW: Demo System -->
-            <div class="detail-panel" id="detail-demo">
-                <button class="detail-close" onclick="toggleDetail('demo')">&#10005;</button>
-                <h3>Demo System — Prezentacje na Żywo</h3>
-                <div class="detail-section">
-                    <h4>Do czego służy</h4>
-                    <p>Gotowe scenariusze na warsztaty i prezentacje. Pokazujesz klientom/uczestnikom jak AI działa w praktyce — na żywo, z prawdziwymi danymi.</p>
-                </div>
-                <div class="detail-section">
-                    <h4>Dostępne demo</h4>
-                    <ul>
-                        <li><strong>Ta strona</strong> — architektura systemu AI (interaktywna mapa)</li>
-                        <li><strong>GHOST live</strong> — wklejasz maila, AI odpowiada w Twoim stylu</li>
-                        <li><strong>Content Machine</strong> — z jednego tematu robisz post + artykuł + newsletter</li>
-                        <li><strong>Inbox Triage</strong> — AI klasyfikuje maile i sugeruje odpowiedzi</li>
-                        <li><strong>RealTools AI</strong> — raport nieruchomościowy generowany na żywo</li>
-                        <li><strong>Agent Teams</strong> — 3 agenty pracują równolegle na jednym zadaniu</li>
-                    </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>Jak przygotować demo na warsztat</h4>
-                    <div class="workflow-box">1. Wybierz 2-3 scenariusze z listy powyżej
-2. Przygotuj "prawdziwe" dane (mail do odpowiedzi, temat posta)
-3. Odpal narzędzia przed warsztatem (mail-asystent, realtools)
-4. Na warsztacie: otwórz Claude Code i pokaż na żywo
-5. Uczestnicy widzą jak AI pracuje w czasie rzeczywistym
-
-Tip: zacznij od GHOST (najbardziej wow-efekt)
-→ potem Content Machine (praktyczne)
-→ na koniec Agent Teams (zaawansowane)</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Status</h4>
-                    <p><span class="status-badge status-active">Gotowe</span> scenariusze GHOST, Content, Inbox, RealTools | <span class="status-badge status-planned">Do rozbudowy</span> dedykowany launcher</p>
                 </div>
             </div>
         </div>
 
         <div class="connector-wide"></div>
 
-        <!-- TIER 5: INFRASTRUCTURE -->
+        <!-- TIER 4: PRZEPŁYWY -->
         <div class="tier">
-            <div class="tier-label">Infrastruktura</div>
+            <div class="tier-label">Przepływy i zdolności</div>
+            <div class="grid grid-3">
+                <div class="card" data-color="purple" data-module="krwiobieg" data-layer="organizm" onclick="toggleDetail('krwiobieg')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128296;</div>
+                        <div><span class="organ-tag">Krwiobieg</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Content Pipeline</div>
+                    <div class="card-subtitle">Posty, artykuły, newsletter</div>
+                    <div class="card-desc">Treści płyną na wszystkie platformy — LinkedIn, FB, IG, blog, mail</div>
+                </div>
+                <div class="card" data-color="yellow" data-module="oczy" data-layer="organizm" onclick="toggleDetail('oczy')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128065;</div>
+                        <div><span class="organ-tag">Oczy</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Gemini Tools</div>
+                    <div class="card-subtitle">Obrazy i Deep Research</div>
+                    <div class="card-desc">Widzi, generuje obrazki, analizuje rynek, wideo</div>
+                </div>
+                <div class="card" data-color="green" data-module="komorki" data-layer="organizm" onclick="toggleDetail('komorki')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129516;</div>
+                        <div><span class="organ-tag">Komórki</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Agent Builder</div>
+                    <div class="card-subtitle">Budowa nowych organów</div>
+                    <div class="card-desc">Komórki macierzyste — tworzą nowe moduły gdy firma ich potrzebuje</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-krwiobieg">
+                <button class="detail-close" onclick="toggleDetail('krwiobieg')">&#10005;</button>
+                <h3>Krwiobieg — Content Pipeline</h3>
+                <div class="detail-section">
+                    <h4>Komendy</h4>
+                    <ul>
+                        <li><span class="command-tag">/post-darek</span> — post w stylu Darka + CTA</li>
+                        <li><span class="command-tag">/post-myway</span> — post w stylu Krystiana + stopka</li>
+                        <li><span class="command-tag">/artykul</span> — artykuł SEO na blog</li>
+                        <li><span class="command-tag">/newsletter-myway</span> — pełny cykl newslettera</li>
+                        <li><span class="command-tag">/publish-articles</span> — deploy na 4 strony naraz</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Repurposing</h4>
+                    <p>Jeden artykuł lub rolka → 4-6 wariantów na różne platformy. Komenda: "rozmnóż" lub "zrób posty z artykułu". Krwiobieg niesie treść do każdego narządu.</p>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-oczy">
+                <button class="detail-close" onclick="toggleDetail('oczy')">&#10005;</button>
+                <h3>Oczy — Gemini Tools</h3>
+                <div class="detail-section">
+                    <h4>Narzędzia</h4>
+                    <ul>
+                        <li><strong>MCP Image</strong> — generowanie obrazków przez Gemini API</li>
+                        <li><strong>Veo</strong> — generowanie krótkich wideo</li>
+                        <li><strong>Deep Research</strong> — głęboka analiza rynku i konkurencji</li>
+                        <li><strong>Gemini API</strong> — fallback dla klasyfikacji, analiza obrazów</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak użyć</h4>
+                    <div class="workflow-box">Obrazki: "Wygeneruj zdjęcie do newslettera"
+→ MCP Image generuje przez Gemini API
+
+Deep Research: <span class="command-tag">/cso</span> → opcja 5
+→ generuje prompt do analizy rynku
+
+Wideo: "Zrób krótki klip promujący warsztat"
+→ Veo MCP generuje wideo</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-komorki">
+                <button class="detail-close" onclick="toggleDetail('komorki')">&#10005;</button>
+                <h3>Komórki — Agent Builder</h3>
+                <div class="detail-section">
+                    <h4>Co to jest</h4>
+                    <p>Komórki macierzyste organizmu — mogą stworzyć każdy nowy organ którego firma potrzebuje. Każdy moduł na tej stronie został zbudowany przez Komórki.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak zbudować nowy organ</h4>
+                    <div class="workflow-box">1. Plik osobowości → Asystenci-zespół/NAZWA.md
+   (rola, filozofia, menu, protokoły)
+
+2. Command → .claude/commands/nazwa.md
+   (skrót /nazwa)
+
+3. Skill → .claude/skills/nazwa.md
+   (triggery, workflow, format)
+
+4. Rejestracja w CLAUDE.md
+   (opis, granice, kiedy używać)
+
+5. Gotowe — wpisujesz /nazwa i nowy organ żyje</div>
+                </div>
+                <div class="detail-section">
+                    <h4>Agent Teams</h4>
+                    <p>Kilka organów pracuje równolegle — np. Oddech pisze posty, Tlen przygotowuje maile, Szkielet deployuje stronę. Wszystko naraz.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector-wide"></div>
+
+        <!-- TIER 5: SCENA + INFRASTRUKTURA -->
+        <div class="tier">
+            <div class="tier-label">Infrastruktura i prezentacje</div>
             <div class="grid grid-4">
-                <div class="card" data-color="yellow" data-module="github" onclick="toggleDetail('github')">
-                    <div class="card-icon">&#128025;</div>
+                <div class="card" data-color="orange" data-module="scena" data-layer="organizm" onclick="toggleDetail('scena')">
+                    <div class="card-header">
+                        <div class="card-icon">&#127916;</div>
+                        <div><span class="organ-tag">Scena</span> <span class="layer-tag organizm">ORGANIZM</span></div>
+                    </div>
+                    <div class="card-title">Demo System</div>
+                    <div class="card-subtitle">Prezentacje na żywo</div>
+                    <div class="card-desc">Pokazuje system w akcji — warsztaty, case studies</div>
+                </div>
+                <div class="card" data-color="yellow" data-module="github" data-layer="wzrost" onclick="toggleDetail('github')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128025;</div>
+                        <div><span class="organ-tag">DNA</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
                     <div class="card-title">GitHub</div>
                     <div class="card-subtitle">15+ repozytoriów</div>
-                    <div class="card-desc">SSH auth, auto-deploy, version control</div>
+                    <div class="card-desc">Kod genetyczny — wersjonowanie, historia, backup</div>
                 </div>
-                <div class="card" data-color="blue" data-module="deploy" onclick="toggleDetail('deploy')">
-                    <div class="card-icon">&#9650;</div>
+                <div class="card" data-color="blue" data-module="deploy" data-layer="wzrost" onclick="toggleDetail('deploy')">
+                    <div class="card-header">
+                        <div class="card-icon">&#9650;</div>
+                        <div style="font-size: 0.65rem; color: var(--text-dim);">Vercel + Firebase</div>
+                    </div>
                     <div class="card-title">Deploy</div>
-                    <div class="card-subtitle">Vercel + Firebase</div>
-                    <div class="card-desc">git push = auto deploy, zero konfiguracji</div>
+                    <div class="card-subtitle">Auto-deploy</div>
+                    <div class="card-desc">git push = strona live, zero konfiguracji</div>
                 </div>
-                <div class="card" data-color="green" data-module="mcp" onclick="toggleDetail('mcp')">
-                    <div class="card-icon">&#128268;</div>
+                <div class="card" data-color="green" data-module="mcp" data-layer="wzrost" onclick="toggleDetail('mcp')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128268;</div>
+                        <div style="font-size: 0.65rem; color: var(--text-dim);">7 połączeń</div>
+                    </div>
                     <div class="card-title">MCP Serwery</div>
-                    <div class="card-subtitle">7 połączeń</div>
-                    <div class="card-desc">GitHub, Notion, Stripe, Canva, Gemini, Video</div>
+                    <div class="card-subtitle">Synapsy</div>
+                    <div class="card-desc">Połączenia nerwowe między organami a światem</div>
                 </div>
-                <div class="card" data-color="red" data-module="apis" onclick="toggleDetail('apis')">
-                    <div class="card-icon">&#128273;</div>
-                    <div class="card-title">API Keys</div>
-                    <div class="card-subtitle">Sejf kluczy</div>
-                    <div class="card-desc">13+ serwisów, klucze w .env, zarządzane przez CTO</div>
+            </div>
+
+            <div class="detail-panel" id="detail-scena">
+                <button class="detail-close" onclick="toggleDetail('scena')">&#10005;</button>
+                <h3>Scena — Demo System</h3>
+                <div class="detail-section">
+                    <h4>Do czego służy</h4>
+                    <p>Gotowe scenariusze na warsztaty i prezentacje. Pokazujesz uczestnikom jak AI działa w praktyce — na żywo, z prawdziwymi danymi.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Scenariusze demo</h4>
+                    <ul>
+                        <li><strong>Ta strona</strong> — interaktywna mapa organizmu AI</li>
+                        <li><strong>Głos live</strong> — wklejasz maila, AI odpowiada w Twoim stylu</li>
+                        <li><strong>Content Machine</strong> — z jednego tematu: post + artykuł + newsletter</li>
+                        <li><strong>Zmysły</strong> — AI klasyfikuje maile i sugeruje odpowiedzi</li>
+                        <li><strong>RealTools AI</strong> — raport nieruchomościowy na żywo</li>
+                        <li><strong>Agent Teams</strong> — 3 organy pracują równolegle</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Kolejność na warsztacie</h4>
+                    <div class="workflow-box">1. Głos (największy wow-efekt — "to brzmi jak ja!")
+2. Content Machine (praktyczne — z 1 tematu 5 postów)
+3. Agent Teams (zaawansowane — 3 organy naraz)
+
+Tip: zacznij od prostego, kończ na "jak to możliwe"</div>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-github">
                 <button class="detail-close" onclick="toggleDetail('github')">&#10005;</button>
-                <h3>GitHub — Repozytoria</h3>
+                <h3>GitHub — Kod Genetyczny</h3>
                 <div class="detail-section">
                     <h4>Konto</h4>
                     <p><strong>dariuszszuca-lang</strong> — SSH auth skonfigurowane</p>
@@ -1031,12 +1033,7 @@ Tip: zacznij od GHOST (najbardziej wow-efekt)
                         <li><strong>Subtracker</strong> — aplikacja do subskrypcji</li>
                         <li><strong>GENERATOR-PISM-KADROWYCH</strong> — generator HR</li>
                         <li><strong>ai-team-3d</strong> — eksperymentalna wersja 3D</li>
-                        <li><strong>ai-team-backup</strong> — backup</li>
                     </ul>
-                </div>
-                <div class="detail-section">
-                    <h4>MyWay (13 repo)</h4>
-                    <p>myway-revived-vision, eduway, katalog, ranking, CRM, rezerwacje, książka, landingi, krystiannagaba, nagaba-clinic, nagaba-osrodek, Osrodekmyway2, nataliapucz</p>
                 </div>
             </div>
 
@@ -1045,25 +1042,23 @@ Tip: zacznij od GHOST (najbardziej wow-efekt)
                 <h3>Deploy — Vercel + Firebase</h3>
                 <div class="detail-section">
                     <h4>Jak działa</h4>
-                    <div class="workflow-box"><strong>Vercel:</strong> git push → auto build → deploy (ai-team, katalog, ranking, książka, landingi, krystian)
-<strong>Firebase:</strong> firebase deploy (edu-myway, CRM, rezerwacje)
-<strong>Lovable:</strong> edycja przez interfejs (osrodek-myway.pl)</div>
-                </div>
-                <div class="detail-section">
-                    <h4>Zasada</h4>
-                    <p>Po każdej edycji plików w repo: <code>git add → commit → push</code>. Deploy dzieje się automatycznie.</p>
+                    <div class="workflow-box"><strong>Vercel:</strong> git push → auto build → strona live
+<strong>Firebase:</strong> firebase deploy (CRM, rezerwacje)
+<strong>Lovable:</strong> edycja przez interfejs
+
+Zasada: po edycji → git add → commit → push → gotowe</div>
                 </div>
             </div>
 
             <div class="detail-panel" id="detail-mcp">
                 <button class="detail-close" onclick="toggleDetail('mcp')">&#10005;</button>
-                <h3>MCP Serwery — Połączenia z narzędziami</h3>
+                <h3>MCP Serwery — Synapsy Organizmu</h3>
                 <div class="detail-section">
-                    <h4>Co to jest MCP</h4>
-                    <p>Model Context Protocol — pozwala Claude Code bezpośrednio korzystać z zewnętrznych serwisów (czytać, pisać, wykonywać akcje) bez opuszczania terminala.</p>
+                    <h4>Co to jest</h4>
+                    <p>Synapsy — połączenia nerwowe które pozwalają organom komunikować się ze światem zewnętrznym. Bez nich organy działają w izolacji.</p>
                 </div>
                 <div class="detail-section">
-                    <h4>Aktywne serwery (7)</h4>
+                    <h4>Aktywne połączenia (7)</h4>
                     <ul>
                         <li><strong>GitHub</strong> — zarządzanie repo, PR-y, issues</li>
                         <li><strong>Notion</strong> — bazy danych, notatki</li>
@@ -1075,61 +1070,34 @@ Tip: zacznij od GHOST (najbardziej wow-efekt)
                     </ul>
                 </div>
             </div>
-
-            <div class="detail-panel" id="detail-apis">
-                <button class="detail-close" onclick="toggleDetail('apis')">&#10005;</button>
-                <h3>API Keys — Sejf Kluczy</h3>
-                <div class="detail-section">
-                    <h4>Zasada</h4>
-                    <p>Klucze NIGDY w kodzie. Zawsze w plikach <code>.env</code>. CTO zna lokalizacje wszystkich kluczy.</p>
-                </div>
-                <div class="detail-section">
-                    <h4>Połączone serwisy</h4>
-                    <ul>
-                        <li><strong>Anthropic</strong> (Claude API) — klasyfikacja, generowanie</li>
-                        <li><strong>Google AI</strong> (Gemini) — obrazki, Deep Research, fallback</li>
-                        <li><strong>GitHub</strong> — PAT token, SSH</li>
-                        <li><strong>Notion</strong> — API key</li>
-                        <li><strong>MailerLite</strong> — newsletter AI Radar</li>
-                        <li><strong>GetResponse</strong> — newsletter MyWay</li>
-                        <li><strong>Telegram</strong> — bot + chat ID</li>
-                        <li><strong>Stripe</strong> — płatności (LIVE)</li>
-                        <li><strong>Firebase</strong> — backend MyWay</li>
-                        <li><strong>Vercel</strong> — deploy</li>
-                        <li><strong>AIBL Network</strong> — matchmaking</li>
-                        <li><strong>Resend</strong> — transakcyjne maile</li>
-                        <li><strong>Supabase</strong> — baza danych</li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <!-- QUICK START -->
         <div class="quick-start">
-            <h3>Szybki start — co wpisać w Claude Code</h3>
+            <h3>Szybki start — wywołaj organ</h3>
             <div class="grid grid-2" style="gap: 12px;">
-                <div style="font-size: 0.82rem; line-height: 1.8;">
-                    <span class="command-tag">/ceo</span> — nie wiem od czego zacząć<br>
-                    <span class="command-tag">/coo</span> — plan dnia, chaos, procesy<br>
-                    <span class="command-tag">/cso</span> — sprzedaż, lejki, kasa<br>
-                    <span class="command-tag">/cmo</span> — marketing, content, leady<br>
-                    <span class="command-tag">/cto</span> — narzędzia, API, deploy<br>
+                <div style="font-size: 0.82rem; line-height: 2;">
+                    <span class="command-tag">/ceo</span> Serce — nie wiem od czego zacząć<br>
+                    <span class="command-tag">/ghost</span> Głos — odpowiedź na maila/DM<br>
+                    <span class="command-tag">/coo</span> Kręgosłup — plan dnia, chaos<br>
+                    <span class="command-tag">/cso</span> Tlen — sprzedaż, lejki, kasa<br>
+                    <span class="command-tag">/cmo</span> Oddech — marketing, content<br>
                 </div>
-                <div style="font-size: 0.82rem; line-height: 1.8;">
-                    <span class="command-tag">/ghost</span> — odpowiedź na maila/DM<br>
-                    <span class="command-tag">/pm</span> — produkt MyWay<br>
-                    <span class="command-tag">/devil</span> — stress-test pomysłu<br>
-                    <span class="command-tag">/cca</span> — architektura cloud<br>
-                    <span class="command-tag">/post-myway</span> — post dla Krystiana<br>
+                <div style="font-size: 0.82rem; line-height: 2;">
+                    <span class="command-tag">/cto</span> Szkielet — narzędzia, API, deploy<br>
+                    <span class="command-tag">/cca</span> Tarcza — architektura cloud<br>
+                    <span class="command-tag">/pm</span> Mózg — produkt, roadmapa<br>
+                    <span class="command-tag">/devil</span> Gorączka — stress-test pomysłu<br>
+                    <span class="command-tag">/post-myway</span> Krwiobieg — post social<br>
                 </div>
             </div>
         </div>
 
         <!-- CTA -->
         <div class="cta-box">
-            <h3>Chcesz taki system dla swojej firmy?</h3>
-            <p>Budujemy spersonalizowane zespoły AI dopasowane do Twojego biznesu</p>
-            <a href="/warsztaty-ai" class="cta-btn">Umów się na warsztat</a>
+            <h3>Zbuduj swój organizm AI</h3>
+            <p>Na warsztacie pokażemy Ci jak postawić pierwsze 3 organy w Twojej firmie</p>
+            <a href="/warsztaty-ai" class="cta-btn">Zapisz się na warsztat — 500 PLN</a>
         </div>
 
     </div>
@@ -1138,6 +1106,7 @@ Tip: zacznij od GHOST (najbardziej wow-efekt)
         function toggleDetail(moduleId) {
             const panel = document.getElementById('detail-' + moduleId);
             const card = document.querySelector(`[data-module="${moduleId}"]`);
+            if (!card || card.classList.contains('locked')) return;
 
             document.querySelectorAll('.detail-panel.visible').forEach(p => {
                 if (p.id !== 'detail-' + moduleId) p.classList.remove('visible');
@@ -1154,6 +1123,32 @@ Tip: zacznij od GHOST (najbardziej wow-efekt)
                     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 50);
             }
+        }
+
+        function filterLayer(layer) {
+            // Update badges
+            document.querySelectorAll('.layer-badge').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-layer="${layer}"]`).classList.add('active');
+
+            const cards = document.querySelectorAll('.card[data-layer]');
+            const layers = { start: 1, wzrost: 2, organizm: 3 };
+
+            cards.forEach(card => {
+                if (layer === 'all') {
+                    card.classList.remove('locked');
+                } else {
+                    const cardLayer = card.dataset.layer;
+                    if (layers[cardLayer] <= layers[layer]) {
+                        card.classList.remove('locked');
+                    } else {
+                        card.classList.add('locked');
+                        // Close detail if open
+                        const detail = document.getElementById('detail-' + card.dataset.module);
+                        if (detail) detail.classList.remove('visible');
+                        card.classList.remove('active');
+                    }
+                }
+            });
         }
 
         document.addEventListener('keydown', (e) => {
