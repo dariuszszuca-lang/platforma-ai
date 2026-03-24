@@ -297,7 +297,7 @@
         </div>
 
         <div class="stats">
-            <div class="stat"><div class="stat-value">10</div><div class="stat-label">Narzędzi AI</div></div>
+            <div class="stat"><div class="stat-value">13</div><div class="stat-label">Narzędzi AI</div></div>
             <div class="stat"><div class="stat-value">2</div><div class="stat-label">Dni warsztatów</div></div>
             <div class="stat"><div class="stat-value">12h</div><div class="stat-label">Praktyki</div></div>
         </div>
@@ -689,9 +689,125 @@ Czas: 30 sekund. Klasyczny staging: 3-8 tys. PLN.</div>
             </div>
         </div>
 
+        <div class="connector-wide"></div>
+
+        <!-- ROW 4: System mailowy -->
+        <div class="tier">
+            <div class="tier-label">System mailowy i monitoring rynku</div>
+            <div class="grid grid-3">
+                <div class="card" data-color="cyan" data-module="maile" onclick="toggleDetail('maile')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128231;</div>
+                        <div class="card-number">11</div>
+                    </div>
+                    <div class="card-title">System mailowy</div>
+                    <div class="card-subtitle">Skrzynka pod kontrolą</div>
+                    <div class="card-desc">AI sortuje maile, drafuje odpowiedzi, pilnuje follow-upów. Zatwierdzasz z telefonu jednym kliknięciem.</div>
+                </div>
+                <div class="card" data-color="green" data-module="newsletter" onclick="toggleDetail('newsletter')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128233;</div>
+                        <div class="card-number">12</div>
+                    </div>
+                    <div class="card-title">Newsletter z ofertami</div>
+                    <div class="card-subtitle">Automatyczna wysyłka</div>
+                    <div class="card-desc">Cykliczny mailing do bazy klientów: nowe oferty, raporty rynkowe, segmentacja kupujący/inwestor.</div>
+                </div>
+                <div class="card" data-color="blue" data-module="monitor" onclick="toggleDetail('monitor')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128301;</div>
+                        <div class="card-number">13</div>
+                    </div>
+                    <div class="card-title">Monitor ofert</div>
+                    <div class="card-subtitle">Radar rynkowy</div>
+                    <div class="card-desc">Śledzi nowe oferty w Twoich dzielnicach. Alert na telefon: "Nowa oferta, 8% poniżej mediany."</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-maile">
+                <button class="detail-close" onclick="toggleDetail('maile')">&#10005;</button>
+                <h3>11 — System mailowy</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Centralne ogarnięcie skrzynki mailowej. AI czyta maile, sortuje, drafuje odpowiedzi — Ty tylko zatwierdzasz. Działa na telefonie.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Funkcje</h4>
+                    <ul>
+                        <li><strong>Sortowanie AI</strong> — zapytania z portali, klienci, sprawy administracyjne, spam. Każdy mail ląduje w odpowiedniej kategorii</li>
+                        <li><strong>Drafty odpowiedzi</strong> — AI pisze odpowiedź w Twoim stylu. Ty zatwierdzasz jednym kliknięciem z telefonu</li>
+                        <li><strong>Auto follow-up</strong> — klient nie odpisał po 3 dniach? Leci przypomnienie. Sekwencja 5-7 wiadomości rozłożona w czasie</li>
+                        <li><strong>Szablony</strong> — potwierdzenie oglądania, podziękowanie po spotkaniu, raport dla właściciela</li>
+                        <li><strong>Powiadomienia na Telegram</strong> — ważny mail? Alert na telefon z przyciskami akcji</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Dlaczego to ważne</h4>
+                    <div class="workflow-box">Średni agent dostaje 20-50 maili dziennie.
+80% to zapytania z portali — podobne pytania, podobne odpowiedzi.
+Bez systemu: 2h dziennie na maile = 10h tygodniowo = 40h miesięcznie.
+Z systemem: 20 minut dziennie — reszta robi się sama.
+
+80% transakcji zamyka się po 5+ kontaktach.
+Bez follow-up systemu — większość leadów przepada po 1-2 mailach.</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-newsletter">
+                <button class="detail-close" onclick="toggleDetail('newsletter')">&#10005;</button>
+                <h3>12 — Newsletter z ofertami</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Automatyczny mailing do Twojej bazy klientów. Nowe oferty, raporty rynkowe, aktualności — bez ręcznego pisania.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak działa</h4>
+                    <ul>
+                        <li><strong>Zbieranie ofert</strong> — AI kompiluje Twoje aktualne oferty w atrakcyjny format</li>
+                        <li><strong>Segmentacja</strong> — kupujący dostaje oferty kupna, inwestor dostaje ROI, sprzedający dostaje raport rynkowy</li>
+                        <li><strong>Generowanie HTML</strong> — profesjonalny newsletter z Twoim logo i stylem</li>
+                        <li><strong>Cykliczna wysyłka</strong> — co tydzień lub co 2 tygodnie, automatycznie</li>
+                        <li><strong>Personalizacja</strong> — "Panie Kowalski, nowa oferta w okolicy która Pana interesuje"</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Efekt</h4>
+                    <p>Baza klientów nie zapomina o Tobie. Kiedy będą gotowi kupić/sprzedać — Ty jesteś pierwszy w głowie. Zero cold callingu, same ciepłe leady.</p>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-monitor">
+                <button class="detail-close" onclick="toggleDetail('monitor')">&#10005;</button>
+                <h3>13 — Monitor ofert</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Radar rynkowy — śledzi nowe oferty w Twoich dzielnicach i informuje Cię na telefon. Wiesz co się dzieje na rynku zanim konkurencja się obudzi.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Funkcje</h4>
+                    <ul>
+                        <li><strong>Monitoring OLX</strong> — nowe oferty w wybranych dzielnicach i przedziałach cenowych</li>
+                        <li><strong>Alert na telefon</strong> — "Nowa oferta: Wrzeszcz, 65m², 580 tys. — 8% poniżej mediany"</li>
+                        <li><strong>Raport tygodniowy</strong> — co nowego na rynku, ile ofert dodano/usunięto</li>
+                        <li><strong>Porównanie z RCN</strong> — automatyczne zestawienie ceny ofertowej z ceną transakcyjną</li>
+                        <li><strong>Analiza konkurencji</strong> — jak inni agenci wyceniają podobne nieruchomości</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Źródła danych</h4>
+                    <div class="workflow-box"><strong>OLX.pl</strong> — monitoring nowych ofert (serwer zwraca dane, robots.txt pozwala)
+<strong>Geoportal RCN</strong> — ceny transakcyjne z aktów notarialnych (publiczne API rządowe)
+<strong>GUS BDL</strong> — statystyki rynkowe (publiczne API)
+
+Otodom/Gratka — aktywnie blokują scraping (WAF, bot detection).
+Dlatego monitoring oparty na OLX + dane rządowe = legalne i stabilne.</div>
+                </div>
+            </div>
+        </div>
+
         <!-- SUMMARY -->
         <div class="summary">
-            <h3>10 narzędzi — pełny przegląd</h3>
+            <h3>13 narzędzi — pełny przegląd</h3>
             <div class="summary-grid">
                 <div>
                     <div class="summary-item"><span class="summary-num">01</span> <strong>Agent ogłoszeń</strong> — opisy na portale</div>
@@ -699,13 +815,16 @@ Czas: 30 sekund. Klasyczny staging: 3-8 tys. PLN.</div>
                     <div class="summary-item"><span class="summary-num">03</span> <strong>Agent wyceny</strong> — dane z aktów notarialnych</div>
                     <div class="summary-item"><span class="summary-num">04</span> <strong>Agent ROI</strong> — kalkulator inwestycji</div>
                     <div class="summary-item"><span class="summary-num">05</span> <strong>Kreator reklam</strong> — posty i Meta Ads</div>
-                </div>
-                <div>
                     <div class="summary-item"><span class="summary-num">06</span> <strong>Trener obiekcji</strong> — symulacja klienta</div>
                     <div class="summary-item"><span class="summary-num">07</span> <strong>Virtual Home Staging</strong> — meble w 30 sek.</div>
+                </div>
+                <div>
                     <div class="summary-item"><span class="summary-num">08</span> <strong>Agent raportów</strong> — PDF co 2 tygodnie</div>
                     <div class="summary-item"><span class="summary-num">09</span> <strong>Agent prezentacji</strong> — slajdy w 2 min.</div>
                     <div class="summary-item"><span class="summary-num">10</span> <strong>COO operacyjny</strong> — planowanie dnia</div>
+                    <div class="summary-item"><span class="summary-num">11</span> <strong>System mailowy</strong> — sortowanie, drafty, follow-up</div>
+                    <div class="summary-item"><span class="summary-num">12</span> <strong>Newsletter z ofertami</strong> — automatyczna wysyłka</div>
+                    <div class="summary-item"><span class="summary-num">13</span> <strong>Monitor ofert</strong> — radar rynkowy OLX + RCN</div>
                 </div>
             </div>
         </div>
