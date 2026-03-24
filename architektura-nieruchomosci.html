@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+
+    <title>AI dla Agenta Nieruchomości — 10 Narzędzi AI | AI-Team</title>
+    <meta name="description" content="10 agentów AI dla pośrednika nieruchomości: ogłoszenia, wyceny, ROI, staging, reklamy, prezentacje. Zbuduj swoje biuro AI.">
+    <meta property="og:title" content="AI dla Agenta Nieruchomości — 10 Narzędzi AI">
+    <meta property="og:description" content="Nie prompty. System. 10 agentów AI które pracują jak Twoje cyfrowe biuro nieruchomości.">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
+    <meta property="og:url" content="https://ai-team.pl/architektura-nieruchomosci">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0f;
+            --card-bg: #12121a;
+            --card-border: #1e1e2e;
+            --text: #e0e0e0;
+            --text-dim: #8888aa;
+            --gold: #c9a84c;
+            --gold-dim: rgba(201,168,76,0.15);
+            --accent-green: #00e676;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #b388ff;
+            --accent-orange: #ff8a00;
+            --accent-pink: #ff4081;
+            --accent-yellow: #ffd740;
+            --accent-red: #ff5252;
+            --accent-teal: #64ffda;
+            --accent-blue: #448aff;
+            --glow-strength: 0.15;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--gold); }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8d5a0 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-dim);
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .manifesto {
+            max-width: 680px;
+            margin: 0 auto 44px;
+            text-align: center;
+            padding: 28px 24px;
+            background: linear-gradient(135deg, rgba(201,168,76,0.04), rgba(0,212,255,0.02));
+            border: 1px solid rgba(201,168,76,0.1);
+            border-radius: 16px;
+        }
+        .manifesto p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .manifesto strong { color: var(--gold); }
+        .manifesto .strike {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        .layer-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .layer-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .layer-badge[data-layer="all"] {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            border-color: rgba(255,255,255,0.1);
+        }
+        .layer-badge[data-layer="start"] {
+            background: rgba(0,230,118,0.1);
+            color: var(--accent-green);
+            border-color: rgba(0,230,118,0.2);
+        }
+        .layer-badge[data-layer="wzrost"] {
+            background: rgba(201,168,76,0.1);
+            color: var(--gold);
+            border-color: rgba(201,168,76,0.2);
+        }
+        .layer-badge[data-layer="biuro"] {
+            background: rgba(179,136,255,0.1);
+            color: var(--accent-purple);
+            border-color: rgba(179,136,255,0.2);
+        }
+        .layer-badge:hover { transform: translateY(-1px); }
+        .layer-badge.active { box-shadow: 0 0 12px rgba(255,255,255,0.1); }
+
+        .stats {
+            display: flex; gap: 32px; justify-content: center;
+            margin-bottom: 40px; flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-value {
+            font-size: 1.8rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #e8d5a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label {
+            font-size: 0.7rem; color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px;
+        }
+
+        .tier { margin-bottom: 40px; }
+
+        .tier-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            padding-left: 4px;
+        }
+
+        .connector {
+            display: flex;
+            justify-content: center;
+            margin: -8px 0;
+        }
+        .connector::before {
+            content: '';
+            width: 2px;
+            height: 32px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        .connector-wide {
+            display: flex;
+            justify-content: center;
+            margin: -4px 0 8px;
+            height: 24px;
+        }
+        .connector-wide::before {
+            content: '';
+            position: absolute;
+            left: 10%; right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+        }
+        .connector-wide::after {
+            content: '';
+            width: 2px;
+            height: 24px;
+            background: rgba(201,168,76,0.15);
+        }
+
+        .grid { display: grid; gap: 16px; }
+        .grid-1 { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 12px 12px 0 0;
+        }
+        .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.1); }
+        .card.active { border-color: rgba(255,255,255,0.15); }
+        .card.locked {
+            opacity: 0.35;
+            filter: blur(1px);
+            cursor: default;
+        }
+        .card.locked:hover { transform: none; border-color: var(--card-border); }
+
+        .card[data-color="gold"]::before { background: var(--gold); }
+        .card[data-color="gold"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(201,168,76,var(--glow-strength)); }
+        .card[data-color="green"]::before { background: var(--accent-green); }
+        .card[data-color="green"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(0,230,118,var(--glow-strength)); }
+        .card[data-color="cyan"]::before { background: var(--accent-cyan); }
+        .card[data-color="cyan"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(0,212,255,var(--glow-strength)); }
+        .card[data-color="purple"]::before { background: var(--accent-purple); }
+        .card[data-color="purple"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(179,136,255,var(--glow-strength)); }
+        .card[data-color="orange"]::before { background: var(--accent-orange); }
+        .card[data-color="orange"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,138,0,var(--glow-strength)); }
+        .card[data-color="pink"]::before { background: var(--accent-pink); }
+        .card[data-color="pink"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,64,129,var(--glow-strength)); }
+        .card[data-color="yellow"]::before { background: var(--accent-yellow); }
+        .card[data-color="yellow"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,215,64,var(--glow-strength)); }
+        .card[data-color="red"]::before { background: var(--accent-red); }
+        .card[data-color="red"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(255,82,82,var(--glow-strength)); }
+        .card[data-color="teal"]::before { background: var(--accent-teal); }
+        .card[data-color="teal"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(100,255,218,var(--glow-strength)); }
+        .card[data-color="blue"]::before { background: var(--accent-blue); }
+        .card[data-color="blue"]:hover:not(.locked) { box-shadow: 0 8px 30px rgba(68,138,255,var(--glow-strength)); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .organ-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.2);
+            color: var(--gold);
+            letter-spacing: 0.03em;
+        }
+
+        .layer-tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .layer-tag.start { background: rgba(0,230,118,0.15); color: var(--accent-green); }
+        .layer-tag.wzrost { background: rgba(201,168,76,0.15); color: var(--gold); }
+        .layer-tag.biuro { background: rgba(179,136,255,0.15); color: var(--accent-purple); }
+
+        .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
+        .card-subtitle { font-size: 0.75rem; font-weight: 500; margin-bottom: 8px; }
+
+        .card[data-color="gold"] .card-subtitle { color: var(--gold); }
+        .card[data-color="green"] .card-subtitle { color: var(--accent-green); }
+        .card[data-color="cyan"] .card-subtitle { color: var(--accent-cyan); }
+        .card[data-color="purple"] .card-subtitle { color: var(--accent-purple); }
+        .card[data-color="orange"] .card-subtitle { color: var(--accent-orange); }
+        .card[data-color="pink"] .card-subtitle { color: var(--accent-pink); }
+        .card[data-color="yellow"] .card-subtitle { color: var(--accent-yellow); }
+        .card[data-color="red"] .card-subtitle { color: var(--accent-red); }
+        .card[data-color="teal"] .card-subtitle { color: var(--accent-teal); }
+        .card[data-color="blue"] .card-subtitle { color: var(--accent-blue); }
+
+        .card-desc { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
+
+        .detail-panel {
+            display: none;
+            background: #0d0d14;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 28px;
+            margin-top: 16px;
+            animation: slideDown 0.3s ease;
+        }
+        .detail-panel.visible { display: block; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-panel h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .detail-section { margin-bottom: 20px; }
+        .detail-section h4 {
+            font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-dim); margin-bottom: 8px;
+        }
+        .detail-section p, .detail-section li { font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+        .detail-section ul { list-style: none; padding: 0; }
+        .detail-section li::before {
+            content: '>';
+            color: var(--gold);
+            font-weight: 700;
+            margin-right: 8px;
+            font-family: monospace;
+        }
+        .detail-section li { margin-bottom: 4px; }
+
+        .workflow-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: var(--text-dim);
+            white-space: pre-wrap;
+        }
+        .workflow-box strong { color: var(--gold); font-weight: 600; }
+
+        .detail-close {
+            float: right; background: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-dim);
+            width: 28px; height: 28px; border-radius: 6px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; transition: all 0.2s;
+        }
+        .detail-close:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+
+        .quick-start {
+            margin-top: 60px; padding: 32px;
+            background: rgba(201,168,76,0.03);
+            border: 1px solid rgba(201,168,76,0.1);
+            border-radius: 12px;
+        }
+        .quick-start h3 { font-size: 1rem; margin-bottom: 16px; }
+
+        .footer {
+            text-align: center; margin-top: 40px; padding: 20px;
+            color: var(--text-dim); font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.6rem; }
+            .stats { gap: 20px; }
+            .manifesto p { font-size: 0.92rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="/" class="back-link">&larr; ai-team.pl</a>
+
+        <header>
+            <h1>AI dla Agenta Nieruchomości</h1>
+            <p>10 narzędzi AI które pracują jak Twoje cyfrowe biuro</p>
+        </header>
+
+        <div class="manifesto">
+            <p>
+                Nie chodzi o <span class="strike">prompty</span>.<br>
+                Chodzi o <strong>system</strong> — 10 agentów AI, z których każdy zna Twój styl,<br>
+                Twoje dzielnice, Twoich klientów. Budujesz raz, działa zawsze.
+            </p>
+        </div>
+
+        <div class="layer-bar">
+            <div class="layer-badge active" data-layer="all" onclick="filterLayer('all')">Wszystkie narzędzia</div>
+            <div class="layer-badge" data-layer="start" onclick="filterLayer('start')">START — możesz działać</div>
+            <div class="layer-badge" data-layer="wzrost" onclick="filterLayer('wzrost')">WZROST — zarabiasz więcej</div>
+            <div class="layer-badge" data-layer="biuro" onclick="filterLayer('biuro')">PEŁNE BIURO</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">10</div>
+                <div class="stat-label">Agentów AI</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Warstwy</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Fundament</div>
+            </div>
+        </div>
+
+        <!-- TIER 0: FUNDAMENT -->
+        <div class="tier">
+            <div class="tier-label">Fundament — na tym stoi wszystko</div>
+            <div class="grid grid-1">
+                <div class="card" data-color="gold" data-module="fundament" data-layer="start" onclick="toggleDetail('fundament')">
+                    <div class="card-header">
+                        <div class="card-icon">&#127959;</div>
+                        <div><span class="organ-tag">Fundament</span> <span class="layer-tag start">START</span></div>
+                    </div>
+                    <div class="card-title">Profil Agenta</div>
+                    <div class="card-subtitle">Core — centrum systemu</div>
+                    <div class="card-desc">Kim jesteś, jakie dzielnice, jaki styl, jakie wartości. Bez tego reszta nie działa.</div>
+                </div>
+            </div>
+            <div class="detail-panel" id="detail-fundament">
+                <button class="detail-close" onclick="toggleDetail('fundament')">&#10005;</button>
+                <h3>Fundament — Profil Agenta</h3>
+                <div class="detail-section">
+                    <h4>Co to jest</h4>
+                    <p>Plik który opisuje KIM JESTEŚ jako agent. Każde inne narzędzie czyta Fundament zanim cokolwiek wygeneruje. Dzięki temu wszystko brzmi jak Ty, nie jak robot.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Co zawiera</h4>
+                    <ul>
+                        <li><strong>Twoja specjalizacja</strong> — dzielnice, typy nieruchomości, rynek pierwotny/wtórny</li>
+                        <li><strong>Styl komunikacji</strong> — jak piszesz, jakich słów używasz, jaki masz ton</li>
+                        <li><strong>Oferta</strong> — prowizje, pakiet marketingowy, co dostajesz w ramach wyłączności</li>
+                        <li><strong>Persona klienta</strong> — kto kupuje, kto sprzedaje, czego się boją, czego chcą</li>
+                        <li><strong>Zasady</strong> — czego AI nigdy nie pisze (np. nie obiecuje terminów, nie zaniża cen)</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak budujemy na warsztacie</h4>
+                    <div class="workflow-box">1. Odpowiadasz na 12 pytań o siebie i swój biznes
+2. AI generuje profil.md — Twoje "DNA"
+3. Doprecyzowujesz: "to nie ja" / "tak, dokładnie"
+4. Profil gotowy — reszta narzędzi czyta go automatycznie
+
+Czas: ~30 minut. Robisz raz, działa miesiącami.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"></div>
+        <div class="connector-wide"></div>
+
+        <!-- TIER 1: START -->
+        <div class="tier">
+            <div class="tier-label">START — możesz działać od pierwszego dnia</div>
+            <div class="grid grid-3">
+                <div class="card" data-color="green" data-module="witryna" data-layer="start" onclick="toggleDetail('witryna')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128444;</div>
+                        <div><span class="organ-tag">Witryna</span> <span class="layer-tag start">START</span></div>
+                    </div>
+                    <div class="card-title">Agent ogłoszeń</div>
+                    <div class="card-subtitle">Opisy które sprzedają</div>
+                    <div class="card-desc">Wpisujesz parametry — dostajesz opis na Otodom, OLX, Gratka. Twój ton, nie generyczny.</div>
+                </div>
+                <div class="card" data-color="orange" data-module="klucz" data-layer="start" onclick="toggleDetail('klucz')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128273;</div>
+                        <div><span class="organ-tag">Klucz</span> <span class="layer-tag start">START</span></div>
+                    </div>
+                    <div class="card-title">COO operacyjny</div>
+                    <div class="card-subtitle">Asystent dnia pracy</div>
+                    <div class="card-desc">Planuje dzień, priorytetyzuje, odblokuje gdy masz chaos. Klucz główny do produktywności.</div>
+                </div>
+                <div class="card" data-color="cyan" data-module="okno" data-layer="start" onclick="toggleDetail('okno')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128247;</div>
+                        <div><span class="organ-tag">Okno</span> <span class="layer-tag start">START</span></div>
+                    </div>
+                    <div class="card-title">Agent ofert ze zdjęć</div>
+                    <div class="card-subtitle">Zdjęcie = oferta</div>
+                    <div class="card-desc">Wrzucasz zdjęcia mieszkania — AI widzi wnętrze i pisze opis. Zero wpisywania parametrów.</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-witryna">
+                <button class="detail-close" onclick="toggleDetail('witryna')">&#10005;</button>
+                <h3>Witryna — Agent ogłoszeń</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Pisze opisy nieruchomości na portale ogłoszeniowe. Wpisujesz parametry (metraż, pokoje, piętro, dzielnica, cechy) — dostajesz opis który SPRZEDAJE, nie tylko opisuje. Zamienia suche dane w wizję życia.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak działa</h4>
+                    <div class="workflow-box">Ty: "3 pokoje, 65m², Gdańsk Wrzeszcz, 4 piętro, balkon, po remoncie, 620 tys."
+
+<strong>Witryna</strong> generuje:
+→ Opis na Otodom (SEO, emotjonalny, z wizją życia)
+→ Wersję skróconą na OLX
+→ Nagłówek który zatrzymuje scrollowanie
+→ 5 słów kluczowych pod portal
+
+Wszystko w TWOIM stylu — czyta Fundament.</div>
+                </div>
+                <div class="detail-section">
+                    <h4>Czego NIE robi</h4>
+                    <ul>
+                        <li>Nie wymyśla cech których nie podałeś (zero halucynacji)</li>
+                        <li>Nie pisze "piękny widok" jeśli nie wie jaki jest widok</li>
+                        <li>Nie dodaje udogodnień (winda, garaż) których nie podano</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-klucz">
+                <button class="detail-close" onclick="toggleDetail('klucz')">&#10005;</button>
+                <h3>Klucz — COO operacyjny</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Klucz główny do Twojego dnia. Planuje, priorytetyzuje, odblokuje. Masz 15 rzeczy do zrobienia? Klucz mówi: "Zacznij od tych 3, reszta może poczekać."</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Przykłady</h4>
+                    <ul>
+                        <li><strong>Rano:</strong> "Masz 3 telefony do oddzwonienia, 2 oferty do wystawienia i spotkanie o 14:00 — zacznij od telefonów, bo okno kontaktowe zamyka się do 11:00"</li>
+                        <li><strong>Chaos:</strong> "Nie wiem od czego zacząć" → plan na najbliższe 2h</li>
+                        <li><strong>Tydzień:</strong> rozłożenie spotkań, follow-upów, contentu</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Filozofia</h4>
+                    <p>DONE > PERFECT. Jeśli zadanie zajmuje mniej niż 2h — rób TERAZ, nie planuj.</p>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-okno">
+                <button class="detail-close" onclick="toggleDetail('okno')">&#10005;</button>
+                <h3>Okno — Agent ofert ze zdjęć</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Wrzucasz zdjęcia mieszkania — AI patrzy przez Okno i widzi co jest w środku. Generuje opis bez wpisywania parametrów. Widzisz salon? AI też widzi: "jasne wnętrze, kuchnia otwarta, nowe panele, widok na zieleń."</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak działa</h4>
+                    <div class="workflow-box">1. Wrzucasz 3-5 zdjęć mieszkania
+2. AI analizuje każde zdjęcie
+3. Rozpoznaje: pokoje, stan, meble, widok, materiały
+4. Generuje opis oferty na podstawie tego co WIDZI
+5. Ty dodajesz parametry twarde (cena, metraż, piętro)
+6. Gotowy opis na portal w 2 minuty</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector-wide"></div>
+
+        <!-- TIER 2: WZROST -->
+        <div class="tier">
+            <div class="tier-label">WZROST — zarabiasz więcej</div>
+            <div class="grid grid-4">
+                <div class="card" data-color="blue" data-module="akt" data-layer="wzrost" onclick="toggleDetail('akt')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128220;</div>
+                        <div><span class="organ-tag">Akt</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">Agent wyceny</div>
+                    <div class="card-subtitle">Twarde dane z rynku</div>
+                    <div class="card-desc">Ceny transakcyjne z aktów notarialnych. Mediana, trend, porównanie Twojej oferty.</div>
+                </div>
+                <div class="card" data-color="teal" data-module="kalkulator" data-layer="wzrost" onclick="toggleDetail('kalkulator')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129518;</div>
+                        <div><span class="organ-tag">Kalkulator</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">Agent ROI</div>
+                    <div class="card-subtitle">Matematyka inwestycji</div>
+                    <div class="card-desc">Rentowność wynajmu, cashflow, punkt zwrotu. Liczby zamiast przeczuć.</div>
+                </div>
+                <div class="card" data-color="pink" data-module="baner" data-layer="wzrost" onclick="toggleDetail('baner')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128226;</div>
+                        <div><span class="organ-tag">Baner</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">Kreator reklam</div>
+                    <div class="card-subtitle">Widoczność i leady</div>
+                    <div class="card-desc">Posty na FB/IG, copy do Meta Ads, nagłówki, CTA. Bez reklam nikt nie wie o ofercie.</div>
+                </div>
+                <div class="card" data-color="red" data-module="negocjacje" data-layer="wzrost" onclick="toggleDetail('negocjacje')">
+                    <div class="card-header">
+                        <div class="card-icon">&#129354;</div>
+                        <div><span class="organ-tag">Negocjacje</span> <span class="layer-tag wzrost">WZROST</span></div>
+                    </div>
+                    <div class="card-title">Trener obiekcji</div>
+                    <div class="card-subtitle">Symulacja trudnego klienta</div>
+                    <div class="card-desc">"Za drogo", "Poczekam aż spadną" — ćwiczysz zanim usiądziesz z klientem.</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-akt">
+                <button class="detail-close" onclick="toggleDetail('akt')">&#10005;</button>
+                <h3>Akt — Agent wyceny</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Pobiera prawdziwe ceny transakcyjne z aktów notarialnych (Rejestr Cen Nieruchomości — RCN). Nie ceny z ogłoszeń. Ceny za które NAPRAWDĘ sprzedano nieruchomości.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Co generuje</h4>
+                    <ul>
+                        <li><strong>Średnia i mediana cen/m²</strong> w danej dzielnicy</li>
+                        <li><strong>Zakres cen</strong> — od najtańszej do najdroższej transakcji</li>
+                        <li><strong>Trend kwartalny</strong> — ceny rosną, spadają, stoją?</li>
+                        <li><strong>Ocena Twojej oferty</strong> — poniżej/na poziomie/powyżej rynku</li>
+                        <li><strong>20 najnowszych transakcji</strong> — tabela z adresem, ceną, metrażem</li>
+                        <li><strong>PDF do pobrania</strong> — raport dla klienta</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Na spotkaniu z klientem</h4>
+                    <div class="workflow-box"><strong>Pozyskanie:</strong> "Oto realne ceny w Pana okolicy — nie z ogłoszeń, z aktów notarialnych"
+<strong>Wycena:</strong> "Mediana to 12 350 PLN/m² — Pana cena jest 5% powyżej, co uzasadnia standard"
+<strong>Negocjacje:</strong> "Cena 3% poniżej mediany — to dobra okazja dla kupującego"</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-kalkulator">
+                <button class="detail-close" onclick="toggleDetail('kalkulator')">&#10005;</button>
+                <h3>Kalkulator — Agent ROI</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Oblicza zwrot z inwestycji dla kupującego. Kupujący pyta "czy to się opłaca?" — Ty wyciągasz raport z liczbami, nie z przeczuciami.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Co oblicza</h4>
+                    <ul>
+                        <li><strong>Rentowność wynajmu</strong> — roczny zysk / cena zakupu</li>
+                        <li><strong>Cashflow miesięczny</strong> — czynsz minus rata minus koszty</li>
+                        <li><strong>Punkt zwrotu</strong> — po ilu latach inwestycja się zwraca</li>
+                        <li><strong>Porównanie z lokatą/obligacjami</strong> — nieruchomość vs alternatywy</li>
+                        <li><strong>Scenariusze</strong> — optymistyczny / realistyczny / pesymistyczny</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-baner">
+                <button class="detail-close" onclick="toggleDetail('baner')">&#10005;</button>
+                <h3>Baner — Kreator reklam</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Baner "NA SPRZEDAŻ" w wersji cyfrowej. Generuje treści reklamowe które przyciągają klientów. Bez Banera nikt nie wie o Twojej ofercie.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Co generuje</h4>
+                    <ul>
+                        <li><strong>Posty na FB/IG</strong> — z ofertą nieruchomości, w Twoim stylu</li>
+                        <li><strong>Copy do Meta Ads</strong> — nagłówki, tekst, CTA, warianty do A/B testów</li>
+                        <li><strong>Stories/Reels</strong> — krótkie teksty pod video content</li>
+                        <li><strong>Post pozyskowy</strong> — "Szukasz agenta? Oto co dostajesz w ramach współpracy"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-negocjacje">
+                <button class="detail-close" onclick="toggleDetail('negocjacje')">&#10005;</button>
+                <h3>Negocjacje — Trener obiekcji</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Symuluje trudnego klienta. Rzuca obiekcje — Ty ćwiczysz odpowiedzi. Jak sparring w boksie: lepiej dostać cios na treningu niż na ringu.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Przykładowe obiekcje</h4>
+                    <ul>
+                        <li>"Za drogo — w internecie widziałem taniej"</li>
+                        <li>"Poczekam aż ceny spadną"</li>
+                        <li>"Znajomy mówi że ta dzielnica jest słaba"</li>
+                        <li>"Dlaczego mam płacić prowizję? Sam mogę wystawić"</li>
+                        <li>"Inna agencja bierze mniej"</li>
+                        <li>"Muszę to przemyśleć" (klasyczny wymyk)</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak działa trening</h4>
+                    <div class="workflow-box">1. Wybierasz scenariusz (sprzedający/kupujący/wynajmujący)
+2. AI gra rolę klienta z obiekcjami
+3. Ty odpowiadasz jak na prawdziwym spotkaniu
+4. AI ocenia Twoją odpowiedź i daje lepszą wersję
+5. Powtarzasz aż obiekcja Cię nie rusza</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector-wide"></div>
+
+        <!-- TIER 3: PEŁNE BIURO -->
+        <div class="tier">
+            <div class="tier-label">PEŁNE BIURO — automatyzacja na każdym froncie</div>
+            <div class="grid grid-3">
+                <div class="card" data-color="purple" data-module="aranzacja" data-layer="biuro" onclick="toggleDetail('aranzacja')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128715;</div>
+                        <div><span class="organ-tag">Aranżacja</span> <span class="layer-tag biuro">BIURO</span></div>
+                    </div>
+                    <div class="card-title">Virtual Home Staging</div>
+                    <div class="card-subtitle">Puste → urządzone w 30 sekund</div>
+                    <div class="card-desc">Zdjęcie pustego pokoju → meble, dekoracje, styl. Ogłoszenie z meblami sprzedaje szybciej.</div>
+                </div>
+                <div class="card" data-color="yellow" data-module="ksiega" data-layer="biuro" onclick="toggleDetail('ksiega')">
+                    <div class="card-header">
+                        <div class="card-icon">&#128214;</div>
+                        <div><span class="organ-tag">Księga</span> <span class="layer-tag biuro">BIURO</span></div>
+                    </div>
+                    <div class="card-title">Agent raportów</div>
+                    <div class="card-subtitle">Raporty rynkowe</div>
+                    <div class="card-desc">PDF co 2 tygodnie dla właściciela: trendy, ceny, aktywność w dzielnicy. Budujesz pozycję eksperta.</div>
+                </div>
+                <div class="card" data-color="gold" data-module="showroom" data-layer="biuro" onclick="toggleDetail('showroom')">
+                    <div class="card-header">
+                        <div class="card-icon">&#127917;</div>
+                        <div><span class="organ-tag">Showroom</span> <span class="layer-tag biuro">BIURO</span></div>
+                    </div>
+                    <div class="card-title">Agent prezentacji</div>
+                    <div class="card-subtitle">Gotowe prezentacje</div>
+                    <div class="card-desc">Portfolio dla sprzedającego, oferta dla kupującego, raport inwestycji. Profesjonalne slajdy w 2 minuty.</div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-aranzacja">
+                <button class="detail-close" onclick="toggleDetail('aranzacja')">&#10005;</button>
+                <h3>Aranżacja — Virtual Home Staging</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Puste mieszkanie na zdjęciu zamienia w urządzone wnętrze. Meble, dekoracje, oświetlenie — wszystko wygenerowane przez AI. Wygląda jak prawdziwe zdjęcie.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Jak działa</h4>
+                    <div class="workflow-box">1. Robisz zdjęcie pustego pokoju
+2. Wgrywasz do narzędzia
+3. Wybierasz styl (nowoczesny, skandynawski, klasyczny, industrialny)
+4. AI dodaje meble i dekoracje
+5. Dostajesz porównanie przed/po
+6. Zdjęcie "z meblami" ląduje w ogłoszeniu
+
+Czas: 30 sekund na zdjęcie</div>
+                </div>
+                <div class="detail-section">
+                    <h4>Dlaczego to działa</h4>
+                    <ul>
+                        <li>Ogłoszenia z urządzonymi wnętrzami dostają 2-3x więcej wyświetleń</li>
+                        <li>Kupujący widzi potencjał, nie puste ściany</li>
+                        <li>Klasyczny staging kosztuje 3-8 tys. PLN — ten jest za grosze</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-ksiega">
+                <button class="detail-close" onclick="toggleDetail('ksiega')">&#10005;</button>
+                <h3>Księga — Agent raportów</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Generuje raporty rynkowe dla Twoich klientów. Wysyłasz właścicielowi co 2 tygodnie PDF: "Oto co się dzieje na rynku w Pana okolicy." Budujesz pozycję eksperta bez wysiłku.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Co zawiera raport</h4>
+                    <ul>
+                        <li><strong>Trendy cenowe</strong> — jak zmieniły się ceny w ostatnim kwartale</li>
+                        <li><strong>Nowe transakcje</strong> — co się sprzedało w okolicy</li>
+                        <li><strong>Aktywność rynku</strong> — ile nowych ofert, ile sprzedanych</li>
+                        <li><strong>Prognoza</strong> — co dane mówią o najbliższych miesiącach</li>
+                        <li><strong>Rekomendacja</strong> — co to oznacza dla nieruchomości klienta</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <h4>Efekt</h4>
+                    <p>Klient dostaje raport → widzi że jesteś na bieżąco → ufa Ci → przedłuża umowę → poleca Cię znajomym. Zero cold callingu, same ciepłe relacje.</p>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detail-showroom">
+                <button class="detail-close" onclick="toggleDetail('showroom')">&#10005;</button>
+                <h3>Showroom — Agent prezentacji</h3>
+                <div class="detail-section">
+                    <h4>Co robi</h4>
+                    <p>Tworzy profesjonalne prezentacje w 2 minuty. Jak showroom dewelopera — ale Twój, z Twoimi danymi i Twoim stylem.</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Rodzaje prezentacji</h4>
+                    <ul>
+                        <li><strong>Oferta dla kupującego</strong> — zdjęcia, parametry, okolicy, cena, CTA</li>
+                        <li><strong>Portfolio dla sprzedającego</strong> — "Dlaczego ja?" Twoje wyniki, metoda, co dostajesz</li>
+                        <li><strong>Raport inwestycji</strong> — ROI, cashflow, scenariusze, porównanie lokalizacji</li>
+                        <li><strong>Analiza rynku</strong> — prezentacja z danymi dla dewelopera lub inwestora</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK START -->
+        <div class="quick-start">
+            <h3>Cały system — od Fundamentu do Pełnego Biura</h3>
+            <div style="font-size: 0.85rem; line-height: 2.2;">
+                <span style="color: var(--accent-green); font-weight: 600;">START</span><br>
+                &#127959; <strong>Fundament</strong> — Profil agenta (core, DNA systemu)<br>
+                &#128444; <strong>Witryna</strong> — Agent ogłoszeń (opisy na portale)<br>
+                &#128273; <strong>Klucz</strong> — COO operacyjny (planowanie dnia)<br>
+                &#128247; <strong>Okno</strong> — Agent ofert ze zdjęć (zdjęcie → opis)<br>
+                <br>
+                <span style="color: var(--gold); font-weight: 600;">WZROST</span><br>
+                &#128220; <strong>Akt</strong> — Agent wyceny (dane z RCN)<br>
+                &#129518; <strong>Kalkulator</strong> — Agent ROI (zwrot z inwestycji)<br>
+                &#128226; <strong>Baner</strong> — Kreator reklam (posty, ads, CTA)<br>
+                &#129354; <strong>Negocjacje</strong> — Trener obiekcji (symulacja klienta)<br>
+                <br>
+                <span style="color: var(--accent-purple); font-weight: 600;">PEŁNE BIURO</span><br>
+                &#128715; <strong>Aranżacja</strong> — Virtual Home Staging (puste → urządzone)<br>
+                &#128214; <strong>Księga</strong> — Agent raportów (PDF co 2 tygodnie)<br>
+                &#127917; <strong>Showroom</strong> — Agent prezentacji (oferty, portfolio, raporty)<br>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>AI-Team — system zbudowany na Claude Code</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDetail(moduleId) {
+            const panel = document.getElementById('detail-' + moduleId);
+            const card = document.querySelector(`[data-module="${moduleId}"]`);
+            if (!card || card.classList.contains('locked')) return;
+
+            document.querySelectorAll('.detail-panel.visible').forEach(p => {
+                if (p.id !== 'detail-' + moduleId) p.classList.remove('visible');
+            });
+            document.querySelectorAll('.card.active').forEach(c => {
+                if (c.dataset.module !== moduleId) c.classList.remove('active');
+            });
+
+            panel.classList.toggle('visible');
+            card.classList.toggle('active');
+
+            if (panel.classList.contains('visible')) {
+                setTimeout(() => {
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 50);
+            }
+        }
+
+        function filterLayer(layer) {
+            document.querySelectorAll('.layer-badge').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-layer="${layer}"]`).classList.add('active');
+
+            const cards = document.querySelectorAll('.card[data-layer]');
+            const layers = { start: 1, wzrost: 2, biuro: 3 };
+
+            cards.forEach(card => {
+                if (layer === 'all') {
+                    card.classList.remove('locked');
+                } else {
+                    const cardLayer = card.dataset.layer;
+                    if (layers[cardLayer] <= layers[layer]) {
+                        card.classList.remove('locked');
+                    } else {
+                        card.classList.add('locked');
+                        const detail = document.getElementById('detail-' + card.dataset.module);
+                        if (detail) detail.classList.remove('visible');
+                        card.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.detail-panel.visible').forEach(p => p.classList.remove('visible'));
+                document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>
