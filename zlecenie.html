@@ -1451,17 +1451,17 @@
             'średnia': { cls: 'complexity-srednia', text: 'ŚREDNIA' },
             'złożona': { cls: 'complexity-zlożona', text: 'ZŁOŻONA' }
         };
-        const comp = compMap[(est.complexity || 'średnia').toLowerCase()] || compMap['średnia'];
+        const comp = compMap[(est.zlozonosc || 'średnia').toLowerCase()] || compMap['średnia'];
         compEl.className = `inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider ${comp.cls}`;
         compEl.textContent = comp.text;
 
         // Time
-        document.getElementById('est-time').textContent = est.time_estimate || '3-5 dni';
+        document.getElementById('est-time').textContent = est.czas || '3-5 dni';
 
         // Tools
         const toolsEl = document.getElementById('est-tools');
         toolsEl.innerHTML = '';
-        (est.tools || []).forEach((tool, i) => {
+        (est.narzedzia || []).forEach((tool, i) => {
             const pill = document.createElement('span');
             pill.className = 'tool-pill';
             pill.textContent = tool;
@@ -1470,12 +1470,12 @@
         });
 
         // Price (counter animation)
-        const priceMin = est.price_min || 500;
-        const priceMax = est.price_max || 2000;
+        const priceMin = est.cena_min || 500;
+        const priceMax = est.cena_max || 2000;
         document.getElementById('est-price').textContent = '0 PLN';
 
         // Description
-        document.getElementById('est-description').textContent = est.description || '';
+        document.getElementById('est-description').textContent = est.opis || '';
 
         // CTA
         const ctaEl = document.getElementById('est-cta');
@@ -1644,24 +1644,24 @@
                     'średnia': { cls: 'complexity-srednia', text: 'Średnia' },
                     'złożona': { cls: 'complexity-zlożona', text: 'Złożona' }
                 };
-                const comp = compMap[(est.complexity || 'średnia').toLowerCase()] || compMap['średnia'];
+                const comp = compMap[(est.zlozonosc || 'średnia').toLowerCase()] || compMap['średnia'];
                 document.getElementById('status-ai-complexity').innerHTML = `<span class="px-2 py-0.5 rounded-full text-xs font-semibold ${comp.cls}">${comp.text}</span>`;
-                document.getElementById('status-ai-time').textContent = est.time_estimate || '-';
+                document.getElementById('status-ai-time').textContent = est.czas || '-';
 
                 const toolsEl = document.getElementById('status-ai-tools');
                 toolsEl.innerHTML = '';
-                (est.tools || []).forEach(t => {
+                (est.narzedzia || []).forEach(t => {
                     const pill = document.createElement('span');
                     pill.className = 'tool-pill visible';
                     pill.textContent = t;
                     toolsEl.appendChild(pill);
                 });
 
-                document.getElementById('status-ai-price').textContent = est.price_min && est.price_max
-                    ? `${est.price_min.toLocaleString('pl-PL')} - ${est.price_max.toLocaleString('pl-PL')} PLN`
+                document.getElementById('status-ai-price').textContent = est.cena_min && est.cena_max
+                    ? `${est.cena_min.toLocaleString('pl-PL')} - ${est.cena_max.toLocaleString('pl-PL')} PLN`
                     : '-';
 
-                document.getElementById('status-ai-desc').textContent = est.description || '';
+                document.getElementById('status-ai-desc').textContent = est.opis || '';
             }
 
             // Final price
