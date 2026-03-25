@@ -470,6 +470,7 @@
         /* ==================== UTILITIES ==================== */
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
 
         /* Success banner */
         .success-banner {
@@ -530,10 +531,32 @@
 
                 <!-- ========== STEP 1: KATEGORIA ========== -->
                 <div class="wizard-step active" id="step-1">
-                    <div class="text-center mb-8">
-                        <h1 class="font-display text-3xl sm:text-4xl font-bold mb-3">Co mogę <span class="gradient-text">dla Ciebie</span> zrobić?</h1>
-                        <p class="text-white/50 text-lg">Wybierz typ zlecenia — dopasuję pytania do Twojej sytuacji</p>
+                    <div class="text-center mb-10">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/5 text-brand-light text-sm mb-5">
+                            <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                            AI wycenia w kilka sekund
+                        </div>
+                        <h1 class="font-display text-3xl sm:text-5xl font-bold mb-4 leading-tight">Potrzebujesz <span class="gradient-text">wdrożenia AI?</span></h1>
+                        <p class="text-white/50 text-lg max-w-xl mx-auto">Opisz czego potrzebujesz — sztuczna inteligencja przeanalizuje Twoje zlecenie i przygotuje wycenę w czasie rzeczywistym</p>
                     </div>
+
+                    <!-- How it works -->
+                    <div class="flex flex-wrap justify-center gap-6 mb-10 text-sm text-white/40">
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-brand-primary">1</span>
+                            Wybierz kategorię
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-white/30">2</span>
+                            Odpowiedz na pytania
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-white/30">3</span>
+                            Odbierz wycenę AI
+                        </div>
+                    </div>
+
+                    <h2 class="font-display text-lg font-semibold text-white/70 mb-4 text-center">Wybierz typ zlecenia</h2>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="category-grid">
                         <div class="cat-card" data-cat="konsultacja" onclick="selectCategory(this)">
@@ -580,6 +603,31 @@
                             <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
                                 <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust signals -->
+                    <div class="mt-10 pt-8 border-t border-white/5">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                            <div>
+                                <div class="text-2xl font-display font-bold gradient-text mb-1">24h</div>
+                                <div class="text-white/40 text-sm">Odpowiedź z wyceną</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-display font-bold gradient-text mb-1">2500+</div>
+                                <div class="text-white/40 text-sm">Godzin projektów AI</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-display font-bold gradient-text mb-1">100%</div>
+                                <div class="text-white/40 text-sm">Kod na Twoim GitHubie</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap justify-center gap-4 text-xs text-white/30">
+                            <span class="flex items-center gap-1.5"><span class="text-green-400">✓</span> Bez ukrytych kosztów</span>
+                            <span class="flex items-center gap-1.5"><span class="text-green-400">✓</span> BLIK / karta / przelew</span>
+                            <span class="flex items-center gap-1.5"><span class="text-green-400">✓</span> 7 dni gwarancji</span>
+                            <span class="flex items-center gap-1.5"><span class="text-green-400">✓</span> Realizacja od 1 dnia</span>
                         </div>
                     </div>
                 </div>
@@ -1061,6 +1109,7 @@
             let inputHTML = '';
             if (q.type === 'textarea') {
                 inputHTML = `<textarea class="form-input mt-3" placeholder="${q.placeholder || ''}" rows="${q.rows || 3}" data-qid="${q.id}" oninput="onAnswerChange(${i})"></textarea>`;
+                inputHTML += `<button class="qa-next-btn mt-3 px-5 py-2 rounded-lg bg-brand-primary/80 hover:bg-brand-primary text-white text-sm font-medium transition-all opacity-50 pointer-events-none" onclick="advanceFromTextarea(${i}, '${q.id}')">Dalej →</button>`;
             } else if (q.type === 'pills') {
                 inputHTML = '<div class="flex flex-wrap gap-2 mt-3">';
                 q.options.forEach(opt => {
@@ -1072,13 +1121,17 @@
                 q.options.forEach(opt => {
                     inputHTML += `<button class="chip" onclick="toggleChip(this, ${i}, '${q.id}')">${opt}</button>`;
                 });
-                inputHTML += '</div>';
+                inputHTML += `</div>`;
+                inputHTML += `<button class="qa-next-btn mt-3 px-5 py-2 rounded-lg bg-brand-primary/80 hover:bg-brand-primary text-white text-sm font-medium transition-all opacity-50 pointer-events-none" onclick="advanceFromChips(${i}, '${q.id}')">Dalej →</button>`;
             }
 
             card.innerHTML = `
-                <p class="font-medium text-lg text-white/90">${q.text}</p>
-                ${inputHTML}
-                <div class="collapsed-answer text-sm text-white/50 mt-2" style="display:none;"></div>
+                <div class="qa-body">
+                    <p class="font-medium text-lg text-white/90">${q.text}</p>
+                    ${inputHTML}
+                </div>
+                <div class="collapsed-answer text-sm text-white/60 mt-0 py-3 px-1" style="display:none;cursor:pointer;" onclick="reopenQuestion(${i})">
+                </div>
             `;
             container.appendChild(card);
         });
@@ -1091,13 +1144,22 @@
         el.parentElement.querySelectorAll('.opt-pill').forEach(p => p.classList.remove('selected'));
         el.classList.add('selected');
         answers[qId] = el.textContent;
-        advanceQuestion(qIndex);
+        setTimeout(() => advanceQuestion(qIndex), 300);
     }
 
     function toggleChip(el, qIndex, qId) {
         el.classList.toggle('selected');
         const selected = Array.from(el.parentElement.querySelectorAll('.chip.selected')).map(c => c.textContent);
         answers[qId] = selected.join(', ');
+        // Show/hide "Dalej" button for chips
+        const btn = el.closest('.qa-card').querySelector('.qa-next-btn');
+        if (btn) {
+            if (selected.length > 0) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
         updateStep2Next();
     }
 
@@ -1107,33 +1169,77 @@
         const textarea = document.querySelector(`#qa-${qIndex} textarea`);
         if (textarea) {
             answers[q.id] = textarea.value.trim();
+            // Show/hide "Dalej" button for textarea
+            const btn = textarea.closest('.qa-card').querySelector('.qa-next-btn');
+            if (btn) {
+                if (textarea.value.trim().length > 0) {
+                    btn.classList.remove('opacity-50', 'pointer-events-none');
+                } else {
+                    btn.classList.add('opacity-50', 'pointer-events-none');
+                }
+            }
         }
         updateStep2Next();
+    }
+
+    function advanceFromTextarea(qIndex, qId) {
+        const textarea = document.querySelector(`#qa-${qIndex} textarea`);
+        if (textarea && textarea.value.trim()) {
+            answers[qId] = textarea.value.trim();
+            advanceQuestion(qIndex);
+        }
+    }
+
+    function advanceFromChips(qIndex, qId) {
+        const card = document.getElementById('qa-' + qIndex);
+        const selected = Array.from(card.querySelectorAll('.chip.selected')).map(c => c.textContent);
+        if (selected.length > 0) {
+            answers[qId] = selected.join(', ');
+            advanceQuestion(qIndex);
+        }
     }
 
     function advanceQuestion(qIndex) {
         const cat = CATEGORIES[selectedCategory];
         const nextIndex = qIndex + 1;
-
-        // Collapse current
         const currentCard = document.getElementById('qa-' + qIndex);
         const q = cat.questions[qIndex];
         const answerText = answers[q.id] || '';
-        if (answerText && q.type !== 'textarea') {
-            const collapsedEl = currentCard.querySelector('.collapsed-answer');
-            collapsedEl.innerHTML = `<span class="text-green-400/70">✓</span> ${answerText}`;
+
+        // Collapse current: hide body, show summary
+        const body = currentCard.querySelector('.qa-body');
+        const collapsedEl = currentCard.querySelector('.collapsed-answer');
+        if (body && answerText) {
+            body.style.display = 'none';
+            const truncated = answerText.length > 80 ? answerText.substring(0, 80) + '...' : answerText;
+            collapsedEl.innerHTML = `<span class="text-green-400">✓</span> <span class="text-white/40">${q.text}</span> — <span class="text-white/70">${truncated}</span> <span class="text-brand-primary/60 text-xs ml-2">edytuj</span>`;
+            collapsedEl.style.display = 'block';
+            // Shrink card styling
+            currentCard.style.borderLeftColor = 'rgba(34,197,94,0.3)';
+            currentCard.style.padding = '0.5rem 1rem';
         }
 
         if (nextIndex < cat.questions.length) {
-            // Show next
             const nextCard = document.getElementById('qa-' + nextIndex);
             nextCard.style.display = 'block';
-            nextCard.style.animationDelay = '0.05s';
+            nextCard.style.animation = 'slideInRight 0.4s ease-out forwards';
             currentQuestionIndex = nextIndex;
-            // Scroll to it
-            setTimeout(() => nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+            setTimeout(() => nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
         }
         updateStep2Next();
+    }
+
+    function reopenQuestion(qIndex) {
+        const card = document.getElementById('qa-' + qIndex);
+        const body = card.querySelector('.qa-body');
+        const collapsedEl = card.querySelector('.collapsed-answer');
+        if (body) {
+            body.style.display = 'block';
+            collapsedEl.style.display = 'none';
+            card.style.borderLeftColor = '';
+            card.style.padding = '';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 
     function updateStep2Next() {
