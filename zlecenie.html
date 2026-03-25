@@ -607,18 +607,18 @@
         /* ======================== AI PARTICLE HEAD ======================== */
         .ai-particle-wrap {
             position: fixed;
-            left: -40px;
+            left: -20px;
             top: 50%;
             transform: translateY(-50%);
-            width: 420px;
-            height: 520px;
+            width: 560px;
+            height: 680px;
             z-index: 1;
             pointer-events: none;
-            animation: particle-head-enter 2s ease-out 0.5s both;
+            animation: particle-head-enter 2.5s ease-out 0.5s both;
         }
         @keyframes particle-head-enter {
-            from { opacity: 0; left: -200px; }
-            to { opacity: 1; left: -40px; }
+            from { opacity: 0; left: -280px; }
+            to { opacity: 1; left: -20px; }
         }
         .ai-particle-wrap canvas {
             width: 100%;
@@ -643,10 +643,10 @@
             50% { opacity: 0.4; }
         }
         @media (max-width: 1400px) {
-            .ai-particle-wrap { width: 340px; height: 420px; left: -60px; }
+            .ai-particle-wrap { width: 460px; height: 560px; left: -50px; }
         }
         @media (max-width: 1100px) {
-            .ai-particle-wrap { width: 260px; height: 320px; left: -60px; opacity: 0.5; }
+            .ai-particle-wrap { width: 350px; height: 430px; left: -60px; opacity: 0.5; }
         }
         @media (max-width: 900px) {
             .ai-particle-wrap { display: none; }
@@ -2025,8 +2025,8 @@
 
     // Generate particles scattered around the head profile
     const particles = [];
-    const PARTICLE_COUNT = 450;
-    const CONNECTION_DIST = 55;
+    const PARTICLE_COUNT = 700;
+    const CONNECTION_DIST = 60;
 
     // Helper: random point near the head profile
     function generateParticle() {
@@ -2039,7 +2039,7 @@
             const [x1, y1] = profilePath[idx];
             const [x2, y2] = profilePath[idx + 1];
             const t = Math.random();
-            const spread = 15 + Math.random() * 25;
+            const spread = 20 + Math.random() * 40;
             return {
                 baseX: x1 + (x2 - x1) * t + (Math.random() - 0.5) * spread,
                 baseY: y1 + (y2 - y1) * t + (Math.random() - 0.5) * spread,
@@ -2048,7 +2048,7 @@
             // Interior fill — centroid area
             const cx = 400, cy = 320;
             const angle = Math.random() * Math.PI * 2;
-            const dist = Math.random() * 160;
+            const dist = Math.random() * 200;
             return {
                 baseX: cx + Math.cos(angle) * dist * 0.9,
                 baseY: cy + Math.sin(angle) * dist * 1.1,
@@ -2071,19 +2071,21 @@
             baseY: p.baseY,
             vx: (Math.random() - 0.5) * 0.3,
             vy: (Math.random() - 0.5) * 0.3,
-            size: isEyeArea ? 1.5 + Math.random() * 2 : 0.8 + Math.random() * 1.5,
-            brightness: isEyeArea ? 0.6 + Math.random() * 0.4 : 0.15 + Math.random() * 0.35,
+            size: isEyeArea ? 2 + Math.random() * 2.5 : 1 + Math.random() * 2,
+            brightness: isEyeArea ? 0.6 + Math.random() * 0.4 : 0.15 + Math.random() * 0.4,
             phase: Math.random() * Math.PI * 2,
-            speed: 0.005 + Math.random() * 0.015,
-            drift: 8 + Math.random() * 12,
+            speed: 0.004 + Math.random() * 0.012,
+            drift: 14 + Math.random() * 22,
+            waveAmp: 5 + Math.random() * 15,
+            waveFreq: 0.3 + Math.random() * 0.7,
             isEye: isEyeArea,
         });
     }
 
     // Add specific eye particles for a brighter eye cluster
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 35; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const dist = Math.random() * 25;
+        const dist = Math.random() * 30;
         particles.push({
             x: eyeX + Math.cos(angle) * dist,
             y: eyeY + Math.sin(angle) * dist,
@@ -2129,14 +2131,23 @@
 
     function animate() {
         time += 0.016;
-        globalSway = Math.sin(time * 0.3) * 12; // Gentle side sway
+        globalSway = Math.sin(time * 0.25) * 18 + Math.sin(time * 0.6) * 6;
+        const globalBreathe = Math.sin(time * 0.15) * 0.04;
 
         ctx.clearRect(0, 0, W, H);
 
-        // Update particles
+        // Update particles — wave-like motion
+        const pcx = 400, pcy = 320;
         particles.forEach(p => {
-            p.x = p.baseX + Math.sin(time * p.speed * 60 + p.phase) * p.drift + globalSway;
-            p.y = p.baseY + Math.cos(time * p.speed * 40 + p.phase) * p.drift * 0.6;
+            const dx = p.baseX - pcx;
+            const dy = p.baseY - pcy;
+            const distC = Math.sqrt(dx * dx + dy * dy);
+            const waveOff = distC * 0.008;
+            const wave = Math.sin(time * (p.waveFreq || 0.5) + waveOff + p.phase) * (p.waveAmp || 10);
+            p.x = p.baseX + Math.sin(time * p.speed * 50 + p.phase) * p.drift + globalSway + wave * 0.5;
+            p.y = p.baseY + Math.cos(time * p.speed * 35 + p.phase) * p.drift * 0.7 + wave * 0.3;
+            p.x += dx * globalBreathe;
+            p.y += dy * globalBreathe;
         });
 
         // Draw connections
