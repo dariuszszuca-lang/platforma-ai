@@ -607,46 +607,31 @@
         /* ======================== AI PARTICLE HEAD ======================== */
         .ai-particle-wrap {
             position: fixed;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 560px;
-            height: 680px;
+            inset: 0;
             z-index: 1;
             pointer-events: none;
-            animation: particle-head-enter 2.5s ease-out 0.5s both;
-        }
-        @keyframes particle-head-enter {
-            from { opacity: 0; left: -280px; }
-            to { opacity: 1; left: -20px; }
         }
         .ai-particle-wrap canvas {
             width: 100%;
             height: 100%;
         }
         .particle-label {
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: fixed;
+            bottom: 20px;
+            left: 30px;
             font-family: 'Space Grotesk', monospace;
             font-size: 9px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(180, 200, 220, 0.2);
+            color: rgba(180, 200, 220, 0.15);
             white-space: nowrap;
             text-shadow: 0 0 10px rgba(180, 200, 220, 0.08);
             animation: plabel-pulse 5s ease-in-out infinite;
+            transition: opacity 1s;
         }
         @keyframes plabel-pulse {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.4; }
-        }
-        @media (max-width: 1400px) {
-            .ai-particle-wrap { width: 460px; height: 560px; left: -50px; }
-        }
-        @media (max-width: 1100px) {
-            .ai-particle-wrap { width: 350px; height: 430px; left: -60px; opacity: 0.5; }
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
         @media (max-width: 900px) {
             .ai-particle-wrap { display: none; }
@@ -754,10 +739,10 @@
         <div class="j-readout j-r6">latency :: 0.24ms</div>
     </div>
 
-    <!-- AI PARTICLE HEAD -->
+    <!-- AI PARTICLE HEAD — full screen -->
     <div class="ai-particle-wrap" id="particle-head-wrap">
-        <canvas id="particle-head" width="840" height="1040"></canvas>
-        <div class="particle-label">neural engine :: active</div>
+        <canvas id="particle-head"></canvas>
+        <div class="particle-label" id="particle-label">neural engine :: active</div>
     </div>
 
     <!-- ============================== WIZARD MODE ============================== -->
@@ -1981,190 +1966,209 @@
     }
     </script>
 <script>
-// ======================== PARTICLE HEAD SYSTEM ========================
+// ======================== PARTICLE HEAD SYSTEM v2 ========================
 (function() {
     const canvas = document.getElementById('particle-head');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const W = canvas.width;
-    const H = canvas.height;
 
-    // Side profile head shape — points define the silhouette
-    // Coordinates normalized to canvas (840x1040)
-    const profilePath = [
-        // Top of head
-        [380, 60], [420, 50], [460, 48], [500, 55], [540, 70],
-        [570, 90], [595, 115], [615, 145], [625, 180], [630, 220],
-        // Back of skull
-        [628, 260], [622, 300], [612, 340], [600, 370], [585, 395],
-        // Back of neck / ear area
-        [570, 410], [560, 430], [555, 455], [558, 480], [555, 510],
-        [545, 540], [530, 560],
-        // Jaw line
-        [505, 575], [480, 585], [450, 590], [420, 588],
-        [390, 580], [360, 568], [335, 555], [315, 540],
-        // Chin
-        [300, 520], [292, 500], [288, 480],
-        // Under lip / mouth
-        [290, 460], [285, 445],
-        // Lip forward
-        [275, 435], [265, 425], [258, 415],
-        // Nose
-        [250, 400], [240, 380], [232, 360], [225, 340],
-        [220, 320], [218, 300], [222, 285], [230, 275],
-        // Nose tip
-        [218, 268], [208, 258], [200, 250],
-        // Nose bridge up
-        [205, 238], [210, 220], [218, 200], [225, 185],
-        // Brow
-        [235, 170], [248, 158], [260, 150],
-        // Forehead
-        [275, 142], [290, 130], [310, 115], [330, 100],
-        [350, 85], [365, 72], [380, 60],
-    ];
+    // Full screen canvas
+    function resize() {
+        canvas.width = window.innerWidth * 2;
+        canvas.height = window.innerHeight * 2;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-    // Generate particles scattered around the head profile
+    const W = () => canvas.width;
+    const H = () => canvas.height;
+
+    // Head profile shape — scaled to left side of screen
+    function getProfilePath() {
+        const scale = Math.min(window.innerWidth, window.innerHeight) * 0.0012;
+        const offX = window.innerWidth * 0.22;
+        const offY = window.innerHeight * 0.48;
+        const base = [
+            [200,25],[230,22],[255,35],[285,50],[300,80],[315,110],[315,145],
+            [315,165],[305,185],[280,210],[265,225],[275,255],[290,265],[290,280],
+            [275,305],[250,330],[235,365],[225,380],[195,395],[175,385],[175,360],
+            [190,335],[200,320],[195,310],[170,295],[140,280],[130,255],[130,240],
+            [145,230],[155,210],[155,195],[140,180],[115,165],[105,150],[110,135],
+            [130,115],[155,100],[165,88],[170,70],[180,40],[200,25]
+        ];
+        return base.map(([x, y]) => [x * scale + offX * 0.3, y * scale + offY * 0.3]);
+    }
+
+    // Generate particles
     const particles = [];
-    const PARTICLE_COUNT = 700;
-    const CONNECTION_DIST = 60;
+    const PARTICLE_COUNT = 800;
+    const CONNECTION_DIST = 55;
 
-    // Helper: random point near the head profile
-    function generateParticle() {
-        // 70% near the outline, 30% fill inside
-        const isOutline = Math.random() < 0.7;
+    // Phase tracking
+    let phase = 'entering'; // entering -> head -> dispersing -> ambient
+    let phaseTime = 0;
+    const ENTER_DURATION = 2.5;
+    const HEAD_DURATION = 3.0;
+    const DISPERSE_DURATION = 3.0;
 
-        if (isOutline) {
-            // Pick a random segment on the profile
-            const idx = Math.floor(Math.random() * (profilePath.length - 1));
-            const [x1, y1] = profilePath[idx];
-            const [x2, y2] = profilePath[idx + 1];
-            const t = Math.random();
-            const spread = 20 + Math.random() * 40;
-            return {
-                baseX: x1 + (x2 - x1) * t + (Math.random() - 0.5) * spread,
-                baseY: y1 + (y2 - y1) * t + (Math.random() - 0.5) * spread,
-            };
-        } else {
-            // Interior fill — centroid area
-            const cx = 400, cy = 320;
-            const angle = Math.random() * Math.PI * 2;
-            const dist = Math.random() * 200;
-            return {
-                baseX: cx + Math.cos(angle) * dist * 0.9,
-                baseY: cy + Math.sin(angle) * dist * 1.1,
-            };
+    function initParticles() {
+        particles.length = 0;
+        const w2 = W(), h2 = H();
+        const profile = getProfilePath();
+        const headCx = 0, headCy = 0;
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            // Head position
+            let hx, hy;
+            const isOutline = Math.random() < 0.55;
+            if (isOutline && profile.length > 1) {
+                const idx = Math.floor(Math.random() * (profile.length - 1));
+                const [x1, y1] = profile[idx];
+                const [x2, y2] = profile[idx + 1];
+                const t = Math.random();
+                const spread = 8 + Math.random() * 20;
+                hx = (x1 + (x2 - x1) * t + (Math.random() - 0.5) * spread) * 2;
+                hy = (y1 + (y2 - y1) * t + (Math.random() - 0.5) * spread) * 2;
+            } else {
+                const cx = profile.length > 0 ? profile[Math.floor(profile.length/2)][0] * 2 : w2 * 0.25;
+                const cy = profile.length > 0 ? profile[Math.floor(profile.length/2)][1] * 2 : h2 * 0.5;
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 180;
+                hx = cx + Math.cos(angle) * dist;
+                hy = cy + Math.sin(angle) * dist * 1.2;
+            }
+
+            // Scattered position (full screen)
+            const sx = Math.random() * w2;
+            const sy = Math.random() * h2;
+
+            // Start position (off-screen left)
+            const startX = -100 - Math.random() * 400;
+            const startY = h2 * 0.2 + Math.random() * h2 * 0.6;
+
+            // Eye check
+            const eyeX2 = (profile.length > 15 ? profile[15][0] : 155) * 2;
+            const eyeY2 = (profile.length > 15 ? profile[15][1] : 135) * 2;
+            const distToEye = Math.hypot(hx - eyeX2, hy - eyeY2);
+            const isEye = distToEye < 60;
+
+            particles.push({
+                // Positions for each phase
+                startX, startY,
+                headX: hx, headY: hy,
+                scatterX: sx, scatterY: sy,
+                // Current
+                x: startX, y: startY,
+                // Properties
+                size: isEye ? 2 + Math.random() * 3 : 1 + Math.random() * 2.2,
+                brightness: isEye ? 0.5 + Math.random() * 0.5 : 0.1 + Math.random() * 0.3,
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.003 + Math.random() * 0.01,
+                drift: 10 + Math.random() * 18,
+                waveAmp: 4 + Math.random() * 12,
+                waveFreq: 0.2 + Math.random() * 0.6,
+                isEye,
+            });
         }
     }
-
-    // Eye position (side profile)
-    const eyeX = 248, eyeY = 215;
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const p = generateParticle();
-        const distToEye = Math.hypot(p.baseX - eyeX, p.baseY - eyeY);
-        const isEyeArea = distToEye < 35;
-
-        particles.push({
-            x: p.baseX,
-            y: p.baseY,
-            baseX: p.baseX,
-            baseY: p.baseY,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
-            size: isEyeArea ? 2 + Math.random() * 2.5 : 1 + Math.random() * 2,
-            brightness: isEyeArea ? 0.6 + Math.random() * 0.4 : 0.15 + Math.random() * 0.4,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.004 + Math.random() * 0.012,
-            drift: 14 + Math.random() * 22,
-            waveAmp: 5 + Math.random() * 15,
-            waveFreq: 0.3 + Math.random() * 0.7,
-            isEye: isEyeArea,
-        });
-    }
-
-    // Add specific eye particles for a brighter eye cluster
-    for (let i = 0; i < 35; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const dist = Math.random() * 30;
-        particles.push({
-            x: eyeX + Math.cos(angle) * dist,
-            y: eyeY + Math.sin(angle) * dist,
-            baseX: eyeX + Math.cos(angle) * dist,
-            baseY: eyeY + Math.sin(angle) * dist,
-            vx: (Math.random() - 0.5) * 0.2,
-            vy: (Math.random() - 0.5) * 0.2,
-            size: 1.5 + Math.random() * 2.5,
-            brightness: 0.7 + Math.random() * 0.3,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.01 + Math.random() * 0.02,
-            drift: 4 + Math.random() * 6,
-            isEye: true,
-        });
-    }
-
-    // Synapse pulses — bright particles traveling along neural paths
-    const synapsePaths = [
-        // Crown to back
-        [[380,60],[460,48],[540,70],[615,145],[630,220]],
-        // Forehead to eye
-        [[310,115],[260,150],[248,215]],
-        // Eye to nose
-        [[248,215],[225,275],[208,258]],
-        // Jaw
-        [[505,575],[390,580],[300,520],[288,480]],
-        // Back skull to neck
-        [[612,340],[555,455],[530,560]],
-        // Brain interior
-        [[420,150],[500,200],[550,300],[500,400]],
-    ];
-
-    const synapses = synapsePaths.map(path => ({
-        path,
-        progress: Math.random(),
-        speed: 0.003 + Math.random() * 0.004,
-        size: 3 + Math.random() * 3,
-        brightness: 0.6 + Math.random() * 0.4,
-    }));
+    initParticles();
+    window.addEventListener('resize', () => { resize(); initParticles(); });
 
     let time = 0;
-    let globalSway = 0;
+
+    // Easing
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
 
     function animate() {
         time += 0.016;
-        globalSway = Math.sin(time * 0.25) * 18 + Math.sin(time * 0.6) * 6;
-        const globalBreathe = Math.sin(time * 0.15) * 0.04;
+        phaseTime += 0.016;
+        const w = W(), h = H();
 
-        ctx.clearRect(0, 0, W, H);
+        // Phase transitions
+        if (phase === 'entering' && phaseTime > ENTER_DURATION) {
+            phase = 'head';
+            phaseTime = 0;
+        } else if (phase === 'head' && phaseTime > HEAD_DURATION) {
+            phase = 'dispersing';
+            phaseTime = 0;
+        } else if (phase === 'dispersing' && phaseTime > DISPERSE_DURATION) {
+            phase = 'ambient';
+            phaseTime = 0;
+        }
 
-        // Update particles — wave-like motion
-        const pcx = 400, pcy = 320;
+        ctx.clearRect(0, 0, w, h);
+
+        // Calculate blend factor for current phase
+        let targetKey1, targetKey2, blend;
+        if (phase === 'entering') {
+            targetKey1 = 'start';
+            targetKey2 = 'head';
+            blend = easeInOutCubic(Math.min(phaseTime / ENTER_DURATION, 1));
+        } else if (phase === 'head') {
+            targetKey1 = 'head';
+            targetKey2 = 'head';
+            blend = 1;
+        } else if (phase === 'dispersing') {
+            targetKey1 = 'head';
+            targetKey2 = 'scatter';
+            blend = easeInOutCubic(Math.min(phaseTime / DISPERSE_DURATION, 1));
+        } else {
+            targetKey1 = 'scatter';
+            targetKey2 = 'scatter';
+            blend = 1;
+        }
+
+        const sway = Math.sin(time * 0.2) * 15 + Math.sin(time * 0.5) * 5;
+        const breathe = Math.sin(time * 0.12) * 0.03;
+
+        // Update particles
         particles.forEach(p => {
-            const dx = p.baseX - pcx;
-            const dy = p.baseY - pcy;
-            const distC = Math.sqrt(dx * dx + dy * dy);
-            const waveOff = distC * 0.008;
-            const wave = Math.sin(time * (p.waveFreq || 0.5) + waveOff + p.phase) * (p.waveAmp || 10);
-            p.x = p.baseX + Math.sin(time * p.speed * 50 + p.phase) * p.drift + globalSway + wave * 0.5;
-            p.y = p.baseY + Math.cos(time * p.speed * 35 + p.phase) * p.drift * 0.7 + wave * 0.3;
-            p.x += dx * globalBreathe;
-            p.y += dy * globalBreathe;
+            let tx1, ty1, tx2, ty2;
+            if (targetKey1 === 'start') { tx1 = p.startX; ty1 = p.startY; }
+            else if (targetKey1 === 'head') { tx1 = p.headX; ty1 = p.headY; }
+            else { tx1 = p.scatterX; ty1 = p.scatterY; }
+
+            if (targetKey2 === 'head') { tx2 = p.headX; ty2 = p.headY; }
+            else { tx2 = p.scatterX; ty2 = p.scatterY; }
+
+            const baseX = lerp(tx1, tx2, blend);
+            const baseY = lerp(ty1, ty2, blend);
+
+            // Organic movement
+            const wave = Math.sin(time * p.waveFreq + p.phase) * p.waveAmp;
+            const driftX = Math.sin(time * p.speed * 40 + p.phase) * p.drift;
+            const driftY = Math.cos(time * p.speed * 30 + p.phase) * p.drift * 0.6;
+
+            // Breathe from center only in head phase
+            let bx = 0, by = 0;
+            if (phase === 'head' || phase === 'entering') {
+                const cx = w * 0.25, cy = h * 0.5;
+                bx = (baseX - cx) * breathe;
+                by = (baseY - cy) * breathe;
+            }
+
+            p.x = baseX + driftX + sway * (phase === 'ambient' ? 0.3 : 1) + wave * 0.4 + bx;
+            p.y = baseY + driftY + wave * 0.25 + by;
         });
 
-        // Draw connections
+        // Draw connections — only close particles
         ctx.lineWidth = 0.5;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECTION_DIST) {
-                    const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
-                    const isEyeConn = particles[i].isEye && particles[j].isEye;
-                    if (isEyeConn) {
-                        ctx.strokeStyle = `rgba(249, 150, 60, ${alpha * 2.5})`;
-                    } else {
-                        ctx.strokeStyle = `rgba(180, 200, 220, ${alpha})`;
-                    }
+                const dist = dx * dx + dy * dy;
+                const maxD = CONNECTION_DIST * CONNECTION_DIST;
+                if (dist < maxD) {
+                    const alpha = (1 - dist / maxD) * (phase === 'ambient' ? 0.05 : 0.1);
+                    const eyeConn = particles[i].isEye && particles[j].isEye;
+                    ctx.strokeStyle = eyeConn
+                        ? `rgba(249, 150, 60, ${alpha * 2.5})`
+                        : `rgba(180, 200, 220, ${alpha})`;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -2176,84 +2180,31 @@
         // Draw particles
         particles.forEach(p => {
             const pulse = 0.7 + Math.sin(time * 2 + p.phase) * 0.3;
-            const alpha = p.brightness * pulse;
+            const alpha = p.brightness * pulse * (phase === 'ambient' ? 0.5 : 1);
 
-            if (p.isEye) {
-                // Orange glow for eye particles
+            if (p.isEye && (phase === 'head' || phase === 'entering')) {
                 ctx.fillStyle = `rgba(249, 140, 50, ${alpha})`;
                 ctx.shadowColor = 'rgba(249, 115, 22, 0.3)';
                 ctx.shadowBlur = 8;
             } else {
                 ctx.fillStyle = `rgba(190, 210, 230, ${alpha})`;
-                ctx.shadowColor = 'rgba(190, 210, 230, 0.1)';
-                ctx.shadowBlur = 4;
+                ctx.shadowColor = 'rgba(190, 210, 230, 0.08)';
+                ctx.shadowBlur = 3;
             }
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
             ctx.fill();
         });
-
         ctx.shadowBlur = 0;
-
-        // Draw synapse pulses
-        synapses.forEach(s => {
-            s.progress += s.speed;
-            if (s.progress > 1) s.progress = 0;
-
-            const path = s.path;
-            const totalSegs = path.length - 1;
-            const fullProg = s.progress * totalSegs;
-            const segIdx = Math.min(Math.floor(fullProg), totalSegs - 1);
-            const segT = fullProg - segIdx;
-
-            const sx = path[segIdx][0] + (path[segIdx + 1][0] - path[segIdx][0]) * segT + globalSway;
-            const sy = path[segIdx][1] + (path[segIdx + 1][1] - path[segIdx][1]) * segT;
-
-            const pulse = 0.5 + Math.sin(time * 4 + s.progress * 10) * 0.5;
-
-            // Glow
-            ctx.fillStyle = `rgba(200, 220, 240, ${s.brightness * pulse * 0.8})`;
-            ctx.shadowColor = 'rgba(200, 220, 240, 0.5)';
-            ctx.shadowBlur = 15;
-            ctx.beginPath();
-            ctx.arc(sx, sy, s.size * pulse, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Trail
-            for (let t = 1; t <= 4; t++) {
-                const tp = s.progress - t * 0.015;
-                if (tp < 0) continue;
-                const tFull = tp * totalSegs;
-                const tSeg = Math.min(Math.floor(tFull), totalSegs - 1);
-                const tT = tFull - tSeg;
-                const tx = path[tSeg][0] + (path[tSeg + 1][0] - path[tSeg][0]) * tT + globalSway;
-                const ty = path[tSeg][1] + (path[tSeg + 1][1] - path[tSeg][1]) * tT;
-                const ta = s.brightness * pulse * (1 - t / 5) * 0.4;
-                ctx.fillStyle = `rgba(200, 220, 240, ${ta})`;
-                ctx.shadowBlur = 0;
-                ctx.beginPath();
-                ctx.arc(tx, ty, s.size * 0.5 * (1 - t / 5), 0, Math.PI * 2);
-                ctx.fill();
-            }
-            ctx.shadowBlur = 0;
-        });
 
         requestAnimationFrame(animate);
     }
 
-    // Start only when visible
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            animate();
-            observer.disconnect();
-        }
-    });
-    observer.observe(canvas);
-
-    // Fallback: start after 1s anyway
-    setTimeout(() => { if (!canvas._started) { canvas._started = true; animate(); observer.disconnect(); } }, 1000);
+    // Start
+    setTimeout(animate, 300);
 })();
 </script>
+
 </body>
 </html>
