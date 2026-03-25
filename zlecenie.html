@@ -1763,17 +1763,17 @@
     canvas.addEventListener('touchmove', e => { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; mouseActive = true; }, { passive: true });
     canvas.addEventListener('touchend', () => { mouseActive = false; });
 
-    const COUNT = Math.min(Math.floor(W * H / 8000), 200);
-    const CONNECT_DIST = 150;
-    const MOUSE_RADIUS = 200;
+    const COUNT = Math.min(Math.floor(W * H / 5000), 280);
+    const CONNECT_DIST = 180;
+    const MOUSE_RADIUS = 220;
     const particles = [];
 
     for (let i = 0; i < COUNT; i++) {
         particles.push({
             x: Math.random() * W, y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-            size: 1.5 + Math.random() * 2,
-            baseAlpha: 0.15 + Math.random() * 0.25,
+            vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2,
+            size: 1.8 + Math.random() * 2.5,
+            baseAlpha: 0.25 + Math.random() * 0.35,
         });
     }
 
@@ -1797,9 +1797,9 @@
                     p.vy += dy / dist * force;
                 }
             }
-            p.vx *= 0.995; p.vy *= 0.995;
-            p.vx += Math.sin(time * 0.1 + p.x * 0.002) * 0.003;
-            p.vy += Math.cos(time * 0.08 + p.y * 0.002) * 0.003;
+            p.vx *= 0.998; p.vy *= 0.998;
+            p.vx += Math.sin(time * 0.15 + p.x * 0.003) * 0.008;
+            p.vy += Math.cos(time * 0.12 + p.y * 0.003) * 0.008;
         });
 
         for (let i = 0; i < particles.length; i++) {
@@ -1810,7 +1810,7 @@
                 const distSq = dx * dx + dy * dy;
                 if (distSq < CONNECT_DIST * CONNECT_DIST) {
                     const dist = Math.sqrt(distSq);
-                    let alpha = (1 - dist / CONNECT_DIST) * 0.15;
+                    let alpha = (1 - dist / CONNECT_DIST) * 0.22;
                     const midX = (a.x + b.x) / 2, midY = (a.y + b.y) / 2;
                     const mDist = mouseActive ? Math.sqrt((midX - mouseX) ** 2 + (midY - mouseY) ** 2) : 9999;
                     if (mDist < MOUSE_RADIUS) alpha += (1 - mDist / MOUSE_RADIUS) * 0.25;
