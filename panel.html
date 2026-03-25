@@ -684,11 +684,11 @@ function getStatusBadge(status) {
 
 function getCategoryLabel(cat) {
     const map = {
-        'konsultacja':   { icon: '💬', label: 'Konsultacja' },
-        'automatyzacja': { icon: '⚡', label: 'Automatyzacja' },
-        'narzedzie':     { icon: '🔧', label: 'Narzędzie' },
-        'wdrozenie':     { icon: '🏢', label: 'Wdrożenie' },
-        'inne':          { icon: '📋', label: 'Inne' }
+        'konsultacja':   { icon: '◆', label: 'Konsultacja' },
+        'automatyzacja': { icon: '◇', label: 'Automatyzacja' },
+        'narzedzie':     { icon: '◈', label: 'Narzędzie' },
+        'wdrozenie':     { icon: '▣', label: 'Wdrożenie' },
+        'inne':          { icon: '○', label: 'Inne' }
     };
     return map[cat] || map['inne'];
 }
