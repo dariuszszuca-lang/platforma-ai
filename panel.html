@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Panel Zleceń — AI-Team Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        dark: '#020203',
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                        accent: '#ffedd5',
+                        surface: 'rgba(255, 255, 255, 0.12)'
+                    }
+                },
+                fontFamily: {
+                    body: ['Inter', 'sans-serif'],
+                    heading: ['Space Grotesk', 'sans-serif']
+                }
+            }
+        }
+    }
+    </script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020203;
+            color: white;
+            min-height: 100vh;
+        }
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-cosmic {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .btn-cosmic:hover {
+            border-color: #f97316;
+            box-shadow: 0 0 20px rgba(249,115,22,0.3);
+        }
+        .btn-primary {
+            background: white;
+            color: black;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+        .btn-orange {
+            background: #f97316;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-orange:hover {
+            background: #ea580c;
+            box-shadow: 0 0 25px rgba(249,115,22,0.4);
+            transform: scale(1.02);
+        }
+
+        /* Expand animation */
+        .order-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+            opacity: 0;
+        }
+        .order-details.open {
+            max-height: 1200px;
+            opacity: 1;
+        }
+
+        /* Flash animation for new orders */
+        @keyframes flash-new {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+            50% { box-shadow: 0 0 30px 8px rgba(59, 130, 246, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .flash-new {
+            animation: flash-new 1.5s ease-out;
+        }
+
+        /* Shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-6px); }
+            80% { transform: translateX(6px); }
+        }
+        .shake { animation: shake 0.5s ease-in-out; }
+
+        /* Toast */
+        @keyframes toast-in {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes toast-out {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(20px); opacity: 0; }
+        }
+        .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+        .toast-exit { animation: toast-out 0.3s ease-in forwards; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+        /* Badge pulse */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive table-like row */
+        .order-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto auto;
+            gap: 12px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .order-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* Loading skeleton */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        /* Grid background like main site */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="relative">
+
+<!-- ===== AUTH MODAL ===== -->
+<div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div class="glass-card rounded-2xl p-8 w-full max-w-sm mx-4" id="authCard">
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-brand-primary"></i>
+                </div>
+                <span class="font-heading font-bold text-xl gradient-text">AI-Team</span>
+            </div>
+            <h2 class="font-heading font-semibold text-lg text-white">Panel Zleceń</h2>
+            <p class="text-sm text-gray-400 mt-1">Wprowadź hasło dostępu</p>
+        </div>
+        <div class="space-y-4">
+            <div class="relative">
+                <input type="password" id="authPassword" placeholder="Hasło..."
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 transition"
+                    onkeydown="if(event.key==='Enter')checkAuth()">
+                <i data-lucide="lock" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            </div>
+            <p id="authError" class="text-red-400 text-sm hidden">Bledne haslo</p>
+            <button onclick="checkAuth()" class="btn-orange w-full py-3 rounded-xl font-semibold text-sm tracking-wide">
+                Wejdz
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" class="hidden relative z-10 min-h-screen">
+
+    <!-- Top bar -->
+    <header class="sticky top-0 z-40 glass-card border-t-0 border-l-0 border-r-0 rounded-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                    <i data-lucide="bot" class="w-5 h-5 text-brand-primary"></i>
+                </div>
+                <div>
+                    <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
+                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Panel Zleceń</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="https://ai-team.pl/zlecenie" target="_blank"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Strona zleceń</span>
+                </a>
+                <button onclick="logout()" class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Wyloguj</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="statsGrid">
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="w-10 h-10 rounded-lg bg-gray-500/20 flex items-center justify-center">
+                        <i data-lucide="layers" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading" id="statAll">0</div>
+                <div class="text-xs text-gray-400 mt-1">Wszystkie</div>
+            </div>
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                        <i data-lucide="inbox" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-blue-400" id="statNowe">0</div>
+                <div class="text-xs text-gray-400 mt-1">Nowe</div>
+            </div>
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                        <i data-lucide="clock" class="w-5 h-5 text-orange-400"></i>
+                    </div>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-orange-400" id="statInProgress">0</div>
+                <div class="text-xs text-gray-400 mt-1">W realizacji</div>
+            </div>
+            <div class="glass-card rounded-xl p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400"></i>
+                    </div>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-green-400" id="statGotowe">0</div>
+                <div class="text-xs text-gray-400 mt-1">Gotowe</div>
+            </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="flex flex-wrap gap-2" id="filterTabs">
+            <button class="filter-tab active px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="all">
+                Wszystkie
+            </button>
+            <button class="filter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="nowe">
+                <span class="inline-block w-2 h-2 rounded-full bg-blue-400 mr-1.5"></span>Nowe
+            </button>
+            <button class="filter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="wycenione">
+                <span class="inline-block w-2 h-2 rounded-full bg-yellow-400 mr-1.5"></span>Wycenione
+            </button>
+            <button class="filter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="w-realizacji">
+                <span class="inline-block w-2 h-2 rounded-full bg-orange-400 mr-1.5"></span>W realizacji
+            </button>
+            <button class="filter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="gotowe">
+                <span class="inline-block w-2 h-2 rounded-full bg-green-400 mr-1.5"></span>Gotowe
+            </button>
+            <button class="filter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="anulowane">
+                <span class="inline-block w-2 h-2 rounded-full bg-red-400 mr-1.5"></span>Anulowane
+            </button>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loadingState" class="space-y-4">
+            <div class="skeleton h-24 w-full"></div>
+            <div class="skeleton h-24 w-full"></div>
+            <div class="skeleton h-24 w-full"></div>
+        </div>
+
+        <!-- Error state -->
+        <div id="errorState" class="hidden">
+            <div class="glass-card rounded-xl p-8 text-center">
+                <i data-lucide="alert-triangle" class="w-12 h-12 text-red-400 mx-auto mb-4"></i>
+                <h3 class="font-heading font-semibold text-lg mb-2">Blad ladowania</h3>
+                <p class="text-gray-400 text-sm mb-4" id="errorMessage">Nie udalo sie polaczyc z baza danych.</p>
+                <button onclick="location.reload()" class="btn-cosmic px-6 py-2 rounded-lg text-sm">
+                    Sprobuj ponownie
+                </button>
+            </div>
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="hidden">
+            <div class="glass-card rounded-xl p-12 text-center">
+                <i data-lucide="package-open" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
+                <h3 class="font-heading font-semibold text-lg mb-2 text-gray-300">Brak zleceń</h3>
+                <p class="text-gray-500 text-sm" id="emptyMessage">Nie ma jeszcze żadnych zleceń w tej kategorii.</p>
+            </div>
+        </div>
+
+        <!-- Orders list -->
+        <div id="ordersList" class="space-y-3 hidden"></div>
+
+    </main>
+
+    <!-- Floating copy URL button -->
+    <button onclick="copyZlecenieUrl()" id="fabButton"
+        class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full btn-orange shadow-lg shadow-orange-500/30 flex items-center justify-center group transition-all hover:scale-110"
+        title="Kopiuj link do formularza zleceń">
+        <i data-lucide="link" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+    </button>
+
+</div>
+
+<!-- Toast container -->
+<div id="toastContainer" class="fixed bottom-24 right-6 z-50 space-y-2"></div>
+
+<script>
+// ===== FIREBASE CONFIG =====
+// Te same dane co w zlecenie.html
+const firebaseConfig = {
+    apiKey: "AIzaSyDKmfXRkXBhYa6yk9idY4QFZdRRhU5eV9I",
+    authDomain: "ai-team-zlecenia.firebaseapp.com",
+    projectId: "ai-team-zlecenia",
+    storageBucket: "ai-team-zlecenia.firebasestorage.app",
+    messagingSenderId: "715537035293",
+    appId: "1:715537035293:web:fe2978df1e20bfc3e0d6f4",
+    measurementId: "G-N62YHVDCKC"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ===== AUTH =====
+const AUTH_HASH = btoa('ai-team-2026');
+
+function checkAuth() {
+    const input = document.getElementById('authPassword').value;
+    if (btoa(input) === AUTH_HASH) {
+        sessionStorage.setItem('panel_auth', '1');
+        document.getElementById('authModal').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        initDashboard();
+    } else {
+        const card = document.getElementById('authCard');
+        const err = document.getElementById('authError');
+        err.classList.remove('hidden');
+        err.textContent = 'Błędne hasło';
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 500);
+    }
+}
+
+function logout() {
+    sessionStorage.removeItem('panel_auth');
+    location.reload();
+}
+
+// Check session on load
+if (sessionStorage.getItem('panel_auth') === '1') {
+    document.getElementById('authModal').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    document.addEventListener('DOMContentLoaded', initDashboard);
+}
+
+// ===== STATE =====
+let allOrders = [];
+let currentFilter = 'all';
+let knownOrderIds = new Set();
+let firstLoad = true;
+
+// ===== DASHBOARD INIT =====
+function initDashboard() {
+    setupFilterTabs();
+    listenToOrders();
+}
+
+// ===== FILTER TABS =====
+function setupFilterTabs() {
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentFilter = tab.dataset.filter;
+            renderOrders();
+        });
+    });
+    updateTabStyles();
+}
+
+function updateTabStyles() {
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        if (tab.classList.contains('active')) {
+            tab.style.background = '#f97316';
+            tab.style.color = 'white';
+        } else {
+            tab.style.background = 'rgba(255,255,255,0.05)';
+            tab.style.color = '#9ca3af';
+        }
+    });
+}
+
+// ===== FIRESTORE LISTENER =====
+function listenToOrders() {
+    const loading = document.getElementById('loadingState');
+    const errorEl = document.getElementById('errorState');
+
+    db.collection('zlecenia')
+        .orderBy('created_at', 'desc')
+        .onSnapshot(
+            (snapshot) => {
+                loading.classList.add('hidden');
+                errorEl.classList.add('hidden');
+
+                const newIds = new Set();
+                allOrders = [];
+
+                snapshot.forEach(doc => {
+                    const data = { id: doc.id, ...doc.data() };
+                    allOrders.push(data);
+                    newIds.add(doc.id);
+
+                    // Flash new orders (not on first load)
+                    if (!firstLoad && !knownOrderIds.has(doc.id)) {
+                        setTimeout(() => {
+                            const el = document.getElementById('order-' + doc.id);
+                            if (el) el.classList.add('flash-new');
+                        }, 100);
+                    }
+                });
+
+                knownOrderIds = newIds;
+                firstLoad = false;
+                updateStats();
+                renderOrders();
+            },
+            (error) => {
+                console.error('Firestore error:', error);
+                loading.classList.add('hidden');
+                errorEl.classList.remove('hidden');
+                document.getElementById('errorMessage').textContent =
+                    'Błąd połączenia z bazą: ' + error.message;
+            }
+        );
+}
+
+// ===== STATS =====
+function updateStats() {
+    document.getElementById('statAll').textContent = allOrders.length;
+    document.getElementById('statNowe').textContent = allOrders.filter(o => o.status === 'nowe').length;
+    document.getElementById('statInProgress').textContent = allOrders.filter(o =>
+        o.status === 'wycenione' || o.status === 'w-realizacji'
+    ).length;
+    document.getElementById('statGotowe').textContent = allOrders.filter(o => o.status === 'gotowe').length;
+}
+
+// ===== RENDER ORDERS =====
+function renderOrders() {
+    const container = document.getElementById('ordersList');
+    const emptyEl = document.getElementById('emptyState');
+
+    const filtered = currentFilter === 'all'
+        ? allOrders
+        : allOrders.filter(o => o.status === currentFilter);
+
+    if (filtered.length === 0) {
+        container.classList.add('hidden');
+        emptyEl.classList.remove('hidden');
+        const filterName = currentFilter === 'all' ? '' : ' w tej kategorii';
+        document.getElementById('emptyMessage').textContent = `Nie ma jeszcze żadnych zleceń${filterName}.`;
+        return;
+    }
+
+    emptyEl.classList.add('hidden');
+    container.classList.remove('hidden');
+    container.innerHTML = filtered.map(order => renderOrderCard(order)).join('');
+
+    // Re-init lucide icons in dynamic content
+    lucide.createIcons();
+    updateTabStyles();
+}
+
+function renderOrderCard(order) {
+    const status = order.status || 'nowe';
+    const badge = getStatusBadge(status);
+    const cat = getCategoryLabel(order.category);
+    const date = formatDate(order.created_at);
+    const ai = order.ai_estimate || order.aiEstimate || {};
+    const priceRange = (ai.cena_min && ai.cena_max)
+        ? `${ai.cena_min}-${ai.cena_max} PLN`
+        : '—';
+    const name = order.name || 'Brak nazwy';
+    const orderId = order.order_id || order.id?.substring(0, 8) || '—';
+    const deadline = order.deadline || order.termin || '—';
+    const adminStatus = order.admin_status || status;
+    const adminPrice = order.admin_price || '';
+    const adminNotes = order.admin_notes || '';
+
+    return `
+    <div id="order-${order.id}" class="glass-card rounded-xl overflow-hidden transition-all">
+        <!-- Collapsed row -->
+        <div class="p-4 cursor-pointer hover:bg-white/[0.03] transition-colors" onclick="toggleOrder('${order.id}')">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="${badge.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${badge.label}</span>
+                <span class="text-xs text-gray-500 font-mono">#${escHtml(orderId)}</span>
+                <span class="text-sm font-medium text-white truncate max-w-[200px]">${escHtml(name)}</span>
+                <span class="text-xs text-gray-400 flex items-center gap-1">${cat.icon} ${cat.label}</span>
+                <span class="text-xs text-gray-500 hidden sm:inline">${date}</span>
+                <span class="text-xs font-medium text-brand-light ml-auto">${priceRange}</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 transition-transform" id="chevron-${order.id}"></i>
+            </div>
+        </div>
+
+        <!-- Expanded details -->
+        <div id="details-${order.id}" class="order-details">
+            <div class="px-4 pb-5 border-t border-white/5 pt-4">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Left: Client data + description -->
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Dane klienta</h4>
+                            <div class="space-y-1.5 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="mail" class="w-4 h-4 text-gray-500"></i>
+                                    <a href="mailto:${escAttr(order.email || '')}" class="text-blue-400 hover:underline">${escHtml(order.email || 'brak')}</a>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="phone" class="w-4 h-4 text-gray-500"></i>
+                                    ${order.phone
+                                        ? `<a href="tel:${escAttr(order.phone)}" class="text-blue-400 hover:underline">${escHtml(order.phone)}</a>`
+                                        : '<span class="text-gray-500">nie podano</span>'
+                                    }
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-gray-300">${escHtml(deadline)}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Opis zlecenia</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">${escHtml(order.description || 'Brak opisu')}</p>
+                        </div>
+                    </div>
+
+                    <!-- Right: AI estimate -->
+                    <div class="space-y-4">
+                        ${ai.czas || ai.narzedzia || ai.zlozonosc || ai.cena_min ? `
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i data-lucide="brain" class="w-4 h-4 text-brand-primary"></i> Wycena AI
+                            </h4>
+                            <div class="glass-card rounded-lg p-3 space-y-2 text-sm">
+                                ${ai.czas ? `<div class="flex items-center gap-2"><i data-lucide="timer" class="w-4 h-4 text-gray-500"></i><span class="text-gray-400">Czas:</span><span class="text-white">${escHtml(ai.czas)}</span></div>` : ''}
+                                ${ai.narzedzia ? `
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="wrench" class="w-4 h-4 text-gray-500 mt-0.5"></i>
+                                    <span class="text-gray-400">Narzędzia:</span>
+                                    <div class="flex flex-wrap gap-1">${renderToolPills(ai.narzedzia)}</div>
+                                </div>` : ''}
+                                ${ai.zlozonosc ? `
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-gray-400">Złożoność:</span>
+                                    <span class="${getComplexityColor(ai.zlozonosc)}">${escHtml(ai.zlozonosc)}</span>
+                                </div>` : ''}
+                                ${ai.cena_min && ai.cena_max ? `
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="banknote" class="w-4 h-4 text-gray-500"></i>
+                                    <span class="text-gray-400">Cena:</span>
+                                    <span class="text-brand-light font-semibold">${ai.cena_min}–${ai.cena_max} PLN</span>
+                                </div>` : ''}
+                                ${ai.opis ? `<p class="text-xs text-gray-400 mt-2 pt-2 border-t border-white/5">${escHtml(ai.opis)}</p>` : ''}
+                            </div>
+                        </div>
+                        ` : '<div class="text-sm text-gray-500">Brak wyceny AI</div>'}
+                    </div>
+                </div>
+
+                <!-- Admin controls -->
+                <div class="mt-6 pt-4 border-t border-white/10">
+                    <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                        <i data-lucide="settings-2" class="w-4 h-4"></i> Panel administracyjny
+                    </h4>
+                    <div class="grid sm:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="text-xs text-gray-500 mb-1 block">Status</label>
+                            <select id="admin-status-${order.id}" class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50 appearance-none cursor-pointer">
+                                <option value="nowe" ${adminStatus === 'nowe' ? 'selected' : ''}>Nowe</option>
+                                <option value="wycenione" ${adminStatus === 'wycenione' ? 'selected' : ''}>Wycenione</option>
+                                <option value="w-realizacji" ${adminStatus === 'w-realizacji' ? 'selected' : ''}>W realizacji</option>
+                                <option value="gotowe" ${adminStatus === 'gotowe' ? 'selected' : ''}>Gotowe</option>
+                                <option value="anulowane" ${adminStatus === 'anulowane' ? 'selected' : ''}>Anulowane</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500 mb-1 block">Cena końcowa (PLN)</label>
+                            <input type="number" id="admin-price-${order.id}" value="${adminPrice}" placeholder="np. 2500"
+                                class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="saveAdmin('${order.id}')" class="btn-orange w-full py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i data-lucide="save" class="w-4 h-4"></i> Zapisz
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="text-xs text-gray-500 mb-1 block">Notatki</label>
+                        <textarea id="admin-notes-${order.id}" rows="2" placeholder="Notatki wewnętrzne..."
+                            class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50 resize-none">${escHtml(adminNotes)}</textarea>
+                    </div>
+
+                    <!-- Quick actions -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="quickAction('${order.id}', 'accept')" class="btn-cosmic px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 hover:border-green-500 hover:text-green-400">
+                            <i data-lucide="check" class="w-3.5 h-3.5"></i> Akceptuj
+                        </button>
+                        <button onclick="quickAction('${order.id}', 'cancel')" class="btn-cosmic px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 hover:border-red-500 hover:text-red-400">
+                            <i data-lucide="x" class="w-3.5 h-3.5"></i> Anuluj
+                        </button>
+                        <a href="mailto:${escAttr(order.email || '')}?subject=${encodeURIComponent('Re: Zlecenie ' + orderId)}"
+                           class="btn-cosmic px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 hover:border-blue-500 hover:text-blue-400 no-underline">
+                            <i data-lucide="send" class="w-3.5 h-3.5"></i> Napisz do klienta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ===== HELPERS =====
+
+function getStatusBadge(status) {
+    const map = {
+        'nowe':          { label: 'Nowe',          classes: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
+        'wycenione':     { label: 'Wycenione',     classes: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
+        'w-realizacji':  { label: 'W realizacji',   classes: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
+        'gotowe':        { label: 'Gotowe',         classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        'anulowane':     { label: 'Anulowane',      classes: 'bg-red-500/20 text-red-400 border-red-500/30' }
+    };
+    return map[status] || map['nowe'];
+}
+
+function getCategoryLabel(cat) {
+    const map = {
+        'konsultacja':   { icon: '💬', label: 'Konsultacja' },
+        'automatyzacja': { icon: '⚡', label: 'Automatyzacja' },
+        'narzedzie':     { icon: '🔧', label: 'Narzędzie' },
+        'wdrozenie':     { icon: '🏢', label: 'Wdrożenie' },
+        'inne':          { icon: '📋', label: 'Inne' }
+    };
+    return map[cat] || map['inne'];
+}
+
+function getComplexityColor(level) {
+    if (!level) return 'text-gray-400';
+    const l = level.toLowerCase();
+    if (l.includes('nisk') || l.includes('prost')) return 'text-green-400';
+    if (l.includes('średni') || l.includes('sredn')) return 'text-yellow-400';
+    if (l.includes('wysok') || l.includes('złożon') || l.includes('trudn')) return 'text-red-400';
+    return 'text-orange-400';
+}
+
+function renderToolPills(tools) {
+    if (!tools) return '';
+    const list = Array.isArray(tools) ? tools : tools.split(',').map(t => t.trim());
+    return list.map(t =>
+        `<span class="bg-brand-primary/15 text-brand-light text-xs px-2 py-0.5 rounded-full">${escHtml(t)}</span>`
+    ).join('');
+}
+
+function formatDate(ts) {
+    if (!ts) return '—';
+    let d;
+    if (ts.toDate) d = ts.toDate();
+    else if (ts.seconds) d = new Date(ts.seconds * 1000);
+    else d = new Date(ts);
+    if (isNaN(d)) return '—';
+    return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+function escHtml(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+}
+
+function escAttr(str) {
+    return escHtml(str).replace(/"/g, '&quot;');
+}
+
+// ===== EXPAND/COLLAPSE =====
+function toggleOrder(id) {
+    const details = document.getElementById('details-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    if (details.classList.contains('open')) {
+        details.classList.remove('open');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+    } else {
+        details.classList.add('open');
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+    }
+}
+
+// ===== ADMIN SAVE =====
+async function saveAdmin(id) {
+    const status = document.getElementById('admin-status-' + id).value;
+    const price = document.getElementById('admin-price-' + id).value;
+    const notes = document.getElementById('admin-notes-' + id).value;
+
+    try {
+        await db.collection('zlecenia').doc(id).update({
+            status: status,
+            admin_status: status,
+            admin_price: price ? Number(price) : null,
+            admin_notes: notes,
+            updated_at: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showToast('Zapisano zmiany', 'success');
+    } catch (err) {
+        console.error('Save error:', err);
+        showToast('Błąd zapisu: ' + err.message, 'error');
+    }
+}
+
+// ===== QUICK ACTIONS =====
+async function quickAction(id, action) {
+    const statusMap = { accept: 'w-realizacji', cancel: 'anulowane' };
+    const newStatus = statusMap[action];
+    if (!newStatus) return;
+
+    try {
+        await db.collection('zlecenia').doc(id).update({
+            status: newStatus,
+            admin_status: newStatus,
+            updated_at: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showToast(action === 'accept' ? 'Zlecenie zaakceptowane' : 'Zlecenie anulowane',
+                  action === 'accept' ? 'success' : 'info');
+    } catch (err) {
+        console.error('Quick action error:', err);
+        showToast('Błąd: ' + err.message, 'error');
+    }
+}
+
+// ===== COPY URL =====
+function copyZlecenieUrl() {
+    navigator.clipboard.writeText('https://ai-team.pl/zlecenie').then(() => {
+        showToast('Skopiowano link do formularza', 'success');
+    }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = 'https://ai-team.pl/zlecenie';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Skopiowano link do formularza', 'success');
+    });
+}
+
+// ===== TOAST =====
+function showToast(msg, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const colors = {
+        success: 'border-green-500/30 bg-green-500/10 text-green-400',
+        error: 'border-red-500/30 bg-red-500/10 text-red-400',
+        info: 'border-blue-500/30 bg-blue-500/10 text-blue-400'
+    };
+    const icons = { success: 'check-circle-2', error: 'alert-circle', info: 'info' };
+
+    const toast = document.createElement('div');
+    toast.className = `toast-enter flex items-center gap-2 px-4 py-3 rounded-xl border backdrop-blur-md text-sm ${colors[type] || colors.info}`;
+    toast.innerHTML = `<i data-lucide="${icons[type] || icons.info}" class="w-4 h-4"></i><span>${escHtml(msg)}</span>`;
+    container.appendChild(toast);
+    lucide.createIcons({ nodes: [toast] });
+
+    setTimeout(() => {
+        toast.classList.remove('toast-enter');
+        toast.classList.add('toast-exit');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// ===== INIT LUCIDE =====
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+});
+</script>
+</body>
+</html>

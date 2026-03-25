@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+
+    <title>Zlecenie AI — wdrożenia, automatyzacje, narzędzia | AI-Team</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Złóż zlecenie AI — wdrożenia, automatyzacje, narzędzia dla firm. AI wyceni Twój projekt w kilka sekund. Konsultacje od 200 PLN.">
+    <meta name="keywords" content="zlecenie AI, wycena AI, automatyzacja, wdrożenie AI, konsultacja AI, narzędzia AI">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/zlecenie">
+    <meta property="og:title" content="Zlecenie AI — wdrożenia, automatyzacje, narzędzia | AI-Team">
+    <meta property="og:description" content="Złóż zlecenie AI — AI wyceni Twój projekt w kilka sekund. Konsultacje od 200 PLN.">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zlecenie AI — wdrożenia, automatyzacje, narzędzia | AI-Team">
+    <meta name="twitter:description" content="Złóż zlecenie AI — AI wyceni Twój projekt w kilka sekund. Konsultacje od 200 PLN.">
+    <meta name="twitter:image" content="https://ai-team.pl/assets/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#f97316',
+                            secondary: '#ea580c',
+                            light: '#fb923c',
+                            accent: '#ffedd5',
+                            surface: 'rgba(255, 255, 255, 0.12)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            background-color: #020203;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(249,115,22,0.3);
+            box-shadow: 0 8px 32px rgba(249,115,22,0.1);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Cosmic button */
+        .btn-cosmic {
+            position: relative;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-cosmic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-cosmic:hover {
+            border-color: #f97316;
+            box-shadow: 0 0 30px rgba(249,115,22,0.4);
+        }
+        .btn-cosmic:hover::before {
+            left: 100%;
+        }
+
+        /* Primary CTA (white) */
+        .btn-primary {
+            background: white;
+            color: black;
+            font-weight: 700;
+            border-radius: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Form inputs */
+        .form-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+        }
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgba(255,255,255,0.5)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+        select.form-input option {
+            background: #1a1a1a;
+            color: white;
+        }
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .status-nowe { background: rgba(59,130,246,0.2); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .status-wycenione { background: rgba(249,115,22,0.2); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
+        .status-w-realizacji { background: rgba(168,85,247,0.2); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+        .status-gotowe { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+
+        /* Pill tag */
+        .pill {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(249,115,22,0.15);
+            color: #fb923c;
+            border: 1px solid rgba(249,115,22,0.25);
+        }
+
+        /* Complexity colors */
+        .complexity-prosta { color: #86efac; }
+        .complexity-srednia { color: #fde047; }
+        .complexity-zlozzona { color: #fca5a5; }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .fade-in-up-delay {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.2s forwards;
+        }
+
+        /* Spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-top-color: black;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        /* Progress bar */
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .progress-step .step-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .progress-step .step-line {
+            position: absolute;
+            top: 16px;
+            left: calc(50% + 20px);
+            right: calc(-50% + 20px);
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+        }
+        .progress-step.completed .step-dot {
+            background: rgba(34,197,94,0.3);
+            border: 2px solid #22c55e;
+            color: #86efac;
+        }
+        .progress-step.completed .step-line {
+            background: #22c55e;
+        }
+        .progress-step.active .step-dot {
+            background: rgba(249,115,22,0.3);
+            border: 2px solid #f97316;
+            color: #fb923c;
+            box-shadow: 0 0 16px rgba(249,115,22,0.4);
+        }
+        .progress-step.active .step-line {
+            background: linear-gradient(to right, #22c55e, rgba(255,255,255,0.1));
+        }
+        .progress-step.future .step-dot {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Background glow */
+        .page-glow {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Info box */
+        .info-box {
+            background: rgba(249,115,22,0.08);
+            border: 1px solid rgba(249,115,22,0.25);
+            border-radius: 0.75rem;
+            padding: 0.875rem 1rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        /* Success banner */
+        .success-banner {
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            color: #86efac;
+            font-weight: 500;
+        }
+
+        /* Estimate card */
+        .estimate-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(249,115,22,0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+    <!-- Background glow -->
+    <div class="page-glow"></div>
+
+    <!-- Nav -->
+    <nav class="relative z-10 w-full px-6 py-5">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-light flex items-center justify-center">
+                    <span class="text-white font-display font-bold text-sm">AI</span>
+                </div>
+                <span class="font-display font-bold text-lg text-white">AI-Team</span>
+            </a>
+            <a href="/" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Powrót na stronę
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="relative z-10 px-6 pb-20">
+
+        <!-- ==================== MODE 1: ORDER FORM ==================== -->
+        <div id="view-form" class="hidden">
+            <!-- Hero -->
+            <section class="max-w-2xl mx-auto text-center pt-8 pb-10 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-gray-400 mb-6">
+                    <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-brand-primary"></i>
+                    Panel Zleceń
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4 leading-tight">
+                    Potrzebujesz <span class="gradient-text">wdrożenia</span>?
+                </h1>
+                <p class="text-gray-400 text-lg max-w-lg mx-auto">
+                    Opisz czego potrzebujesz — AI wyceni Twoje zlecenie w kilka sekund
+                </p>
+            </section>
+
+            <!-- Form -->
+            <section class="max-w-2xl mx-auto fade-in-up-delay">
+                <div class="glass-card rounded-2xl p-6 sm:p-8">
+                    <form id="order-form" novalidate>
+                        <div class="space-y-5">
+                            <!-- Name -->
+                            <div>
+                                <label for="f-name" class="block text-sm text-gray-400 mb-1.5">Imię i nazwisko <span class="text-brand-primary">*</span></label>
+                                <input type="text" id="f-name" name="name" required class="form-input" placeholder="Jan Kowalski">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="f-email" class="block text-sm text-gray-400 mb-1.5">Email <span class="text-brand-primary">*</span></label>
+                                <input type="email" id="f-email" name="email" required class="form-input" placeholder="jan@firma.pl">
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="f-phone" class="block text-sm text-gray-400 mb-1.5">Telefon <span class="text-sm text-gray-600">(opcjonalnie)</span></label>
+                                <input type="tel" id="f-phone" name="phone" class="form-input" placeholder="+48 600 000 000">
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label for="f-category" class="block text-sm text-gray-400 mb-1.5">Kategoria <span class="text-brand-primary">*</span></label>
+                                <select id="f-category" name="category" required class="form-input">
+                                    <option value="">Wybierz kategorię...</option>
+                                    <option value="konsultacja">💬 Konsultacja AI (200 PLN / 1h)</option>
+                                    <option value="automatyzacja">⚡ Automatyzacja procesu</option>
+                                    <option value="narzedzie">🔧 Narzędzie / Aplikacja</option>
+                                    <option value="wdrozenie">🏢 Wdrożenie w firmie</option>
+                                    <option value="inne">📋 Inne</option>
+                                </select>
+                                <!-- Konsultacja info -->
+                                <div id="konsultacja-info" class="hidden mt-3 info-box">
+                                    <i data-lucide="info" class="w-4 h-4 inline text-brand-primary mr-1" style="vertical-align: -2px;"></i>
+                                    Konsultacja AI to godzinna sesja 1:1 gdzie omówimy Twoje potrzeby i zaplanujemy wdrożenie. Cena: 200 PLN.
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label for="f-desc" class="block text-sm text-gray-400 mb-1.5">Opis zadania <span class="text-brand-primary">*</span></label>
+                                <textarea id="f-desc" name="description" required rows="5" class="form-input" placeholder="Opisz co chcesz osiągnąć, jaki problem rozwiązać, jakie narzędzia używasz obecnie..."></textarea>
+                            </div>
+
+                            <!-- Deadline -->
+                            <div>
+                                <label for="f-deadline" class="block text-sm text-gray-400 mb-1.5">Termin <span class="text-sm text-gray-600">(opcjonalnie)</span></label>
+                                <select id="f-deadline" name="deadline" class="form-input">
+                                    <option value="">Kiedy potrzebujesz? (opcjonalnie)</option>
+                                    <option value="asap">Jak najszybciej</option>
+                                    <option value="tydzien">W ciągu tygodnia</option>
+                                    <option value="miesiac">W ciągu miesiąca</option>
+                                    <option value="bez-posiechu">Bez pośpiechu</option>
+                                </select>
+                            </div>
+
+                            <!-- Submit -->
+                            <button type="submit" id="btn-submit" class="btn-primary w-full py-3.5 text-base mt-2 flex items-center justify-center gap-2">
+                                <span id="btn-text">🚀 Wyślij zlecenie</span>
+                                <span id="btn-loading" class="hidden items-center gap-2">
+                                    <span class="spinner"></span>
+                                    AI analizuje Twoje zlecenie...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Error message -->
+                    <div id="form-error" class="hidden mt-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-3 text-sm"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== RESULT VIEW (after submit) ==================== -->
+        <div id="view-result" class="hidden max-w-2xl mx-auto pt-12">
+            <div class="text-center fade-in-up">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 mb-6">
+                    <i data-lucide="check-circle-2" class="w-8 h-8 text-green-400"></i>
+                </div>
+                <h2 class="font-display text-3xl font-bold mb-2">Zlecenie złożone!</h2>
+                <p class="text-gray-400 mb-6">Numer zlecenia: <span id="res-order-id" class="text-white font-mono font-semibold"></span></p>
+                <div class="inline-block mb-8">
+                    <span id="res-status-badge" class="status-badge status-nowe">
+                        <span class="w-2 h-2 rounded-full bg-current"></span>
+                        Nowe
+                    </span>
+                </div>
+            </div>
+
+            <!-- AI Estimate -->
+            <div id="res-estimate-wrapper" class="fade-in-up-delay">
+                <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i data-lucide="brain" class="w-4 h-4 text-brand-primary"></i>
+                    AI Wycena
+                </h3>
+                <div class="estimate-card mb-8">
+                    <div id="res-estimate-loading" class="text-center py-8 text-gray-400">
+                        <span class="spinner" style="border-color: rgba(255,255,255,0.2); border-top-color: #f97316;"></span>
+                        <p class="mt-3 text-sm">AI analizuje zlecenie...</p>
+                    </div>
+                    <div id="res-estimate-content" class="hidden">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1">⏱ Szacowany czas</div>
+                                <div id="res-czas" class="text-white font-semibold"></div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1">📊 Złożoność</div>
+                                <div id="res-zlozonosc" class="font-semibold"></div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="text-xs text-gray-500 mb-1.5">🛠 Narzędzia</div>
+                            <div id="res-narzedzia" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="mb-4 p-3 rounded-lg bg-white/5">
+                            <div class="text-xs text-gray-500 mb-1">💰 Szacowana cena</div>
+                            <div id="res-cena" class="text-xl font-display font-bold gradient-text"></div>
+                        </div>
+                        <p id="res-opis" class="text-sm text-gray-300 leading-relaxed"></p>
+                    </div>
+                    <div id="res-estimate-error" class="hidden text-center py-6 text-gray-400 text-sm">
+                        <p>Nie udało się pobrać wyceny AI. Wycenię Twoje zlecenie ręcznie w ciągu 24h.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Konsultacja checkout button -->
+            <div id="res-konsultacja-btn" class="hidden mb-8 fade-in-up">
+                <button onclick="handleCheckoutKonsultacja()" id="btn-checkout" class="btn-primary w-full py-4 text-lg flex items-center justify-center gap-2">
+                    <span id="checkout-text">Kup konsultację — 200 PLN</span>
+                    <span id="checkout-loading" class="hidden items-center gap-2">
+                        <span class="spinner"></span>
+                        Przekierowuję do płatności...
+                    </span>
+                </button>
+            </div>
+
+            <!-- Status link -->
+            <div class="glass-card rounded-xl p-5 mb-6 text-center fade-in-up-delay">
+                <p class="text-sm text-gray-400 mb-2">Sprawdzisz status zlecenia tutaj:</p>
+                <a id="res-status-link" href="#" class="text-brand-primary hover:text-brand-light transition-colors text-sm font-mono break-all"></a>
+            </div>
+
+            <p class="text-center text-sm text-gray-500">
+                Odezwę się do Ciebie w ciągu 24h z ostateczną wyceną i planem działania.
+            </p>
+        </div>
+
+        <!-- ==================== MODE 2: STATUS TRACKING ==================== -->
+        <div id="view-status" class="hidden max-w-2xl mx-auto pt-8">
+            <!-- Payment success banner -->
+            <div id="status-payment-success" class="hidden success-banner mb-6 flex items-center gap-2 fade-in-up">
+                <i data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0"></i>
+                Konsultacja opłacona! Skontaktuję się w ciągu 24h aby ustalić termin.
+            </div>
+
+            <!-- Loading -->
+            <div id="status-loading" class="text-center py-20">
+                <span class="spinner" style="width:32px; height:32px; border-width:3px; border-color: rgba(255,255,255,0.2); border-top-color: #f97316;"></span>
+                <p class="mt-4 text-gray-400">Ładuję zlecenie...</p>
+            </div>
+
+            <!-- Not found -->
+            <div id="status-not-found" class="hidden text-center py-20 fade-in-up">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
+                    <i data-lucide="search-x" class="w-8 h-8 text-gray-500"></i>
+                </div>
+                <h2 class="font-display text-2xl font-bold mb-2">Zlecenie nie znalezione</h2>
+                <p class="text-gray-400 mb-6">Sprawdź poprawność linku lub skontaktuj się ze mną.</p>
+                <a href="/zlecenie" class="btn-cosmic inline-flex items-center gap-2 px-5 py-2.5 text-sm">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    Złóż nowe zlecenie
+                </a>
+            </div>
+
+            <!-- Status content -->
+            <div id="status-content" class="hidden fade-in-up">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1 flex items-center gap-1.5">
+                            <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+                            Zlecenie
+                        </div>
+                        <h1 id="st-order-id" class="font-display text-2xl sm:text-3xl font-bold font-mono"></h1>
+                    </div>
+                    <span id="st-status-badge" class="status-badge"></span>
+                </div>
+
+                <!-- Details -->
+                <div class="glass-card rounded-2xl p-6 mb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <div class="text-xs text-gray-500 mb-0.5">Kategoria</div>
+                            <div id="st-category" class="text-white font-medium"></div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500 mb-0.5">Data złożenia</div>
+                            <div id="st-date" class="text-white font-medium"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">Opis</div>
+                        <p id="st-description" class="text-gray-300 text-sm leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- AI Estimate -->
+                <div id="st-estimate-section" class="hidden mb-6">
+                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <i data-lucide="brain" class="w-4 h-4 text-brand-primary"></i>
+                        AI Wycena
+                    </h3>
+                    <div class="estimate-card">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1">⏱ Szacowany czas</div>
+                                <div id="st-czas" class="text-white font-semibold"></div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1">📊 Złożoność</div>
+                                <div id="st-zlozonosc" class="font-semibold"></div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="text-xs text-gray-500 mb-1.5">🛠 Narzędzia</div>
+                            <div id="st-narzedzia" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="mb-4 p-3 rounded-lg bg-white/5">
+                            <div class="text-xs text-gray-500 mb-1">💰 Szacowana cena</div>
+                            <div id="st-cena" class="text-xl font-display font-bold gradient-text"></div>
+                        </div>
+                        <p id="st-opis" class="text-sm text-gray-300 leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- Final price -->
+                <div id="st-final-section" class="hidden mb-6">
+                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <i data-lucide="receipt" class="w-4 h-4 text-green-400"></i>
+                        Wycena końcowa
+                    </h3>
+                    <div class="glass-card rounded-xl p-5" style="border-color: rgba(34,197,94,0.3);">
+                        <div class="mb-3">
+                            <div class="text-xs text-gray-500 mb-1">💰 Cena</div>
+                            <div id="st-final-price" class="text-2xl font-display font-bold text-green-400"></div>
+                        </div>
+                        <div id="st-admin-notes-wrapper" class="hidden">
+                            <div class="text-xs text-gray-500 mb-1">📝 Notatki</div>
+                            <p id="st-admin-notes" class="text-sm text-gray-300 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress timeline -->
+                <div class="mt-10 mb-4">
+                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-6 text-center">Status realizacji</h3>
+                    <div id="st-progress" class="flex">
+                        <!-- Steps inserted by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5 py-6 px-6 text-center text-xs text-gray-600">
+        &copy; 2026 AI-Team.pl — Dariusz Szuca
+    </footer>
+
+    <script>
+    // ========================================================================
+    // 🔧 FIREBASE CONFIG — wypełnij danymi z Firebase Console
+    // Instrukcja: https://console.firebase.google.com → Nowy projekt → Firestore → Ustawienia → Config
+    // ========================================================================
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKmfXRkXBhYa6yk9idY4QFZdRRhU5eV9I",
+        authDomain: "ai-team-zlecenia.firebaseapp.com",
+        projectId: "ai-team-zlecenia",
+        storageBucket: "ai-team-zlecenia.firebasestorage.app",
+        messagingSenderId: "715537035293",
+        appId: "1:715537035293:web:fe2978df1e20bfc3e0d6f4",
+        measurementId: "G-N62YHVDCKC"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ========================================================================
+    // HELPERS
+    // ========================================================================
+    const $ = (sel) => document.querySelector(sel);
+    const show = (el) => { if (typeof el === 'string') el = $(el); el.classList.remove('hidden'); };
+    const hide = (el) => { if (typeof el === 'string') el = $(el); el.classList.add('hidden'); };
+
+    const CATEGORY_LABELS = {
+        konsultacja: '💬 Konsultacja AI',
+        automatyzacja: '⚡ Automatyzacja procesu',
+        narzedzie: '🔧 Narzędzie / Aplikacja',
+        wdrozenie: '🏢 Wdrożenie w firmie',
+        inne: '📋 Inne'
+    };
+
+    const STATUS_LABELS = {
+        nowe: 'Nowe',
+        wycenione: 'Wycenione',
+        'w-realizacji': 'W realizacji',
+        gotowe: 'Gotowe'
+    };
+
+    const STATUS_STEPS = ['nowe', 'wycenione', 'w-realizacji', 'gotowe'];
+
+    function generateOrderId() {
+        const year = new Date().getFullYear();
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+        for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+        return `ZL-${year}-${code}`;
+    }
+
+    function formatDate(timestamp) {
+        if (!timestamp) return '—';
+        const d = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+        return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function complexityClass(z) {
+        if (!z) return '';
+        const lower = z.toLowerCase();
+        if (lower.includes('prost')) return 'complexity-prosta';
+        if (lower.includes('średni') || lower.includes('sredni')) return 'complexity-srednia';
+        return 'complexity-zlozzona';
+    }
+
+    function renderPills(container, items) {
+        if (!items || !items.length) { container.innerHTML = '<span class="text-gray-500 text-sm">—</span>'; return; }
+        container.innerHTML = items.map(t => `<span class="pill">${t}</span>`).join('');
+    }
+
+    function renderEstimate(prefix, estimate) {
+        $(`#${prefix}-czas`).textContent = estimate.czas || '—';
+        const zEl = $(`#${prefix}-zlozonosc`);
+        zEl.textContent = estimate.zlozonosc || '—';
+        zEl.className = 'font-semibold ' + complexityClass(estimate.zlozonosc);
+        renderPills($(`#${prefix}-narzedzia`), estimate.narzedzia);
+        if (estimate.cena_min && estimate.cena_max) {
+            $(`#${prefix}-cena`).textContent = `${estimate.cena_min} – ${estimate.cena_max} PLN`;
+        } else {
+            $(`#${prefix}-cena`).textContent = estimate.cena || '—';
+        }
+        $(`#${prefix}-opis`).textContent = estimate.opis || '';
+    }
+
+    function renderProgress(containerId, currentStatus) {
+        const container = $(containerId);
+        const currentIdx = STATUS_STEPS.indexOf(currentStatus);
+        container.innerHTML = STATUS_STEPS.map((step, i) => {
+            let cls = 'future';
+            if (i < currentIdx) cls = 'completed';
+            else if (i === currentIdx) cls = 'active';
+            const isLast = i === STATUS_STEPS.length - 1;
+            return `
+                <div class="progress-step ${cls}">
+                    ${!isLast ? '<div class="step-line"></div>' : ''}
+                    <div class="step-dot">${i + 1}</div>
+                    <div class="text-xs mt-1 ${cls === 'future' ? 'text-gray-600' : cls === 'active' ? 'text-brand-primary' : 'text-green-400'}">${STATUS_LABELS[step]}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function showError(msg) {
+        const el = $('#form-error');
+        el.textContent = msg;
+        show(el);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // ========================================================================
+    // KONSULTACJA INFO TOGGLE
+    // ========================================================================
+    $('#f-category').addEventListener('change', function() {
+        if (this.value === 'konsultacja') {
+            show('#konsultacja-info');
+        } else {
+            hide('#konsultacja-info');
+        }
+    });
+
+    // ========================================================================
+    // FORM SUBMIT
+    // ========================================================================
+    let submittedDocId = null;
+
+    $('#order-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        hide('#form-error');
+
+        const name = $('#f-name').value.trim();
+        const email = $('#f-email').value.trim();
+        const phone = $('#f-phone').value.trim();
+        const category = $('#f-category').value;
+        const description = $('#f-desc').value.trim();
+        const deadline = $('#f-deadline').value;
+
+        // Validation
+        if (!name) { showError('Wpisz imię i nazwisko.'); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Wpisz poprawny adres email.'); return; }
+        if (!category) { showError('Wybierz kategorię.'); return; }
+        if (!description) { showError('Opisz czego potrzebujesz.'); return; }
+
+        // Loading state
+        const btn = $('#btn-submit');
+        btn.disabled = true;
+        hide('#btn-text');
+        $('#btn-loading').classList.remove('hidden');
+        $('#btn-loading').classList.add('flex');
+
+        const orderId = generateOrderId();
+
+        try {
+            // 1. Save to Firestore
+            const docData = {
+                name,
+                email,
+                phone: phone || null,
+                category,
+                description,
+                deadline: deadline || null,
+                status: 'nowe',
+                order_id: orderId,
+                ai_estimate: null,
+                final_price: null,
+                admin_notes: '',
+                created_at: firebase.firestore.FieldValue.serverTimestamp(),
+                updated_at: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            const docRef = await db.collection('zlecenia').add(docData);
+            submittedDocId = docRef.id;
+
+            // GA4 event
+            if (typeof gtag === 'function') {
+                gtag('event', 'zlecenie_submitted', {
+                    event_category: 'orders',
+                    event_label: category,
+                    order_id: orderId
+                });
+            }
+
+            // Show result view
+            hide('#view-form');
+            show('#view-result');
+            $('#res-order-id').textContent = orderId;
+            const statusUrl = `${window.location.origin}/zlecenie?id=${submittedDocId}`;
+            const link = $('#res-status-link');
+            link.href = statusUrl;
+            link.textContent = statusUrl;
+
+            if (category === 'konsultacja') {
+                show('#res-konsultacja-btn');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 2. Call AI estimate (async, don't block)
+            fetchAiEstimate(description, category, submittedDocId);
+
+            // 3. Send notification (fire and forget)
+            notifyZlecenie({ name, email, phone, category, description, deadline, order_id: orderId, doc_id: submittedDocId });
+
+        } catch (err) {
+            console.error('Submit error:', err);
+            showError('Wystąpił błąd podczas wysyłania. Spróbuj ponownie za chwilę.');
+            btn.disabled = false;
+            show('#btn-text');
+            $('#btn-loading').classList.add('hidden');
+            $('#btn-loading').classList.remove('flex');
+        }
+    });
+
+    // ========================================================================
+    // AI ESTIMATE
+    // ========================================================================
+    async function fetchAiEstimate(description, category, docId) {
+        try {
+            const resp = await fetch('/api/wycena-ai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ description, category })
+            });
+
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            const estimate = await resp.json();
+
+            // Update Firestore
+            if (docId) {
+                await db.collection('zlecenia').doc(docId).update({
+                    ai_estimate: estimate,
+                    updated_at: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+
+            // Render
+            hide('#res-estimate-loading');
+            show('#res-estimate-content');
+            renderEstimate('res', estimate);
+
+        } catch (err) {
+            console.error('AI estimate error:', err);
+            hide('#res-estimate-loading');
+            show('#res-estimate-error');
+        }
+    }
+
+    // ========================================================================
+    // NOTIFY
+    // ========================================================================
+    async function notifyZlecenie(data) {
+        try {
+            await fetch('/api/notify-zlecenie', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            console.error('Notify error:', err);
+        }
+    }
+
+    // ========================================================================
+    // CHECKOUT KONSULTACJA
+    // ========================================================================
+    async function handleCheckoutKonsultacja() {
+        const btn = $('#btn-checkout');
+        btn.disabled = true;
+        hide('#checkout-text');
+        $('#checkout-loading').classList.remove('hidden');
+        $('#checkout-loading').classList.add('flex');
+
+        try {
+            const resp = await fetch('/api/checkout-konsultacja', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ doc_id: submittedDocId })
+            });
+
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            const data = await resp.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error('No checkout URL');
+            }
+        } catch (err) {
+            console.error('Checkout error:', err);
+            btn.disabled = false;
+            show('#checkout-text');
+            $('#checkout-loading').classList.add('hidden');
+            $('#checkout-loading').classList.remove('flex');
+            alert('Nie udało się utworzyć płatności. Spróbuj ponownie.');
+        }
+    }
+
+    // ========================================================================
+    // STATUS TRACKING (MODE 2)
+    // ========================================================================
+    async function loadStatus(docId) {
+        show('#view-status');
+        show('#status-loading');
+
+        // Check for payment success
+        if (new URLSearchParams(window.location.search).get('konsultacja') === 'success') {
+            show('#status-payment-success');
+        }
+
+        try {
+            const doc = await db.collection('zlecenia').doc(docId).get();
+
+            hide('#status-loading');
+
+            if (!doc.exists) {
+                show('#status-not-found');
+                return;
+            }
+
+            const data = doc.data();
+            show('#status-content');
+
+            // Header
+            $('#st-order-id').textContent = data.order_id || docId;
+            const badge = $('#st-status-badge');
+            const statusKey = data.status || 'nowe';
+            badge.textContent = STATUS_LABELS[statusKey] || statusKey;
+            badge.className = `status-badge status-${statusKey}`;
+
+            // Details
+            $('#st-category').textContent = CATEGORY_LABELS[data.category] || data.category;
+            $('#st-date').textContent = formatDate(data.created_at);
+            $('#st-description').textContent = data.description || '';
+
+            // AI Estimate
+            if (data.ai_estimate) {
+                show('#st-estimate-section');
+                renderEstimate('st', data.ai_estimate);
+            }
+
+            // Final price
+            if (data.final_price) {
+                show('#st-final-section');
+                $('#st-final-price').textContent = `${data.final_price} PLN`;
+                if (data.admin_notes) {
+                    show('#st-admin-notes-wrapper');
+                    $('#st-admin-notes').textContent = data.admin_notes;
+                }
+            }
+
+            // Progress
+            renderProgress('#st-progress', statusKey);
+
+        } catch (err) {
+            console.error('Status load error:', err);
+            hide('#status-loading');
+            show('#status-not-found');
+        }
+    }
+
+    // ========================================================================
+    // ROUTER
+    // ========================================================================
+    (function init() {
+        const params = new URLSearchParams(window.location.search);
+        const docId = params.get('id');
+
+        if (docId) {
+            loadStatus(docId);
+        } else {
+            show('#view-form');
+        }
+
+        // Init Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    })();
+    </script>
+
+</body>
+</html>
