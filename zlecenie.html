@@ -604,145 +604,186 @@
         .j-corner-br::before { bottom: 0; right: 0; width: 20px; height: 1px; }
         .j-corner-br::after { bottom: 0; right: 0; width: 1px; height: 20px; }
 
-        /* ======================== AI FACE HOLOGRAM ======================== */
+        /* ======================== AI FACE HOLOGRAM v3 ======================== */
         .ai-face {
             position: fixed;
-            left: 30px;
+            left: -60px;
             top: 50%;
-            transform: translateY(-50%);
-            width: 180px;
-            height: 260px;
+            width: 380px;
+            height: 480px;
             z-index: 1;
             pointer-events: none;
-            animation: ai-face-in 1.5s ease-out 0.5s both;
+            animation: face-float 8s ease-in-out infinite, face-enter 2s ease-out 0.5s both;
         }
-        @keyframes ai-face-in {
-            from { opacity: 0; transform: translateY(-50%) translateX(-30px); }
-            to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        @keyframes face-enter {
+            from { opacity: 0; left: -200px; }
+            to { opacity: 1; left: -60px; }
+        }
+        @keyframes face-float {
+            0%, 100% { transform: translateY(-50%) translateX(0px) rotateY(0deg); }
+            25% { transform: translateY(-48%) translateX(8px) rotateY(2deg); }
+            50% { transform: translateY(-50%) translateX(15px) rotateY(4deg); }
+            75% { transform: translateY(-52%) translateX(8px) rotateY(2deg); }
         }
 
         .ai-face svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.15));
+            filter: drop-shadow(0 0 25px rgba(180, 200, 220, 0.12));
         }
 
-        /* Face wireframe lines glow */
-        .face-line {
-            stroke: rgba(249, 115, 22, 0.2);
-            stroke-width: 0.8;
-            fill: none;
+        /* Silver/platinum color palette */
+        .face-line { stroke: rgba(180, 200, 220, 0.12); stroke-width: 0.6; fill: none; }
+        .face-line-bright { stroke: rgba(200, 215, 230, 0.22); stroke-width: 0.8; fill: none; }
+        .face-line-accent { stroke: rgba(249, 115, 22, 0.15); stroke-width: 0.6; fill: none; }
+
+        /* Synapse pulses — traveling lights along connections */
+        .synapse {
+            fill: rgba(200, 220, 240, 0.8);
+            animation: synapse-travel 3s ease-in-out infinite;
         }
-        .face-line-bright {
-            stroke: rgba(249, 115, 22, 0.35);
-            stroke-width: 1;
-            fill: none;
+        .syn-1 { animation-delay: 0s; }
+        .syn-2 { animation-delay: 0.5s; }
+        .syn-3 { animation-delay: 1s; }
+        .syn-4 { animation-delay: 1.5s; }
+        .syn-5 { animation-delay: 2s; }
+        .syn-6 { animation-delay: 0.3s; }
+        .syn-7 { animation-delay: 1.2s; }
+        .syn-8 { animation-delay: 0.8s; }
+        @keyframes synapse-travel {
+            0%, 100% { opacity: 0; r: 1; }
+            10% { opacity: 0.9; r: 2.5; }
+            30% { opacity: 0.6; r: 2; }
+            50% { opacity: 0; r: 1; }
         }
 
-        /* Eye glow */
-        .ai-eye {
-            fill: rgba(249, 115, 22, 0.5);
-            animation: eye-pulse 3s ease-in-out infinite;
+        /* Eye glow — silver with orange core */
+        .ai-eye-outer { fill: rgba(200, 215, 230, 0.15); }
+        .ai-eye-core {
+            fill: rgba(249, 115, 22, 0.6);
+            animation: eye-core-pulse 2.5s ease-in-out infinite;
         }
         .ai-eye-ring {
-            stroke: rgba(249, 115, 22, 0.3);
-            stroke-width: 1;
+            stroke: rgba(200, 215, 230, 0.2);
+            stroke-width: 0.8;
             fill: none;
-            animation: eye-ring-spin 4s linear infinite;
+            stroke-dasharray: 5 3;
+            animation: eye-ring-spin 5s linear infinite;
             transform-origin: center;
         }
-        @keyframes eye-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        .ai-eye-ring-outer {
+            stroke: rgba(180, 200, 220, 0.08);
+            stroke-width: 0.5;
+            fill: none;
+            stroke-dasharray: 2 4;
+            animation: eye-ring-spin 8s linear infinite reverse;
+            transform-origin: center;
+        }
+        @keyframes eye-core-pulse {
+            0%, 100% { opacity: 0.5; r: 4; }
+            50% { opacity: 1; r: 5; }
         }
         @keyframes eye-ring-spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* Vertex dots */
-        .face-dot {
-            fill: rgba(249, 115, 22, 0.3);
+        /* Vertex nodes */
+        .face-node {
+            fill: rgba(180, 200, 220, 0.2);
         }
-        .face-dot-bright {
-            fill: rgba(249, 115, 22, 0.6);
-            animation: dot-flicker 2s ease-in-out infinite alternate;
+        .face-node-active {
+            fill: rgba(200, 220, 240, 0.5);
+            animation: node-breathe 3s ease-in-out infinite;
         }
-        @keyframes dot-flicker {
-            0% { opacity: 0.4; }
-            100% { opacity: 1; }
+        @keyframes node-breathe {
+            0%, 100% { opacity: 0.3; r: 1.5; }
+            50% { opacity: 0.8; r: 2.5; }
         }
 
-        /* Voice waveform */
+        /* Voice equalizer — silver bars */
         .voice-bar {
-            fill: rgba(249, 115, 22, 0.3);
-            animation: voice-wave 1.2s ease-in-out infinite;
+            fill: rgba(180, 200, 220, 0.25);
+            animation: voice-eq 1.4s ease-in-out infinite;
         }
         .voice-bar:nth-child(1) { animation-delay: 0s; }
-        .voice-bar:nth-child(2) { animation-delay: 0.1s; }
-        .voice-bar:nth-child(3) { animation-delay: 0.2s; }
-        .voice-bar:nth-child(4) { animation-delay: 0.3s; }
-        .voice-bar:nth-child(5) { animation-delay: 0.15s; }
-        .voice-bar:nth-child(6) { animation-delay: 0.25s; }
-        .voice-bar:nth-child(7) { animation-delay: 0.05s; }
-        @keyframes voice-wave {
-            0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
-            50% { transform: scaleY(1); opacity: 0.7; }
+        .voice-bar:nth-child(2) { animation-delay: 0.12s; }
+        .voice-bar:nth-child(3) { animation-delay: 0.24s; }
+        .voice-bar:nth-child(4) { animation-delay: 0.36s; }
+        .voice-bar:nth-child(5) { animation-delay: 0.18s; }
+        .voice-bar:nth-child(6) { animation-delay: 0.3s; }
+        .voice-bar:nth-child(7) { animation-delay: 0.06s; }
+        .voice-bar:nth-child(8) { animation-delay: 0.42s; }
+        .voice-bar:nth-child(9) { animation-delay: 0.15s; }
+        @keyframes voice-eq {
+            0%, 100% { transform: scaleY(0.2); opacity: 0.15; }
+            50% { transform: scaleY(1); opacity: 0.5; }
         }
 
-        /* HUD frame around face */
-        .face-frame {
-            stroke: rgba(249, 115, 22, 0.1);
-            stroke-width: 1;
+        /* Rotating HUD frame */
+        .face-frame-inner {
+            stroke: rgba(180, 200, 220, 0.06);
+            stroke-width: 0.8;
             fill: none;
-            stroke-dasharray: 8 4;
-            animation: frame-rotate 20s linear infinite;
-            transform-origin: 90px 110px;
+            stroke-dasharray: 12 6 4 6;
+            animation: frame-spin 25s linear infinite;
+            transform-origin: 190px 210px;
         }
-        @keyframes frame-rotate {
+        .face-frame-outer {
+            stroke: rgba(180, 200, 220, 0.04);
+            stroke-width: 0.5;
+            fill: none;
+            stroke-dasharray: 20 10;
+            animation: frame-spin 35s linear infinite reverse;
+            transform-origin: 190px 210px;
+        }
+        @keyframes frame-spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* Status text under face */
-        .ai-face-status {
+        /* Status label */
+        .ai-face-label {
             position: absolute;
-            bottom: -5px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Space Grotesk', monospace;
-            font-size: 8px;
-            letter-spacing: 2px;
+            font-size: 9px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(249, 115, 22, 0.25);
+            color: rgba(180, 200, 220, 0.2);
             white-space: nowrap;
-            text-shadow: 0 0 8px rgba(249, 115, 22, 0.1);
-            animation: status-blink 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(180, 200, 220, 0.08);
+            animation: label-pulse 5s ease-in-out infinite;
         }
-        @keyframes status-blink {
-            0%, 100% { opacity: 0.25; }
-            50% { opacity: 0.6; }
+        @keyframes label-pulse {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.4; }
         }
 
-        /* Scan line over face */
+        /* Scan line */
         .face-scan {
             position: absolute;
-            left: 20px;
-            right: 20px;
+            left: 40px;
+            right: 40px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.4), transparent);
-            animation: face-scan-move 4s ease-in-out infinite;
-            box-shadow: 0 0 8px rgba(249, 115, 22, 0.15);
+            background: linear-gradient(90deg, transparent, rgba(180, 200, 220, 0.3), transparent);
+            animation: fscan 5s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(180, 200, 220, 0.08);
         }
-        @keyframes face-scan-move {
-            0%, 100% { top: 15%; opacity: 0; }
-            10% { opacity: 1; }
-            50% { top: 75%; opacity: 1; }
+        @keyframes fscan {
+            0%, 100% { top: 10%; opacity: 0; }
+            10% { opacity: 0.8; }
+            50% { top: 80%; opacity: 0.8; }
             60% { opacity: 0; }
         }
 
-        @media (max-width: 1200px) {
-            .ai-face { left: 10px; width: 120px; height: 180px; }
+        @media (max-width: 1400px) {
+            .ai-face { width: 300px; height: 380px; left: -80px; }
+        }
+        @media (max-width: 1100px) {
+            .ai-face { width: 220px; height: 280px; left: -70px; opacity: 0.6; }
         }
         @media (max-width: 900px) {
             .ai-face { display: none; }
@@ -850,107 +891,190 @@
         <div class="j-readout j-r6">latency :: 0.24ms</div>
     </div>
 
-    <!-- AI FACE HOLOGRAM -->
+    <!-- AI FACE HOLOGRAM v3 -->
     <div class="ai-face" id="ai-face">
-        <!-- Scan line -->
         <div class="face-scan"></div>
 
-        <svg viewBox="0 0 180 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- HUD rotating frame -->
-            <ellipse cx="90" cy="110" rx="85" ry="105" class="face-frame"/>
+        <svg viewBox="0 0 380 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Glow filter -->
+            <defs>
+                <filter id="face-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <filter id="synapse-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
 
-            <!-- Head outline — wireframe segments -->
-            <path d="M90 15 Q140 15 155 55 Q165 85 160 115 Q155 145 140 165 Q125 180 110 190 Q100 195 90 198 Q80 195 70 190 Q55 180 40 165 Q25 145 20 115 Q15 85 25 55 Q40 15 90 15Z" class="face-line-bright" stroke-dasharray="12 6"/>
+            <!-- HUD rotating frames -->
+            <ellipse cx="190" cy="210" rx="175" ry="200" class="face-frame-outer"/>
+            <ellipse cx="190" cy="210" rx="165" ry="190" class="face-frame-inner"/>
 
-            <!-- Triangulation grid — inner structure -->
-            <!-- Forehead -->
-            <line x1="55" y1="35" x2="90" y2="20" class="face-line"/>
-            <line x1="125" y1="35" x2="90" y2="20" class="face-line"/>
-            <line x1="55" y1="35" x2="125" y2="35" class="face-line"/>
-            <line x1="55" y1="35" x2="90" y2="55" class="face-line"/>
-            <line x1="125" y1="35" x2="90" y2="55" class="face-line"/>
+            <!-- HEAD OUTLINE — smooth wireframe -->
+            <path d="M190 30 Q280 30 310 90 Q335 140 330 195 Q325 250 300 290 Q275 325 245 350 Q220 365 190 375 Q160 365 135 350 Q105 325 80 290 Q55 250 50 195 Q45 140 70 90 Q100 30 190 30Z" class="face-line-bright" stroke-dasharray="16 8"/>
 
-            <!-- Eye area structure -->
-            <line x1="35" y1="70" x2="55" y2="35" class="face-line"/>
-            <line x1="145" y1="70" x2="125" y2="35" class="face-line"/>
-            <line x1="35" y1="70" x2="90" y2="55" class="face-line"/>
-            <line x1="145" y1="70" x2="90" y2="55" class="face-line"/>
-            <line x1="35" y1="70" x2="65" y2="85" class="face-line"/>
-            <line x1="145" y1="70" x2="115" y2="85" class="face-line"/>
-            <line x1="90" y1="55" x2="65" y2="85" class="face-line"/>
-            <line x1="90" y1="55" x2="115" y2="85" class="face-line"/>
+            <!-- DENSE TRIANGULATION MESH -->
+            <!-- Top of head -->
+            <line x1="130" y1="50" x2="190" y2="30" class="face-line"/>
+            <line x1="250" y1="50" x2="190" y2="30" class="face-line"/>
+            <line x1="130" y1="50" x2="250" y2="50" class="face-line"/>
+            <line x1="100" y1="75" x2="130" y2="50" class="face-line"/>
+            <line x1="280" y1="75" x2="250" y2="50" class="face-line"/>
 
-            <!-- Nose bridge -->
-            <line x1="90" y1="55" x2="90" y2="120" class="face-line-bright"/>
-            <line x1="82" y1="115" x2="98" y2="115" class="face-line"/>
-            <line x1="65" y1="85" x2="90" y2="120" class="face-line"/>
-            <line x1="115" y1="85" x2="90" y2="120" class="face-line"/>
+            <!-- Forehead grid -->
+            <line x1="130" y1="50" x2="160" y2="90" class="face-line"/>
+            <line x1="250" y1="50" x2="220" y2="90" class="face-line"/>
+            <line x1="190" y1="30" x2="190" y2="90" class="face-line-accent"/>
+            <line x1="160" y1="90" x2="190" y2="90" class="face-line"/>
+            <line x1="220" y1="90" x2="190" y2="90" class="face-line"/>
+            <line x1="100" y1="75" x2="160" y2="90" class="face-line"/>
+            <line x1="280" y1="75" x2="220" y2="90" class="face-line"/>
 
-            <!-- Cheek structure -->
-            <line x1="25" y1="110" x2="35" y2="70" class="face-line"/>
-            <line x1="155" y1="110" x2="145" y2="70" class="face-line"/>
-            <line x1="25" y1="110" x2="65" y2="85" class="face-line"/>
-            <line x1="155" y1="110" x2="115" y2="85" class="face-line"/>
-            <line x1="25" y1="110" x2="65" y2="140" class="face-line"/>
-            <line x1="155" y1="110" x2="115" y2="140" class="face-line"/>
+            <!-- Brow ridge -->
+            <line x1="75" y1="120" x2="100" y2="75" class="face-line"/>
+            <line x1="305" y1="120" x2="280" y2="75" class="face-line"/>
+            <line x1="75" y1="120" x2="130" y2="130" class="face-line"/>
+            <line x1="305" y1="120" x2="250" y2="130" class="face-line"/>
+            <line x1="130" y1="130" x2="160" y2="90" class="face-line"/>
+            <line x1="250" y1="130" x2="220" y2="90" class="face-line"/>
+
+            <!-- Eye sockets -->
+            <line x1="130" y1="130" x2="160" y2="150" class="face-line"/>
+            <line x1="250" y1="130" x2="220" y2="150" class="face-line"/>
+            <line x1="160" y1="150" x2="190" y2="130" class="face-line"/>
+            <line x1="220" y1="150" x2="190" y2="130" class="face-line"/>
+            <line x1="190" y1="90" x2="190" y2="130" class="face-line-accent"/>
+
+            <!-- Nose bridge & sides -->
+            <line x1="190" y1="130" x2="190" y2="220" class="face-line-bright"/>
+            <line x1="175" y1="210" x2="205" y2="210" class="face-line"/>
+            <line x1="160" y1="150" x2="175" y2="210" class="face-line"/>
+            <line x1="220" y1="150" x2="205" y2="210" class="face-line"/>
+            <line x1="130" y1="130" x2="175" y2="210" class="face-line"/>
+            <line x1="250" y1="130" x2="205" y2="210" class="face-line"/>
+
+            <!-- Cheekbones -->
+            <line x1="60" y1="185" x2="75" y2="120" class="face-line"/>
+            <line x1="320" y1="185" x2="305" y2="120" class="face-line"/>
+            <line x1="60" y1="185" x2="130" y2="130" class="face-line"/>
+            <line x1="320" y1="185" x2="250" y2="130" class="face-line"/>
+            <line x1="60" y1="185" x2="110" y2="240" class="face-line"/>
+            <line x1="320" y1="185" x2="270" y2="240" class="face-line"/>
+            <line x1="130" y1="130" x2="110" y2="240" class="face-line"/>
+            <line x1="250" y1="130" x2="270" y2="240" class="face-line"/>
+
+            <!-- Mouth area -->
+            <line x1="110" y1="240" x2="175" y2="210" class="face-line"/>
+            <line x1="270" y1="240" x2="205" y2="210" class="face-line"/>
+            <line x1="110" y1="240" x2="155" y2="265" class="face-line"/>
+            <line x1="270" y1="240" x2="225" y2="265" class="face-line"/>
+            <line x1="155" y1="265" x2="190" y2="250" class="face-line"/>
+            <line x1="225" y1="265" x2="190" y2="250" class="face-line"/>
+            <line x1="190" y1="220" x2="190" y2="250" class="face-line-accent"/>
 
             <!-- Jaw -->
-            <line x1="65" y1="140" x2="90" y2="120" class="face-line"/>
-            <line x1="115" y1="140" x2="90" y2="120" class="face-line"/>
-            <line x1="65" y1="140" x2="90" y2="165" class="face-line"/>
-            <line x1="115" y1="140" x2="90" y2="165" class="face-line"/>
-            <line x1="40" y1="165" x2="65" y2="140" class="face-line"/>
-            <line x1="140" y1="165" x2="115" y2="140" class="face-line"/>
-            <line x1="40" y1="165" x2="90" y2="195" class="face-line"/>
-            <line x1="140" y1="165" x2="90" y2="195" class="face-line"/>
-            <line x1="90" y1="165" x2="90" y2="195" class="face-line"/>
+            <line x1="155" y1="265" x2="190" y2="300" class="face-line"/>
+            <line x1="225" y1="265" x2="190" y2="300" class="face-line"/>
+            <line x1="85" y1="290" x2="110" y2="240" class="face-line"/>
+            <line x1="295" y1="290" x2="270" y2="240" class="face-line"/>
+            <line x1="85" y1="290" x2="155" y2="265" class="face-line"/>
+            <line x1="295" y1="290" x2="225" y2="265" class="face-line"/>
+            <line x1="85" y1="290" x2="130" y2="335" class="face-line"/>
+            <line x1="295" y1="290" x2="250" y2="335" class="face-line"/>
 
-            <!-- Vertex dots -->
-            <circle cx="90" cy="20" r="2" class="face-dot-bright"/>
-            <circle cx="55" cy="35" r="1.5" class="face-dot"/>
-            <circle cx="125" cy="35" r="1.5" class="face-dot"/>
-            <circle cx="90" cy="55" r="2" class="face-dot-bright"/>
-            <circle cx="35" cy="70" r="1.5" class="face-dot"/>
-            <circle cx="145" cy="70" r="1.5" class="face-dot"/>
-            <circle cx="25" cy="110" r="1.5" class="face-dot"/>
-            <circle cx="155" cy="110" r="1.5" class="face-dot"/>
-            <circle cx="65" cy="85" r="1.5" class="face-dot"/>
-            <circle cx="115" cy="85" r="1.5" class="face-dot"/>
-            <circle cx="90" cy="120" r="2" class="face-dot-bright"/>
-            <circle cx="65" cy="140" r="1.5" class="face-dot"/>
-            <circle cx="115" cy="140" r="1.5" class="face-dot"/>
-            <circle cx="40" cy="165" r="1.5" class="face-dot"/>
-            <circle cx="140" cy="165" r="1.5" class="face-dot"/>
-            <circle cx="90" cy="165" r="2" class="face-dot-bright"/>
-            <circle cx="90" cy="195" r="2" class="face-dot-bright"/>
+            <!-- Chin -->
+            <line x1="130" y1="335" x2="190" y2="300" class="face-line"/>
+            <line x1="250" y1="335" x2="190" y2="300" class="face-line"/>
+            <line x1="130" y1="335" x2="190" y2="370" class="face-line"/>
+            <line x1="250" y1="335" x2="190" y2="370" class="face-line"/>
+            <line x1="190" y1="300" x2="190" y2="370" class="face-line-accent"/>
 
-            <!-- LEFT EYE -->
-            <g transform="translate(55, 78)">
-                <circle cx="0" cy="0" r="5" class="ai-eye"/>
-                <circle cx="0" cy="0" r="10" class="ai-eye-ring" stroke-dasharray="6 4"/>
-                <circle cx="0" cy="0" r="14" stroke="rgba(249,115,22,0.1)" stroke-width="0.5" fill="none"/>
+            <!-- SYNAPSE PULSES — traveling lights -->
+            <circle cx="190" cy="60" r="1.5" class="synapse syn-1" filter="url(#synapse-glow)">
+                <animateMotion dur="2.5s" repeatCount="indefinite" path="M0,0 L-30,60 L-20,80"/>
+            </circle>
+            <circle cx="190" cy="60" r="1.5" class="synapse syn-2" filter="url(#synapse-glow)">
+                <animateMotion dur="3s" repeatCount="indefinite" path="M0,0 L30,60 L20,80"/>
+            </circle>
+            <circle cx="130" cy="130" r="1.5" class="synapse syn-3" filter="url(#synapse-glow)">
+                <animateMotion dur="2s" repeatCount="indefinite" path="M0,0 L45,80 L60,110"/>
+            </circle>
+            <circle cx="250" cy="130" r="1.5" class="synapse syn-4" filter="url(#synapse-glow)">
+                <animateMotion dur="2.2s" repeatCount="indefinite" path="M0,0 L-45,80 L-60,110"/>
+            </circle>
+            <circle cx="190" cy="130" r="1.5" class="synapse syn-5" filter="url(#synapse-glow)">
+                <animateMotion dur="2.8s" repeatCount="indefinite" path="M0,0 L0,90 L0,140"/>
+            </circle>
+            <circle cx="75" cy="120" r="1.5" class="synapse syn-6" filter="url(#synapse-glow)">
+                <animateMotion dur="3.5s" repeatCount="indefinite" path="M0,0 L-15,65 L25,120 L45,170"/>
+            </circle>
+            <circle cx="305" cy="120" r="1.5" class="synapse syn-7" filter="url(#synapse-glow)">
+                <animateMotion dur="3.2s" repeatCount="indefinite" path="M0,0 L15,65 L-25,120 L-45,170"/>
+            </circle>
+            <circle cx="190" cy="250" r="1.5" class="synapse syn-8" filter="url(#synapse-glow)">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M0,0 L0,50 L0,120"/>
+            </circle>
+
+            <!-- VERTEX NODES -->
+            <circle cx="190" cy="30" r="2" class="face-node-active"/>
+            <circle cx="130" cy="50" r="1.5" class="face-node"/>
+            <circle cx="250" cy="50" r="1.5" class="face-node"/>
+            <circle cx="100" cy="75" r="1.5" class="face-node"/>
+            <circle cx="280" cy="75" r="1.5" class="face-node"/>
+            <circle cx="160" cy="90" r="1.5" class="face-node"/>
+            <circle cx="190" cy="90" r="2" class="face-node-active"/>
+            <circle cx="220" cy="90" r="1.5" class="face-node"/>
+            <circle cx="75" cy="120" r="1.5" class="face-node"/>
+            <circle cx="305" cy="120" r="1.5" class="face-node"/>
+            <circle cx="130" cy="130" r="2" class="face-node-active"/>
+            <circle cx="190" cy="130" r="2" class="face-node-active"/>
+            <circle cx="250" cy="130" r="2" class="face-node-active"/>
+            <circle cx="60" cy="185" r="1.5" class="face-node"/>
+            <circle cx="320" cy="185" r="1.5" class="face-node"/>
+            <circle cx="160" cy="150" r="1.5" class="face-node"/>
+            <circle cx="220" cy="150" r="1.5" class="face-node"/>
+            <circle cx="175" cy="210" r="1.5" class="face-node"/>
+            <circle cx="205" cy="210" r="1.5" class="face-node"/>
+            <circle cx="190" cy="220" r="2" class="face-node-active"/>
+            <circle cx="110" cy="240" r="1.5" class="face-node"/>
+            <circle cx="270" cy="240" r="1.5" class="face-node"/>
+            <circle cx="155" cy="265" r="1.5" class="face-node"/>
+            <circle cx="225" cy="265" r="1.5" class="face-node"/>
+            <circle cx="190" cy="250" r="2" class="face-node-active"/>
+            <circle cx="85" cy="290" r="1.5" class="face-node"/>
+            <circle cx="295" cy="290" r="1.5" class="face-node"/>
+            <circle cx="190" cy="300" r="2" class="face-node-active"/>
+            <circle cx="130" cy="335" r="1.5" class="face-node"/>
+            <circle cx="250" cy="335" r="1.5" class="face-node"/>
+            <circle cx="190" cy="370" r="2" class="face-node-active"/>
+
+            <!-- LEFT EYE — silver with orange core -->
+            <g transform="translate(130, 142)">
+                <circle cx="0" cy="0" r="18" class="ai-eye-ring-outer"/>
+                <circle cx="0" cy="0" r="13" class="ai-eye-ring"/>
+                <circle cx="0" cy="0" r="8" class="ai-eye-outer"/>
+                <circle cx="0" cy="0" r="4" class="ai-eye-core" filter="url(#face-glow)"/>
             </g>
 
             <!-- RIGHT EYE -->
-            <g transform="translate(125, 78)">
-                <circle cx="0" cy="0" r="5" class="ai-eye"/>
-                <circle cx="0" cy="0" r="10" class="ai-eye-ring" stroke-dasharray="6 4" style="animation-direction:reverse;"/>
-                <circle cx="0" cy="0" r="14" stroke="rgba(249,115,22,0.1)" stroke-width="0.5" fill="none"/>
+            <g transform="translate(250, 142)">
+                <circle cx="0" cy="0" r="18" class="ai-eye-ring-outer" style="animation-direction:normal;"/>
+                <circle cx="0" cy="0" r="13" class="ai-eye-ring" style="animation-direction:reverse;"/>
+                <circle cx="0" cy="0" r="8" class="ai-eye-outer"/>
+                <circle cx="0" cy="0" r="4" class="ai-eye-core" filter="url(#face-glow)"/>
             </g>
 
-            <!-- VOICE WAVEFORM (mouth area) -->
-            <g transform="translate(60, 148)">
-                <rect x="0" y="-4" width="3" height="8" rx="1" class="voice-bar" style="transform-origin: 1.5px 0px;"/>
-                <rect x="8" y="-6" width="3" height="12" rx="1" class="voice-bar" style="transform-origin: 9.5px 0px;"/>
-                <rect x="16" y="-8" width="3" height="16" rx="1" class="voice-bar" style="transform-origin: 17.5px 0px;"/>
-                <rect x="24" y="-10" width="3" height="20" rx="1" class="voice-bar" style="transform-origin: 25.5px 0px;"/>
-                <rect x="32" y="-7" width="3" height="14" rx="1" class="voice-bar" style="transform-origin: 33.5px 0px;"/>
-                <rect x="40" y="-5" width="3" height="10" rx="1" class="voice-bar" style="transform-origin: 41.5px 0px;"/>
-                <rect x="48" y="-3" width="3" height="6" rx="1" class="voice-bar" style="transform-origin: 49.5px 0px;"/>
+            <!-- VOICE EQUALIZER -->
+            <g transform="translate(145, 270)">
+                <rect x="0" y="-5" width="4" height="10" rx="1.5" class="voice-bar" style="transform-origin:2px 0"/>
+                <rect x="10" y="-8" width="4" height="16" rx="1.5" class="voice-bar" style="transform-origin:12px 0"/>
+                <rect x="20" y="-11" width="4" height="22" rx="1.5" class="voice-bar" style="transform-origin:22px 0"/>
+                <rect x="30" y="-14" width="4" height="28" rx="1.5" class="voice-bar" style="transform-origin:32px 0"/>
+                <rect x="40" y="-12" width="4" height="24" rx="1.5" class="voice-bar" style="transform-origin:42px 0"/>
+                <rect x="50" y="-9" width="4" height="18" rx="1.5" class="voice-bar" style="transform-origin:52px 0"/>
+                <rect x="60" y="-13" width="4" height="26" rx="1.5" class="voice-bar" style="transform-origin:62px 0"/>
+                <rect x="70" y="-7" width="4" height="14" rx="1.5" class="voice-bar" style="transform-origin:72px 0"/>
+                <rect x="80" y="-4" width="4" height="8" rx="1.5" class="voice-bar" style="transform-origin:82px 0"/>
             </g>
         </svg>
 
-        <div class="ai-face-status">ai assistant :: active</div>
+        <div class="ai-face-label">neural engine :: active</div>
     </div>
 
     <!-- ============================== WIZARD MODE ============================== -->
