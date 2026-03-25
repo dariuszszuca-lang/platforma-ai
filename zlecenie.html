@@ -485,7 +485,7 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-        /* ======================== JARVIS HUD ======================== */
+        /* ======================== JARVIS HUD v2 ======================== */
         .jarvis-hud {
             position: fixed;
             inset: 0;
@@ -493,195 +493,121 @@
             pointer-events: none;
             overflow: hidden;
         }
-
-        /* Rotating arc rings */
-        .jarvis-ring {
+        .jarvis-hud svg {
             position: absolute;
             top: 50%;
             left: 50%;
-            border-radius: 50%;
-            border: 1px solid transparent;
             transform: translate(-50%, -50%);
         }
 
-        .jarvis-ring-1 {
-            width: min(90vw, 700px);
-            height: min(90vw, 700px);
-            border-top-color: rgba(249, 115, 22, 0.08);
-            border-right-color: rgba(249, 115, 22, 0.04);
-            animation: jarvis-spin 20s linear infinite;
-        }
-        .jarvis-ring-2 {
-            width: min(70vw, 550px);
-            height: min(70vw, 550px);
-            border-bottom-color: rgba(249, 115, 22, 0.06);
-            border-left-color: rgba(249, 115, 22, 0.03);
-            animation: jarvis-spin 15s linear infinite reverse;
-        }
-        .jarvis-ring-3 {
-            width: min(50vw, 400px);
-            height: min(50vw, 400px);
-            border-top-color: rgba(249, 115, 22, 0.1);
-            border-right-color: rgba(249, 115, 22, 0.05);
-            border-bottom-color: rgba(249, 115, 22, 0.02);
-            animation: jarvis-spin 25s linear infinite;
+        /* SVG ring rotations */
+        .j-ring-1 { animation: j-spin 30s linear infinite; transform-origin: 350px 350px; }
+        .j-ring-2 { animation: j-spin 22s linear infinite reverse; transform-origin: 350px 350px; }
+        .j-ring-3 { animation: j-spin 40s linear infinite; transform-origin: 350px 350px; }
+        .j-ring-4 { animation: j-spin 18s linear infinite reverse; transform-origin: 350px 350px; }
+        .j-ring-5 { animation: j-spin 50s linear infinite; transform-origin: 350px 350px; }
+
+        @keyframes j-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* Arc segments on the rings */
-        .jarvis-ring::before, .jarvis-ring::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-        }
-        .jarvis-ring-1::before {
-            inset: 8px;
-            border: 1px dashed rgba(249, 115, 22, 0.04);
-            border-radius: 50%;
-        }
-        .jarvis-ring-2::after {
-            inset: -12px;
-            border: 1px solid rgba(249, 115, 22, 0.03);
-            border-top-color: transparent;
-            border-left-color: transparent;
-            border-radius: 50%;
+        /* Glow filter for SVG */
+        .j-glow { filter: url(#jarvis-glow); }
+
+        /* Tick marks pulsing */
+        .j-ticks { animation: j-tick-pulse 4s ease-in-out infinite; transform-origin: 350px 350px; }
+        @keyframes j-tick-pulse {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.35; }
         }
 
-        @keyframes jarvis-spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Scanning line */
-        .jarvis-scan {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.15) 20%, rgba(249, 115, 22, 0.25) 50%, rgba(249, 115, 22, 0.15) 80%, transparent 100%);
-            animation: jarvis-scan-move 8s ease-in-out infinite;
-            box-shadow: 0 0 20px 2px rgba(249, 115, 22, 0.08);
-        }
-        .jarvis-scan::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: -30px;
-            height: 60px;
-            background: linear-gradient(180deg, transparent, rgba(249, 115, 22, 0.02), transparent);
-        }
-
-        @keyframes jarvis-scan-move {
-            0%, 100% { top: 10%; }
-            50% { top: 90%; }
-        }
-
-        /* Corner brackets (HUD targeting) */
-        .jarvis-bracket {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            opacity: 0.12;
-        }
-        .jarvis-bracket-tl { top: 15%; left: 8%; border-top: 2px solid #f97316; border-left: 2px solid #f97316; }
-        .jarvis-bracket-tr { top: 15%; right: 8%; border-top: 2px solid #f97316; border-right: 2px solid #f97316; }
-        .jarvis-bracket-bl { bottom: 15%; left: 8%; border-bottom: 2px solid #f97316; border-left: 2px solid #f97316; }
-        .jarvis-bracket-br { bottom: 15%; right: 8%; border-bottom: 2px solid #f97316; border-right: 2px solid #f97316; }
-
-        /* Floating data labels */
-        .jarvis-data {
+        /* Data readouts */
+        .j-readout {
             position: absolute;
             font-family: 'Space Grotesk', monospace;
             font-size: 9px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0;
-            animation: jarvis-data-fade 6s ease-in-out infinite;
+            color: rgba(249, 115, 22, 0.18);
+            text-shadow: 0 0 8px rgba(249, 115, 22, 0.1);
+            white-space: nowrap;
         }
-        .jarvis-data-1 { top: 20%; left: 5%; color: rgba(249, 115, 22, 0.15); animation-delay: 0s; }
-        .jarvis-data-2 { top: 35%; right: 4%; color: rgba(249, 115, 22, 0.12); animation-delay: 2s; }
-        .jarvis-data-3 { bottom: 25%; left: 6%; color: rgba(249, 115, 22, 0.1); animation-delay: 4s; }
-        .jarvis-data-4 { top: 60%; right: 6%; color: rgba(249, 115, 22, 0.12); animation-delay: 1s; }
-        .jarvis-data-5 { bottom: 40%; left: 4%; color: rgba(249, 115, 22, 0.08); animation-delay: 3s; }
-
-        @keyframes jarvis-data-fade {
-            0%, 100% { opacity: 0; transform: translateY(5px); }
-            20%, 80% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Pulsing center dot */
-        .jarvis-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .j-readout::before {
+            content: '';
+            display: inline-block;
             width: 4px;
             height: 4px;
-            background: rgba(249, 115, 22, 0.3);
+            background: rgba(249, 115, 22, 0.25);
             border-radius: 50%;
-            box-shadow: 0 0 20px 5px rgba(249, 115, 22, 0.05);
-            animation: jarvis-pulse 3s ease-in-out infinite;
+            margin-right: 6px;
+            vertical-align: middle;
+            box-shadow: 0 0 6px rgba(249, 115, 22, 0.15);
         }
-        .jarvis-center::before {
-            content: '';
+        .j-r1 { top: 18%; left: 6%; animation: j-data-cycle 8s ease-in-out infinite; }
+        .j-r2 { top: 28%; right: 5%; animation: j-data-cycle 8s ease-in-out infinite 2s; }
+        .j-r3 { bottom: 22%; left: 5%; animation: j-data-cycle 8s ease-in-out infinite 4s; }
+        .j-r4 { bottom: 32%; right: 6%; animation: j-data-cycle 8s ease-in-out infinite 6s; }
+        .j-r5 { top: 50%; left: 4%; animation: j-data-cycle 8s ease-in-out infinite 1s; }
+        .j-r6 { top: 42%; right: 4%; animation: j-data-cycle 8s ease-in-out infinite 3s; }
+
+        @keyframes j-data-cycle {
+            0%, 100% { opacity: 0; transform: translateX(-5px); }
+            15%, 85% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Center crosshair pulse */
+        .j-crosshair {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+        }
+        .j-crosshair::before, .j-crosshair::after {
+            content: '';
+            position: absolute;
+            background: rgba(249, 115, 22, 0.15);
+        }
+        .j-crosshair::before {
+            top: 50%; left: 0; right: 0; height: 1px;
+            transform: translateY(-50%);
+        }
+        .j-crosshair::after {
+            left: 50%; top: 0; bottom: 0; width: 1px;
+            transform: translateX(-50%);
+        }
+
+        /* Corner HUD brackets */
+        .j-corner {
+            position: absolute;
             width: 40px;
             height: 40px;
-            border: 1px solid rgba(249, 115, 22, 0.06);
-            border-radius: 50%;
-            animation: jarvis-ripple 3s ease-out infinite;
+            opacity: 0.08;
         }
-        .jarvis-center::after {
+        .j-corner::before, .j-corner::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            border: 1px solid rgba(249, 115, 22, 0.03);
-            border-radius: 50%;
-            animation: jarvis-ripple 3s ease-out infinite 1s;
-        }
-
-        @keyframes jarvis-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-        @keyframes jarvis-ripple {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
-        }
-
-        /* Grid dots */
-        .jarvis-grid {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(249, 115, 22, 0.06) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
-        }
-
-        /* Horizontal HUD lines */
-        .jarvis-hline {
-            position: absolute;
-            height: 1px;
-            opacity: 0.04;
             background: #f97316;
         }
-        .jarvis-hline-1 { top: 25%; left: 0; width: 15%; }
-        .jarvis-hline-2 { top: 25%; right: 0; width: 12%; }
-        .jarvis-hline-3 { bottom: 30%; left: 0; width: 18%; }
-        .jarvis-hline-4 { bottom: 30%; right: 0; width: 10%; }
+        .j-corner-tl { top: 12%; left: 5%; }
+        .j-corner-tl::before { top: 0; left: 0; width: 20px; height: 1px; }
+        .j-corner-tl::after { top: 0; left: 0; width: 1px; height: 20px; }
+        .j-corner-tr { top: 12%; right: 5%; }
+        .j-corner-tr::before { top: 0; right: 0; width: 20px; height: 1px; }
+        .j-corner-tr::after { top: 0; right: 0; width: 1px; height: 20px; }
+        .j-corner-bl { bottom: 12%; left: 5%; }
+        .j-corner-bl::before { bottom: 0; left: 0; width: 20px; height: 1px; }
+        .j-corner-bl::after { bottom: 0; left: 0; width: 1px; height: 20px; }
+        .j-corner-br { bottom: 12%; right: 5%; }
+        .j-corner-br::before { bottom: 0; right: 0; width: 20px; height: 1px; }
+        .j-corner-br::after { bottom: 0; right: 0; width: 1px; height: 20px; }
 
-        /* Hide on very small screens to save performance */
-        @media (max-width: 480px) {
-            .jarvis-ring-1, .jarvis-ring-3 { display: none; }
-            .jarvis-data, .jarvis-bracket { display: none; }
+        @media (max-width: 640px) {
+            .jarvis-hud svg { width: 500px; height: 500px; }
+            .j-readout { display: none; }
+            .j-corner { display: none; }
         }
     </style>
 </head>
@@ -689,25 +615,95 @@
 
     <!-- JARVIS HUD Background -->
     <div class="jarvis-hud" id="jarvis-hud">
-        <div class="jarvis-grid"></div>
-        <div class="jarvis-ring jarvis-ring-1"></div>
-        <div class="jarvis-ring jarvis-ring-2"></div>
-        <div class="jarvis-ring jarvis-ring-3"></div>
-        <div class="jarvis-scan"></div>
-        <div class="jarvis-center"></div>
-        <div class="jarvis-bracket jarvis-bracket-tl"></div>
-        <div class="jarvis-bracket jarvis-bracket-tr"></div>
-        <div class="jarvis-bracket jarvis-bracket-bl"></div>
-        <div class="jarvis-bracket jarvis-bracket-br"></div>
-        <div class="jarvis-hline jarvis-hline-1"></div>
-        <div class="jarvis-hline jarvis-hline-2"></div>
-        <div class="jarvis-hline jarvis-hline-3"></div>
-        <div class="jarvis-hline jarvis-hline-4"></div>
-        <div class="jarvis-data jarvis-data-1">sys.ready // ai-engine v4.2</div>
-        <div class="jarvis-data jarvis-data-2">analyzing :: input_stream</div>
-        <div class="jarvis-data jarvis-data-3">cost.calc :: pending</div>
-        <div class="jarvis-data jarvis-data-4">tools :: 15 available</div>
-        <div class="jarvis-data jarvis-data-5">latency :: 0.3ms</div>
+        <svg width="700" height="700" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="jarvis-glow">
+                    <feGaussianBlur stdDeviation="2" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+            </defs>
+
+            <!-- Ring 1: outer — dashed arc segments -->
+            <g class="j-ring-1">
+                <circle cx="350" cy="350" r="340" stroke="rgba(249,115,22,0.06)" stroke-width="1" stroke-dasharray="80 40 20 40" fill="none"/>
+                <circle cx="350" cy="350" r="335" stroke="rgba(249,115,22,0.03)" stroke-width="0.5" stroke-dasharray="4 12" fill="none"/>
+            </g>
+
+            <!-- Ring 2: thick arc segments -->
+            <g class="j-ring-2">
+                <circle cx="350" cy="350" r="290" stroke="rgba(249,115,22,0.08)" stroke-width="2" stroke-dasharray="120 60 40 100" fill="none" class="j-glow"/>
+                <circle cx="350" cy="350" r="285" stroke="rgba(249,115,22,0.04)" stroke-width="0.5" stroke-dasharray="8 8" fill="none"/>
+            </g>
+
+            <!-- Ring 3: thin precise arcs -->
+            <g class="j-ring-3">
+                <circle cx="350" cy="350" r="240" stroke="rgba(249,115,22,0.07)" stroke-width="1.5" stroke-dasharray="50 80 30 50 70 80" fill="none"/>
+                <circle cx="350" cy="350" r="236" stroke="rgba(249,115,22,0.04)" stroke-width="0.5" stroke-dasharray="2 6" fill="none"/>
+            </g>
+
+            <!-- Ring 4: inner ring with longer segments -->
+            <g class="j-ring-4">
+                <circle cx="350" cy="350" r="190" stroke="rgba(249,115,22,0.09)" stroke-width="1" stroke-dasharray="90 50 20 70" fill="none" class="j-glow"/>
+            </g>
+
+            <!-- Ring 5: innermost — nearly complete circle -->
+            <g class="j-ring-5">
+                <circle cx="350" cy="350" r="145" stroke="rgba(249,115,22,0.05)" stroke-width="1" stroke-dasharray="200 30 150 30" fill="none"/>
+            </g>
+
+            <!-- Tick marks on ring 2 (every 15 degrees) -->
+            <g class="j-ticks">
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(0 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(15 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(30 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(45 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(60 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(75 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="68" stroke="rgba(249,115,22,0.25)" stroke-width="1.5" transform="rotate(90 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(105 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(120 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(135 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(150 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(165 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="68" stroke="rgba(249,115,22,0.25)" stroke-width="1.5" transform="rotate(180 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(195 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(210 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(225 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(240 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(255 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="68" stroke="rgba(249,115,22,0.25)" stroke-width="1.5" transform="rotate(270 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(285 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(300 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(315 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="65" stroke="rgba(249,115,22,0.2)" stroke-width="1" transform="rotate(330 350 350)"/>
+                <line x1="350" y1="55" x2="350" y2="62" stroke="rgba(249,115,22,0.12)" stroke-width="0.5" transform="rotate(345 350 350)"/>
+            </g>
+
+            <!-- Static decorative arcs (not rotating) -->
+            <circle cx="350" cy="350" r="100" stroke="rgba(249,115,22,0.03)" stroke-width="0.5" fill="none"/>
+            <circle cx="350" cy="350" r="50" stroke="rgba(249,115,22,0.04)" stroke-width="0.5" stroke-dasharray="8 4" fill="none"/>
+
+            <!-- Center dot with glow -->
+            <circle cx="350" cy="350" r="3" fill="rgba(249,115,22,0.3)" class="j-glow"/>
+            <circle cx="350" cy="350" r="8" stroke="rgba(249,115,22,0.1)" stroke-width="0.5" fill="none"/>
+        </svg>
+
+        <!-- Crosshair -->
+        <div class="j-crosshair"></div>
+
+        <!-- Corner brackets -->
+        <div class="j-corner j-corner-tl"></div>
+        <div class="j-corner j-corner-tr"></div>
+        <div class="j-corner j-corner-bl"></div>
+        <div class="j-corner j-corner-br"></div>
+
+        <!-- Data readouts -->
+        <div class="j-readout j-r1">sys :: online</div>
+        <div class="j-readout j-r2">ai.engine :: v4.2.1</div>
+        <div class="j-readout j-r3">cost.module :: ready</div>
+        <div class="j-readout j-r4">tools :: 15 loaded</div>
+        <div class="j-readout j-r5">input :: awaiting</div>
+        <div class="j-readout j-r6">latency :: 0.24ms</div>
     </div>
 
     <!-- ============================== WIZARD MODE ============================== -->
