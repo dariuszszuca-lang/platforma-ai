@@ -20,6 +20,7 @@
     <!-- SEO -->
     <meta name="description" content="Złóż zlecenie AI — wdrożenia, automatyzacje, narzędzia dla firm. AI wyceni Twój projekt w kilka sekund. Konsultacje od 200 PLN.">
     <meta name="keywords" content="zlecenie AI, wycena AI, automatyzacja, wdrożenie AI, konsultacja AI, narzędzia AI">
+    <link rel="canonical" href="https://ai-team.pl/zlecenie">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -27,6 +28,7 @@
     <meta property="og:title" content="Zlecenie AI — wdrożenia, automatyzacje, narzędzia | AI-Team">
     <meta property="og:description" content="Złóż zlecenie AI — AI wyceni Twój projekt w kilka sekund. Konsultacje od 200 PLN.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
+    <meta property="og:locale" content="pl_PL">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +38,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -69,13 +71,16 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             background-color: #020203;
             color: #ffffff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Glass card */
+        /* ==================== GLASS CARD ==================== */
         .glass-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
             backdrop-filter: blur(24px);
@@ -87,8 +92,14 @@
             border-color: rgba(249,115,22,0.3);
             box-shadow: 0 8px 32px rgba(249,115,22,0.1);
         }
+        .glass-card-static {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
 
-        /* Gradient text */
+        /* ==================== GRADIENT TEXT ==================== */
         .gradient-text {
             background: linear-gradient(to right, #f97316, #fb923c);
             -webkit-background-clip: text;
@@ -96,7 +107,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Cosmic button */
+        /* ==================== BUTTONS ==================== */
         .btn-cosmic {
             position: relative;
             background: transparent;
@@ -106,45 +117,44 @@
             border-radius: 0.75rem;
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
         .btn-cosmic::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent);
             transition: left 0.6s ease;
         }
-        .btn-cosmic:hover {
-            border-color: #f97316;
-            box-shadow: 0 0 30px rgba(249,115,22,0.4);
-        }
-        .btn-cosmic:hover::before {
-            left: 100%;
-        }
+        .btn-cosmic:hover { border-color: #f97316; box-shadow: 0 0 30px rgba(249,115,22,0.4); }
+        .btn-cosmic:hover::before { left: 100%; }
 
-        /* Primary CTA (white) */
         .btn-primary {
             background: white;
             color: black;
             font-weight: 700;
             border-radius: 0.75rem;
+            border: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
-        .btn-primary:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
-        }
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
+        .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(255,255,255,0.3); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* Form inputs */
+        .btn-orange {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            font-weight: 700;
+            border-radius: 0.75rem;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .btn-orange:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(249,115,22,0.5); }
+        .btn-orange:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* ==================== FORM INPUTS ==================== */
         .form-input {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
@@ -161,34 +171,265 @@
             border-color: #f97316;
             box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
         }
-        .form-input::placeholder {
-            color: rgba(255,255,255,0.35);
+        .form-input::placeholder { color: rgba(255,255,255,0.35); }
+        textarea.form-input { resize: vertical; min-height: 100px; }
+
+        /* ==================== PROGRESS BAR ==================== */
+        .progress-track {
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            overflow: hidden;
         }
-        select.form-input {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgba(255,255,255,0.5)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            padding-right: 2.5rem;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f97316, #fb923c);
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        select.form-input option {
-            background: #1a1a1a;
-            color: white;
+        .step-dot {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
         }
-        textarea.form-input {
-            resize: vertical;
-            min-height: 120px;
+        .step-dot.future { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+        .step-dot.current { background: #f97316; color: white; box-shadow: 0 0 20px rgba(249,115,22,0.5); }
+        .step-dot.done { background: #22c55e; color: white; }
+        .step-label { font-size: 0.7rem; margin-top: 4px; white-space: nowrap; transition: color 0.3s; }
+
+        /* ==================== WIZARD TRANSITIONS ==================== */
+        .wizard-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(40px);
+        }
+        .wizard-step.active {
+            display: block;
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .wizard-step.exiting {
+            display: block;
+            animation: slideOut 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-40px); }
         }
 
-        /* Status badge */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding: 0.25rem 0.75rem;
+        /* ==================== CATEGORY CARDS ==================== */
+        .cat-card {
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .cat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(249,115,22,0.08), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .cat-card:hover {
+            border-color: rgba(249,115,22,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(249,115,22,0.15);
+        }
+        .cat-card:hover::before { opacity: 1; }
+        .cat-card.selected {
+            border-color: #f97316;
+            box-shadow: 0 0 30px rgba(249,115,22,0.25);
+            background: linear-gradient(145deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.03) 100%);
+        }
+        .cat-card.selected::before { opacity: 1; }
+        .cat-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(249,115,22,0.12);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ==================== Q&A CARDS ==================== */
+        .qa-card {
+            border-left: 3px solid #f97316;
+            border-radius: 0 1rem 1rem 0;
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(12px);
+            margin-bottom: 1rem;
+            animation: questionIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        @keyframes questionIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .qa-card.collapsed {
+            padding: 0.75rem 1.25rem;
+            border-left-color: #22c55e;
+            opacity: 0.7;
+        }
+        .qa-card.collapsed:hover { opacity: 1; }
+
+        /* Option pills */
+        .opt-pill {
+            display: inline-flex; align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.8);
+            user-select: none;
+        }
+        .opt-pill:hover { border-color: rgba(249,115,22,0.5); color: white; }
+        .opt-pill.selected {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-color: #f97316;
+            color: white;
+            font-weight: 500;
+        }
+        /* Multi-select chips */
+        .chip {
+            display: inline-flex; align-items: center;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.7);
+            user-select: none;
+        }
+        .chip:hover { border-color: rgba(249,115,22,0.4); color: white; }
+        .chip.selected {
+            background: rgba(249,115,22,0.2);
+            border-color: #f97316;
+            color: #fb923c;
+            font-weight: 500;
+        }
+
+        /* ==================== ANALYSIS STEP ==================== */
+        .analysis-orb {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.4), rgba(249,115,22,0.05) 70%);
+            animation: orbPulse 2s ease-in-out infinite;
+            margin: 0 auto 2rem;
+        }
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(249,115,22,0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 0 80px rgba(249,115,22,0.5); }
+        }
+        .analysis-line {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.6rem 0;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.4s;
+        }
+        .analysis-line.visible { opacity: 1; transform: translateY(0); }
+        .analysis-line .dot-loader { display: inline-flex; gap: 3px; }
+        .analysis-line .dot-loader span {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: #f97316;
+            animation: dotBounce 1.2s infinite;
+        }
+        .analysis-line .dot-loader span:nth-child(2) { animation-delay: 0.2s; }
+        .analysis-line .dot-loader span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+            40% { transform: translateY(-6px); opacity: 1; }
+        }
+        .analysis-line .check { color: #22c55e; opacity: 0; transition: opacity 0.3s; }
+        .analysis-line.done .check { opacity: 1; }
+        .analysis-line.done .dot-loader { display: none; }
+        .analysis-progress {
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .analysis-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f97316, #fb923c);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* ==================== ESTIMATE REVEAL ==================== */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-item.visible { opacity: 1; transform: translateY(0); }
+        .price-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @media (min-width: 640px) { .price-number { font-size: 3rem; } }
+
+        /* Particle confetti */
+        .confetti-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .confetti-particle {
+            position: absolute;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            animation: confettiFall 2s ease-out forwards;
+        }
+        @keyframes confettiFall {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+            100% { opacity: 0; transform: translateY(200px) rotate(720deg) scale(0.3); }
+        }
+
+        /* Tool pill */
+        .tool-pill {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 9999px;
             font-size: 0.8rem;
-            font-weight: 600;
+            background: rgba(249,115,22,0.12);
+            border: 1px solid rgba(249,115,22,0.25);
+            color: #fb923c;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s;
+        }
+        .tool-pill.visible { opacity: 1; transform: scale(1); }
+
+        /* ==================== STATUS BADGES ==================== */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem; font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -197,462 +438,440 @@
         .status-w-realizacji { background: rgba(168,85,247,0.2); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
         .status-gotowe { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
 
-        /* Pill tag */
-        .pill {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            background: rgba(249,115,22,0.15);
-            color: #fb923c;
-            border: 1px solid rgba(249,115,22,0.25);
+        /* Status timeline */
+        .timeline-step {
+            display: flex; flex-direction: column; align-items: center; flex: 1; position: relative;
         }
-
-        /* Complexity colors */
-        .complexity-prosta { color: #86efac; }
-        .complexity-srednia { color: #fde047; }
-        .complexity-zlozzona { color: #fca5a5; }
-
-        /* Fade in animation */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        .fade-in-up-delay {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out 0.2s forwards;
-        }
-
-        /* Spinner */
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(0,0,0,0.2);
-            border-top-color: black;
+        .timeline-dot {
+            width: 28px; height: 28px;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            display: inline-block;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: transparent;
+            transition: all 0.3s;
+            z-index: 1;
         }
-
-        /* Progress bar */
-        .progress-step {
-            flex: 1;
-            text-align: center;
-            position: relative;
-        }
-        .progress-step .step-dot {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        .progress-step .step-line {
-            position: absolute;
-            top: 16px;
-            left: calc(50% + 20px);
-            right: calc(-50% + 20px);
+        .timeline-dot.active { border-color: #f97316; background: #f97316; }
+        .timeline-dot.done { border-color: #22c55e; background: #22c55e; }
+        .timeline-connector {
+            position: absolute; top: 14px;
+            left: calc(50% + 14px); right: calc(-50% + 14px);
             height: 2px;
             background: rgba(255,255,255,0.1);
         }
-        .progress-step.completed .step-dot {
-            background: rgba(34,197,94,0.3);
-            border: 2px solid #22c55e;
-            color: #86efac;
-        }
-        .progress-step.completed .step-line {
-            background: #22c55e;
-        }
-        .progress-step.active .step-dot {
-            background: rgba(249,115,22,0.3);
-            border: 2px solid #f97316;
-            color: #fb923c;
-            box-shadow: 0 0 16px rgba(249,115,22,0.4);
-        }
-        .progress-step.active .step-line {
-            background: linear-gradient(to right, #22c55e, rgba(255,255,255,0.1));
-        }
-        .progress-step.future .step-dot {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.3);
-        }
+        .timeline-connector.active { background: linear-gradient(90deg, #22c55e, #f97316); }
+        .timeline-connector.done { background: #22c55e; }
 
-        /* Background glow */
-        .page-glow {
-            position: fixed;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
+        /* ==================== COMPLEXITY BADGES ==================== */
+        .complexity-prosta { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+        .complexity-srednia { background: rgba(234,179,8,0.15); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+        .complexity-zlożona { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
 
-        /* Info box */
-        .info-box {
-            background: rgba(249,115,22,0.08);
-            border: 1px solid rgba(249,115,22,0.25);
-            border-radius: 0.75rem;
-            padding: 0.875rem 1rem;
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.5;
-        }
+        /* ==================== UTILITIES ==================== */
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Success banner */
         .success-banner {
-            background: rgba(34,197,94,0.1);
+            background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05));
             border: 1px solid rgba(34,197,94,0.3);
-            border-radius: 0.75rem;
-            padding: 1rem 1.25rem;
-            color: #86efac;
-            font-weight: 500;
+            border-radius: 1rem;
+            padding: 1.25rem;
         }
 
-        /* Estimate card */
-        .estimate-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(249,115,22,0.3);
-            border-radius: 1rem;
-            padding: 1.5rem;
-        }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
     </style>
 </head>
-<body class="font-sans antialiased min-h-screen">
+<body class="font-sans antialiased">
 
-    <!-- Background glow -->
-    <div class="page-glow"></div>
+    <!-- ============================== WIZARD MODE ============================== -->
+    <div id="wizard-mode" class="min-h-screen flex flex-col" style="display:none;">
 
-    <!-- Nav -->
-    <nav class="relative z-10 w-full px-6 py-5">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 group">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-light flex items-center justify-center">
-                    <span class="text-white font-display font-bold text-sm">AI</span>
+        <!-- PROGRESS INDICATOR -->
+        <nav class="pt-6 pb-4 px-4">
+            <div class="max-w-2xl mx-auto">
+                <!-- Step dots -->
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex flex-col items-center flex-1" data-step-indicator="1">
+                        <div class="step-dot current">1</div>
+                        <span class="step-label text-white/60">Kategoria</span>
+                    </div>
+                    <div class="flex flex-col items-center flex-1" data-step-indicator="2">
+                        <div class="step-dot future">2</div>
+                        <span class="step-label text-white/30">Szczegóły</span>
+                    </div>
+                    <div class="flex flex-col items-center flex-1" data-step-indicator="3">
+                        <div class="step-dot future">3</div>
+                        <span class="step-label text-white/30">Kontakt</span>
+                    </div>
+                    <div class="flex flex-col items-center flex-1" data-step-indicator="4">
+                        <div class="step-dot future">4</div>
+                        <span class="step-label text-white/30">Analiza</span>
+                    </div>
+                    <div class="flex flex-col items-center flex-1" data-step-indicator="5">
+                        <div class="step-dot future">5</div>
+                        <span class="step-label text-white/30">Wycena</span>
+                    </div>
                 </div>
-                <span class="font-display font-bold text-lg text-white">AI-Team</span>
-            </a>
-            <a href="/" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                Powrót na stronę
-            </a>
-        </div>
-    </nav>
-
-    <!-- Main content -->
-    <main class="relative z-10 px-6 pb-20">
-
-        <!-- ==================== MODE 1: ORDER FORM ==================== -->
-        <div id="view-form" class="hidden">
-            <!-- Hero -->
-            <section class="max-w-2xl mx-auto text-center pt-8 pb-10 fade-in-up">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-gray-400 mb-6">
-                    <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-brand-primary"></i>
-                    Panel Zleceń
+                <!-- Bar -->
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-bar" style="width: 10%"></div>
                 </div>
-                <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4 leading-tight">
-                    Potrzebujesz <span class="gradient-text">wdrożenia</span>?
-                </h1>
-                <p class="text-gray-400 text-lg max-w-lg mx-auto">
-                    Opisz czego potrzebujesz — AI wyceni Twoje zlecenie w kilka sekund
-                </p>
-            </section>
+            </div>
+        </nav>
 
-            <!-- Form -->
-            <section class="max-w-2xl mx-auto fade-in-up-delay">
-                <div class="glass-card rounded-2xl p-6 sm:p-8">
-                    <form id="order-form" novalidate>
-                        <div class="space-y-5">
-                            <!-- Name -->
-                            <div>
-                                <label for="f-name" class="block text-sm text-gray-400 mb-1.5">Imię i nazwisko <span class="text-brand-primary">*</span></label>
-                                <input type="text" id="f-name" name="name" required class="form-input" placeholder="Jan Kowalski">
+        <!-- WIZARD CONTAINER -->
+        <main class="flex-1 flex items-start justify-center px-4 pb-12 pt-4">
+            <div class="w-full max-w-2xl">
+
+                <!-- ========== STEP 1: KATEGORIA ========== -->
+                <div class="wizard-step active" id="step-1">
+                    <div class="text-center mb-8">
+                        <h1 class="font-display text-3xl sm:text-4xl font-bold mb-3">Co mogę <span class="gradient-text">dla Ciebie</span> zrobić?</h1>
+                        <p class="text-white/50 text-lg">Wybierz typ zlecenia — dopasuję pytania do Twojej sytuacji</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="category-grid">
+                        <div class="cat-card" data-cat="konsultacja" onclick="selectCategory(this)">
+                            <div class="cat-icon">💬</div>
+                            <h3 class="font-display font-semibold text-lg mb-1">Konsultacja AI</h3>
+                            <p class="text-brand-light font-semibold text-sm mb-2">200 PLN / 1 godzina</p>
+                            <p class="text-white/50 text-sm">Omówimy Twoje potrzeby i zaplanujemy wdrożenie</p>
+                            <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
+                                <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
-
-                            <!-- Email -->
-                            <div>
-                                <label for="f-email" class="block text-sm text-gray-400 mb-1.5">Email <span class="text-brand-primary">*</span></label>
-                                <input type="email" id="f-email" name="email" required class="form-input" placeholder="jan@firma.pl">
+                        </div>
+                        <div class="cat-card" data-cat="automatyzacja" onclick="selectCategory(this)">
+                            <div class="cat-icon">⚡</div>
+                            <h3 class="font-display font-semibold text-lg mb-1">Automatyzacja procesu</h3>
+                            <p class="text-brand-light font-semibold text-sm mb-2">od 500 PLN</p>
+                            <p class="text-white/50 text-sm">Zamienię powtarzalną pracę w automat</p>
+                            <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
+                                <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
-
-                            <!-- Phone -->
-                            <div>
-                                <label for="f-phone" class="block text-sm text-gray-400 mb-1.5">Telefon <span class="text-sm text-gray-600">(opcjonalnie)</span></label>
-                                <input type="tel" id="f-phone" name="phone" class="form-input" placeholder="+48 600 000 000">
+                        </div>
+                        <div class="cat-card" data-cat="narzedzie" onclick="selectCategory(this)">
+                            <div class="cat-icon">🔧</div>
+                            <h3 class="font-display font-semibold text-lg mb-1">Narzędzie / Aplikacja</h3>
+                            <p class="text-brand-light font-semibold text-sm mb-2">od 1000 PLN</p>
+                            <p class="text-white/50 text-sm">Zbuduję dedykowane narzędzie dla Twojej firmy</p>
+                            <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
+                                <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
-
-                            <!-- Category -->
-                            <div>
-                                <label for="f-category" class="block text-sm text-gray-400 mb-1.5">Kategoria <span class="text-brand-primary">*</span></label>
-                                <select id="f-category" name="category" required class="form-input">
-                                    <option value="">Wybierz kategorię...</option>
-                                    <option value="konsultacja">💬 Konsultacja AI (200 PLN / 1h)</option>
-                                    <option value="automatyzacja">⚡ Automatyzacja procesu</option>
-                                    <option value="narzedzie">🔧 Narzędzie / Aplikacja</option>
-                                    <option value="wdrozenie">🏢 Wdrożenie w firmie</option>
-                                    <option value="inne">📋 Inne</option>
-                                </select>
-                                <!-- Konsultacja info -->
-                                <div id="konsultacja-info" class="hidden mt-3 info-box">
-                                    <i data-lucide="info" class="w-4 h-4 inline text-brand-primary mr-1" style="vertical-align: -2px;"></i>
-                                    Konsultacja AI to godzinna sesja 1:1 gdzie omówimy Twoje potrzeby i zaplanujemy wdrożenie. Cena: 200 PLN.
-                                </div>
+                        </div>
+                        <div class="cat-card" data-cat="wdrozenie" onclick="selectCategory(this)">
+                            <div class="cat-icon">🏢</div>
+                            <h3 class="font-display font-semibold text-lg mb-1">Wdrożenie AI w firmie</h3>
+                            <p class="text-brand-light font-semibold text-sm mb-2">od 1000 PLN</p>
+                            <p class="text-white/50 text-sm">Wprowadzę AI do codziennej pracy zespołu</p>
+                            <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
+                                <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
-
-                            <!-- Description -->
-                            <div>
-                                <label for="f-desc" class="block text-sm text-gray-400 mb-1.5">Opis zadania <span class="text-brand-primary">*</span></label>
-                                <textarea id="f-desc" name="description" required rows="5" class="form-input" placeholder="Opisz co chcesz osiągnąć, jaki problem rozwiązać, jakie narzędzia używasz obecnie..."></textarea>
+                        </div>
+                        <div class="cat-card sm:col-span-2" data-cat="inne" onclick="selectCategory(this)">
+                            <div class="cat-icon">📋</div>
+                            <h3 class="font-display font-semibold text-lg mb-1">Inne</h3>
+                            <p class="text-brand-light font-semibold text-sm mb-2">wycena indywidualna</p>
+                            <p class="text-white/50 text-sm">Masz pomysł? Opisz — wycenię</p>
+                            <div class="absolute top-3 right-3 opacity-0 transition-opacity" data-check>
+                                <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- Deadline -->
+                <!-- ========== STEP 2: SZCZEGÓŁY ========== -->
+                <div class="wizard-step" id="step-2">
+                    <div class="text-center mb-6">
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2">Opowiedz mi <span class="gradient-text">więcej</span></h2>
+                        <p class="text-white/50" id="step2-subtitle">Odpowiedz na kilka pytań — pomogą mi lepiej wycenić projekt</p>
+                    </div>
+                    <div id="questions-container"></div>
+                    <div class="mt-6 flex gap-3" id="step2-nav" style="display:none;">
+                        <button class="btn-cosmic px-6 py-3 text-sm" onclick="goToStep(1)">← Wróć</button>
+                        <button class="btn-orange px-8 py-3 text-sm flex-1" id="step2-next" onclick="goToStep(3)" disabled>Dalej →</button>
+                    </div>
+                </div>
+
+                <!-- ========== STEP 3: KONTAKT ========== -->
+                <div class="wizard-step" id="step-3">
+                    <div class="text-center mb-6">
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2">Gdzie wysłać <span class="gradient-text">wycenę</span>?</h2>
+                        <p class="text-white/50">Dane kontaktowe — odezwę się w ciągu 24h</p>
+                    </div>
+                    <div class="glass-card-static rounded-2xl p-6 sm:p-8 max-w-md mx-auto">
+                        <div class="space-y-4">
                             <div>
-                                <label for="f-deadline" class="block text-sm text-gray-400 mb-1.5">Termin <span class="text-sm text-gray-600">(opcjonalnie)</span></label>
-                                <select id="f-deadline" name="deadline" class="form-input">
-                                    <option value="">Kiedy potrzebujesz? (opcjonalnie)</option>
-                                    <option value="asap">Jak najszybciej</option>
-                                    <option value="tydzien">W ciągu tygodnia</option>
-                                    <option value="miesiac">W ciągu miesiąca</option>
-                                    <option value="bez-posiechu">Bez pośpiechu</option>
-                                </select>
+                                <label class="block text-sm text-white/60 mb-1.5">Imię i nazwisko <span class="text-brand-primary">*</span></label>
+                                <input type="text" id="contact-name" class="form-input" placeholder="Jan Kowalski" required>
                             </div>
-
-                            <!-- Submit -->
-                            <button type="submit" id="btn-submit" class="btn-primary w-full py-3.5 text-base mt-2 flex items-center justify-center gap-2">
-                                <span id="btn-text">🚀 Wyślij zlecenie</span>
-                                <span id="btn-loading" class="hidden items-center gap-2">
-                                    <span class="spinner"></span>
-                                    AI analizuje Twoje zlecenie...
-                                </span>
+                            <div>
+                                <label class="block text-sm text-white/60 mb-1.5">Email <span class="text-brand-primary">*</span></label>
+                                <input type="email" id="contact-email" class="form-input" placeholder="jan@firma.pl" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-white/60 mb-1.5">Telefon <span class="text-white/30">(opcjonalnie — jeśli wolisz rozmowę)</span></label>
+                                <input type="tel" id="contact-phone" class="form-input" placeholder="+48 123 456 789">
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <button class="btn-orange w-full py-4 text-lg font-bold rounded-xl" id="submit-btn" onclick="submitOrder()">
+                                🚀 Analizuj moje zlecenie
                             </button>
                         </div>
-                    </form>
-
-                    <!-- Error message -->
-                    <div id="form-error" class="hidden mt-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-3 text-sm"></div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== RESULT VIEW (after submit) ==================== -->
-        <div id="view-result" class="hidden max-w-2xl mx-auto pt-12">
-            <div class="text-center fade-in-up">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 mb-6">
-                    <i data-lucide="check-circle-2" class="w-8 h-8 text-green-400"></i>
-                </div>
-                <h2 class="font-display text-3xl font-bold mb-2">Zlecenie złożone!</h2>
-                <p class="text-gray-400 mb-6">Numer zlecenia: <span id="res-order-id" class="text-white font-mono font-semibold"></span></p>
-                <div class="inline-block mb-8">
-                    <span id="res-status-badge" class="status-badge status-nowe">
-                        <span class="w-2 h-2 rounded-full bg-current"></span>
-                        Nowe
-                    </span>
-                </div>
-            </div>
-
-            <!-- AI Estimate -->
-            <div id="res-estimate-wrapper" class="fade-in-up-delay">
-                <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <i data-lucide="brain" class="w-4 h-4 text-brand-primary"></i>
-                    AI Wycena
-                </h3>
-                <div class="estimate-card mb-8">
-                    <div id="res-estimate-loading" class="text-center py-8 text-gray-400">
-                        <span class="spinner" style="border-color: rgba(255,255,255,0.2); border-top-color: #f97316;"></span>
-                        <p class="mt-3 text-sm">AI analizuje zlecenie...</p>
+                        <div class="mt-4 flex justify-center">
+                            <button class="text-white/40 hover:text-white/60 text-sm transition-colors" onclick="goToStep(2)">← Wróć do szczegółów</button>
+                        </div>
                     </div>
-                    <div id="res-estimate-content" class="hidden">
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <div class="text-xs text-gray-500 mb-1">⏱ Szacowany czas</div>
-                                <div id="res-czas" class="text-white font-semibold"></div>
+                </div>
+
+                <!-- ========== STEP 4: ANALIZA AI ========== -->
+                <div class="wizard-step" id="step-4">
+                    <div class="flex flex-col items-center justify-center min-h-[60vh]">
+                        <div class="analysis-orb"></div>
+                        <div class="w-full max-w-md space-y-1" id="analysis-lines">
+                            <div class="analysis-line" data-line="0">
+                                <span class="text-lg">🔍</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
                             </div>
-                            <div>
-                                <div class="text-xs text-gray-500 mb-1">📊 Złożoność</div>
-                                <div id="res-zlozonosc" class="font-semibold"></div>
+                            <div class="analysis-line" data-line="1">
+                                <span class="text-lg">🧠</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
+                            </div>
+                            <div class="analysis-line" data-line="2">
+                                <span class="text-lg">🛠</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
+                            </div>
+                            <div class="analysis-line" data-line="3">
+                                <span class="text-lg">⏱</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
+                            </div>
+                            <div class="analysis-line" data-line="4">
+                                <span class="text-lg">💰</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
+                            </div>
+                            <div class="analysis-line" data-line="5">
+                                <span class="text-lg">📋</span>
+                                <span class="flex-1" data-typewriter></span>
+                                <span class="dot-loader"><span></span><span></span><span></span></span>
+                                <span class="check">✓</span>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <div class="text-xs text-gray-500 mb-1.5">🛠 Narzędzia</div>
-                            <div id="res-narzedzia" class="flex flex-wrap gap-1.5"></div>
+                        <div class="analysis-progress w-full max-w-md mt-6">
+                            <div class="analysis-progress-fill" id="analysis-bar"></div>
                         </div>
-                        <div class="mb-4 p-3 rounded-lg bg-white/5">
-                            <div class="text-xs text-gray-500 mb-1">💰 Szacowana cena</div>
-                            <div id="res-cena" class="text-xl font-display font-bold gradient-text"></div>
-                        </div>
-                        <p id="res-opis" class="text-sm text-gray-300 leading-relaxed"></p>
-                    </div>
-                    <div id="res-estimate-error" class="hidden text-center py-6 text-gray-400 text-sm">
-                        <p>Nie udało się pobrać wyceny AI. Wycenię Twoje zlecenie ręcznie w ciągu 24h.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Konsultacja checkout button -->
-            <div id="res-konsultacja-btn" class="hidden mb-8 fade-in-up">
-                <button onclick="handleCheckoutKonsultacja()" id="btn-checkout" class="btn-primary w-full py-4 text-lg flex items-center justify-center gap-2">
-                    <span id="checkout-text">Kup konsultację — 200 PLN</span>
-                    <span id="checkout-loading" class="hidden items-center gap-2">
-                        <span class="spinner"></span>
-                        Przekierowuję do płatności...
-                    </span>
-                </button>
-            </div>
+                <!-- ========== STEP 5: WYCENA ========== -->
+                <div class="wizard-step" id="step-5">
+                    <div class="text-center mb-6 relative">
+                        <div class="confetti-container" id="confetti-container"></div>
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold">Twoja wycena jest <span class="gradient-text">gotowa</span></h2>
+                    </div>
+                    <div class="glass-card-static rounded-2xl p-6 sm:p-8 max-w-lg mx-auto border border-brand-primary/20 relative overflow-hidden">
+                        <!-- Order ID -->
+                        <div class="reveal-item flex justify-end mb-4" data-reveal="0">
+                            <span class="text-xs font-mono text-white/40 bg-white/5 px-3 py-1 rounded-full" id="est-order-id"></span>
+                        </div>
 
-            <!-- Status link -->
-            <div class="glass-card rounded-xl p-5 mb-6 text-center fade-in-up-delay">
-                <p class="text-sm text-gray-400 mb-2">Sprawdzisz status zlecenia tutaj:</p>
-                <a id="res-status-link" href="#" class="text-brand-primary hover:text-brand-light transition-colors text-sm font-mono break-all"></a>
-            </div>
+                        <!-- Complexity -->
+                        <div class="reveal-item text-center mb-6" data-reveal="1">
+                            <span class="inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider" id="est-complexity"></span>
+                        </div>
 
-            <p class="text-center text-sm text-gray-500">
-                Odezwę się do Ciebie w ciągu 24h z ostateczną wyceną i planem działania.
-            </p>
-        </div>
+                        <!-- Time -->
+                        <div class="reveal-item text-center mb-6" data-reveal="2">
+                            <p class="font-display text-3xl sm:text-4xl font-bold text-white mb-1" id="est-time"></p>
+                            <p class="text-white/40 text-sm">Szacowany czas realizacji</p>
+                        </div>
 
-        <!-- ==================== MODE 2: STATUS TRACKING ==================== -->
-        <div id="view-status" class="hidden max-w-2xl mx-auto pt-8">
-            <!-- Payment success banner -->
-            <div id="status-payment-success" class="hidden success-banner mb-6 flex items-center gap-2 fade-in-up">
-                <i data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0"></i>
-                Konsultacja opłacona! Skontaktuję się w ciągu 24h aby ustalić termin.
-            </div>
+                        <!-- Tools -->
+                        <div class="reveal-item mb-6" data-reveal="3">
+                            <p class="text-xs uppercase tracking-wider text-white/40 mb-2">Narzędzia</p>
+                            <div class="flex flex-wrap gap-2" id="est-tools"></div>
+                        </div>
 
-            <!-- Loading -->
-            <div id="status-loading" class="text-center py-20">
-                <span class="spinner" style="width:32px; height:32px; border-width:3px; border-color: rgba(255,255,255,0.2); border-top-color: #f97316;"></span>
-                <p class="mt-4 text-gray-400">Ładuję zlecenie...</p>
-            </div>
+                        <!-- Price -->
+                        <div class="reveal-item text-center mb-6" data-reveal="4">
+                            <p class="price-number" id="est-price"></p>
+                            <p class="text-white/40 text-sm mt-1">Szacowana cena projektu</p>
+                        </div>
 
-            <!-- Not found -->
-            <div id="status-not-found" class="hidden text-center py-20 fade-in-up">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
-                    <i data-lucide="search-x" class="w-8 h-8 text-gray-500"></i>
+                        <!-- Description -->
+                        <div class="reveal-item mb-6" data-reveal="5">
+                            <p class="text-white/60 text-sm leading-relaxed" id="est-description"></p>
+                        </div>
+
+                        <div class="reveal-item" data-reveal="6">
+                            <div class="border-t border-white/10 my-6"></div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="reveal-item space-y-4" data-reveal="7">
+                            <div id="est-cta"></div>
+                            <p class="text-center text-white/40 text-sm">Odezwę się w ciągu 24h z ostateczną wyceną</p>
+                        </div>
+
+                        <!-- Status link -->
+                        <div class="reveal-item mt-6" data-reveal="8">
+                            <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between gap-3">
+                                <div>
+                                    <p class="text-sm text-white/50 mb-0.5">Śledź status zlecenia</p>
+                                    <p class="text-xs font-mono text-brand-light break-all" id="est-status-link"></p>
+                                </div>
+                                <button class="btn-cosmic px-3 py-2 text-xs flex-shrink-0" id="copy-link-btn" onclick="copyStatusLink()">Kopiuj</button>
+                            </div>
+                        </div>
+
+                        <!-- New order -->
+                        <div class="reveal-item text-center mt-6" data-reveal="9">
+                            <a href="/zlecenie" class="text-white/30 hover:text-white/60 text-sm transition-colors">Złóż kolejne zlecenie →</a>
+                        </div>
+                    </div>
                 </div>
-                <h2 class="font-display text-2xl font-bold mb-2">Zlecenie nie znalezione</h2>
-                <p class="text-gray-400 mb-6">Sprawdź poprawność linku lub skontaktuj się ze mną.</p>
-                <a href="/zlecenie" class="btn-cosmic inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                    Złóż nowe zlecenie
-                </a>
-            </div>
 
-            <!-- Status content -->
-            <div id="status-content" class="hidden fade-in-up">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================== STATUS MODE ============================== -->
+    <div id="status-mode" class="min-h-screen flex items-center justify-center px-4 py-12" style="display:none;">
+        <div class="w-full max-w-lg">
+            <!-- Success banner -->
+            <div id="success-banner" class="success-banner mb-6 fade-in" style="display:none;">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🎉</span>
                     <div>
-                        <div class="text-sm text-gray-500 mb-1 flex items-center gap-1.5">
-                            <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
-                            Zlecenie
-                        </div>
-                        <h1 id="st-order-id" class="font-display text-2xl sm:text-3xl font-bold font-mono"></h1>
-                    </div>
-                    <span id="st-status-badge" class="status-badge"></span>
-                </div>
-
-                <!-- Details -->
-                <div class="glass-card rounded-2xl p-6 mb-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <div class="text-xs text-gray-500 mb-0.5">Kategoria</div>
-                            <div id="st-category" class="text-white font-medium"></div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-gray-500 mb-0.5">Data złożenia</div>
-                            <div id="st-date" class="text-white font-medium"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-gray-500 mb-1">Opis</div>
-                        <p id="st-description" class="text-gray-300 text-sm leading-relaxed"></p>
-                    </div>
-                </div>
-
-                <!-- AI Estimate -->
-                <div id="st-estimate-section" class="hidden mb-6">
-                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                        <i data-lucide="brain" class="w-4 h-4 text-brand-primary"></i>
-                        AI Wycena
-                    </h3>
-                    <div class="estimate-card">
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <div class="text-xs text-gray-500 mb-1">⏱ Szacowany czas</div>
-                                <div id="st-czas" class="text-white font-semibold"></div>
-                            </div>
-                            <div>
-                                <div class="text-xs text-gray-500 mb-1">📊 Złożoność</div>
-                                <div id="st-zlozonosc" class="font-semibold"></div>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="text-xs text-gray-500 mb-1.5">🛠 Narzędzia</div>
-                            <div id="st-narzedzia" class="flex flex-wrap gap-1.5"></div>
-                        </div>
-                        <div class="mb-4 p-3 rounded-lg bg-white/5">
-                            <div class="text-xs text-gray-500 mb-1">💰 Szacowana cena</div>
-                            <div id="st-cena" class="text-xl font-display font-bold gradient-text"></div>
-                        </div>
-                        <p id="st-opis" class="text-sm text-gray-300 leading-relaxed"></p>
-                    </div>
-                </div>
-
-                <!-- Final price -->
-                <div id="st-final-section" class="hidden mb-6">
-                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                        <i data-lucide="receipt" class="w-4 h-4 text-green-400"></i>
-                        Wycena końcowa
-                    </h3>
-                    <div class="glass-card rounded-xl p-5" style="border-color: rgba(34,197,94,0.3);">
-                        <div class="mb-3">
-                            <div class="text-xs text-gray-500 mb-1">💰 Cena</div>
-                            <div id="st-final-price" class="text-2xl font-display font-bold text-green-400"></div>
-                        </div>
-                        <div id="st-admin-notes-wrapper" class="hidden">
-                            <div class="text-xs text-gray-500 mb-1">📝 Notatki</div>
-                            <p id="st-admin-notes" class="text-sm text-gray-300 leading-relaxed"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress timeline -->
-                <div class="mt-10 mb-4">
-                    <h3 class="text-sm text-gray-400 uppercase tracking-wider mb-6 text-center">Status realizacji</h3>
-                    <div id="st-progress" class="flex">
-                        <!-- Steps inserted by JS -->
+                        <p class="font-semibold text-green-300">Konsultacja opłacona!</p>
+                        <p class="text-sm text-green-400/70">Odezwę się do Ciebie w ciągu 24h, żeby ustalić termin.</p>
                     </div>
                 </div>
             </div>
+
+            <div id="status-loading" class="text-center">
+                <div class="analysis-orb mx-auto" style="width:80px;height:80px;"></div>
+                <p class="text-white/50 mt-4">Ładuję dane zlecenia...</p>
+            </div>
+
+            <div id="status-content" style="display:none;">
+                <div class="text-center mb-6">
+                    <h1 class="font-display text-2xl font-bold mb-1">Status zlecenia</h1>
+                    <p class="text-white/40 text-sm font-mono" id="status-order-id"></p>
+                </div>
+
+                <!-- Status timeline -->
+                <div class="flex items-start mb-8 relative px-2" id="status-timeline">
+                    <div class="timeline-step">
+                        <div class="timeline-dot" data-status-step="nowe"><span class="text-xs">1</span></div>
+                        <span class="step-label text-white/40 mt-2">Nowe</span>
+                        <div class="timeline-connector"></div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" data-status-step="wycenione"><span class="text-xs">2</span></div>
+                        <span class="step-label text-white/40 mt-2">Wycenione</span>
+                        <div class="timeline-connector"></div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" data-status-step="w-realizacji"><span class="text-xs">3</span></div>
+                        <span class="step-label text-white/40 mt-2">W realizacji</span>
+                        <div class="timeline-connector"></div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" data-status-step="gotowe"><span class="text-xs">4</span></div>
+                        <span class="step-label text-white/40 mt-2">Gotowe</span>
+                    </div>
+                </div>
+
+                <!-- Order details card -->
+                <div class="glass-card-static rounded-2xl p-6 mb-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-display font-semibold">Szczegóły zlecenia</h3>
+                        <span id="status-badge"></span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-white/40">Kategoria</span>
+                            <span id="status-category" class="text-white/80"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-white/40">Data złożenia</span>
+                            <span id="status-date" class="text-white/80"></span>
+                        </div>
+                        <div>
+                            <span class="text-white/40 block mb-1">Opis</span>
+                            <p id="status-description" class="text-white/70 text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI estimate card -->
+                <div id="status-ai-section" class="glass-card-static rounded-2xl p-6 mb-4" style="display:none;">
+                    <h3 class="font-display font-semibold mb-4">Szacunek AI</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/40 text-sm">Złożoność</span>
+                            <span id="status-ai-complexity"></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/40 text-sm">Czas</span>
+                            <span id="status-ai-time" class="text-white/80"></span>
+                        </div>
+                        <div>
+                            <span class="text-white/40 text-sm block mb-1">Narzędzia</span>
+                            <div class="flex flex-wrap gap-2" id="status-ai-tools"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/40 text-sm">Szacunek cenowy</span>
+                            <span id="status-ai-price" class="text-brand-light font-semibold"></span>
+                        </div>
+                        <div>
+                            <span class="text-white/40 text-sm block mb-1">Opis</span>
+                            <p id="status-ai-desc" class="text-white/60 text-sm"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final price card -->
+                <div id="status-final-section" class="glass-card-static rounded-2xl p-6 mb-4 border border-brand-primary/30" style="display:none;">
+                    <h3 class="font-display font-semibold mb-2">Ostateczna wycena</h3>
+                    <p class="price-number text-2xl" id="status-final-price"></p>
+                    <p id="status-admin-notes" class="text-white/50 text-sm mt-2"></p>
+                </div>
+
+                <!-- Actions -->
+                <div class="text-center mt-6 space-y-3">
+                    <div id="status-checkout-area"></div>
+                    <a href="/zlecenie" class="block text-white/30 hover:text-white/60 text-sm transition-colors">Złóż nowe zlecenie →</a>
+                </div>
+            </div>
+
+            <div id="status-error" class="text-center" style="display:none;">
+                <p class="text-4xl mb-4">🤔</p>
+                <h2 class="font-display text-xl font-bold mb-2">Nie znaleziono zlecenia</h2>
+                <p class="text-white/50 mb-6">Sprawdź czy link jest poprawny lub złóż nowe zlecenie.</p>
+                <a href="/zlecenie" class="btn-orange inline-block px-8 py-3 rounded-xl text-sm font-semibold">Złóż zlecenie →</a>
+            </div>
         </div>
+    </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/5 py-6 px-6 text-center text-xs text-gray-600">
-        &copy; 2026 AI-Team.pl — Dariusz Szuca
-    </footer>
-
+    <!-- ============================== JAVASCRIPT ============================== -->
     <script>
-    // ========================================================================
-    // 🔧 FIREBASE CONFIG — wypełnij danymi z Firebase Console
-    // Instrukcja: https://console.firebase.google.com → Nowy projekt → Firestore → Ustawienia → Config
-    // ========================================================================
+    // ===================== FIREBASE INIT =====================
     const firebaseConfig = {
         apiKey: "AIzaSyDKmfXRkXBhYa6yk9idY4QFZdRRhU5eV9I",
         authDomain: "ai-team-zlecenia.firebaseapp.com",
@@ -662,151 +881,344 @@
         appId: "1:715537035293:web:fe2978df1e20bfc3e0d6f4",
         measurementId: "G-N62YHVDCKC"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // ========================================================================
-    // HELPERS
-    // ========================================================================
-    const $ = (sel) => document.querySelector(sel);
-    const show = (el) => { if (typeof el === 'string') el = $(el); el.classList.remove('hidden'); };
-    const hide = (el) => { if (typeof el === 'string') el = $(el); el.classList.add('hidden'); };
+    // ===================== STATE =====================
+    let currentStep = 1;
+    let selectedCategory = null;
+    let answers = {};
+    let currentQuestionIndex = 0;
+    let apiResult = null;
+    let savedDocId = null;
+    let savedOrderId = null;
 
-    const CATEGORY_LABELS = {
-        konsultacja: '💬 Konsultacja AI',
-        automatyzacja: '⚡ Automatyzacja procesu',
-        narzedzie: '🔧 Narzędzie / Aplikacja',
-        wdrozenie: '🏢 Wdrożenie w firmie',
-        inne: '📋 Inne'
-    };
-
-    const STATUS_LABELS = {
-        nowe: 'Nowe',
-        wycenione: 'Wycenione',
-        'w-realizacji': 'W realizacji',
-        gotowe: 'Gotowe'
-    };
-
-    const STATUS_STEPS = ['nowe', 'wycenione', 'w-realizacji', 'gotowe'];
-
-    function generateOrderId() {
-        const year = new Date().getFullYear();
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let code = '';
-        for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
-        return `ZL-${year}-${code}`;
-    }
-
-    function formatDate(timestamp) {
-        if (!timestamp) return '—';
-        const d = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-        return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    }
-
-    function complexityClass(z) {
-        if (!z) return '';
-        const lower = z.toLowerCase();
-        if (lower.includes('prost')) return 'complexity-prosta';
-        if (lower.includes('średni') || lower.includes('sredni')) return 'complexity-srednia';
-        return 'complexity-zlozzona';
-    }
-
-    function renderPills(container, items) {
-        if (!items || !items.length) { container.innerHTML = '<span class="text-gray-500 text-sm">—</span>'; return; }
-        container.innerHTML = items.map(t => `<span class="pill">${t}</span>`).join('');
-    }
-
-    function renderEstimate(prefix, estimate) {
-        $(`#${prefix}-czas`).textContent = estimate.czas || '—';
-        const zEl = $(`#${prefix}-zlozonosc`);
-        zEl.textContent = estimate.zlozonosc || '—';
-        zEl.className = 'font-semibold ' + complexityClass(estimate.zlozonosc);
-        renderPills($(`#${prefix}-narzedzia`), estimate.narzedzia);
-        if (estimate.cena_min && estimate.cena_max) {
-            $(`#${prefix}-cena`).textContent = `${estimate.cena_min} – ${estimate.cena_max} PLN`;
-        } else {
-            $(`#${prefix}-cena`).textContent = estimate.cena || '—';
+    // ===================== QUESTIONS DB =====================
+    const CATEGORIES = {
+        konsultacja: {
+            label: 'Konsultacja AI',
+            subtitle: 'Kilka pytań o Twoje potrzeby — dzięki nim lepiej się przygotuję',
+            questions: [
+                { id: 'q1', text: 'Czego ma dotyczyć konsultacja?', type: 'textarea', placeholder: 'np. Chcę wdrożyć AI do obsługi maili klientów', required: true },
+                { id: 'q2', text: 'Czy już używasz jakichś narzędzi AI?', type: 'pills', options: ['Tak, używam', 'Nie, zaczynam od zera', 'Trochę, ale chaotycznie'], required: true },
+                { id: 'q3', text: 'Co chcesz osiągnąć po konsultacji?', type: 'textarea', placeholder: 'np. Plan wdrożenia AI krok po kroku', required: false }
+            ]
+        },
+        automatyzacja: {
+            label: 'Automatyzacja procesu',
+            subtitle: 'Opowiedz o procesie, który chcesz zautomatyzować',
+            questions: [
+                { id: 'q1', text: 'Jaki proces chcesz zautomatyzować?', type: 'textarea', placeholder: 'np. Co tydzień ręcznie wysyłam raporty do 20 klientów z Excela', required: true },
+                { id: 'q2', text: 'Ile czasu ten proces zajmuje ręcznie?', type: 'pills', options: ['< 1h tygodniowo', '1-5h tygodniowo', '5-10h tygodniowo', '10h+ tygodniowo'], required: true },
+                { id: 'q3', text: 'Jakich narzędzi używasz teraz?', type: 'textarea', placeholder: 'np. Excel, Gmail, Google Sheets, CRM...', required: false },
+                { id: 'q4', text: 'Ile osób wykonuje ten proces?', type: 'pills', options: ['Tylko ja', '2-3 osoby', '4-10 osób', '10+ osób'], required: true }
+            ]
+        },
+        narzedzie: {
+            label: 'Narzędzie / Aplikacja',
+            subtitle: 'Opisz narzędzie, które chcesz stworzyć',
+            questions: [
+                { id: 'q1', text: 'Co ma robić narzędzie?', type: 'textarea', placeholder: 'np. Dashboard do śledzenia zamówień z formularzem dla klientów', required: true },
+                { id: 'q2', text: 'Kto będzie z niego korzystał?', type: 'pills', options: ['Tylko ja', 'Mój zespół (2-5 osób)', 'Klienci', 'Ja + klienci'], required: true },
+                { id: 'q3', text: 'Czy potrzebujesz bazy danych?', type: 'pills', options: ['Tak, dane muszą być zapisywane', 'Nie, wystarczy proste narzędzie', 'Nie wiem'], required: true },
+                { id: 'q4', text: 'Integracje z innymi systemami?', type: 'textarea', placeholder: 'np. Stripe płatności, maile przez Gmail, dane z Google Sheets...', required: false }
+            ]
+        },
+        wdrozenie: {
+            label: 'Wdrożenie AI w firmie',
+            subtitle: 'Kilka pytań o Twoją firmę i potrzeby',
+            questions: [
+                { id: 'q1', text: 'Ile osób pracuje w Twojej firmie?', type: 'pills', options: ['1 (solo)', '2-5', '6-15', '15+'], required: true },
+                { id: 'q2', text: 'Jakie obszary chcesz usprawnić AI?', type: 'chips', options: ['Obsługa klienta', 'Marketing', 'Sprzedaż', 'Operacje', 'Dokumenty', 'Analiza danych', 'Inne'], required: true },
+                { id: 'q3', text: 'Jakie narzędzia firma już używa?', type: 'textarea', placeholder: 'np. Gmail, Slack, Excel, CRM, strona na WordPress...', required: false },
+                { id: 'q4', text: 'Czy zespół miał kontakt z AI?', type: 'pills', options: ['Tak, używamy', 'Trochę, ChatGPT', 'Nie, totalnie nowe'], required: true }
+            ]
+        },
+        inne: {
+            label: 'Inne',
+            subtitle: 'Opisz swój pomysł — dopasuję wycenę',
+            questions: [
+                { id: 'q1', text: 'Opisz czego potrzebujesz', type: 'textarea', placeholder: 'Im więcej szczegółów, tym dokładniejsza wycena...', required: true, rows: 5 },
+                { id: 'q2', text: 'Jaki efekt chcesz osiągnąć?', type: 'textarea', placeholder: 'np. Oszczędzić 10h tygodniowo, zwiększyć sprzedaż, zautomatyzować...', required: false },
+                { id: 'q3', text: 'Masz jakiś termin?', type: 'pills', options: ['Jak najszybciej', 'W ciągu tygodnia', 'W ciągu miesiąca', 'Bez pośpiechu'], required: false }
+            ]
         }
-        $(`#${prefix}-opis`).textContent = estimate.opis || '';
-    }
+    };
 
-    function renderProgress(containerId, currentStatus) {
-        const container = $(containerId);
-        const currentIdx = STATUS_STEPS.indexOf(currentStatus);
-        container.innerHTML = STATUS_STEPS.map((step, i) => {
-            let cls = 'future';
-            if (i < currentIdx) cls = 'completed';
-            else if (i === currentIdx) cls = 'active';
-            const isLast = i === STATUS_STEPS.length - 1;
-            return `
-                <div class="progress-step ${cls}">
-                    ${!isLast ? '<div class="step-line"></div>' : ''}
-                    <div class="step-dot">${i + 1}</div>
-                    <div class="text-xs mt-1 ${cls === 'future' ? 'text-gray-600' : cls === 'active' ? 'text-brand-primary' : 'text-green-400'}">${STATUS_LABELS[step]}</div>
-                </div>
-            `;
-        }).join('');
-    }
+    const ANALYSIS_TEXTS = [
+        'Analizuję opis projektu...',
+        'Oceniam złożoność zadania...',
+        'Dobieram narzędzia i technologie...',
+        'Szacuję czas realizacji...',
+        'Kalkuluję koszt projektu...',
+        'Przygotowuję szczegółową wycenę...'
+    ];
 
-    function showError(msg) {
-        const el = $('#form-error');
-        el.textContent = msg;
-        show(el);
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // ========================================================================
-    // KONSULTACJA INFO TOGGLE
-    // ========================================================================
-    $('#f-category').addEventListener('change', function() {
-        if (this.value === 'konsultacja') {
-            show('#konsultacja-info');
+    // ===================== ROUTING =====================
+    (function init() {
+        const params = new URLSearchParams(window.location.search);
+        const docId = params.get('id');
+        if (docId) {
+            document.getElementById('status-mode').style.display = 'flex';
+            if (params.get('konsultacja') === 'success') {
+                document.getElementById('success-banner').style.display = 'block';
+            }
+            loadStatus(docId);
         } else {
-            hide('#konsultacja-info');
+            document.getElementById('wizard-mode').style.display = 'flex';
+        }
+        lucide.createIcons();
+    })();
+
+    // ===================== STEP NAVIGATION =====================
+    function goToStep(step) {
+        if (step === currentStep) return;
+        const oldEl = document.getElementById('step-' + currentStep);
+        const newEl = document.getElementById('step-' + step);
+        if (!oldEl || !newEl) return;
+
+        // Exit old
+        oldEl.classList.remove('active');
+        oldEl.classList.add('exiting');
+
+        setTimeout(() => {
+            oldEl.classList.remove('exiting');
+            oldEl.style.display = 'none';
+            // Enter new
+            newEl.style.display = 'block';
+            newEl.classList.add('active');
+            currentStep = step;
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 350);
+    }
+
+    function updateProgress() {
+        const pcts = { 1: 10, 2: 30, 3: 55, 4: 75, 5: 100 };
+        document.getElementById('progress-bar').style.width = (pcts[currentStep] || 10) + '%';
+
+        const statusOrder = ['future', 'future', 'future', 'future', 'future'];
+        for (let i = 0; i < 5; i++) {
+            if (i + 1 < currentStep) statusOrder[i] = 'done';
+            else if (i + 1 === currentStep) statusOrder[i] = 'current';
+        }
+
+        document.querySelectorAll('[data-step-indicator]').forEach(el => {
+            const idx = parseInt(el.dataset.stepIndicator) - 1;
+            const dot = el.querySelector('.step-dot');
+            const label = el.querySelector('.step-label');
+            dot.className = 'step-dot ' + statusOrder[idx];
+            if (statusOrder[idx] === 'done') {
+                dot.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+            } else {
+                dot.textContent = idx + 1;
+            }
+            label.className = 'step-label ' + (statusOrder[idx] === 'future' ? 'text-white/30' : 'text-white/60');
+        });
+    }
+
+    // ===================== STEP 1: CATEGORY =====================
+    function selectCategory(el) {
+        // Deselect all
+        document.querySelectorAll('.cat-card').forEach(c => {
+            c.classList.remove('selected');
+            c.querySelector('[data-check]').style.opacity = '0';
+        });
+        el.classList.add('selected');
+        el.querySelector('[data-check]').style.opacity = '1';
+        selectedCategory = el.dataset.cat;
+
+        // GA event
+        if (typeof gtag === 'function') {
+            gtag('event', 'zlecenie_category', { category: selectedCategory });
+        }
+
+        // Auto-advance
+        setTimeout(() => {
+            buildQuestions();
+            goToStep(2);
+        }, 500);
+    }
+
+    // ===================== STEP 2: QUESTIONS =====================
+    function buildQuestions() {
+        const cat = CATEGORIES[selectedCategory];
+        if (!cat) return;
+
+        document.getElementById('step2-subtitle').textContent = cat.subtitle;
+        const container = document.getElementById('questions-container');
+        container.innerHTML = '';
+        answers = {};
+        currentQuestionIndex = 0;
+
+        cat.questions.forEach((q, i) => {
+            const card = document.createElement('div');
+            card.className = 'qa-card';
+            card.id = 'qa-' + i;
+            card.style.display = i === 0 ? 'block' : 'none';
+            card.style.animationDelay = '0.1s';
+
+            let inputHTML = '';
+            if (q.type === 'textarea') {
+                inputHTML = `<textarea class="form-input mt-3" placeholder="${q.placeholder || ''}" rows="${q.rows || 3}" data-qid="${q.id}" oninput="onAnswerChange(${i})"></textarea>`;
+            } else if (q.type === 'pills') {
+                inputHTML = '<div class="flex flex-wrap gap-2 mt-3">';
+                q.options.forEach(opt => {
+                    inputHTML += `<button class="opt-pill" onclick="selectPill(this, ${i}, '${q.id}')">${opt}</button>`;
+                });
+                inputHTML += '</div>';
+            } else if (q.type === 'chips') {
+                inputHTML = '<div class="flex flex-wrap gap-2 mt-3">';
+                q.options.forEach(opt => {
+                    inputHTML += `<button class="chip" onclick="toggleChip(this, ${i}, '${q.id}')">${opt}</button>`;
+                });
+                inputHTML += '</div>';
+            }
+
+            card.innerHTML = `
+                <p class="font-medium text-lg text-white/90">${q.text}</p>
+                ${inputHTML}
+                <div class="collapsed-answer text-sm text-white/50 mt-2" style="display:none;"></div>
+            `;
+            container.appendChild(card);
+        });
+
+        document.getElementById('step2-nav').style.display = 'flex';
+        updateStep2Next();
+    }
+
+    function selectPill(el, qIndex, qId) {
+        el.parentElement.querySelectorAll('.opt-pill').forEach(p => p.classList.remove('selected'));
+        el.classList.add('selected');
+        answers[qId] = el.textContent;
+        advanceQuestion(qIndex);
+    }
+
+    function toggleChip(el, qIndex, qId) {
+        el.classList.toggle('selected');
+        const selected = Array.from(el.parentElement.querySelectorAll('.chip.selected')).map(c => c.textContent);
+        answers[qId] = selected.join(', ');
+        updateStep2Next();
+    }
+
+    function onAnswerChange(qIndex) {
+        const cat = CATEGORIES[selectedCategory];
+        const q = cat.questions[qIndex];
+        const textarea = document.querySelector(`#qa-${qIndex} textarea`);
+        if (textarea) {
+            answers[q.id] = textarea.value.trim();
+        }
+        updateStep2Next();
+    }
+
+    function advanceQuestion(qIndex) {
+        const cat = CATEGORIES[selectedCategory];
+        const nextIndex = qIndex + 1;
+
+        // Collapse current
+        const currentCard = document.getElementById('qa-' + qIndex);
+        const q = cat.questions[qIndex];
+        const answerText = answers[q.id] || '';
+        if (answerText && q.type !== 'textarea') {
+            const collapsedEl = currentCard.querySelector('.collapsed-answer');
+            collapsedEl.innerHTML = `<span class="text-green-400/70">✓</span> ${answerText}`;
+        }
+
+        if (nextIndex < cat.questions.length) {
+            // Show next
+            const nextCard = document.getElementById('qa-' + nextIndex);
+            nextCard.style.display = 'block';
+            nextCard.style.animationDelay = '0.05s';
+            currentQuestionIndex = nextIndex;
+            // Scroll to it
+            setTimeout(() => nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+        }
+        updateStep2Next();
+    }
+
+    function updateStep2Next() {
+        const cat = CATEGORIES[selectedCategory];
+        if (!cat) return;
+        const required = cat.questions.filter(q => q.required);
+        const allAnswered = required.every(q => answers[q.id] && answers[q.id].length > 0);
+        document.getElementById('step2-next').disabled = !allAnswered;
+    }
+
+    // Detect textarea "Enter to advance" — just for textareas, advance on blur or explicit next
+    // Also make single textareas auto-advance when they lose focus
+    document.addEventListener('focusout', function(e) {
+        if (e.target.tagName === 'TEXTAREA' && e.target.closest('.qa-card')) {
+            const card = e.target.closest('.qa-card');
+            const idx = parseInt(card.id.replace('qa-', ''));
+            const val = e.target.value.trim();
+            if (val) {
+                const cat = CATEGORIES[selectedCategory];
+                answers[cat.questions[idx].id] = val;
+                advanceQuestion(idx);
+            }
         }
     });
 
-    // ========================================================================
-    // FORM SUBMIT
-    // ========================================================================
-    let submittedDocId = null;
+    // ===================== STEP 3: SUBMIT =====================
+    async function submitOrder() {
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const phone = document.getElementById('contact-phone').value.trim();
 
-    $('#order-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        hide('#form-error');
+        if (!name || !email) {
+            shakeElement(document.getElementById('submit-btn'));
+            return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            shakeElement(document.getElementById('contact-email'));
+            return;
+        }
 
-        const name = $('#f-name').value.trim();
-        const email = $('#f-email').value.trim();
-        const phone = $('#f-phone').value.trim();
-        const category = $('#f-category').value;
-        const description = $('#f-desc').value.trim();
-        const deadline = $('#f-deadline').value;
-
-        // Validation
-        if (!name) { showError('Wpisz imię i nazwisko.'); return; }
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Wpisz poprawny adres email.'); return; }
-        if (!category) { showError('Wybierz kategorię.'); return; }
-        if (!description) { showError('Opisz czego potrzebujesz.'); return; }
-
-        // Loading state
-        const btn = $('#btn-submit');
+        // Disable button
+        const btn = document.getElementById('submit-btn');
         btn.disabled = true;
-        hide('#btn-text');
-        $('#btn-loading').classList.remove('hidden');
-        $('#btn-loading').classList.add('flex');
+        btn.innerHTML = '<span class="inline-flex items-center gap-2"><span class="dot-loader"><span></span><span></span><span></span></span> Wysyłam...</span>';
 
-        const orderId = generateOrderId();
+        // Build description from answers
+        const cat = CATEGORIES[selectedCategory];
+        let desc = `Kategoria: ${cat.label}\n`;
+        cat.questions.forEach(q => {
+            if (answers[q.id]) {
+                desc += `${q.text}: ${answers[q.id]}\n`;
+            }
+        });
 
+        // Generate order ID
+        const year = new Date().getFullYear();
+        const seq = String(Math.floor(Math.random() * 9000) + 1000);
+        const orderId = `ZL-${year}-${seq}`;
+        savedOrderId = orderId;
+
+        // Go to analysis step
+        goToStep(4);
+
+        // Start animation + API call in parallel
+        const animDone = runAnalysisAnimation();
+        const apiDone = callAPIs(name, email, phone, desc, orderId);
+
+        // Wait for both
+        await Promise.all([animDone, apiDone]);
+
+        // Show results
+        setTimeout(() => {
+            goToStep(5);
+            setTimeout(revealEstimate, 300);
+        }, 500);
+    }
+
+    async function callAPIs(name, email, phone, desc, orderId) {
+        // 1. Save to Firebase
         try {
-            // 1. Save to Firestore
-            const docData = {
-                name,
-                email,
-                phone: phone || null,
-                category,
-                description,
-                deadline: deadline || null,
+            const docRef = await db.collection('zlecenia').add({
+                name, email, phone,
+                category: selectedCategory,
+                answers: { ...answers },
+                description: desc,
                 status: 'nowe',
                 order_id: orderId,
                 ai_estimate: null,
@@ -814,217 +1226,375 @@
                 admin_notes: '',
                 created_at: firebase.firestore.FieldValue.serverTimestamp(),
                 updated_at: firebase.firestore.FieldValue.serverTimestamp()
-            };
-
-            const docRef = await db.collection('zlecenia').add(docData);
-            submittedDocId = docRef.id;
-
-            // GA4 event
-            if (typeof gtag === 'function') {
-                gtag('event', 'zlecenie_submitted', {
-                    event_category: 'orders',
-                    event_label: category,
-                    order_id: orderId
-                });
-            }
-
-            // Show result view
-            hide('#view-form');
-            show('#view-result');
-            $('#res-order-id').textContent = orderId;
-            const statusUrl = `${window.location.origin}/zlecenie?id=${submittedDocId}`;
-            const link = $('#res-status-link');
-            link.href = statusUrl;
-            link.textContent = statusUrl;
-
-            if (category === 'konsultacja') {
-                show('#res-konsultacja-btn');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // 2. Call AI estimate (async, don't block)
-            fetchAiEstimate(description, category, submittedDocId);
-
-            // 3. Send notification (fire and forget)
-            notifyZlecenie({ name, email, phone, category, description, deadline, order_id: orderId, doc_id: submittedDocId });
-
+            });
+            savedDocId = docRef.id;
         } catch (err) {
-            console.error('Submit error:', err);
-            showError('Wystąpił błąd podczas wysyłania. Spróbuj ponownie za chwilę.');
-            btn.disabled = false;
-            show('#btn-text');
-            $('#btn-loading').classList.add('hidden');
-            $('#btn-loading').classList.remove('flex');
+            console.error('Firebase write failed:', err);
+            // Continue anyway — we'll still try to get the AI estimate
         }
-    });
 
-    // ========================================================================
-    // AI ESTIMATE
-    // ========================================================================
-    async function fetchAiEstimate(description, category, docId) {
+        // 2. AI estimate
         try {
             const resp = await fetch('/api/wycena-ai', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ description, category })
+                body: JSON.stringify({ description: desc, category: selectedCategory })
             });
-
-            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-            const estimate = await resp.json();
-
-            // Update Firestore
-            if (docId) {
-                await db.collection('zlecenia').doc(docId).update({
-                    ai_estimate: estimate,
-                    updated_at: firebase.firestore.FieldValue.serverTimestamp()
-                });
+            if (resp.ok) {
+                apiResult = await resp.json();
+                // Update Firebase doc with AI estimate
+                if (savedDocId && apiResult) {
+                    try {
+                        await db.collection('zlecenia').doc(savedDocId).update({
+                            ai_estimate: apiResult,
+                            updated_at: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    } catch (e) { console.error('Firebase update failed:', e); }
+                }
             }
-
-            // Render
-            hide('#res-estimate-loading');
-            show('#res-estimate-content');
-            renderEstimate('res', estimate);
-
         } catch (err) {
-            console.error('AI estimate error:', err);
-            hide('#res-estimate-loading');
-            show('#res-estimate-error');
+            console.error('AI estimate failed:', err);
+            // Fallback estimate
+            apiResult = {
+                complexity: 'średnia',
+                time_estimate: '3-5 dni',
+                tools: ['AI', 'Automatyzacja'],
+                price_min: 500,
+                price_max: 2000,
+                description: 'Szczegółowa wycena zostanie przesłana mailowo w ciągu 24h.'
+            };
         }
-    }
 
-    // ========================================================================
-    // NOTIFY
-    // ========================================================================
-    async function notifyZlecenie(data) {
+        // 3. Telegram notification
         try {
             await fetch('/api/notify-zlecenie', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify({ name, email, phone, category: selectedCategory, description: desc, order_id: orderId, doc_id: savedDocId })
             });
-        } catch (err) {
-            console.error('Notify error:', err);
+        } catch (err) { console.error('Notify failed:', err); }
+
+        // 4. GA event
+        if (typeof gtag === 'function') {
+            gtag('event', 'zlecenie_submit', { category: selectedCategory, order_id: orderId });
         }
     }
 
-    // ========================================================================
-    // CHECKOUT KONSULTACJA
-    // ========================================================================
-    async function handleCheckoutKonsultacja() {
-        const btn = $('#btn-checkout');
-        btn.disabled = true;
-        hide('#checkout-text');
-        $('#checkout-loading').classList.remove('hidden');
-        $('#checkout-loading').classList.add('flex');
+    // ===================== STEP 4: ANALYSIS ANIMATION =====================
+    function runAnalysisAnimation() {
+        return new Promise(resolve => {
+            const lines = document.querySelectorAll('.analysis-line');
+            const bar = document.getElementById('analysis-bar');
+            let lineIndex = 0;
+            const totalLines = ANALYSIS_TEXTS.length;
+            const lineDelay = 1200; // ms per line
 
+            function showLine() {
+                if (lineIndex >= totalLines) {
+                    bar.style.width = '100%';
+                    setTimeout(resolve, 600);
+                    return;
+                }
+
+                const line = lines[lineIndex];
+                line.classList.add('visible');
+                const tw = line.querySelector('[data-typewriter]');
+                typewriter(tw, ANALYSIS_TEXTS[lineIndex], 30, () => {
+                    setTimeout(() => {
+                        line.classList.add('done');
+                        bar.style.width = ((lineIndex + 1) / totalLines * 100) + '%';
+                        lineIndex++;
+                        setTimeout(showLine, 300);
+                    }, 400);
+                });
+            }
+
+            showLine();
+        });
+    }
+
+    function typewriter(el, text, speed, cb) {
+        let i = 0;
+        el.textContent = '';
+        const interval = setInterval(() => {
+            el.textContent += text[i];
+            i++;
+            if (i >= text.length) {
+                clearInterval(interval);
+                if (cb) cb();
+            }
+        }, speed);
+    }
+
+    // ===================== STEP 5: REVEAL =====================
+    function revealEstimate() {
+        if (!apiResult) return;
+
+        const est = apiResult;
+
+        // Confetti
+        spawnConfetti();
+
+        // Order ID
+        document.getElementById('est-order-id').textContent = savedOrderId;
+
+        // Complexity
+        const compEl = document.getElementById('est-complexity');
+        const compMap = {
+            'prosta': { cls: 'complexity-prosta', text: 'PROSTA ✓' },
+            'średnia': { cls: 'complexity-srednia', text: 'ŚREDNIA' },
+            'złożona': { cls: 'complexity-zlożona', text: 'ZŁOŻONA' }
+        };
+        const comp = compMap[(est.complexity || 'średnia').toLowerCase()] || compMap['średnia'];
+        compEl.className = `inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider ${comp.cls}`;
+        compEl.textContent = comp.text;
+
+        // Time
+        document.getElementById('est-time').textContent = est.time_estimate || '3-5 dni';
+
+        // Tools
+        const toolsEl = document.getElementById('est-tools');
+        toolsEl.innerHTML = '';
+        (est.tools || []).forEach((tool, i) => {
+            const pill = document.createElement('span');
+            pill.className = 'tool-pill';
+            pill.textContent = tool;
+            toolsEl.appendChild(pill);
+            setTimeout(() => pill.classList.add('visible'), 100 * i);
+        });
+
+        // Price (counter animation)
+        const priceMin = est.price_min || 500;
+        const priceMax = est.price_max || 2000;
+        document.getElementById('est-price').textContent = '0 PLN';
+
+        // Description
+        document.getElementById('est-description').textContent = est.description || '';
+
+        // CTA
+        const ctaEl = document.getElementById('est-cta');
+        if (selectedCategory === 'konsultacja') {
+            ctaEl.innerHTML = `<button class="btn-primary w-full py-4 text-lg font-bold rounded-xl" onclick="buyConsultation()">Kup konsultację — 200 PLN</button>`;
+        } else {
+            ctaEl.innerHTML = '';
+        }
+
+        // Status link
+        const statusUrl = savedDocId ? `${window.location.origin}/zlecenie?id=${savedDocId}` : '';
+        document.getElementById('est-status-link').textContent = statusUrl;
+
+        // Reveal items one by one
+        const items = document.querySelectorAll('#step-5 .reveal-item');
+        items.forEach((item, i) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+                // Trigger price counter when price is revealed
+                if (i === 4) {
+                    animateCounter(priceMin, priceMax);
+                }
+            }, 300 * (i + 1));
+        });
+    }
+
+    function animateCounter(min, max) {
+        const el = document.getElementById('est-price');
+        const target = min;
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = `od ${current.toLocaleString('pl-PL')} do ${Math.round(eased * max).toLocaleString('pl-PL')} PLN`;
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    function spawnConfetti() {
+        const container = document.getElementById('confetti-container');
+        const colors = ['#f97316', '#fb923c', '#22c55e', '#3b82f6', '#a855f7', '#ffedd5'];
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'confetti-particle';
+            p.style.left = (Math.random() * 100) + '%';
+            p.style.top = '0';
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.animationDelay = (Math.random() * 0.5) + 's';
+            p.style.animationDuration = (1.5 + Math.random()) + 's';
+            container.appendChild(p);
+        }
+        setTimeout(() => { container.innerHTML = ''; }, 3000);
+    }
+
+    // ===================== CHECKOUT =====================
+    async function buyConsultation() {
         try {
             const resp = await fetch('/api/checkout-konsultacja', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ doc_id: submittedDocId })
+                body: JSON.stringify({
+                    email: document.getElementById('contact-email').value.trim(),
+                    name: document.getElementById('contact-name').value.trim(),
+                    doc_id: savedDocId
+                })
             });
-
-            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
             const data = await resp.json();
-
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                throw new Error('No checkout URL');
-            }
+            if (data.url) window.location.href = data.url;
         } catch (err) {
-            console.error('Checkout error:', err);
-            btn.disabled = false;
-            show('#checkout-text');
-            $('#checkout-loading').classList.add('hidden');
-            $('#checkout-loading').classList.remove('flex');
-            alert('Nie udało się utworzyć płatności. Spróbuj ponownie.');
+            console.error('Checkout failed:', err);
+            alert('Wystąpił błąd. Spróbuj ponownie lub napisz do mnie bezpośrednio.');
         }
     }
 
-    // ========================================================================
-    // STATUS TRACKING (MODE 2)
-    // ========================================================================
+    function copyStatusLink() {
+        const url = document.getElementById('est-status-link').textContent;
+        if (!url) return;
+        navigator.clipboard.writeText(url).then(() => {
+            const btn = document.getElementById('copy-link-btn');
+            btn.textContent = 'Skopiowano!';
+            setTimeout(() => { btn.textContent = 'Kopiuj'; }, 2000);
+        }).catch(() => {});
+    }
+
+    // ===================== UTILITY =====================
+    function shakeElement(el) {
+        el.style.animation = 'none';
+        el.offsetHeight; // trigger reflow
+        el.style.animation = 'shake 0.4s ease';
+        setTimeout(() => { el.style.animation = ''; }, 500);
+    }
+
+    // Add shake keyframes dynamically
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }`;
+    document.head.appendChild(shakeStyle);
+
+    // ===================== STATUS MODE =====================
     async function loadStatus(docId) {
-        show('#view-status');
-        show('#status-loading');
-
-        // Check for payment success
-        if (new URLSearchParams(window.location.search).get('konsultacja') === 'success') {
-            show('#status-payment-success');
-        }
-
         try {
             const doc = await db.collection('zlecenia').doc(docId).get();
-
-            hide('#status-loading');
-
             if (!doc.exists) {
-                show('#status-not-found');
+                document.getElementById('status-loading').style.display = 'none';
+                document.getElementById('status-error').style.display = 'block';
                 return;
             }
 
             const data = doc.data();
-            show('#status-content');
+            document.getElementById('status-loading').style.display = 'none';
+            document.getElementById('status-content').style.display = 'block';
 
-            // Header
-            $('#st-order-id').textContent = data.order_id || docId;
-            const badge = $('#st-status-badge');
-            const statusKey = data.status || 'nowe';
-            badge.textContent = STATUS_LABELS[statusKey] || statusKey;
-            badge.className = `status-badge status-${statusKey}`;
+            // Order ID
+            document.getElementById('status-order-id').textContent = data.order_id || docId;
 
-            // Details
-            $('#st-category').textContent = CATEGORY_LABELS[data.category] || data.category;
-            $('#st-date').textContent = formatDate(data.created_at);
-            $('#st-description').textContent = data.description || '';
+            // Badge
+            const status = data.status || 'nowe';
+            const statusLabels = { nowe: 'Nowe', wycenione: 'Wycenione', 'w-realizacji': 'W realizacji', gotowe: 'Gotowe' };
+            const badgeEl = document.getElementById('status-badge');
+            badgeEl.className = `status-badge status-${status}`;
+            badgeEl.textContent = statusLabels[status] || status;
 
-            // AI Estimate
+            // Timeline
+            const statusOrder = ['nowe', 'wycenione', 'w-realizacji', 'gotowe'];
+            const currentIdx = statusOrder.indexOf(status);
+            document.querySelectorAll('#status-timeline .timeline-step').forEach((step, i) => {
+                const dot = step.querySelector('.timeline-dot');
+                const connector = step.querySelector('.timeline-connector');
+                if (i < currentIdx) {
+                    dot.classList.add('done');
+                    dot.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+                    if (connector) connector.classList.add('done');
+                } else if (i === currentIdx) {
+                    dot.classList.add('active');
+                    if (connector) connector.classList.add('active');
+                }
+            });
+
+            // Category
+            const catLabels = { konsultacja: 'Konsultacja AI', automatyzacja: 'Automatyzacja procesu', narzedzie: 'Narzędzie / Aplikacja', wdrozenie: 'Wdrożenie AI w firmie', inne: 'Inne' };
+            document.getElementById('status-category').textContent = catLabels[data.category] || data.category;
+
+            // Date
+            if (data.created_at) {
+                const d = data.created_at.toDate ? data.created_at.toDate() : new Date(data.created_at);
+                document.getElementById('status-date').textContent = d.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+            }
+
+            // Description
+            document.getElementById('status-description').textContent = data.description || '-';
+
+            // AI estimate
             if (data.ai_estimate) {
-                show('#st-estimate-section');
-                renderEstimate('st', data.ai_estimate);
+                const est = data.ai_estimate;
+                document.getElementById('status-ai-section').style.display = 'block';
+
+                const compMap = {
+                    'prosta': { cls: 'complexity-prosta', text: 'Prosta' },
+                    'średnia': { cls: 'complexity-srednia', text: 'Średnia' },
+                    'złożona': { cls: 'complexity-zlożona', text: 'Złożona' }
+                };
+                const comp = compMap[(est.complexity || 'średnia').toLowerCase()] || compMap['średnia'];
+                document.getElementById('status-ai-complexity').innerHTML = `<span class="px-2 py-0.5 rounded-full text-xs font-semibold ${comp.cls}">${comp.text}</span>`;
+                document.getElementById('status-ai-time').textContent = est.time_estimate || '-';
+
+                const toolsEl = document.getElementById('status-ai-tools');
+                toolsEl.innerHTML = '';
+                (est.tools || []).forEach(t => {
+                    const pill = document.createElement('span');
+                    pill.className = 'tool-pill visible';
+                    pill.textContent = t;
+                    toolsEl.appendChild(pill);
+                });
+
+                document.getElementById('status-ai-price').textContent = est.price_min && est.price_max
+                    ? `${est.price_min.toLocaleString('pl-PL')} - ${est.price_max.toLocaleString('pl-PL')} PLN`
+                    : '-';
+
+                document.getElementById('status-ai-desc').textContent = est.description || '';
             }
 
             // Final price
             if (data.final_price) {
-                show('#st-final-section');
-                $('#st-final-price').textContent = `${data.final_price} PLN`;
+                document.getElementById('status-final-section').style.display = 'block';
+                document.getElementById('status-final-price').textContent = data.final_price.toLocaleString('pl-PL') + ' PLN';
                 if (data.admin_notes) {
-                    show('#st-admin-notes-wrapper');
-                    $('#st-admin-notes').textContent = data.admin_notes;
+                    document.getElementById('status-admin-notes').textContent = data.admin_notes;
                 }
             }
 
-            // Progress
-            renderProgress('#st-progress', statusKey);
+            // Checkout CTA
+            if (data.category === 'konsultacja' && status === 'nowe') {
+                document.getElementById('status-checkout-area').innerHTML = `
+                    <button class="btn-primary px-8 py-3 text-sm" onclick="buyConsultationFromStatus('${docId}', '${data.email || ''}', '${data.name || ''}')">
+                        Kup konsultację — 200 PLN
+                    </button>`;
+            }
 
         } catch (err) {
-            console.error('Status load error:', err);
-            hide('#status-loading');
-            show('#status-not-found');
+            console.error('Status load failed:', err);
+            document.getElementById('status-loading').style.display = 'none';
+            document.getElementById('status-error').style.display = 'block';
         }
     }
 
-    // ========================================================================
-    // ROUTER
-    // ========================================================================
-    (function init() {
-        const params = new URLSearchParams(window.location.search);
-        const docId = params.get('id');
-
-        if (docId) {
-            loadStatus(docId);
-        } else {
-            show('#view-form');
+    async function buyConsultationFromStatus(docId, email, name) {
+        try {
+            const resp = await fetch('/api/checkout-konsultacja', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, name, doc_id: docId })
+            });
+            const data = await resp.json();
+            if (data.url) window.location.href = data.url;
+        } catch (err) {
+            alert('Wystąpił błąd. Spróbuj ponownie lub napisz bezpośrednio.');
         }
-
-        // Init Lucide icons
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    })();
+    }
     </script>
-
 </body>
 </html>
