@@ -604,148 +604,29 @@
         .j-corner-br::before { bottom: 0; right: 0; width: 20px; height: 1px; }
         .j-corner-br::after { bottom: 0; right: 0; width: 1px; height: 20px; }
 
-        /* ======================== AI FACE HOLOGRAM v3 ======================== */
-        .ai-face {
+        /* ======================== AI PARTICLE HEAD ======================== */
+        .ai-particle-wrap {
             position: fixed;
-            left: -60px;
+            left: -40px;
             top: 50%;
-            width: 380px;
-            height: 480px;
+            transform: translateY(-50%);
+            width: 420px;
+            height: 520px;
             z-index: 1;
             pointer-events: none;
-            animation: face-float 8s ease-in-out infinite, face-enter 2s ease-out 0.5s both;
+            animation: particle-head-enter 2s ease-out 0.5s both;
         }
-        @keyframes face-enter {
+        @keyframes particle-head-enter {
             from { opacity: 0; left: -200px; }
-            to { opacity: 1; left: -60px; }
+            to { opacity: 1; left: -40px; }
         }
-        @keyframes face-float {
-            0%, 100% { transform: translateY(-50%) translateX(0px) rotateY(0deg); }
-            25% { transform: translateY(-48%) translateX(8px) rotateY(2deg); }
-            50% { transform: translateY(-50%) translateX(15px) rotateY(4deg); }
-            75% { transform: translateY(-52%) translateX(8px) rotateY(2deg); }
-        }
-
-        .ai-face svg {
+        .ai-particle-wrap canvas {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 25px rgba(180, 200, 220, 0.12));
         }
-
-        /* Silver/platinum color palette */
-        .face-line { stroke: rgba(180, 200, 220, 0.12); stroke-width: 0.6; fill: none; }
-        .face-line-bright { stroke: rgba(200, 215, 230, 0.22); stroke-width: 0.8; fill: none; }
-        .face-line-accent { stroke: rgba(249, 115, 22, 0.15); stroke-width: 0.6; fill: none; }
-
-        /* Synapse pulses — traveling lights along connections */
-        .synapse {
-            fill: rgba(200, 220, 240, 0.8);
-            animation: synapse-travel 3s ease-in-out infinite;
-        }
-        .syn-1 { animation-delay: 0s; }
-        .syn-2 { animation-delay: 0.5s; }
-        .syn-3 { animation-delay: 1s; }
-        .syn-4 { animation-delay: 1.5s; }
-        .syn-5 { animation-delay: 2s; }
-        .syn-6 { animation-delay: 0.3s; }
-        .syn-7 { animation-delay: 1.2s; }
-        .syn-8 { animation-delay: 0.8s; }
-        @keyframes synapse-travel {
-            0%, 100% { opacity: 0; r: 1; }
-            10% { opacity: 0.9; r: 2.5; }
-            30% { opacity: 0.6; r: 2; }
-            50% { opacity: 0; r: 1; }
-        }
-
-        /* Eye glow — silver with orange core */
-        .ai-eye-outer { fill: rgba(200, 215, 230, 0.15); }
-        .ai-eye-core {
-            fill: rgba(249, 115, 22, 0.6);
-            animation: eye-core-pulse 2.5s ease-in-out infinite;
-        }
-        .ai-eye-ring {
-            stroke: rgba(200, 215, 230, 0.2);
-            stroke-width: 0.8;
-            fill: none;
-            stroke-dasharray: 5 3;
-            animation: eye-ring-spin 5s linear infinite;
-            transform-origin: center;
-        }
-        .ai-eye-ring-outer {
-            stroke: rgba(180, 200, 220, 0.08);
-            stroke-width: 0.5;
-            fill: none;
-            stroke-dasharray: 2 4;
-            animation: eye-ring-spin 8s linear infinite reverse;
-            transform-origin: center;
-        }
-        @keyframes eye-core-pulse {
-            0%, 100% { opacity: 0.5; r: 4; }
-            50% { opacity: 1; r: 5; }
-        }
-        @keyframes eye-ring-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Vertex nodes */
-        .face-node {
-            fill: rgba(180, 200, 220, 0.2);
-        }
-        .face-node-active {
-            fill: rgba(200, 220, 240, 0.5);
-            animation: node-breathe 3s ease-in-out infinite;
-        }
-        @keyframes node-breathe {
-            0%, 100% { opacity: 0.3; r: 1.5; }
-            50% { opacity: 0.8; r: 2.5; }
-        }
-
-        /* Voice equalizer — silver bars */
-        .voice-bar {
-            fill: rgba(180, 200, 220, 0.25);
-            animation: voice-eq 1.4s ease-in-out infinite;
-        }
-        .voice-bar:nth-child(1) { animation-delay: 0s; }
-        .voice-bar:nth-child(2) { animation-delay: 0.12s; }
-        .voice-bar:nth-child(3) { animation-delay: 0.24s; }
-        .voice-bar:nth-child(4) { animation-delay: 0.36s; }
-        .voice-bar:nth-child(5) { animation-delay: 0.18s; }
-        .voice-bar:nth-child(6) { animation-delay: 0.3s; }
-        .voice-bar:nth-child(7) { animation-delay: 0.06s; }
-        .voice-bar:nth-child(8) { animation-delay: 0.42s; }
-        .voice-bar:nth-child(9) { animation-delay: 0.15s; }
-        @keyframes voice-eq {
-            0%, 100% { transform: scaleY(0.2); opacity: 0.15; }
-            50% { transform: scaleY(1); opacity: 0.5; }
-        }
-
-        /* Rotating HUD frame */
-        .face-frame-inner {
-            stroke: rgba(180, 200, 220, 0.06);
-            stroke-width: 0.8;
-            fill: none;
-            stroke-dasharray: 12 6 4 6;
-            animation: frame-spin 25s linear infinite;
-            transform-origin: 190px 210px;
-        }
-        .face-frame-outer {
-            stroke: rgba(180, 200, 220, 0.04);
-            stroke-width: 0.5;
-            fill: none;
-            stroke-dasharray: 20 10;
-            animation: frame-spin 35s linear infinite reverse;
-            transform-origin: 190px 210px;
-        }
-        @keyframes frame-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Status label */
-        .ai-face-label {
+        .particle-label {
             position: absolute;
-            bottom: 20px;
+            bottom: 5px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Space Grotesk', monospace;
@@ -755,38 +636,20 @@
             color: rgba(180, 200, 220, 0.2);
             white-space: nowrap;
             text-shadow: 0 0 10px rgba(180, 200, 220, 0.08);
-            animation: label-pulse 5s ease-in-out infinite;
+            animation: plabel-pulse 5s ease-in-out infinite;
         }
-        @keyframes label-pulse {
+        @keyframes plabel-pulse {
             0%, 100% { opacity: 0.15; }
             50% { opacity: 0.4; }
         }
-
-        /* Scan line */
-        .face-scan {
-            position: absolute;
-            left: 40px;
-            right: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(180, 200, 220, 0.3), transparent);
-            animation: fscan 5s ease-in-out infinite;
-            box-shadow: 0 0 12px rgba(180, 200, 220, 0.08);
-        }
-        @keyframes fscan {
-            0%, 100% { top: 10%; opacity: 0; }
-            10% { opacity: 0.8; }
-            50% { top: 80%; opacity: 0.8; }
-            60% { opacity: 0; }
-        }
-
         @media (max-width: 1400px) {
-            .ai-face { width: 300px; height: 380px; left: -80px; }
+            .ai-particle-wrap { width: 340px; height: 420px; left: -60px; }
         }
         @media (max-width: 1100px) {
-            .ai-face { width: 220px; height: 280px; left: -70px; opacity: 0.6; }
+            .ai-particle-wrap { width: 260px; height: 320px; left: -60px; opacity: 0.5; }
         }
         @media (max-width: 900px) {
-            .ai-face { display: none; }
+            .ai-particle-wrap { display: none; }
         }
 
         @media (max-width: 640px) {
@@ -891,245 +754,10 @@
         <div class="j-readout j-r6">latency :: 0.24ms</div>
     </div>
 
-    <!-- AI FACE — SIDE PROFILE HOLOGRAM -->
-    <div class="ai-face" id="ai-face">
-        <div class="face-scan"></div>
-
-        <svg viewBox="0 0 380 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="face-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                <filter id="synapse-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-
-            <!-- HUD rotating frames -->
-            <ellipse cx="190" cy="200" rx="170" ry="195" class="face-frame-outer"/>
-            <ellipse cx="190" cy="200" rx="160" ry="185" class="face-frame-inner"/>
-
-            <!-- PROFILE OUTLINE — human head from the side, facing right -->
-            <path d="
-                M200 25
-                Q230 22 255 35
-                Q285 50 300 80
-                Q315 110 315 145
-                Q315 165 305 185
-                Q295 205 280 210
-                Q270 215 265 225
-                Q260 240 275 255
-                Q290 265 290 280
-                Q290 295 275 305
-                Q260 315 250 330
-                Q240 350 235 365
-                L225 380
-                Q215 390 195 395
-                Q180 395 175 385
-                Q170 375 175 360
-                Q180 345 190 335
-                Q200 320 195 310
-                Q185 300 170 295
-                Q150 290 140 280
-                Q130 270 130 255
-                Q130 240 145 230
-                Q155 220 155 210
-                L155 195
-                Q150 185 140 180
-                Q120 172 115 165
-                Q105 150 110 135
-                Q115 120 130 115
-                Q145 108 155 100
-                Q165 88 170 70
-                Q172 55 180 40
-                Q188 28 200 25
-                Z" class="face-line-bright" stroke-dasharray="14 7"/>
-
-            <!-- INNER TRIANGULATION — skull structure -->
-            <!-- Cranium top -->
-            <line x1="200" y1="25" x2="255" y2="35" class="face-line"/>
-            <line x1="255" y1="35" x2="300" y2="80" class="face-line"/>
-            <line x1="200" y1="25" x2="240" y2="70" class="face-line"/>
-            <line x1="255" y1="35" x2="240" y2="70" class="face-line"/>
-            <line x1="300" y1="80" x2="240" y2="70" class="face-line"/>
-            <line x1="200" y1="25" x2="180" y2="40" class="face-line"/>
-            <line x1="180" y1="40" x2="200" y2="70" class="face-line"/>
-            <line x1="200" y1="70" x2="240" y2="70" class="face-line"/>
-            <line x1="170" y1="70" x2="200" y2="70" class="face-line"/>
-            <line x1="180" y1="40" x2="170" y2="70" class="face-line"/>
-
-            <!-- Forehead to brow -->
-            <line x1="170" y1="70" x2="155" y2="100" class="face-line"/>
-            <line x1="200" y1="70" x2="190" y2="100" class="face-line"/>
-            <line x1="240" y1="70" x2="250" y2="110" class="face-line"/>
-            <line x1="300" y1="80" x2="290" y2="120" class="face-line"/>
-            <line x1="300" y1="80" x2="315" y2="145" class="face-line"/>
-            <line x1="155" y1="100" x2="190" y2="100" class="face-line"/>
-            <line x1="190" y1="100" x2="250" y2="110" class="face-line"/>
-            <line x1="250" y1="110" x2="290" y2="120" class="face-line"/>
-
-            <!-- Eye socket area -->
-            <line x1="130" y1="115" x2="155" y2="100" class="face-line"/>
-            <line x1="130" y1="115" x2="155" y2="135" class="face-line"/>
-            <line x1="155" y1="100" x2="155" y2="135" class="face-line-accent"/>
-            <line x1="155" y1="135" x2="190" y2="100" class="face-line"/>
-            <line x1="155" y1="135" x2="190" y2="140" class="face-line"/>
-            <line x1="190" y1="100" x2="190" y2="140" class="face-line"/>
-            <line x1="190" y1="140" x2="250" y2="110" class="face-line"/>
-
-            <!-- Nose profile -->
-            <line x1="115" y1="165" x2="130" y2="115" class="face-line"/>
-            <line x1="110" y1="135" x2="115" y2="165" class="face-line-bright"/>
-            <line x1="115" y1="165" x2="140" y2="180" class="face-line-bright"/>
-            <line x1="140" y1="180" x2="155" y2="195" class="face-line"/>
-            <line x1="130" y1="115" x2="110" y2="135" class="face-line"/>
-            <line x1="155" y1="135" x2="140" y2="180" class="face-line"/>
-            <line x1="155" y1="135" x2="155" y2="195" class="face-line"/>
-
-            <!-- Mid-face cheek -->
-            <line x1="190" y1="140" x2="200" y2="180" class="face-line"/>
-            <line x1="250" y1="110" x2="250" y2="170" class="face-line"/>
-            <line x1="290" y1="120" x2="280" y2="170" class="face-line"/>
-            <line x1="290" y1="120" x2="305" y2="185" class="face-line"/>
-            <line x1="250" y1="170" x2="280" y2="170" class="face-line"/>
-            <line x1="200" y1="180" x2="250" y2="170" class="face-line"/>
-            <line x1="155" y1="195" x2="200" y2="180" class="face-line"/>
-
-            <!-- Lip area -->
-            <line x1="155" y1="210" x2="155" y2="195" class="face-line"/>
-            <line x1="130" y1="255" x2="155" y2="210" class="face-line"/>
-            <line x1="145" y1="230" x2="155" y2="210" class="face-line-bright"/>
-            <line x1="145" y1="230" x2="130" y2="255" class="face-line"/>
-            <line x1="155" y1="210" x2="200" y2="210" class="face-line"/>
-            <line x1="200" y1="180" x2="200" y2="210" class="face-line"/>
-            <line x1="200" y1="210" x2="250" y2="220" class="face-line"/>
-            <line x1="250" y1="170" x2="250" y2="220" class="face-line"/>
-
-            <!-- Jaw line -->
-            <line x1="280" y1="170" x2="280" y2="210" class="face-line"/>
-            <line x1="250" y1="220" x2="280" y2="210" class="face-line"/>
-            <line x1="280" y1="210" x2="275" y2="255" class="face-line"/>
-            <line x1="250" y1="220" x2="275" y2="255" class="face-line"/>
-            <line x1="275" y1="255" x2="275" y2="305" class="face-line"/>
-            <line x1="250" y1="220" x2="250" y2="280" class="face-line"/>
-            <line x1="250" y1="280" x2="275" y2="305" class="face-line"/>
-            <line x1="275" y1="305" x2="250" y2="330" class="face-line"/>
-
-            <!-- Ear suggestion -->
-            <line x1="280" y1="170" x2="305" y2="185" class="face-line"/>
-            <line x1="305" y1="185" x2="290" y2="280" class="face-line"/>
-            <line x1="280" y1="210" x2="290" y2="280" class="face-line"/>
-            <line x1="275" y1="255" x2="290" y2="280" class="face-line"/>
-
-            <!-- Chin & jaw bottom -->
-            <line x1="130" y1="255" x2="140" y2="280" class="face-line"/>
-            <line x1="140" y1="280" x2="170" y2="295" class="face-line"/>
-            <line x1="170" y1="295" x2="195" y2="310" class="face-line"/>
-            <line x1="195" y1="310" x2="250" y2="330" class="face-line"/>
-            <line x1="250" y1="280" x2="195" y2="310" class="face-line"/>
-
-            <!-- Neck -->
-            <line x1="195" y1="310" x2="190" y2="335" class="face-line"/>
-            <line x1="190" y1="335" x2="175" y2="360" class="face-line"/>
-            <line x1="250" y1="330" x2="235" y2="365" class="face-line"/>
-            <line x1="235" y1="365" x2="225" y2="380" class="face-line"/>
-            <line x1="175" y1="360" x2="175" y2="385" class="face-line"/>
-            <line x1="190" y1="335" x2="235" y2="365" class="face-line"/>
-
-            <!-- BRAIN AREA — extra mesh at the back of skull -->
-            <line x1="240" y1="70" x2="280" y2="100" class="face-line"/>
-            <line x1="280" y1="100" x2="290" y2="120" class="face-line"/>
-            <line x1="280" y1="100" x2="315" y2="145" class="face-line"/>
-            <line x1="315" y1="145" x2="305" y2="185" class="face-line"/>
-            <line x1="240" y1="70" x2="280" y2="50" class="face-line"/>
-            <line x1="280" y1="50" x2="300" y2="80" class="face-line"/>
-            <line x1="280" y1="50" x2="310" y2="100" class="face-line"/>
-            <line x1="310" y1="100" x2="315" y2="145" class="face-line"/>
-
-            <!-- SYNAPSE PULSES — neural impulses traveling along paths -->
-            <circle r="2" class="synapse syn-1" filter="url(#synapse-glow)">
-                <animateMotion dur="2.5s" repeatCount="indefinite" path="M200,25 L240,70 L280,100 L315,145"/>
-            </circle>
-            <circle r="2" class="synapse syn-2" filter="url(#synapse-glow)">
-                <animateMotion dur="3s" repeatCount="indefinite" path="M200,25 L180,40 L170,70 L155,100 L130,115"/>
-            </circle>
-            <circle r="2" class="synapse syn-3" filter="url(#synapse-glow)">
-                <animateMotion dur="2.2s" repeatCount="indefinite" path="M315,145 L290,120 L250,110 L190,140"/>
-            </circle>
-            <circle r="2" class="synapse syn-4" filter="url(#synapse-glow)">
-                <animateMotion dur="2.8s" repeatCount="indefinite" path="M130,115 L115,165 L140,180 L155,210"/>
-            </circle>
-            <circle r="2" class="synapse syn-5" filter="url(#synapse-glow)">
-                <animateMotion dur="3.2s" repeatCount="indefinite" path="M280,100 L300,80 L280,50 L255,35"/>
-            </circle>
-            <circle r="2" class="synapse syn-6" filter="url(#synapse-glow)">
-                <animateMotion dur="2.6s" repeatCount="indefinite" path="M190,140 L200,180 L200,210 L195,310"/>
-            </circle>
-            <circle r="2" class="synapse syn-7" filter="url(#synapse-glow)">
-                <animateMotion dur="3.5s" repeatCount="indefinite" path="M305,185 L290,280 L275,305 L250,330"/>
-            </circle>
-            <circle r="2" class="synapse syn-8" filter="url(#synapse-glow)">
-                <animateMotion dur="2.4s" repeatCount="indefinite" path="M155,135 L155,195 L155,210 L145,230 L130,255"/>
-            </circle>
-
-            <!-- VERTEX NODES — key anatomical points -->
-            <circle cx="200" cy="25" r="2.5" class="face-node-active"/>
-            <circle cx="255" cy="35" r="1.5" class="face-node"/>
-            <circle cx="280" cy="50" r="1.5" class="face-node"/>
-            <circle cx="300" cy="80" r="2" class="face-node-active"/>
-            <circle cx="180" cy="40" r="1.5" class="face-node"/>
-            <circle cx="170" cy="70" r="1.5" class="face-node"/>
-            <circle cx="200" cy="70" r="2" class="face-node-active"/>
-            <circle cx="240" cy="70" r="2" class="face-node-active"/>
-            <circle cx="280" cy="100" r="1.5" class="face-node"/>
-            <circle cx="310" cy="100" r="1.5" class="face-node"/>
-            <circle cx="155" cy="100" r="2" class="face-node-active"/>
-            <circle cx="190" cy="100" r="1.5" class="face-node"/>
-            <circle cx="250" cy="110" r="1.5" class="face-node"/>
-            <circle cx="290" cy="120" r="1.5" class="face-node"/>
-            <circle cx="130" cy="115" r="2" class="face-node-active"/>
-            <circle cx="315" cy="145" r="2" class="face-node-active"/>
-            <circle cx="155" cy="135" r="2" class="face-node-active"/>
-            <circle cx="190" cy="140" r="2" class="face-node-active"/>
-            <circle cx="110" cy="135" r="2" class="face-node-active"/>
-            <circle cx="115" cy="165" r="2" class="face-node-active"/>
-            <circle cx="140" cy="180" r="1.5" class="face-node"/>
-            <circle cx="200" cy="180" r="1.5" class="face-node"/>
-            <circle cx="250" cy="170" r="1.5" class="face-node"/>
-            <circle cx="280" cy="170" r="1.5" class="face-node"/>
-            <circle cx="305" cy="185" r="1.5" class="face-node"/>
-            <circle cx="155" cy="195" r="1.5" class="face-node"/>
-            <circle cx="155" cy="210" r="2" class="face-node-active"/>
-            <circle cx="200" cy="210" r="1.5" class="face-node"/>
-            <circle cx="145" cy="230" r="1.5" class="face-node"/>
-            <circle cx="130" cy="255" r="2" class="face-node-active"/>
-            <circle cx="250" cy="220" r="1.5" class="face-node"/>
-            <circle cx="280" cy="210" r="1.5" class="face-node"/>
-            <circle cx="275" cy="255" r="1.5" class="face-node"/>
-            <circle cx="290" cy="280" r="1.5" class="face-node"/>
-            <circle cx="170" cy="295" r="1.5" class="face-node"/>
-            <circle cx="195" cy="310" r="2" class="face-node-active"/>
-            <circle cx="250" cy="330" r="1.5" class="face-node"/>
-            <circle cx="190" cy="335" r="1.5" class="face-node"/>
-            <circle cx="175" cy="360" r="1.5" class="face-node"/>
-
-            <!-- EYE — side view (almond shape) -->
-            <g>
-                <ellipse cx="158" cy="132" rx="20" ry="10" class="ai-eye-ring-outer"/>
-                <ellipse cx="158" cy="132" rx="14" ry="7" class="ai-eye-ring" stroke-dasharray="5 3"/>
-                <ellipse cx="158" cy="132" rx="8" ry="5" class="ai-eye-outer"/>
-                <circle cx="155" cy="132" r="3.5" class="ai-eye-core" filter="url(#face-glow)"/>
-            </g>
-
-            <!-- VOICE EQUALIZER — near mouth -->
-            <g transform="translate(128, 242)">
-                <rect x="0" y="-3" width="3" height="6" rx="1" class="voice-bar" style="transform-origin:1.5px 0"/>
-                <rect x="6" y="-5" width="3" height="10" rx="1" class="voice-bar" style="transform-origin:7.5px 0"/>
-                <rect x="12" y="-7" width="3" height="14" rx="1" class="voice-bar" style="transform-origin:13.5px 0"/>
-                <rect x="18" y="-9" width="3" height="18" rx="1" class="voice-bar" style="transform-origin:19.5px 0"/>
-                <rect x="24" y="-7" width="3" height="14" rx="1" class="voice-bar" style="transform-origin:25.5px 0"/>
-                <rect x="30" y="-5" width="3" height="10" rx="1" class="voice-bar" style="transform-origin:31.5px 0"/>
-                <rect x="36" y="-3" width="3" height="6" rx="1" class="voice-bar" style="transform-origin:37.5px 0"/>
-            </g>
-        </svg>
-
-        <div class="ai-face-label">neural engine :: active</div>
+    <!-- AI PARTICLE HEAD -->
+    <div class="ai-particle-wrap" id="particle-head-wrap">
+        <canvas id="particle-head" width="840" height="1040"></canvas>
+        <div class="particle-label">neural engine :: active</div>
     </div>
 
     <!-- ============================== WIZARD MODE ============================== -->
@@ -2352,5 +1980,269 @@
         }
     }
     </script>
+<script>
+// ======================== PARTICLE HEAD SYSTEM ========================
+(function() {
+    const canvas = document.getElementById('particle-head');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+
+    // Side profile head shape — points define the silhouette
+    // Coordinates normalized to canvas (840x1040)
+    const profilePath = [
+        // Top of head
+        [380, 60], [420, 50], [460, 48], [500, 55], [540, 70],
+        [570, 90], [595, 115], [615, 145], [625, 180], [630, 220],
+        // Back of skull
+        [628, 260], [622, 300], [612, 340], [600, 370], [585, 395],
+        // Back of neck / ear area
+        [570, 410], [560, 430], [555, 455], [558, 480], [555, 510],
+        [545, 540], [530, 560],
+        // Jaw line
+        [505, 575], [480, 585], [450, 590], [420, 588],
+        [390, 580], [360, 568], [335, 555], [315, 540],
+        // Chin
+        [300, 520], [292, 500], [288, 480],
+        // Under lip / mouth
+        [290, 460], [285, 445],
+        // Lip forward
+        [275, 435], [265, 425], [258, 415],
+        // Nose
+        [250, 400], [240, 380], [232, 360], [225, 340],
+        [220, 320], [218, 300], [222, 285], [230, 275],
+        // Nose tip
+        [218, 268], [208, 258], [200, 250],
+        // Nose bridge up
+        [205, 238], [210, 220], [218, 200], [225, 185],
+        // Brow
+        [235, 170], [248, 158], [260, 150],
+        // Forehead
+        [275, 142], [290, 130], [310, 115], [330, 100],
+        [350, 85], [365, 72], [380, 60],
+    ];
+
+    // Generate particles scattered around the head profile
+    const particles = [];
+    const PARTICLE_COUNT = 450;
+    const CONNECTION_DIST = 55;
+
+    // Helper: random point near the head profile
+    function generateParticle() {
+        // 70% near the outline, 30% fill inside
+        const isOutline = Math.random() < 0.7;
+
+        if (isOutline) {
+            // Pick a random segment on the profile
+            const idx = Math.floor(Math.random() * (profilePath.length - 1));
+            const [x1, y1] = profilePath[idx];
+            const [x2, y2] = profilePath[idx + 1];
+            const t = Math.random();
+            const spread = 15 + Math.random() * 25;
+            return {
+                baseX: x1 + (x2 - x1) * t + (Math.random() - 0.5) * spread,
+                baseY: y1 + (y2 - y1) * t + (Math.random() - 0.5) * spread,
+            };
+        } else {
+            // Interior fill — centroid area
+            const cx = 400, cy = 320;
+            const angle = Math.random() * Math.PI * 2;
+            const dist = Math.random() * 160;
+            return {
+                baseX: cx + Math.cos(angle) * dist * 0.9,
+                baseY: cy + Math.sin(angle) * dist * 1.1,
+            };
+        }
+    }
+
+    // Eye position (side profile)
+    const eyeX = 248, eyeY = 215;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const p = generateParticle();
+        const distToEye = Math.hypot(p.baseX - eyeX, p.baseY - eyeY);
+        const isEyeArea = distToEye < 35;
+
+        particles.push({
+            x: p.baseX,
+            y: p.baseY,
+            baseX: p.baseX,
+            baseY: p.baseY,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            size: isEyeArea ? 1.5 + Math.random() * 2 : 0.8 + Math.random() * 1.5,
+            brightness: isEyeArea ? 0.6 + Math.random() * 0.4 : 0.15 + Math.random() * 0.35,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.005 + Math.random() * 0.015,
+            drift: 8 + Math.random() * 12,
+            isEye: isEyeArea,
+        });
+    }
+
+    // Add specific eye particles for a brighter eye cluster
+    for (let i = 0; i < 25; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * 25;
+        particles.push({
+            x: eyeX + Math.cos(angle) * dist,
+            y: eyeY + Math.sin(angle) * dist,
+            baseX: eyeX + Math.cos(angle) * dist,
+            baseY: eyeY + Math.sin(angle) * dist,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2,
+            size: 1.5 + Math.random() * 2.5,
+            brightness: 0.7 + Math.random() * 0.3,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.01 + Math.random() * 0.02,
+            drift: 4 + Math.random() * 6,
+            isEye: true,
+        });
+    }
+
+    // Synapse pulses — bright particles traveling along neural paths
+    const synapsePaths = [
+        // Crown to back
+        [[380,60],[460,48],[540,70],[615,145],[630,220]],
+        // Forehead to eye
+        [[310,115],[260,150],[248,215]],
+        // Eye to nose
+        [[248,215],[225,275],[208,258]],
+        // Jaw
+        [[505,575],[390,580],[300,520],[288,480]],
+        // Back skull to neck
+        [[612,340],[555,455],[530,560]],
+        // Brain interior
+        [[420,150],[500,200],[550,300],[500,400]],
+    ];
+
+    const synapses = synapsePaths.map(path => ({
+        path,
+        progress: Math.random(),
+        speed: 0.003 + Math.random() * 0.004,
+        size: 3 + Math.random() * 3,
+        brightness: 0.6 + Math.random() * 0.4,
+    }));
+
+    let time = 0;
+    let globalSway = 0;
+
+    function animate() {
+        time += 0.016;
+        globalSway = Math.sin(time * 0.3) * 12; // Gentle side sway
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Update particles
+        particles.forEach(p => {
+            p.x = p.baseX + Math.sin(time * p.speed * 60 + p.phase) * p.drift + globalSway;
+            p.y = p.baseY + Math.cos(time * p.speed * 40 + p.phase) * p.drift * 0.6;
+        });
+
+        // Draw connections
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < CONNECTION_DIST) {
+                    const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
+                    const isEyeConn = particles[i].isEye && particles[j].isEye;
+                    if (isEyeConn) {
+                        ctx.strokeStyle = `rgba(249, 150, 60, ${alpha * 2.5})`;
+                    } else {
+                        ctx.strokeStyle = `rgba(180, 200, 220, ${alpha})`;
+                    }
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw particles
+        particles.forEach(p => {
+            const pulse = 0.7 + Math.sin(time * 2 + p.phase) * 0.3;
+            const alpha = p.brightness * pulse;
+
+            if (p.isEye) {
+                // Orange glow for eye particles
+                ctx.fillStyle = `rgba(249, 140, 50, ${alpha})`;
+                ctx.shadowColor = 'rgba(249, 115, 22, 0.3)';
+                ctx.shadowBlur = 8;
+            } else {
+                ctx.fillStyle = `rgba(190, 210, 230, ${alpha})`;
+                ctx.shadowColor = 'rgba(190, 210, 230, 0.1)';
+                ctx.shadowBlur = 4;
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        ctx.shadowBlur = 0;
+
+        // Draw synapse pulses
+        synapses.forEach(s => {
+            s.progress += s.speed;
+            if (s.progress > 1) s.progress = 0;
+
+            const path = s.path;
+            const totalSegs = path.length - 1;
+            const fullProg = s.progress * totalSegs;
+            const segIdx = Math.min(Math.floor(fullProg), totalSegs - 1);
+            const segT = fullProg - segIdx;
+
+            const sx = path[segIdx][0] + (path[segIdx + 1][0] - path[segIdx][0]) * segT + globalSway;
+            const sy = path[segIdx][1] + (path[segIdx + 1][1] - path[segIdx][1]) * segT;
+
+            const pulse = 0.5 + Math.sin(time * 4 + s.progress * 10) * 0.5;
+
+            // Glow
+            ctx.fillStyle = `rgba(200, 220, 240, ${s.brightness * pulse * 0.8})`;
+            ctx.shadowColor = 'rgba(200, 220, 240, 0.5)';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(sx, sy, s.size * pulse, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Trail
+            for (let t = 1; t <= 4; t++) {
+                const tp = s.progress - t * 0.015;
+                if (tp < 0) continue;
+                const tFull = tp * totalSegs;
+                const tSeg = Math.min(Math.floor(tFull), totalSegs - 1);
+                const tT = tFull - tSeg;
+                const tx = path[tSeg][0] + (path[tSeg + 1][0] - path[tSeg][0]) * tT + globalSway;
+                const ty = path[tSeg][1] + (path[tSeg + 1][1] - path[tSeg][1]) * tT;
+                const ta = s.brightness * pulse * (1 - t / 5) * 0.4;
+                ctx.fillStyle = `rgba(200, 220, 240, ${ta})`;
+                ctx.shadowBlur = 0;
+                ctx.beginPath();
+                ctx.arc(tx, ty, s.size * 0.5 * (1 - t / 5), 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Start only when visible
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            animate();
+            observer.disconnect();
+        }
+    });
+    observer.observe(canvas);
+
+    // Fallback: start after 1s anyway
+    setTimeout(() => { if (!canvas._started) { canvas._started = true; animate(); observer.disconnect(); } }, 1000);
+})();
+</script>
 </body>
 </html>
