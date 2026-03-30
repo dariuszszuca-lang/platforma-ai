@@ -363,13 +363,13 @@ section {
 /* ============ PRICING ============ */
 .pricing-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 700px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .pricing-grid { grid-template-columns: 1fr; }
 }
 
@@ -767,7 +767,7 @@ footer a {
 
     <div class="pricing-grid">
       <div class="price-card">
-        <div class="price-label">AI Team Club Online</div>
+        <div class="price-label">Miesięczny</div>
         <div class="price-amount">149 <span>PLN/mies</span></div>
         <div class="price-per">~37 PLN za spotkanie</div>
         <ul class="price-features">
@@ -777,21 +777,35 @@ footer a {
           <li>Nagrania wszystkich spotkań</li>
           <li>Anuluj kiedy chcesz</li>
         </ul>
-        <a href="mailto:dariusz.szuca@gmail.com?subject=AI Team Club Online — dołączam" class="price-btn price-btn-outline">Dołącz</a>
+        <a href="mailto:dariusz.szuca@gmail.com?subject=AI Team Club — plan miesięczny" class="price-btn price-btn-outline">Dołącz</a>
       </div>
 
       <div class="price-card featured">
-        <div class="price-label">Warsztat + 3 mies. Club</div>
-        <div class="price-amount">649 <span>PLN</span></div>
-        <div class="price-per">Oszczędzasz 298 PLN</div>
+        <div class="price-label">3 miesiące</div>
+        <div class="price-amount">399 <span>PLN</span></div>
+        <div class="price-per">133 PLN/mies — oszczędzasz 48 PLN</div>
         <ul class="price-features">
-          <li>Warsztat AI (4 dni, stacjonarnie)</li>
-          <li>3 miesiące AI Team Club gratis</li>
-          <li>13+ asystentów AI do pobrania</li>
-          <li>Certyfikat ukończenia</li>
-          <li>Dostęp do nagrań i materiałów</li>
+          <li>12 spotkań online</li>
+          <li>Aktualizacje, narzędzia, automatyzacje</li>
+          <li>Sesja Q&A na żywo</li>
+          <li>Nagrania wszystkich spotkań</li>
+          <li>Najlepsza opcja na start</li>
         </ul>
-        <a href="mailto:dariusz.szuca@gmail.com?subject=Warsztat + Club — zapisuję się" class="price-btn price-btn-primary">Zapisz się</a>
+        <a href="mailto:dariusz.szuca@gmail.com?subject=AI Team Club — plan 3 miesiące" class="price-btn price-btn-primary">Dołącz</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-label">6 miesięcy</div>
+        <div class="price-amount">749 <span>PLN</span></div>
+        <div class="price-per">125 PLN/mies — oszczędzasz 145 PLN</div>
+        <ul class="price-features">
+          <li>24 spotkania online</li>
+          <li>Aktualizacje, narzędzia, automatyzacje</li>
+          <li>Sesja Q&A na żywo</li>
+          <li>Nagrania wszystkich spotkań</li>
+          <li>Największa oszczędność</li>
+        </ul>
+        <a href="mailto:dariusz.szuca@gmail.com?subject=AI Team Club — plan 6 miesięcy" class="price-btn price-btn-outline">Dołącz</a>
       </div>
     </div>
   </div>
