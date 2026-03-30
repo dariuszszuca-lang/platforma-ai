@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>AI Team Club Online — cotygodniowe spotkania AI | ai-team.pl</title>
+<meta name="description" content="Cotygodniowe spotkania online o AI. Aktualizacje, nowe narzędzia, Q&A, automatyzacje. Każdy poniedziałek o 9:00. 149 PLN/mies.">
+<meta property="og:title" content="AI Team Club Online — nie zostań w tyle">
+<meta property="og:description" content="Cotygodniowe spotkania AI. Aktualizacje, narzędzia, Q&A. Poniedziałki 9:00. 149 PLN/mies.">
+<meta property="og:url" content="https://ai-team.pl/club">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #020203;
+  --bg-card: rgba(255,255,255,0.03);
+  --bg-card-hover: rgba(255,255,255,0.06);
+  --orange: #f97316;
+  --orange-light: #fb923c;
+  --orange-dim: rgba(249,115,22,0.15);
+  --orange-glow: rgba(249,115,22,0.3);
+  --white: #f0f0f2;
+  --white-dim: rgba(255,255,255,0.6);
+  --white-muted: rgba(255,255,255,0.35);
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(249,115,22,0.3);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white-dim);
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============ GLOW ============ */
+.glow-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* ============ NAV ============ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background: rgba(2,2,3,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.nav-logo span { color: var(--orange); }
+
+.nav-back {
+  font-size: 13px;
+  color: var(--white-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-back:hover { color: var(--orange); }
+
+/* ============ HERO ============ */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange-dim);
+  border: 1px solid rgba(249,115,22,0.25);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+
+.hero-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero h1 .orange {
+  background: linear-gradient(135deg, var(--orange), var(--orange-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--white-dim);
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--orange), #ea580c);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--orange-glow);
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 40px;
+  font-size: 0.88rem;
+  color: var(--white-muted);
+}
+
+.hero-meta strong {
+  color: var(--white);
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+}
+
+/* ============ DIVIDER ============ */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249,115,22,0.3), transparent);
+  border: none;
+  margin: 0;
+}
+
+/* ============ SECTION ============ */
+section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--white-dim);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.centered { text-align: center; }
+.centered .section-desc { margin-left: auto; margin-right: auto; }
+
+/* ============ CARDS ============ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.88rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+/* ============ FORMAT ============ */
+.format-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .format-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.format-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.format-item .fi-time {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.format-item .fi-day {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.format-item .fi-desc {
+  font-size: 0.8rem;
+  color: var(--white-muted);
+}
+
+/* ============ AGENDA ============ */
+.agenda {
+  max-width: 600px;
+}
+
+.agenda-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.agenda-item:last-child { border-bottom: none; }
+
+.agenda-time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--orange);
+  min-width: 60px;
+  padding-top: 2px;
+}
+
+.agenda-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.agenda-content p {
+  font-size: 0.85rem;
+  color: var(--white-muted);
+}
+
+/* ============ PRICING ============ */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
+.price-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.price-card:hover {
+  border-color: var(--border-hover);
+}
+
+.price-card.featured {
+  border-color: var(--orange);
+  background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, var(--bg-card) 100%);
+}
+
+.price-card.featured::before {
+  content: 'NAJLEPSZY DEAL';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 4px 16px;
+  border-radius: 100px;
+}
+
+.price-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white-muted);
+  margin-bottom: 12px;
+}
+
+.price-amount {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-amount span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white-muted);
+}
+
+.price-per {
+  font-size: 0.82rem;
+  color: var(--white-muted);
+  margin-bottom: 20px;
+}
+
+.price-features {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.price-features li {
+  padding: 6px 0;
+  font-size: 0.88rem;
+  color: var(--white-dim);
+  position: relative;
+  padding-left: 24px;
+}
+
+.price-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.price-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.price-btn-primary {
+  background: linear-gradient(135deg, var(--orange), #ea580c);
+  color: #fff;
+}
+
+.price-btn-primary:hover {
+  box-shadow: 0 4px 20px var(--orange-glow);
+}
+
+.price-btn-outline {
+  border: 2px solid var(--border);
+  color: var(--white);
+  background: transparent;
+}
+
+.price-btn-outline:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* ============ FOR WHO ============ */
+.for-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 600px) {
+  .for-grid { grid-template-columns: 1fr; }
+}
+
+.for-box h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.for-box ul {
+  list-style: none;
+}
+
+.for-box ul li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--white-dim);
+}
+
+.for-box ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+}
+
+/* ============ FAQ ============ */
+details {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+details:hover { border-color: rgba(255,255,255,0.12); }
+
+details summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  list-style: none;
+}
+
+details summary::-webkit-details-marker { display: none; }
+details summary .t { color: var(--orange); font-size: 1.2rem; transition: transform 0.3s; }
+details[open] summary .t { transform: rotate(45deg); }
+
+details .body {
+  padding: 0 24px 18px;
+  font-size: 0.9rem;
+  color: var(--white-dim);
+  line-height: 1.7;
+}
+
+/* ============ CTA BOTTOM ============ */
+.cta-bottom {
+  text-align: center;
+  padding: 80px 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-bottom h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.cta-bottom p {
+  font-size: 1rem;
+  color: var(--white-dim);
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+
+/* ============ FOOTER ============ */
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--white-muted);
+}
+
+footer a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+  section { padding: 56px 0; }
+  .hero { padding: 120px 0 60px; }
+  .hero-meta { flex-direction: column; gap: 16px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">AI<span>.</span>Team</a>
+    <a href="/" class="nav-back">← ai-team.pl</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <div class="dot"></div>
+      Co poniedziałek o 9:00
+    </div>
+
+    <h1>AI Team <span class="orange">Club Online</span></h1>
+
+    <p class="hero-sub">AI zmienia się szybciej niż zdążysz przeczytać newsy. Co poniedziałek dostajesz update, nowe narzędzia i odpowiedzi na pytania — żebyś zawsze był o krok przed rynkiem.</p>
+
+    <a href="#cennik" class="hero-cta">Dołącz do Clubu</a>
+
+    <div class="hero-meta">
+      <div>
+        <strong>9:00</strong>
+        Poniedziałek
+      </div>
+      <div>
+        <strong>~60 min</strong>
+        Na żywo + nagranie
+      </div>
+      <div>
+        <strong>149 PLN</strong>
+        Miesięcznie
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CO DOSTAJESZ -->
+<section>
+  <div class="container centered">
+    <div class="section-label">Co dostajesz</div>
+    <h2 class="section-title">Każdy poniedziałek, ta sama godzina, nowa wiedza</h2>
+    <p class="section-desc">60 minut które oszczędzają Ci godzin googlowania. Co nowego w AI, jakie narzędzia warto przetestować, jak to zastosować u siebie.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Aktualizacje AI</h3>
+        <p>Co się zmieniło w ostatnim tygodniu. Nowe modele, funkcje, zmiany w narzędziach. Pigułka zamiast 10 artykułów.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛠</div>
+        <h3>Nowe narzędzia</h3>
+        <p>Przegląd narzędzi AI które warto znać. Live demo, porównania, realne zastosowania — nie marketing.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Automatyzacje</h3>
+        <p>Gotowe przepisy na automatyzację. Claude Code, skrypty, MCP, integracje — krok po kroku.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Sesja Q&A</h3>
+        <p>Zadaj pytanie, pokaż ekran, rozwiążemy razem. Twój problem = temat spotkania.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FORMAT -->
+<section>
+  <div class="container centered">
+    <div class="section-label">Format spotkania</div>
+    <h2 class="section-title">60 minut, zero lania wody</h2>
+    <p class="section-desc">Wchodzisz, dostajesz wartość, wychodzisz mądrzejszy. Nagranie dostępne jeśli nie możesz być na żywo.</p>
+
+    <div class="agenda" style="margin: 0 auto;">
+      <div class="agenda-item">
+        <div class="agenda-time">9:00</div>
+        <div class="agenda-content">
+          <h4>AI Radar — co nowego</h4>
+          <p>Przegląd najważniejszych zmian w AI z ostatniego tygodnia</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">9:15</div>
+        <div class="agenda-content">
+          <h4>Narzędzie tygodnia</h4>
+          <p>Live demo nowego narzędzia lub funkcji — jak to działa w praktyce</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">9:30</div>
+        <div class="agenda-content">
+          <h4>Automatyzacja / Tip</h4>
+          <p>Gotowy przepis do wdrożenia od razu po spotkaniu</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">9:45</div>
+        <div class="agenda-content">
+          <h4>Q&A — Twoje pytania</h4>
+          <p>Pytania, problemy, screen sharing — rozwiązujemy na żywo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DLA KOGO -->
+<section>
+  <div class="container">
+    <div class="section-label">Dla kogo</div>
+    <h2 class="section-title">Club jest dla Ciebie jeśli...</h2>
+
+    <div class="for-grid">
+      <div class="for-box">
+        <h3>Absolwenci warsztatów</h3>
+        <ul>
+          <li>Masz asystentów AI i chcesz je aktualizować</li>
+          <li>Chcesz nadążyć za zmianami w narzędziach</li>
+          <li>Potrzebujesz wsparcia po warsztacie</li>
+          <li>Chcesz poznać nowe automatyzacje</li>
+        </ul>
+      </div>
+      <div class="for-box">
+        <h3>Przedsiębiorcy z każdej branży</h3>
+        <ul>
+          <li>Używasz AI ale czujesz że zostajesz w tyle</li>
+          <li>Nie masz czasu śledzić newsów AI</li>
+          <li>Chcesz konkretne narzędzia, nie teorię</li>
+          <li>Potrzebujesz miejsca żeby zadać pytanie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CENNIK -->
+<section id="cennik">
+  <div class="container centered">
+    <div class="section-label">Cennik</div>
+    <h2 class="section-title">Wybierz swój plan</h2>
+    <p class="section-desc">Anuluj kiedy chcesz. Zero zobowiązań. Dostęp do nagrań tak długo jak jesteś członkiem.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-label">AI Team Club Online</div>
+        <div class="price-amount">149 <span>PLN/mies</span></div>
+        <div class="price-per">~37 PLN za spotkanie</div>
+        <ul class="price-features">
+          <li>4 spotkania online miesięcznie</li>
+          <li>Aktualizacje, narzędzia, automatyzacje</li>
+          <li>Sesja Q&A na żywo</li>
+          <li>Nagrania wszystkich spotkań</li>
+          <li>Anuluj kiedy chcesz</li>
+        </ul>
+        <a href="mailto:dariusz.szuca@gmail.com?subject=AI Team Club Online — dołączam" class="price-btn price-btn-outline">Dołącz</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-label">Warsztat + 3 mies. Club</div>
+        <div class="price-amount">649 <span>PLN</span></div>
+        <div class="price-per">Oszczędzasz 298 PLN</div>
+        <ul class="price-features">
+          <li>Warsztat AI (4 dni, stacjonarnie)</li>
+          <li>3 miesiące AI Team Club gratis</li>
+          <li>13+ asystentów AI do pobrania</li>
+          <li>Certyfikat ukończenia</li>
+          <li>Dostęp do nagrań i materiałów</li>
+        </ul>
+        <a href="mailto:dariusz.szuca@gmail.com?subject=Warsztat + Club — zapisuję się" class="price-btn price-btn-primary">Zapisz się</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section>
+  <div class="container" style="max-width: 700px;">
+    <div class="centered">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Pytania i odpowiedzi</h2>
+      <br>
+    </div>
+
+    <details open>
+      <summary>Czy muszę być na żywo?<span class="t">+</span></summary>
+      <div class="body">Nie. Nagranie jest dostępne do obejrzenia w dowolnym momencie — tak długo jak masz aktywną subskrypcję. Ale ci co przychodzą na żywo mogą zadawać pytania i pokazywać ekran.</div>
+    </details>
+
+    <details>
+      <summary>Czy muszę najpierw zrobić warsztat?<span class="t">+</span></summary>
+      <div class="body">Nie. Club jest otwarty dla wszystkich. Ale jeśli jesteś zupełnie zielony z AI — warsztat da Ci fundament. Club zakłada że podstawy już znasz.</div>
+    </details>
+
+    <details>
+      <summary>Jak wygląda anulowanie?<span class="t">+</span></summary>
+      <div class="body">Piszesz maila lub wiadomość — anuluję od następnego miesiąca. Zero pytań, zero problemów. Dostęp masz do końca opłaconego okresu.</div>
+    </details>
+
+    <details>
+      <summary>Ile trwa jedno spotkanie?<span class="t">+</span></summary>
+      <div class="body">Około 60 minut. Czasem krócej (45 min), czasem dłużej (75 min) — zależy od pytań. Szanuję Twój czas, nie rozciągam na siłę.</div>
+    </details>
+
+    <details>
+      <summary>Czy to się opłaca przy 149 PLN?<span class="t">+</span></summary>
+      <div class="body">To 37 PLN za spotkanie — mniej niż kawa z ciastkiem. Jedno narzędzie lub automatyzacja które poznasz i wdrożysz oszczędza Ci godziny pracy tygodniowo. Pierwszy tydzień zwraca koszt całego miesiąca.</div>
+    </details>
+
+    <details>
+      <summary>Na jakiej platformie spotkania?<span class="t">+</span></summary>
+      <div class="body">Google Meet lub Zoom — link dostajesz mailem przed spotkaniem. Wchodzisz z przeglądarki, zero instalacji.</div>
+    </details>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <div class="container">
+    <h2>Nie zostań w tyle.</h2>
+    <p>AI zmienia się co tydzień. Jeden poniedziałek rano wystarczy żeby nadążyć.</p>
+    <a href="#cennik" class="hero-cta">Dołącz do AI Team Club</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="/">AI-Team</a> · Dariusz Szuca · Gdańsk</p>
+</footer>
+
+</body>
+</html>
