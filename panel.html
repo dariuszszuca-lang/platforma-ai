@@ -39,6 +39,7 @@
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <style>
@@ -200,18 +201,24 @@
                 <span class="font-heading font-bold text-xl gradient-text">AI-Team</span>
             </div>
             <h2 class="font-heading font-semibold text-lg text-white">Panel Zleceń</h2>
-            <p class="text-sm text-gray-400 mt-1">Wprowadź hasło dostępu</p>
+            <p class="text-sm text-gray-400 mt-1">Zaloguj się aby kontynuować</p>
         </div>
         <div class="space-y-4">
+            <div class="relative">
+                <input type="email" id="authEmail" placeholder="Email..."
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 transition"
+                    onkeydown="if(event.key==='Enter')document.getElementById('authPassword').focus()">
+                <i data-lucide="mail" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            </div>
             <div class="relative">
                 <input type="password" id="authPassword" placeholder="Hasło..."
                     class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 transition"
                     onkeydown="if(event.key==='Enter')checkAuth()">
                 <i data-lucide="lock" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
             </div>
-            <p id="authError" class="text-red-400 text-sm hidden">Bledne haslo</p>
-            <button onclick="checkAuth()" class="btn-orange w-full py-3 rounded-xl font-semibold text-sm tracking-wide">
-                Wejdz
+            <p id="authError" class="text-red-400 text-sm hidden"></p>
+            <button onclick="checkAuth()" id="authBtn" class="btn-orange w-full py-3 rounded-xl font-semibold text-sm tracking-wide">
+                Zaloguj
             </button>
         </div>
     </div>
@@ -372,36 +379,58 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // ===== AUTH =====
-const AUTH_HASH = btoa('ai-team-2026');
+const auth = firebase.auth();
 
 function checkAuth() {
-    const input = document.getElementById('authPassword').value;
-    if (btoa(input) === AUTH_HASH) {
-        sessionStorage.setItem('panel_auth', '1');
-        document.getElementById('authModal').classList.add('hidden');
-        document.getElementById('dashboard').classList.remove('hidden');
-        initDashboard();
-    } else {
-        const card = document.getElementById('authCard');
-        const err = document.getElementById('authError');
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const btn = document.getElementById('authBtn');
+    const err = document.getElementById('authError');
+
+    if (!email || !password) {
         err.classList.remove('hidden');
-        err.textContent = 'Błędne hasło';
-        card.classList.add('shake');
-        setTimeout(() => card.classList.remove('shake'), 500);
+        err.textContent = 'Wpisz email i hasło';
+        return;
     }
+
+    btn.textContent = 'Logowanie...';
+    btn.disabled = true;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then(function() {
+            document.getElementById('authModal').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            initDashboard();
+        })
+        .catch(function(error) {
+            const card = document.getElementById('authCard');
+            err.classList.remove('hidden');
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                err.textContent = 'Błędny email lub hasło';
+            } else if (error.code === 'auth/too-many-requests') {
+                err.textContent = 'Za dużo prób — spróbuj za chwilę';
+            } else {
+                err.textContent = 'Błąd logowania';
+            }
+            card.classList.add('shake');
+            setTimeout(function() { card.classList.remove('shake'); }, 500);
+            btn.textContent = 'Zaloguj';
+            btn.disabled = false;
+        });
 }
 
 function logout() {
-    sessionStorage.removeItem('panel_auth');
-    location.reload();
+    auth.signOut().then(function() { location.reload(); });
 }
 
-// Check session on load
-if (sessionStorage.getItem('panel_auth') === '1') {
-    document.getElementById('authModal').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    document.addEventListener('DOMContentLoaded', initDashboard);
-}
+// Check if already logged in
+auth.onAuthStateChanged(function(user) {
+    if (user) {
+        document.getElementById('authModal').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        initDashboard();
+    }
+});
 
 // ===== STATE =====
 let allOrders = [];
