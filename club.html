@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<title>AI Team Club Online — cotygodniowe spotkania AI | ai-team.pl</title>
-<meta name="description" content="Cotygodniowe spotkania online o AI. Aktualizacje, nowe narzędzia, Q&A, automatyzacje. Każdy poniedziałek o 9:00. 149 PLN/mies.">
+<title>AI Team Club Online — spotkania AI 2x w miesiącu | ai-team.pl</title>
+<meta name="description" content="Spotkania online o AI 2x w miesiącu. Aktualizacje, nowe narzędzia, Q&A, automatyzacje. Od 99 PLN/mies.">
 <meta property="og:title" content="AI Team Club Online — nie zostań w tyle">
-<meta property="og:description" content="Cotygodniowe spotkania AI. Aktualizacje, narzędzia, Q&A. Poniedziałki 9:00. 149 PLN/mies.">
+<meta property="og:description" content="Spotkania AI 2x w miesiącu. Aktualizacje, narzędzia, Q&A. Od 99 PLN/mies.">
 <meta property="og:url" content="https://ai-team.pl/club">
 
 <!-- Google Analytics -->
@@ -288,44 +288,6 @@ section {
   line-height: 1.6;
 }
 
-/* ============ FORMAT ============ */
-.format-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 700px) {
-  .format-grid { grid-template-columns: 1fr 1fr; }
-}
-
-.format-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px 16px;
-  text-align: center;
-}
-
-.format-item .fi-time {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--orange);
-  margin-bottom: 4px;
-}
-
-.format-item .fi-day {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 8px;
-}
-
-.format-item .fi-desc {
-  font-size: 0.8rem;
-  color: var(--white-muted);
-}
-
 /* ============ AGENDA ============ */
 .agenda {
   max-width: 600px;
@@ -363,9 +325,9 @@ section {
 /* ============ PRICING ============ */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 900px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -378,7 +340,6 @@ section {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 36px 28px;
-  text-align: center;
   transition: all 0.3s;
   position: relative;
 }
@@ -393,7 +354,7 @@ section {
 }
 
 .price-card.featured::before {
-  content: 'NAJLEPSZY DEAL';
+  content: 'MAX 10 MIEJSC';
   position: absolute;
   top: -12px;
   left: 50%;
@@ -405,39 +366,27 @@ section {
   letter-spacing: 2px;
   padding: 4px 16px;
   border-radius: 100px;
+  white-space: nowrap;
 }
 
-.price-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--white-muted);
-  margin-bottom: 12px;
-}
-
-.price-amount {
-  font-size: 2.4rem;
+.price-tier-name {
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--white);
-  line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-.price-amount span {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--white-muted);
-}
-
-.price-per {
-  font-size: 0.82rem;
+.price-tier-desc {
+  font-size: 0.85rem;
   color: var(--white-muted);
   margin-bottom: 20px;
+  line-height: 1.5;
 }
 
 .price-features {
   list-style: none;
   text-align: left;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .price-features li {
@@ -456,37 +405,113 @@ section {
   font-weight: 700;
 }
 
-.price-btn {
-  display: inline-block;
-  width: 100%;
-  padding: 14px 0;
+.price-features li.disabled {
+  color: var(--white-muted);
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.price-features li.disabled::before {
+  content: '—';
+  color: var(--white-muted);
+}
+
+.price-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
   border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 700;
   text-decoration: none;
-  text-align: center;
   transition: all 0.3s;
-}
-
-.price-btn-primary {
-  background: linear-gradient(135deg, var(--orange), #ea580c);
-  color: #fff;
-}
-
-.price-btn-primary:hover {
-  box-shadow: 0 4px 20px var(--orange-glow);
-}
-
-.price-btn-outline {
-  border: 2px solid var(--border);
-  color: var(--white);
+  border: 1px solid var(--border);
   background: transparent;
 }
 
-.price-btn-outline:hover {
+.price-option:hover {
   border-color: var(--orange);
-  color: var(--orange);
+  background: var(--orange-dim);
 }
+
+.price-option-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-option-period {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.price-option-save {
+  font-size: 0.72rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.price-option-amount {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.price-option.best {
+  border-color: var(--orange);
+  background: var(--orange-dim);
+}
+
+.price-option.best .price-option-period::after {
+  content: ' — BEST DEAL';
+  font-size: 0.65rem;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+/* ============ COMPARE ============ */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.compare-table th {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.compare-table td {
+  color: var(--white-dim);
+}
+
+.compare-table td:nth-child(2),
+.compare-table td:nth-child(3),
+.compare-table th:nth-child(2),
+.compare-table th:nth-child(3) {
+  text-align: center;
+}
+
+.compare-table .check { color: var(--orange); font-weight: 700; }
+.compare-table .dash { color: var(--white-muted); }
 
 /* ============ FOR WHO ============ */
 .for-grid {
@@ -599,7 +624,6 @@ footer a {
   section { padding: 56px 0; }
   .hero { padding: 120px 0 60px; }
   .hero-meta { flex-direction: column; gap: 16px; }
-  .pricing-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -620,27 +644,27 @@ footer a {
   <div class="container">
     <div class="hero-badge">
       <div class="dot"></div>
-      Start 13 kwietnia · co poniedziałek o 9:00
+      Start 13 kwietnia · 2x w miesiącu
     </div>
 
     <h1>AI Team <span class="orange">Club Online</span></h1>
 
-    <p class="hero-sub">AI zmienia się szybciej niż zdążysz przeczytać newsy. Co poniedziałek dostajesz update, nowe narzędzia i odpowiedzi na pytania — żebyś zawsze był o krok przed rynkiem.</p>
+    <p class="hero-sub">AI zmienia się szybciej niż zdążysz przeczytać newsy. Dwa razy w miesiącu dostajesz update, nowe narzędzia i odpowiedzi na pytania — żebyś zawsze był o krok przed rynkiem.</p>
 
     <a href="#cennik" class="hero-cta">Dołącz do Clubu</a>
 
     <div class="hero-meta">
       <div>
-        <strong>9:00</strong>
-        Poniedziałek
+        <strong>2x</strong>
+        W miesiącu
       </div>
       <div>
         <strong>~60 min</strong>
         Na żywo + nagranie
       </div>
       <div>
-        <strong>149 PLN</strong>
-        Miesięcznie
+        <strong>od 99</strong>
+        PLN/mies
       </div>
     </div>
   </div>
@@ -652,14 +676,14 @@ footer a {
 <section>
   <div class="container centered">
     <div class="section-label">Co dostajesz</div>
-    <h2 class="section-title">Każdy poniedziałek, ta sama godzina, nowa wiedza</h2>
+    <h2 class="section-title">Dwa spotkania w miesiącu, zero lania wody</h2>
     <p class="section-desc">60 minut na Zoom które oszczędzają Ci godzin googlowania. Nagrania i materiały na grupie AITeam Club Online na Skool.</p>
 
     <div class="cards">
       <div class="card">
         <div class="card-icon">⚡</div>
         <h3>Aktualizacje AI</h3>
-        <p>Co się zmieniło w ostatnim tygodniu. Nowe modele, funkcje, zmiany w narzędziach. Pigułka zamiast 10 artykułów.</p>
+        <p>Co się zmieniło w ostatnich 2 tygodniach. Nowe modele, funkcje, zmiany w narzędziach. Pigułka zamiast 10 artykułów.</p>
       </div>
 
       <div class="card">
@@ -689,7 +713,7 @@ footer a {
 <section>
   <div class="container centered">
     <div class="section-label">Format spotkania</div>
-    <h2 class="section-title">60 minut, zero lania wody</h2>
+    <h2 class="section-title">60 minut, konkretna wiedza</h2>
     <p class="section-desc">Wchodzisz, dostajesz wartość, wychodzisz mądrzejszy. Nagranie dostępne jeśli nie możesz być na żywo.</p>
 
     <div class="agenda" style="margin: 0 auto;">
@@ -697,13 +721,13 @@ footer a {
         <div class="agenda-time">9:00</div>
         <div class="agenda-content">
           <h4>AI Radar — co nowego</h4>
-          <p>Przegląd najważniejszych zmian w AI z ostatniego tygodnia</p>
+          <p>Przegląd najważniejszych zmian w AI z ostatnich 2 tygodni</p>
         </div>
       </div>
       <div class="agenda-item">
         <div class="agenda-time">9:15</div>
         <div class="agenda-content">
-          <h4>Narzędzie tygodnia</h4>
+          <h4>Narzędzie spotkania</h4>
           <p>Live demo nowego narzędzia lub funkcji — jak to działa w praktyce</p>
         </div>
       </div>
@@ -766,48 +790,133 @@ footer a {
     <p class="section-desc">Anuluj kiedy chcesz. Zero zobowiązań. Dostęp do nagrań tak długo jak jesteś członkiem.</p>
 
     <div class="pricing-grid">
+
+      <!-- CLUB -->
       <div class="price-card">
-        <div class="price-label">Miesięczny</div>
-        <div class="price-amount">149 <span>PLN/mies</span></div>
-        <div class="price-per">~37 PLN za spotkanie</div>
+        <div class="price-tier-name">Club</div>
+        <div class="price-tier-desc">Spotkania online + nagrania</div>
+
         <ul class="price-features">
-          <li>4 spotkania online miesięcznie</li>
-          <li>Aktualizacje, narzędzia, automatyzacje</li>
+          <li>2 spotkania online miesięcznie</li>
+          <li>Aktualizacje AI, narzędzia, automatyzacje</li>
           <li>Sesja Q&A na żywo</li>
           <li>Nagrania + materiały na Skool</li>
           <li>Anuluj kiedy chcesz</li>
+          <li class="disabled">Konsultacja 1:1</li>
         </ul>
-        <a href="https://buy.stripe.com/dRmcN4arI5Ya9VegPY1kA0E" class="price-btn price-btn-outline">Dołącz</a>
+
+        <div class="price-options">
+          <a href="#STRIPE_CLUB_MONTHLY" class="price-option">
+            <div class="price-option-left">
+              <div class="price-option-period">Miesięcznie</div>
+            </div>
+            <div class="price-option-amount">99 PLN</div>
+          </a>
+          <a href="#STRIPE_CLUB_QUARTERLY" class="price-option">
+            <div class="price-option-left">
+              <div class="price-option-period">3 miesiące</div>
+              <div class="price-option-save">oszczędzasz 48 PLN (–16%)</div>
+            </div>
+            <div class="price-option-amount">249 PLN</div>
+          </a>
+          <a href="#STRIPE_CLUB_HALFYEAR" class="price-option best">
+            <div class="price-option-left">
+              <div class="price-option-period">6 miesięcy</div>
+              <div class="price-option-save">oszczędzasz 195 PLN (–33%)</div>
+            </div>
+            <div class="price-option-amount">399 PLN</div>
+          </a>
+        </div>
       </div>
 
+      <!-- CLUB PRO -->
       <div class="price-card featured">
-        <div class="price-label">3 miesiące</div>
-        <div class="price-amount">399 <span>PLN</span></div>
-        <div class="price-per">133 PLN/mies — oszczędzasz 48 PLN</div>
+        <div class="price-tier-name">Club Pro</div>
+        <div class="price-tier-desc">Wszystko z Club + 1h konsultacja 1:1 miesięcznie</div>
+
         <ul class="price-features">
-          <li>12 spotkań online</li>
-          <li>Aktualizacje, narzędzia, automatyzacje</li>
+          <li>2 spotkania online miesięcznie</li>
+          <li>Aktualizacje AI, narzędzia, automatyzacje</li>
           <li>Sesja Q&A na żywo</li>
           <li>Nagrania + materiały na Skool</li>
-          <li>Najlepsza opcja na start</li>
+          <li>Anuluj kiedy chcesz</li>
+          <li>1h konsultacja 1:1 miesięcznie</li>
         </ul>
-        <a href="https://buy.stripe.com/7sY14m57o2LYebu6bk1kA0C" class="price-btn price-btn-primary">Dołącz</a>
+
+        <div class="price-options">
+          <a href="#STRIPE_PRO_MONTHLY" class="price-option">
+            <div class="price-option-left">
+              <div class="price-option-period">Miesięcznie</div>
+            </div>
+            <div class="price-option-amount">249 PLN</div>
+          </a>
+          <a href="#STRIPE_PRO_QUARTERLY" class="price-option">
+            <div class="price-option-left">
+              <div class="price-option-period">3 miesiące</div>
+              <div class="price-option-save">oszczędzasz 98 PLN (–13%)</div>
+            </div>
+            <div class="price-option-amount">649 PLN</div>
+          </a>
+          <a href="#STRIPE_PRO_HALFYEAR" class="price-option best">
+            <div class="price-option-left">
+              <div class="price-option-period">6 miesięcy</div>
+              <div class="price-option-save">oszczędzasz 495 PLN (–33%)</div>
+            </div>
+            <div class="price-option-amount">999 PLN</div>
+          </a>
+        </div>
       </div>
 
-      <div class="price-card">
-        <div class="price-label">6 miesięcy</div>
-        <div class="price-amount">749 <span>PLN</span></div>
-        <div class="price-per">125 PLN/mies — oszczędzasz 145 PLN</div>
-        <ul class="price-features">
-          <li>24 spotkania online</li>
-          <li>Aktualizacje, narzędzia, automatyzacje</li>
-          <li>Sesja Q&A na żywo</li>
-          <li>Nagrania + materiały na Skool</li>
-          <li>Największa oszczędność</li>
-        </ul>
-        <a href="https://buy.stripe.com/cNi9AS9nE72e2sMczI1kA0D" class="price-btn price-btn-outline">Dołącz</a>
-      </div>
     </div>
+
+    <!-- PORÓWNANIE -->
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Club</th>
+          <th>Club Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Spotkania live (2x/mies)</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Nagrania na Skool</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Materiały + prompte</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Sesja Q&A na żywo</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>1h konsultacja 1:1/mies</td>
+          <td class="dash">—</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Limitowane miejsca</td>
+          <td class="dash">—</td>
+          <td class="check">max 10</td>
+        </tr>
+        <tr>
+          <td>Cena od</td>
+          <td><strong>67 PLN/mies</strong></td>
+          <td><strong>167 PLN/mies</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 </section>
 
@@ -833,6 +942,11 @@ footer a {
     </details>
 
     <details>
+      <summary>Czym różni się Club od Club Pro?<span class="t">+</span></summary>
+      <div class="body">Club Pro to wszystko co w Club, plus 1 godzina indywidualnej konsultacji 1:1 miesięcznie. Możemy pracować nad Twoim konkretnym przypadkiem, wdrożeniem AI w Twojej firmie, automatyzacją — cokolwiek potrzebujesz. Miejsc Pro jest max 10, żeby każdy dostał pełną uwagę.</div>
+    </details>
+
+    <details>
       <summary>Jak wygląda anulowanie?<span class="t">+</span></summary>
       <div class="body">Piszesz maila lub wiadomość — anuluję od następnego miesiąca. Zero pytań, zero problemów. Dostęp masz do końca opłaconego okresu.</div>
     </details>
@@ -840,11 +954,6 @@ footer a {
     <details>
       <summary>Ile trwa jedno spotkanie?<span class="t">+</span></summary>
       <div class="body">Około 60 minut. Czasem krócej (45 min), czasem dłużej (75 min) — zależy od pytań. Szanuję Twój czas, nie rozciągam na siłę.</div>
-    </details>
-
-    <details>
-      <summary>Czy to się opłaca przy 149 PLN?<span class="t">+</span></summary>
-      <div class="body">To 37 PLN za spotkanie — mniej niż kawa z ciastkiem. Jedno narzędzie lub automatyzacja które poznasz i wdrożysz oszczędza Ci godziny pracy tygodniowo. Pierwszy tydzień zwraca koszt całego miesiąca.</div>
     </details>
 
     <details>
@@ -860,7 +969,7 @@ footer a {
 <div class="cta-bottom">
   <div class="container">
     <h2>Nie zostań w tyle.</h2>
-    <p>AI zmienia się co tydzień. Jeden poniedziałek rano wystarczy żeby nadążyć.</p>
+    <p>AI zmienia się co tydzień. Dwa spotkania w miesiącu wystarczą żeby nadążyć.</p>
     <a href="#cennik" class="hero-cta">Dołącz do AI Team Club</a>
   </div>
 </div>
