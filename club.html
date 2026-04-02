@@ -504,9 +504,7 @@ section {
 }
 
 .compare-table td:nth-child(2),
-.compare-table td:nth-child(3),
-.compare-table th:nth-child(2),
-.compare-table th:nth-child(3) {
+.compare-table th:nth-child(2) {
   text-align: center;
 }
 
@@ -789,130 +787,76 @@ footer a {
     <h2 class="section-title">Wybierz swój plan</h2>
     <p class="section-desc">Anuluj kiedy chcesz. Zero zobowiązań. Dostęp do nagrań tak długo jak jesteś członkiem.</p>
 
-    <div class="pricing-grid">
+    <div class="pricing-grid" style="grid-template-columns:1fr;max-width:480px;">
 
-      <!-- CLUB -->
-      <div class="price-card">
-        <div class="price-tier-name">Club</div>
-        <div class="price-tier-desc">Spotkania online + nagrania</div>
-
-        <ul class="price-features">
-          <li>2 spotkania online miesięcznie</li>
-          <li>Aktualizacje AI, narzędzia, automatyzacje</li>
-          <li>Sesja Q&A na żywo</li>
-          <li>Nagrania + materiały na Skool</li>
-          <li>Anuluj kiedy chcesz</li>
-          <li class="disabled">Konsultacja 1:1</li>
-        </ul>
-
-        <div class="price-options">
-          <a href="https://buy.stripe.com/cNifZ99s50HF51f4ardIA0f" class="price-option">
-            <div class="price-option-left">
-              <div class="price-option-period">Miesięcznie</div>
-            </div>
-            <div class="price-option-amount">99 PLN</div>
-          </a>
-          <a href="https://buy.stripe.com/bJeaEP8o1bmjdxL36ndIA0h" class="price-option">
-            <div class="price-option-left">
-              <div class="price-option-period">3 miesiące</div>
-              <div class="price-option-save">oszczędzasz 48 PLN (–16%)</div>
-            </div>
-            <div class="price-option-amount">249 PLN</div>
-          </a>
-          <a href="https://buy.stripe.com/cNi8wH33H8a7alzeP5dIA0i" class="price-option best">
-            <div class="price-option-left">
-              <div class="price-option-period">6 miesięcy</div>
-              <div class="price-option-save">oszczędzasz 195 PLN (–33%)</div>
-            </div>
-            <div class="price-option-amount">399 PLN</div>
-          </a>
-        </div>
-      </div>
-
-      <!-- CLUB PRO -->
       <div class="price-card featured">
-        <div class="price-tier-name">Club Pro</div>
-        <div class="price-tier-desc">Wszystko z Club + 1h konsultacja 1:1 miesięcznie</div>
+        <div class="price-tier-name">AI Team Club Online</div>
+        <div class="price-tier-desc">2 spotkania w miesiącu + nagrania + materiały na Skool</div>
 
         <ul class="price-features">
-          <li>2 spotkania online miesięcznie</li>
-          <li>Aktualizacje AI, narzędzia, automatyzacje</li>
+          <li>2 spotkania online miesięcznie (Zoom)</li>
+          <li>Aktualizacje AI, nowe narzędzia, automatyzacje</li>
           <li>Sesja Q&A na żywo</li>
           <li>Nagrania + materiały na Skool</li>
           <li>Anuluj kiedy chcesz</li>
-          <li>1h konsultacja 1:1 miesięcznie</li>
         </ul>
 
         <div class="price-options">
-          <a href="https://buy.stripe.com/5kQbIT8o161ZgJXcGXdIA0g" class="price-option">
+          <a href="https://buy.stripe.com/dRmcN4arI5Ya9VegPY1kA0E" class="price-option">
             <div class="price-option-left">
               <div class="price-option-period">Miesięcznie</div>
             </div>
-            <div class="price-option-amount">249 PLN</div>
+            <div class="price-option-amount">99 PLN/mies</div>
           </a>
-          <a href="https://buy.stripe.com/00w00b1ZD9ebalzfT9dIA0j" class="price-option">
+          <a href="https://buy.stripe.com/7sY14m57o2LYebu6bk1kA0C" class="price-option best">
             <div class="price-option-left">
               <div class="price-option-period">3 miesiące</div>
-              <div class="price-option-save">oszczędzasz 98 PLN (–13%)</div>
+              <div class="price-option-save">oszczędzasz 48 PLN</div>
             </div>
-            <div class="price-option-amount">649 PLN</div>
+            <div class="price-option-amount">249 PLN</div>
           </a>
-          <a href="https://buy.stripe.com/dRm28jgUxcqndxLgXddIA0k" class="price-option best">
+          <a href="https://buy.stripe.com/cNi9AS9nE72e2sMczI1kA0D" class="price-option">
             <div class="price-option-left">
               <div class="price-option-period">6 miesięcy</div>
-              <div class="price-option-save">oszczędzasz 495 PLN (–33%)</div>
+              <div class="price-option-save">oszczędzasz 145 PLN</div>
             </div>
-            <div class="price-option-amount">999 PLN</div>
+            <div class="price-option-amount">449 PLN</div>
           </a>
         </div>
       </div>
 
     </div>
 
-    <!-- PORÓWNANIE -->
-    <table class="compare-table">
+    <p style="font-size:0.9rem;color:var(--white-muted);margin-top:20px;">Potrzebujesz konsultacji 1:1? <a href="https://ai-team.pl/zlecenie" target="_blank" style="color:var(--orange);text-decoration:underline;">Złóż zlecenie</a></p>
+
+    <!-- PODSUMOWANIE -->
+    <table class="compare-table" style="max-width:480px;">
       <thead>
         <tr>
+          <th>Co dostajesz</th>
           <th></th>
-          <th>Club</th>
-          <th>Club Pro</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Spotkania live (2x/mies)</td>
           <td class="check">✓</td>
-          <td class="check">✓</td>
         </tr>
         <tr>
           <td>Nagrania na Skool</td>
           <td class="check">✓</td>
-          <td class="check">✓</td>
         </tr>
         <tr>
-          <td>Materiały + prompte</td>
-          <td class="check">✓</td>
+          <td>Materiały + prompty</td>
           <td class="check">✓</td>
         </tr>
         <tr>
           <td>Sesja Q&A na żywo</td>
           <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Anulowanie w dowolnym momencie</td>
           <td class="check">✓</td>
-        </tr>
-        <tr>
-          <td>1h konsultacja 1:1/mies</td>
-          <td class="dash">—</td>
-          <td class="check">✓</td>
-        </tr>
-        <tr>
-          <td>Limitowane miejsca</td>
-          <td class="dash">—</td>
-          <td class="check">max 10</td>
-        </tr>
-        <tr>
-          <td>Cena od</td>
-          <td><strong>67 PLN/mies</strong></td>
-          <td><strong>167 PLN/mies</strong></td>
         </tr>
       </tbody>
     </table>
