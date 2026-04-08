@@ -547,6 +547,79 @@ section {
   color: var(--orange);
 }
 
+/* AGENTY AI */
+.agents-list {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.agent-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s;
+}
+.agent-card:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+.agent-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.agent-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.agent-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+.agent-desc {
+  font-size: 0.82rem;
+  color: var(--white-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+.agent-badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.agent-badge.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+.agent-badge.soon {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.4);
+}
+@media (max-width: 600px) {
+  .agent-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 18px;
+  }
+}
+
 /* ============ FAQ ============ */
 details {
   background: var(--bg-card);
@@ -774,6 +847,109 @@ footer a {
           <li>Potrzebujesz miejsca żeby zadać pytanie</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AGENTY AI -->
+<section id="agenty">
+  <div class="container centered">
+    <div class="section-label">Agenty AI</div>
+    <h2 class="section-title">Twój zespół AI pracuje 24/7</h2>
+    <p class="section-desc">Każdy członek Clubu dostaje dostęp do agentów AI, którzy pracują dla niego w tle. Włączasz które chcesz.</p>
+
+    <div class="agents-list">
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">📡</div>
+          <div>
+            <h4 class="agent-name">AI Radar Poranny</h4>
+            <p class="agent-desc">Agent skanuje newsy AI w nocy. Rano dostajesz 3 najważniejsze rzeczy które wpływają na Twój biznes.</p>
+          </div>
+        </div>
+        <div class="agent-badge active">Aktywny</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">⚙️</div>
+          <div>
+            <h4 class="agent-name">Generator Automatyzacji</h4>
+            <p class="agent-desc">Analizuje Twój biznes i co tydzień daje 3 automatyzacje do wdrożenia. Z narzędziem i krokami.</p>
+          </div>
+        </div>
+        <div class="agent-badge active">Aktywny</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">✍️</div>
+          <div>
+            <h4 class="agent-name">AI Copywriter</h4>
+            <p class="agent-desc">Co tydzień 3 gotowe posty na LinkedIn lub Facebook dopasowane do Twojej branży. Kopiuj-wklej.</p>
+          </div>
+        </div>
+        <div class="agent-badge active">Aktywny</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">📊</div>
+          <div>
+            <h4 class="agent-name">Radar Branżowy</h4>
+            <p class="agent-desc">Trendy i narzędzia AI z Twojej branży. Co tydzień raport dopasowany do Twojego profilu.</p>
+          </div>
+        </div>
+        <div class="agent-badge active">Aktywny</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">💡</div>
+          <div>
+            <h4 class="agent-name">Prompt Bank</h4>
+            <p class="agent-desc">Baza przetestowanych promptów do biznesu. Co tydzień 5 nowych. Z oceną członków.</p>
+          </div>
+        </div>
+        <div class="agent-badge active">Aktywny</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">🔍</div>
+          <div>
+            <h4 class="agent-name">Audytor Stron</h4>
+            <p class="agent-desc">Wrzucasz URL swojej strony. Agent analizuje ją pod kątem AI i daje konkretne rekomendacje co poprawić.</p>
+          </div>
+        </div>
+        <div class="agent-badge soon">Wkrótce</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">🎯</div>
+          <div>
+            <h4 class="agent-name">Asystent Oferty</h4>
+            <p class="agent-desc">Wklejasz swoją ofertę, agent przerabia ją żeby lepiej konwertowała. Nagłówki, CTA, obiekcje.</p>
+          </div>
+        </div>
+        <div class="agent-badge soon">Wkrótce</div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-info">
+          <div class="agent-icon">💰</div>
+          <div>
+            <h4 class="agent-name">Skaner Kosztów</h4>
+            <p class="agent-desc">Analizuje Twoje subskrypcje i narzędzia. Znajduje tańsze alternatywy AI i duplikaty.</p>
+          </div>
+        </div>
+        <div class="agent-badge soon">Wkrótce</div>
+      </div>
+
     </div>
   </div>
 </section>
