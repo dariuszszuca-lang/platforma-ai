@@ -1,6 +1,22 @@
-# Robots.txt for ai-team.pl
 User-agent: *
 Allow: /
 
-# Sitemap location
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://ai-team.pl/sitemap.xml

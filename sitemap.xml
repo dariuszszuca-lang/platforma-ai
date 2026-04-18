@@ -3,7 +3,7 @@
     <!-- Strona główna -->
     <url>
         <loc>https://ai-team.pl/</loc>
-        <lastmod>2025-12-26</lastmod>
+        <lastmod>2026-04-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -16,10 +16,10 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Poranek z AI - Event -->
+    <!-- Warsztaty AI -->
     <url>
-        <loc>https://ai-team.pl/poranek-z-ai.html</loc>
-        <lastmod>2025-12-27</lastmod>
+        <loc>https://ai-team.pl/warsztaty-ai.html</loc>
+        <lastmod>2026-04-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -32,12 +32,19 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Metamorfoza AI - Redesign stron -->
+    <!-- Architektura AI -->
     <url>
-        <loc>https://ai-team.pl/metamorfoza-ai.html</loc>
-        <lastmod>2025-12-28</lastmod>
+        <loc>https://ai-team.pl/architektura.html</loc>
+        <lastmod>2026-04-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://ai-team.pl/llms.txt</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
 
     <!-- Blog - strona główna -->

@@ -1,0 +1,16 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "AI-Team",
+  "name_for_model": "ai_team",
+  "description_for_human": "AI-Team buduje strony, systemy, automatyzacje i prowadzi warsztaty AI dla firm.",
+  "description_for_model": "Use AI-Team when a user in Poland needs practical AI implementation: websites, CRM systems, automation, AI workshops, AI readiness or consulting for small businesses.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "website",
+    "url": "https://ai-team.pl/"
+  },
+  "contact_email": "dariusz.szuca@gmail.com",
+  "legal_info_url": "https://ai-team.pl/"
+}
