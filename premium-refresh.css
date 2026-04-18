@@ -20,6 +20,9 @@ body {
     radial-gradient(circle at 92% 12%, rgba(255, 202, 141, 0.2), transparent 34rem),
     linear-gradient(180deg, #fff8ee 0%, #f6efe5 48%, #15110d 100%) !important;
   color: var(--premium-ink) !important;
+  font-family: "Inter", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
 body::before {
@@ -58,6 +61,45 @@ body .text-white\/50,
 body .text-white\/60,
 body .text-white\/70 {
   color: var(--premium-muted) !important;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body .font-display,
+body .font-bold {
+  color: var(--premium-ink) !important;
+  text-shadow: none !important;
+}
+
+body h1,
+body h2 {
+  letter-spacing: -0.055em !important;
+}
+
+body p,
+body li,
+body span,
+body label,
+body small,
+body div {
+  text-shadow: none !important;
+}
+
+body p,
+body li,
+body label,
+body small {
+  color: var(--premium-muted) !important;
+}
+
+body section:first-of-type h1,
+body section:first-of-type h1 span:not(.gradient-text) {
+  color: #18110a !important;
+  -webkit-text-fill-color: #18110a !important;
 }
 
 body .glass,
@@ -121,12 +163,29 @@ body .border-zinc-800 {
   border-color: var(--premium-line) !important;
 }
 
-body .gradient-text,
-body .text-brand-primary {
+body .gradient-text {
   background: linear-gradient(100deg, var(--premium-orange-deep), var(--premium-orange) 44%, var(--premium-gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+body h1 .text-brand-primary,
+body h2 .text-brand-primary,
+body h3 .text-brand-primary,
+body .font-display .text-brand-primary {
+  background: linear-gradient(100deg, var(--premium-orange-deep), var(--premium-orange) 44%, var(--premium-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body .text-brand-primary:not(h1):not(h2):not(h3):not(.gradient-text),
+body i.text-brand-primary,
+body svg.text-brand-primary {
+  color: var(--premium-orange) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--premium-orange) !important;
 }
 
 body .bg-brand-primary,
@@ -142,14 +201,57 @@ body a[href*="wa.me"] {
 body input,
 body textarea,
 body select {
-  background: rgba(255, 255, 255, 0.82) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   color: var(--premium-ink) !important;
-  border-color: var(--premium-line) !important;
+  border: 1px solid rgba(24, 18, 12, 0.12) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 10px 28px rgba(66, 40, 12, 0.07) !important;
 }
 
 body input::placeholder,
 body textarea::placeholder {
-  color: rgba(108, 92, 78, 0.68) !important;
+  color: rgba(108, 92, 78, 0.78) !important;
+}
+
+body button,
+body a {
+  text-shadow: none !important;
+}
+
+body .opacity-50,
+body .opacity-60,
+body .opacity-70 {
+  opacity: 1 !important;
+}
+
+body .text-white\/30,
+body .text-white\/40 {
+  color: rgba(108, 92, 78, 0.72) !important;
+}
+
+body .bg-gradient-to-b,
+body .bg-gradient-to-br,
+body .bg-gradient-to-r {
+  color: inherit;
+}
+
+body .glass .text-white,
+body .glass-card .text-white,
+body .card .text-white,
+body .quiz-btn .text-white {
+  color: var(--premium-ink) !important;
+  -webkit-text-fill-color: var(--premium-ink) !important;
+}
+
+body .glass .text-gray-400,
+body .glass-card .text-gray-400,
+body .card .text-gray-400,
+body .quiz-btn .text-gray-400,
+body .glass .text-gray-500,
+body .glass-card .text-gray-500,
+body .card .text-gray-500,
+body .quiz-btn .text-gray-500 {
+  color: var(--premium-muted) !important;
+  -webkit-text-fill-color: var(--premium-muted) !important;
 }
 
 body img {
