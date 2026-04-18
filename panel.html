@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Panel Zleceń   AI-Team Admin</title>
+    <title>Panel Zleceń — AI-Team Admin</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,7 +187,6 @@
             z-index: 0;
         }
     </style>
-    <link rel="stylesheet" href="/premium-refresh.css?v=20260418-2">
 </head>
 <body class="relative">
 
@@ -409,7 +408,7 @@ function checkAuth() {
             if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                 err.textContent = 'Błędny email lub hasło';
             } else if (error.code === 'auth/too-many-requests') {
-                err.textContent = 'Za dużo prób   spróbuj za chwilę';
+                err.textContent = 'Za dużo prób — spróbuj za chwilę';
             } else {
                 err.textContent = 'Błąd logowania';
             }
@@ -558,10 +557,10 @@ function renderOrderCard(order) {
     const ai = order.ai_estimate || order.aiEstimate || {};
     const priceRange = (ai.cena_min && ai.cena_max)
         ? `${ai.cena_min}-${ai.cena_max} PLN`
-        : '   ';
+        : '—';
     const name = order.name || 'Brak nazwy';
-    const orderId = order.order_id || order.id?.substring(0, 8) || '   ';
-    const deadline = order.deadline || order.termin || '   ';
+    const orderId = order.order_id || order.id?.substring(0, 8) || '—';
+    const deadline = order.deadline || order.termin || '—';
     const adminStatus = order.admin_status || status;
     const adminPrice = order.admin_price || '';
     const adminNotes = order.admin_notes || '';
@@ -638,7 +637,7 @@ function renderOrderCard(order) {
                                 <div class="flex items-center gap-2">
                                     <i data-lucide="banknote" class="w-4 h-4 text-gray-500"></i>
                                     <span class="text-gray-400">Cena:</span>
-                                    <span class="text-brand-light font-semibold">${ai.cena_min}   ${ai.cena_max} PLN</span>
+                                    <span class="text-brand-light font-semibold">${ai.cena_min}–${ai.cena_max} PLN</span>
                                 </div>` : ''}
                                 ${ai.opis ? `<p class="text-xs text-gray-400 mt-2 pt-2 border-t border-white/5">${escHtml(ai.opis)}</p>` : ''}
                             </div>
@@ -714,11 +713,11 @@ function getStatusBadge(status) {
 
 function getCategoryLabel(cat) {
     const map = {
-        'konsultacja':   { icon: ' ��', label: 'Konsultacja' },
-        'automatyzacja': { icon: ' ��', label: 'Automatyzacja' },
-        'narzedzie':     { icon: ' ��', label: 'Narzędzie' },
-        'wdrozenie':     { icon: ' ��', label: 'Wdrożenie' },
-        'inne':          { icon: ' ��', label: 'Inne' }
+        'konsultacja':   { icon: '◆', label: 'Konsultacja' },
+        'automatyzacja': { icon: '◇', label: 'Automatyzacja' },
+        'narzedzie':     { icon: '◈', label: 'Narzędzie' },
+        'wdrozenie':     { icon: '▣', label: 'Wdrożenie' },
+        'inne':          { icon: '○', label: 'Inne' }
     };
     return map[cat] || map['inne'];
 }
@@ -741,12 +740,12 @@ function renderToolPills(tools) {
 }
 
 function formatDate(ts) {
-    if (!ts) return '   ';
+    if (!ts) return '—';
     let d;
     if (ts.toDate) d = ts.toDate();
     else if (ts.seconds) d = new Date(ts.seconds * 1000);
     else d = new Date(ts);
-    if (isNaN(d)) return '   ';
+    if (isNaN(d)) return '—';
     return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 

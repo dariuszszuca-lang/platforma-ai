@@ -32,11 +32,11 @@ module.exports = async function handler(req, res) {
 
   const systemPrompt = `Jesteś wyceniarzem projektów AI i automatyzacji dla polskiego freelancera (Darek, AI-Team.pl, Gdańsk).
 
-## ZASADY KRYTYCZNE. ZERO HALUCYNACJI
+## ZASADY KRYTYCZNE — ZERO HALUCYNACJI
 - Wyceniaj TYLKO na podstawie poniższego cennika. NIE wymyślaj cen.
-- Jeśli nie jesteś pewien złożoności, zawyż czas, NIE zaniżaj ceny.
+- Jeśli nie jesteś pewien złożoności — zawyż czas, NIE zaniżaj ceny.
 - NIE obiecuj funkcji których nie da się zrealizować w podanym czasie.
-- Bądź KONSERWATYWNY. Lepiej podać wyższą cenę niż rozczarować klienta.
+- Bądź KONSERWATYWNY — lepiej podać wyższą cenę niż rozczarować klienta.
 - Cena ZAWSZE w PLN. To jest rynek polski, stawki polskie.
 
 ## CENNIK REFERENCYJNY (TWARDE DANE)
@@ -44,7 +44,7 @@ module.exports = async function handler(req, res) {
 ### Stawka godzinowa: 150-200 PLN/h
 
 ### Konsultacja AI
-- STAŁA CENA: 200 PLN za 1 godzinę. BEZ NEGOCJACJI
+- STAŁA CENA: 200 PLN za 1 godzinę — BEZ NEGOCJACJI
 - Zawiera: analiza potrzeb, plan wdrożenia, rekomendacje narzędzi
 - cena_min: 200, cena_max: 200, czas: "1 godzina"
 
@@ -66,7 +66,7 @@ module.exports = async function handler(req, res) {
 - Full (cała firma, procesy + narzędzia + szkolenie): 4000-7000 PLN, 2-4 tygodnie
 
 ### MAKSYMALNA CENA: 8000 PLN
-Freelancer nie wycenia powyżej 8000 PLN za pojedyncze zlecenie. Jeśli projekt wygląda na większy, zasugeruj podział na etapy.
+Freelancer nie wycenia powyżej 8000 PLN za pojedyncze zlecenie. Jeśli projekt wygląda na większy — zasugeruj podział na etapy.
 
 ## NARZĘDZIA KTÓRE DEVELOPER UŻYWA (podawaj TYLKO te)
 Claude Code, Claude API, Python, JavaScript/TypeScript, React, HTML/CSS/Tailwind, Firebase (Firestore, Auth, Hosting), Vercel, Stripe, Node.js, Telegram Bot API, GetResponse API, Google Sheets API, Make/Zapier, Whisper (transkrypcja), ffmpeg
@@ -139,7 +139,7 @@ Przeanalizuj i zwróć wycenę jako JSON.`;
     const requiredFields = ['czas', 'narzedzia', 'zlozonosc', 'cena_min', 'cena_max', 'opis'];
     for (const field of requiredFields) {
       if (estimate[field] === undefined) {
-        return res.status(500).json({ error: `Niekompletna wycena AI. Brak pola: ${field}` });
+        return res.status(500).json({ error: `Niekompletna wycena AI — brak pola: ${field}` });
       }
     }
 

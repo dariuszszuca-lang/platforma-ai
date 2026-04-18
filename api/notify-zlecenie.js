@@ -51,9 +51,9 @@ module.exports = async function handler(req, res) {
 
   if (aiEstimate) {
     message += `\n🤖 AI Wycena:\n`;
-    message += `⏱ Czas: ${aiEstimate.czas || 'brak danych'}\n`;
-    message += `💰 Cena: ${aiEstimate.cena_min || '?'} do ${aiEstimate.cena_max || '?'} PLN\n`;
-    message += `📊 Złożoność: ${aiEstimate.zlozonosc || 'brak danych'}\n`;
+    message += `⏱ Czas: ${aiEstimate.czas || '—'}\n`;
+    message += `💰 Cena: ${aiEstimate.cena_min || '?'}–${aiEstimate.cena_max || '?'} PLN\n`;
+    message += `📊 Złożoność: ${aiEstimate.zlozonosc || '—'}\n`;
   }
 
   message += `\n🔗 Panel: https://ai-team.pl/panel`;

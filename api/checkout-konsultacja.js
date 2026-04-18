@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
           price_data: {
             currency: 'pln',
             product_data: {
-              name: 'Konsultacja AI 1h',
+              name: 'Konsultacja AI — 1h',
               description: 'Godzinna konsultacja z ekspertem AI. Omówimy Twoje potrzeby i zaplanujemy wdrożenie.',
             },
             unit_amount: 20000, // 200 PLN w groszach
