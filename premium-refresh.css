@@ -1,0 +1,172 @@
+/* Global premium AI refresh for ai-team.pl */
+:root {
+  --premium-ink: #17130f;
+  --premium-muted: #6c5c4e;
+  --premium-soft: #fff8ee;
+  --premium-paper: #fffaf2;
+  --premium-line: rgba(24, 18, 12, 0.1);
+  --premium-orange: #f97316;
+  --premium-orange-deep: #b9470b;
+  --premium-gold: #ffb66d;
+}
+
+html {
+  background: #fff8ee;
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 4%, rgba(249, 115, 22, 0.18), transparent 32rem),
+    radial-gradient(circle at 92% 12%, rgba(255, 202, 141, 0.2), transparent 34rem),
+    linear-gradient(180deg, #fff8ee 0%, #f6efe5 48%, #15110d 100%) !important;
+  color: var(--premium-ink) !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(23, 19, 15, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 19, 15, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+body .bg-\[\#020203\],
+body .bg-black,
+body .bg-zinc-950,
+body .bg-neutral-950,
+body .bg-slate-950 {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(249, 115, 22, 0.13), transparent 26rem),
+    linear-gradient(145deg, #fff8ee, #f7eadb) !important;
+}
+
+body .text-white,
+body .text-gray-100,
+body .text-gray-200 {
+  color: var(--premium-ink) !important;
+}
+
+body .text-gray-300,
+body .text-gray-400,
+body .text-gray-500,
+body .text-white\/50,
+body .text-white\/60,
+body .text-white\/70 {
+  color: var(--premium-muted) !important;
+}
+
+body .glass,
+body .glass-card,
+body .card,
+body .feature-card,
+body .pricing-card,
+body .case-card,
+body .testimonial-card,
+body .quiz-btn,
+body .module-card,
+body .problem-card,
+body .step-card,
+body .faq-item,
+body .resource-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 247, 235, 0.68)) !important;
+  border-color: var(--premium-line) !important;
+  box-shadow: 0 24px 80px rgba(66, 40, 12, 0.12) !important;
+  color: var(--premium-ink) !important;
+}
+
+body .glass:hover,
+body .glass-card:hover,
+body .card:hover,
+body .feature-card:hover,
+body .pricing-card:hover,
+body .case-card:hover,
+body .testimonial-card:hover,
+body .quiz-btn:hover,
+body .module-card:hover {
+  border-color: rgba(249, 115, 22, 0.3) !important;
+  box-shadow: 0 30px 90px rgba(249, 115, 22, 0.16), 0 14px 34px rgba(66, 40, 12, 0.12) !important;
+}
+
+body nav .glass,
+body header,
+body .nav,
+body .navbar {
+  background: rgba(255, 252, 246, 0.88) !important;
+  border-color: var(--premium-line) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+  box-shadow: 0 18px 60px rgba(66, 40, 12, 0.14) !important;
+}
+
+body .bg-white\/5,
+body .bg-white\/10,
+body .bg-black\/40,
+body .bg-black\/50,
+body .bg-gray-900,
+body .bg-zinc-900,
+body .bg-neutral-900 {
+  background-color: rgba(255, 255, 255, 0.58) !important;
+}
+
+body .border-white\/5,
+body .border-white\/10,
+body .border-white\/20,
+body .border-gray-800,
+body .border-zinc-800 {
+  border-color: var(--premium-line) !important;
+}
+
+body .gradient-text,
+body .text-brand-primary {
+  background: linear-gradient(100deg, var(--premium-orange-deep), var(--premium-orange) 44%, var(--premium-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body .bg-brand-primary,
+body .btn-primary,
+body button[type="submit"],
+body a[href*="wa.me"] {
+  background: linear-gradient(135deg, #ffb66d, #f97316) !important;
+  color: #1a0f05 !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+  box-shadow: 0 18px 46px rgba(249, 115, 22, 0.24) !important;
+}
+
+body input,
+body textarea,
+body select {
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: var(--premium-ink) !important;
+  border-color: var(--premium-line) !important;
+}
+
+body input::placeholder,
+body textarea::placeholder {
+  color: rgba(108, 92, 78, 0.68) !important;
+}
+
+body img {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+body code,
+body pre {
+  background: rgba(255, 255, 255, 0.7) !important;
+  color: #4a2a0f !important;
+  border-color: var(--premium-line) !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(249, 115, 22, 0.18), transparent 24rem),
+      linear-gradient(180deg, #fff8ee 0%, #f7eadb 58%, #17130f 100%) !important;
+  }
+}
