@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Panel · AI Team</title>
+<meta name="robots" content="noindex,nofollow">
+
+<!-- Hero: Instrument Serif | Body: Geist (Vercel) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/index.css">
+
+<style>
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+}
+body { margin: 0; font-family: var(--font-body); background: #f5f5f4; color: #0F1A33; -webkit-font-smoothing: antialiased; }
+.font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Animacje */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.4s cubic-bezier(0.4,0,0.2,1) both; }
+
+/* Hide scrollbar dla list */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Card hover */
+.card { transition: all 0.2s ease; }
+.card-hover:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+/* Step navigator dot */
+.step-dot { transition: all 0.3s ease; }
+
+/* Active tab highlight */
+.tab-active {
+  background: #0F1A33;
+  color: white;
+}
+.tab-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal-backdrop { background: rgba(15, 26, 51, 0.6); backdrop-filter: blur(8px); }
+
+/* Hide elements until JS loads */
+.no-js { display: none; }
+</style>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- LAYOUT: Sidebar + Main                                        -->
+<!-- ============================================================ -->
+<div class="flex min-h-screen">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="w-64 lg:w-72 bg-white border-r border-gray-200 flex flex-col p-5 sticky top-0 h-screen">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 mb-10">
+      <div class="w-10 h-10 rounded-[10px] flex items-center justify-center" style="background: linear-gradient(135deg, #0F1A33 0%, #1B2A4E 100%);">
+        <span class="text-white font-bold text-base tracking-tight">AI</span>
+      </div>
+      <span class="text-xl font-bold tracking-tight text-[#0F1A33]">ai team</span>
+    </a>
+
+    <!-- Nav Tabs -->
+    <nav class="flex flex-col gap-2 mb-auto">
+      <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2 px-3">Twoje produkty</div>
+
+      <button onclick="switchTab('tracker')" id="tab-tracker" class="tab-active flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all">
+        <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+        <div class="flex-1">
+          <div class="font-semibold text-sm">Tracker P1</div>
+          <div class="text-xs opacity-70">7-dniowy audyt czasu</div>
+        </div>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-amber-400 text-[#0F1A33] font-bold">Aktywny</span>
+      </button>
+
+      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-gray-500" title="Wkrótce">
+        <i data-lucide="package" class="w-5 h-5"></i>
+        <div class="flex-1">
+          <div class="font-semibold text-sm">Decoder P2</div>
+          <div class="text-xs">50 narzędzi AI</div>
+        </div>
+        <i data-lucide="lock" class="w-4 h-4"></i>
+      </button>
+
+      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-gray-500" title="Wkrótce">
+        <i data-lucide="folder" class="w-5 h-5"></i>
+        <div class="flex-1">
+          <div class="font-semibold text-sm">Pakiet P3</div>
+          <div class="text-xs">100 wzorców promptów</div>
+        </div>
+        <i data-lucide="lock" class="w-4 h-4"></i>
+      </button>
+
+      <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mt-6 mb-2 px-3">Pozostałe</div>
+
+      <a href="https://ai-team.pl/warsztaty.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-50 transition">
+        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+        <span class="font-medium text-sm">Warsztaty</span>
+      </a>
+    </nav>
+
+    <!-- User -->
+    <div class="border-t border-gray-200 pt-4 mt-4">
+      <div class="flex items-center gap-3 px-3">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">D</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-semibold truncate">Demo User</div>
+          <div class="text-xs text-gray-500 truncate">demo@ai-team.pl</div>
+        </div>
+        <button class="text-gray-400 hover:text-[#0F1A33] transition" title="Wyloguj">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="flex-1 max-w-6xl mx-auto px-6 lg:px-12 py-8 lg:py-12">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Tracker P1 · Twój panel</div>
+        <h1 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95]">Twój 7-dniowy audyt</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-[#0F1A33] text-sm transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          Pobierz raport
+        </button>
+        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-[#0F1A33] text-sm transition">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          Pomoc
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== STEP NAVIGATOR ===== -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+      <div class="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        <button onclick="switchStep(1)" id="step-1-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0F1A33] text-white shrink-0">
+          <div class="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center text-[#0F1A33] font-bold text-sm">1</div>
+          <div class="text-left">
+            <div class="font-semibold text-sm">Setup</div>
+            <div class="text-xs opacity-70">Stawka + profil</div>
+          </div>
+        </button>
+        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
+        <button onclick="switchStep(2)" id="step-2-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
+          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">2</div>
+          <div class="text-left">
+            <div class="font-semibold text-sm">Trackowanie</div>
+            <div class="text-xs opacity-70">7 dni · zadania</div>
+          </div>
+        </button>
+        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
+        <button onclick="switchStep(3)" id="step-3-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
+          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">3</div>
+          <div class="text-left">
+            <div class="font-semibold text-sm">Insights AI</div>
+            <div class="text-xs opacity-70">Codziennie</div>
+          </div>
+        </button>
+        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
+        <button onclick="switchStep(4)" id="step-4-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
+          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">4</div>
+          <div class="text-left">
+            <div class="font-semibold text-sm">Raport</div>
+            <div class="text-xs opacity-70">Niedziela</div>
+          </div>
+        </button>
+        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
+        <button onclick="switchStep(5)" id="step-5-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
+          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">5</div>
+          <div class="text-left">
+            <div class="font-semibold text-sm">Decyzja</div>
+            <div class="text-xs opacity-70">Co dalej</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ STEP 1: SETUP ============ -->
+    <section id="step-1" class="step-content fade-in">
+      <div class="bg-white rounded-3xl border border-gray-200 p-8 lg:p-12">
+        <div class="max-w-2xl">
+          <div class="text-xs uppercase tracking-widest text-amber-600 font-bold mb-3">Krok 1 z 5</div>
+          <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Powiedz mi <em>kim jesteś.</em></h2>
+          <p class="text-gray-600 text-lg leading-relaxed mb-10">3 pytania. AI dopasuje kategorie i podpowiedzi pod Twoją branżę i sposób pracy.</p>
+
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Twoja stawka godzinowa (PLN/h)</label>
+              <div class="relative">
+                <input type="number" value="200" min="50" max="2000" step="50" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-2xl font-bold text-[#0F1A33] transition">
+                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">zł/h</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-2">Tracker liczy ile tracisz w PLN, nie tylko w godzinach. Bez tego raport Cię nie ruszy.</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Branża</label>
+              <select class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-base font-medium text-[#0F1A33] transition bg-white">
+                <option>Marketing / SEO / Ads</option>
+                <option>Design / UI / UX</option>
+                <option>Copywriting / Content</option>
+                <option>IT / Programowanie</option>
+                <option>Konsulting / Coaching</option>
+                <option>Kosmetyka / Beauty</option>
+                <option>Prawo / Podatki</option>
+                <option>Nieruchomości</option>
+                <option>Edukacja / Szkolenia</option>
+                <option>Sklep online / E-commerce</option>
+                <option>Inne</option>
+              </select>
+              <p class="text-xs text-gray-500 mt-2">AI dopasuje przykłady kategorii pod Twoją branżę.</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Wielkość zespołu</label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <button type="button" class="px-4 py-3 rounded-xl border-2 border-[#0F1A33] bg-[#0F1A33] text-white font-semibold text-sm">Solo</button>
+                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">2-5 osób</button>
+                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">6-10</button>
+                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">10+</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Twój największy ból (opcjonalnie)</label>
+              <textarea placeholder="np. Wieczorami nie wiem gdzie poszedł dzień. Skrzynka żre mi pół tygodnia." class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-base transition resize-none" rows="3"></textarea>
+              <p class="text-xs text-gray-500 mt-2">Im bardziej szczegółowo, tym lepsze podpowiedzi AI.</p>
+            </div>
+
+            <button type="button" onclick="switchStep(2)" class="w-full bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-2xl px-6 py-5 text-lg flex items-center justify-center gap-3 transition">
+              Zaczynam trackować <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STEP 2: TRACKOWANIE ============ -->
+    <section id="step-2" class="step-content fade-in hidden">
+      <!-- Quick stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-5">
+          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Dziś</div>
+          <div class="font-display text-3xl text-[#0F1A33]">3h 25m</div>
+          <div class="text-xs text-gray-500 mt-1">5 zadań</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-200 p-5">
+          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Ten tydzień</div>
+          <div class="font-display text-3xl text-[#0F1A33]">28h 10m</div>
+          <div class="text-xs text-gray-500 mt-1">42 zadania</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-200 p-5">
+          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Top kategoria</div>
+          <div class="font-display text-3xl text-amber-600">A1 Mejling</div>
+          <div class="text-xs text-gray-500 mt-1">8h 30m (30%)</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-200 p-5">
+          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Wartość czasu</div>
+          <div class="font-display text-3xl text-[#0F1A33]">5 633 zł</div>
+          <div class="text-xs text-gray-500 mt-1">przy 200 zł/h</div>
+        </div>
+      </div>
+
+      <!-- Quick add bar -->
+      <div class="bg-[#0F1A33] rounded-2xl p-5 mb-8 flex items-center gap-3">
+        <i data-lucide="plus-circle" class="w-6 h-6 text-amber-400 shrink-0"></i>
+        <input type="text" placeholder="Co właśnie robisz? Wpisz krótko (np. 'odpowiedzi na maile')..." class="flex-1 bg-transparent text-white placeholder:text-white/50 focus:outline-none">
+        <select class="bg-white/10 text-white rounded-lg px-3 py-2 text-sm border border-white/20 focus:outline-none">
+          <option>A1 Mejling</option>
+          <option>P1 Praca skupiona</option>
+          <option>P3 Spotkania</option>
+          <option>S2 Briefing</option>
+          <option>Z2 Rozpraszacze</option>
+          <option>... 25 kategorii</option>
+        </select>
+        <input type="number" value="30" min="5" max="480" step="5" class="w-20 bg-white/10 text-white text-center rounded-lg px-2 py-2 text-sm border border-white/20 focus:outline-none">
+        <span class="text-white/70 text-sm">min</span>
+        <button onclick="addTaskMock()" class="bg-amber-400 hover:bg-amber-300 text-[#0F1A33] font-bold rounded-lg px-5 py-2 transition">
+          Dodaj
+        </button>
+      </div>
+
+      <!-- 7-day timeline -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-6 lg:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="font-display text-2xl text-[#0F1A33]">Twój tydzień</h3>
+            <p class="text-sm text-gray-500">Wpisuj na bieżąco · min. 5 zadań/dzień · pełna szczerość</p>
+          </div>
+          <div class="text-xs text-gray-500 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-full font-semibold">
+            🔥 4/7 dni · zostało 3
+          </div>
+        </div>
+
+        <div class="grid grid-cols-7 gap-2 mb-6">
+          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Pn</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">7h</div><div class="text-[10px] text-green-600 mt-1">12 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Wt</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">8h</div><div class="text-[10px] text-green-600 mt-1">10 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Śr</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">9h</div><div class="text-[10px] text-green-600 mt-1">15 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Cz</div><div class="bg-amber-50 border-2 border-amber-400 rounded-xl p-3 text-center"><div class="font-display text-2xl text-amber-700">3h</div><div class="text-[10px] text-amber-600 mt-1">5 zadań · dziś</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-400 mb-2">Pt</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">jutro</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-400 mb-2">So</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">—</div></div></div>
+          <div class="text-center"><div class="text-xs text-gray-400 mb-2">Nd</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">audyt</div></div></div>
+        </div>
+
+        <!-- Lista zadań dzisiaj -->
+        <div class="border-t border-gray-100 pt-6">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-bold text-[#0F1A33]">Dziś · czwartek</h4>
+            <span class="text-sm text-gray-500">5 zadań · 3h 25m</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-gray-100 text-gray-700 font-bold">A1</span>
+              <span class="flex-1 text-sm">Odpowiedzi na maile z rana</span>
+              <span class="text-sm font-bold text-[#0F1A33]">45 min</span>
+              <span class="text-xs text-gray-400">150 zł</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-green-100 text-green-700 font-bold">P1</span>
+              <span class="flex-1 text-sm">Pisanie tekstu na blog klienta Y</span>
+              <span class="text-sm font-bold text-[#0F1A33]">90 min</span>
+              <span class="text-xs text-gray-400">300 zł</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-red-100 text-red-700 font-bold">Z2</span>
+              <span class="flex-1 text-sm">Scroll Instagrama podczas kawy</span>
+              <span class="text-sm font-bold text-amber-600">25 min</span>
+              <span class="text-xs text-gray-400">83 zł 🚩</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-blue-100 text-blue-700 font-bold">S2</span>
+              <span class="flex-1 text-sm">Briefing nowego leada przez Zooma</span>
+              <span class="text-sm font-bold text-[#0F1A33]">40 min</span>
+              <span class="text-xs text-gray-400">133 zł</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-green-100 text-green-700 font-bold">P3</span>
+              <span class="flex-1 text-sm">Status weekly z klientem X</span>
+              <span class="text-sm font-bold text-[#0F1A33]">55 min</span>
+              <span class="text-xs text-gray-400">183 zł</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next button -->
+      <div class="mt-8 flex justify-end">
+        <button onclick="switchStep(3)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+          Zobacz Insights AI <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ STEP 3: INSIGHTS AI ============ -->
+    <section id="step-3" class="step-content fade-in hidden">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- AI insight card -->
+        <div class="lg:col-span-2 bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] rounded-3xl p-8 text-white relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full" style="background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%); filter: blur(40px);"></div>
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-4 h-4 text-[#0F1A33]"></i>
+              </div>
+              <span class="text-xs uppercase tracking-widest font-bold text-amber-400">AI Insight · czwartek</span>
+            </div>
+            <h2 class="font-display text-3xl lg:text-4xl mb-4 leading-[1.05]"><em>Marek, masz wzór.</em></h2>
+            <p class="text-white/85 leading-relaxed mb-4">
+              Na podstawie ostatnich 4 dni widzę że <strong class="text-amber-400">co rano zaczynasz od mejli (A1)</strong>. Średnio 38 minut. To <strong>2h 32min tygodniowo</strong> na coś, co przeważnie da się ogarnąć szablonami.
+            </p>
+            <p class="text-white/85 leading-relaxed mb-6">
+              Roczna strata przy Twojej stawce 200 zł/h: <strong class="text-amber-400 text-xl">~25 200 zł</strong>.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <button class="bg-amber-400 hover:bg-amber-300 text-[#0F1A33] font-bold rounded-full px-5 py-2 text-sm transition">Pokaż mi 3 szablony</button>
+              <button class="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-5 py-2 text-sm transition">Ignoruj na dziś</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick patterns -->
+        <div class="space-y-4">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="trending-up" class="w-4 h-4 text-green-600"></i><span class="text-xs uppercase tracking-widest font-bold text-green-600">Najlepszy dzień</span></div>
+            <div class="font-display text-2xl text-[#0F1A33]">Środa</div>
+            <div class="text-xs text-gray-500 mt-1">9h pracy, 60% to deep work (P1)</div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i><span class="text-xs uppercase tracking-widest font-bold text-amber-600">Czerwona flaga</span></div>
+            <div class="font-display text-2xl text-[#0F1A33]">Z2 Rozpraszacze</div>
+            <div class="text-xs text-gray-500 mt-1">2h 15m w 4 dni · 30 min/dzień średnio</div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="target" class="w-4 h-4 text-blue-600"></i><span class="text-xs uppercase tracking-widest font-bold text-blue-600">Cel tygodnia</span></div>
+            <div class="font-display text-2xl text-[#0F1A33]">5 zadań/dzień</div>
+            <div class="text-xs text-gray-500 mt-1">4/7 dni · idziesz dobrze</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested next actions -->
+      <div class="mt-8 bg-white rounded-3xl border border-gray-200 p-8">
+        <h3 class="font-display text-2xl text-[#0F1A33] mb-2">AI proponuje ci 3 ruchy</h3>
+        <p class="text-gray-600 text-sm mb-6">Na podstawie Twoich 4 dni trackowania.</p>
+        <div class="space-y-3">
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
+            <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">1</div>
+            <div class="flex-1">
+              <div class="font-bold text-[#0F1A33]">Wyłącz powiadomienia w 4 aplikacjach</div>
+              <div class="text-sm text-gray-700 mt-1">Z2 (Rozpraszacze) zjada Ci 30 min/dzień. To 2h 30min tygodniowo, ~16 600 zł rocznie.</div>
+            </div>
+            <button class="text-xs font-bold text-amber-700 hover:text-amber-900 px-3 py-2 transition">Pokaż jak →</button>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
+            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">2</div>
+            <div class="flex-1">
+              <div class="font-bold text-[#0F1A33]">Zrób 3 szablony mejli</div>
+              <div class="text-sm text-gray-700 mt-1">A1 (Mejling) to top 1 stratna kategoria. Wzorce dla 60% odpowiedzi 1-zdaniowych.</div>
+            </div>
+            <button class="text-xs font-bold text-gray-700 hover:text-[#0F1A33] px-3 py-2 transition">AI napisze →</button>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
+            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">3</div>
+            <div class="flex-1">
+              <div class="font-bold text-[#0F1A33]">Zaplanuj 2h focus block</div>
+              <div class="text-sm text-gray-700 mt-1">P1 (Praca skupiona) działa najlepiej w środy. Zablokuj jutro 9-11 jako „nikt mi nie przeszkadza".</div>
+            </div>
+            <button class="text-xs font-bold text-gray-700 hover:text-[#0F1A33] px-3 py-2 transition">Dodaj do kalendarza →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-end">
+        <button onclick="switchStep(4)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+          Zobacz pełen raport <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ STEP 4: RAPORT ============ -->
+    <section id="step-4" class="step-content fade-in hidden">
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-3xl p-8 mb-8">
+        <div class="flex items-center gap-2 mb-2"><i data-lucide="award" class="w-5 h-5 text-amber-600"></i><span class="text-xs uppercase tracking-widest font-bold text-amber-700">Raport po 7 dniach</span></div>
+        <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Twój tydzień <em>w liczbach.</em></h2>
+        <p class="text-gray-700 leading-relaxed">Posiedź z tym minutę. AI wygenerował insighty na podstawie 7 dni Twoich danych.</p>
+      </div>
+
+      <!-- Big numbers -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6">
+          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Łączny czas</div>
+          <div class="font-display text-4xl text-[#0F1A33]">42h 30m</div>
+          <div class="text-xs text-gray-500 mt-1">w 7 dni</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-red-200 p-6">
+          <div class="text-xs uppercase tracking-widest text-red-600 font-bold mb-2">⚠ Strata</div>
+          <div class="font-display text-4xl text-red-600">8h 15m</div>
+          <div class="text-xs text-gray-500 mt-1">19% tygodnia</div>
+        </div>
+        <div class="bg-white rounded-2xl border border-amber-300 p-6">
+          <div class="text-xs uppercase tracking-widest text-amber-700 font-bold mb-2">Koszt strat</div>
+          <div class="font-display text-4xl text-amber-700">1 650 zł</div>
+          <div class="text-xs text-gray-500 mt-1">tygodniowo</div>
+        </div>
+        <div class="bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] text-white rounded-2xl p-6">
+          <div class="text-xs uppercase tracking-widest text-amber-400 font-bold mb-2">Roczna kwota</div>
+          <div class="font-display text-4xl text-amber-400">~82 500 zł</div>
+          <div class="text-xs text-white/70 mt-1">jeśli nic się nie zmieni</div>
+        </div>
+      </div>
+
+      <!-- Top 5 categories -->
+      <div class="bg-white rounded-3xl border border-gray-200 p-8 mb-8">
+        <h3 class="font-display text-2xl text-[#0F1A33] mb-6">TOP 5 kategorii (po czasie)</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-4">
+            <span class="w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">A1</span>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold text-[#0F1A33]">A1 Mejling</span>
+                <span class="text-sm text-gray-600 font-bold">11h 45m · 2 350 zł</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div class="bg-red-500 h-full" style="width: 28%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm flex items-center justify-center shrink-0">P1</span>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold text-[#0F1A33]">P1 Praca skupiona</span>
+                <span class="text-sm text-gray-600 font-bold">9h 30m · 1 900 zł</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div class="bg-green-500 h-full" style="width: 22%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">Z2</span>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold text-[#0F1A33]">Z2 Rozpraszacze</span>
+                <span class="text-sm text-gray-600 font-bold">5h 15m · 1 050 zł 🚩</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div class="bg-red-500 h-full" style="width: 12%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold text-sm flex items-center justify-center shrink-0">P3</span>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold text-[#0F1A33]">P3 Spotkania klient</span>
+                <span class="text-sm text-gray-600 font-bold">4h 50m · 970 zł</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div class="bg-blue-500 h-full" style="width: 11%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm flex items-center justify-center shrink-0">M1</span>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold text-[#0F1A33]">M1 Tworzenie content</span>
+                <span class="text-sm text-gray-600 font-bold">3h 30m · 700 zł</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div class="bg-purple-500 h-full" style="width: 8%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI summary -->
+      <div class="bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] text-white rounded-3xl p-8 lg:p-10 mb-8">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center"><i data-lucide="sparkles" class="w-4 h-4 text-[#0F1A33]"></i></div>
+          <span class="text-xs uppercase tracking-widest font-bold text-amber-400">Podsumowanie AI</span>
+        </div>
+        <h3 class="font-display text-3xl mb-4 leading-[1.05]">3 rzeczy <em>z Twojego tygodnia.</em></h3>
+        <ol class="space-y-3 text-white/85 leading-relaxed">
+          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">1.</span><span><strong class="text-amber-400">A1 Mejling (11h 45m) i Z2 Rozpraszacze (5h 15m) razem to 17h tygodniowo</strong> — czyli prawie 2 dni pracy. Łącznie 3 400 zł co tydzień, 170 000 zł rocznie.</span></li>
+          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">2.</span><span>P1 Praca skupiona to dopiero 22% tygodnia. Powinno być min. 40-50% (Twój ZAROBKOWY czas). Reszta to operacje i straty.</span></li>
+          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">3.</span><span><strong>Środa była Twoim najlepszym dniem</strong> (60% to P1) — replikuj jego rytm: bez spotkań, focus block 9-12, mejli dopiero po lunchu.</span></li>
+        </ol>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="switchStep(5)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+          Decyzja: co dalej? <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ STEP 5: DECYZJA ============ -->
+    <section id="step-5" class="step-content fade-in hidden">
+      <div class="text-center mb-10">
+        <div class="text-xs uppercase tracking-widest text-amber-600 font-bold mb-3">Krok 5 z 5 · Twoja decyzja</div>
+        <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Co automatyzujesz <em>pierwsze?</em></h2>
+        <p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">3 ścieżki, w zależności od Twojej TOP 1 stratnej kategorii. AI wskazał Ci właśnie ścieżkę B.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-4 mb-10">
+        <div class="bg-white rounded-3xl border-2 border-gray-200 p-6 opacity-60">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold mb-4">A</div>
+          <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Pakiet Dokumentów</h3>
+          <p class="text-sm text-gray-600 mb-4">Dla TOP P1 / S2. 100 wzorców promptów do wgrania w asystenta.</p>
+          <div class="font-display text-3xl text-[#0F1A33] mb-4">297 zł</div>
+          <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Wkrótce</span>
+        </div>
+
+        <div class="bg-gradient-to-br from-amber-400 to-orange-500 text-[#0F1A33] rounded-3xl p-6 ring-4 ring-amber-200 shadow-2xl scale-105 relative">
+          <span class="absolute -top-3 right-4 px-3 py-1 bg-[#0F1A33] text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full">AI poleca</span>
+          <div class="w-10 h-10 rounded-full bg-[#0F1A33] text-amber-400 flex items-center justify-center font-bold mb-4">B</div>
+          <h3 class="font-display text-2xl mb-2">Decoder Stack AI</h3>
+          <p class="text-sm mb-4 text-[#0F1A33]/80">Twój TOP 1 to A1 Mejling. 50 narzędzi które automatyzują skrzynkę i Z2 rozpraszacze.</p>
+          <div class="font-display text-3xl mb-4">97 zł</div>
+          <button class="w-full bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-xl px-4 py-3 transition">
+            Zarezerwuj P2 (wkrótce)
+          </button>
+        </div>
+
+        <div class="bg-white rounded-3xl border-2 border-gray-200 p-6 opacity-60">
+          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold mb-4">C</div>
+          <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Warsztat 1-na-1</h3>
+          <p class="text-sm text-gray-600 mb-4">Dla TOP Z1 / Z3. 4 godziny budujemy asystenta od zera.</p>
+          <div class="font-display text-3xl text-[#0F1A33] mb-4">1500 zł</div>
+          <a href="https://ai-team.pl/warsztaty.html" class="text-xs uppercase tracking-widest text-amber-600 font-bold hover:underline">Zobacz szczegóły →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-200 p-8 text-center">
+        <i data-lucide="trophy" class="w-12 h-12 text-amber-500 mx-auto mb-4"></i>
+        <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Gratulacje! Skończyłeś 7 dni.</h3>
+        <p class="text-gray-600 mb-6 max-w-xl mx-auto">Możesz powtórzyć tracker za miesiąc lub kwartał. Albo zarezerwować P2 (Decoder Stack AI) i dostać powiadomienie przy launchu.</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <button onclick="switchStep(1)" class="bg-white border-2 border-gray-200 hover:border-[#0F1A33] text-[#0F1A33] font-bold rounded-full px-6 py-3 transition">Zacznij nowy tydzień</button>
+          <button class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-6 py-3 transition">Pobierz raport PDF</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // Switch step
+  function switchStep(stepNum) {
+    document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden'));
+    document.getElementById('step-' + stepNum).classList.remove('hidden');
+
+    // Update step buttons
+    document.querySelectorAll('.step-btn').forEach((btn, i) => {
+      const idx = i + 1;
+      const dot = btn.querySelector('div.w-7');
+      if (idx === stepNum) {
+        btn.classList.add('bg-[#0F1A33]', 'text-white');
+        btn.classList.remove('text-gray-500', 'hover:bg-gray-50');
+        dot.classList.add('bg-amber-400', 'text-[#0F1A33]');
+        dot.classList.remove('bg-gray-200');
+      } else {
+        btn.classList.remove('bg-[#0F1A33]', 'text-white');
+        btn.classList.add('text-gray-500', 'hover:bg-gray-50');
+        dot.classList.remove('bg-amber-400', 'text-[#0F1A33]');
+        dot.classList.add('bg-gray-200');
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    lucide.createIcons();
+  }
+
+  // Switch tab (sidebar)
+  function switchTab(tabName) {
+    // Tylko Tracker jest aktywny w MVP
+    if (tabName !== 'tracker') return;
+  }
+
+  // Mock add task
+  function addTaskMock() {
+    alert('Mock: zadanie dodane. (W produkcji → zapisz do Supabase / API.)');
+  }
+</script>
+
+</body>
+</html>
