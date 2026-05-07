@@ -7,19 +7,38 @@
 <title>Panel · AI Team</title>
 <meta name="robots" content="noindex,nofollow">
 
-<!-- Hero: Instrument Serif | Body: Geist (Vercel) -->
+<!-- Bento Cockpit Pro: Inter + JetBrains Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/index.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --bg: #0A0E1F;
+  --surface: #131A2E;
+  --card: #1A2238;
+  --border: #2A3550;
+  --border-hover: #4B5C7E;
+  --indigo: #6366F1;
+  --indigo-light: #A5B4FC;
+  --indigo-dark: #4F46E5;
+  --success: #10B981;
+  --warn: #F59E0B;
+  --alert: #EF4444;
+  --text: #E5E7EB;
+  --text-soft: #9CA3AF;
+  --text-muted: #6B7280;
 }
-body { margin: 0; font-family: var(--font-body); background: #f5f5f4; color: #0F1A33; -webkit-font-smoothing: antialiased; }
-.font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+body {
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
@@ -33,30 +52,53 @@ html { scroll-behavior: smooth; }
 .no-scrollbar { scrollbar-width: none; }
 
 /* Card hover */
-.card { transition: all 0.2s ease; }
-.card-hover:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-hover { transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
+.card-hover:hover { transform: translateY(-2px); border-color: var(--border-hover); }
 
 /* Step navigator dot */
 .step-dot { transition: all 0.3s ease; }
 
 /* Active tab highlight */
 .tab-active {
-  background: #0F1A33;
-  color: white;
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--indigo) !important;
 }
 .tab-locked {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* Modal */
-.modal-backdrop { background: rgba(15, 26, 51, 0.6); backdrop-filter: blur(8px); }
+.modal-backdrop { background: rgba(10, 14, 31, 0.85); backdrop-filter: blur(8px); }
 
 /* Hide elements until JS loads */
 .no-js { display: none; }
+
+/* Scrollbar custom */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 </style>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#0A0E1F',
+          surface: '#131A2E',
+          card: '#1A2238',
+          'border-c': '#2A3550',
+          'border-hover': '#4B5C7E',
+          indigo: { 500: '#6366F1', 400: '#A5B4FC', 600: '#4F46E5' },
+        },
+      },
+    },
+  };
+</script>
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="opacity-0">
@@ -64,7 +106,7 @@ html { scroll-behavior: smooth; }
   // Auth check — przekierowanie do /login jeśli nie zalogowany
   (async function() {
     try {
-      const r = await fetch('/api/auth/me', { credentials: 'include' });
+      const r = await fetch('/api/auth?action=me', { credentials: 'include' });
       if (!r.ok) {
         window.location.href = '/login';
         return;
@@ -76,8 +118,9 @@ html { scroll-behavior: smooth; }
       // Banner welcome
       if (new URLSearchParams(location.search).get('welcome') === '1') {
         const banner = document.createElement('div');
-        banner.className = 'fixed top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-[#0F1A33] font-bold px-6 py-3 rounded-full shadow-2xl z-50 fade-in';
-        banner.innerHTML = '🎉 Witaj w panelu! Tracker P1 aktywny.';
+        banner.className = 'fixed top-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl z-50 fade-in font-bold text-sm';
+        banner.style.cssText = 'background: linear-gradient(90deg, #6366F1, #A855F7); color: white;';
+        banner.innerHTML = '✨ Witaj w panelu! Tracker P1 aktywny.';
         document.body.appendChild(banner);
         setTimeout(() => banner.remove(), 5000);
       }
@@ -93,7 +136,7 @@ html { scroll-behavior: smooth; }
   })();
 
   async function logout() {
-    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    await fetch('/api/auth?action=logout', { method: 'POST', credentials: 'include' });
     window.location.href = '/';
   }
 </script>
@@ -101,32 +144,32 @@ html { scroll-behavior: smooth; }
 <!-- ============================================================ -->
 <!-- LAYOUT: Sidebar + Main                                        -->
 <!-- ============================================================ -->
-<div class="flex min-h-screen">
+<div class="flex min-h-screen bg-[#0A0E1F]">
 
   <!-- ===== SIDEBAR ===== -->
-  <aside class="w-64 lg:w-72 bg-white border-r border-gray-200 flex flex-col p-5 sticky top-0 h-screen">
+  <aside class="w-64 lg:w-72 bg-[#131A2E] border-r border-[#2A3550] flex flex-col p-5 sticky top-0 h-screen">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3 mb-10">
-      <div class="w-10 h-10 rounded-[10px] flex items-center justify-center" style="background: linear-gradient(135deg, #0F1A33 0%, #1B2A4E 100%);">
+      <div class="w-10 h-10 rounded-[10px] flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);">
         <span class="text-white font-bold text-base tracking-tight">AI</span>
       </div>
-      <span class="text-xl font-bold tracking-tight text-[#0F1A33]">ai team</span>
+      <span class="text-xl font-bold tracking-tight text-white">ai team</span>
     </a>
 
     <!-- Nav Tabs -->
     <nav class="flex flex-col gap-2 mb-auto">
-      <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2 px-3">Twoje produkty</div>
+      <div class="text-[10px] uppercase tracking-[2px] text-[#6B7280] font-bold mb-2 px-3">Twoje produkty</div>
 
-      <button onclick="switchTab('tracker')" id="tab-tracker" class="tab-active flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all">
-        <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+      <button onclick="switchTab('tracker')" id="tab-tracker" class="tab-active flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all border border-transparent">
+        <i data-lucide="bar-chart-3" class="w-5 h-5 text-[#A5B4FC]"></i>
         <div class="flex-1">
           <div class="font-semibold text-sm">Tracker P1</div>
-          <div class="text-xs opacity-70">7-dniowy audyt czasu</div>
+          <div class="text-xs text-[#9CA3AF]">7-dniowy audyt czasu</div>
         </div>
-        <span class="text-xs px-2 py-0.5 rounded-full bg-amber-400 text-[#0F1A33] font-bold">Aktywny</span>
+        <span class="text-[10px] px-2 py-0.5 rounded-full font-bold" style="background: linear-gradient(90deg, #10B981, #059669); color: white;">Aktywny</span>
       </button>
 
-      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-gray-500" title="Wkrótce">
+      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-[#6B7280] border border-transparent" title="Wkrótce">
         <i data-lucide="package" class="w-5 h-5"></i>
         <div class="flex-1">
           <div class="font-semibold text-sm">Decoder P2</div>
@@ -135,7 +178,7 @@ html { scroll-behavior: smooth; }
         <i data-lucide="lock" class="w-4 h-4"></i>
       </button>
 
-      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-gray-500" title="Wkrótce">
+      <button class="tab-locked flex items-center gap-3 rounded-xl px-4 py-3 text-left text-[#6B7280] border border-transparent" title="Wkrótce">
         <i data-lucide="folder" class="w-5 h-5"></i>
         <div class="flex-1">
           <div class="font-semibold text-sm">Pakiet P3</div>
@@ -144,23 +187,23 @@ html { scroll-behavior: smooth; }
         <i data-lucide="lock" class="w-4 h-4"></i>
       </button>
 
-      <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mt-6 mb-2 px-3">Pozostałe</div>
+      <div class="text-[10px] uppercase tracking-[2px] text-[#6B7280] font-bold mt-6 mb-2 px-3">Pozostałe</div>
 
-      <a href="https://ai-team.pl/warsztaty.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-50 transition">
+      <a href="https://ai-team.pl/warsztaty.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-[#9CA3AF] hover:bg-[#1A2238] hover:text-[#E5E7EB] transition border border-transparent">
         <i data-lucide="graduation-cap" class="w-5 h-5"></i>
         <span class="font-medium text-sm">Warsztaty</span>
       </a>
     </nav>
 
     <!-- User -->
-    <div class="border-t border-gray-200 pt-4 mt-4">
+    <div class="border-t border-[#2A3550] pt-4 mt-4">
       <div class="flex items-center gap-3 px-3">
-        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm" data-user-initial>U</div>
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, #6366F1, #A855F7);" data-user-initial>U</div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold truncate">Twoje konto</div>
-          <div class="text-xs text-gray-500 truncate" data-user-email>...</div>
+          <div class="text-sm font-semibold text-[#E5E7EB] truncate">Twoje konto</div>
+          <div class="text-xs text-[#9CA3AF] truncate" data-user-email>...</div>
         </div>
-        <button onclick="logout()" class="text-gray-400 hover:text-[#0F1A33] transition" title="Wyloguj">
+        <button onclick="logout()" class="text-[#6B7280] hover:text-[#A5B4FC] transition" title="Wyloguj">
           <i data-lucide="log-out" class="w-4 h-4"></i>
         </button>
       </div>
@@ -171,17 +214,17 @@ html { scroll-behavior: smooth; }
   <main class="flex-1 max-w-6xl mx-auto px-6 lg:px-12 py-8 lg:py-12">
 
     <!-- Header -->
-    <div class="flex items-center justify-between mb-10">
+    <div class="flex items-center justify-between mb-8">
       <div>
-        <div class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Tracker P1 · Twój panel</div>
-        <h1 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95]">Twój 7-dniowy audyt</h1>
+        <div class="text-[10px] uppercase tracking-[2px] text-[#6B7280] font-bold mb-1">Tracker P1 · Twój panel</div>
+        <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">Twój 7-dniowy audyt</h1>
       </div>
       <div class="flex items-center gap-3">
-        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-[#0F1A33] text-sm transition">
+        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A2238] border border-[#2A3550] hover:border-[#4B5C7E] text-sm text-[#E5E7EB] transition">
           <i data-lucide="download" class="w-4 h-4"></i>
           Pobierz raport
         </button>
-        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-[#0F1A33] text-sm transition">
+        <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A2238] border border-[#2A3550] hover:border-[#4B5C7E] text-sm text-[#E5E7EB] transition">
           <i data-lucide="help-circle" class="w-4 h-4"></i>
           Pomoc
         </button>
@@ -189,45 +232,45 @@ html { scroll-behavior: smooth; }
     </div>
 
     <!-- ===== STEP NAVIGATOR ===== -->
-    <div class="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+    <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-4 mb-6">
       <div class="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
-        <button onclick="switchStep(1)" id="step-1-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0F1A33] text-white shrink-0">
-          <div class="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center text-[#0F1A33] font-bold text-sm">1</div>
+        <button onclick="switchStep(1)" id="step-1-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1A2238] border border-[#6366F1] text-white shrink-0">
+          <div class="w-7 h-7 rounded-full bg-[#6366F1] flex items-center justify-center text-white font-bold text-sm font-mono">1</div>
           <div class="text-left">
             <div class="font-semibold text-sm">Setup</div>
-            <div class="text-xs opacity-70">Stawka + profil</div>
+            <div class="text-xs text-[#9CA3AF]">Stawka + profil</div>
           </div>
         </button>
-        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
-        <button onclick="switchStep(2)" id="step-2-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
-          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">2</div>
+        <div class="h-px flex-1 bg-[#2A3550] hidden md:block"></div>
+        <button onclick="switchStep(2)" id="step-2-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-[#9CA3AF] hover:bg-[#1A2238] border border-transparent shrink-0 transition">
+          <div class="w-7 h-7 rounded-full bg-[#2A3550] flex items-center justify-center font-bold text-sm font-mono text-[#9CA3AF]">2</div>
           <div class="text-left">
             <div class="font-semibold text-sm">Trackowanie</div>
-            <div class="text-xs opacity-70">7 dni · zadania</div>
+            <div class="text-xs">7 dni · zadania</div>
           </div>
         </button>
-        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
-        <button onclick="switchStep(3)" id="step-3-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
-          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">3</div>
+        <div class="h-px flex-1 bg-[#2A3550] hidden md:block"></div>
+        <button onclick="switchStep(3)" id="step-3-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-[#9CA3AF] hover:bg-[#1A2238] border border-transparent shrink-0 transition">
+          <div class="w-7 h-7 rounded-full bg-[#2A3550] flex items-center justify-center font-bold text-sm font-mono text-[#9CA3AF]">3</div>
           <div class="text-left">
             <div class="font-semibold text-sm">Insights AI</div>
-            <div class="text-xs opacity-70">Codziennie</div>
+            <div class="text-xs">Codziennie</div>
           </div>
         </button>
-        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
-        <button onclick="switchStep(4)" id="step-4-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
-          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">4</div>
+        <div class="h-px flex-1 bg-[#2A3550] hidden md:block"></div>
+        <button onclick="switchStep(4)" id="step-4-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-[#9CA3AF] hover:bg-[#1A2238] border border-transparent shrink-0 transition">
+          <div class="w-7 h-7 rounded-full bg-[#2A3550] flex items-center justify-center font-bold text-sm font-mono text-[#9CA3AF]">4</div>
           <div class="text-left">
             <div class="font-semibold text-sm">Raport</div>
-            <div class="text-xs opacity-70">Niedziela</div>
+            <div class="text-xs">Niedziela</div>
           </div>
         </button>
-        <div class="h-px flex-1 bg-gray-200 hidden md:block"></div>
-        <button onclick="switchStep(5)" id="step-5-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 shrink-0">
-          <div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm">5</div>
+        <div class="h-px flex-1 bg-[#2A3550] hidden md:block"></div>
+        <button onclick="switchStep(5)" id="step-5-btn" class="step-btn flex items-center gap-3 px-4 py-3 rounded-xl text-[#9CA3AF] hover:bg-[#1A2238] border border-transparent shrink-0 transition">
+          <div class="w-7 h-7 rounded-full bg-[#2A3550] flex items-center justify-center font-bold text-sm font-mono text-[#9CA3AF]">5</div>
           <div class="text-left">
             <div class="font-semibold text-sm">Decyzja</div>
-            <div class="text-xs opacity-70">Co dalej</div>
+            <div class="text-xs">Co dalej</div>
           </div>
         </button>
       </div>
@@ -235,25 +278,25 @@ html { scroll-behavior: smooth; }
 
     <!-- ============ STEP 1: SETUP ============ -->
     <section id="step-1" class="step-content fade-in">
-      <div class="bg-white rounded-3xl border border-gray-200 p-8 lg:p-12">
+      <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-8 lg:p-10">
         <div class="max-w-2xl">
-          <div class="text-xs uppercase tracking-widest text-amber-600 font-bold mb-3">Krok 1 z 5</div>
-          <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Powiedz mi <em>kim jesteś.</em></h2>
-          <p class="text-gray-600 text-lg leading-relaxed mb-10">3 pytania. AI dopasuje kategorie i podpowiedzi pod Twoją branżę i sposób pracy.</p>
+          <div class="text-[10px] uppercase tracking-[2px] text-[#A5B4FC] font-bold mb-3">Krok 1 z 5</div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">Powiedz mi kim jesteś.</h2>
+          <p class="text-[#9CA3AF] text-base leading-relaxed mb-10">3 pytania. AI dopasuje kategorie i podpowiedzi pod Twoją branżę i sposób pracy.</p>
 
           <form class="space-y-6">
             <div>
-              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Twoja stawka godzinowa (PLN/h)</label>
+              <label class="block text-xs uppercase tracking-[1.5px] font-bold text-[#9CA3AF] mb-2">Twoja stawka godzinowa (PLN/h)</label>
               <div class="relative">
-                <input type="number" value="200" min="50" max="2000" step="50" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-2xl font-bold text-[#0F1A33] transition">
-                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">zł/h</span>
+                <input type="number" value="200" min="50" max="2000" step="50" class="w-full px-5 py-4 rounded-xl bg-[#1A2238] border border-[#2A3550] focus:border-[#6366F1] focus:outline-none text-2xl font-bold text-white font-mono transition">
+                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-[#6B7280] font-semibold text-sm">zł/h</span>
               </div>
-              <p class="text-xs text-gray-500 mt-2">Tracker liczy ile tracisz w PLN, nie tylko w godzinach. Bez tego raport Cię nie ruszy.</p>
+              <p class="text-xs text-[#6B7280] mt-2">Tracker liczy ile tracisz w PLN, nie tylko w godzinach. Bez tego raport Cię nie ruszy.</p>
             </div>
 
             <div>
-              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Branża</label>
-              <select class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-base font-medium text-[#0F1A33] transition bg-white">
+              <label class="block text-xs uppercase tracking-[1.5px] font-bold text-[#9CA3AF] mb-2">Branża</label>
+              <select class="w-full px-5 py-4 rounded-xl bg-[#1A2238] border border-[#2A3550] focus:border-[#6366F1] focus:outline-none text-base font-medium text-white transition">
                 <option>Marketing / SEO / Ads</option>
                 <option>Design / UI / UX</option>
                 <option>Copywriting / Content</option>
@@ -266,26 +309,26 @@ html { scroll-behavior: smooth; }
                 <option>Sklep online / E-commerce</option>
                 <option>Inne</option>
               </select>
-              <p class="text-xs text-gray-500 mt-2">AI dopasuje przykłady kategorii pod Twoją branżę.</p>
+              <p class="text-xs text-[#6B7280] mt-2">AI dopasuje przykłady kategorii pod Twoją branżę.</p>
             </div>
 
             <div>
-              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Wielkość zespołu</label>
+              <label class="block text-xs uppercase tracking-[1.5px] font-bold text-[#9CA3AF] mb-2">Wielkość zespołu</label>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <button type="button" class="px-4 py-3 rounded-xl border-2 border-[#0F1A33] bg-[#0F1A33] text-white font-semibold text-sm">Solo</button>
-                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">2-5 osób</button>
-                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">6-10</button>
-                <button type="button" class="px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#0F1A33] font-semibold text-sm transition">10+</button>
+                <button type="button" class="px-4 py-3 rounded-xl bg-[#1A2238] border-2 border-[#6366F1] text-white font-semibold text-sm">Solo</button>
+                <button type="button" class="px-4 py-3 rounded-xl bg-[#1A2238] border-2 border-[#2A3550] hover:border-[#4B5C7E] text-[#E5E7EB] font-semibold text-sm transition">2-5 osób</button>
+                <button type="button" class="px-4 py-3 rounded-xl bg-[#1A2238] border-2 border-[#2A3550] hover:border-[#4B5C7E] text-[#E5E7EB] font-semibold text-sm transition">6-10</button>
+                <button type="button" class="px-4 py-3 rounded-xl bg-[#1A2238] border-2 border-[#2A3550] hover:border-[#4B5C7E] text-[#E5E7EB] font-semibold text-sm transition">10+</button>
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-semibold text-[#0F1A33] mb-2">Twój największy ból (opcjonalnie)</label>
-              <textarea placeholder="np. Wieczorami nie wiem gdzie poszedł dzień. Skrzynka żre mi pół tygodnia." class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#0F1A33] focus:outline-none text-base transition resize-none" rows="3"></textarea>
-              <p class="text-xs text-gray-500 mt-2">Im bardziej szczegółowo, tym lepsze podpowiedzi AI.</p>
+              <label class="block text-xs uppercase tracking-[1.5px] font-bold text-[#9CA3AF] mb-2">Twój największy ból (opcjonalnie)</label>
+              <textarea placeholder="np. Wieczorami nie wiem gdzie poszedł dzień. Skrzynka żre mi pół tygodnia." class="w-full px-5 py-4 rounded-xl bg-[#1A2238] border border-[#2A3550] focus:border-[#6366F1] focus:outline-none text-sm text-white placeholder-[#6B7280] transition resize-none" rows="3"></textarea>
+              <p class="text-xs text-[#6B7280] mt-2">Im bardziej szczegółowo, tym lepsze podpowiedzi AI.</p>
             </div>
 
-            <button type="button" onclick="switchStep(2)" class="w-full bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-2xl px-6 py-5 text-lg flex items-center justify-center gap-3 transition">
+            <button type="button" onclick="switchStep(2)" class="w-full text-white font-bold rounded-xl px-6 py-4 text-base flex items-center justify-center gap-3 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
               Zaczynam trackować <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
           </form>
@@ -296,34 +339,34 @@ html { scroll-behavior: smooth; }
     <!-- ============ STEP 2: TRACKOWANIE ============ -->
     <section id="step-2" class="step-content fade-in hidden">
       <!-- Quick stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-2xl border border-gray-200 p-5">
-          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Dziś</div>
-          <div class="font-display text-3xl text-[#0F1A33]">3h 25m</div>
-          <div class="text-xs text-gray-500 mt-1">5 zadań</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-2">Dziś</div>
+          <div class="text-3xl font-extrabold text-white font-mono">3h:25</div>
+          <div class="text-xs text-[#6B7280] mt-1">5 zadań</div>
         </div>
-        <div class="bg-white rounded-2xl border border-gray-200 p-5">
-          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Ten tydzień</div>
-          <div class="font-display text-3xl text-[#0F1A33]">28h 10m</div>
-          <div class="text-xs text-gray-500 mt-1">42 zadania</div>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-2">Ten tydzień</div>
+          <div class="text-3xl font-extrabold font-mono" style="color: #10B981;">28h:10</div>
+          <div class="text-xs text-[#6B7280] mt-1">42 zadania</div>
         </div>
-        <div class="bg-white rounded-2xl border border-gray-200 p-5">
-          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Top kategoria</div>
-          <div class="font-display text-3xl text-amber-600">A1 Mejling</div>
-          <div class="text-xs text-gray-500 mt-1">8h 30m (30%)</div>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-2">Top kategoria</div>
+          <div class="text-2xl font-extrabold text-[#F59E0B]">A1 Mejling</div>
+          <div class="text-xs text-[#6B7280] mt-1 font-mono">8h:30 · 30%</div>
         </div>
-        <div class="bg-white rounded-2xl border border-gray-200 p-5">
-          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Wartość czasu</div>
-          <div class="font-display text-3xl text-[#0F1A33]">5 633 zł</div>
-          <div class="text-xs text-gray-500 mt-1">przy 200 zł/h</div>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-2">Wartość czasu</div>
+          <div class="text-3xl font-extrabold text-white font-mono">5 633 <span class="text-sm text-[#9CA3AF]">zł</span></div>
+          <div class="text-xs text-[#6B7280] mt-1">@ 200 zł/h</div>
         </div>
       </div>
 
       <!-- Quick add bar -->
-      <div class="bg-[#0F1A33] rounded-2xl p-5 mb-8 flex items-center gap-3">
-        <i data-lucide="plus-circle" class="w-6 h-6 text-amber-400 shrink-0"></i>
-        <input type="text" placeholder="Co właśnie robisz? Wpisz krótko (np. 'odpowiedzi na maile')..." class="flex-1 bg-transparent text-white placeholder:text-white/50 focus:outline-none">
-        <select class="bg-white/10 text-white rounded-lg px-3 py-2 text-sm border border-white/20 focus:outline-none">
+      <div class="bg-[#131A2E] rounded-2xl p-5 mb-6 flex items-center gap-3 border border-[#6366F1]" style="box-shadow: 0 0 32px -16px #6366F1;">
+        <i data-lucide="plus-circle" class="w-6 h-6 text-[#A5B4FC] shrink-0"></i>
+        <input type="text" placeholder="Co właśnie robisz? Wpisz krótko (np. 'odpowiedzi na maile')..." class="flex-1 bg-transparent text-white placeholder:text-[#6B7280] focus:outline-none text-sm">
+        <select class="bg-[#1A2238] text-[#E5E7EB] rounded-lg px-3 py-2 text-sm border border-[#2A3550] focus:outline-none focus:border-[#6366F1]">
           <option>A1 Mejling</option>
           <option>P1 Praca skupiona</option>
           <option>P3 Spotkania</option>
@@ -331,71 +374,71 @@ html { scroll-behavior: smooth; }
           <option>Z2 Rozpraszacze</option>
           <option>... 25 kategorii</option>
         </select>
-        <input type="number" value="30" min="5" max="480" step="5" class="w-20 bg-white/10 text-white text-center rounded-lg px-2 py-2 text-sm border border-white/20 focus:outline-none">
-        <span class="text-white/70 text-sm">min</span>
-        <button onclick="addTaskMock()" class="bg-amber-400 hover:bg-amber-300 text-[#0F1A33] font-bold rounded-lg px-5 py-2 transition">
+        <input type="number" value="30" min="5" max="480" step="5" class="w-20 bg-[#1A2238] text-white text-center rounded-lg px-2 py-2 text-sm border border-[#2A3550] focus:outline-none focus:border-[#6366F1] font-mono">
+        <span class="text-[#9CA3AF] text-sm">min</span>
+        <button onclick="addTaskMock()" class="text-white font-bold rounded-lg px-5 py-2 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
           Dodaj
         </button>
       </div>
 
       <!-- 7-day timeline -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-6 lg:p-8">
+      <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-6 lg:p-8">
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h3 class="font-display text-2xl text-[#0F1A33]">Twój tydzień</h3>
-            <p class="text-sm text-gray-500">Wpisuj na bieżąco · min. 5 zadań/dzień · pełna szczerość</p>
+            <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-1">Twój tydzień</div>
+            <p class="text-sm text-[#6B7280]">Wpisuj na bieżąco · min. 5 zadań/dzień · pełna szczerość</p>
           </div>
-          <div class="text-xs text-gray-500 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-full font-semibold">
+          <div class="text-xs text-[#A5B4FC] bg-[#1A2238] border border-[#6366F1] px-3 py-1.5 rounded-full font-semibold">
             🔥 4/7 dni · zostało 3
           </div>
         </div>
 
         <div class="grid grid-cols-7 gap-2 mb-6">
-          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Pn</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">7h</div><div class="text-[10px] text-green-600 mt-1">12 zadań</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Wt</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">8h</div><div class="text-[10px] text-green-600 mt-1">10 zadań</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Śr</div><div class="bg-green-50 border border-green-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-green-700">9h</div><div class="text-[10px] text-green-600 mt-1">15 zadań</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-500 mb-2">Cz</div><div class="bg-amber-50 border-2 border-amber-400 rounded-xl p-3 text-center"><div class="font-display text-2xl text-amber-700">3h</div><div class="text-[10px] text-amber-600 mt-1">5 zadań · dziś</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-400 mb-2">Pt</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">jutro</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-400 mb-2">So</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">—</div></div></div>
-          <div class="text-center"><div class="text-xs text-gray-400 mb-2">Nd</div><div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center"><div class="font-display text-2xl text-gray-300">—</div><div class="text-[10px] text-gray-400 mt-1">audyt</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">Pn</div><div class="bg-[#1A2238] border border-[#10B981]/40 rounded-xl p-3 text-center" style="background: linear-gradient(180deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));"><div class="text-2xl font-extrabold font-mono" style="color:#10B981;">7h</div><div class="text-[10px] text-[#10B981]/80 mt-1">12 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">Wt</div><div class="bg-[#1A2238] border border-[#10B981]/40 rounded-xl p-3 text-center" style="background: linear-gradient(180deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));"><div class="text-2xl font-extrabold font-mono" style="color:#10B981;">8h</div><div class="text-[10px] text-[#10B981]/80 mt-1">10 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">Śr</div><div class="bg-[#1A2238] border border-[#10B981]/40 rounded-xl p-3 text-center" style="background: linear-gradient(180deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));"><div class="text-2xl font-extrabold font-mono" style="color:#10B981;">9h</div><div class="text-[10px] text-[#10B981]/80 mt-1">15 zadań</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#A5B4FC] mb-2 font-semibold">Cz</div><div class="rounded-xl p-3 text-center" style="background: linear-gradient(180deg, rgba(99,102,241,0.20), rgba(99,102,241,0.05)); border: 2px solid #6366F1; box-shadow: 0 0 24px -8px #6366F1;"><div class="text-2xl font-extrabold font-mono text-[#A5B4FC]">3h</div><div class="text-[10px] text-[#A5B4FC] mt-1">5 zadań · dziś</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">Pt</div><div class="bg-[#1A2238]/50 border border-[#2A3550] rounded-xl p-3 text-center"><div class="text-2xl font-extrabold font-mono text-[#4B5C7E]">—</div><div class="text-[10px] text-[#6B7280] mt-1">jutro</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">So</div><div class="bg-[#1A2238]/50 border border-[#2A3550] rounded-xl p-3 text-center"><div class="text-2xl font-extrabold font-mono text-[#4B5C7E]">—</div><div class="text-[10px] text-[#6B7280] mt-1">—</div></div></div>
+          <div class="text-center"><div class="text-xs text-[#6B7280] mb-2">Nd</div><div class="bg-[#1A2238]/50 border border-[#2A3550] rounded-xl p-3 text-center"><div class="text-2xl font-extrabold font-mono text-[#4B5C7E]">—</div><div class="text-[10px] text-[#6B7280] mt-1">audyt</div></div></div>
         </div>
 
         <!-- Lista zadań dzisiaj -->
-        <div class="border-t border-gray-100 pt-6">
+        <div class="border-t border-[#2A3550] pt-6">
           <div class="flex items-center justify-between mb-4">
-            <h4 class="font-bold text-[#0F1A33]">Dziś · czwartek</h4>
-            <span class="text-sm text-gray-500">5 zadań · 3h 25m</span>
+            <h4 class="font-bold text-white">Dziś · czwartek</h4>
+            <span class="text-sm text-[#9CA3AF] font-mono">5 zadań · 3h:25</span>
           </div>
           <div class="space-y-2">
-            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
-              <span class="text-xs px-2 py-1 rounded-md bg-gray-100 text-gray-700 font-bold">A1</span>
-              <span class="flex-1 text-sm">Odpowiedzi na maile z rana</span>
-              <span class="text-sm font-bold text-[#0F1A33]">45 min</span>
-              <span class="text-xs text-gray-400">150 zł</span>
+            <div class="flex items-center gap-3 p-3 hover:bg-[#1A2238] rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md bg-[#2A3550] text-[#9CA3AF] font-bold font-mono">A1</span>
+              <span class="flex-1 text-sm text-[#E5E7EB]">Odpowiedzi na maile z rana</span>
+              <span class="text-sm font-bold text-white font-mono">45m</span>
+              <span class="text-xs text-[#6B7280] font-mono">150 zł</span>
             </div>
-            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
-              <span class="text-xs px-2 py-1 rounded-md bg-green-100 text-green-700 font-bold">P1</span>
-              <span class="flex-1 text-sm">Pisanie tekstu na blog klienta Y</span>
-              <span class="text-sm font-bold text-[#0F1A33]">90 min</span>
-              <span class="text-xs text-gray-400">300 zł</span>
+            <div class="flex items-center gap-3 p-3 hover:bg-[#1A2238] rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md font-bold font-mono" style="background: rgba(16,185,129,0.15); color: #34D399;">P1</span>
+              <span class="flex-1 text-sm text-[#E5E7EB]">Pisanie tekstu na blog klienta Y</span>
+              <span class="text-sm font-bold text-white font-mono">90m</span>
+              <span class="text-xs text-[#6B7280] font-mono">300 zł</span>
             </div>
-            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
-              <span class="text-xs px-2 py-1 rounded-md bg-red-100 text-red-700 font-bold">Z2</span>
-              <span class="flex-1 text-sm">Scroll Instagrama podczas kawy</span>
-              <span class="text-sm font-bold text-amber-600">25 min</span>
-              <span class="text-xs text-gray-400">83 zł 🚩</span>
+            <div class="flex items-center gap-3 p-3 hover:bg-[#1A2238] rounded-xl transition" style="border-left: 3px solid #EF4444;">
+              <span class="text-xs px-2 py-1 rounded-md font-bold font-mono" style="background: rgba(239,68,68,0.15); color: #F87171;">Z2</span>
+              <span class="flex-1 text-sm text-[#E5E7EB]">Scroll Instagrama podczas kawy</span>
+              <span class="text-sm font-bold font-mono" style="color: #F59E0B;">25m</span>
+              <span class="text-xs text-[#F87171] font-mono">83 zł 🚩</span>
             </div>
-            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
-              <span class="text-xs px-2 py-1 rounded-md bg-blue-100 text-blue-700 font-bold">S2</span>
-              <span class="flex-1 text-sm">Briefing nowego leada przez Zooma</span>
-              <span class="text-sm font-bold text-[#0F1A33]">40 min</span>
-              <span class="text-xs text-gray-400">133 zł</span>
+            <div class="flex items-center gap-3 p-3 hover:bg-[#1A2238] rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md font-bold font-mono" style="background: rgba(99,102,241,0.15); color: #A5B4FC;">S2</span>
+              <span class="flex-1 text-sm text-[#E5E7EB]">Briefing nowego leada przez Zooma</span>
+              <span class="text-sm font-bold text-white font-mono">40m</span>
+              <span class="text-xs text-[#6B7280] font-mono">133 zł</span>
             </div>
-            <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition">
-              <span class="text-xs px-2 py-1 rounded-md bg-green-100 text-green-700 font-bold">P3</span>
-              <span class="flex-1 text-sm">Status weekly z klientem X</span>
-              <span class="text-sm font-bold text-[#0F1A33]">55 min</span>
-              <span class="text-xs text-gray-400">183 zł</span>
+            <div class="flex items-center gap-3 p-3 hover:bg-[#1A2238] rounded-xl transition">
+              <span class="text-xs px-2 py-1 rounded-md font-bold font-mono" style="background: rgba(16,185,129,0.15); color: #34D399;">P3</span>
+              <span class="flex-1 text-sm text-[#E5E7EB]">Status weekly z klientem X</span>
+              <span class="text-sm font-bold text-white font-mono">55m</span>
+              <span class="text-xs text-[#6B7280] font-mono">183 zł</span>
             </div>
           </div>
         </div>
@@ -403,7 +446,7 @@ html { scroll-behavior: smooth; }
 
       <!-- Next button -->
       <div class="mt-8 flex justify-end">
-        <button onclick="switchStep(3)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+        <button onclick="switchStep(3)" class="text-white font-bold rounded-xl px-6 py-3 flex items-center gap-2 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
           Zobacz Insights AI <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </div>
@@ -411,85 +454,85 @@ html { scroll-behavior: smooth; }
 
     <!-- ============ STEP 3: INSIGHTS AI ============ -->
     <section id="step-3" class="step-content fade-in hidden">
-      <div class="grid lg:grid-cols-3 gap-6">
+      <div class="grid lg:grid-cols-3 gap-4">
         <!-- AI insight card -->
-        <div class="lg:col-span-2 bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] rounded-3xl p-8 text-white relative overflow-hidden">
-          <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full" style="background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%); filter: blur(40px);"></div>
+        <div class="lg:col-span-2 rounded-2xl p-8 text-white relative overflow-hidden border border-[#6366F1]" style="background: linear-gradient(135deg, #1A1F3D 0%, #2D1A4D 100%); box-shadow: 0 0 60px -20px #6366F1;">
+          <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full" style="background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%); filter: blur(40px);"></div>
           <div class="relative z-10">
             <div class="flex items-center gap-2 mb-4">
-              <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center">
-                <i data-lucide="sparkles" class="w-4 h-4 text-[#0F1A33]"></i>
+              <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1, #A855F7);">
+                <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
               </div>
-              <span class="text-xs uppercase tracking-widest font-bold text-amber-400">AI Insight · czwartek</span>
+              <span class="text-[10px] uppercase tracking-[2px] font-bold text-[#A5B4FC]">AI Insight · czwartek</span>
             </div>
-            <h2 class="font-display text-3xl lg:text-4xl mb-4 leading-[1.05]"><em>Marek, masz wzór.</em></h2>
-            <p class="text-white/85 leading-relaxed mb-4">
-              Na podstawie ostatnich 4 dni widzę że <strong class="text-amber-400">co rano zaczynasz od mejli (A1)</strong>. Średnio 38 minut. To <strong>2h 32min tygodniowo</strong> na coś, co przeważnie da się ogarnąć szablonami.
+            <h2 class="text-2xl lg:text-3xl font-extrabold tracking-tight mb-4 leading-tight">Marek, masz wzór.</h2>
+            <p class="text-[#E5E7EB] leading-relaxed mb-4 text-sm">
+              Na podstawie ostatnich 4 dni widzę że <strong class="text-[#A5B4FC]">co rano zaczynasz od mejli (A1)</strong>. Średnio 38 minut. To <strong class="font-mono">2h 32min tygodniowo</strong> na coś, co przeważnie da się ogarnąć szablonami.
             </p>
-            <p class="text-white/85 leading-relaxed mb-6">
-              Roczna strata przy Twojej stawce 200 zł/h: <strong class="text-amber-400 text-xl">~25 200 zł</strong>.
+            <p class="text-[#E5E7EB] leading-relaxed mb-6 text-sm">
+              Roczna strata przy Twojej stawce 200 zł/h: <strong class="text-[#F59E0B] text-xl font-mono">~25 200 zł</strong>.
             </p>
             <div class="flex flex-wrap gap-2">
-              <button class="bg-amber-400 hover:bg-amber-300 text-[#0F1A33] font-bold rounded-full px-5 py-2 text-sm transition">Pokaż mi 3 szablony</button>
-              <button class="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-5 py-2 text-sm transition">Ignoruj na dziś</button>
+              <button class="text-white font-bold rounded-lg px-5 py-2 text-sm transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">Pokaż mi 3 szablony</button>
+              <button class="bg-[#1A2238] hover:bg-[#2A3550] text-[#E5E7EB] border border-[#2A3550] rounded-lg px-5 py-2 text-sm transition">Ignoruj na dziś</button>
             </div>
           </div>
         </div>
 
         <!-- Quick patterns -->
-        <div class="space-y-4">
-          <div class="bg-white rounded-2xl border border-gray-200 p-5">
-            <div class="flex items-center gap-2 mb-2"><i data-lucide="trending-up" class="w-4 h-4 text-green-600"></i><span class="text-xs uppercase tracking-widest font-bold text-green-600">Najlepszy dzień</span></div>
-            <div class="font-display text-2xl text-[#0F1A33]">Środa</div>
-            <div class="text-xs text-gray-500 mt-1">9h pracy, 60% to deep work (P1)</div>
+        <div class="space-y-3">
+          <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="trending-up" class="w-4 h-4" style="color:#10B981;"></i><span class="text-[10px] uppercase tracking-[1.5px] font-bold" style="color:#10B981;">Najlepszy dzień</span></div>
+            <div class="text-2xl font-extrabold text-white">Środa</div>
+            <div class="text-xs text-[#6B7280] mt-1 font-mono">9h pracy · 60% deep work (P1)</div>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-200 p-5">
-            <div class="flex items-center gap-2 mb-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i><span class="text-xs uppercase tracking-widest font-bold text-amber-600">Czerwona flaga</span></div>
-            <div class="font-display text-2xl text-[#0F1A33]">Z2 Rozpraszacze</div>
-            <div class="text-xs text-gray-500 mt-1">2h 15m w 4 dni · 30 min/dzień średnio</div>
+          <div class="bg-[#131A2E] rounded-2xl border border-[#EF4444]/40 p-5 card-hover">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-[#F87171]"></i><span class="text-[10px] uppercase tracking-[1.5px] font-bold text-[#F87171]">Czerwona flaga</span></div>
+            <div class="text-2xl font-extrabold text-white">Z2 Rozpraszacze</div>
+            <div class="text-xs text-[#6B7280] mt-1 font-mono">2h 15m w 4 dni · 30 min/dzień</div>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-200 p-5">
-            <div class="flex items-center gap-2 mb-2"><i data-lucide="target" class="w-4 h-4 text-blue-600"></i><span class="text-xs uppercase tracking-widest font-bold text-blue-600">Cel tygodnia</span></div>
-            <div class="font-display text-2xl text-[#0F1A33]">5 zadań/dzień</div>
-            <div class="text-xs text-gray-500 mt-1">4/7 dni · idziesz dobrze</div>
+          <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-5 card-hover">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="target" class="w-4 h-4 text-[#A5B4FC]"></i><span class="text-[10px] uppercase tracking-[1.5px] font-bold text-[#A5B4FC]">Cel tygodnia</span></div>
+            <div class="text-2xl font-extrabold text-white">5 zadań/dzień</div>
+            <div class="text-xs text-[#6B7280] mt-1 font-mono">4/7 dni · idziesz dobrze</div>
           </div>
         </div>
       </div>
 
       <!-- Suggested next actions -->
-      <div class="mt-8 bg-white rounded-3xl border border-gray-200 p-8">
-        <h3 class="font-display text-2xl text-[#0F1A33] mb-2">AI proponuje ci 3 ruchy</h3>
-        <p class="text-gray-600 text-sm mb-6">Na podstawie Twoich 4 dni trackowania.</p>
+      <div class="mt-6 bg-[#131A2E] rounded-2xl border border-[#2A3550] p-8">
+        <h3 class="text-2xl font-extrabold text-white tracking-tight mb-2">AI proponuje 3 ruchy</h3>
+        <p class="text-[#9CA3AF] text-sm mb-6">Na podstawie Twoich 4 dni trackowania.</p>
         <div class="space-y-3">
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
-            <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">1</div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#1A2238] border border-[#F59E0B]/30">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm font-mono shrink-0" style="background:#F59E0B;">1</div>
             <div class="flex-1">
-              <div class="font-bold text-[#0F1A33]">Wyłącz powiadomienia w 4 aplikacjach</div>
-              <div class="text-sm text-gray-700 mt-1">Z2 (Rozpraszacze) zjada Ci 30 min/dzień. To 2h 30min tygodniowo, ~16 600 zł rocznie.</div>
+              <div class="font-bold text-white">Wyłącz powiadomienia w 4 aplikacjach</div>
+              <div class="text-sm text-[#9CA3AF] mt-1">Z2 (Rozpraszacze) zjada Ci <span class="font-mono">30 min/dzień</span>. To <span class="font-mono">2h 30min tygodniowo</span>, <span class="font-mono">~16 600 zł rocznie</span>.</div>
             </div>
-            <button class="text-xs font-bold text-amber-700 hover:text-amber-900 px-3 py-2 transition">Pokaż jak →</button>
+            <button class="text-xs font-bold text-[#F59E0B] hover:text-[#FBBF24] px-3 py-2 transition whitespace-nowrap">Pokaż jak →</button>
           </div>
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">2</div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#1A2238] border border-[#2A3550]">
+            <div class="w-8 h-8 rounded-full bg-[#2A3550] flex items-center justify-center text-white font-bold text-sm font-mono shrink-0">2</div>
             <div class="flex-1">
-              <div class="font-bold text-[#0F1A33]">Zrób 3 szablony mejli</div>
-              <div class="text-sm text-gray-700 mt-1">A1 (Mejling) to top 1 stratna kategoria. Wzorce dla 60% odpowiedzi 1-zdaniowych.</div>
+              <div class="font-bold text-white">Zrób 3 szablony mejli</div>
+              <div class="text-sm text-[#9CA3AF] mt-1">A1 (Mejling) to top 1 stratna kategoria. Wzorce dla 60% odpowiedzi 1-zdaniowych.</div>
             </div>
-            <button class="text-xs font-bold text-gray-700 hover:text-[#0F1A33] px-3 py-2 transition">AI napisze →</button>
+            <button class="text-xs font-bold text-[#A5B4FC] hover:text-white px-3 py-2 transition whitespace-nowrap">AI napisze →</button>
           </div>
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-[#0F1A33] font-bold text-sm shrink-0">3</div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#1A2238] border border-[#2A3550]">
+            <div class="w-8 h-8 rounded-full bg-[#2A3550] flex items-center justify-center text-white font-bold text-sm font-mono shrink-0">3</div>
             <div class="flex-1">
-              <div class="font-bold text-[#0F1A33]">Zaplanuj 2h focus block</div>
-              <div class="text-sm text-gray-700 mt-1">P1 (Praca skupiona) działa najlepiej w środy. Zablokuj jutro 9-11 jako „nikt mi nie przeszkadza".</div>
+              <div class="font-bold text-white">Zaplanuj 2h focus block</div>
+              <div class="text-sm text-[#9CA3AF] mt-1">P1 (Praca skupiona) działa najlepiej w środy. Zablokuj jutro 9-11 jako „nikt mi nie przeszkadza".</div>
             </div>
-            <button class="text-xs font-bold text-gray-700 hover:text-[#0F1A33] px-3 py-2 transition">Dodaj do kalendarza →</button>
+            <button class="text-xs font-bold text-[#A5B4FC] hover:text-white px-3 py-2 transition whitespace-nowrap">Dodaj do kalendarza →</button>
           </div>
         </div>
       </div>
 
       <div class="mt-8 flex justify-end">
-        <button onclick="switchStep(4)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+        <button onclick="switchStep(4)" class="text-white font-bold rounded-xl px-6 py-3 flex items-center gap-2 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
           Zobacz pełen raport <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </div>
@@ -497,97 +540,97 @@ html { scroll-behavior: smooth; }
 
     <!-- ============ STEP 4: RAPORT ============ -->
     <section id="step-4" class="step-content fade-in hidden">
-      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-3xl p-8 mb-8">
-        <div class="flex items-center gap-2 mb-2"><i data-lucide="award" class="w-5 h-5 text-amber-600"></i><span class="text-xs uppercase tracking-widest font-bold text-amber-700">Raport po 7 dniach</span></div>
-        <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Twój tydzień <em>w liczbach.</em></h2>
-        <p class="text-gray-700 leading-relaxed">Posiedź z tym minutę. AI wygenerował insighty na podstawie 7 dni Twoich danych.</p>
+      <div class="rounded-2xl p-8 mb-6 border border-[#6366F1]" style="background: linear-gradient(135deg, #1A1F3D, #2D1A4D);">
+        <div class="flex items-center gap-2 mb-2"><i data-lucide="award" class="w-5 h-5 text-[#A5B4FC]"></i><span class="text-[10px] uppercase tracking-[2px] font-bold text-[#A5B4FC]">Raport po 7 dniach</span></div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">Twój tydzień w liczbach.</h2>
+        <p class="text-[#E5E7EB] leading-relaxed text-sm">Posiedź z tym minutę. AI wygenerował insighty na podstawie 7 dni Twoich danych.</p>
       </div>
 
       <!-- Big numbers -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-2xl border border-gray-200 p-6">
-          <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Łączny czas</div>
-          <div class="font-display text-4xl text-[#0F1A33]">42h 30m</div>
-          <div class="text-xs text-gray-500 mt-1">w 7 dni</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-6 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#9CA3AF] font-bold mb-2">Łączny czas</div>
+          <div class="text-3xl font-extrabold text-white font-mono">42h:30</div>
+          <div class="text-xs text-[#6B7280] mt-1">w 7 dni</div>
         </div>
-        <div class="bg-white rounded-2xl border border-red-200 p-6">
-          <div class="text-xs uppercase tracking-widest text-red-600 font-bold mb-2">⚠ Strata</div>
-          <div class="font-display text-4xl text-red-600">8h 15m</div>
-          <div class="text-xs text-gray-500 mt-1">19% tygodnia</div>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#EF4444]/40 p-6 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#F87171] font-bold mb-2">⚠ Strata</div>
+          <div class="text-3xl font-extrabold font-mono" style="color:#EF4444;">8h:15</div>
+          <div class="text-xs text-[#6B7280] mt-1">19% tygodnia</div>
         </div>
-        <div class="bg-white rounded-2xl border border-amber-300 p-6">
-          <div class="text-xs uppercase tracking-widest text-amber-700 font-bold mb-2">Koszt strat</div>
-          <div class="font-display text-4xl text-amber-700">1 650 zł</div>
-          <div class="text-xs text-gray-500 mt-1">tygodniowo</div>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#F59E0B]/40 p-6 card-hover">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#F59E0B] font-bold mb-2">Koszt strat</div>
+          <div class="text-3xl font-extrabold font-mono" style="color:#F59E0B;">1 650 zł</div>
+          <div class="text-xs text-[#6B7280] mt-1">tygodniowo</div>
         </div>
-        <div class="bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] text-white rounded-2xl p-6">
-          <div class="text-xs uppercase tracking-widest text-amber-400 font-bold mb-2">Roczna kwota</div>
-          <div class="font-display text-4xl text-amber-400">~82 500 zł</div>
-          <div class="text-xs text-white/70 mt-1">jeśli nic się nie zmieni</div>
+        <div class="rounded-2xl p-6 border border-[#6366F1]" style="background: linear-gradient(135deg, #1A1F3D, #2D1A4D); box-shadow: 0 0 32px -16px #6366F1;">
+          <div class="text-[10px] uppercase tracking-[1.5px] text-[#A5B4FC] font-bold mb-2">Roczna kwota</div>
+          <div class="text-3xl font-extrabold font-mono text-[#A5B4FC]">~82 500 zł</div>
+          <div class="text-xs text-[#9CA3AF] mt-1">jeśli nic się nie zmieni</div>
         </div>
       </div>
 
       <!-- Top 5 categories -->
-      <div class="bg-white rounded-3xl border border-gray-200 p-8 mb-8">
-        <h3 class="font-display text-2xl text-[#0F1A33] mb-6">TOP 5 kategorii (po czasie)</h3>
+      <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-8 mb-6">
+        <h3 class="text-2xl font-extrabold text-white tracking-tight mb-6">TOP 5 kategorii (po czasie)</h3>
         <div class="space-y-3">
           <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">A1</span>
+            <span class="w-8 h-8 rounded-lg font-bold text-sm font-mono flex items-center justify-center shrink-0" style="background: rgba(239,68,68,0.15); color: #F87171;">A1</span>
             <div class="flex-1">
               <div class="flex items-center justify-between mb-1">
-                <span class="font-semibold text-[#0F1A33]">A1 Mejling</span>
-                <span class="text-sm text-gray-600 font-bold">11h 45m · 2 350 zł</span>
+                <span class="font-semibold text-white">A1 Mejling</span>
+                <span class="text-sm text-[#9CA3AF] font-bold font-mono">11h:45 · 2 350 zł</span>
               </div>
-              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-red-500 h-full" style="width: 28%"></div>
+              <div class="bg-[#1A2238] rounded-full h-2 overflow-hidden">
+                <div class="h-full" style="width: 28%; background: #EF4444;"></div>
               </div>
             </div>
           </div>
           <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm flex items-center justify-center shrink-0">P1</span>
+            <span class="w-8 h-8 rounded-lg font-bold text-sm font-mono flex items-center justify-center shrink-0" style="background: rgba(16,185,129,0.15); color: #34D399;">P1</span>
             <div class="flex-1">
               <div class="flex items-center justify-between mb-1">
-                <span class="font-semibold text-[#0F1A33]">P1 Praca skupiona</span>
-                <span class="text-sm text-gray-600 font-bold">9h 30m · 1 900 zł</span>
+                <span class="font-semibold text-white">P1 Praca skupiona</span>
+                <span class="text-sm text-[#9CA3AF] font-bold font-mono">9h:30 · 1 900 zł</span>
               </div>
-              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-green-500 h-full" style="width: 22%"></div>
+              <div class="bg-[#1A2238] rounded-full h-2 overflow-hidden">
+                <div class="h-full" style="width: 22%; background: #10B981;"></div>
               </div>
             </div>
           </div>
           <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">Z2</span>
+            <span class="w-8 h-8 rounded-lg font-bold text-sm font-mono flex items-center justify-center shrink-0" style="background: rgba(239,68,68,0.15); color: #F87171;">Z2</span>
             <div class="flex-1">
               <div class="flex items-center justify-between mb-1">
-                <span class="font-semibold text-[#0F1A33]">Z2 Rozpraszacze</span>
-                <span class="text-sm text-gray-600 font-bold">5h 15m · 1 050 zł 🚩</span>
+                <span class="font-semibold text-white">Z2 Rozpraszacze</span>
+                <span class="text-sm text-[#9CA3AF] font-bold font-mono">5h:15 · 1 050 zł 🚩</span>
               </div>
-              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-red-500 h-full" style="width: 12%"></div>
+              <div class="bg-[#1A2238] rounded-full h-2 overflow-hidden">
+                <div class="h-full" style="width: 12%; background: #EF4444;"></div>
               </div>
             </div>
           </div>
           <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold text-sm flex items-center justify-center shrink-0">P3</span>
+            <span class="w-8 h-8 rounded-lg font-bold text-sm font-mono flex items-center justify-center shrink-0" style="background: rgba(99,102,241,0.15); color: #A5B4FC;">P3</span>
             <div class="flex-1">
               <div class="flex items-center justify-between mb-1">
-                <span class="font-semibold text-[#0F1A33]">P3 Spotkania klient</span>
-                <span class="text-sm text-gray-600 font-bold">4h 50m · 970 zł</span>
+                <span class="font-semibold text-white">P3 Spotkania klient</span>
+                <span class="text-sm text-[#9CA3AF] font-bold font-mono">4h:50 · 970 zł</span>
               </div>
-              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-blue-500 h-full" style="width: 11%"></div>
+              <div class="bg-[#1A2238] rounded-full h-2 overflow-hidden">
+                <div class="h-full" style="width: 11%; background: #6366F1;"></div>
               </div>
             </div>
           </div>
           <div class="flex items-center gap-4">
-            <span class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm flex items-center justify-center shrink-0">M1</span>
+            <span class="w-8 h-8 rounded-lg font-bold text-sm font-mono flex items-center justify-center shrink-0" style="background: rgba(168,85,247,0.15); color: #C4B5FD;">M1</span>
             <div class="flex-1">
               <div class="flex items-center justify-between mb-1">
-                <span class="font-semibold text-[#0F1A33]">M1 Tworzenie content</span>
-                <span class="text-sm text-gray-600 font-bold">3h 30m · 700 zł</span>
+                <span class="font-semibold text-white">M1 Tworzenie content</span>
+                <span class="text-sm text-[#9CA3AF] font-bold font-mono">3h:30 · 700 zł</span>
               </div>
-              <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-purple-500 h-full" style="width: 8%"></div>
+              <div class="bg-[#1A2238] rounded-full h-2 overflow-hidden">
+                <div class="h-full" style="width: 8%; background: #A855F7;"></div>
               </div>
             </div>
           </div>
@@ -595,21 +638,21 @@ html { scroll-behavior: smooth; }
       </div>
 
       <!-- AI summary -->
-      <div class="bg-gradient-to-br from-[#0F1A33] to-[#1B2A4E] text-white rounded-3xl p-8 lg:p-10 mb-8">
+      <div class="rounded-2xl p-8 lg:p-10 mb-6 border border-[#6366F1]" style="background: linear-gradient(135deg, #1A1F3D, #2D1A4D);">
         <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center"><i data-lucide="sparkles" class="w-4 h-4 text-[#0F1A33]"></i></div>
-          <span class="text-xs uppercase tracking-widest font-bold text-amber-400">Podsumowanie AI</span>
+          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #6366F1, #A855F7);"><i data-lucide="sparkles" class="w-4 h-4 text-white"></i></div>
+          <span class="text-[10px] uppercase tracking-[2px] font-bold text-[#A5B4FC]">Podsumowanie AI</span>
         </div>
-        <h3 class="font-display text-3xl mb-4 leading-[1.05]">3 rzeczy <em>z Twojego tygodnia.</em></h3>
-        <ol class="space-y-3 text-white/85 leading-relaxed">
-          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">1.</span><span><strong class="text-amber-400">A1 Mejling (11h 45m) i Z2 Rozpraszacze (5h 15m) razem to 17h tygodniowo</strong> — czyli prawie 2 dni pracy. Łącznie 3 400 zł co tydzień, 170 000 zł rocznie.</span></li>
-          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">2.</span><span>P1 Praca skupiona to dopiero 22% tygodnia. Powinno być min. 40-50% (Twój ZAROBKOWY czas). Reszta to operacje i straty.</span></li>
-          <li class="flex gap-3"><span class="text-amber-400 font-bold shrink-0">3.</span><span><strong>Środa była Twoim najlepszym dniem</strong> (60% to P1) — replikuj jego rytm: bez spotkań, focus block 9-12, mejli dopiero po lunchu.</span></li>
+        <h3 class="text-2xl lg:text-3xl font-extrabold text-white tracking-tight mb-4 leading-tight">3 rzeczy z Twojego tygodnia.</h3>
+        <ol class="space-y-3 text-[#E5E7EB] leading-relaxed text-sm">
+          <li class="flex gap-3"><span class="text-[#A5B4FC] font-bold shrink-0 font-mono">1.</span><span><strong class="text-[#A5B4FC]">A1 Mejling (11h 45m) i Z2 Rozpraszacze (5h 15m) razem to <span class="font-mono">17h tygodniowo</span></strong> — czyli prawie 2 dni pracy. Łącznie <span class="font-mono">3 400 zł</span> co tydzień, <span class="font-mono">170 000 zł</span> rocznie.</span></li>
+          <li class="flex gap-3"><span class="text-[#A5B4FC] font-bold shrink-0 font-mono">2.</span><span>P1 Praca skupiona to dopiero <span class="font-mono">22%</span> tygodnia. Powinno być min. <span class="font-mono">40-50%</span> (Twój ZAROBKOWY czas). Reszta to operacje i straty.</span></li>
+          <li class="flex gap-3"><span class="text-[#A5B4FC] font-bold shrink-0 font-mono">3.</span><span><strong class="text-white">Środa była Twoim najlepszym dniem</strong> (60% to P1) — replikuj jego rytm: bez spotkań, focus block 9-12, mejli dopiero po lunchu.</span></li>
         </ol>
       </div>
 
       <div class="flex justify-end">
-        <button onclick="switchStep(5)" class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-8 py-3 flex items-center gap-2 transition">
+        <button onclick="switchStep(5)" class="text-white font-bold rounded-xl px-6 py-3 flex items-center gap-2 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
           Decyzja: co dalej? <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </div>
@@ -618,47 +661,47 @@ html { scroll-behavior: smooth; }
     <!-- ============ STEP 5: DECYZJA ============ -->
     <section id="step-5" class="step-content fade-in hidden">
       <div class="text-center mb-10">
-        <div class="text-xs uppercase tracking-widest text-amber-600 font-bold mb-3">Krok 5 z 5 · Twoja decyzja</div>
-        <h2 class="font-display text-4xl lg:text-5xl text-[#0F1A33] leading-[0.95] mb-4">Co automatyzujesz <em>pierwsze?</em></h2>
-        <p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">3 ścieżki, w zależności od Twojej TOP 1 stratnej kategorii. AI wskazał Ci właśnie ścieżkę B.</p>
+        <div class="text-[10px] uppercase tracking-[2px] text-[#A5B4FC] font-bold mb-3">Krok 5 z 5 · Twoja decyzja</div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">Co automatyzujesz pierwsze?</h2>
+        <p class="text-[#9CA3AF] text-base leading-relaxed max-w-2xl mx-auto">3 ścieżki, w zależności od Twojej TOP 1 stratnej kategorii. AI wskazał Ci właśnie ścieżkę B.</p>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-4 mb-10">
-        <div class="bg-white rounded-3xl border-2 border-gray-200 p-6 opacity-60">
-          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold mb-4">A</div>
-          <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Pakiet Dokumentów</h3>
-          <p class="text-sm text-gray-600 mb-4">Dla TOP P1 / S2. 100 wzorców promptów do wgrania w asystenta.</p>
-          <div class="font-display text-3xl text-[#0F1A33] mb-4">297 zł</div>
-          <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Wkrótce</span>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-6 opacity-60">
+          <div class="w-10 h-10 rounded-full bg-[#1A2238] border border-[#2A3550] flex items-center justify-center font-bold mb-4 text-[#9CA3AF] font-mono">A</div>
+          <h3 class="text-xl font-extrabold text-white tracking-tight mb-2">Pakiet Dokumentów</h3>
+          <p class="text-sm text-[#9CA3AF] mb-4">Dla TOP P1 / S2. 100 wzorców promptów do wgrania w asystenta.</p>
+          <div class="text-2xl font-extrabold text-white font-mono mb-4">297 zł</div>
+          <span class="text-[10px] uppercase tracking-[2px] text-[#6B7280] font-bold">Wkrótce</span>
         </div>
 
-        <div class="bg-gradient-to-br from-amber-400 to-orange-500 text-[#0F1A33] rounded-3xl p-6 ring-4 ring-amber-200 shadow-2xl scale-105 relative">
-          <span class="absolute -top-3 right-4 px-3 py-1 bg-[#0F1A33] text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full">AI poleca</span>
-          <div class="w-10 h-10 rounded-full bg-[#0F1A33] text-amber-400 flex items-center justify-center font-bold mb-4">B</div>
-          <h3 class="font-display text-2xl mb-2">Decoder Stack AI</h3>
-          <p class="text-sm mb-4 text-[#0F1A33]/80">Twój TOP 1 to A1 Mejling. 50 narzędzi które automatyzują skrzynkę i Z2 rozpraszacze.</p>
-          <div class="font-display text-3xl mb-4">97 zł</div>
-          <button class="w-full bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-xl px-4 py-3 transition">
+        <div class="rounded-2xl p-6 relative card-hover" style="background: linear-gradient(135deg, #1A1F3D, #2D1A4D); border: 2px solid #6366F1; box-shadow: 0 0 60px -20px #6366F1;">
+          <span class="absolute -top-3 right-4 px-3 py-1 text-[10px] font-bold uppercase tracking-[2px] rounded-full text-white" style="background: linear-gradient(90deg, #6366F1, #A855F7);">AI poleca</span>
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold mb-4 font-mono text-white" style="background: linear-gradient(135deg, #6366F1, #A855F7);">B</div>
+          <h3 class="text-xl font-extrabold text-white tracking-tight mb-2">Decoder Stack AI</h3>
+          <p class="text-sm text-[#E5E7EB] mb-4">Twój TOP 1 to A1 Mejling. 50 narzędzi które automatyzują skrzynkę i Z2 rozpraszacze.</p>
+          <div class="text-3xl font-extrabold text-[#A5B4FC] font-mono mb-4">97 zł</div>
+          <button class="w-full text-white font-bold rounded-xl px-4 py-3 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">
             Zarezerwuj P2 (wkrótce)
           </button>
         </div>
 
-        <div class="bg-white rounded-3xl border-2 border-gray-200 p-6 opacity-60">
-          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold mb-4">C</div>
-          <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Warsztat 1-na-1</h3>
-          <p class="text-sm text-gray-600 mb-4">Dla TOP Z1 / Z3. 4 godziny budujemy asystenta od zera.</p>
-          <div class="font-display text-3xl text-[#0F1A33] mb-4">1500 zł</div>
-          <a href="https://ai-team.pl/warsztaty.html" class="text-xs uppercase tracking-widest text-amber-600 font-bold hover:underline">Zobacz szczegóły →</a>
+        <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-6 opacity-60">
+          <div class="w-10 h-10 rounded-full bg-[#1A2238] border border-[#2A3550] flex items-center justify-center font-bold mb-4 text-[#9CA3AF] font-mono">C</div>
+          <h3 class="text-xl font-extrabold text-white tracking-tight mb-2">Warsztat 1-na-1</h3>
+          <p class="text-sm text-[#9CA3AF] mb-4">Dla TOP Z1 / Z3. 4 godziny budujemy asystenta od zera.</p>
+          <div class="text-2xl font-extrabold text-white font-mono mb-4">1 500 zł</div>
+          <a href="https://ai-team.pl/warsztaty.html" class="text-[10px] uppercase tracking-[2px] text-[#A5B4FC] font-bold hover:text-white transition">Zobacz szczegóły →</a>
         </div>
       </div>
 
-      <div class="bg-white rounded-3xl border border-gray-200 p-8 text-center">
-        <i data-lucide="trophy" class="w-12 h-12 text-amber-500 mx-auto mb-4"></i>
-        <h3 class="font-display text-2xl text-[#0F1A33] mb-2">Gratulacje! Skończyłeś 7 dni.</h3>
-        <p class="text-gray-600 mb-6 max-w-xl mx-auto">Możesz powtórzyć tracker za miesiąc lub kwartał. Albo zarezerwować P2 (Decoder Stack AI) i dostać powiadomienie przy launchu.</p>
+      <div class="bg-[#131A2E] rounded-2xl border border-[#2A3550] p-8 text-center">
+        <i data-lucide="trophy" class="w-12 h-12 mx-auto mb-4" style="color: #F59E0B;"></i>
+        <h3 class="text-2xl font-extrabold text-white tracking-tight mb-2">Gratulacje! Skończyłeś 7 dni.</h3>
+        <p class="text-[#9CA3AF] mb-6 max-w-xl mx-auto text-sm">Możesz powtórzyć tracker za miesiąc lub kwartał. Albo zarezerwować P2 (Decoder Stack AI) i dostać powiadomienie przy launchu.</p>
         <div class="flex flex-wrap gap-3 justify-center">
-          <button onclick="switchStep(1)" class="bg-white border-2 border-gray-200 hover:border-[#0F1A33] text-[#0F1A33] font-bold rounded-full px-6 py-3 transition">Zacznij nowy tydzień</button>
-          <button class="bg-[#0F1A33] hover:bg-[#1B2A4E] text-white font-bold rounded-full px-6 py-3 transition">Pobierz raport PDF</button>
+          <button onclick="switchStep(1)" class="bg-[#1A2238] border border-[#2A3550] hover:border-[#4B5C7E] text-[#E5E7EB] font-bold rounded-xl px-6 py-3 transition">Zacznij nowy tydzień</button>
+          <button class="text-white font-bold rounded-xl px-6 py-3 transition" style="background: linear-gradient(90deg, #6366F1, #A855F7);">Pobierz raport PDF</button>
         </div>
       </div>
     </section>
@@ -679,15 +722,15 @@ html { scroll-behavior: smooth; }
       const idx = i + 1;
       const dot = btn.querySelector('div.w-7');
       if (idx === stepNum) {
-        btn.classList.add('bg-[#0F1A33]', 'text-white');
-        btn.classList.remove('text-gray-500', 'hover:bg-gray-50');
-        dot.classList.add('bg-amber-400', 'text-[#0F1A33]');
-        dot.classList.remove('bg-gray-200');
+        btn.classList.add('bg-[#1A2238]', 'border-[#6366F1]', 'text-white');
+        btn.classList.remove('text-[#9CA3AF]', 'hover:bg-[#1A2238]', 'border-transparent');
+        dot.classList.add('bg-[#6366F1]', 'text-white');
+        dot.classList.remove('bg-[#2A3550]', 'text-[#9CA3AF]');
       } else {
-        btn.classList.remove('bg-[#0F1A33]', 'text-white');
-        btn.classList.add('text-gray-500', 'hover:bg-gray-50');
-        dot.classList.remove('bg-amber-400', 'text-[#0F1A33]');
-        dot.classList.add('bg-gray-200');
+        btn.classList.remove('bg-[#1A2238]', 'border-[#6366F1]', 'text-white');
+        btn.classList.add('text-[#9CA3AF]', 'hover:bg-[#1A2238]', 'border-transparent');
+        dot.classList.remove('bg-[#6366F1]', 'text-white');
+        dot.classList.add('bg-[#2A3550]', 'text-[#9CA3AF]');
       }
     });
 
