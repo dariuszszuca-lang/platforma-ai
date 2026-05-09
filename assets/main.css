@@ -110,7 +110,66 @@ section.hero { padding: 60px 0 100px; border-bottom: 1px solid var(--line); }
 @media (max-width: 1280px) { .hero-trust { gap: 14px; } .hero-trust .num { font-size: 22px; } .hero-trust .label { font-size: 10px; } }
 @media (max-width: 700px) { .hero-trust { grid-template-columns: 1fr; gap: 12px; } }
 
-/* === HERO PULSE (waves + constellation + flying particles) === */
+/* === HERO MANDALA (sacred geometry + rotating layers + particles) === */
+.hero-mandala { background: radial-gradient(ellipse at center, #FBF8F1 0%, #F5EFE3 50%, #E8DDC9 100%); }
+.hero-mandala::before { display: none; }
+.hero-mandala .hero-mesh { position: absolute; inset: -25%; z-index: 1; opacity: 1; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(184,92,46,0.45) 0%, transparent 60%), radial-gradient(ellipse 35% 35% at 30% 30%, rgba(212,184,150,0.4) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 70% 70%, rgba(139,107,61,0.4) 0%, transparent 55%); animation: mandalaMesh 20s ease-in-out infinite alternate; filter: blur(14px); }
+.hero-mandala .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
+.hero-mandala .hero-corner-mark { position: absolute; bottom: 24px; left: 24px; z-index: 5; display: flex; align-items: center; gap: 8px; }
+.hero-mandala .hero-corner-mark::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2D7A2D; box-shadow: 0 0 12px #2D7A2D, 0 0 4px #2D7A2D; animation: mandalaPing 1.4s ease-in-out infinite; }
+
+/* Rotating layers — origin at center 200,250 */
+.hero-mandala .mandala-rotate-cw-slow { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCW 80s linear infinite; }
+.hero-mandala .mandala-rotate-cw { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCW 50s linear infinite; }
+.hero-mandala .mandala-rotate-cw-fast { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCW 30s linear infinite; }
+.hero-mandala .mandala-rotate-ccw { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCCW 40s linear infinite; }
+.hero-mandala .mandala-rotate-ccw-slow { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCCW 90s linear infinite; }
+
+/* 12 dots breathing */
+.hero-mandala .mandala-12-dots circle { transform-origin: center; transform-box: fill-box; animation: mandalaDotBreathe 3s ease-in-out infinite; filter: drop-shadow(0 0 4px rgba(184,92,46,0.6)); }
+.hero-mandala .mandala-12-dots circle:nth-child(2n) { animation-delay: 0.3s; }
+.hero-mandala .mandala-12-dots circle:nth-child(3n) { animation-delay: 0.6s; }
+.hero-mandala .mandala-12-dots circle:nth-child(4n) { animation-delay: 0.9s; }
+
+/* Role nodes — labels stay readable (counter-rotate inside rotating group) */
+.hero-mandala .mandala-role-node circle { animation: mandalaNodePulse 3s ease-in-out infinite; transform-origin: center; transform-box: fill-box; filter: drop-shadow(0 0 8px rgba(184,92,46,0.5)); }
+.hero-mandala .mandala-role-node:nth-child(2n) circle { animation-delay: 0.5s; }
+.hero-mandala .mandala-role-node:nth-child(3n) circle { animation-delay: 1s; }
+
+/* Pulse waves */
+.hero-mandala .mandala-pulse-waves circle { transform-origin: 200px 250px; transform-box: fill-box; opacity: 0; }
+.hero-mandala .m-wave-1 { animation: mandalaWaveExpand 5s ease-out infinite; }
+.hero-mandala .m-wave-2 { animation: mandalaWaveExpand 5s ease-out infinite; animation-delay: 1.7s; }
+.hero-mandala .m-wave-3 { animation: mandalaWaveExpand 5s ease-out infinite; animation-delay: 3.3s; }
+
+/* Central core */
+.hero-mandala .mandala-core circle:nth-child(2) { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaCorePulse 4s ease-in-out infinite; }
+.hero-mandala .mandala-core circle:nth-child(3) { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaCoreRing 4s ease-in-out infinite; }
+.hero-mandala .mandala-core circle:nth-child(4) { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaCoreSpin 30s linear infinite; }
+.hero-mandala .mandala-core text:first-of-type { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaCoreBreathe 4s ease-in-out infinite; }
+
+/* Hexagram outer */
+.hero-mandala .mandala-hex polygon { animation: mandalaHexBreathe 6s ease-in-out infinite; transform-origin: 200px 250px; transform-box: fill-box; }
+.hero-mandala .mandala-hex polygon:nth-child(2) { animation-delay: 1s; }
+
+@keyframes mandalaRotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes mandalaRotateCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes mandalaDotBreathe { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.6); } }
+@keyframes mandalaNodePulse { 0%, 100% { opacity: 0.9; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
+@keyframes mandalaWaveExpand { 0% { r: 35; opacity: 0.7; stroke-width: 2; } 100% { r: 230; opacity: 0; stroke-width: 0.4; } }
+@keyframes mandalaCorePulse { 0%, 100% { opacity: 0.55; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes mandalaCoreRing { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.18); } }
+@keyframes mandalaCoreSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes mandalaCoreBreathe { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; } }
+@keyframes mandalaHexBreathe { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.85; } }
+@keyframes mandalaMesh { 0% { transform: translate(-3%, -2%) rotate(0deg) scale(1); } 100% { transform: translate(5%, 4%) rotate(30deg) scale(1.2); } }
+@keyframes mandalaPing { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.6); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mandala .hero-mesh, .hero-mandala [class*="mandala-rotate"], .hero-mandala .mandala-12-dots circle, .hero-mandala .mandala-role-node circle, .hero-mandala .mandala-pulse-waves circle, .hero-mandala .mandala-core circle, .hero-mandala .mandala-core text, .hero-mandala .mandala-hex polygon, .hero-mandala .hero-corner-mark::before, .hero-mandala .mandala-particles circle { animation: none !important; }
+}
+
+/* === HERO PULSE (legacy — zachowane dla compat) === */
 .hero-pulse { background: linear-gradient(140deg, #FBF8F1 0%, #F5EFE3 55%, #E8DDC9 100%); }
 .hero-pulse::before { display: none; }
 .hero-pulse .hero-mesh { position: absolute; inset: -20%; z-index: 1; opacity: 1; background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(184,92,46,0.4) 0%, transparent 60%), radial-gradient(ellipse 40% 35% at 25% 30%, rgba(212,184,150,0.45) 0%, transparent 55%); animation: heroPulseMesh 16s ease-in-out infinite alternate; filter: blur(12px); }
