@@ -173,87 +173,80 @@
           <div class="item"><span class="num">100%</span><span class="label">klientów<br/>poleca</span></div>
         </div>
       </div>
-      <div class="hero-image hero-network">
+      <div class="hero-image hero-pulse">
         <div class="hero-mesh"></div>
         <svg class="hero-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
-            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#B85C2E" stop-opacity="1"/>
-              <stop offset="60%" stop-color="#B85C2E" stop-opacity="0.4"/>
+            <radialGradient id="pulseGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#B85C2E" stop-opacity="0.9"/>
+              <stop offset="50%" stop-color="#B85C2E" stop-opacity="0.3"/>
               <stop offset="100%" stop-color="#B85C2E" stop-opacity="0"/>
             </radialGradient>
-            <filter id="softGlow">
-              <feGaussianBlur stdDeviation="2"/>
+            <radialGradient id="centerHub" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FBF8F1" stop-opacity="1"/>
+              <stop offset="40%" stop-color="#E8DDC9" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#B85C2E" stop-opacity="0.1"/>
+            </radialGradient>
+            <filter id="pulseBlur">
+              <feGaussianBlur stdDeviation="0.8"/>
             </filter>
           </defs>
-          <g class="lines" stroke="#B85C2E" stroke-width="1.6" opacity="0.7" stroke-linecap="round">
-            <line x1="80" y1="120" x2="180" y2="80"/>
-            <line x1="180" y1="80" x2="290" y2="140"/>
-            <line x1="80" y1="120" x2="120" y2="240"/>
-            <line x1="120" y1="240" x2="220" y2="220"/>
-            <line x1="220" y1="220" x2="290" y2="140"/>
-            <line x1="220" y1="220" x2="320" y2="320"/>
-            <line x1="120" y1="240" x2="60" y2="360"/>
-            <line x1="60" y1="360" x2="200" y2="380"/>
-            <line x1="200" y1="380" x2="320" y2="320"/>
-            <line x1="200" y1="380" x2="280" y2="430"/>
-            <line x1="320" y1="320" x2="280" y2="430"/>
-            <line x1="180" y1="80" x2="220" y2="220"/>
+          <g class="pulse-waves" stroke="#B85C2E" fill="none">
+            <circle class="pulse-wave-1" cx="200" cy="250" r="40" stroke-width="2"/>
+            <circle class="pulse-wave-2" cx="200" cy="250" r="40" stroke-width="2"/>
+            <circle class="pulse-wave-3" cx="200" cy="250" r="40" stroke-width="2"/>
+            <circle class="pulse-wave-4" cx="200" cy="250" r="40" stroke-width="2"/>
           </g>
-          <g class="halos">
-            <circle cx="80" cy="120" r="32" fill="url(#dotGlow)"/>
-            <circle cx="220" cy="220" r="48" fill="url(#dotGlow)"/>
-            <circle cx="200" cy="380" r="36" fill="url(#dotGlow)"/>
-            <circle cx="290" cy="140" r="28" fill="url(#dotGlow)" opacity="0.7"/>
-            <circle cx="320" cy="320" r="30" fill="url(#dotGlow)" opacity="0.7"/>
+          <g class="pulse-rays" stroke="#B85C2E" stroke-width="0.5" opacity="0.25" stroke-dasharray="3 6">
+            <line x1="200" y1="250" x2="200" y2="60"/>
+            <line x1="200" y1="250" x2="380" y2="160"/>
+            <line x1="200" y1="250" x2="380" y2="340"/>
+            <line x1="200" y1="250" x2="200" y2="450"/>
+            <line x1="200" y1="250" x2="20" y2="340"/>
+            <line x1="200" y1="250" x2="20" y2="160"/>
           </g>
-          <g class="packets">
-            <circle r="3.5">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M 80 120 L 180 80"/>
+          <g class="pulse-particles">
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="3.5s" repeatCount="indefinite" path="M 60 80 Q 130 150 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="3.5s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5">
-              <animateMotion dur="3.4s" repeatCount="indefinite" begin="0.5s" path="M 180 80 L 290 140"/>
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="4s" repeatCount="indefinite" begin="0.7s" path="M 350 100 Q 280 170 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="4s" begin="0.7s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5">
-              <animateMotion dur="2.8s" repeatCount="indefinite" begin="1s" path="M 220 220 L 290 140"/>
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.4s" path="M 30 250 Q 110 250 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" begin="1.4s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5">
-              <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.3s" path="M 220 220 L 320 320"/>
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="3.8s" repeatCount="indefinite" begin="0.3s" path="M 380 250 Q 290 250 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="3.8s" begin="0.3s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5">
-              <animateMotion dur="3.6s" repeatCount="indefinite" begin="1.4s" path="M 120 240 L 60 360"/>
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="3.6s" repeatCount="indefinite" begin="2s" path="M 80 420 Q 140 340 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="3.6s" begin="2s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3.5">
-              <animateMotion dur="3s" repeatCount="indefinite" begin="0.8s" path="M 200 380 L 320 320"/>
-            </circle>
-            <circle r="3.5">
-              <animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M 60 360 L 200 380"/>
-            </circle>
-            <circle r="3.5">
-              <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.2s" path="M 80 120 L 120 240"/>
+            <circle r="2.5" fill="#B85C2E" filter="url(#pulseBlur)">
+              <animateMotion dur="4.2s" repeatCount="indefinite" begin="1s" path="M 330 430 Q 270 340 200 250" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="4.2s" begin="1s" repeatCount="indefinite"/>
             </circle>
           </g>
-          <g class="dots" fill="#B85C2E">
-            <circle cx="80" cy="120" r="8" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="180" cy="80" r="6" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="290" cy="140" r="7" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="120" cy="240" r="6" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="220" cy="220" r="11" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="320" cy="320" r="7" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="60" cy="360" r="6" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="200" cy="380" r="8" stroke="#FBF8F1" stroke-width="2"/>
-            <circle cx="280" cy="430" r="6" stroke="#FBF8F1" stroke-width="2"/>
+          <g class="pulse-nodes">
+            <g class="pulse-node"><circle cx="60" cy="80" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="48" y="68" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CRM</text></g>
+            <g class="pulse-node"><circle cx="350" cy="100" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="362" y="88" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CMO</text></g>
+            <g class="pulse-node"><circle cx="30" cy="250" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="20" y="270" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CTO</text></g>
+            <g class="pulse-node"><circle cx="380" cy="250" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="385" y="270" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CSO</text></g>
+            <g class="pulse-node"><circle cx="80" cy="420" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="68" y="438" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">GHOST</text></g>
+            <g class="pulse-node"><circle cx="330" cy="430" r="6" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="345" y="448" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">PM</text></g>
+            <g class="pulse-node"><circle cx="200" cy="60" r="5" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="200" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CEO</text></g>
+            <g class="pulse-node"><circle cx="200" cy="450" r="5" fill="#B85C2E" stroke="#FBF8F1" stroke-width="1.5"/><text x="200" y="473" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#1C1917" letter-spacing="0.18em">CCO</text></g>
           </g>
-          <g class="labels" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#1C1917" letter-spacing="0.18em">
-            <text x="98" y="108" text-anchor="start">CRM</text>
-            <text x="194" y="66" text-anchor="start">CMO</text>
-            <text x="304" y="130" text-anchor="start">CSO</text>
-            <text x="135" y="232" text-anchor="start">GHOST</text>
-            <text x="237" y="218" text-anchor="start" font-size="14">CORE</text>
-            <text x="334" y="312" text-anchor="start">CTO</text>
-            <text x="42" y="354" text-anchor="start">CEO</text>
-            <text x="216" y="376" text-anchor="start">PM</text>
-            <text x="294" y="424" text-anchor="start">CCO</text>
+          <g class="pulse-center">
+            <circle cx="200" cy="250" r="60" fill="url(#centerHub)"/>
+            <circle cx="200" cy="250" r="32" fill="rgba(184,92,46,0.12)"/>
+            <circle cx="200" cy="250" r="28" fill="none" stroke="#B85C2E" stroke-width="1.2"/>
+            <text x="200" y="246" text-anchor="middle" font-family="'Fraunces', serif" font-size="20" font-weight="500" font-style="italic" fill="#1C1917" letter-spacing="0.04em">AI</text>
+            <text x="200" y="266" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700" fill="#B85C2E" letter-spacing="0.32em">TEAM</text>
           </g>
         </svg>
         <div class="hero-corner-mark">
