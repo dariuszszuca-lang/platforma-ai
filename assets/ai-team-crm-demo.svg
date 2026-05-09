@@ -1,0 +1,127 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI-Team CRM demo dashboard</title>
+  <desc id="desc">An anonymized CRM dashboard mockup with demo data and AI automation widgets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101827"/>
+      <stop offset="0.48" stop-color="#07111F"/>
+      <stop offset="1" stop-color="#1F1208"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="170" y1="84" x2="1064" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#E8EEF6"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FB923C"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <filter id="shadow" x="112" y="42" width="1016" height="656" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="28"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.02 0 0 0 0 0.03 0 0 0 0 0.05 0 0 0 0.42 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <g opacity="0.24">
+    <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200M0 600H1200" stroke="#FFFFFF" stroke-opacity="0.22"/>
+    <path d="M120 0V720M240 0V720M360 0V720M480 0V720M600 0V720M720 0V720M840 0V720M960 0V720M1080 0V720" stroke="#FFFFFF" stroke-opacity="0.18"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="150" y="72" width="900" height="580" rx="28" fill="url(#panel)"/>
+    <rect x="150" y="72" width="900" height="72" rx="28" fill="#FFFFFF"/>
+    <path d="M150 116H1050" stroke="#D7DEE8"/>
+
+    <rect x="180" y="94" width="30" height="30" rx="9" fill="url(#orange)"/>
+    <path d="M197 100L187 116H198L192 128L207 110H196L197 100Z" fill="#FFFFFF"/>
+    <text x="226" y="115" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">AI-Team CRM</text>
+    <text x="226" y="134" fill="#6B7280" font-family="Inter, Arial, sans-serif" font-size="12">Demo dashboard bez danych klientów</text>
+
+    <rect x="790" y="94" width="96" height="32" rx="12" fill="#F1F5F9"/>
+    <text x="815" y="115" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Eksport</text>
+    <rect x="898" y="94" width="122" height="32" rx="12" fill="#111827"/>
+    <text x="924" y="115" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">+ Nowy lead</text>
+
+    <rect x="180" y="174" width="190" height="116" rx="20" fill="#FFF7ED"/>
+    <rect x="202" y="196" width="40" height="40" rx="14" fill="#FED7AA"/>
+    <path d="M213 216H231M222 207V225" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
+    <text x="202" y="260" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">18</text>
+    <text x="254" y="258" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">nowych leadów</text>
+
+    <rect x="392" y="174" width="190" height="116" rx="20" fill="#ECFDF5"/>
+    <rect x="414" y="196" width="40" height="40" rx="14" fill="#BBF7D0"/>
+    <path d="M426 216L433 223L443 209" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="414" y="260" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">12</text>
+    <text x="466" y="258" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">follow-upów</text>
+
+    <rect x="604" y="174" width="190" height="116" rx="20" fill="#EFF6FF"/>
+    <rect x="626" y="196" width="40" height="40" rx="14" fill="#BFDBFE"/>
+    <path d="M637 210H655M637 219H649" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+    <text x="626" y="260" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">24</text>
+    <text x="678" y="258" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">dokumenty</text>
+
+    <rect x="816" y="174" width="204" height="116" rx="20" fill="#F8FAFC"/>
+    <rect x="838" y="196" width="40" height="40" rx="14" fill="#E2E8F0"/>
+    <path d="M850 216H866M858 208V224" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+    <text x="838" y="260" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">7</text>
+    <text x="878" y="258" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">zadania dziś</text>
+
+    <rect x="180" y="318" width="588" height="286" rx="22" fill="#FFFFFF"/>
+    <text x="208" y="354" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Pipeline sprzedaży</text>
+    <text x="208" y="376" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13">Przykładowe firmy, statusy i kolejny krok</text>
+
+    <g font-family="Inter, Arial, sans-serif" font-size="13">
+      <text x="208" y="416" fill="#64748B" font-weight="800">KLIENT</text>
+      <text x="390" y="416" fill="#64748B" font-weight="800">STATUS</text>
+      <text x="540" y="416" fill="#64748B" font-weight="800">NASTĘPNY KROK AI</text>
+    </g>
+    <path d="M208 432H740" stroke="#E5E7EB"/>
+
+    <g font-family="Inter, Arial, sans-serif">
+      <text x="208" y="466" fill="#111827" font-size="15" font-weight="800">Firma usługowa A</text>
+      <text x="208" y="487" fill="#64748B" font-size="12">Lead z formularza</text>
+      <rect x="390" y="446" width="92" height="30" rx="15" fill="#DBEAFE"/>
+      <text x="412" y="466" fill="#1D4ED8" font-size="12" font-weight="800">Wycena</text>
+      <rect x="540" y="446" width="162" height="30" rx="15" fill="#F1F5F9"/>
+      <text x="562" y="466" fill="#334155" font-size="12" font-weight="800">Szkic oferty</text>
+      <path d="M208 508H740" stroke="#EEF2F7"/>
+
+      <text x="208" y="542" fill="#111827" font-size="15" font-weight="800">Sklep online B</text>
+      <text x="208" y="563" fill="#64748B" font-size="12">Audyt procesów</text>
+      <rect x="390" y="522" width="102" height="30" rx="15" fill="#DCFCE7"/>
+      <text x="412" y="542" fill="#15803D" font-size="12" font-weight="800">Aktywne</text>
+      <rect x="540" y="522" width="170" height="30" rx="15" fill="#F1F5F9"/>
+      <text x="562" y="542" fill="#334155" font-size="12" font-weight="800">Follow-up jutro</text>
+      <path d="M208 584H740" stroke="#EEF2F7"/>
+
+      <text x="208" y="618" fill="#111827" font-size="15" font-weight="800">Kancelaria C</text>
+      <text x="208" y="639" fill="#64748B" font-size="12">CRM + dokumenty</text>
+      <rect x="390" y="598" width="118" height="30" rx="15" fill="#FFEDD5"/>
+      <text x="412" y="618" fill="#C2410C" font-size="12" font-weight="800">Do decyzji</text>
+      <rect x="540" y="598" width="166" height="30" rx="15" fill="#F1F5F9"/>
+      <text x="562" y="618" fill="#334155" font-size="12" font-weight="800">Lista pytan</text>
+    </g>
+
+    <rect x="792" y="318" width="228" height="286" rx="22" fill="#111827"/>
+    <text x="820" y="354" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Automatyzacje AI</text>
+    <text x="820" y="376" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="13">Człowiek zatwierdza każdy krok</text>
+
+    <rect x="820" y="408" width="172" height="46" rx="16" fill="#1F2937"/>
+    <circle cx="844" cy="431" r="8" fill="#22C55E"/>
+    <text x="864" y="436" fill="#E5E7EB" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Podsumuj rozmowę</text>
+
+    <rect x="820" y="470" width="172" height="46" rx="16" fill="#1F2937"/>
+    <circle cx="844" cy="493" r="8" fill="#F97316"/>
+    <text x="864" y="498" fill="#E5E7EB" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Wygeneruj PDF</text>
+
+    <rect x="820" y="532" width="172" height="46" rx="16" fill="#1F2937"/>
+    <circle cx="844" cy="555" r="8" fill="#38BDF8"/>
+    <text x="864" y="560" fill="#E5E7EB" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Przypomnij o leadzie</text>
+  </g>
+</svg>
