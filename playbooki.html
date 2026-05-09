@@ -5,496 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MX6DBXQ66D');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
 
-    <title>Playbooki AI dla małych firm | AI-Team</title>
-    <meta name="description" content="Darmowe playbooki AI dla małych firm: mapa procesów, audyt zadań, kalkulator strat i konkretne wdrożenia bez technicznego chaosu.">
-    <meta name="keywords" content="playbook AI, AI dla małej firmy, automatyzacja firmy, wdrożenie AI, audyt AI, AI-Team">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ai-team.pl/playbooki.html">
-
+    <title>Playbooki AI dla małych firm — bezpłatne | AI-Team</title>
+    <meta name="description" content="Darmowe playbooki AI: Raport 15 sposobów, Mapa AI, Audyt 7-dniowy, Newsletter AI Radar. Konkrety bez teorii. Pobierz za email.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/playbooki.html">
-    <meta property="og:title" content="Playbooki AI dla małych firm | AI-Team">
-    <meta property="og:description" content="Praktyczne instrukcje, checklisty i mini-narzędzia do wdrożenia AI w firmie. Zero teorii.">
+    <meta property="og:title" content="Playbooki AI — narzędzia diagnostyczne | AI-Team">
+    <meta property="og:description" content="4 darmowe playbooki AI dla małych firm. Bez teorii, bez chaosu, gotowe do działania.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Playbooki AI dla małych firm | AI-Team">
-    <meta name="twitter:description" content="Darmowe playbooki AI: mapa procesów, audyt zadań i konkretne wdrożenia dla małych firm.">
-    <meta name="twitter:image" content="https://ai-team.pl/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#020203',
-                            primary: '#f97316',
-                            secondary: '#ea580c',
-                            light: '#22c55e',
-                            info: '#38bdf8',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            min-height: 100vh;
-            background: #020203;
-            color: #e5e7eb;
-            overflow-x: hidden;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.055);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(18px);
-        }
-        .glass-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(20px);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #f97316, #fb923c, #22c55e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .bg-grid {
-            background-image:
-                linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.15), transparent);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.15), transparent);
-        }
-        .hero-visual {
-            background-image:
-                linear-gradient(90deg, rgba(2,2,3,0.99) 0%, rgba(2,2,3,0.96) 38%, rgba(2,2,3,0.78) 70%, rgba(2,2,3,0.92) 100%),
-                url('assets/playbooki-hero-bg.svg');
-            background-size: cover;
-            background-position: center right;
-        }
-        .hero-copy {
-            width: 100%;
-            max-width: min(48rem, calc(100vw - 72px));
-            text-shadow: 0 2px 22px rgba(0,0,0,0.78);
-        }
-        .hero-panel {
-            width: 100%;
-            max-width: min(36rem, calc(100vw - 72px));
-        }
-        .focus-ring:focus-visible {
-            outline: 3px solid rgba(249,115,22,0.75);
-            outline-offset: 3px;
-        }
-        .loader {
-            width: 18px;
-            height: 18px;
-            border: 2px solid transparent;
-            border-top-color: #020203;
-            border-radius: 9999px;
-            animation: spin 0.7s linear infinite;
-            display: inline-block;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-            }
-        }
-        @media (max-width: 767px) {
-            .hero-visual {
-                background-image:
-                    linear-gradient(90deg, rgba(2,2,3,0.99), rgba(2,2,3,0.95)),
-                    url('assets/playbooki-hero-bg.svg');
-                background-position: 62% center;
-            }
-            .hero-copy,
-            .hero-panel {
-                width: 100% !important;
-                max-width: 260px !important;
-                justify-self: start !important;
-                margin-left: 0 !important;
-                margin-right: auto !important;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
 </head>
-<body class="font-sans antialiased selection:bg-brand-primary selection:text-black">
-    <div class="fixed inset-0 z-0 pointer-events-none bg-grid"></div>
+<body>
 
-    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl">
-        <div class="glass rounded-full px-4 py-3 flex items-center justify-between gap-4 bg-black/50">
-            <a href="/" class="flex items-center gap-3 min-h-11 focus-ring rounded-full px-2">
-                <span class="relative flex h-3 w-3">
-                    <span class="absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-70"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
-                </span>
-                <span class="text-lg font-display font-bold tracking-tight text-white">AI-Team</span>
-            </a>
-            <div class="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1">
-                <a href="/#products" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Oferta</a>
-                <a href="/#quiz" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Quiz</a>
-                <a href="/blog/" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Blog</a>
-                <a href="/ai-radar.html" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">AI Radar</a>
-            </div>
-            <a href="#pobierz" class="min-h-11 inline-flex items-center gap-2 rounded-full bg-brand-primary px-3 sm:px-5 py-2.5 text-sm font-bold text-black transition hover:scale-[1.02] focus-ring" aria-label="Pobierz playbook">
-                <i data-lucide="download" class="h-4 w-4"></i>
-                <span class="hidden sm:inline">Pobierz</span>
-            </a>
-        </div>
-    </nav>
+<nav class="top-nav">
+  <div class="inner">
+    <a href="/" class="brand">
+      <svg class="logo-mark" width="42" height="42" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+        <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+      </svg>
+      <span class="wordmark">AI · <em>Team</em><span class="tagline-mini">EST · 2024 · POLSKA</span></span>
+    </a>
+    <div class="menu">
+      <a href="/wdrozenie-ai.html">Wdrożenie</a>
+      <a href="/warsztaty-ai.html">Akademia</a>
+      <a href="/playbooki.html" class="active">Playbooki</a>
+      <a href="/#offer">Cennik</a>
+      <a href="/#case">Portfolio</a>
+      <a href="/#about">O autorze</a>
+    </div>
+    <a href="#cta" class="nav-cta"><span>Pobierz raport</span><span class="arrow">→</span></a>
+  </div>
+</nav>
 
-    <main class="relative z-10">
-        <section class="hero-visual min-h-[92dvh] flex items-center pt-32 pb-20">
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-                <div class="hero-copy">
-                    <div class="inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-xs font-mono tracking-wider text-brand-primary mb-7">
-                        <span class="h-2 w-2 rounded-full bg-brand-primary"></span>
-                        BIBLIOTEKA WDROŻEŃ AI
-                    </div>
-                    <h1 class="font-display text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-white mb-6">
-                        Playbooki AI dla firm, które chcą <span class="gradient-text">zacząć bez chaosu</span>.
-                    </h1>
-                    <p class="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mb-8 break-words">
-                        Konkretne instrukcje, checklisty i mini-narzędzia. Najpierw sprawdzasz, gdzie AI ma sens. Potem wybierasz jedno wdrożenie i robisz pierwszy krok.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#pobierz" class="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-7 py-3 font-bold text-black transition hover:shadow-[0_0_28px_rgba(249,115,22,0.45)] focus-ring">
-                            <i data-lucide="download" class="h-5 w-5"></i>
-                            Pobierz pierwszy playbook
-                        </a>
-                        <a href="#biblioteka" class="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3 font-bold text-white transition hover:bg-white/10 focus-ring">
-                            <i data-lucide="library" class="h-5 w-5"></i>
-                            Zobacz bibliotekę
-                        </a>
-                    </div>
-                </div>
+<div class="breadcrumbs"><div class="container"><a href="/">AI · Team</a><span class="sep">/</span><span>Playbooki</span></div></div>
 
-                <aside class="hero-panel glass-card rounded-2xl p-6 md:p-7">
-                    <div class="flex items-start justify-between gap-5 border-b border-white/10 pb-5 mb-5">
-                        <div>
-                            <p class="text-sm text-brand-primary font-bold uppercase tracking-[0.2em] mb-2">Nowy materiał</p>
-                            <h2 class="text-2xl font-display font-bold text-white leading-tight">Mapa AI w małej firmie</h2>
-                        </div>
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/15 border border-brand-primary/30 flex items-center justify-center shrink-0">
-                            <i data-lucide="map" class="h-6 w-6 text-brand-primary"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed mb-6">
-                        Worksheet do przejścia w około godzinę: lista zadań, scoring, priorytety i gotowy prompt do wygenerowania planu wdrożenia.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                        <div class="rounded-xl bg-white/5 border border-white/10 p-3">
-                            <div class="text-xl font-display font-bold text-white">5</div>
-                            <div class="text-xs text-gray-500">kroków</div>
-                        </div>
-                        <div class="rounded-xl bg-white/5 border border-white/10 p-3">
-                            <div class="text-xl font-display font-bold text-white">1</div>
-                            <div class="text-xs text-gray-500">priorytet</div>
-                        </div>
-                        <div class="rounded-xl bg-white/5 border border-white/10 p-3">
-                            <div class="text-xl font-display font-bold text-white">30</div>
-                            <div class="text-xs text-gray-500">dni planu</div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </section>
+<section class="hero-page">
+  <div class="container">
+    <span class="label-mono">PLAYBOOKI · 4 NARZĘDZIA · 0 ZŁ</span>
+    <h1 class="display">Playbooki AI<br/>dla małych firm.<br/><em>Bez teorii.</em></h1>
+    <p class="body-lg">Cztery darmowe narzędzia diagnostyczne. Raport, Mapa AI, interaktywny audyt, cotygodniowy newsletter. Konkretne wdrożenia bez technicznego chaosu.</p>
+    <div class="hero-cta-row">
+      <a class="cta-primary" href="#playbooks">Zobacz playbooki →</a>
+      <a class="cta-secondary" href="#cta">Zapisz się na newsletter</a>
+    </div>
+  </div>
+</section>
 
-        <section id="biblioteka" class="py-24">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="max-w-3xl mb-12">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Model lead magnetów</p>
-                    <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Nie tylko PDF. Biblioteka, do której warto wrócić.</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed">
-                        Ten układ działa lepiej niż jeden raport schowany za formularzem: część wartości jest publiczna, a najlepszy materiał zbiera kontakt i prowadzi do rozmowy o wdrożeniu.
-                    </p>
-                </div>
+<section class="full-offer" id="playbooks">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">CZTERY NARZĘDZIA · WSZYSTKIE BEZPŁATNE</span>
+      <h2>Wybierz pierwsze<br/><em>narzędzie diagnostyczne.</em></h2>
+      <p class="body-lg">Każde działa samodzielnie. Po pobraniu przychodzi kolejne mailem (jeśli chcesz). Bez spamu, bez sprzedaży.</p>
+    </div>
+    <div class="offer-grid-4">
+      <a href="/raport.html" class="offer-item featured">
+        <span class="offer-status free">★ Bestseller · PDF 22 strony</span>
+        <div class="price">0<span class="unit">zł</span></div>
+        <div class="price-meta">PDF · pobierz po emailu</div>
+        <h4>Raport „15 sposobów wdrożenia AI"</h4>
+        <p class="body-sm">15 konkretnych wdrożeń AI w małej firmie z opisem, narzędziem, czasem wdrożenia. Praktyczny przewodnik, zero teorii.</p>
+        <div class="item-cta">Pobierz raport →</div>
+      </a>
+      <a href="#cta" class="offer-item">
+        <span class="offer-status free">PDF + checklisty</span>
+        <div class="price">0<span class="unit">zł</span></div>
+        <div class="price-meta">PDF + 5 checklist</div>
+        <h4>Mapa AI w małej firmie</h4>
+        <p class="body-sm">Wizualna mapa procesów + AI. Co automatyzować, w jakiej kolejności, jakim narzędziem. Plus 5 checklist do druku.</p>
+        <div class="item-cta">Pobierz mapę →</div>
+      </a>
+      <a href="#audit" class="offer-item">
+        <span class="offer-status free">Tool · 2 minuty</span>
+        <div class="price">0<span class="unit">zł</span></div>
+        <div class="price-meta">Interaktywne · bez emailu</div>
+        <h4>Audyt 7-dniowy</h4>
+        <p class="body-sm">7 pytań o Twojej firmie. Wynik: ile godzin tygodniowo i złotych miesięcznie tracisz. Plus 3 rekomendacje co automatyzować.</p>
+        <div class="item-cta">Rozpocznij audyt →</div>
+      </a>
+      <a href="/ai-radar.html" class="offer-item">
+        <span class="offer-status free">Newsletter · poniedziałki</span>
+        <div class="price">0<span class="unit">zł</span></div>
+        <div class="price-meta">Tygodniowo · 5 sekcji</div>
+        <h4>Newsletter AI Radar</h4>
+        <p class="body-sm">Cotygodniowe trendy AI dla biznesu: gorące newsy, narzędzie tygodnia, prompt dnia, 3 tipy, automatyzacja tygodnia.</p>
+        <div class="item-cta">Zapisz się →</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px] border-brand-primary/30">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/15 border border-brand-primary/30 flex items-center justify-center mb-5">
-                            <i data-lucide="map" class="h-6 w-6 text-brand-primary"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-primary uppercase mb-3">Do pobrania</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">Mapa AI w małej firmie</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Przejdź przez zadania, policz opłacalność i wybierz pierwszą automatyzację bez zgadywania.</p>
-                        <a href="#pobierz" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:text-orange-300 focus-ring rounded-lg">
-                            Pobierz worksheet <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
+<section class="quiz" id="audit">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">AUDYT 7-DNIOWY · INTERAKTYWNY</span>
+      <h2>Ile naprawdę<br/><em>tracisz</em> bez AI?</h2>
+      <p class="body-lg">Siedem pytań w 2 minuty. Otrzymujesz konkretne liczby — godziny tygodniowo, złote miesięcznie, lista 3 priorytetów. Bez emailu.</p>
+    </div>
+    <div class="quiz-card">
+      <span class="label-mono">QUIZ · DIAGNOZA AI</span>
+      <h3>7 pytań które pokażą Ci ile tracisz</h3>
+      <p>Bez emaila. Bez zapisu. Wynik w 2 minuty.</p>
+      <div class="quiz-questions">
+        <div class="quiz-q"><span class="num">№ 01</span><div class="text">Ile osób pracuje?</div></div>
+        <div class="quiz-q"><span class="num">№ 02</span><div class="text">Ile godzin powtarzalnie?</div></div>
+        <div class="quiz-q"><span class="num">№ 03</span><div class="text">Które zadania ssą czas?</div></div>
+        <div class="quiz-q"><span class="num">№ 04</span><div class="text">Jak zarządzasz klientami?</div></div>
+        <div class="quiz-q"><span class="num">№ 05</span><div class="text">Stawka godzinowa?</div></div>
+      </div>
+      <a href="#cta" class="cta-primary">Rozpocznij audyt →</a>
+    </div>
+  </div>
+</section>
 
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px]">
-                        <div class="h-12 w-12 rounded-xl bg-brand-info/15 border border-brand-info/30 flex items-center justify-center mb-5">
-                            <i data-lucide="timer" class="h-6 w-6 text-brand-info"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-info uppercase mb-3">Narzędzie</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">7-dniowy audyt pracy</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Zapisujesz zadania z tygodnia, widzisz gdzie ucieka czas i co warto zautomatyzować jako pierwsze.</p>
-                        <a href="/app.html" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-info hover:text-sky-300 focus-ring rounded-lg">
-                            Otwórz audyt <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
+<section class="content dark">
+  <div class="container-narrow">
+    <span class="label-mono">JAK KORZYSTAĆ Z PLAYBOOKÓW</span>
+    <h2>Trzy kroki<br/><em>od pobrania do wdrożenia.</em></h2>
+    <h3>1. Pobierz pierwszy playbook</h3>
+    <p>Polecam zacząć od Audytu 7-dniowego (interaktywny, bez emailu) lub Raportu 15 sposobów (PDF, bardziej kompleksowy).</p>
+    <h3>2. Przejrzyj na spokojnie</h3>
+    <p>Każdy playbook ma 5-15 konkretnych pomysłów. Wybierz 1-3 które rezonują z Twoją sytuacją.</p>
+    <h3>3. Wdróż lub umów rozmowę</h3>
+    <p>Niektóre wdrożenia (np. Custom GPT, prompty) zrobisz sam. Większe (CRM, sprint automatyzacji) — przejdź do <a href="/wdrozenie-ai.html" style="color:var(--copper);">Wdrożenie AI</a> lub umów rozmowę.</p>
+  </div>
+</section>
 
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px]">
-                        <div class="h-12 w-12 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center mb-5">
-                            <i data-lucide="trending-down" class="h-6 w-6 text-red-400"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-red-300 uppercase mb-3">Quiz</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">Ile kosztuje brak AI?</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Krótki kalkulator bólu. Pokazuje miesięczny i roczny koszt powtarzalnych zadań w firmie.</p>
-                        <a href="/#quiz" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-red-300 hover:text-red-200 focus-ring rounded-lg">
-                            Zrób quiz <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
+<section class="cta-final" id="cta">
+  <div class="container">
+    <span class="label-mono" style="display:block; margin-bottom:32px;">START · NEWSLETTER · 0 ZŁ</span>
+    <h2>Zapisz się na<br/><em>AI Radar.</em></h2>
+    <p>Cotygodniowe trendy AI dla biznesu. Po zapisie dostajesz Raport „15 sposobów wdrożenia AI" jako bonus powitalny. Bez spamu — wypisz się jednym klikiem.</p>
+    <div class="cta-row">
+      <a href="/ai-radar.html" class="cta-primary">Zapisz się →</a>
+      <a href="/raport.html" class="cta-secondary">Albo pobierz raport bez newslettera</a>
+    </div>
+  </div>
+</section>
 
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px]">
-                        <div class="h-12 w-12 rounded-xl bg-brand-light/15 border border-brand-light/30 flex items-center justify-center mb-5">
-                            <i data-lucide="file-text" class="h-6 w-6 text-brand-light"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-light uppercase mb-3">Raport</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">15 sposobów wdrożenia AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Obecny raport AI-Team. Dobry materiał wejściowy dla osób, które jeszcze nie wiedzą od czego zacząć.</p>
-                        <a href="/raport.html" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-light hover:text-green-300 focus-ring rounded-lg">
-                            Pobierz raport <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+          </svg>
+          <span class="wordmark">AI · <em>Team</em></span>
+        </a>
+        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
+      </div>
+      <div class="footer-col"><h5>Oferta</h5><a href="/wdrozenie-ai.html">Wdrożenie AI</a><a href="/warsztaty-ai.html">Akademia AI</a><a href="/playbooki.html">Playbooki</a><a href="/zlecenie.html">Spersonalizowany CRM</a><a href="/produkt1-tracker.html">Tracker Czasu</a></div>
+      <div class="footer-col"><h5>Pracownia</h5><a href="/#about">O autorze</a><a href="/#case">Case study MyWay</a><a href="/ai-radar.html">Newsletter AI Radar</a></div>
+      <div class="footer-col"><h5>Kontakt</h5><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
+      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>
 
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px]">
-                        <div class="h-12 w-12 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center mb-5">
-                            <i data-lucide="database" class="h-6 w-6 text-purple-300"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-purple-300 uppercase mb-3">Oferta</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">CRM bez abonamentu</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Most z edukacji do sprzedaży: kiedy Excel przestaje wystarczać i opłaca się prosty system na własność.</p>
-                        <a href="/#products" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-purple-300 hover:text-purple-200 focus-ring rounded-lg">
-                            Zobacz CRM <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
-
-                    <article class="glass-card rounded-2xl p-6 flex flex-col min-h-[280px]">
-                        <div class="h-12 w-12 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center mb-5">
-                            <i data-lucide="radio" class="h-6 w-6 text-white"></i>
-                        </div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-gray-300 uppercase mb-3">Newsletter</p>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">AI Radar</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-1">Stały follow-up po lead magnetach: narzędzia, prompty i automatyzacje, które przypominają o AI-Team.</p>
-                        <a href="/ai-radar.html" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-gray-200 hover:text-white focus-ring rounded-lg">
-                            Dołącz do newslettera <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 border-y border-white/10 bg-white/[0.02]">
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-3 gap-8 items-start">
-                <div class="lg:col-span-1">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Jak to działa</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight">Prosty system pozyskiwania leadów.</h2>
-                </div>
-                <div class="lg:col-span-2 grid md:grid-cols-3 gap-4">
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-primary mb-3">01</div>
-                        <h3 class="font-bold text-white mb-2">Publiczna wartość</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Użytkownik widzi bibliotekę i rozumie, że to nie jest kolejny pusty newsletter.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-info mb-3">02</div>
-                        <h3 class="font-bold text-white mb-2">Formularz przy najlepszym materiale</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Mail zbieramy tam, gdzie jest realna wymiana: worksheet, plan, gotowy prompt.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-light mb-3">03</div>
-                        <h3 class="font-bold text-white mb-2">Naturalny następny krok</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Po diagnozie łatwiej zaproponować warsztat, CRM albo sprint wdrożeniowy.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pobierz" class="py-24">
-            <div class="max-w-5xl mx-auto px-6 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 items-stretch">
-                <div class="glass-card rounded-2xl p-7 md:p-8">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Pierwszy playbook</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Mapa AI w małej firmie</h2>
-                    <p class="text-gray-300 leading-relaxed mb-6">
-                        Pobierasz praktyczny materiał do przejścia samodzielnie albo z zespołem. Po formularzu otworzy się gotowa strona do czytania, drukowania albo zapisania jako PDF.
-                    </p>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex gap-3">
-                            <i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i>
-                            lista zadań i pytań do właściciela firmy
-                        </li>
-                        <li class="flex gap-3">
-                            <i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i>
-                            matryca priorytetów: czas, wpływ, trudność, ryzyko
-                        </li>
-                        <li class="flex gap-3">
-                            <i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i>
-                            gotowy prompt do wygenerowania planu 30 dni
-                        </li>
-                        <li class="flex gap-3">
-                            <i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i>
-                            ścieżka do warsztatu albo wdrożenia CRM
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="glass-card rounded-2xl p-7 md:p-8">
-                    <form id="playbook-form" class="space-y-5">
-                        <div>
-                            <label for="playbook-name" class="block text-sm font-semibold text-white mb-2">Imię</label>
-                            <input id="playbook-name" name="name" type="text" required autocomplete="given-name" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600" placeholder="Np. Michał">
-                        </div>
-                        <div>
-                            <label for="playbook-email" class="block text-sm font-semibold text-white mb-2">Email</label>
-                            <input id="playbook-email" name="email" type="email" required autocomplete="email" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600" placeholder="twoj@email.pl">
-                        </div>
-                        <div>
-                            <label for="playbook-context" class="block text-sm font-semibold text-white mb-2">Co chcesz uporządkować w firmie?</label>
-                            <select id="playbook-context" name="context" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white">
-                                <option value="powtarzalne-zadania">Powtarzalne zadania</option>
-                                <option value="crm-excel">CRM / Excel / baza klientów</option>
-                                <option value="maile-followup">Maile i follow-up</option>
-                                <option value="marketing-content">Marketing i content</option>
-                                <option value="nie-wiem">Nie wiem, chcę diagnozy</option>
-                            </select>
-                        </div>
-                        <button type="submit" id="playbook-submit" class="focus-ring min-h-12 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 font-bold text-black transition hover:shadow-[0_0_28px_rgba(249,115,22,0.45)]">
-                            <i data-lucide="download" class="h-5 w-5"></i>
-                            Otwórz playbook
-                        </button>
-                        <p class="text-xs text-gray-500 text-center">
-                            Zero spamu. Dostaniesz też AI Radar, z którego wypiszesz się jednym kliknięciem.
-                        </p>
-                    </form>
-
-                    <div id="playbook-success" class="hidden text-center py-8">
-                        <div class="mx-auto mb-4 h-14 w-14 rounded-full bg-brand-light/15 border border-brand-light/30 flex items-center justify-center">
-                            <i data-lucide="check" class="h-7 w-7 text-brand-light"></i>
-                        </div>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Playbook otwarty.</h3>
-                        <p class="text-gray-400 mb-5">Jeśli nowa karta się nie otworzyła, użyj przycisku poniżej.</p>
-                        <a href="/assets/playbook-mapa-ai-malej-firmy.html" target="_blank" rel="noopener" class="focus-ring inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-bold text-black">
-                            Otwórz jeszcze raz <i data-lucide="external-link" class="h-4 w-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 bg-black">
-            <div class="max-w-4xl mx-auto px-6 text-center">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Masz już listę procesów?</h2>
-                <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                    Wyślij ją przez formularz zlecenia. Na tej podstawie można zrobić prostą mapę wdrożeń albo wybrać pierwszy sprint.
-                </p>
-                <a href="/zlecenie.html" class="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-primary px-7 py-3 font-bold text-black transition hover:shadow-[0_0_28px_rgba(249,115,22,0.45)]">
-                    Opisz proces do automatyzacji
-                    <i data-lucide="arrow-right" class="h-5 w-5"></i>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="relative z-10 border-t border-white/10 py-8 text-center text-sm text-gray-500">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-3">
-            <p>AI-Team</p>
-            <div class="flex justify-center gap-5">
-                <a href="/privacy.html" class="hover:text-white focus-ring rounded">Prywatność</a>
-                <a href="/ai-radar.html" class="hover:text-white focus-ring rounded">AI Radar</a>
-                <a href="/blog/" class="hover:text-white focus-ring rounded">Blog</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-
-        const PLAYBOOK_URL = '/assets/playbook-mapa-ai-malej-firmy.html';
-
-        document.getElementById('playbook-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const form = e.target;
-            const btn = document.getElementById('playbook-submit');
-            const originalText = btn.innerHTML;
-            const name = document.getElementById('playbook-name').value;
-            const email = document.getElementById('playbook-email').value;
-            const context = document.getElementById('playbook-context').value;
-
-            btn.innerHTML = '<span class="loader"></span> Otwieram...';
-            btn.disabled = true;
-
-            try {
-                const mlData = new FormData();
-                mlData.append('fields[name]', name);
-                mlData.append('fields[email]', email);
-                mlData.append('fields[context]', context);
-                mlData.append('ml-submit', '1');
-                mlData.append('anticsrf', 'true');
-
-                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
-                    method: 'POST',
-                    body: mlData,
-                    mode: 'no-cors'
-                });
-
-                const notifyData = new FormData(form);
-                notifyData.append('_subject', '[AI-Team] Nowy lead - Playbook Mapa AI');
-                notifyData.append('_template', 'table');
-                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
-                    method: 'POST',
-                    body: notifyData
-                });
-
-                if (typeof gtag === 'function') {
-                    gtag('event', 'generate_lead', {
-                        event_category: 'Lead Magnet',
-                        event_label: 'Playbook Mapa AI',
-                        value: 1
-                    });
-                }
-
-                window.open(PLAYBOOK_URL, '_blank');
-                form.classList.add('hidden');
-                document.getElementById('playbook-success').classList.remove('hidden');
-                lucide.createIcons();
-            } catch (error) {
-                window.open(PLAYBOOK_URL, '_blank');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                lucide.createIcons();
-            }
-        });
-    </script>
 </body>
 </html>

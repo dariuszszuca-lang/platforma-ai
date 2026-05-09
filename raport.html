@@ -5,367 +5,217 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-
-    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MX6DBXQ66D');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
 
-    <title>15 sposobów wdrożenia AI w małej firmie — darmowy raport | AI-Team</title>
-
-    <!-- SEO -->
-    <meta name="description" content="Pobierz darmowy raport: 15 sprawdzonych sposobów wdrożenia AI w małej firmie. Praktyczny przewodnik, zero teorii. Od AI-Team Gdańsk.">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
+    <title>Raport „15 sposobów wdrożenia AI w małej firmie" — pobierz | AI-Team</title>
+    <meta name="description" content="Pobierz darmowy raport: 15 sprawdzonych sposobów wdrożenia AI w małej firmie. Praktyczny przewodnik, zero teorii, gotowe do działania.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ai-team.pl/raport">
-    <meta property="og:title" content="15 sposobów wdrożenia AI w małej firmie — darmowy raport">
-    <meta property="og:description" content="Praktyczny przewodnik dla małych firm i freelancerów. Pobierz za darmo.">
+    <meta property="og:url" content="https://ai-team.pl/raport.html">
+    <meta property="og:title" content="Raport AI — 15 sposobów wdrożenia | AI-Team">
+    <meta property="og:description" content="22 strony konkretnych pomysłów na wdrożenie AI. Każdy z opisem, narzędziem, czasem wdrożenia. Darmowe.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="15 sposobów wdrożenia AI w małej firmie — darmowy raport">
-    <meta name="twitter:description" content="Praktyczny przewodnik dla małych firm i freelancerów. Pobierz za darmo.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --brand-primary: #f97316;
-            --brand-light: #22c55e;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(255,255,255,0.03);
-            --border: rgba(255,255,255,0.08);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: #e2e8f0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 520px;
-            width: 100%;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo a {
-            color: white;
-            text-decoration: none;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .logo span { color: var(--brand-primary); }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2.5rem 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            border-radius: 9999px;
-            background: rgba(249,115,22,0.1);
-            border: 1px solid rgba(249,115,22,0.3);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--brand-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .badge .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--brand-primary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        h1 .highlight { color: var(--brand-primary); }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .benefits {
-            list-style: none;
-            margin-bottom: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .benefits li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        .benefits li i {
-            color: var(--brand-primary);
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            color: white;
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input::placeholder { color: #64748b; }
-        .form-group input:focus { border-color: var(--brand-primary); }
-
-        .submit-btn {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--brand-primary);
-            color: black;
-            font-weight: 700;
-            font-size: 0.95rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .submit-btn:hover {
-            box-shadow: 0 0 20px rgba(249,115,22,0.5);
-            transform: scale(1.02);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .submit-btn.success {
-            background: var(--brand-light);
-        }
-
-        .privacy {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            color: #475569;
-        }
-
-        .privacy a {
-            color: #64748b;
-            text-decoration: underline;
-        }
-
-        .back-link {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .back-link a {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-
-        .back-link a:hover { color: var(--brand-primary); }
-
-        .loader {
-            width: 18px;
-            height: 18px;
-            border: 2px solid transparent;
-            border-top-color: black;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo">
-            <a href="/">AI<span>-Team</span></a>
-        </div>
-
-        <div class="card">
-            <div class="badge">
-                <span class="dot"></span>
-                Darmowy raport
-            </div>
-
-            <h1>15 sposobów wdrożenia <span class="highlight">AI</span> w małej firmie</h1>
-
-            <p class="subtitle">Praktyczny przewodnik dla właścicieli małych firm i freelancerów. Zero teorii, same konkrety. Pobierz za darmo.</p>
-
-            <ul class="benefits">
-                <li><i data-lucide="clock"></i> Oszczędź 10-15 godzin tygodniowo</li>
-                <li><i data-lucide="zap"></i> Wdrożenia, które działają od pierwszego dnia</li>
-                <li><i data-lucide="shield"></i> Bez wiedzy technicznej, bez kodowania</li>
-                <li><i data-lucide="file-text"></i> PDF gotowy do pobrania w 10 sekund</li>
-            </ul>
-
-            <form id="raport-form" onsubmit="handleRaportForm(event)">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Twoje imię" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Twój email" required>
-                </div>
-                <button type="submit" id="submit-btn" class="submit-btn">
-                    <i data-lucide="download" style="width:18px;height:18px"></i>
-                    Pobierz darmowy raport
-                </button>
-            </form>
-
-            <p class="privacy">Zero spamu. <a href="/privacy.html">Polityka prywatności</a></p>
-        </div>
-
-        <div class="back-link">
-            <a href="/">ai-team.pl</a>
-        </div>
+<nav class="top-nav">
+  <div class="inner">
+    <a href="/" class="brand">
+      <svg class="logo-mark" width="42" height="42" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+        <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+      </svg>
+      <span class="wordmark">AI · <em>Team</em><span class="tagline-mini">EST · 2024 · POLSKA</span></span>
+    </a>
+    <div class="menu">
+      <a href="/wdrozenie-ai.html">Wdrożenie</a>
+      <a href="/warsztaty-ai.html">Akademia</a>
+      <a href="/playbooki.html" class="active">Playbooki</a>
+      <a href="/#offer">Cennik</a>
+      <a href="/#case">Portfolio</a>
+      <a href="/#about">O autorze</a>
     </div>
+    <a href="#download" class="nav-cta"><span>Pobierz raport</span><span class="arrow">→</span></a>
+  </div>
+</nav>
 
-    <script>
-        lucide.createIcons();
+<div class="breadcrumbs"><div class="container"><a href="/">AI · Team</a><span class="sep">/</span><a href="/playbooki.html">Playbooki</a><span class="sep">/</span><span>Raport</span></div></div>
 
-        const RAPORT_PDF_URL = '/assets/raport-15-sposobow-ai-v2.pdf';
+<section class="hero-page">
+  <div class="container">
+    <span class="label-mono">RAPORT · PDF · 22 STRONY · 0 ZŁ</span>
+    <h1 class="display">15 sposobów<br/>wdrożenia AI<br/><em>w małej firmie.</em></h1>
+    <p class="body-lg">Praktyczny przewodnik bez teorii. 15 konkretnych wdrożeń AI, każde z opisem co dokładnie zrobić, jakim narzędziem, w jakim czasie i jaki ROI da. Pobierz za email.</p>
+    <div class="hero-cta-row">
+      <a class="cta-primary" href="#download">Pobierz raport →</a>
+      <a class="cta-secondary" href="#what">Zobacz spis treści</a>
+    </div>
+  </div>
+</section>
 
-        async function handleRaportForm(e) {
-            e.preventDefault();
-            const form = e.target;
-            const name = form.querySelector('input[name="name"]').value;
-            const email = form.querySelector('input[name="email"]').value;
-            const btn = document.getElementById('submit-btn');
-            const originalText = btn.innerHTML;
+<section class="content" id="what">
+  <div class="container-narrow">
+    <span class="label-mono">CO ZNAJDZIESZ W RAPORCIE</span>
+    <h2>15 wdrożeń<br/><em>w 5 obszarach firmy.</em></h2>
+    <p>Każdy rozdział to konkretne wdrożenie — co, jak, czym, ile czasu, jaki rezultat. Bez slajdów dla slajdów.</p>
 
-            btn.innerHTML = '<span class="loader"></span> Pobieram...';
-            btn.disabled = true;
+    <h3>Sprzedaż i obsługa klienta (4 wdrożenia)</h3>
+    <ul>
+      <li>AI Asystent ofertowy — pisze oferty z notatki głosowej w 30 sekund</li>
+      <li>Auto follow-up po rozmowach — Claude/GPT pisze maile dopasowane do kontekstu</li>
+      <li>Custom GPT dla typowych pytań klientów — 80% obsługi automatycznie</li>
+      <li>Lead scoring AI — sortuje leady wg potencjału, priorytetyzuje kontakt</li>
+    </ul>
 
-            try {
-                // 1. MailerLite subscription
-                const mlData = new FormData();
-                mlData.append('fields[name]', name);
-                mlData.append('fields[email]', email);
-                mlData.append('ml-submit', '1');
-                mlData.append('anticsrf', 'true');
+    <h3>Marketing i content (4 wdrożenia)</h3>
+    <ul>
+      <li>Pipeline content z notatek głosowych — od pomysłu do publikacji w 15 min</li>
+      <li>Auto-generowanie opisów produktów dla e-commerce</li>
+      <li>Repurposing — 1 video → 5 postów + newsletter + transkrypcja</li>
+      <li>SEO research z Claude — 30 min tygodniowo zamiast 4h</li>
+    </ul>
 
-                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
-                    method: 'POST',
-                    body: mlData,
-                    mode: 'no-cors'
-                });
+    <h3>Operacje i administracja (3 wdrożenia)</h3>
+    <ul>
+      <li>Custom CRM z AI — własny system, kod Twój, brak abonamentu</li>
+      <li>AI ekstraktor faktur — z PDF do księgowości w 5 sekund</li>
+      <li>Auto-raporty z spotkań — transkrypcja + summary + action items</li>
+    </ul>
 
-                // 2. Email notification
-                const formData = new FormData(form);
-                formData.append('_subject', '[AI-Team] Nowy lead - Raport AI (landing)');
-                formData.append('_template', 'table');
-                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
-                    method: 'POST',
-                    body: formData
-                });
+    <h3>Analityka i decyzje (2 wdrożenia)</h3>
+    <ul>
+      <li>Dashboard z naturalnym językiem — pytasz, AI odpowiada z liczbami</li>
+      <li>AI doradca strategiczny — z Twoich danych proponuje kolejne ruchy</li>
+    </ul>
 
-                // 3. GA4 tracking
-                if (typeof gtag === 'function') {
-                    gtag('event', 'generate_lead', {
-                        event_category: 'Lead Magnet',
-                        event_label: 'Raport 15 sposobow AI - landing',
-                        value: 1
-                    });
-                }
+    <h3>Onboarding i HR (2 wdrożenia)</h3>
+    <ul>
+      <li>AI mentor dla nowego pracownika — pierwszy tydzień bez Ciebie</li>
+      <li>Auto-generowanie dokumentów wewnętrznych (procedury, FAQ, polityki)</li>
+    </ul>
+  </div>
+</section>
 
-                // 4. Open PDF
-                window.open(RAPORT_PDF_URL, '_blank');
+<section class="full-offer" style="background: var(--cream);">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">CO DOKŁADNIE DOSTAJESZ</span>
+      <h2>22 strony<br/><em>konkretnych wdrożeń.</em></h2>
+    </div>
+    <div class="offer-grid-3" style="max-width: 1100px; margin: 0 auto;">
+      <div class="offer-item">
+        <span class="offer-status free">Część 1</span>
+        <h4 style="margin-top: 16px;">15 opisów wdrożeń</h4>
+        <p class="body-sm">Każdy z formatem: co robisz · jakie narzędzia · ile czasu zajmie · jaki rezultat zobaczysz · case z mojej praktyki.</p>
+      </div>
+      <div class="offer-item">
+        <span class="offer-status free">Część 2</span>
+        <h4 style="margin-top: 16px;">Decyzyjnik priorytetów</h4>
+        <p class="body-sm">3 pytania o Twojej firmie → drzewko decyzyjne → 3 wdrożenia od czego zacząć. Zamiast 15 chaotycznych pomysłów.</p>
+      </div>
+      <div class="offer-item">
+        <span class="offer-status free">Część 3</span>
+        <h4 style="margin-top: 16px;">Lista narzędzi</h4>
+        <p class="body-sm">25 narzędzi AI wymienionych w raporcie z opisem: do czego, ile kosztuje, alternatywy, link do trial.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                // Success state
-                btn.innerHTML = '<i data-lucide="check" style="width:18px;height:18px"></i> Pobrano!';
-                btn.classList.add('success');
-                lucide.createIcons();
-                form.reset();
+<section class="quiz" id="download">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">POBIERZ · TYLKO EMAIL</span>
+      <h2>Pobierz<br/><em>raport teraz.</em></h2>
+      <p class="body-lg">Wpisz email, dostajesz raport PDF + zapis do AI Radar (cotygodniowy newsletter). Wypisz się jednym klikiem.</p>
+    </div>
+    <div class="quiz-card">
+      <span class="label-mono">FORMULARZ · 30 SEKUND</span>
+      <h3>Email i dostajesz PDF na maila</h3>
+      <p>Bonus: zapis do AI Radar (cotygodniowy newsletter). Bez spamu.</p>
+      <form action="https://formspree.io/f/your-id" method="POST" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
+        <input type="email" name="email" placeholder="twoj@email.pl" required style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
+        <input type="text" name="name" placeholder="Imię (opcjonalnie)" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
+        <label style="font-size: 12px; color: rgba(251,248,241,0.7); display: flex; align-items: flex-start; gap: 10px;">
+          <input type="checkbox" required style="margin-top: 4px;" />
+          <span>Zgadzam się na otrzymywanie raportu PDF i newslettera AI Radar. Mogę wypisać się w każdej chwili.</span>
+        </label>
+        <button type="submit" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Pobierz raport PDF →</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('success');
-                    btn.disabled = false;
-                    lucide.createIcons();
-                }, 3000);
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">CO MÓWIĄ CZYTELNICY</span>
+      <h2>Słowo od <em>tych którzy pobrali.</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <blockquote>„Wdrożyłem 3 z 15 pomysłów w tydzień. ROI w miesiąc. Najlepszy raport jaki czytałem o AI w biznesie."</blockquote>
+        <div class="author"><div class="author-name">Marcin K.</div><div class="author-role">Konsulting · Trójmiasto</div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <blockquote>„Zero teorii, same konkrety. Każde wdrożenie ma jasny krok. To był plan dla mojej firmy na kwartał."</blockquote>
+        <div class="author"><div class="author-name">Anna S.</div><div class="author-role">Salon kosmetyczny · Gdańsk</div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <blockquote>„Decyzyjnik priorytetów uratował mnie przed paraliżem analitycznym. Zacząłem od 3 wdrożeń, nie 15."</blockquote>
+        <div class="author"><div class="author-name">Paweł M.</div><div class="author-role">E-commerce · Polska</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            } catch (error) {
-                window.open(RAPORT_PDF_URL, '_blank');
-                btn.innerHTML = '<i data-lucide="check" style="width:18px;height:18px"></i> Pobrano!';
-                btn.classList.add('success');
-                btn.disabled = false;
-                lucide.createIcons();
-            }
-        }
-    </script>
+<section class="cta-final">
+  <div class="container">
+    <span class="label-mono" style="display:block; margin-bottom:32px;">PO RAPORCIE</span>
+    <h2>Chcesz wdrożenia<br/><em>w swojej firmie?</em></h2>
+    <p>Po raporcie jeśli masz pytania albo chcesz wdrożenie — umów rozmowę diagnostyczną. 30 minut, 0 zł, dostajesz Mapę AI w PDF z 5-7 priorytetami dla Twojej firmy.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/48730600383" class="cta-primary">Umów rozmowę →</a>
+      <a href="/wdrozenie-ai.html" class="cta-secondary">Zobacz usługi wdrożeniowe</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+          </svg>
+          <span class="wordmark">AI · <em>Team</em></span>
+        </a>
+        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
+      </div>
+      <div class="footer-col"><h5>Oferta</h5><a href="/wdrozenie-ai.html">Wdrożenie AI</a><a href="/warsztaty-ai.html">Akademia AI</a><a href="/playbooki.html">Playbooki</a><a href="/zlecenie.html">Spersonalizowany CRM</a><a href="/produkt1-tracker.html">Tracker Czasu</a></div>
+      <div class="footer-col"><h5>Pracownia</h5><a href="/#about">O autorze</a><a href="/#case">Case study MyWay</a><a href="/ai-radar.html">Newsletter AI Radar</a></div>
+      <div class="footer-col"><h5>Kontakt</h5><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
+      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
