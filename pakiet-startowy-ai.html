@@ -5,617 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Pakiet Startowy AI - 11 najlepszych narzędzi dla Twojej firmy | AI-TEAM.PL</title>
-    <meta name="description" content="Sprawdzony zestaw 11 najlepszych narzędzi AI dla freelancerów i małych firm. Od kodowania po deploy - cały workflow w jednym pakiecie.">
-    <meta name="keywords" content="narzędzia AI, pakiet startowy AI, Claude Code, Gemini CLI, Lovable, Vercel, Github, narzędzia sztucznej inteligencji">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ai-team.pl/pakiet-startowy-ai.html">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Pakiet Startowy AI - 11 narzędzi do pracy z AI">
-    <meta property="og:description" content="Sprawdzony zestaw 11 narzędzi AI dla freelancerów i małych firm. Od kodowania po deploy.">
+    <title>Pakiet Startowy AI — 11 narzędzi dla freelancera | AI-Team</title>
+    <meta name="description" content="Sprawdzony zestaw 11 narzędzi AI dla freelancerów i małych firm. Od kodowania po deploy — cały workflow w jednym pakiecie.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/pakiet-startowy-ai.html">
-    <meta property="og:image" content="https://ai-team.pl/assets/pakiet-startowy-ai-og.png">
+    <meta property="og:title" content="Pakiet Startowy AI — 11 narzędzi | AI-Team">
+    <meta property="og:description" content="11 narzędzi AI których używam codziennie. Od research po deploy — cały workflow.">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#020203',
-                            primary: '#f97316',
-                            secondary: '#ea580c',
-                            light: '#fb923c',
-                            accent: '#ffedd5',
-                        },
-                        primary: '#f97316',
-                        secondary: '#ea580c',
-                        light: '#fb923c',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #020203;
-            min-height: 100vh;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            background: linear-gradient(145deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,0.04) 100%);
-            border-color: rgba(249, 115, 22, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(249,115,22,0.15), 0 10px 20px -10px rgba(0,0,0,0.5);
-        }
-        .gradient-text {
-            background: linear-gradient(to right, #f97316, #fb923c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px); z-index: -1; opacity: 0.6;
-        }
-        .section-glow {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70%;
-            max-width: 1000px;
-            height: 200px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 0;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 220, 0.05) 40%, transparent 70%);
-        }
-        .section-glow-top { top: -60px; }
-        .section-glow-bottom { bottom: -60px; }
-        .cosmic-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 20s ease-in-out infinite;
-            pointer-events: none;
-        }
-        .cosmic-orb-1 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(249,115,22,0.3) 0%, transparent 70%);
-            top: 10%; left: -10%;
-        }
-        .cosmic-orb-2 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
-            top: 40%; right: -5%;
-            animation-delay: -7s;
-        }
-        .tool-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            padding: 4px 10px;
-            font-size: 10px;
-            font-weight: 700;
-            border-radius: 20px;
-        }
-        .category-header {
-            position: relative;
-            padding-left: 1rem;
-        }
-        .category-header::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, #f97316, #ea580c);
-            border-radius: 2px;
-        }
-    </style>
-
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Pakiet Startowy AI - Najlepsze narzedzia AI",
-        "description": "Sprawdzony zestaw 11 najlepszych narzedzi AI dla freelancerow i malych firm",
-        "numberOfItems": 11,
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Claude Code"},
-            {"@type": "ListItem", "position": 2, "name": "Gemini CLI"},
-            {"@type": "ListItem", "position": 3, "name": "Canva"},
-            {"@type": "ListItem", "position": 4, "name": "Gemini Nano Banana"},
-            {"@type": "ListItem", "position": 5, "name": "Grok"},
-            {"@type": "ListItem", "position": 6, "name": "Notion"},
-            {"@type": "ListItem", "position": 7, "name": "Superwhisper"},
-            {"@type": "ListItem", "position": 8, "name": "Github"},
-            {"@type": "ListItem", "position": 9, "name": "Vercel"},
-            {"@type": "ListItem", "position": 10, "name": "Lovable"},
-            {"@type": "ListItem", "position": 11, "name": "Sublime Text"}
-        ]
-    }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
 </head>
-<body class="text-white antialiased">
-    <!-- Background -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="cosmic-orb cosmic-orb-1"></div>
-        <div class="cosmic-orb cosmic-orb-2"></div>
+<body>
+
+<nav class="top-nav">
+  <div class="inner">
+    <a href="/" class="brand">
+      <svg class="logo-mark" width="42" height="42" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+        <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+      </svg>
+      <span class="wordmark">AI · <em>Team</em><span class="tagline-mini">EST · 2024 · POLSKA</span></span>
+    </a>
+    <div class="menu">
+      <a href="/wdrozenie-ai.html">Wdrożenie</a>
+      <a href="/warsztaty-ai.html">Akademia</a>
+      <a href="/playbooki.html" class="active">Playbooki</a>
+      <a href="/#offer">Cennik</a>
+      <a href="/#case">Portfolio</a>
+      <a href="/#about">O autorze</a>
     </div>
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow animate-pulse-slow"></div>
+    <a href="#tools" class="nav-cta"><span>Zobacz pakiet</span><span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<div class="breadcrumbs"><div class="container"><a href="/">AI · Team</a><span class="sep">/</span><a href="/playbooki.html">Playbooki</a><span class="sep">/</span><span>Pakiet Startowy</span></div></div>
+
+<section class="hero-page">
+  <div class="container">
+    <span class="label-mono">PAKIET STARTOWY · 11 NARZĘDZI</span>
+    <h1 class="display">11 narzędzi AI<br/>których używam<br/><em>codziennie.</em></h1>
+    <p class="body-lg">Sprawdzony zestaw narzędzi AI dla freelancera i małej firmy. Od research, przez kod, content, po deploy. Cały workflow w jednym pakiecie. Każde narzędzie z linkiem, opisem do czego, kiedy użyć i ile kosztuje.</p>
+    <div class="hero-cta-row">
+      <a class="cta-primary" href="#tools">Zobacz 11 narzędzi →</a>
+      <a class="cta-secondary" href="/playbooki.html">Inne playbooki</a>
+    </div>
+  </div>
+</section>
+
+<section class="full-offer" id="tools">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">STACK · 4 KATEGORIE</span>
+      <h2>Stack mojej<br/><em>codziennej pracy.</em></h2>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] md:w-auto max-w-5xl">
-        <div class="glass px-3 py-3 md:px-6 md:py-3 rounded-full flex items-center justify-between gap-4 md:gap-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10 bg-black/40 backdrop-blur-xl">
-            <a href="index.html" class="flex items-center gap-3 pl-2 group cursor-pointer">
-                <div class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
-                </div>
-                <div class="text-xl font-display font-bold tracking-tighter flex items-center gap-2 group-hover:text-brand-primary transition-colors">AI-Team</div>
-            </a>
-                        <div class="hidden md:flex items-center bg-white/5 rounded-full px-2 border border-white/5">
-                <a href="index.html#products" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Oferta</a>
-                <a href="index.html#tools" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Narzędzia</a>
-                <a href="index.html#cases" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Portfolio</a>
-                <a href="index.html#faq" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">FAQ</a>
-                <a href="blog/" class="px-3 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap">Blog</a>
-            </div>
+    <div class="offer-group">
+      <div class="offer-group-head"><h3>Modele <em>językowe</em></h3><span class="meta">3 · podstawa wszystkiego</span></div>
+      <div class="offer-grid-3">
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">Claude (Anthropic)</h4><p class="body-sm">Główny model do pisania, kodowania, analizy. Najlepsze rozumienie kontekstu, długie odpowiedzi.</p><div class="item-cta">20 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">ChatGPT (OpenAI)</h4><p class="body-sm">Custom GPTs dla klientów, GPT-4 do brainstormingu, DALL-E do prostych grafik.</p><div class="item-cta">20 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">WEEKLY</span><h4 style="margin-top:16px;">Gemini (Google)</h4><p class="body-sm">NotebookLM jako baza wiedzy + audio overviews. Plus Gemini do research z internetu.</p><div class="item-cta">FREE / 20 USD →</div></div>
+      </div>
+    </div>
 
-            <a href="warsztaty-ai.html" class="hidden md:flex group relative px-6 py-2.5 bg-brand-primary text-black rounded-full text-sm font-bold transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] items-center gap-2 whitespace-nowrap">
-                <i data-lucide="calendar" class="w-4 h-4 flex-shrink-0"></i>
-                <span class="relative z-10">Warsztat 500 PLN</span>
-            </a>
-        </div>
-    </nav>
+    <div class="offer-group">
+      <div class="offer-group-head"><h3>Workflow i <em>integracje</em></h3><span class="meta">3 · automatyzacje</span></div>
+      <div class="offer-grid-3">
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">Cursor</h4><p class="body-sm">IDE z AI. Główne narzędzie do kodu. Claude Sonnet jako default model. Pisze, refaktoruje, testuje.</p><div class="item-cta">20 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">WEEKLY</span><h4 style="margin-top:16px;">Make.com</h4><p class="body-sm">Automatyzacje no-code: webhooks, integracje, scheduled jobs. Stripe → Notion, Email → Slack.</p><div class="item-cta">9-29 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">Granola</h4><p class="body-sm">AI notatki ze spotkań. Nagrywa, transkrybuje, summary, action items. Mac native.</p><div class="item-cta">14 USD / mies →</div></div>
+      </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 relative z-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <!-- Breadcrumb -->
-            <div class="text-gray-400 text-sm mb-8">
-                <a href="index.html" class="hover:text-white transition">Strona główna</a>
-                <span class="mx-2">/</span>
-                <span class="text-brand-primary">Pakiet Startowy AI</span>
-            </div>
+    <div class="offer-group">
+      <div class="offer-group-head"><h3>Wiedza i <em>research</em></h3><span class="meta">2 · biblioteka</span></div>
+      <div class="offer-grid-2">
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">NotebookLM</h4><p class="body-sm">Wgrywam tu wszystkie dokumenty firmy. Pytam — odpowiada cytatami z moich źródeł. Plus audio overviews.</p><div class="item-cta">FREE →</div></div>
+        <div class="offer-item"><span class="offer-status soon">WEEKLY</span><h4 style="margin-top:16px;">Perplexity</h4><p class="body-sm">Research z internetu z cytatami. Lepszy niż Google na techniczne pytania. Plus Pro: Claude/GPT-4.</p><div class="item-cta">20 USD / mies →</div></div>
+      </div>
+    </div>
 
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-                    <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-                    <span>SPRAWDZONY ZESTAW NARZĘDZI</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 tracking-tight">
-                    Pakiet Startowy <span class="gradient-text">AI</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-                    11 narzędzi AI które naprawdę używamy w codziennej pracy. Od kodowania po deploy — cały workflow w jednym pakiecie.
-                </p>
+    <div class="offer-group">
+      <div class="offer-group-head"><h3>Generatory i <em>publikacja</em></h3><span class="meta">3 · output</span></div>
+      <div class="offer-grid-3">
+        <div class="offer-item"><span class="offer-status soon">WEEKLY</span><h4 style="margin-top:16px;">Midjourney</h4><p class="body-sm">Grafiki do social, blogów, prezentacji. Najlepsza jakość artystyczna. Discord + web app.</p><div class="item-cta">10-30 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">MONTHLY</span><h4 style="margin-top:16px;">ElevenLabs</h4><p class="body-sm">Voice cloning + TTS. Audio do rolek bez nagrywania. Wystarczy 30 sek samplea Twojego głosu.</p><div class="item-cta">5-99 USD / mies →</div></div>
+        <div class="offer-item"><span class="offer-status soon">DAILY</span><h4 style="margin-top:16px;">Vercel + GitHub</h4><p class="body-sm">Deploy w 30 sek. Push do GitHub → live na Twojej domenie. Plus preview deploys dla każdego brancha.</p><div class="item-cta">FREE / 20 USD →</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Stats -->
-                <div class="flex flex-wrap justify-center gap-8 mb-12 text-sm">
-                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
-                        <i data-lucide="package" class="w-5 h-5 text-brand-primary"></i>
-                        <span class="text-gray-300"><strong class="text-white">11</strong> narzędzi</span>
-                    </div>
-                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
-                        <i data-lucide="layers" class="w-5 h-5 text-brand-secondary"></i>
-                        <span class="text-gray-300"><strong class="text-white">5</strong> kategorii</span>
-                    </div>
-                    <div class="flex items-center gap-2 glass px-4 py-2 rounded-full">
-                        <i data-lucide="badge-check" class="w-5 h-5 text-green-400"></i>
-                        <span class="text-gray-300"><strong class="text-white">100%</strong> przetestowane</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="content">
+  <div class="container-narrow">
+    <span class="label-mono">CAŁOŚĆ KOSZTUJE</span>
+    <h2>Stack <em>za</em> 100-200 USD<br/>miesięcznie.</h2>
+    <p>Najmniejszy realnie używany stack: <strong>Claude (20) + Cursor (20) + NotebookLM (free) + Vercel (free) = 40 USD/mies</strong>. Plus opcjonalnie ChatGPT (20), Granola (14), Make (9).</p>
+    <p>Pełen stack (wszystkie 11 narzędzi w pełnych planach): <strong>~200 USD/mies</strong>. To 800-900 zł miesięcznie. Mniej niż jedna konsultacja IT godzinowa.</p>
+    <h3>Od czego zacząć</h3>
+    <p><strong>1. Claude Pro (20 USD)</strong> — jeśli masz wybrać 1, niech to będzie Claude. Najszerszy zakres.</p>
+    <p><strong>2. Cursor (20 USD)</strong> — jeśli kodujesz albo budujesz dla klientów.</p>
+    <p><strong>3. NotebookLM (free)</strong> — jeśli masz dużo dokumentów firmowych.</p>
+    <p><strong>4. Make.com</strong> — gdy potrzebujesz automatyzować workflows między aplikacjami.</p>
+  </div>
+</section>
 
-    <!-- Tools Sections -->
-    <main class="pb-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
+<section class="cta-final">
+  <div class="container">
+    <span class="label-mono" style="display:block; margin-bottom:32px;">CHCESZ POMOC W WYBORZE?</span>
+    <h2>Zbudujmy<br/><em>Twój stack</em><br/>razem.</h2>
+    <p>Nie wszystkie 11 narzędzi pasują do każdej firmy. Na warsztacie Akademia AI dobieramy 4-6 narzędzi pod Twoją branżę i etap. Plus konfigurujemy je tak żeby działały razem.</p>
+    <div class="cta-row">
+      <a href="/warsztaty-ai.html" class="cta-primary">Zobacz warsztaty →</a>
+      <a href="/wdrozenie-ai.html" class="cta-secondary">Albo audyt AI firmy</a>
+    </div>
+  </div>
+</section>
 
-            <!-- Category 1: AI & Kod -->
-            <section class="mb-20">
-                <div class="section-glow section-glow-top"></div>
-                <div class="category-header mb-8">
-                    <div class="flex items-center gap-3 mb-2">
-                        <i data-lucide="terminal" class="w-6 h-6 text-emerald-400"></i>
-                        <h2 class="text-2xl md:text-3xl font-display font-bold">AI & Kod</h2>
-                    </div>
-                    <p class="text-gray-400 text-sm ml-9">Agenci AI do kodowania prosto z terminala</p>
-                </div>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+          </svg>
+          <span class="wordmark">AI · <em>Team</em></span>
+        </a>
+        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
+      </div>
+      <div class="footer-col"><h5>Oferta</h5><a href="/wdrozenie-ai.html">Wdrożenie AI</a><a href="/warsztaty-ai.html">Akademia AI</a><a href="/playbooki.html">Playbooki</a><a href="/zlecenie.html">Spersonalizowany CRM</a><a href="/produkt1-tracker.html">Tracker Czasu</a></div>
+      <div class="footer-col"><h5>Pracownia</h5><a href="/#about">O autorze</a><a href="/#case">Case study MyWay</a><a href="/ai-radar.html">Newsletter AI Radar</a></div>
+      <div class="footer-col"><h5>Kontakt</h5><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
+      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Claude Code -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-brand-primary text-black">MUST HAVE</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-amber-500/20 to-orange-600/10 rounded-xl flex items-center justify-center border border-amber-500/30 shrink-0">
-                                <i data-lucide="terminal" class="w-7 h-7 text-amber-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Claude Code</h3>
-                                <p class="text-gray-500 text-xs mb-3">Anthropic</p>
-                                <p class="text-gray-400 text-sm mb-4">Agent AI w terminalu. Pisze kod, edytuje pliki, puszcza testy, robi commity. Rozumie cały projekt i pracuje autonomicznie.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">W Claude Pro ($20/mies.)</span>
-                                </div>
-                                <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Dokumentacja <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Gemini CLI -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-blue-500 text-white">NOWE</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-cyan-600/10 rounded-xl flex items-center justify-center border border-blue-500/30 shrink-0">
-                                <i data-lucide="terminal" class="w-7 h-7 text-blue-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Gemini CLI</h3>
-                                <p class="text-gray-500 text-xs mb-3">Google</p>
-                                <p class="text-gray-400 text-sm mb-4">Agent AI od Google w terminalu. Darmowy (1M tokenów/dzień!), szybki, świetny do generowania kodu i refaktoryzacji projektów.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy (1M tokenów/dzień)</span>
-                                </div>
-                                <a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    GitHub <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Category 2: Grafika & Design -->
-            <section class="mb-20">
-                <div class="section-glow section-glow-bottom"></div>
-                <div class="category-header mb-8">
-                    <div class="flex items-center gap-3 mb-2">
-                        <i data-lucide="image" class="w-6 h-6 text-purple-400"></i>
-                        <h2 class="text-2xl md:text-3xl font-display font-bold">Grafika & Design</h2>
-                    </div>
-                    <p class="text-gray-400 text-sm ml-9">Projektowanie grafik i generowanie obrazów AI</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Canva -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-brand-primary text-black">MUST HAVE</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-blue-600/10 rounded-xl flex items-center justify-center border border-cyan-500/30 shrink-0">
-                                <i data-lucide="palette" class="w-7 h-7 text-cyan-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Canva</h3>
-                                <p class="text-gray-500 text-xs mb-3">Canva</p>
-                                <p class="text-gray-400 text-sm mb-4">Projektowanie grafik bez bycia grafikiem. Posty, prezentacje, ulotki, bannery. AI generuje obrazy, usuwa tła, proponuje layouty.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Pro: 55 zł/mies.</span>
-                                </div>
-                                <a href="https://canva.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Wypróbuj Canva <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Gemini Nano Banana -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-yellow-500 text-black">HOT</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-yellow-500/20 to-orange-600/10 rounded-xl flex items-center justify-center border border-yellow-500/30 shrink-0">
-                                <i data-lucide="image-plus" class="w-7 h-7 text-yellow-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Gemini Nano Banana</h3>
-                                <p class="text-gray-500 text-xs mb-3">Google</p>
-                                <p class="text-gray-400 text-sm mb-4">Generator grafik AI od Google. Szybki, darmowy, świetna jakość obrazów. Idealny do tworzenia grafik do postów i marketingu.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy</span>
-                                </div>
-                                <a href="https://gemini.google.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Otwórz Gemini <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Category 3: Research -->
-            <section class="mb-20">
-                <div class="category-header mb-8">
-                    <div class="flex items-center gap-3 mb-2">
-                        <i data-lucide="search" class="w-6 h-6 text-brand-secondary"></i>
-                        <h2 class="text-2xl md:text-3xl font-display font-bold">Research</h2>
-                    </div>
-                    <p class="text-gray-400 text-sm ml-9">Wyszukiwanie informacji i analiza danych z AI</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Grok -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-brand-secondary text-white">REKOMENDOWANE</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-gray-500/20 to-gray-600/10 rounded-xl flex items-center justify-center border border-gray-500/30 shrink-0">
-                                <i data-lucide="search" class="w-7 h-7 text-gray-300"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Grok</h3>
-                                <p class="text-gray-500 text-xs mb-3">xAI</p>
-                                <p class="text-gray-400 text-sm mb-4">AI z dostępem do danych real-time (X/Twitter). Świetny do researchu trendów, analizy rynku i szybkiego wyszukiwania aktualnych informacji.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
-                                </div>
-                                <a href="https://grok.x.ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Wypróbuj Grok <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Category 4: Organizacja pracy -->
-            <section class="mb-20">
-                <div class="section-glow section-glow-top"></div>
-                <div class="category-header mb-8">
-                    <div class="flex items-center gap-3 mb-2">
-                        <i data-lucide="layout-grid" class="w-6 h-6 text-yellow-400"></i>
-                        <h2 class="text-2xl md:text-3xl font-display font-bold">Organizacja pracy</h2>
-                    </div>
-                    <p class="text-gray-400 text-sm ml-9">Narzędzia pomocnicze do zarządzania projektami i notatkami</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Notion -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-gray-500/20 to-gray-600/10 rounded-xl flex items-center justify-center border border-gray-500/30 shrink-0">
-                                <i data-lucide="notebook" class="w-7 h-7 text-gray-300"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Notion</h3>
-                                <p class="text-gray-500 text-xs mb-3">Notion Labs</p>
-                                <p class="text-gray-400 text-sm mb-4">Baza wiedzy, notatki, zadania, wiki - wszystko w jednym. Idealne do organizacji projektów, dokumentacji i współpracy z zespołem.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Plus: $10/mies.</span>
-                                </div>
-                                <a href="https://notion.so" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Wypróbuj Notion <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Superwhisper -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-violet-500 text-white">HIDDEN GEM</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-violet-500/20 to-purple-600/10 rounded-xl flex items-center justify-center border border-violet-500/30 shrink-0">
-                                <i data-lucide="mic" class="w-7 h-7 text-violet-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Superwhisper</h3>
-                                <p class="text-gray-500 text-xs mb-3">macOS</p>
-                                <p class="text-gray-400 text-sm mb-4">Dyktowanie głosowe z AI na macOS. Mówisz - tekst pojawia się wszędzie. Szybsze niż pisanie, idealne do notatek i długich tekstów.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Jednorazowo lub subskrypcja</span>
-                                </div>
-                                <a href="https://superwhisper.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Superwhisper <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Category 5: Dev & Deploy -->
-            <section class="mb-20">
-                <div class="category-header mb-8">
-                    <div class="flex items-center gap-3 mb-2">
-                        <i data-lucide="rocket" class="w-6 h-6 text-brand-light"></i>
-                        <h2 class="text-2xl md:text-3xl font-display font-bold">Dev & Deploy</h2>
-                    </div>
-                    <p class="text-gray-400 text-sm ml-9">Od edytora kodu po publikację na żywo</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Github -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-gray-500/20 to-gray-700/10 rounded-xl flex items-center justify-center border border-gray-500/30 shrink-0">
-                                <i data-lucide="github" class="w-7 h-7 text-gray-300"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">GitHub</h3>
-                                <p class="text-gray-500 text-xs mb-3">Microsoft</p>
-                                <p class="text-gray-400 text-sm mb-4">Repozytorium kodu. Przechowujesz projekty, śledzisz zmiany, współpracujesz z zespołem. Podstawa każdego workflow developerskiego.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy</span>
-                                </div>
-                                <a href="https://github.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    GitHub <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Vercel -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-brand-primary text-black">POWER USER</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-gray-400/20 to-gray-600/10 rounded-xl flex items-center justify-center border border-gray-400/30 shrink-0">
-                                <i data-lucide="triangle" class="w-7 h-7 text-white"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Vercel</h3>
-                                <p class="text-gray-500 text-xs mb-3">Vercel Inc.</p>
-                                <p class="text-gray-400 text-sm mb-4">Deploy jednym klikiem. Push do GitHuba = strona na żywo. Darmowy hosting, własna domena, SSL. Idealne do landing pages i aplikacji.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy (Hobby)</span>
-                                </div>
-                                <a href="https://vercel.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Vercel <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Lovable -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <span class="tool-badge bg-pink-500 text-white">AI BUILDER</span>
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-pink-500/20 to-rose-600/10 rounded-xl flex items-center justify-center border border-pink-500/30 shrink-0">
-                                <i data-lucide="heart" class="w-7 h-7 text-pink-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Lovable</h3>
-                                <p class="text-gray-500 text-xs mb-3">Lovable.dev</p>
-                                <p class="text-gray-400 text-sm mb-4">Budujesz aplikacje webowe opisując co chcesz. AI pisze kod, deploy automatyczny. Od pomysłu do działającej strony w minuty.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy plan</span>
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Pro: $20/mies.</span>
-                                </div>
-                                <a href="https://lovable.dev" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Lovable <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sublime Text -->
-                    <div class="glass-card p-6 rounded-2xl relative group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-br from-orange-500/20 to-yellow-600/10 rounded-xl flex items-center justify-center border border-orange-500/30 shrink-0">
-                                <i data-lucide="code" class="w-7 h-7 text-orange-400"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-brand-primary transition">Sublime Text</h3>
-                                <p class="text-gray-500 text-xs mb-3">Sublime HQ</p>
-                                <p class="text-gray-400 text-sm mb-4">Błyskawiczny edytor kodu. Lekki, szybki, nie zamula jak VS Code. Idealny do szybkich edycji HTML/CSS/JS i przeglądania plików.</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Darmowy (eval)</span>
-                                    <span class="px-2 py-1 bg-white/10 text-gray-400 text-xs rounded-full">Licencja: $99</span>
-                                </div>
-                                <a href="https://sublimetext.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-brand-primary text-sm font-medium hover:underline">
-                                    Sublime Text <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="mt-20">
-                <div class="glass-card p-8 md:p-12 rounded-3xl border-2 border-brand-primary/30 text-center relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-light"></div>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">
-                        Potrzebujesz pomocy z wdrożeniem?
-                    </h2>
-                    <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-                        Jeśli nie wiesz od czego zacząć lub chcesz wdrożyć AI w swojej firmie kompleksowo - porozmawiajmy. Bezpłatna konsultacja 15 minut.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="index.html#tools" class="px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition">
-                            Wypróbuj nasze narzędzia AI
-                        </a>
-                        <a href="index.html" class="px-8 py-4 glass border border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
-                            <i data-lucide="calendar" class="w-5 h-5"></i>
-                            Umów rozmowę
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="glass py-8 border-t border-white/10 relative z-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="relative flex h-3 w-3">
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
-                    </div>
-                    <span class="font-display font-bold">AI-Team</span>
-                </div>
-                                <div class="flex gap-6 text-sm text-gray-400">
-                    <a href="index.html" class="hover:text-white transition">Strona główna</a>
-                    <a href="blog/" class="hover:text-white transition">Blog</a>
-                    <a href="privacy.html" class="hover:text-white transition">Prywatność</a>
-                </div>
-                <p class="text-gray-500 text-sm">&copy; 2026 AI-TEAM.PL</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
