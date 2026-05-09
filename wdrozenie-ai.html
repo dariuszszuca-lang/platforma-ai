@@ -14,592 +14,267 @@
       gtag('config', 'G-MX6DBXQ66D');
     </script>
 
-    <title>Wdrożenie AI w małej firmie | AI-Team Gdańsk</title>
-    <meta name="description" content="Wdrożenia AI dla małych firm: diagnoza procesów, CRM na własność, automatyzacje, warsztaty i opieka techniczna. Bez slajdów dla slajdów.">
-    <meta name="keywords" content="wdrożenie AI w firmie, automatyzacja małej firmy, CRM dla małej firmy, warsztat AI, AI-Team Gdańsk">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ai-team.pl/wdrozenie-ai.html">
-
+    <title>Wdrożenie AI w małej firmie — audyt, automatyzacje, CRM | AI-Team</title>
+    <meta name="description" content="Wdrożenia AI dla małych firm: audyt procesów, sprint automatyzacji, własny CRM, retainer. Bez slajdów dla slajdów. Realizacja 2-14 dni.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/wdrozenie-ai.html">
-    <meta property="og:title" content="Wdrożenie AI w małej firmie | AI-Team">
-    <meta property="og:description" content="Zamień ręczne procesy w prosty system AI: CRM, follow-upy, dokumenty, raporty i warsztaty dla zespołu.">
+    <meta property="og:title" content="Wdrożenie AI — od audytu do automatyzacji | AI-Team">
+    <meta property="og:description" content="Audyt AI firmy, Sprint Automatyzacji, Spersonalizowany CRM, Zewnętrzny Dział AI. Wycena indywidualna.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Wdrożenie AI w małej firmie | AI-Team">
-    <meta name="twitter:description" content="AI i automatyzacje dla małych firm bez technicznego chaosu.">
-    <meta name="twitter:image" content="https://ai-team.pl/assets/og-image.png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Wdrożenie AI w małej firmie",
-      "provider": {
-        "@type": "ProfessionalService",
-        "name": "AI-Team",
-        "url": "https://ai-team.pl"
-      },
-      "areaServed": ["Gdańsk", "Trójmiasto", "Polska"],
-      "description": "Diagnoza procesów, warsztaty AI, spersonalizowany CRM i automatyzacje dla małych firm.",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Spersonalizowany CRM",
-          "price": "2500",
-          "priceCurrency": "PLN"
-        },
-        {
-          "@type": "Offer",
-          "name": "Warsztat AI",
-          "price": "600",
-          "priceCurrency": "PLN"
-        }
-      ]
-    }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#020203',
-                            primary: '#f97316',
-                            secondary: '#ea580c',
-                            light: '#22c55e',
-                            info: '#38bdf8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            min-height: 100vh;
-            background: #020203;
-            color: #e5e7eb;
-            overflow-x: hidden;
-        }
-        .glass {
-            background: rgba(255,255,255,0.055);
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(18px);
-        }
-        .card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(20px);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #f97316, #fb923c, #22c55e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-bg {
-            background-image:
-                linear-gradient(90deg, rgba(2,2,3,0.96), rgba(2,2,3,0.82) 48%, rgba(2,2,3,0.7)),
-                url('assets/ai-team-crm-demo.svg');
-            background-size: cover;
-            background-position: center;
-        }
-        .hero-copy {
-            width: 100%;
-            max-width: min(48rem, calc(100vw - 72px));
-        }
-        .bg-grid {
-            background-image:
-                linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.15), transparent);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.15), transparent);
-        }
-        .focus-ring:focus-visible {
-            outline: 3px solid rgba(249,115,22,0.75);
-            outline-offset: 3px;
-        }
-        .loader {
-            width: 18px;
-            height: 18px;
-            border: 2px solid transparent;
-            border-top-color: #020203;
-            border-radius: 9999px;
-            animation: spin 0.7s linear infinite;
-            display: inline-block;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-            }
-        }
-        @media (max-width: 767px) {
-            .hero-copy {
-                width: 100% !important;
-                max-width: 260px !important;
-                justify-self: start !important;
-                margin-left: 0 !important;
-                margin-right: auto !important;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
 </head>
-<body class="font-sans antialiased selection:bg-brand-primary selection:text-black">
-    <div class="fixed inset-0 z-0 pointer-events-none bg-grid"></div>
+<body>
 
-    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl">
-        <div class="glass rounded-full px-4 py-3 flex items-center justify-between gap-4 bg-black/55">
-            <a href="/" class="flex items-center gap-3 min-h-11 rounded-full px-2 focus-ring">
-                <span class="relative flex h-3 w-3">
-                    <span class="absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-70"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-primary"></span>
-                </span>
-                <span class="text-lg font-display font-bold tracking-tight text-white">AI-Team</span>
-            </a>
-            <div class="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1">
-                <a href="#proces" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Proces</a>
-                <a href="#oferta" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Oferta</a>
-                <a href="#dowody" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Dowody</a>
-                <a href="/playbooki.html" class="px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition focus-ring">Playbooki</a>
-            </div>
-            <a href="#kontakt" class="min-h-11 inline-flex items-center gap-2 rounded-full bg-brand-primary px-3 sm:px-5 py-2.5 text-sm font-bold text-black transition hover:scale-[1.02] focus-ring" aria-label="Umów diagnozę AI">
-                <i data-lucide="send" class="h-4 w-4"></i>
-                <span class="hidden sm:inline">Diagnoza</span>
-            </a>
+<nav class="top-nav">
+  <div class="inner">
+    <a href="/" class="brand" aria-label="AI Team — strona główna">
+      <svg class="logo-mark" width="42" height="42" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+        <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+      </svg>
+      <span class="wordmark">AI · <em>Team</em><span class="tagline-mini">EST · 2024 · POLSKA</span></span>
+    </a>
+    <div class="menu">
+      <a href="/wdrozenie-ai.html" class="active">Wdrożenie</a>
+      <a href="/warsztaty-ai.html">Akademia</a>
+      <a href="/playbooki.html">Playbooki</a>
+      <a href="/#offer">Cennik</a>
+      <a href="/#case">Portfolio</a>
+      <a href="/#about">O autorze</a>
+    </div>
+    <a href="#cta" class="nav-cta"><span>Mapa AI · 0 zł</span><span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <a href="/">AI · Team</a>
+    <span class="sep">/</span>
+    <span>Wdrożenie AI</span>
+  </div>
+</div>
+
+<section class="hero-page">
+  <div class="container">
+    <span class="label-mono">USŁUGI · 4 KIERUNKI</span>
+    <h1 class="display">Wdrożenie AI<br/>w Twojej firmie.<br/><em>Bez slajdów dla slajdów.</em></h1>
+    <p class="body-lg">Audyt, sprint automatyzacji, własny CRM, retainer. Dla firm które wiedzą czego chcą i potrzebują rezultatu w tygodniach, nie miesiącach. Wycena w 24h, realizacja 2-14 dni.</p>
+    <div class="hero-cta-row">
+      <a class="cta-primary" href="#cta">Umów rozmowę diagnostyczną →</a>
+      <a class="cta-secondary" href="#services">Zobacz usługi</a>
+    </div>
+  </div>
+</section>
+
+<section class="full-offer" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">CZTERY USŁUGI</span>
+      <h2>Wybierz kierunek<br/><em>dopasowany do etapu Twojej firmy.</em></h2>
+      <p class="body-lg">Od jednorazowej diagnozy po ciągłe wsparcie retainerowe. Każda usługa działa samodzielnie lub łączymy je w ścieżkę.</p>
+    </div>
+    <div class="offer-grid-2" style="max-width: 1100px; margin: 0 auto;">
+      <a href="#cta" class="offer-item">
+        <span class="offer-status live">Wycena indywidualna</span>
+        <div class="price" style="font-size:28px;">Audyt AI</div>
+        <div class="price-meta">2-5 dni · raport PDF + 60 min rozmowa</div>
+        <h4>Audyt AI firmy — diagnoza procesów</h4>
+        <p class="body-sm">Mapuję Twój proces od zgłoszenia do faktury. Znajduję 5-7 obszarów które AI obetnie najszybciej. Wychodzisz z konkretnym planem, ROI każdej zmiany, listą narzędzi.</p>
+        <div class="item-cta">Zamów audyt →</div>
+      </a>
+      <a href="#cta" class="offer-item">
+        <span class="offer-status live">Wycena indywidualna</span>
+        <div class="price" style="font-size:28px;">Sprint AI</div>
+        <div class="price-meta">2 tygodnie · 1-2 procesy · konkretny rezultat</div>
+        <h4>Sprint Automatyzacji AI</h4>
+        <p class="body-sm">Wybieramy 1-2 procesy z audytu, w 2 tygodnie wdrażam automatyzację. Stripe / Make / API / GPT integracje. Testy na Twoich danych, dokumentacja, szkolenie zespołu.</p>
+        <div class="item-cta">Zamów sprint →</div>
+      </a>
+      <a href="/zlecenie.html" class="offer-item featured">
+        <span class="offer-status live">★ Flagship · Live</span>
+        <div class="price">2 500<span class="unit">zł</span></div>
+        <div class="price-meta">Lifetime · 1-2 tygodnie · case: MyWay</div>
+        <h4>Spersonalizowany CRM na własność</h4>
+        <p class="body-sm">Dedykowany system na Twojej domenie i Firebase. Generowanie dokumentów PDF, baza klientów, śledzenie projektów. Kod na Twoim GitHubie. Zero abonamentu, zero lock-inu.</p>
+        <div class="item-cta">Zobacz case study →</div>
+      </a>
+      <a href="#cta" class="offer-item">
+        <span class="offer-status live">Wycena indywidualna · retainer</span>
+        <div class="price" style="font-size:28px;">Retainer AI</div>
+        <div class="price-meta">Miesięcznie · długoterminowo · case: 2 lata MyWay</div>
+        <h4>Zewnętrzny Dział AI</h4>
+        <p class="body-sm">Pełnoetatowe wsparcie AI dla Twojej firmy. Stała opieka, pipeline content, automatyzacje, nowe wdrożenia. Jeden punkt kontaktu, brak ticketów, bezpośrednie rozmowy.</p>
+        <div class="item-cta">Zamów wycenę →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="problems">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">DLA KOGO TO JEST?</span>
+      <h2>Brzmi <em>znajomo?</em></h2>
+      <p class="body-lg">Cztery sygnały że potrzebujesz wdrożenia AI. Zamiast kolejnego abonamentu czy kursu.</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <p class="quote">„Mam Excel z klientami i 100 maili dziennie. Tracę godzinę dziennie na szukanie informacji."</p>
+        <p class="reply"><strong>Rozwiązanie:</strong> Audyt AI (5 dni) → Spersonalizowany CRM (2 tygodnie). MyWay zaoszczędził 12h/tydz.</p>
+      </div>
+      <div class="problem-card">
+        <p class="quote">„Płacę za 10 narzędzi SaaS i nie wiem czy się opłacają."</p>
+        <p class="reply"><strong>Rozwiązanie:</strong> Audyt AI + Decoder Stack 50 narzędzi. Wiesz co zostawić, co zwinąć, czym zastąpić.</p>
+      </div>
+      <div class="problem-card">
+        <p class="quote">„Chcę zautomatyzować follow-upy, ale każda agencja chce 30k i 3 miesiące."</p>
+        <p class="reply"><strong>Rozwiązanie:</strong> Sprint Automatyzacji AI (2 tygodnie). Konkretny proces, konkretny rezultat. Zero pre-sales pitchów.</p>
+      </div>
+      <div class="problem-card">
+        <p class="quote">„Potrzebuję ciągłego wsparcia, ale full-time AI specialist to przepalanie."</p>
+        <p class="reply"><strong>Rozwiązanie:</strong> Zewnętrzny Dział AI (retainer). Ja jestem jak in-house, ale bez kosztów etatu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="label-mono">JAK PRACUJEMY · 4 KROKI</span>
+      <h2>Od rozmowy do wdrożenia.<br/><em>Maksymalnie 2 tygodnie.</em></h2>
+      <p class="body-lg">Bez ticketów, bez project managerów, bez slajdów. Bezpośredni kontakt ze mną na każdym etapie.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step"><span class="num">№ 01</span><h4>Rozmowa diagnostyczna</h4><p class="body">30 minut przez telefon lub wideo. Mapuję Twój proces, znajdujemy największe wąskie gardła. Bez sprzedaży.</p></div>
+      <div class="step"><span class="num">№ 02</span><h4>Mapa AI</h4><p class="body">PDF z 5-7 priorytetami. Co automatyzować, w jakiej kolejności, ROI każdej zmiany. Dostajesz nawet jeśli nie kupujesz.</p></div>
+      <div class="step"><span class="num">№ 03</span><h4>Wdrożenie</h4><p class="body">Buduję, integruję, testuję na Twoich danych. Linki do podglądu na każdym etapie. Max 2 rundy poprawek.</p></div>
+      <div class="step"><span class="num">№ 04</span><h4>Wsparcie 14 dni</h4><p class="body">Reaguję na pytania, drobne fixy, wdrażam Cię w obsługę. Potem jesteś właścicielem — kod, dane, klucze.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-study">
+  <div class="container">
+    <div class="case-grid">
+      <div class="case-image">
+        <img src="assets/myway-krystian.png" alt="Krystian Nagaba — założyciel MyWay Kąpino, klient AI-Team na retainerze 2 lata" loading="lazy" />
+        <span class="label-mono" style="position:absolute; bottom:24px; left:24px; color:rgba(255,255,255,0.85); z-index:3; mix-blend-mode:difference;">CASE STUDY · MYWAY</span>
+      </div>
+      <div class="case-text">
+        <span class="label-mono">CASE STUDY · 2024-2026</span>
+        <h2>MyWay Kąpino —<br/><em>2 lata na retainerze</em><br/>i własny CRM.</h2>
+        <p class="body-lg">Zaczęło się od jednej strony. Dziś: 8 stron, dedykowany CRM dla rejestracji pacjentów, system rezerwacji, content pipeline z AI, książka „Wygraj trzeźwe życie", launch festiwalu, 3 Claude routines do SEO i artykułów.</p>
+        <div class="case-stats">
+          <div class="case-stat"><div class="num">12h</div><div class="label">tygodniowo zaoszczędzone</div></div>
+          <div class="case-stat"><div class="num">8</div><div class="label">stron + CRM + rezerwacje</div></div>
+          <div class="case-stat"><div class="num">2 lata</div><div class="label">retainer · ciągłe wsparcie</div></div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main class="relative z-10">
-        <section class="hero-bg min-h-[92dvh] flex items-center pt-32 pb-20">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="hero-copy max-w-3xl">
-                    <div class="inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-xs font-mono tracking-wider text-brand-primary mb-7">
-                        <span class="h-2 w-2 rounded-full bg-brand-primary"></span>
-                        WDROŻENIA AI DLA MAŁYCH FIRM
-                    </div>
-                    <h1 class="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white mb-6">
-                        Zamień ręczne procesy w <span class="gradient-text">system AI</span>, który działa codziennie.
-                    </h1>
-                    <p class="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mb-8">
-                        Nie sprzedaję slajdów o przyszłości. Pomagam znaleźć proces, policzyć sens wdrożenia i zbudować prosty system: CRM, follow-upy, dokumenty, raporty albo warsztat dla zespołu.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-7 py-3 font-bold text-black transition hover:shadow-[0_0_28px_rgba(249,115,22,0.45)] focus-ring">
-                            Umów diagnozę AI
-                            <i data-lucide="arrow-right" class="h-5 w-5"></i>
-                        </a>
-                        <a href="/playbooki.html" class="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3 font-bold text-white transition hover:bg-white/10 focus-ring">
-                            Pobierz playbook
-                            <i data-lucide="download" class="h-5 w-5"></i>
-                        </a>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
-                        <div class="glass rounded-xl p-4">
-                            <div class="text-2xl font-display font-bold text-white">2 500 PLN</div>
-                            <p class="text-xs text-gray-400 mb-0">CRM na własność</p>
-                        </div>
-                        <div class="glass rounded-xl p-4">
-                            <div class="text-2xl font-display font-bold text-white">600 PLN</div>
-                            <p class="text-xs text-gray-400 mb-0">warsztat AI / osoba</p>
-                        </div>
-                        <div class="glass rounded-xl p-4">
-                            <div class="text-2xl font-display font-bold text-white">1-2 tyg.</div>
-                            <p class="text-xs text-gray-400 mb-0">realizacja CRM</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div>
+        <span class="label-mono">FAQ · WDROŻENIA</span>
+        <h2 class="display" style="font-size:48px; margin-top:24px;">Pytania.<br/><em>Obiekcje.</em></h2>
+        <p class="body" style="margin-top:24px; max-width:340px;">Najczęstsze pytania od firm przed pierwszą rozmową diagnostyczną.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Ile to wszystko kosztuje?</summary>
+          <p class="answer">Audyt AI: zależy od wielkości firmy (zwykle 1500-5000 zł). Sprint: 5000-15000 zł za 2 tygodnie. CRM: 2 500 zł lifetime. Retainer: 3000-8000 zł/mies. Wycena w 24h po rozmowie diagnostycznej.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy dostaję kod źródłowy?</summary>
+          <p class="answer">Tak, 100%. Kod na Twoim GitHubie, baza na Twoim Firebase, klucze API u Ciebie. Każdy programista to przejmie. Zero lock-in.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak długo trwa wdrożenie?</summary>
+          <p class="answer">Audyt: 2-5 dni. Sprint: 2 tygodnie. CRM: 1-2 tygodnie. To 60-80% krócej niż agencja IT. Pracuję 1:1 z AI, nie ma overheadu.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Pracujesz dla freelancerów czy firm?</summary>
+          <p class="answer">Firmy 3-15 osób to najczęściej. Freelancerzy też (wtedy mniej rozbudowane wdrożenia). Branże: usługi, e-commerce, SaaS, edukacja, zdrowie, nieruchomości.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Co jeśli nie będę zadowolony?</summary>
+          <p class="answer">7-dniowa gwarancja satysfakcji po dostarczeniu. Jeśli projekt nie spełnia ustaleń — poprawiam za darmo lub zwracam 50%. Plus 14 dni wsparcia po starcie wliczone w cenę.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Pracujesz zdalnie?</summary>
+          <p class="answer">Dla całej Polski. Konsultacje wideo, kontakt przez WhatsApp/email, kod przez GitHub, wszystko async-friendly. Warsztaty stacjonarne tylko w Sopocie.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="proces" class="py-24">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="max-w-3xl mb-12">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Podejście</p>
-                    <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Najpierw proces. Potem narzędzie.</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed">
-                        Adaptuję model dużych wdrożeń AI do skali małej firmy: mniej konsultingu, więcej konkretu, krótkie cykle i człowiek w kontroli.
-                    </p>
-                </div>
+<section class="cta-final" id="cta">
+  <div class="container">
+    <span class="label-mono" style="display:block; margin-bottom:32px;">POCZĄTEK · 30 MINUT · 0 ZŁ</span>
+    <h2>Sprawdź swoją<br/><em>Mapę AI.</em></h2>
+    <p>30-minutowa rozmowa diagnostyczna. Wychodzisz z konkretną listą 5-7 priorytetów dla swojej firmy. Dostajesz Mapę AI w PDF — nawet jeśli nie kupujesz nic dalej. Bez zobowiązań.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/48730600383" class="cta-primary">Umów rozmowę →</a>
+      <a href="mailto:dariusz.szuca@gmail.com" class="cta-secondary">dariusz.szuca@gmail.com</a>
+    </div>
+  </div>
+</section>
 
-                <div class="grid md:grid-cols-3 gap-5">
-                    <article class="card rounded-2xl p-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/15 border border-brand-primary/30 flex items-center justify-center mb-5">
-                            <i data-lucide="search-check" class="h-6 w-6 text-brand-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">Diagnoza</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Wypisujemy powtarzalne zadania, liczymy koszt czasu i wybieramy proces, który opłaca się naprawić jako pierwszy.</p>
-                    </article>
-                    <article class="card rounded-2xl p-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-info/15 border border-brand-info/30 flex items-center justify-center mb-5">
-                            <i data-lucide="workflow" class="h-6 w-6 text-brand-info"></i>
-                        </div>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">Wdrożenie</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Buduję minimalny system: formularz, CRM, automatyzację, generator dokumentów albo przepływ mailowy.</p>
-                    </article>
-                    <article class="card rounded-2xl p-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-light/15 border border-brand-light/30 flex items-center justify-center mb-5">
-                            <i data-lucide="users" class="h-6 w-6 text-brand-light"></i>
-                        </div>
-                        <h3 class="text-xl font-display font-bold text-white mb-3">Szkolenie</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Pokazuję jak używać systemu, gdzie jest granica automatyzacji i co musi zatwierdzać człowiek.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+          </svg>
+          <span class="wordmark">AI · <em>Team</em></span>
+        </a>
+        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Oferta</h5>
+        <a href="/wdrozenie-ai.html">Wdrożenie AI</a>
+        <a href="/warsztaty-ai.html">Akademia AI</a>
+        <a href="/playbooki.html">Playbooki</a>
+        <a href="/zlecenie.html">Spersonalizowany CRM</a>
+        <a href="/produkt1-tracker.html">Tracker Czasu</a>
+        <a href="#cta">Mapa AI · 0 zł</a>
+      </div>
+      <div class="footer-col">
+        <h5>Pracownia</h5>
+        <a href="/#about">O autorze</a>
+        <a href="/#case">Case study MyWay</a>
+        <a href="/ai-radar.html">Newsletter AI Radar</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
+        <a href="tel:+48730600383">+48 730 600 383</a>
+        <a href="https://wa.me/48730600383">WhatsApp</a>
+        <a href="#">Warsztaty: Sopot, Pułaskiego 7</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
+      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>
 
-        <section class="py-20 border-y border-white/10 bg-white/[0.025]">
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
-                <div>
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Co zwykle automatyzujemy</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Nie całą firmę naraz. Jeden workflow, który boli.</h2>
-                    <p class="text-gray-400 leading-relaxed">Najlepsze pierwsze wdrożenie to takie, które oszczędza czas, nie wymaga rewolucji i ma prosty test skuteczności.</p>
-                </div>
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <i data-lucide="mail-check" class="h-6 w-6 text-brand-primary mb-3"></i>
-                        <h3 class="font-bold text-white mb-2">Maile i follow-up</h3>
-                        <p class="text-sm text-gray-400">Szkice odpowiedzi, przypomnienia, podsumowania rozmów i automatyczne zadania.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <i data-lucide="database" class="h-6 w-6 text-brand-info mb-3"></i>
-                        <h3 class="font-bold text-white mb-2">CRM i baza klientów</h3>
-                        <p class="text-sm text-gray-400">Jedno miejsce na klientów, płatności, statusy, dokumenty i historię kontaktu.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <i data-lucide="file-text" class="h-6 w-6 text-brand-light mb-3"></i>
-                        <h3 class="font-bold text-white mb-2">Dokumenty</h3>
-                        <p class="text-sm text-gray-400">Oferty, umowy, karty klienta, raporty i PDF-y generowane z danych.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <i data-lucide="bar-chart-3" class="h-6 w-6 text-purple-300 mb-3"></i>
-                        <h3 class="font-bold text-white mb-2">Raporty dla właściciela</h3>
-                        <p class="text-sm text-gray-400">Co tydzień: leady, zadania, zaległości, sprzedaż i miejsca, gdzie proces się zatyka.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="max-w-3xl mb-12">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Model sprzedaży</p>
-                    <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Model dużych wdrożeń, przeskalowany do małej firmy.</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed">Bierzemy mechanikę z rynku enterprise: edukacja, diagnoza, wdrożenie, opieka i rozliczanie za efekt pracy, nie za siedzenie na spotkaniach.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-primary mb-3">01</div>
-                        <h3 class="font-bold text-white mb-2">Playbooki</h3>
-                        <p class="text-sm text-gray-400">Publiczne instrukcje i worksheety zbierają leady lepiej niż ogólne „zapisz się do newslettera”.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-info mb-3">02</div>
-                        <h3 class="font-bold text-white mb-2">Audyt use case'ów</h3>
-                        <p class="text-sm text-gray-400">Zamiast zaczynać od narzędzia, zaczynamy od procesu, kosztu czasu i wpływu na sprzedaż.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-brand-light mb-3">03</div>
-                        <h3 class="font-bold text-white mb-2">Wdrożenie</h3>
-                        <p class="text-sm text-gray-400">Pierwszy system ma być mały i działający: CRM, formularz, dokument, follow-up albo raport.</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-black/35 p-5">
-                        <div class="text-3xl font-display font-bold text-purple-300 mb-3">04</div>
-                        <h3 class="font-bold text-white mb-2">Stała opieka</h3>
-                        <p class="text-sm text-gray-400">Po pierwszym wdrożeniu powstaje backlog usprawnień. To naturalna ścieżka do retaineru.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="oferta" class="py-24">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Oferta</p>
-                    <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Pełna drabina wdrożenia AI.</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed">Duże firmy kupują audyty, transformację, szkolenia i zespoły inżynierskie. U nas ten model jest przeskalowany do małej firmy: mniej enterprise, więcej konkretnego wdrożenia.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <article class="card rounded-2xl p-6 flex flex-col">
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-info uppercase mb-3">Start</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Mapa AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Playbook i krótka diagnoza procesów. Dobre, jeśli jeszcze nie wiesz od czego zacząć.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">0 PLN</div>
-                        <p class="text-xs text-gray-500 mb-6">materiał do pobrania</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> lista procesów do przejrzenia</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> scoring opłacalności</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> prompt do planu 30 dni</li>
-                        </ul>
-                        <a href="/playbooki.html" class="min-h-12 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white hover:bg-white/10 focus-ring">Pobierz playbook</a>
-                    </article>
-
-                    <article class="card rounded-2xl p-6 flex flex-col">
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-info uppercase mb-3">Strategia</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Audyt AI firmy</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Krótka diagnoza procesów, priorytetów i miejsc, gdzie AI może oszczędzić czas albo odzyskać leady.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">Wycena</div>
-                        <p class="text-xs text-gray-500 mb-6">po diagnozie zakresu</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> ankieta procesów i rozmowa</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> lista use case'ów z priorytetem</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> roadmapa wdrożeń na 30 dni</li>
-                        </ul>
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white hover:bg-white/10 focus-ring">Zamów diagnozę</a>
-                    </article>
-
-                    <article class="card rounded-2xl p-6 flex flex-col border-brand-primary/40 bg-brand-primary/5 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-brand-primary text-black text-[11px] font-bold px-3 py-1 rounded-bl-xl">NAJLEPSZY START</div>
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-primary uppercase mb-3">Warsztat</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Warsztat AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Praktyczne spotkanie, po którym masz działającego asystenta AI i mapę automatyzacji dla firmy.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">600 PLN</div>
-                        <p class="text-xs text-gray-500 mb-6">za osobę, dzień 1</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> 4 pliki kontekstowe firmy</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> asystent AI dopasowany do firmy</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> pakiet promptów i plan wdrożenia</li>
-                        </ul>
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center rounded-xl bg-brand-primary px-5 py-3 font-bold text-black hover:shadow-[0_0_24px_rgba(249,115,22,0.45)] focus-ring">Zapytaj o termin</a>
-                    </article>
-
-                    <article class="card rounded-2xl p-6 flex flex-col">
-                        <p class="text-xs font-bold tracking-[0.18em] text-purple-300 uppercase mb-3">Proces</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Sprint Automatyzacji AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Jedno wąskie wdrożenie: follow-up, raport, formularz, generator dokumentów albo przepływ leadów.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">Wycena</div>
-                        <p class="text-xs text-gray-500 mb-6">po wyborze workflow</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> rozpisanie procesu na kroki</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> automatyzacja z kontrolą człowieka</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> test i poprawki po realnym użyciu</li>
-                        </ul>
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white hover:bg-white/10 focus-ring">Opisz workflow</a>
-                    </article>
-
-                    <article class="card rounded-2xl p-6 flex flex-col">
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-light uppercase mb-3">System</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">CRM na własność</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Dedykowany system CRM dla firmy, która ma dość Excela, karteczek i abonamentów za narzędzia.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">2 500 PLN</div>
-                        <p class="text-xs text-gray-500 mb-6">lifetime, bez abonamentu</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> baza klientów i procesów</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> panel administracyjny</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> kod na Twoim GitHubie</li>
-                        </ul>
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white hover:bg-white/10 focus-ring">Opisz CRM</a>
-                    </article>
-
-                    <article class="card rounded-2xl p-6 flex flex-col">
-                        <p class="text-xs font-bold tracking-[0.18em] text-brand-light uppercase mb-3">Opieka</p>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Zewnętrzny Dział AI</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-5">Stały backlog usprawnień, techniczne wsparcie i regularne wdrażanie małych automatyzacji.</p>
-                        <div class="text-3xl font-display font-bold text-white mb-1">Wycena</div>
-                        <p class="text-xs text-gray-500 mb-6">po ustaleniu zakresu</p>
-                        <ul class="space-y-3 text-sm text-gray-300 mb-7 flex-1">
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> lista zadań i priorytety</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> cykliczne check-iny</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="h-5 w-5 text-brand-light shrink-0"></i> rozwój CRM, automatyzacji i promptów</li>
-                        </ul>
-                        <a href="#kontakt" class="min-h-12 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white hover:bg-white/10 focus-ring">Ustal zakres</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="dowody" class="py-20 border-y border-white/10 bg-white/[0.025]">
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
-                <div>
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Dowód</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">To podejście już działa w projektach usługowych.</h2>
-                    <p class="text-gray-400 leading-relaxed mb-5">
-                        Najmocniejszy przykład to CRM dla MyWay: rejestracja pacjentów, dane osobowe, płatności, pakiety, generowanie dokumentów i logika dopasowana do realnej pracy zespołu.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        Właśnie tak wygląda dobra automatyzacja dla małej firmy: nie wielki system „na wszystko”, tylko narzędzie dokładnie pod proces.
-                    </p>
-                </div>
-                <div class="card rounded-2xl p-4">
-                    <img src="assets/ai-team-crm-demo.svg" alt="Anonimowy mockup CRM dla małej firmy" class="w-full rounded-xl border border-white/10">
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="text-center mb-12">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Obiekcje</p>
-                    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Najczęstsze pytania przed wdrożeniem.</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="card rounded-2xl p-6">
-                        <h3 class="font-bold text-white mb-2">Czy muszę znać technologię?</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Nie. Twoim zadaniem jest pokazać proces. Moim zadaniem jest dobrać narzędzie i zbudować prosty system.</p>
-                    </div>
-                    <div class="card rounded-2xl p-6">
-                        <h3 class="font-bold text-white mb-2">Czy AI będzie samo wysyłać wiadomości?</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Na start nie. Najbezpieczniejszy model to szkice, podsumowania i zadania do akceptacji przez człowieka.</p>
-                    </div>
-                    <div class="card rounded-2xl p-6">
-                        <h3 class="font-bold text-white mb-2">Co jeśli mam już CRM?</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Sprawdzamy, czy da się go wykorzystać. Dedykowany CRM ma sens wtedy, gdy gotowe narzędzie wymusza zły proces albo kosztuje za dużo.</p>
-                    </div>
-                    <div class="card rounded-2xl p-6">
-                        <h3 class="font-bold text-white mb-2">Od czego zaczynamy?</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Od krótkiej diagnozy. Jedno spotkanie, jeden proces, jedna decyzja: warsztat, CRM, automatyzacja albo nic, jeśli nie ma sensu.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="kontakt" class="py-24 bg-black">
-            <div class="max-w-5xl mx-auto px-6 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 items-stretch">
-                <div class="card rounded-2xl p-7 md:p-8">
-                    <p class="text-brand-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">CTA</p>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Opisz proces, który chcesz przestać robić ręcznie.</h2>
-                    <p class="text-gray-300 leading-relaxed mb-6">
-                        Nie musisz wiedzieć, czy to ma być CRM, agent, prompt czy automatyzacja. Wystarczy, że opiszesz gdzie tracisz czas.
-                    </p>
-                    <div class="space-y-3 text-sm text-gray-300">
-                        <div class="flex gap-3"><i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i> odpowiem z konkretnym następnym krokiem</div>
-                        <div class="flex gap-3"><i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i> jeśli to CRM, dostaniesz zakres i harmonogram</div>
-                        <div class="flex gap-3"><i data-lucide="check-circle" class="h-5 w-5 text-brand-light shrink-0"></i> jeśli to warsztat, ustalimy termin i grupę</div>
-                    </div>
-                </div>
-
-                <div class="card rounded-2xl p-7 md:p-8">
-                    <form id="ai-implementation-form" class="space-y-5">
-                        <div>
-                            <label for="lead-name" class="block text-sm font-semibold text-white mb-2">Imię</label>
-                            <input id="lead-name" name="name" type="text" required autocomplete="given-name" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600" placeholder="Np. Michał">
-                        </div>
-                        <div>
-                            <label for="lead-email" class="block text-sm font-semibold text-white mb-2">Email</label>
-                            <input id="lead-email" name="email" type="email" required autocomplete="email" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600" placeholder="twoj@email.pl">
-                        </div>
-                        <div>
-                            <label for="lead-company" class="block text-sm font-semibold text-white mb-2">Firma / branża</label>
-                            <input id="lead-company" name="company" type="text" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600" placeholder="Np. gabinet, kancelaria, nieruchomości">
-                        </div>
-                        <div>
-                            <label for="lead-offer" class="block text-sm font-semibold text-white mb-2">Co Cię interesuje?</label>
-                            <select id="lead-offer" name="offer" class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white">
-                                <option value="diagnoza-ai">Diagnoza AI / nie wiem od czego zacząć</option>
-                                <option value="warsztat-ai">Warsztat AI</option>
-                                <option value="crm">CRM na własność</option>
-                                <option value="automatyzacja">Automatyzacja konkretnego procesu</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="lead-message" class="block text-sm font-semibold text-white mb-2">Jaki proces boli najbardziej?</label>
-                            <textarea id="lead-message" name="message" rows="4" required class="focus-ring w-full rounded-xl border border-white/10 bg-black/45 px-4 py-3 text-white placeholder:text-gray-600 resize-none" placeholder="Np. leady wpadają z formularza, potem ręcznie przepisuję je do Excela i zapominam o follow-upie..."></textarea>
-                        </div>
-                        <button type="submit" id="ai-implementation-submit" class="focus-ring min-h-12 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3 font-bold text-black transition hover:shadow-[0_0_28px_rgba(249,115,22,0.45)]">
-                            <i data-lucide="send" class="h-5 w-5"></i>
-                            Wyślij do diagnozy
-                        </button>
-                        <p class="text-xs text-gray-500 text-center">Odpiszę osobiście. Bez spamu i bez automatycznej sprzedaży.</p>
-                    </form>
-                    <div id="ai-implementation-success" class="hidden text-center py-8">
-                        <div class="mx-auto mb-4 h-14 w-14 rounded-full bg-brand-light/15 border border-brand-light/30 flex items-center justify-center">
-                            <i data-lucide="check" class="h-7 w-7 text-brand-light"></i>
-                        </div>
-                        <h3 class="text-2xl font-display font-bold text-white mb-2">Wysłane.</h3>
-                        <p class="text-gray-400 mb-5">Darek dostanie opis procesu i może wrócić z konkretną propozycją.</p>
-                        <a href="https://wa.me/48730600383" target="_blank" rel="noopener" class="focus-ring inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-bold text-black">
-                            Dopisz na WhatsApp <i data-lucide="message-circle" class="h-4 w-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="relative z-10 border-t border-white/10 py-8 text-center text-sm text-gray-500">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-3">
-            <p>AI-Team</p>
-            <div class="flex justify-center gap-5">
-                <a href="/privacy.html" class="hover:text-white focus-ring rounded">Prywatność</a>
-                <a href="/playbooki.html" class="hover:text-white focus-ring rounded">Playbooki</a>
-                <a href="/ai-radar.html" class="hover:text-white focus-ring rounded">AI Radar</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-
-        document.getElementById('ai-implementation-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const form = e.target;
-            const btn = document.getElementById('ai-implementation-submit');
-            const originalText = btn.innerHTML;
-            const name = document.getElementById('lead-name').value;
-            const email = document.getElementById('lead-email').value;
-
-            btn.innerHTML = '<span class="loader"></span> Wysyłam...';
-            btn.disabled = true;
-
-            try {
-                const mlData = new FormData();
-                mlData.append('fields[name]', name);
-                mlData.append('fields[email]', email);
-                mlData.append('ml-submit', '1');
-                mlData.append('anticsrf', 'true');
-
-                await fetch('https://assets.mailerlite.com/jsonp/2005256/forms/175136599785342826/subscribe', {
-                    method: 'POST',
-                    body: mlData,
-                    mode: 'no-cors'
-                });
-
-                const notifyData = new FormData(form);
-                notifyData.append('_subject', '[AI-Team] Nowy lead - Wdrożenie AI');
-                notifyData.append('_template', 'table');
-                fetch('https://formsubmit.co/ajax/dariusz.szuca@gmail.com', {
-                    method: 'POST',
-                    body: notifyData
-                });
-
-                if (typeof gtag === 'function') {
-                    gtag('event', 'generate_lead', {
-                        event_category: 'Sales Lead',
-                        event_label: 'Wdrozenie AI',
-                        value: 1
-                    });
-                }
-
-                form.classList.add('hidden');
-                document.getElementById('ai-implementation-success').classList.remove('hidden');
-                lucide.createIcons();
-            } catch (error) {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                lucide.createIcons();
-            }
-        });
-    </script>
 </body>
 </html>
