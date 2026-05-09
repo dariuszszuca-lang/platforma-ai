@@ -32,14 +32,6 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Warsztat Instagram + AI + automatyzacja DM - 119 zł -->
-    <url>
-        <loc>https://ai-team.pl/warsztat-ig.html</loc>
-        <lastmod>2026-04-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
     <!-- Poranek z AI - Event -->
     <url>
         <loc>https://ai-team.pl/poranek-z-ai.html</loc>
