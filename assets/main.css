@@ -327,6 +327,44 @@ section.academy { padding: 140px 0; background: var(--ink); color: var(--cream);
 .academy-image::before { content: ''; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,0.2); z-index: 2; pointer-events: none; }
 .academy-image .label-mono { position: absolute; bottom: 32px; left: 32px; color: rgba(251,248,241,0.6); z-index: 3; }
 
+/* === ACADEMY ORBIT (animated 13 nodes) === */
+.academy-orbit { background: linear-gradient(140deg, #14110F 0%, #1C1917 50%, #2A1F18 100%); }
+.academy-orbit::before { border-color: rgba(184,92,46,0.2); }
+.academy-orbit .orbit-svg { position: absolute; inset: 0; width: 100%; height: 100%; padding: 24px; z-index: 1; }
+.academy-orbit .orbit-tag { position: absolute; bottom: 24px; left: 24px; color: var(--copper); z-index: 4; }
+.academy-orbit .orbit-rings { animation: orbitRingsBreathe 8s ease-in-out infinite; }
+.academy-orbit .orbit-outer { transform-origin: 200px 250px; transform-box: fill-box; animation: orbitRotateCW 60s linear infinite; }
+.academy-orbit .orbit-inner { transform-origin: 200px 250px; transform-box: fill-box; animation: orbitRotateCCW 40s linear infinite; }
+.academy-orbit .orbit-outer .orbit-node text, .academy-orbit .orbit-outer .orbit-node circle { animation: orbitCounterRotate 60s linear infinite; transform-origin: center; transform-box: fill-box; }
+.academy-orbit .orbit-outer .orbit-node circle { animation: orbitNodePulse 3s ease-in-out infinite, orbitCounterRotate 60s linear infinite; filter: drop-shadow(0 0 4px rgba(184,92,46,0.6)); }
+.academy-orbit .orbit-outer .orbit-node:nth-child(2n) circle { animation-delay: 0.6s, 0s; }
+.academy-orbit .orbit-outer .orbit-node:nth-child(3n) circle { animation-delay: 1.2s, 0s; }
+.academy-orbit .orbit-inner .orbit-node-sm circle { animation: orbitNodePulse 2.4s ease-in-out infinite, orbitCounterRotateInner 40s linear infinite; transform-origin: center; transform-box: fill-box; filter: drop-shadow(0 0 3px rgba(184,92,46,0.6)); }
+.academy-orbit .orbit-inner .orbit-node-sm:nth-child(odd) circle { animation-delay: 0.8s, 0s; }
+.academy-orbit .orbit-center circle:nth-child(2) { transform-origin: 200px 250px; transform-box: fill-box; animation: orbitCenterPulse 4s ease-in-out infinite; }
+.academy-orbit .orbit-center text { animation: orbitLabelFade 5s ease-in-out infinite; }
+.academy-orbit .orbit-halos circle { transform-origin: center; transform-box: fill-box; animation: orbitHaloPulse 3s ease-in-out infinite; }
+.academy-orbit .orbit-halos circle:nth-child(2) { animation-delay: 0.7s; }
+.academy-orbit .orbit-halos circle:nth-child(3) { animation-delay: 1.4s; }
+.academy-orbit .orbit-halos circle:nth-child(4) { animation-delay: 2.1s; }
+
+@keyframes orbitRotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes orbitRotateCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes orbitCounterRotate { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes orbitCounterRotateInner { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes orbitNodePulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+@keyframes orbitCenterPulse { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes orbitLabelFade { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+@keyframes orbitHaloPulse { 0%, 100% { opacity: 0.4; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.4); } }
+@keyframes orbitRingsBreathe { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.4; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .academy-orbit .orbit-rings, .academy-orbit .orbit-outer, .academy-orbit .orbit-inner, .academy-orbit .orbit-outer .orbit-node circle, .academy-orbit .orbit-inner .orbit-node-sm circle, .academy-orbit .orbit-center circle, .academy-orbit .orbit-center text, .academy-orbit .orbit-halos circle { animation: none !important; }
+}
+@media (max-width: 700px) {
+  .academy-orbit { aspect-ratio: 1/1; }
+}
+
 /* === ABOUT === */
 section.about { padding: 140px 0; border-bottom: 1px solid var(--line); }
 .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center; }
