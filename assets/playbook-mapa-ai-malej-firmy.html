@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa AI w małej firmie | AI-Team Playbook</title>
+    <meta name="description" content="Praktyczny worksheet AI-Team: jak znaleźć pierwsze procesy do automatyzacji AI w małej firmie.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --bg: #f8fafc;
+            --ink: #0f172a;
+            --muted: #475569;
+            --line: #dbe3ef;
+            --orange: #f97316;
+            --green: #16a34a;
+            --blue: #0284c7;
+            --card: #ffffff;
+        }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+        }
+        .page {
+            width: min(100%, 980px);
+            margin: 0 auto;
+            padding: 32px 20px 72px;
+        }
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: start;
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--card);
+            box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+        }
+        .brand {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            color: var(--orange);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+        .brand span {
+            width: 9px;
+            height: 9px;
+            background: var(--orange);
+            border-radius: 999px;
+            display: inline-block;
+        }
+        h1, h2, h3 {
+            font-family: "Space Grotesk", Inter, sans-serif;
+            line-height: 1.12;
+            letter-spacing: 0;
+            margin: 0;
+        }
+        h1 {
+            font-size: clamp(34px, 7vw, 64px);
+            max-width: 760px;
+        }
+        h2 {
+            font-size: clamp(26px, 4vw, 38px);
+            margin-bottom: 14px;
+        }
+        h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+        .lead {
+            font-size: 19px;
+            max-width: 720px;
+            margin-top: 18px;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 190px;
+        }
+        button, .button {
+            appearance: none;
+            border: 0;
+            border-radius: 10px;
+            min-height: 44px;
+            padding: 12px 16px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #111827;
+            background: var(--orange);
+        }
+        .button.secondary {
+            background: #e2e8f0;
+            color: var(--ink);
+        }
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0 0;
+        }
+        .meta div, .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .meta strong {
+            display: block;
+            font-size: 22px;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .meta span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+        section {
+            margin-top: 32px;
+            padding: 28px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .step {
+            display: grid;
+            grid-template-columns: 54px 1fr;
+            gap: 16px;
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+        }
+        .step:first-of-type { border-top: 0; }
+        .num {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #fff7ed;
+            color: var(--orange);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #fed7aa;
+        }
+        ul, ol {
+            margin: 12px 0 0;
+            padding-left: 20px;
+            color: var(--muted);
+        }
+        li { margin: 8px 0; }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            font-size: 14px;
+        }
+        .score-table th, .score-table td {
+            border-bottom: 1px solid var(--line);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .score-table th {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 800;
+        }
+        .score-table tr:last-child td { border-bottom: 0; }
+        .worksheet-line {
+            min-height: 40px;
+            border-bottom: 1px solid #cbd5e1;
+            margin: 6px 0;
+        }
+        .prompt {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+        .note {
+            border-left: 4px solid var(--orange);
+            background: #fff7ed;
+            padding: 16px;
+            border-radius: 10px;
+            color: #7c2d12;
+        }
+        .note p { color: #7c2d12; margin: 0; }
+        .footer-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            background: #111827;
+            color: white;
+        }
+        .footer-cta p { color: #cbd5e1; }
+        .footer-cta .button { background: white; }
+        @media (max-width: 760px) {
+            header, .footer-cta {
+                grid-template-columns: 1fr;
+                display: block;
+            }
+            .actions {
+                margin-top: 20px;
+            }
+            .meta, .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            section, header {
+                padding: 20px;
+            }
+            .step {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media print {
+            body { background: white; }
+            .page { width: 100%; padding: 0; }
+            header, section { box-shadow: none; break-inside: avoid; border-color: #cbd5e1; }
+            .actions, .footer-cta { display: none; }
+            a { color: inherit; text-decoration: none; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header>
+            <div>
+                <div class="brand"><span></span> AI-Team Playbook</div>
+                <h1>Mapa AI w małej firmie</h1>
+                <p class="lead">Worksheet, który pomaga znaleźć pierwsze sensowne wdrożenie AI: bez zgadywania, bez kupowania kolejnych narzędzi i bez zaczynania od najtrudniejszego procesu.</p>
+                <div class="meta">
+                    <div><strong>60</strong><span>minut pracy</span></div>
+                    <div><strong>5</strong><span>kroków</span></div>
+                    <div><strong>1</strong><span>pierwsze wdrożenie</span></div>
+                    <div><strong>30</strong><span>dni planu</span></div>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" onclick="window.print()"><i data-lucide="printer"></i> Drukuj / zapisz PDF</button>
+                <a class="button secondary" href="/playbooki.html"><i data-lucide="library"></i> Biblioteka</a>
+            </div>
+        </header>
+
+        <section>
+            <span class="tag"><i data-lucide="target"></i> Cel</span>
+            <h2>Nie szukasz „najlepszego AI”. Szukasz pierwszego procesu, który warto naprawić.</h2>
+            <p>W małej firmie problemem zwykle nie jest brak narzędzi. Problemem jest chaos: maile, Excel, karteczki, ręczne raporty, follow-upy i dokumenty robione od nowa.</p>
+            <p>Ten playbook prowadzi przez prostą diagnozę. Na końcu masz listę procesów, priorytet i prompt, który zamieni Twoje notatki w plan działania.</p>
+        </section>
+
+        <section>
+            <h2>5 kroków</h2>
+
+            <div class="step">
+                <div class="num">01</div>
+                <div>
+                    <h3>Wypisz powtarzalne zadania</h3>
+                    <p>Przez 10-15 minut wypisz wszystko, co wraca co tydzień. Nie oceniaj. Tylko zbieraj.</p>
+                    <ul>
+                        <li>maile i odpowiedzi klientom</li>
+                        <li>przepisywanie danych między narzędziami</li>
+                        <li>tworzenie ofert, umów, raportów, podsumowań</li>
+                        <li>follow-upy po zapytaniu albo rozmowie</li>
+                        <li>szukanie informacji o kliencie w kilku miejscach</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="num">02</div>
+                <div>
+                    <h3>Dopisz liczby</h3>
+                    <p>Do każdego zadania dopisz: ile razy w tygodniu wraca, ile trwa jeden raz i co się dzieje, kiedy tego nie zrobisz.</p>
+                    <div class="note">
+                        <p>Jeśli nie znasz dokładnych liczb, wpisz zakres. Lepszy przybliżony obraz niż zero decyzji.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="num">03</div>
+                <div>
+                    <h3>Oceń potencjał AI</h3>
+                    <p>Nie automatyzuj wszystkiego. Szukaj zadań, które są częste, męczące i mają niski koszt pomyłki.</p>
+                    <table class="score-table">
+                        <thead>
+                            <tr>
+                                <th>Kryterium</th>
+                                <th>1 punkt</th>
+                                <th>3 punkty</th>
+                                <th>5 punktów</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Częstotliwość</td>
+                                <td>raz w miesiącu</td>
+                                <td>kilka razy w tygodniu</td>
+                                <td>codziennie</td>
+                            </tr>
+                            <tr>
+                                <td>Czas</td>
+                                <td>do 15 min</td>
+                                <td>30-60 min</td>
+                                <td>ponad 60 min</td>
+                            </tr>
+                            <tr>
+                                <td>Wpływ</td>
+                                <td>mała wygoda</td>
+                                <td>oszczędza czas</td>
+                                <td>wpływa na sprzedaż lub obsługę klienta</td>
+                            </tr>
+                            <tr>
+                                <td>Trudność</td>
+                                <td>wymaga integracji wielu systemów</td>
+                                <td>częściowo ręczne</td>
+                                <td>da się zacząć od prostego promptu lub formularza</td>
+                            </tr>
+                            <tr>
+                                <td>Ryzyko</td>
+                                <td>wysokie: pieniądze, prawo, dane wrażliwe</td>
+                                <td>średnie: wymaga akceptacji człowieka</td>
+                                <td>niskie: szkic, propozycja, podsumowanie</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="num">04</div>
+                <div>
+                    <h3>Wybierz pierwsze wdrożenie</h3>
+                    <p>Najlepszy pierwszy projekt ma trzy cechy: mały zakres, szybki efekt i człowieka w kontroli.</p>
+                    <div class="grid-3">
+                        <div class="card">
+                            <h3>Dobre na start</h3>
+                            <p>Generator odpowiedzi na maile, szablon oferty, podsumowanie rozmowy, lista follow-upów.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Średni poziom</h3>
+                            <p>Formularz klienta, który generuje ofertę, zadanie w CRM i mail do klienta.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Zostaw na później</h3>
+                            <p>Pełny agent bez kontroli człowieka, który sam podejmuje decyzje lub wysyła ważne rzeczy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="num">05</div>
+                <div>
+                    <h3>Zamień notatki w plan 30 dni</h3>
+                    <p>Skopiuj prompt z końca tego playbooka, wklej swoje notatki i poproś AI o listę projektów od najłatwiejszego do najbardziej opłacalnego.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Worksheet</h2>
+            <p>Wydrukuj tę część albo zapisz kopię i uzupełnij ją podczas rozmowy z zespołem.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Najbardziej męczące zadania</h3>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                </div>
+                <div class="card">
+                    <h3>Procesy, które wpływają na sprzedaż</h3>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                </div>
+                <div class="card">
+                    <h3>Dane są rozrzucone tutaj</h3>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                </div>
+                <div class="card">
+                    <h3>Pierwszy projekt AI</h3>
+                    <p>Jedno zdanie: co automatyzujemy i po czym poznamy, że działa?</p>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                    <div class="worksheet-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Pytania do zespołu albo właściciela</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Diagnoza</h3>
+                    <ol>
+                        <li>Co robimy ręcznie co tydzień?</li>
+                        <li>Gdzie najczęściej coś ginie albo się opóźnia?</li>
+                        <li>Który proces najbardziej denerwuje klientów?</li>
+                        <li>Gdzie kopiujemy te same dane drugi albo trzeci raz?</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <h3>Priorytet</h3>
+                    <ol>
+                        <li>Co da efekt w 7 dni?</li>
+                        <li>Co wymaga tylko jednego narzędzia albo jednego formularza?</li>
+                        <li>Co można sprawdzić bez ryzyka dla klienta?</li>
+                        <li>Kto będzie właścicielem tego procesu?</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Gotowy prompt</h2>
+            <p>Wklej go do Claude, ChatGPT albo innego narzędzia. Pod spodem dopisz swoje notatki z worksheetu.</p>
+            <div class="prompt">Jesteś konsultantem operacyjnym dla małej firmy usługowej w Polsce.
+
+Przeanalizuj poniższą listę zadań i procesów. Chcę znaleźć pierwsze wdrożenie AI, które jest małe, bezpieczne i daje szybki efekt.
+
+Dla każdego procesu oceń:
+- ile czasu może oszczędzić miesięcznie,
+- jak trudne jest wdrożenie w skali 1-5,
+- jakie ryzyko trzeba kontrolować,
+- czy lepiej zacząć od promptu, formularza, CRM, automatyzacji no-code czy dedykowanego systemu,
+- jaki powinien być pierwszy test w 7 dni.
+
+Na końcu przygotuj:
+1. ranking 5 najlepszych wdrożeń,
+2. jeden rekomendowany projekt na start,
+3. plan 30 dni,
+4. listę danych i dostępów potrzebnych do wdrożenia,
+5. prosty opis dla właściciela firmy bez języka technicznego.
+
+Moje notatki:
+[WKLEJ TUTAJ LISTĘ ZADAŃ, CZAS, CZĘSTOTLIWOŚĆ I PROBLEMY]</div>
+        </section>
+
+        <section class="footer-cta">
+            <div>
+                <h2>Chcesz przejść to z kimś technicznym?</h2>
+                <p>Wyślij proces przez formularz AI-Team. Na tej podstawie można zrobić mapę wdrożenia, warsztat albo pierwszy sprint automatyzacji.</p>
+            </div>
+            <a class="button" href="/zlecenie.html">Opisz proces</a>
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

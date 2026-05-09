@@ -3,6 +3,8 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/app", "destination": "/app.html" },
-    { "source": "/produkt1-tracker", "destination": "/produkt1-tracker.html" }
+    { "source": "/produkt1-tracker", "destination": "/produkt1-tracker.html" },
+    { "source": "/wdrozenie-ai", "destination": "/wdrozenie-ai.html" },
+    { "source": "/playbooki", "destination": "/playbooki.html" }
   ]
 }
