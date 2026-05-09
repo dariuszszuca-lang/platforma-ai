@@ -716,11 +716,11 @@ Punkt #1 (cyfrowy bliźniak) albo #2 (deep research) zajmą Ci 15-30 minut. A ju
 
 Jeśli chcesz wdrożyć AI w swojej firmie, ale brakuje Ci czasu lub chcesz to zrobić szybciej:
 
-**Warsztat AI w Sopocie (500 PLN)**
-Praktyczny, 3-4 godzinowy warsztat dla przedsiębiorców. Przynosisz swój laptop, wychodzisz z wdrożonymi narzędziami. Nie z notatkami — z działającym systemem.
+**Warsztat AI w Sopocie (600 PLN/os.)**
+Praktyczny dzień pracy z AI na danych Twojej firmy. Przynosisz laptop, wychodzisz z profilem firmy, asystentem AI i promptami do codziennej pracy.
 
-**Audyt strony sprzedażowej**
-Przejadę Twoją stronę przez checklisty psychologii zakupowej, copywritingu i konwersji. Dostaniesz raport z konkretnymi zmianami do wdrożenia.
+**Dzień 2: automatyzacje (+600 PLN/os.)**
+Opcjonalny drugi dzień: dokumenty, raporty, proste workflow i zasady bezpiecznej pracy z AI w firmie.
 
 **Spersonalizowany CRM (2 500 PLN)**
 System dopasowany do Twojej branży. Nie płacisz abonamentu — jest Twój na zawsze.

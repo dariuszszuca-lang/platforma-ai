@@ -280,7 +280,7 @@ AI analizuje odpowiedzi
 - Zadania i przypomnienia
 - Raporty i KPI
 
-**Koszt:** 500-5000 PLN (jednorazowo) vs 200-500 PLN/mies. za SaaS
+**Koszt:** CRM AI-Team: 2 500 PLN jednorazowo vs 200-500 PLN/mies. za SaaS
 
 **Oszczędność:** 5-10h tygodniowo + pełna kontrola nad danymi
 
