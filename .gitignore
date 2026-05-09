@@ -1,5 +1,28 @@
+# Build / cache
+.vercel/
+node_modules/
+dist/
+.cache/
 
-# Security - never commit env files
+# Visual Companion (brainstorming mockups)
+.superpowers/
+
+# Backups (lokalne fallbacks)
+*-pre-redesign.html.bak
+*-pre-redesign-*.html.bak
+*-backup-*.html
+index-pre-redesign-*.html.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
-.env.*
-!.env.example
+.env.local
+
+# API dependencies
+api/node_modules/
+**/node_modules/
+api/.env
+
