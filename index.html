@@ -178,10 +178,14 @@
           <defs>
             <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stop-color="#B85C2E" stop-opacity="1"/>
+              <stop offset="60%" stop-color="#B85C2E" stop-opacity="0.4"/>
               <stop offset="100%" stop-color="#B85C2E" stop-opacity="0"/>
             </radialGradient>
+            <filter id="softGlow">
+              <feGaussianBlur stdDeviation="2"/>
+            </filter>
           </defs>
-          <g class="lines" stroke="#B85C2E" stroke-width="0.5" opacity="0.35">
+          <g class="lines" stroke="#B85C2E" stroke-width="1.6" opacity="0.7" stroke-linecap="round">
             <line x1="80" y1="120" x2="180" y2="80"/>
             <line x1="180" y1="80" x2="290" y2="140"/>
             <line x1="80" y1="120" x2="120" y2="240"/>
@@ -196,29 +200,59 @@
             <line x1="180" y1="80" x2="220" y2="220"/>
           </g>
           <g class="halos">
-            <circle cx="80" cy="120" r="20" fill="url(#dotGlow)" opacity="0.6"/>
-            <circle cx="220" cy="220" r="28" fill="url(#dotGlow)" opacity="0.7"/>
-            <circle cx="200" cy="380" r="22" fill="url(#dotGlow)" opacity="0.5"/>
+            <circle cx="80" cy="120" r="32" fill="url(#dotGlow)"/>
+            <circle cx="220" cy="220" r="48" fill="url(#dotGlow)"/>
+            <circle cx="200" cy="380" r="36" fill="url(#dotGlow)"/>
+            <circle cx="290" cy="140" r="28" fill="url(#dotGlow)" opacity="0.7"/>
+            <circle cx="320" cy="320" r="30" fill="url(#dotGlow)" opacity="0.7"/>
+          </g>
+          <g class="packets">
+            <circle r="3.5">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M 80 120 L 180 80"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="3.4s" repeatCount="indefinite" begin="0.5s" path="M 180 80 L 290 140"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="2.8s" repeatCount="indefinite" begin="1s" path="M 220 220 L 290 140"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.3s" path="M 220 220 L 320 320"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="3.6s" repeatCount="indefinite" begin="1.4s" path="M 120 240 L 60 360"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="3s" repeatCount="indefinite" begin="0.8s" path="M 200 380 L 320 320"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M 60 360 L 200 380"/>
+            </circle>
+            <circle r="3.5">
+              <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.2s" path="M 80 120 L 120 240"/>
+            </circle>
           </g>
           <g class="dots" fill="#B85C2E">
-            <circle cx="80" cy="120" r="4"/>
-            <circle cx="180" cy="80" r="3"/>
-            <circle cx="290" cy="140" r="3"/>
-            <circle cx="120" cy="240" r="3"/>
-            <circle cx="220" cy="220" r="5"/>
-            <circle cx="320" cy="320" r="3"/>
-            <circle cx="60" cy="360" r="3"/>
-            <circle cx="200" cy="380" r="4"/>
-            <circle cx="280" cy="430" r="3"/>
+            <circle cx="80" cy="120" r="8" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="180" cy="80" r="6" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="290" cy="140" r="7" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="120" cy="240" r="6" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="220" cy="220" r="11" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="320" cy="320" r="7" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="60" cy="360" r="6" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="200" cy="380" r="8" stroke="#FBF8F1" stroke-width="2"/>
+            <circle cx="280" cy="430" r="6" stroke="#FBF8F1" stroke-width="2"/>
           </g>
-          <g class="labels" font-family="'JetBrains Mono', monospace" font-size="8" fill="#1C1917" opacity="0.6" letter-spacing="0.15em">
-            <text x="92" y="108" text-anchor="start">CRM</text>
-            <text x="190" y="68" text-anchor="start">CMO</text>
-            <text x="232" y="208" text-anchor="start">CORE</text>
-            <text x="305" y="128" text-anchor="end">CSO</text>
-            <text x="48" y="376" text-anchor="start">GHOST</text>
-            <text x="212" y="396" text-anchor="start">PM</text>
-            <text x="332" y="336" text-anchor="end">CTO</text>
+          <g class="labels" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#1C1917" letter-spacing="0.18em">
+            <text x="98" y="108" text-anchor="start">CRM</text>
+            <text x="194" y="66" text-anchor="start">CMO</text>
+            <text x="304" y="130" text-anchor="start">CSO</text>
+            <text x="135" y="232" text-anchor="start">GHOST</text>
+            <text x="237" y="218" text-anchor="start" font-size="14">CORE</text>
+            <text x="334" y="312" text-anchor="start">CTO</text>
+            <text x="42" y="354" text-anchor="start">CEO</text>
+            <text x="216" y="376" text-anchor="start">PM</text>
+            <text x="294" y="424" text-anchor="start">CCO</text>
           </g>
         </svg>
         <div class="hero-corner-mark">
