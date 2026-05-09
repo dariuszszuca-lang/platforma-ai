@@ -92,14 +92,15 @@
         }
         .hero-visual {
             background-image:
-                linear-gradient(90deg, rgba(2,2,3,0.96), rgba(2,2,3,0.78) 44%, rgba(2,2,3,0.9)),
-                url('assets/og-image.png');
+                linear-gradient(90deg, rgba(2,2,3,0.99) 0%, rgba(2,2,3,0.96) 38%, rgba(2,2,3,0.78) 70%, rgba(2,2,3,0.92) 100%),
+                url('assets/playbooki-hero-bg.svg');
             background-size: cover;
-            background-position: center;
+            background-position: center right;
         }
         .hero-copy {
             width: 100%;
             max-width: min(48rem, calc(100vw - 72px));
+            text-shadow: 0 2px 22px rgba(0,0,0,0.78);
         }
         .hero-panel {
             width: 100%;
@@ -128,6 +129,12 @@
             }
         }
         @media (max-width: 767px) {
+            .hero-visual {
+                background-image:
+                    linear-gradient(90deg, rgba(2,2,3,0.99), rgba(2,2,3,0.95)),
+                    url('assets/playbooki-hero-bg.svg');
+                background-position: 62% center;
+            }
             .hero-copy,
             .hero-panel {
                 width: 100% !important;
