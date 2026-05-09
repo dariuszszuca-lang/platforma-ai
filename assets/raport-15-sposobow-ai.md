@@ -50,7 +50,7 @@ Ton: przyjazny, ale profesjonalny. Max 150 słów.
 
 **Narzędzia:**
 - Tidio (darmowy plan) — chatbot na stronę
-- ManyChat — automatyzacje Messenger/Instagram
+- Automatyzacje DM — proste odpowiedzi Messenger/Instagram
 - TextExpander — skróty klawiszowe do szybkich odpowiedzi
 
 **Oszczędność:** 3-5h tygodniowo
