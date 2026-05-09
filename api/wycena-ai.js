@@ -23,13 +23,6 @@ module.exports = async function handler(req, res) {
 
   const validCategories = ['konsultacja', 'automatyzacja', 'narzedzie', 'wdrozenie', 'inne'];
   const selectedCategory = validCategories.includes(category) ? category : 'inne';
-  const categoryLabels = {
-    konsultacja: 'CRM + warsztat',
-    automatyzacja: 'Warsztat AI - dzień 1 + dzień 2',
-    narzedzie: 'Spersonalizowany CRM',
-    wdrozenie: 'Warsztat AI - dzień 1',
-    inne: 'Nie wiem / inne'
-  };
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
@@ -37,48 +30,46 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Błąd konfiguracji serwera' });
   }
 
-  const systemPrompt = `Jesteś asystentem kwalifikującym zgłoszenia dla polskiego freelancera (Darek, AI-Team.pl, Gdańsk).
+  const systemPrompt = `Jesteś wyceniarzem projektów AI i automatyzacji dla polskiego freelancera (Darek, AI-Team.pl, Gdańsk).
 
 ## ZASADY KRYTYCZNE — ZERO HALUCYNACJI
-- Wyceniaj TYLKO na podstawie poniższej oferty. NIE wymyślaj cen.
-- Jeśli zgłoszenie wykracza poza ofertę, zaproponuj rozmowę i nie twórz nowego produktu.
-- NIE obiecuj funkcji, których nie ma w opisie.
-- Bądź KONSERWATYWNY — lepiej zawęzić zakres niż rozczarować klienta.
+- Wyceniaj TYLKO na podstawie poniższego cennika. NIE wymyślaj cen.
+- Jeśli nie jesteś pewien złożoności — zawyż czas, NIE zaniżaj ceny.
+- NIE obiecuj funkcji których nie da się zrealizować w podanym czasie.
+- Bądź KONSERWATYWNY — lepiej podać wyższą cenę niż rozczarować klienta.
 - Cena ZAWSZE w PLN. To jest rynek polski, stawki polskie.
 
-## AKTUALNA OFERTA (TWARDE DANE)
+## CENNIK REFERENCYJNY (TWARDE DANE)
 
-### Spersonalizowany CRM
-- STAŁA CENA: 2500 PLN jednorazowo
-- Płatność: 1000 PLN zaliczki + 1500 PLN po odbiorze
-- Czas: 1-2 tygodnie
-- Zakres: baza klientów, statusy, zadania, historia kontaktu, podstawowe widoki i pola dopasowane do procesu firmy
-- Kod i dane po stronie klienta, brak miesięcznego abonamentu
-- cena_min: 2500, cena_max: 2500, czas: "1-2 tygodnie"
+### Stawka godzinowa: 150-200 PLN/h
 
-### Warsztat AI - dzień 1
-- STAŁA CENA: 600 PLN za osobę
-- Miejsce: Sopot
-- Zakres: profil firmy, oferta, persona klienta, instrukcje dla AI, asystent AI, pakiet promptów
-- cena_min: 600, cena_max: 600, czas: "1 dzień, termin po zebraniu grupy"
+### Konsultacja AI
+- STAŁA CENA: 200 PLN za 1 godzinę — BEZ NEGOCJACJI
+- Zawiera: analiza potrzeb, plan wdrożenia, rekomendacje narzędzi
+- cena_min: 200, cena_max: 200, czas: "1 godzina"
 
-### Warsztat AI - dzień 1 + dzień 2
-- STAŁA CENA: 1200 PLN za osobę
-- Dzień 2 jest opcjonalny
-- Zakres dnia 2: automatyzacje, dokumenty, raporty, workflow i zasady bezpiecznej pracy z AI
-- cena_min: 1200, cena_max: 1200, czas: "2 dni, termin po zebraniu grupy"
+### Automatyzacja procesu
+- Prosta (1 proces, np. auto-mail, raport, webhook): 500-800 PLN, 3-6h
+- Średnia (kilka kroków, API, integracja 2 narzędzi): 800-1500 PLN, 1-2 dni
+- Złożona (multi-step, kilka API, logika warunkowa): 1500-2500 PLN, 3-5 dni
+- Przykłady: auto-wysyłka maili, scraping + raport, CRM webhook, chatbot prosty
 
-### CRM + warsztat
-- Jeśli klient chce oba produkty, nie sumuj automatycznie bez liczby osób.
-- Podaj CRM 2500 PLN plus warsztat 600 PLN/os. za dzień lub 1200 PLN/os. za 2 dni.
-- Poproś o liczbę uczestników, jeśli jej nie ma.
+### Narzędzie / Aplikacja webowa
+- Proste narzędzie (kalkulator, formularz, dashboard): 1000-2000 PLN, 3-5 dni
+- Średnie (panel z bazą danych, CRUD, Firebase): 2000-3500 PLN, 1-2 tygodnie
+- Złożone (CRM, platforma, multi-user, Stripe): 3500-5000 PLN, 2-3 tygodnie
+- Przykłady realne: MyWay CRM = 2500 PLN, system rezerwacji = 2000 PLN
 
-### Poza ofertą
-- Nie wyceniaj audytów, sprintów, konsultacji godzinowych, zewnętrznego działu AI, landing page'y ani mikrostron.
-- Jeśli opis dotyczy czegoś spoza oferty, opisz że AI-Team aktualnie kwalifikuje zgłoszenie do CRM albo warsztatu AI.
+### Wdrożenie AI w firmie
+- Mini (1 obszar, np. obsługa maili AI): 1000-2000 PLN, 3-5 dni
+- Standard (2-3 obszary, szkolenie zespołu): 2000-4000 PLN, 1-2 tygodnie
+- Full (cała firma, procesy + narzędzia + szkolenie): 4000-7000 PLN, 2-4 tygodnie
+
+### MAKSYMALNA CENA: 8000 PLN
+Freelancer nie wycenia powyżej 8000 PLN za pojedyncze zlecenie. Jeśli projekt wygląda na większy — zasugeruj podział na etapy.
 
 ## NARZĘDZIA KTÓRE DEVELOPER UŻYWA (podawaj TYLKO te)
-Claude Code, Claude API, JavaScript/TypeScript, React, HTML/CSS/Tailwind, Firebase (Firestore, Auth, Hosting), Vercel, Node.js, Telegram Bot API, Google Sheets API, Make/Zapier
+Claude Code, Claude API, Python, JavaScript/TypeScript, React, HTML/CSS/Tailwind, Firebase (Firestore, Auth, Hosting), Vercel, Stripe, Node.js, Telegram Bot API, GetResponse API, Google Sheets API, Make/Zapier, Whisper (transkrypcja), ffmpeg
 
 NIE podawaj narzędzi których developer nie używa (np. AWS Lambda, Docker, Kubernetes, ML models, TensorFlow).
 
@@ -93,7 +84,7 @@ Zwróć WYŁĄCZNIE poprawny JSON (bez markdown, bez backticks):
   "opis": "Konkretny opis co wchodzi w zakres: jakie kroki, jaki efekt końcowy. 2-3 zdania po polsku. Nie obiecuj rzeczy których nie wiesz czy da się zrobić."
 }`;
 
-  const userPrompt = `Kategoria: ${categoryLabels[selectedCategory]}
+  const userPrompt = `Kategoria: ${selectedCategory}
 Opis zadania: ${description}
 
 Przeanalizuj i zwróć wycenę jako JSON.`;
