@@ -172,8 +172,58 @@
           <div class="item"><span class="num">100%</span><span class="label">polecenia od<br/>pracujących klientów</span></div>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="assets/hero-workspace.jpg" alt="AI-Team — pracownia projektowa, workspace z lampą miedzianą i laptopem" loading="eager" />
+      <div class="hero-image hero-network">
+        <div class="hero-mesh"></div>
+        <svg class="hero-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#B85C2E" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#B85C2E" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g class="lines" stroke="#B85C2E" stroke-width="0.5" opacity="0.35">
+            <line x1="80" y1="120" x2="180" y2="80"/>
+            <line x1="180" y1="80" x2="290" y2="140"/>
+            <line x1="80" y1="120" x2="120" y2="240"/>
+            <line x1="120" y1="240" x2="220" y2="220"/>
+            <line x1="220" y1="220" x2="290" y2="140"/>
+            <line x1="220" y1="220" x2="320" y2="320"/>
+            <line x1="120" y1="240" x2="60" y2="360"/>
+            <line x1="60" y1="360" x2="200" y2="380"/>
+            <line x1="200" y1="380" x2="320" y2="320"/>
+            <line x1="200" y1="380" x2="280" y2="430"/>
+            <line x1="320" y1="320" x2="280" y2="430"/>
+            <line x1="180" y1="80" x2="220" y2="220"/>
+          </g>
+          <g class="halos">
+            <circle cx="80" cy="120" r="20" fill="url(#dotGlow)" opacity="0.6"/>
+            <circle cx="220" cy="220" r="28" fill="url(#dotGlow)" opacity="0.7"/>
+            <circle cx="200" cy="380" r="22" fill="url(#dotGlow)" opacity="0.5"/>
+          </g>
+          <g class="dots" fill="#B85C2E">
+            <circle cx="80" cy="120" r="4"/>
+            <circle cx="180" cy="80" r="3"/>
+            <circle cx="290" cy="140" r="3"/>
+            <circle cx="120" cy="240" r="3"/>
+            <circle cx="220" cy="220" r="5"/>
+            <circle cx="320" cy="320" r="3"/>
+            <circle cx="60" cy="360" r="3"/>
+            <circle cx="200" cy="380" r="4"/>
+            <circle cx="280" cy="430" r="3"/>
+          </g>
+          <g class="labels" font-family="'JetBrains Mono', monospace" font-size="8" fill="#1C1917" opacity="0.6" letter-spacing="0.15em">
+            <text x="92" y="108" text-anchor="start">CRM</text>
+            <text x="190" y="68" text-anchor="start">CMO</text>
+            <text x="232" y="208" text-anchor="start">CORE</text>
+            <text x="305" y="128" text-anchor="end">CSO</text>
+            <text x="48" y="376" text-anchor="start">GHOST</text>
+            <text x="212" y="396" text-anchor="start">PM</text>
+            <text x="332" y="336" text-anchor="end">CTO</text>
+          </g>
+        </svg>
+        <div class="hero-corner-mark">
+          <span class="label-mono">SYS · AI-TEAM · ONLINE</span>
+        </div>
       </div>
     </div>
   </div>
@@ -510,9 +560,49 @@
 <section class="case-study" id="case">
   <div class="container">
     <div class="case-grid">
-      <div class="case-image">
-        <img src="assets/myway-krystian.png" alt="Krystian Nagaba — założyciel ośrodka MyWay Kąpino, klient AI-Team na retainerze" loading="lazy" />
-        <span class="label-mono" style="position:absolute; bottom:24px; left:24px; color:rgba(255,255,255,0.85); z-index:3; mix-blend-mode:difference;">CASE STUDY · MYWAY</span>
+      <div class="case-image case-mockup">
+        <div class="crm-window">
+          <div class="crm-titlebar">
+            <span class="crm-dot" style="background:#FF5F57"></span>
+            <span class="crm-dot" style="background:#FEBC2E"></span>
+            <span class="crm-dot" style="background:#28C840"></span>
+            <span class="crm-url">crm.ai-team.pl</span>
+          </div>
+          <div class="crm-app">
+            <aside class="crm-sidebar">
+              <div class="crm-brand">CRM <em>·demo</em></div>
+              <nav class="crm-nav">
+                <a class="crm-active">Klienci</a>
+                <a>Projekty</a>
+                <a>Dokumenty</a>
+                <a>Faktury</a>
+                <a>Raporty</a>
+              </nav>
+              <div class="crm-side-foot"><span class="label-mono">DEMO · v1</span></div>
+            </aside>
+            <main class="crm-main">
+              <div class="crm-stats">
+                <div class="crm-stat"><span class="crm-stat-num">—</span><span class="crm-stat-label">Aktywni klienci</span></div>
+                <div class="crm-stat"><span class="crm-stat-num">—</span><span class="crm-stat-label">W trakcie</span></div>
+                <div class="crm-stat"><span class="crm-stat-num">—</span><span class="crm-stat-label">Konwersja</span></div>
+              </div>
+              <div class="crm-table">
+                <div class="crm-tr crm-th"><span>Klient</span><span>Status</span><span>Wartość</span><span>Data</span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-70"></span><span class="crm-bar w-50"></span><span class="crm-bar w-40"></span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-50"></span><span class="crm-bar w-60"></span><span class="crm-bar w-40"></span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-80"></span><span class="crm-bar w-40"></span><span class="crm-bar w-40"></span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-60"></span><span class="crm-bar w-70"></span><span class="crm-bar w-40"></span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-40"></span><span class="crm-bar w-50"></span><span class="crm-bar w-40"></span></div>
+                <div class="crm-tr"><span class="crm-pill"></span><span class="crm-bar w-70"></span><span class="crm-bar w-60"></span><span class="crm-bar w-40"></span></div>
+              </div>
+              <div class="crm-foot">
+                <span class="crm-bar w-30"></span>
+                <span class="crm-action">Generuj umowę PDF</span>
+              </div>
+            </main>
+          </div>
+        </div>
+        <span class="label-mono case-image-tag">PODGLĄD · CRM · BEZ DANYCH</span>
       </div>
       <div class="case-text">
         <span class="label-mono">CASE STUDY · 2024-2026</span>
