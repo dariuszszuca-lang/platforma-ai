@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>AI-TEAM Studio. Buduj firmę AI-First w Claude Code | AI-TEAM.PL</title>
+    <meta name="description" content="Cykliczne sesje live w Claude Code. Dla zaawansowanych, którzy budują z Opus i Codex. Poniedziałki 11:00-13:00. Start 01.06.2026. Pierwsze 50 osób: 2 000 zł/rok.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-team.pl/next-level.html">
+
+    <meta property="og:title" content="AI-TEAM Studio. Buduj firmę AI-First w Claude Code">
+    <meta property="og:description" content="Cykliczne sesje live. Dla zaawansowanych z Claude Code. Pierwsze 50 osób: 2 000 zł/rok.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/next-level.html">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: { 50: '#faf7f0', 100: '#f5f0e4', 200: '#e8dfc9' },
+                        ink: { 900: '#1c1917', 700: '#44403c', 500: '#78716c', 300: '#a8a29e' },
+                        amber2: { 500: '#d97706', 600: '#b45309', 700: '#92400e' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+      body { background: #f6f1e6; color: #1c1917; font-family: 'Inter', sans-serif; }
+      .display { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+      .card { background: #ffffff; border: 1px solid #eaddc6; border-radius: 16px; }
+      .soft-card { background: #fbf7ed; border: 1px solid #eaddc6; border-radius: 16px; }
+      .accent-bar { height: 4px; width: 48px; background: #b45309; border-radius: 2px; }
+      .btn-primary {
+        background: #1c1917; color: #fff; padding: 14px 26px; border-radius: 999px;
+        font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+        transition: transform .15s ease, background .15s ease;
+      }
+      .btn-primary:hover { background: #000; transform: translateY(-1px); }
+      .btn-accent {
+        background: #b45309; color: #fff; padding: 14px 26px; border-radius: 999px;
+        font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+        transition: transform .15s ease, background .15s ease;
+      }
+      .btn-accent:hover { background: #92400e; transform: translateY(-1px); }
+      .btn-ghost {
+        background: transparent; color: #1c1917; padding: 14px 26px; border-radius: 999px;
+        font-weight: 600; border: 1.5px solid #1c1917; display: inline-flex; align-items: center; gap: 8px;
+      }
+      .chip {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: #fff; border: 1px solid #eaddc6; border-radius: 999px;
+        padding: 6px 14px; font-size: 13px; color: #44403c; font-weight: 500;
+      }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: #b45309; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .5 } }
+      .grain { background-image: radial-gradient(circle at 1px 1px, #e8dfc9 1px, transparent 0); background-size: 22px 22px; }
+      .price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eaddc6; }
+      .price-row:last-child { border-bottom: 0; }
+      .price-row.active { background: #fef3c7; margin: 0 -14px; padding: 10px 14px; border-radius: 8px; border-bottom: 0; }
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-40 backdrop-blur bg-[#f6f1e6]/85 border-b border-cream-200">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="display font-bold text-lg">AI-TEAM</a>
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium text-ink-700">
+      <a href="#dla-kogo" class="hover:text-ink-900">Dla kogo</a>
+      <a href="#co-zbudujesz" class="hover:text-ink-900">Program</a>
+      <a href="#sesje" class="hover:text-ink-900">Sesje</a>
+      <a href="#cena" class="hover:text-ink-900">Cena</a>
+      <a href="#faq" class="hover:text-ink-900">FAQ</a>
+    </div>
+    <a href="#cena" class="btn-accent text-sm !py-2.5 !px-5">
+      Dołącz
+      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grain opacity-40 pointer-events-none"></div>
+  <div class="max-w-6xl mx-auto px-5 pt-20 pb-16 md:pt-28 md:pb-24 relative">
+    <div class="chip mb-6">
+      <span class="dot pulse"></span>
+      Start: poniedziałek 1 czerwca 2026, 11:00. Otwarta rejestracja.
+    </div>
+    <h1 class="display text-4xl md:text-6xl font-bold leading-[1.05] max-w-4xl">
+      Buduj firmę AI-First <span class="text-amber2-600">w Claude Code</span>, krok po kroku.
+    </h1>
+    <p class="mt-6 text-lg md:text-xl text-ink-700 max-w-2xl leading-relaxed">
+      Cykliczne sesje na żywo dla tych, którzy już pracują w terminalu. Claude Code, Codex, MCP, API, automatyzacje. Razem budujemy systemy, które zostają w Twojej firmie.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#cena" class="btn-accent">
+        Dołącz za 2 000 zł / rok
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <a href="#co-zbudujesz" class="btn-ghost">
+        Co zbudujesz
+        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+      </a>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center gap-3">
+      <span class="chip"><i data-lucide="terminal" class="w-4 h-4 text-amber2-600"></i> Claude Code + Opus 4.7</span>
+      <span class="chip"><i data-lucide="calendar" class="w-4 h-4 text-amber2-600"></i> Min. 3 sesje / mies.</span>
+      <span class="chip"><i data-lucide="video" class="w-4 h-4 text-amber2-600"></i> Wszystko nagrywane</span>
+      <span class="chip"><i data-lucide="users" class="w-4 h-4 text-amber2-600"></i> Zamknięta grupa</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / ROZWIĄZANIE -->
+<section class="py-16 md:py-24 border-t border-cream-200">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold max-w-3xl">
+      Masz asystentów. Nie masz systemu.
+    </h2>
+    <p class="mt-4 text-ink-700 max-w-2xl">
+      Claude Code, Codex, własne agenty, MCP, API. Pojedyncze rzeczy działają. Ale firma dalej wymaga Ciebie do wszystkiego.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-5 mt-12">
+      <div class="card p-7">
+        <div class="text-xs font-bold tracking-widest text-ink-500 mb-2">TERAZ</div>
+        <h3 class="display text-xl font-bold mb-4">Asystent czeka na polecenie</h3>
+        <ul class="space-y-3 text-ink-700">
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Ty koordynujesz przepływ pracy</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Masz dziesiątki promptów, ale bez spójnej architektury</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Firma staje, kiedy śpisz</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Automatyzacje rozsypane po Zapier, Make, n8n, lokalne skrypty</span></li>
+        </ul>
+      </div>
+      <div class="card p-7" style="border-color:#b45309;">
+        <div class="text-xs font-bold tracking-widest text-amber2-600 mb-2">PO AI-TEAM STUDIO</div>
+        <h3 class="display text-xl font-bold mb-4">System działa sam</h3>
+        <ul class="space-y-3 text-ink-700">
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Agenci pracują w tle, raportują do Ciebie</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Cała architektura w jednym repo, pod kontrolą</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Firma sprzedaje i obsługuje. Ty decydujesz strategicznie</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Mniej narzędzi, więcej spójności</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO ZBUDUJESZ -->
+<section id="co-zbudujesz" class="py-16 md:py-24 border-t border-cream-200 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">Co zbudujesz razem ze mną</h2>
+    <p class="mt-4 text-ink-700 max-w-2xl">Każda sesja to jeden system. Każdy system to jeden element autonomicznej firmy. Dołączasz kiedy chcesz, budujesz we własnym tempie.</p>
+
+    <div class="grid md:grid-cols-2 gap-5 mt-12">
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">OPERATIONS</div>
+        <h3 class="display text-xl font-bold mb-2">AI Email Command Center</h3>
+        <p class="text-ink-700">Claude Code czyta pocztę, klasyfikuje, odpowiada na proste sprawy, eskaluje ważne. Integracja Gmail + MCP + Twoje kontekstowe pliki.</p>
+      </div>
+
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">SALES</div>
+        <h3 class="display text-xl font-bold mb-2">Sales Autopilot</h3>
+        <p class="text-ink-700">Agent obsługuje lejek: lead przychodzi → AI kwalifikuje → pisze follow-up → wrzuca do CRM. Ty tylko dzwonisz do tych, co wygrywają.</p>
+      </div>
+
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">FINANCE</div>
+        <h3 class="display text-xl font-bold mb-2">Finance & Cost Monitor</h3>
+        <p class="text-ink-700">Dashboard finansowy z AI, który codziennie liczy marżę, wykrywa anomalie, alarmuje przy nietypowych wydatkach. Stripe, banki, faktury w jednym miejscu.</p>
+      </div>
+
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">CONTENT</div>
+        <h3 class="display text-xl font-bold mb-2">Content Pipeline</h3>
+        <p class="text-ink-700">Jeden temat → newsletter + post LinkedIn + rolka + artykuł SEO. Wszystko generowane z kontekstu Twojej firmy, zapisywane w repo, publikowane automatycznie.</p>
+      </div>
+
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">KNOWLEDGE</div>
+        <h3 class="display text-xl font-bold mb-2">Notification Intelligence Hub</h3>
+        <p class="text-ink-700">Koniec z 40 zakładkami i 12 aplikacjami. AI agreguje powiadomienia, streszcza, pokazuje tylko to, co wymaga Twojej uwagi.</p>
+      </div>
+
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">INFRA</div>
+        <h3 class="display text-xl font-bold mb-2">Cloud CTO</h3>
+        <p class="text-ink-700">AWS, Vercel, Firebase pod jednym agentem. Deployy, monitoring, koszty, bezpieczeństwo. Mały zespół nie potrzebuje DevOps, jeśli ma dobrego agenta.</p>
+      </div>
+    </div>
+
+    <div class="card p-7 mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-1">PLUS</div>
+        <h3 class="display text-xl font-bold">Biblioteka promptów, skryptów, szablonów</h3>
+        <p class="text-ink-700 mt-1">Wszystko co budujemy na sesjach trafia do wspólnego repo. Pobierasz, wklejasz do swojej firmy, adaptujesz. Żadnego startu od zera.</p>
+      </div>
+      <a href="#cena" class="btn-ghost shrink-0">Zobacz cenę <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- SESJE -->
+<section id="sesje" class="py-16 md:py-24 border-t border-cream-200">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">Jak to działa</h2>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-12">
+      <div class="card p-7">
+        <div class="w-10 h-10 rounded-lg bg-cream-100 flex items-center justify-center mb-4">
+          <i data-lucide="video" class="w-5 h-5 text-amber2-600"></i>
+        </div>
+        <h3 class="display text-lg font-bold mb-2">Sesje live</h3>
+        <p class="text-ink-700 text-sm">Poniedziałki 11:00-13:00, min. 3 razy w miesiącu (czasem 4). Teoria (15-20 min), wdrożenie na żywo w Claude Code (60-80 min), Q&A (20-30 min).</p>
+      </div>
+      <div class="card p-7">
+        <div class="w-10 h-10 rounded-lg bg-cream-100 flex items-center justify-center mb-4">
+          <i data-lucide="archive" class="w-5 h-5 text-amber2-600"></i>
+        </div>
+        <h3 class="display text-lg font-bold mb-2">Wszystko nagrywane</h3>
+        <p class="text-ink-700 text-sm">Nie musisz być live. Nagrania, transkrypcje i kod z sesji lądują w portalu tego samego dnia. Wracasz kiedy chcesz, przegrywasz na prędkości 1.5x.</p>
+      </div>
+      <div class="card p-7">
+        <div class="w-10 h-10 rounded-lg bg-cream-100 flex items-center justify-center mb-4">
+          <i data-lucide="message-circle" class="w-5 h-5 text-amber2-600"></i>
+        </div>
+        <h3 class="display text-lg font-bold mb-2">Zamknięta grupa</h3>
+        <p class="text-ink-700 text-sm">Pytasz między sesjami, dzielisz się postępami, widzisz jak budują inni. Małe środowisko praktyków, nie masowy kurs.</p>
+      </div>
+    </div>
+
+    <div class="card p-7 mt-10">
+      <h3 class="display text-xl font-bold mb-5">Najbliższe sesje</h3>
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+          <div>
+            <div class="font-semibold">Sesja #1. Cloud CTO (setup bazowy)</div>
+            <div class="text-ink-500">Stawiamy repo, MCP, pierwszy agent, zasady pracy.</div>
+          </div>
+          <div class="text-right text-ink-700 shrink-0 ml-4">pon. 01.06.2026<br><span class="text-ink-500">11:00</span></div>
+        </div>
+        <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+          <div>
+            <div class="font-semibold">Sesja #2. AI Email Command Center</div>
+            <div class="text-ink-500">Gmail + Claude + zasady, jak pisać za Ciebie.</div>
+          </div>
+          <div class="text-right text-ink-700 shrink-0 ml-4">pon. 08.06.2026<br><span class="text-ink-500">11:00</span></div>
+        </div>
+        <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+          <div>
+            <div class="font-semibold">Sesja #3. Cost & Security Manager</div>
+            <div class="text-ink-500">Budżety AI, klucze API, audyt bezpieczeństwa, alerty.</div>
+          </div>
+          <div class="text-right text-ink-700 shrink-0 ml-4">pon. 15.06.2026<br><span class="text-ink-500">11:00</span></div>
+        </div>
+        <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+          <div>
+            <div class="font-semibold">Sesja #4. Sales Autopilot</div>
+            <div class="text-ink-500">Lead → AI kwalifikacja → follow-up → CRM. End-to-end.</div>
+          </div>
+          <div class="text-right text-ink-700 shrink-0 ml-4">pon. 22.06.2026<br><span class="text-ink-500">11:00</span></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="font-semibold">Sesja #5. Notification Intelligence Hub</div>
+            <div class="text-ink-500">Agregacja i streszczanie powiadomień z 10 aplikacji.</div>
+          </div>
+          <div class="text-right text-ink-700 shrink-0 ml-4">pon. 29.06.2026<br><span class="text-ink-500">11:00</span></div>
+        </div>
+      </div>
+      <p class="text-xs text-ink-500 mt-5">Terminy mogą się zmieniać. Wszystkie sesje nagrywane.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DLA KOGO -->
+<section id="dla-kogo" class="py-16 md:py-24 border-t border-cream-200 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">AI-TEAM Studio nie jest dla wszystkich</h2>
+
+    <div class="grid md:grid-cols-2 gap-5 mt-12">
+      <div class="soft-card p-7">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-3">DLA CIEBIE JEŚLI</div>
+        <ul class="space-y-3 text-ink-700">
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Używasz <b>Claude Code</b> lub <b>OpenAI Codex</b> w terminalu</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Masz działających asystentów AI (min. 1-2 w codziennym użyciu)</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Prowadzisz firmę lub projekt, na którym możesz budować</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Masz 2-4h tygodniowo na wdrażanie systemów</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Chcesz budować, nie tylko oglądać</span></li>
+        </ul>
+      </div>
+      <div class="card p-7">
+        <div class="display text-xs font-bold tracking-widest text-ink-500 mb-3">NIE DLA CIEBIE JEŚLI</div>
+        <ul class="space-y-3 text-ink-700">
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Nie znasz Claude Code ani Codex</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Nie masz jeszcze żadnego asystenta AI w codziennym użyciu</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Szukasz kursu "AI dla początkujących"</span></li>
+          <li class="flex gap-3"><i data-lucide="x" class="w-5 h-5 text-ink-500 shrink-0 mt-0.5"></i><span>Chcesz tylko teorii bez wdrażania</span></li>
+        </ul>
+        <p class="text-sm text-ink-500 mt-4">Jesteś początkujący? Zacznij od <a href="/warsztaty-ai.html" class="underline hover:text-ink-900">warsztatów AI-TEAM</a> w Sopocie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROWADZĄCY -->
+<section id="prowadzacy" class="py-16 md:py-24 border-t border-cream-200">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">Kto prowadzi</h2>
+
+    <div class="card p-7 mt-10 grid md:grid-cols-3 gap-7">
+      <div>
+        <div class="aspect-square rounded-xl bg-cream-100 flex items-center justify-center text-5xl display font-bold text-amber2-600">DS</div>
+      </div>
+      <div class="md:col-span-2">
+        <h3 class="display text-2xl font-bold">Dariusz Szuca</h3>
+        <p class="text-ink-500 mt-1">Twórca AI-TEAM. Buduje systemy AI dla małych firm i dla siebie.</p>
+        <p class="mt-4 text-ink-700">Codziennie pracuje w Claude Code. Zbudował własny zespół agentów AI, który prowadzi marketing, sprzedaż, operacje i wsparcie techniczne klientów. Dziś większość jego biznesu działa w terminalu, w repo, przez agentów. To samo buduję z Tobą w AI-TEAM Studio.</p>
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="chip">Claude Code daily</span>
+          <span class="chip">Własny zespół agentów AI</span>
+          <span class="chip">AWS, Vercel, Firebase</span>
+          <span class="chip">ai-team.pl, Akademia AI</span>
+          <span class="chip">Warsztaty Sopot</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA -->
+<section id="cena" class="py-16 md:py-24 border-t border-cream-200 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">Im wcześniej dołączysz, tym mniej płacisz</h2>
+    <p class="mt-4 text-ink-700 max-w-2xl">Cena rośnie co 50 osób. Roczna subskrypcja. Dołączasz kiedy chcesz, masz dostęp do wszystkich nagrań od dnia dołączenia.</p>
+
+    <div class="grid md:grid-cols-2 gap-10 mt-12 items-start">
+      <div class="card p-8">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-2">PRÓG AKTUALNY. 0-50 MIEJSC</div>
+        <div class="flex items-baseline gap-2">
+          <span class="display text-5xl font-bold">2 000 zł</span>
+          <span class="text-ink-500">/ rok</span>
+        </div>
+        <ul class="space-y-3 text-ink-700 mt-6">
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>12 miesięcy dostępu do zamkniętej grupy</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Min. 3 sesje live w miesiącu (2h każda)</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Wszystkie nagrania, transkrypcje, kod z sesji</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Biblioteka promptów, skryptów, szablonów</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>Zamknięta grupa przedsiębiorców budujących z AI</span></li>
+          <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-amber2-600 shrink-0 mt-0.5"></i><span>30 dni bezproblemowej rezygnacji</span></li>
+        </ul>
+        <a href="#" id="stripe-link" class="btn-accent w-full justify-center mt-7">
+          Dołącz za 2 000 zł
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <p class="text-xs text-ink-500 text-center mt-3">Płatność przez Stripe. Faktura na firmę OK.</p>
+      </div>
+
+      <div class="soft-card p-8">
+        <div class="display text-xs font-bold tracking-widest text-amber2-600 mb-4">KOLEJNE PROGI</div>
+        <div class="price-row active">
+          <div class="font-semibold">0-50 miejsc</div>
+          <div class="font-bold">2 000 zł / rok</div>
+        </div>
+        <div class="price-row">
+          <div>51-100</div>
+          <div>2 500 zł / rok</div>
+        </div>
+        <div class="price-row">
+          <div>101-150</div>
+          <div>3 000 zł / rok</div>
+        </div>
+        <div class="price-row">
+          <div>151-200</div>
+          <div>3 500 zł / rok</div>
+        </div>
+        <div class="price-row">
+          <div>201+</div>
+          <div>4 000 zł / rok</div>
+        </div>
+        <p class="text-sm text-ink-500 mt-5">Dołączasz na cenie z Twojego progu, płacisz tyle co pierwszy rok, bez podwyżek przy odnowieniu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-16 md:py-24 border-t border-cream-200">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="accent-bar mb-5"></div>
+    <h2 class="display text-3xl md:text-4xl font-bold">Pytania i odpowiedzi</h2>
+
+    <div class="mt-10 space-y-3">
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Czy muszę być na każdej sesji?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Nie. Wszystko jest nagrywane, transkrybowane i wrzucane do portalu tego samego dnia. Sesje live są po to, żeby móc budować razem i zadawać pytania.</p>
+      </details>
+
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Kiedy dokładnie są sesje?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Poniedziałki 11:00-13:00 (czas polski). Minimum 3 sesje w miesiącu, czasem 4. Pierwsza sesja: poniedziałek 1 czerwca 2026.</p>
+      </details>
+
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Co jeśli dołączam po kilku miesiącach?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Masz dostęp do wszystkich nagrań od dnia dołączenia. Zaczynasz od fundamentów (Cloud CTO), budujesz we własnym tempie. 12 miesięcy subskrypcji liczone jest od dnia zakupu.</p>
+      </details>
+
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Jakich narzędzi potrzebuję?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Claude Code lub OpenAI Codex (jedno z dwóch, lepiej oba). Konto na AWS lub Vercel. Nie musisz mieć wszystkiego na starcie. Na pierwszych sesjach stawiamy infrastrukturę od zera.</p>
+      </details>
+
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Czy mogę zrezygnować w trakcie?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Masz 30 dni bez pytań. Jeśli AI-TEAM Studio nie spełni Twoich oczekiwań w pierwszym miesiącu, zwracam pełną kwotę. Po 30 dniach subskrypcja jest roczna, bez opcji miesięcznej.</p>
+      </details>
+
+      <details class="card p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">
+          <span>Faktura na firmę?</span>
+          <i data-lucide="plus" class="w-5 h-5 group-open:hidden"></i>
+          <i data-lucide="minus" class="w-5 h-5 hidden group-open:inline"></i>
+        </summary>
+        <p class="mt-3 text-ink-700">Tak, pełna faktura VAT przez Stripe. Podajesz dane firmy przy zakupie.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 md:py-24 border-t border-cream-200 bg-[#fbf7ed]">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <div class="accent-bar mx-auto mb-5"></div>
+    <h2 class="display text-3xl md:text-5xl font-bold">
+      Budujesz z AI od miesięcy. Kiedy zbudujesz <span class="text-amber2-600">system</span>, który działa bez Ciebie?
+    </h2>
+    <p class="mt-5 text-lg text-ink-700">Sesje live. Zamknięta grupa. Wszystko nagrywane. Pierwsze 50 osób: 2 000 zł / rok.</p>
+    <a href="#cena" class="btn-accent mt-8">
+      Dołącz do AI-TEAM Studio
+      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-cream-200 py-10 text-sm text-ink-500">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+    <div>© AI-TEAM. Skalowanie AI dla małych firm.</div>
+    <div class="flex gap-5">
+      <a href="/" class="hover:text-ink-900">Strona główna</a>
+      <a href="/ai-radar.html" class="hover:text-ink-900">AI Radar</a>
+      <a href="/warsztaty-ai.html" class="hover:text-ink-900">Warsztaty</a>
+      <a href="/privacy.html" class="hover:text-ink-900">Prywatność</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

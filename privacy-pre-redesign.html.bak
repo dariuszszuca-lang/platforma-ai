@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Polityka Prywatności | AI-Team</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020203',
+                            primary: '#ff6b00',
+                            secondary: '#ff8c00',
+                            light: '#ffa500',
+                            surface: 'rgba(255, 255, 255, 0.12)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020203;
+            color: #ffffff;
+        }
+        .prose h2 {
+            color: #ff6b00;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .prose h3 {
+            color: #ffffff;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .prose p, .prose li {
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose a {
+            color: #ff6b00;
+            text-decoration: underline;
+        }
+        .prose a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- HEADER -->
+    <header class="border-b border-white/10 bg-black/50 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <i data-lucide="arrow-left" class="w-5 h-5 text-gray-400 group-hover:text-brand-primary transition"></i>
+                <span class="font-display font-bold text-xl">AI-Team</span>
+            </a>
+            <span class="text-xs text-gray-500">Ostatnia aktualizacja: Grudzień 2025</span>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <div class="mb-12">
+            <h1 class="text-4xl font-display font-bold mb-4">Polityka <span class="text-brand-primary">Prywatności</span></h1>
+            <p class="text-gray-400">Twoja prywatność jest dla nas priorytetem. Poniżej znajdziesz informacje o tym, jak przetwarzamy Twoje dane.</p>
+        </div>
+
+        <div class="prose max-w-none">
+            <h2>1. Administrator danych</h2>
+            <p>
+                Administratorem Twoich danych osobowych jest AI-Team, prowadzona przez Dariusza Szuca,
+                z siedzibą w Gdańsku, Polska.
+            </p>
+            <p>
+                Kontakt: <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
+            </p>
+
+            <h2>2. Jakie dane zbieramy</h2>
+            <p>Możemy zbierać następujące dane:</p>
+            <ul>
+                <li><strong>Dane kontaktowe:</strong> imię, adres email, numer telefonu - gdy wypełniasz formularz kontaktowy</li>
+                <li><strong>Dane techniczne:</strong> adres IP, typ przeglądarki, system operacyjny - automatycznie podczas korzystania ze strony</li>
+                <li><strong>Dane z formularzy:</strong> informacje które dobrowolnie podajesz w formularzach na stronie</li>
+            </ul>
+
+            <h2>3. Cel przetwarzania danych</h2>
+            <p>Twoje dane przetwarzamy w celu:</p>
+            <ul>
+                <li>Odpowiedzi na Twoje zapytania i kontakt z Tobą</li>
+                <li>Realizacji usług, które zamawiasz</li>
+                <li>Wysyłania informacji marketingowych (tylko za Twoją zgodą)</li>
+                <li>Analizy ruchu na stronie i poprawy jej funkcjonalności</li>
+                <li>Wypełnienia obowiązków prawnych</li>
+            </ul>
+
+            <h2>4. Pliki cookies</h2>
+            <p>
+                Nasza strona używa plików cookies (ciasteczek) w celu zapewnienia prawidłowego działania
+                oraz analizy ruchu na stronie.
+            </p>
+
+            <h3>Rodzaje cookies:</h3>
+            <ul>
+                <li><strong>Niezbędne:</strong> wymagane do działania strony (np. zapamiętanie zgody na cookies)</li>
+                <li><strong>Analityczne:</strong> pomagają nam zrozumieć, jak korzystasz ze strony</li>
+                <li><strong>Funkcjonalne:</strong> zapamiętują Twoje preferencje</li>
+            </ul>
+
+            <p>
+                Możesz zarządzać cookies w ustawieniach swojej przeglądarki. Wyłączenie niektórych cookies
+                może wpłynąć na funkcjonalność strony.
+            </p>
+
+            <h2>5. Podstawa prawna</h2>
+            <p>Przetwarzamy Twoje dane na podstawie:</p>
+            <ul>
+                <li>Twojej zgody (art. 6 ust. 1 lit. a RODO)</li>
+                <li>Wykonania umowy lub podjęcia działań przed jej zawarciem (art. 6 ust. 1 lit. b RODO)</li>
+                <li>Prawnie uzasadnionego interesu administratora (art. 6 ust. 1 lit. f RODO)</li>
+            </ul>
+
+            <h2>6. Okres przechowywania danych</h2>
+            <p>
+                Twoje dane przechowujemy przez okres niezbędny do realizacji celów, dla których zostały zebrane,
+                lub przez okres wymagany przepisami prawa. Dane z formularzy kontaktowych przechowujemy przez
+                okres 3 lat od ostatniego kontaktu.
+            </p>
+
+            <h2>7. Twoje prawa</h2>
+            <p>Masz prawo do:</p>
+            <ul>
+                <li><strong>Dostępu</strong> do swoich danych osobowych</li>
+                <li><strong>Sprostowania</strong> nieprawidłowych danych</li>
+                <li><strong>Usunięcia</strong> danych ("prawo do bycia zapomnianym")</li>
+                <li><strong>Ograniczenia</strong> przetwarzania</li>
+                <li><strong>Przenoszenia</strong> danych</li>
+                <li><strong>Sprzeciwu</strong> wobec przetwarzania</li>
+                <li><strong>Cofnięcia zgody</strong> w dowolnym momencie</li>
+            </ul>
+            <p>
+                Aby skorzystać z tych praw, skontaktuj się z nami:
+                <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
+            </p>
+
+            <h2>8. Udostępnianie danych</h2>
+            <p>
+                Twoje dane mogą być udostępniane podmiotom trzecim tylko w niezbędnym zakresie:
+            </p>
+            <ul>
+                <li>Dostawcom usług hostingowych i IT</li>
+                <li>Dostawcom narzędzi analitycznych (np. Google Analytics)</li>
+                <li>Organom państwowym, gdy wymagają tego przepisy prawa</li>
+            </ul>
+            <p>
+                Nie sprzedajemy Twoich danych osobowych podmiotom trzecim.
+            </p>
+
+            <h2>9. Bezpieczeństwo danych</h2>
+            <p>
+                Stosujemy odpowiednie środki techniczne i organizacyjne, aby chronić Twoje dane przed
+                nieuprawnionym dostępem, utratą lub zniszczeniem. Strona korzysta z szyfrowania SSL.
+            </p>
+
+            <h2>10. Zmiany w polityce prywatności</h2>
+            <p>
+                Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej polityce prywatności.
+                O istotnych zmianach poinformujemy na stronie. Data ostatniej aktualizacji znajduje się
+                na górze tego dokumentu.
+            </p>
+
+            <h2>11. Kontakt</h2>
+            <p>
+                W przypadku pytań dotyczących polityki prywatności lub przetwarzania Twoich danych,
+                skontaktuj się z nami:
+            </p>
+            <ul>
+                <li>Email: <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a></li>
+                <li>WhatsApp: <a href="https://wa.me/48730600383">+48 730 600 383</a></li>
+            </ul>
+
+            <h2>12. Skarga do organu nadzorczego</h2>
+            <p>
+                Jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO, masz prawo
+                wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (PUODO).
+            </p>
+        </div>
+
+        <!-- BACK BUTTON -->
+        <div class="mt-16 pt-8 border-t border-white/10">
+            <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary/10 text-brand-primary border border-brand-primary/20 rounded-xl hover:bg-brand-primary/20 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Wróć na stronę główną
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black py-8 mt-12">
+        <div class="max-w-4xl mx-auto px-6 text-center text-xs text-gray-600">
+            <p>&copy; 2025 AI-Team. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
