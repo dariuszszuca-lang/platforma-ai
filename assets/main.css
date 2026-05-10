@@ -110,12 +110,54 @@ section.hero { padding: 60px 0 100px; border-bottom: 1px solid var(--line); }
 @media (max-width: 1280px) { .hero-trust { gap: 14px; } .hero-trust .num { font-size: 22px; } .hero-trust .label { font-size: 10px; } }
 @media (max-width: 700px) { .hero-trust { grid-template-columns: 1fr; gap: 12px; } }
 
-/* === HERO MANDALA (sacred geometry + rotating layers + particles) === */
-.hero-mandala { background: transparent; overflow: visible; }
-.hero-mandala::before { display: none; }
-.hero-mandala .hero-mesh { display: none; }
-.hero-mandala .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
-.hero-mandala .hero-corner-mark { display: none; }
+/* === HERO TYPOGRAPHY (typographic core + orbiting elements) === */
+.hero-typo { background: transparent; overflow: visible; position: relative; }
+.hero-typo::before { display: none; }
+.hero-typo .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
+
+/* Orbiting text rings */
+.hero-typo-orbit-cw { transform-origin: 200px 250px; transform-box: fill-box; animation: heroOrbitCW 70s linear infinite; }
+.hero-typo-orbit-ccw { transform-origin: 200px 250px; transform-box: fill-box; animation: heroOrbitCCW 45s linear infinite; }
+
+@keyframes heroOrbitCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes heroOrbitCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+/* Pulse waves expanding from core */
+.hero-typo-wave { transform-origin: 200px 250px; transform-box: fill-box; opacity: 0; animation: heroWavePulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.hero-typo-wave.w1 { animation-delay: 0s; }
+.hero-typo-wave.w2 { animation-delay: 1.4s; }
+.hero-typo-wave.w3 { animation-delay: 2.8s; }
+@keyframes heroWavePulse {
+  0% { transform: scale(0.6); opacity: 0; stroke-width: 2; }
+  20% { opacity: 0.55; }
+  60% { opacity: 0.15; stroke-width: 0.6; }
+  100% { transform: scale(2.6); opacity: 0; stroke-width: 0; }
+}
+
+/* Core slowly breathes */
+.hero-typo-core { transform-origin: 200px 250px; transform-box: fill-box; animation: heroBreathe 6s ease-in-out infinite alternate; }
+@keyframes heroBreathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.025); }
+}
+
+/* Live indicator blink */
+.hero-typo-blink { animation: heroBlink 1.6s ease-in-out infinite; filter: drop-shadow(0 0 6px #2D7A2D); }
+@keyframes heroBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Decorative brackets fade subtly */
+.hero-typo-bracket { animation: heroFadeBracket 5s ease-in-out infinite alternate; }
+@keyframes heroFadeBracket {
+  from { opacity: 0.35; }
+  to { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typo-orbit-cw, .hero-typo-orbit-ccw, .hero-typo-wave, .hero-typo-core, .hero-typo-blink, .hero-typo-bracket { animation: none; }
+}
 
 /* Rotating layers — origin at center 200,250 */
 .hero-mandala .mandala-rotate-cw-slow { transform-origin: 200px 250px; transform-box: fill-box; animation: mandalaRotateCW 80s linear infinite; }
