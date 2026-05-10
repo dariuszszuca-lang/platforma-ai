@@ -722,7 +722,7 @@ Praktyczny, 3-4 godzinowy warsztat dla przedsiębiorców. Przynosisz swój lapto
 **Audyt strony sprzedażowej**
 Przejadę Twoją stronę przez checklisty psychologii zakupowej, copywritingu i konwersji. Dostaniesz raport z konkretnymi zmianami do wdrożenia.
 
-**Spersonalizowany CRM (2 500 PLN)**
+**Mini-System / CRM (3 900 PLN)**
 System dopasowany do Twojej branży. Nie płacisz abonamentu — jest Twój na zawsze.
 
 **Kontakt:**

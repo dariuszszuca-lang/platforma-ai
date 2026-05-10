@@ -65,8 +65,8 @@
 
   // Recommendations matrix — based on bottleneck + tools
   const RECOMMENDATIONS = {
-    'excel-clients': { title: 'Spersonalizowany CRM', desc: 'Dedykowany system dopasowany do Twoich procesów. Dane w jednym miejscu, bez Excela, automatyzacje powiadomień. Kod na Twoim GitHubie, płacisz raz.', price: '2 500 zł', roi: 'Zwrot inwestycji w 1-2 miesiące', cta: '/zlecenie.html' },
-    'paper-clients': { title: 'Spersonalizowany CRM', desc: 'Koniec karteczek i głowy. Dedykowany CRM, baza klientów, historia kontaktów, przypomnienia. Wszystko w jednym miejscu.', price: '2 500 zł', roi: 'Zwrot w 1-2 miesiące', cta: '/zlecenie.html' },
+    'excel-clients': { title: 'Mini-System / CRM', desc: 'Dedykowany system dopasowany do Twoich procesów. Dane w jednym miejscu, bez Excela, automatyzacje powiadomień. Kod na Twoim GitHubie, płacisz raz.', price: '3 900 zł', roi: 'Promocja na pierwsze wdrożenia', cta: '/zlecenie.html' },
+    'paper-clients': { title: 'Mini-System / CRM', desc: 'Koniec karteczek i głowy. Dedykowany CRM, baza klientów, historia kontaktów, przypomnienia. Wszystko w jednym miejscu.', price: '3 900 zł', roi: 'Promocja na pierwsze wdrożenia', cta: '/zlecenie.html' },
     'emails': { title: 'Sprint Automatyzacji AI', desc: 'Wybieramy maile które się powtarzają, w 2 tygodnie wdrażam asystenta który odpisuje za Ciebie. Stripe + Make + GPT.', price: 'Wycena indywidualna', roi: 'Odzyskasz 8-15h tygodniowo', cta: '/wdrozenie-ai.html' },
     'docs': { title: 'Sprint Automatyzacji AI', desc: 'Generowanie dokumentów, umów, ofert na podstawie szablonu. Wypełniasz formularz, dostajesz gotowy PDF. Koniec ręcznego przerabiania.', price: 'Wycena indywidualna', roi: 'Skróci pracę nad dokumentami o 70%', cta: '/wdrozenie-ai.html' },
     'reports': { title: 'Audyt AI firmy', desc: 'Diagnoza procesów raportowania, mapa automatyzacji, ROI każdej zmiany. Wychodzisz z konkretnym planem na 5-7 wdrożeń.', price: 'Wycena indywidualna', roi: '2-5 dni roboczych', cta: '/wdrozenie-ai.html' },

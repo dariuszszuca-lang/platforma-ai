@@ -51,14 +51,14 @@ module.exports = async function handler(req, res) {
 ### Automatyzacja procesu
 - Prosta (1 proces, np. auto-mail, raport, webhook): 500-800 PLN, 3-6h
 - Średnia (kilka kroków, API, integracja 2 narzędzi): 800-1500 PLN, 1-2 dni
-- Złożona (multi-step, kilka API, logika warunkowa): 1500-2500 PLN, 3-5 dni
+- Złożona (multi-step, kilka API, logika warunkowa): 1500-3900 PLN, 3-5 dni
 - Przykłady: auto-wysyłka maili, scraping + raport, CRM webhook, chatbot prosty
 
 ### Narzędzie / Aplikacja webowa
 - Proste narzędzie (kalkulator, formularz, dashboard): 1000-2000 PLN, 3-5 dni
 - Średnie (panel z bazą danych, CRUD, Firebase): 2000-3500 PLN, 1-2 tygodnie
 - Złożone (CRM, platforma, multi-user, Stripe): 3500-5000 PLN, 2-3 tygodnie
-- Przykłady realne: MyWay CRM = 2500 PLN, system rezerwacji = 2000 PLN
+- Przykłady realne: Mini-System / CRM = 3900 PLN w promocji, system rezerwacji = 2000 PLN
 
 ### Wdrożenie AI w firmie
 - Mini (1 obszar, np. obsługa maili AI): 1000-2000 PLN, 3-5 dni
