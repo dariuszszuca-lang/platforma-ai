@@ -351,18 +351,112 @@
       <h2>Ile naprawdę<br/><em>tracisz</em> bez AI?</h2>
       <p class="body-lg">5 pytań. 2 minuty. <strong>Wynik w złotówkach</strong>: ile tygodniowo zostawiasz na stole. Plus konkretna rekomendacja gdzie zacząć.</p>
     </div>
-    <div class="quiz-card">
-      <span class="label-mono">QUIZ · DIAGNOZA AI</span>
-      <h3>5 pytań które pokażą Ci ile tracisz tygodniowo</h3>
-      <p>Bez emaila. Bez zapisu. Wynik w 2 minuty.</p>
-      <div class="quiz-questions">
-        <div class="quiz-q"><span class="num">№ 01</span><div class="text">Ile osób pracuje w Twojej firmie?</div></div>
-        <div class="quiz-q"><span class="num">№ 02</span><div class="text">Ile godzin tygodniowo na powtarzalne zadania?</div></div>
-        <div class="quiz-q"><span class="num">№ 03</span><div class="text">Które zadania zajmują najwięcej czasu?</div></div>
-        <div class="quiz-q"><span class="num">№ 04</span><div class="text">Jak zarządzasz kontaktami z klientami?</div></div>
-        <div class="quiz-q"><span class="num">№ 05</span><div class="text">Jaka jest Twoja średnia stawka godzinowa?</div></div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-progress" aria-hidden="true">
+        <div class="quiz-progress-bar" id="quizProgressBar" style="width: 20%;"></div>
+        <div class="quiz-progress-label"><span id="quizStepLabel">Pytanie 1 z 5</span></div>
       </div>
-      <a href="#cta" class="cta-primary">Rozpocznij quiz →</a>
+
+      <!-- STEP 1: liczba osób -->
+      <div class="quiz-step is-active" data-step="1">
+        <span class="label-mono">№ 01 · O FIRMIE</span>
+        <h3>Ile osób pracuje w Twojej firmie?</h3>
+        <p>Wlicz siebie i każdego kto regularnie wykonuje zadania.</p>
+        <div class="quiz-options" data-name="team">
+          <button class="quiz-opt" type="button" data-value="1">Tylko ja</button>
+          <button class="quiz-opt" type="button" data-value="3">2 do 5 osób</button>
+          <button class="quiz-opt" type="button" data-value="10">6 do 15 osób</button>
+          <button class="quiz-opt" type="button" data-value="20">więcej niż 15</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: godziny -->
+      <div class="quiz-step" data-step="2">
+        <span class="label-mono">№ 02 · CZAS</span>
+        <h3>Ile godzin tygodniowo zżerają powtarzalne zadania?</h3>
+        <p>Maile, raportowanie, ręczne wprowadzanie danych, odpowiadanie na te same pytania klientów.</p>
+        <div class="quiz-slider-wrap">
+          <div class="quiz-slider-value"><span id="hoursValue">10</span> <span class="unit">h / tydzień</span></div>
+          <input type="range" min="0" max="40" value="10" step="1" id="hoursSlider" class="quiz-slider" data-name="hours">
+          <div class="quiz-slider-scale"><span>0h</span><span>20h</span><span>40h+</span></div>
+        </div>
+      </div>
+
+      <!-- STEP 3: kategoria -->
+      <div class="quiz-step" data-step="3">
+        <span class="label-mono">№ 03 · WĄSKIE GARDŁO</span>
+        <h3>Co najbardziej zżera Ci czas?</h3>
+        <p>Wybierz jedną najmocniej palącą kategorię.</p>
+        <div class="quiz-options grid-2" data-name="bottleneck">
+          <button class="quiz-opt" type="button" data-value="emails">Maile i komunikacja</button>
+          <button class="quiz-opt" type="button" data-value="clients">Kontakt z klientami</button>
+          <button class="quiz-opt" type="button" data-value="docs">Dokumenty i umowy</button>
+          <button class="quiz-opt" type="button" data-value="reports">Raporty i analizy</button>
+          <button class="quiz-opt" type="button" data-value="content">Tworzenie treści</button>
+          <button class="quiz-opt" type="button" data-value="planning">Planowanie i koordynacja</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: jak zarządzasz -->
+      <div class="quiz-step" data-step="4">
+        <span class="label-mono">№ 04 · TWOJE NARZĘDZIA</span>
+        <h3>Jak teraz zarządzasz kontaktami z klientami?</h3>
+        <p>Najszczerzej. To pytanie pokaże gdzie jest największy potencjał.</p>
+        <div class="quiz-options" data-name="tools">
+          <button class="quiz-opt" type="button" data-value="excel">Excel albo Google Sheets</button>
+          <button class="quiz-opt" type="button" data-value="paper">Papier, karteczki, głowa</button>
+          <button class="quiz-opt" type="button" data-value="saas">Gotowy CRM (Pipedrive, HubSpot, Bitrix)</button>
+          <button class="quiz-opt" type="button" data-value="custom">Własny system albo dedykowany CRM</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: stawka -->
+      <div class="quiz-step" data-step="5">
+        <span class="label-mono">№ 05 · WARTOŚĆ CZASU</span>
+        <h3>Jaka jest Twoja stawka godzinowa?</h3>
+        <p>Ile zarabia jedna godzina Twojej pracy. Jeśli nie wiesz, weź miesięczne przychody i podziel przez 160h.</p>
+        <div class="quiz-slider-wrap">
+          <div class="quiz-slider-value"><span id="rateValue">200</span> <span class="unit">zł / h</span></div>
+          <input type="range" min="50" max="1000" value="200" step="25" id="rateSlider" class="quiz-slider" data-name="rate">
+          <div class="quiz-slider-scale"><span>50 zł</span><span>500 zł</span><span>1000 zł+</span></div>
+        </div>
+      </div>
+
+      <!-- STEP 6: WYNIK -->
+      <div class="quiz-step quiz-result" data-step="6">
+        <span class="label-mono">DIAGNOZA · TWOJE LICZBY</span>
+        <h3>Tracisz <span class="quiz-money" id="resultWeekly">2 000 zł</span> co tydzień.</h3>
+        <p class="quiz-result-yearly">To <strong><span id="resultYearly">100 000 zł</span> rocznie</strong> które zostawiasz na stole. Zamiast tego mogłyby trafić do Twojej firmy albo na wakacje.</p>
+
+        <div class="quiz-result-grid">
+          <div class="quiz-result-stat">
+            <span class="num" id="resultHours">10</span>
+            <span class="label">godzin / tydzień<br/>na powtarzalne zadania</span>
+          </div>
+          <div class="quiz-result-stat">
+            <span class="num" id="resultDays">26</span>
+            <span class="label">dni roboczych<br/>rocznie do odzyskania</span>
+          </div>
+        </div>
+
+        <div class="quiz-recommend">
+          <span class="label-mono">REKOMENDACJA · OD CZEGO ZACZĄĆ</span>
+          <h4 id="recommendTitle">Spersonalizowany CRM</h4>
+          <p id="recommendDesc">Dedykowany system dopasowany do Twoich procesów. Dane w jednym miejscu, automatyzacje, koniec szukania w Excelu.</p>
+          <div class="quiz-recommend-meta">
+            <span class="quiz-recommend-price" id="recommendPrice">2 500 zł</span>
+            <span class="quiz-recommend-roi" id="recommendRoi">Zwrot inwestycji w 1-2 miesiące</span>
+          </div>
+          <a class="cta-primary" id="recommendCta" href="/zlecenie.html">Zobacz produkt →</a>
+        </div>
+
+        <button type="button" class="quiz-restart" id="quizRestart">↺ Wykonaj quiz jeszcze raz</button>
+      </div>
+
+      <div class="quiz-nav">
+        <button type="button" class="quiz-back" id="quizBack" disabled>← Wstecz</button>
+        <button type="button" class="quiz-next cta-primary" id="quizNext">Dalej →</button>
+      </div>
     </div>
   </div>
 </section>
