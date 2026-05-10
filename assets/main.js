@@ -209,3 +209,51 @@
   // Init
   showStep(1);
 })();
+
+/* === HERO DAY TRACK (scrollujące karty asystentów AI) === */
+(function () {
+  var el = document.getElementById('dayScrollInner');
+  if (!el) return;
+
+  var cards = [
+    { time: '07:30', tag: 'AI COO',        cls: 'tag-copper',   title: 'Plan dnia: 8 zadań, 3 priorytety, 1 spotkanie z klientem' },
+    { time: '08:00', tag: 'AI GHOST',      cls: 'tag-slate',    title: 'Odpowiedzi na 12 maili napisane w Twoim stylu, gotowe do wysłania' },
+    { time: '08:45', tag: 'AI MONITOR',    cls: 'tag-olive',    title: 'Alert: nowa wzmianka o Twojej firmie na LinkedIn, 47 reakcji' },
+    { time: '09:30', tag: 'AI CSO',        cls: 'tag-burgundy', title: 'Lista 5 leadów do follow-up plus spersonalizowane wiadomości',  active: true },
+    { time: '10:15', tag: 'AI CMO',        cls: 'tag-rust',     title: '3 warianty posta na LinkedIn plus szkic artykułu o AI w Twojej branży' },
+    { time: '11:00', tag: 'AI CTO',        cls: 'tag-ink',      title: 'Diagnoza: 2 procesy do zautomatyzowania w Stripe, oszczędność 6h/tydzień' },
+    { time: '12:30', tag: 'AI RAPORTY',    cls: 'tag-slate',    title: 'Tygodniowy raport sprzedaży: PDF z wykresami gotowy do prezentacji' },
+    { time: '13:45', tag: 'AI GHOST',      cls: 'tag-slate',    title: 'Follow-up do 6 klientów: każda wiadomość spersonalizowana pod kontekst' },
+    { time: '14:30', tag: 'AI CRM',        cls: 'tag-burgundy', title: 'Aktualizacja pipeline: 3 nowe leady, 2 oferty wysłane, 1 zamknięta' },
+    { time: '15:45', tag: 'AI MARKETING',  cls: 'tag-rust',     title: 'Kampania mailowa: segmentacja 4 grup plus copywriting na każdą' },
+    { time: '16:30', tag: 'AI ANALITYKA',  cls: 'tag-olive',    title: 'ROI kampanii: 217%, najlepszy kanał LinkedIn, raport tygodniowy' },
+    { time: '17:15', tag: 'AI NEWSLETTER', cls: 'tag-copper',   title: 'Newsletter dla klientów: 4 wartościowe wiadomości tygodnia, gotowy' },
+    { time: '18:00', tag: 'AI COO',        cls: 'tag-copper',   title: 'Podsumowanie dnia: 5 zadań done, 2 leady, 3 godziny do odzyskania' }
+  ];
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function mkCard(c) {
+    var isActive = c.active ? ' active' : '';
+    var status = c.active
+      ? '<div class="day-card-status">⟳ W trakcie...</div><div class="day-progress"><div class="fill"></div></div>'
+      : '<div class="day-card-status">✓ Wykonano</div>';
+    return '<div class="day-card' + isActive + '">' +
+      '<div class="day-card-head">' +
+        '<span class="day-card-time">' + esc(c.time) + '</span>' +
+        '<span class="day-card-tag ' + c.cls + '">' + esc(c.tag) + '</span>' +
+      '</div>' +
+      '<div class="day-card-title">' + esc(c.title) + '</div>' +
+      status +
+    '</div>';
+  }
+
+  var html = cards.map(mkCard).join('');
+  el.innerHTML = html + html; // duplicate for seamless loop
+
+  // Adjust animation duration based on actual content height (so speed is consistent)
+  requestAnimationFrame(function () {
+    var h = el.scrollHeight / 2;
+    if (h > 0) el.style.animationDuration = (h / 28) + 's'; // 28 px/s
+  });
+})();
