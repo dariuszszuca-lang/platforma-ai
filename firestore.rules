@@ -38,6 +38,10 @@ service cloud.firestore {
       allow read, delete: if isSignedIn();
     }
 
+    match /newsletter_issues/{issueId} {
+      allow read, write: if isSignedIn();
+    }
+
     match /zlecenia/{orderId} {
       allow create: if true;
       allow read, update, delete: if isSignedIn();
