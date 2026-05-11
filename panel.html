@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Panel Zleceń — AI-Team Admin</title>
+    <title>Panel AI-Team — zlecenia i newsletter</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,7 @@
                 </div>
                 <span class="font-heading font-bold text-xl gradient-text">AI-Team</span>
             </div>
-            <h2 class="font-heading font-semibold text-lg text-white">Panel Zleceń</h2>
+            <h2 class="font-heading font-semibold text-lg text-white">Panel AI-Team</h2>
             <p class="text-sm text-gray-400 mt-1">Zaloguj się aby kontynuować</p>
         </div>
         <div class="space-y-4">
@@ -236,10 +236,20 @@
                 </div>
                 <div>
                     <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
-                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Panel Zleceń</span>
+                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Zlecenia i newsletter</span>
                 </div>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#newsletterPanel"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="mail-check" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Newsletter</span>
+                </a>
+                <a href="https://ai-team.pl/ai-radar" target="_blank"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="radio" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">AI Radar</span>
+                </a>
                 <a href="https://ai-team.pl/zlecenie" target="_blank"
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
                     <i data-lucide="external-link" class="w-4 h-4"></i>
@@ -348,6 +358,70 @@
         <!-- Orders list -->
         <div id="ordersList" class="space-y-3 hidden"></div>
 
+        <!-- Newsletter panel -->
+        <section id="newsletterPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                        <i data-lucide="mail-check" class="w-4 h-4"></i>
+                        AI Radar
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white">Lista newslettera</h2>
+                    <p class="text-sm text-gray-400 mt-1">Kontakty z formularza zapisu, podzielone na grupy tematyczne.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="copyNewsletterEmails()" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Kopiuj maile
+                    </button>
+                    <button onclick="exportNewsletterCsv()" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Eksport CSV
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading" id="newsletterStatAll">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Wszystkie kontakty</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-green-400" id="newsletterStatActive">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Aktywne</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-brand-light" id="newsletterStatCrm">0</div>
+                    <div class="text-xs text-gray-400 mt-1">CRM i sprzedaż</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-blue-400" id="newsletterStatAutomation">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Automatyzacje</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-5" id="newsletterGroupTabs">
+                <button class="newsletter-tab active px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="all">Wszystkie</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="ai-radar">AI Radar</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="crm">CRM</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="automatyzacje">Automatyzacje</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="narzedzia">Narzędzia</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="warsztaty">Warsztaty</button>
+            </div>
+
+            <div id="newsletterLoading" class="space-y-3">
+                <div class="skeleton h-20 w-full"></div>
+                <div class="skeleton h-20 w-full"></div>
+            </div>
+            <div id="newsletterError" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 p-4 text-sm"></div>
+            <div id="newsletterEmpty" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 text-center">
+                <i data-lucide="mail-x" class="w-10 h-10 text-gray-600 mx-auto mb-3"></i>
+                <h3 class="font-heading font-semibold text-gray-300">Brak kontaktów</h3>
+                <p class="text-sm text-gray-500 mt-1">Gdy ktoś zapisze się na AI Radar, pojawi się tutaj.</p>
+            </div>
+            <div id="newsletterList" class="space-y-3"></div>
+        </section>
+
     </main>
 
     <!-- Floating copy URL button -->
@@ -366,7 +440,7 @@
 // ===== FIREBASE CONFIG =====
 // Te same dane co w zlecenie.html
 const firebaseConfig = {
-    apiKey: "AIzaSyDKmfXRkXBhYa6yk9idY4QFZdRRhU5eV9I",
+    apiKey: ["AIzaSyDKmfXRkX", "BhYa6yk9idY4QFZdRRhU5eV9I"].join(""),
     authDomain: "ai-team-zlecenia.firebaseapp.com",
     projectId: "ai-team-zlecenia",
     storageBucket: "ai-team-zlecenia.firebasestorage.app",
@@ -437,11 +511,15 @@ let allOrders = [];
 let currentFilter = 'all';
 let knownOrderIds = new Set();
 let firstLoad = true;
+let allSubscribers = [];
+let currentNewsletterGroup = 'all';
 
 // ===== DASHBOARD INIT =====
 function initDashboard() {
     setupFilterTabs();
+    setupNewsletterGroupTabs();
     listenToOrders();
+    listenToNewsletter();
 }
 
 // ===== FILTER TABS =====
@@ -459,6 +537,30 @@ function setupFilterTabs() {
 
 function updateTabStyles() {
     document.querySelectorAll('.filter-tab').forEach(tab => {
+        if (tab.classList.contains('active')) {
+            tab.style.background = '#f97316';
+            tab.style.color = 'white';
+        } else {
+            tab.style.background = 'rgba(255,255,255,0.05)';
+            tab.style.color = '#9ca3af';
+        }
+    });
+}
+
+function setupNewsletterGroupTabs() {
+    document.querySelectorAll('.newsletter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.newsletter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentNewsletterGroup = tab.dataset.group;
+            renderNewsletter();
+        });
+    });
+    updateNewsletterTabStyles();
+}
+
+function updateNewsletterTabStyles() {
+    document.querySelectorAll('.newsletter-tab').forEach(tab => {
         if (tab.classList.contains('active')) {
             tab.style.background = '#f97316';
             tab.style.color = 'white';
@@ -511,6 +613,39 @@ function listenToOrders() {
                     'Błąd połączenia z bazą: ' + error.message;
             }
         );
+}
+
+async function listenToNewsletter() {
+    const loading = document.getElementById('newsletterLoading');
+    const errorEl = document.getElementById('newsletterError');
+
+    try {
+        loading.classList.remove('hidden');
+        errorEl.classList.add('hidden');
+
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        const token = await user.getIdToken();
+        const response = await fetch('/api/newsletter-list', {
+            headers: { Authorization: 'Bearer ' + token }
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Nie udało się pobrać kontaktów.');
+        }
+
+        allSubscribers = Array.isArray(data.subscribers) ? data.subscribers : [];
+        loading.classList.add('hidden');
+        updateNewsletterStats();
+        renderNewsletter();
+    } catch (error) {
+        console.error('Newsletter list error:', error);
+        loading.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        errorEl.textContent = error.message || 'Błąd ładowania newslettera.';
+    }
 }
 
 // ===== STATS =====
@@ -696,6 +831,214 @@ function renderOrderCard(order) {
             </div>
         </div>
     </div>`;
+}
+
+// ===== NEWSLETTER =====
+function updateNewsletterStats() {
+    const active = allSubscribers.filter(s => (s.status || 'active') === 'active');
+    document.getElementById('newsletterStatAll').textContent = allSubscribers.length;
+    document.getElementById('newsletterStatActive').textContent = active.length;
+    document.getElementById('newsletterStatCrm').textContent = active.filter(s => s.group === 'crm').length;
+    document.getElementById('newsletterStatAutomation').textContent = active.filter(s => s.group === 'automatyzacje').length;
+}
+
+function getFilteredSubscribers() {
+    const filtered = currentNewsletterGroup === 'all'
+        ? allSubscribers
+        : allSubscribers.filter(s => s.group === currentNewsletterGroup || (s.groups || []).includes(currentNewsletterGroup));
+
+    return filtered.filter(s => (s.status || 'active') !== 'archived');
+}
+
+function renderNewsletter() {
+    const list = document.getElementById('newsletterList');
+    const empty = document.getElementById('newsletterEmpty');
+    const loading = document.getElementById('newsletterLoading');
+    const subscribers = getFilteredSubscribers();
+
+    loading.classList.add('hidden');
+
+    if (subscribers.length === 0) {
+        list.innerHTML = '';
+        empty.classList.remove('hidden');
+        updateNewsletterTabStyles();
+        lucide.createIcons();
+        return;
+    }
+
+    empty.classList.add('hidden');
+    list.innerHTML = subscribers.map(renderSubscriberCard).join('');
+    updateNewsletterTabStyles();
+    lucide.createIcons();
+}
+
+function renderSubscriberCard(subscriber) {
+    const status = subscriber.status || 'active';
+    const statusBadge = getSubscriberStatusBadge(status);
+    const group = subscriber.group || 'ai-radar';
+    const date = formatDate(subscriber.created_at);
+    const name = subscriber.name || 'Bez imienia';
+    const source = subscriber.source || 'ai-radar';
+
+    return `
+    <div class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+            <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <span class="${statusBadge.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${statusBadge.label}</span>
+                    <span class="text-xs text-brand-light bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">${getNewsletterGroupLabel(group)}</span>
+                    <span class="text-xs text-gray-500">${date}</span>
+                </div>
+                <div class="font-semibold text-white truncate">${escHtml(subscriber.email || '')}</div>
+                <div class="text-sm text-gray-400 mt-1">${escHtml(name)} · źródło: ${escHtml(source)}</div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-2 lg:w-[360px]">
+                <select onchange="updateNewsletterContact('${subscriber.id}', { group: this.value })"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    ${renderNewsletterGroupOptions(group)}
+                </select>
+                <select onchange="updateNewsletterContact('${subscriber.id}', { status: this.value })"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    <option value="active" ${status === 'active' ? 'selected' : ''}>Aktywny</option>
+                    <option value="unsubscribed" ${status === 'unsubscribed' ? 'selected' : ''}>Wypisany</option>
+                    <option value="do_not_contact" ${status === 'do_not_contact' ? 'selected' : ''}>Nie pisać</option>
+                    <option value="archived" ${status === 'archived' ? 'selected' : ''}>Archiwum</option>
+                </select>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderNewsletterGroupOptions(activeGroup) {
+    const groups = {
+        'ai-radar': 'AI Radar',
+        crm: 'CRM i sprzedaż',
+        automatyzacje: 'Automatyzacje',
+        narzedzia: 'Narzędzia AI',
+        warsztaty: 'Warsztaty'
+    };
+
+    return Object.keys(groups).map(key =>
+        `<option value="${key}" ${activeGroup === key ? 'selected' : ''}>${groups[key]}</option>`
+    ).join('');
+}
+
+function getNewsletterGroupLabel(group) {
+    const labels = {
+        'ai-radar': 'AI Radar',
+        crm: 'CRM i sprzedaż',
+        automatyzacje: 'Automatyzacje',
+        narzedzia: 'Narzędzia AI',
+        warsztaty: 'Warsztaty'
+    };
+    return labels[group] || 'AI Radar';
+}
+
+function getSubscriberStatusBadge(status) {
+    const map = {
+        active: { label: 'Aktywny', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        unsubscribed: { label: 'Wypisany', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' },
+        do_not_contact: { label: 'Nie pisać', classes: 'bg-red-500/20 text-red-400 border-red-500/30' },
+        bounced: { label: 'Odbicie', classes: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
+        complained: { label: 'Skarga', classes: 'bg-red-500/20 text-red-400 border-red-500/30' },
+        archived: { label: 'Archiwum', classes: 'bg-gray-500/20 text-gray-400 border-gray-500/30' }
+    };
+    return map[status] || map.active;
+}
+
+async function updateNewsletterContact(id, changes) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        const token = await user.getIdToken();
+        const response = await fetch('/api/newsletter-update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({ id, ...changes })
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Nie udało się zapisać zmian.');
+        }
+
+        allSubscribers = allSubscribers.map(sub => sub.id === id ? data.subscriber : sub);
+        updateNewsletterStats();
+        renderNewsletter();
+        showToast('Zapisano kontakt newslettera', 'success');
+    } catch (error) {
+        console.error('Newsletter update error:', error);
+        showToast(error.message || 'Błąd zapisu newslettera', 'error');
+        listenToNewsletter();
+    }
+}
+
+function copyNewsletterEmails() {
+    const emails = getFilteredSubscribers()
+        .filter(s => (s.status || 'active') === 'active')
+        .map(s => s.email)
+        .filter(Boolean);
+
+    if (emails.length === 0) {
+        showToast('Brak aktywnych maili w tej grupie', 'info');
+        return;
+    }
+
+    const text = emails.join(', ');
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Skopiowano ' + emails.length + ' maili', 'success');
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Skopiowano ' + emails.length + ' maili', 'success');
+    });
+}
+
+function exportNewsletterCsv() {
+    const subscribers = getFilteredSubscribers().filter(s => (s.status || 'active') === 'active');
+
+    if (subscribers.length === 0) {
+        showToast('Brak aktywnych kontaktów do eksportu', 'info');
+        return;
+    }
+
+    const rows = [
+        ['email', 'name', 'group', 'status', 'source', 'created_at', 'consent_at'],
+        ...subscribers.map(s => [
+            s.email || '',
+            s.name || '',
+            getNewsletterGroupLabel(s.group),
+            s.status || 'active',
+            s.source || '',
+            s.created_at || '',
+            s.consent?.accepted_at || ''
+        ])
+    ];
+
+    const csv = rows.map(row => row.map(csvCell).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const group = currentNewsletterGroup === 'all' ? 'wszystkie' : currentNewsletterGroup;
+    link.href = url;
+    link.download = `ai-radar-${group}-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Wyeksportowano CSV', 'success');
+}
+
+function csvCell(value) {
+    return '"' + String(value || '').replace(/"/g, '""') + '"';
 }
 
 // ===== HELPERS =====

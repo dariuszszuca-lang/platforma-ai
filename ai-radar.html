@@ -8,25 +8,409 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
 
-    <title>AI Radar. newsletter o AI dla biznesu | AI-Team</title>
-    <meta name="description" content="Cotygodniowy newsletter AI Radar: gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. Bonus: raport 15 sposobów.">
+    <title>AI Radar. newsletter o AI dla małych firm | AI-Team</title>
+    <meta name="description" content="AI Radar to krótki newsletter Darka Szucy o tym, co realnie warto testować i wdrażać w AI, automatyzacjach, CRM i sprzedaży.">
+    <link rel="canonical" href="https://ai-team.pl/ai-radar">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/ai-radar">
-    <meta property="og:title" content="AI Radar. newsletter | AI-Team">
-    <meta property="og:description" content="Cotygodniowy newsletter o AI dla biznesu. Konkrety, nie hype. Bonus powitalny: raport 15 sposobów wdrożenia AI.">
+    <meta property="og:title" content="AI Radar. krótki newsletter o AI | AI-Team">
+    <meta property="og:description" content="Raz w tygodniu: narzędzia, agenci, automatyzacje i konkretne wnioski z pracy AI-Team. Bez szumu.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-ai-radar-20260511.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="AI Radar. Sygnał tygodnia o AI dla biznesu.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Radar. newsletter | AI-Team">
-    <meta name="twitter:description" content="Cotygodniowy newsletter o AI dla biznesu. Konkrety, nie hype.">
+    <meta name="twitter:description" content="Krótki newsletter o AI, który da się przeczytać przy kawie.">
     <meta name="twitter:image" content="https://ai-team.pl/assets/og-ai-radar-20260511.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <style>
+      :root {
+        --radar-bg: #070706;
+        --radar-card: rgba(255,255,255,.075);
+        --radar-line: rgba(255,255,255,.16);
+        --radar-muted: rgba(255,255,255,.68);
+        --radar-soft: rgba(255,255,255,.09);
+        --radar-orange: #ff7a1a;
+        --radar-orange-2: #ffb26a;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at 78% 16%, rgba(255,122,26,.2), transparent 31rem),
+          radial-gradient(circle at 12% 78%, rgba(255,178,106,.12), transparent 26rem),
+          linear-gradient(135deg, #060606 0%, #0d0d0b 52%, #15100b 100%);
+        color: #fffaf1;
+        overflow-x: hidden;
+      }
+
+      .radar-page *,
+      .radar-page *::before,
+      .radar-page *::after {
+        box-sizing: border-box;
+      }
+
+      .radar-page {
+        min-height: calc(100dvh - 90px);
+        padding: 48px 0 72px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .radar-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.22));
+        pointer-events: none;
+      }
+
+      .radar-shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .radar-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(310px, 420px);
+        gap: 22px;
+        min-height: 680px;
+        border: 1px solid var(--radar-line);
+        background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.035));
+        border-radius: 28px;
+        box-shadow: 0 32px 120px rgba(0,0,0,.42);
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+      }
+
+      .radar-copy,
+      .radar-side {
+        padding: clamp(28px, 5vw, 62px);
+        min-width: 0;
+      }
+
+      .radar-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .radar-badge {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border: 1px solid rgba(255,122,26,.38);
+        border-radius: 999px;
+        color: var(--radar-orange-2);
+        background: rgba(255,122,26,.1);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .radar-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--radar-orange);
+        box-shadow: 0 0 18px rgba(255,122,26,.9);
+      }
+
+      .radar-title {
+        max-width: 760px;
+        margin: 24px 0 18px;
+        font-family: "Inter", sans-serif;
+        font-size: clamp(48px, 8vw, 94px);
+        line-height: .93;
+        letter-spacing: 0;
+        font-weight: 800;
+        color: #fffaf1;
+        overflow-wrap: break-word;
+      }
+
+      .radar-title em {
+        color: var(--radar-orange);
+        font-style: normal;
+      }
+
+      .radar-lead {
+        max-width: 660px;
+        margin: 0;
+        color: rgba(255,250,241,.78);
+        font-size: clamp(18px, 2.2vw, 23px);
+        line-height: 1.48;
+      }
+
+      .radar-value {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        max-width: 660px;
+        margin: 28px 0 0;
+      }
+
+      .radar-value span {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        padding: 14px;
+        border: 1px solid var(--radar-line);
+        border-radius: 16px;
+        background: rgba(0,0,0,.18);
+        color: rgba(255,250,241,.82);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .radar-side {
+        border-left: 1px solid var(--radar-line);
+        background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(0,0,0,.1));
+      }
+
+      .radar-photo {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,.2);
+        background: #111;
+        aspect-ratio: 4 / 5;
+      }
+
+      .radar-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 54% 50%;
+        display: block;
+      }
+
+      .radar-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,.48), transparent 38%);
+      }
+
+      .radar-author {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        z-index: 1;
+      }
+
+      .radar-author strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .radar-author span {
+        display: block;
+        margin-top: 4px;
+        color: rgba(255,255,255,.72);
+        font-size: 13px;
+      }
+
+      .radar-form {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .radar-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .radar-field label {
+        color: rgba(255,250,241,.78);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .radar-field input,
+      .radar-field select {
+        width: 100%;
+        min-height: 52px;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 14px;
+        background: rgba(0,0,0,.28);
+        color: #fffaf1;
+        font: inherit;
+        font-size: 15px;
+        padding: 0 15px;
+        outline: none;
+      }
+
+      .radar-field select {
+        color-scheme: dark;
+      }
+
+      .radar-field input:focus,
+      .radar-field select:focus {
+        border-color: rgba(255,122,26,.82);
+        box-shadow: 0 0 0 4px rgba(255,122,26,.16);
+      }
+
+      .radar-consent {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 2px;
+        color: rgba(255,250,241,.66);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .radar-consent input {
+        width: 18px;
+        height: 18px;
+        margin-top: 1px;
+        accent-color: var(--radar-orange);
+        flex: 0 0 auto;
+      }
+
+      .radar-consent a,
+      .radar-note a {
+        color: #ffd2ad;
+      }
+
+      .radar-button {
+        min-height: 54px;
+        border: 0;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #fff7ed, #ff8a2b);
+        color: #100904;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      }
+
+      .radar-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 48px rgba(255,122,26,.28);
+      }
+
+      .radar-button:disabled {
+        cursor: not-allowed;
+        opacity: .72;
+        transform: none;
+      }
+
+      .radar-note {
+        margin: 10px 0 0;
+        color: rgba(255,250,241,.56);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .radar-message {
+        display: none;
+        margin-top: 10px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .radar-message.is-visible {
+        display: block;
+      }
+
+      .radar-message.success {
+        border: 1px solid rgba(34,197,94,.35);
+        color: #bbf7d0;
+        background: rgba(34,197,94,.13);
+      }
+
+      .radar-message.error {
+        border: 1px solid rgba(248,113,113,.35);
+        color: #fecaca;
+        background: rgba(248,113,113,.13);
+      }
+
+      .radar-foot {
+        margin: 22px auto 0;
+        color: rgba(255,250,241,.48);
+        text-align: center;
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        .radar-card {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .radar-side {
+          border-left: 0;
+          border-top: 1px solid var(--radar-line);
+        }
+
+        .radar-photo {
+          aspect-ratio: 16 / 11;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .radar-page {
+          padding: 26px 0 48px;
+        }
+
+        .radar-shell {
+          width: calc(100vw - 64px);
+          max-width: 1180px;
+        }
+
+        .radar-card {
+          border-radius: 22px;
+        }
+
+        .radar-copy,
+        .radar-side {
+          padding: 20px;
+        }
+
+        .radar-title {
+          font-size: clamp(32px, 8.7vw, 36px);
+          line-height: 1.04;
+        }
+
+        .radar-lead {
+          font-size: 17px;
+        }
+
+        .radar-title em {
+          display: block;
+        }
+
+        .radar-value span {
+          overflow-wrap: anywhere;
+        }
+
+        .radar-value {
+          grid-template-columns: 1fr;
+        }
+
+        .radar-value span {
+          min-height: 0;
+        }
+      }
+    </style>
 </head>
 <body>
 
@@ -50,179 +434,138 @@
       <a href="/#about">O autorze</a>
     </div>
     <button class="hamburger" aria-label="Menu" aria-expanded="false"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></button>
-    <a href="#signup" class="nav-cta"><span>Zapisz się</span><span class="arrow">→</span></a>
+    <a href="#zapis" class="nav-cta"><span>Zapisz się</span><span class="arrow">→</span></a>
   </div>
 </nav>
 
-<div class="breadcrumbs"><div class="container"><a href="/">AI · Team</a><span class="sep">/</span><a href="/playbooki.html">Playbooki</a><span class="sep">/</span><span>AI Radar</span></div></div>
+<main class="radar-page" id="zapis">
+  <div class="radar-shell">
+    <section class="radar-card" aria-labelledby="radar-title">
+      <div class="radar-copy">
+        <div class="radar-badge"><span class="radar-dot"></span>AI RADAR · NEWSLETTER DARKA</div>
+        <h1 class="radar-title" id="radar-title">Jeden mail o AI, który przeczytasz <em>przy kawie.</em></h1>
+        <p class="radar-lead">Piszę o tym, co sam testuję: agenci, automatyzacje, CRM, narzędzia i konkretne wnioski z pracy AI-Team. Bez newsowego szumu i obietnic z kosmosu.</p>
+        <div class="radar-value" aria-label="Co dostaniesz po zapisie">
+          <span>Co warto sprawdzić, zanim zniknie Ci pół dnia.</span>
+          <span>Jak używać AI w sprzedaży, treściach i obsłudze klientów.</span>
+          <span>Co omijać, bo wygląda dobrze tylko na prezentacji.</span>
+        </div>
+      </div>
 
-<section class="hero-page">
-  <div class="container">
-    <span class="label-mono">NEWSLETTER · TYGODNIOWO · 0 ZŁ</span>
-    <h1 class="display">AI Radar.<br/><em>Cotygodniowo</em><br/>o AI dla biznesu.</h1>
-    <p class="body-lg">Co poniedziałek 5 sekcji wartościowych: gorące newsy, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. Konkrety, nie hype. Bonus powitalny: raport „15 sposobów wdrożenia AI".</p>
-    <div class="hero-cta-row">
-      <a class="cta-primary" href="#signup">Zapisz się →</a>
-      <a class="cta-secondary" href="#what">Zobacz co dostajesz</a>
-    </div>
+      <aside class="radar-side" aria-label="Formularz zapisu">
+        <div class="radar-photo">
+          <img src="assets/dariusz-szuca.png" width="1080" height="1350" alt="Dariusz Szuca, autor newslettera AI Radar" fetchpriority="high">
+          <div class="radar-author">
+            <strong>Darek Szuca</strong>
+            <span>AI-Team. Strony, CRM i automatyzacje dla małych firm.</span>
+          </div>
+        </div>
+
+        <form class="radar-form" id="newsletterForm" novalidate>
+          <input type="text" name="company" id="newsletterCompany" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+          <div class="radar-field">
+            <label for="newsletterEmail">Email</label>
+            <input type="email" id="newsletterEmail" name="email" autocomplete="email" placeholder="twoj@email.pl" required>
+          </div>
+          <div class="radar-field">
+            <label for="newsletterName">Imię <span style="font-weight:500;color:rgba(255,250,241,.48);">(opcjonalnie)</span></label>
+            <input type="text" id="newsletterName" name="name" autocomplete="given-name" placeholder="Darek">
+          </div>
+          <div class="radar-field">
+            <label for="newsletterGroup">Co mam Ci wysyłać najczęściej?</label>
+            <select id="newsletterGroup" name="group">
+              <option value="ai-radar">Najważniejsze rzeczy z AI</option>
+              <option value="crm">CRM i systemy sprzedaży</option>
+              <option value="automatyzacje">Automatyzacje w firmie</option>
+              <option value="narzedzia">Narzędzia i agenci AI</option>
+              <option value="warsztaty">Warsztaty i szkolenia</option>
+            </select>
+          </div>
+          <label class="radar-consent">
+            <input type="checkbox" id="newsletterConsent" name="consent" required>
+            <span>Zgadzam się na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną. Wiem, że mogę wycofać zgodę w każdej chwili. Szczegóły są w <a href="/privacy.html">polityce prywatności</a>.</span>
+          </label>
+          <button class="radar-button" id="newsletterButton" type="submit">Zapisz mnie na AI Radar</button>
+          <div class="radar-message" id="newsletterMessage" role="status" aria-live="polite"></div>
+        </form>
+
+        <p class="radar-note">Administratorem danych jest Dariusz Szuca. Wysyłka idzie przez własny system AI-Team. Nie sprzedaję listy i nie wysyłam codziennych wiadomości.</p>
+      </aside>
+    </section>
+    <p class="radar-foot">Raz w tygodniu. Krótko. Po polsku. Dla ludzi, którzy chcą używać AI w pracy, a nie tylko czytać o premierach modeli.</p>
   </div>
-</section>
+</main>
 
-<section class="full-offer" id="what" style="background: var(--cream);">
-  <div class="container">
-    <div class="section-head">
-      <span class="label-mono">5 SEKCJI W KAŻDYM WYDANIU</span>
-      <h2>Co dostajesz<br/><em>w każdy poniedziałek.</em></h2>
-      <p class="body-lg">5 sekcji w jednym mailu. 5 minut czytania. Konkrety które możesz wdrożyć od razu.</p>
-    </div>
-    <div class="offer-grid-3" style="max-width: 1200px; margin: 0 auto;">
-      <div class="offer-item">
-        <span class="offer-status soon">Sekcja 1</span>
-        <h4 style="margin-top: 16px;">Gorące newsy AI</h4>
-        <p class="body-sm">3-5 najważniejszych newsów z tygodnia z perspektywy biznesu. Nowe modele, ważne zmiany w cenach, premiery narzędzi. Bez tech-bro hype.</p>
-      </div>
-      <div class="offer-item">
-        <span class="offer-status soon">Sekcja 2</span>
-        <h4 style="margin-top: 16px;">Narzędzie tygodnia</h4>
-        <p class="body-sm">Jedno konkretne narzędzie AI z opisem: do czego, dla kogo, ile kosztuje, jak zacząć w 10 minut. Plus moja ocena (kupować / poczekać / pominąć).</p>
-      </div>
-      <div class="offer-item">
-        <span class="offer-status soon">Sekcja 3</span>
-        <h4 style="margin-top: 16px;">Prompt dnia</h4>
-        <p class="body-sm">Gotowy prompt do skopiowania. Każdy z kontekstem: do czego użyć, dlaczego działa, jak modyfikować dla swojej firmy. Przetestowany u klientów.</p>
-      </div>
-      <div class="offer-item">
-        <span class="offer-status soon">Sekcja 4</span>
-        <h4 style="margin-top: 16px;">3 szybkie tipy</h4>
-        <p class="body-sm">3 pomysły do wdrożenia w 15 minut każdy. Małe, konkretne, daje od razu efekt. Bez „zarządzaj zmianą organizacyjną".</p>
-      </div>
-      <div class="offer-item">
-        <span class="offer-status soon">Sekcja 5</span>
-        <h4 style="margin-top: 16px;">Automatyzacja tygodnia</h4>
-        <p class="body-sm">Workflow który zaoszczędzi Ci minimum 1 godzinę tygodniowo. Make / Zapier / API + krok po kroku jak go ustawić. Z linkiem do template.</p>
-      </div>
-      <div class="offer-item featured">
-        <span class="offer-status free">★ Bonus powitalny</span>
-        <h4 style="margin-top: 16px;">Raport „15 sposobów wdrożenia AI"</h4>
-        <p class="body-sm">Po zapisie dostajesz PDF 22 strony jako bonus powitalny. 15 wdrożeń + decyzyjnik priorytetów + lista 25 narzędzi.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script>
+const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną.';
 
-<section class="quiz" id="signup">
-  <div class="container">
-    <div class="section-head">
-      <span class="label-mono">ZAPIS · 30 SEKUND</span>
-      <h2>Zapisz się<br/><em>na AI Radar.</em></h2>
-      <p class="body-lg">Wpisz email, dostajesz pierwsze wydanie + raport w PDF. Wypisz się jednym klikiem w stopce każdego maila.</p>
-    </div>
-    <div class="quiz-card">
-      <span class="label-mono">FORMULARZ · BEZ SPAMU</span>
-      <h3>Email i jesteś w środku</h3>
-      <p>Niedziela wieczór: notatki. Poniedziałek 8:00: AI Radar w Twojej skrzynce.</p>
-      <form action="https://formspree.io/f/your-id" method="POST" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
-        <input type="email" name="email" placeholder="twoj@email.pl" required style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
-        <input type="text" name="name" placeholder="Imię (żebym wiedział jak Cię witać)" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
-        <select name="role" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;">
-          <option value="">Czym się zajmujesz? (opcjonalnie)</option>
-          <option value="freelancer">Freelancer / solo</option>
-          <option value="firma-mala">Mała firma 2-10 osób</option>
-          <option value="firma-srednia">Średnia firma 10-50</option>
-          <option value="agent-nieruchomosci">Agent nieruchomości</option>
-          <option value="konsulting">Konsulting / coaching</option>
-          <option value="ecommerce">E-commerce</option>
-          <option value="inne">Inne</option>
-        </select>
-        <label style="font-size: 12px; color: rgba(251,248,241,0.7); display: flex; align-items: flex-start; gap: 10px;">
-          <input type="checkbox" required style="margin-top: 4px;" />
-          <span>Zgadzam się na otrzymywanie newslettera AI Radar i bonusu powitalnego (raport PDF). Mogę wypisać się w każdej chwili.</span>
-        </label>
-        <button type="submit" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Zapisz się · zostań w środku →</button>
-      </form>
-    </div>
-  </div>
-</section>
+const newsletterForm = document.getElementById('newsletterForm');
+const newsletterButton = document.getElementById('newsletterButton');
+const newsletterMessage = document.getElementById('newsletterMessage');
 
-<section class="content">
-  <div class="container-narrow">
-    <span class="label-mono">PRZYKŁADOWE WYDANIA</span>
-    <h2>Co znajdziesz<br/><em>w archiwum.</em></h2>
-    <p>AI Radar wychodzi co tydzień od początku 2024. Każde wydanie ma swój temat przewodni. od podstaw po zaawansowane workflows.</p>
-    <h3>Wydanie 22. „Claude 3.5 Sonnet vs GPT-4o w sprzedaży"</h3>
-    <p>Test 5 promptów sprzedażowych na obu modelach. Wyniki z mojej praktyki + decyzyjnik kiedy który użyć. Plus prompt template do follow-upów.</p>
-    <h3>Wydanie 18. „Make.com dla małej firmy w 30 minut"</h3>
-    <p>Pierwsza automatyzacja: nowy lead na Facebooku → Slack → Notion. Krok po kroku ze screenami. Plus 3 inne workflows do skopiowania.</p>
-    <h3>Wydanie 14. „NotebookLM jako baza wiedzy firmy"</h3>
-    <p>Jak wgrać dokumenty firmy do NotebookLM żeby zespół zadawał pytania zamiast szukać. Plus przykład z MyWay.</p>
-    <p style="margin-top: 32px; font-size: 13px; color: var(--ink-mute);">Po zapisie dostajesz dostęp do archiwum wszystkich poprzednich wydań.</p>
-  </div>
-</section>
+function showNewsletterMessage(type, text) {
+  newsletterMessage.className = 'radar-message is-visible ' + type;
+  newsletterMessage.textContent = text;
+}
 
-<section class="testimonials">
-  <div class="container">
-    <div class="section-head">
-      <span class="label-mono">CO MÓWIĄ CZYTELNICY</span>
-      <h2>Słowo od <em>subskrybentów.</em></h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <div class="stars">★ ★ ★ ★ ★</div>
-        <blockquote>„Jedyny newsletter o AI który czytam. Reszta to powielanie tweetów. Tutaj jest praktyczna wartość. co tydzień coś wdrażam."</blockquote>
-        <div class="author"><div class="author-name">Marta R.</div><div class="author-role">CMO · SaaS B2B</div></div>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★ ★ ★ ★ ★</div>
-        <blockquote>„5 minut w poniedziałek = 1-2h zaoszczędzone w tygodniu. Najlepszy ROI z newsletterów które subskrybuję."</blockquote>
-        <div class="author"><div class="author-name">Krzysztof B.</div><div class="author-role">Solopreneur · konsulting</div></div>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★ ★ ★ ★ ★</div>
-        <blockquote>„Sekcja prompt dnia warta sama w sobie. Mam folder „AI Radar prompts" i sięgam do niego co tydzień."</blockquote>
-        <div class="author"><div class="author-name">Tomek L.</div><div class="author-role">Marketing manager · e-com</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+newsletterForm.addEventListener('submit', async function(event) {
+  event.preventDefault();
 
-<section class="cta-final">
-  <div class="container">
-    <span class="label-mono" style="display:block; margin-bottom:32px;">JEDEN MAIL · TYGODNIOWO · 0 ZŁ</span>
-    <h2>Dołącz do<br/><em>AI Radar.</em></h2>
-    <p>Pierwsze wydanie + raport „15 sposobów" w PDF wysyłam zaraz po zapisie. Bez spamu, bez sprzedaży, bez zobowiązań.</p>
-    <div class="cta-row">
-      <a href="#signup" class="cta-primary">Zapisz się →</a>
-      <a href="/raport.html" class="cta-secondary">Albo pobierz raport bez newslettera</a>
-    </div>
-  </div>
-</section>
+  const email = document.getElementById('newsletterEmail').value.trim().toLowerCase();
+  const name = document.getElementById('newsletterName').value.trim();
+  const group = document.getElementById('newsletterGroup').value;
+  const consent = document.getElementById('newsletterConsent').checked;
+  const honeypot = document.getElementById('newsletterCompany').value;
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="brand">
-          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
-            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
-            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
-            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
-            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
-          </svg>
-          <span class="wordmark">AI · <em>Team</em></span>
-        </a>
-        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
-      </div>
-      <div class="footer-col"><h5>Oferta</h5><a href="/wdrozenie-ai.html">Wdrożenie AI</a><a href="/warsztaty-ai.html">Akademia AI</a><a href="/playbooki.html">Playbooki</a><a href="/zlecenie.html">Mini-System / CRM</a><a href="/produkt1-tracker.html">Tracker Czasu</a></div>
-      <div class="footer-col"><h5>O nas</h5><a href="/#about">O autorze</a><a href="/#case">Przykład MyWay</a><a href="/ai-radar.html">Newsletter AI Radar</a></div>
-      <div class="footer-col"><h5>Kontakt</h5><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
-      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
-    </div>
-  </div>
-</footer>
+  if (!email || !email.includes('@')) {
+    showNewsletterMessage('error', 'Wpisz poprawny adres email.');
+    return;
+  }
 
+  if (!consent) {
+    showNewsletterMessage('error', 'Zaznacz zgodę na newsletter. Bez tego nie mogę zapisać adresu.');
+    return;
+  }
+
+  newsletterButton.disabled = true;
+  newsletterButton.textContent = 'Zapisuję...';
+  newsletterMessage.className = 'radar-message';
+  newsletterMessage.textContent = '';
+
+  try {
+    const response = await fetch('/api/newsletter-subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        name,
+        group,
+        consent,
+        consentText: NEWSLETTER_CONSENT_TEXT,
+        company: honeypot,
+        source: 'ai-radar',
+        pageUrl: window.location.href,
+        referrer: document.referrer || ''
+      })
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || 'Nie udało się zapisać adresu.');
+    }
+
+    newsletterForm.reset();
+    document.getElementById('newsletterGroup').value = group;
+    showNewsletterMessage('success', 'Jesteś zapisany. Pierwszy AI Radar wyślę na podany adres.');
+  } catch (error) {
+    showNewsletterMessage('error', error.message || 'Coś poszło nie tak. Spróbuj za chwilę albo napisz do mnie bezpośrednio.');
+  } finally {
+    newsletterButton.disabled = false;
+    newsletterButton.textContent = 'Zapisz mnie na AI Radar';
+  }
+});
+</script>
 <script src="assets/main.js" defer></script>
 </body>
 </html>
