@@ -104,7 +104,53 @@
       .radar-copy {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-top: clamp(28px, 3.5vw, 44px);
+      }
+
+      .radar-brandline {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        width: fit-content;
+        margin-bottom: clamp(28px, 4vw, 46px);
+        color: rgba(255,250,241,.72);
+      }
+
+      .radar-brandmark {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255,122,26,.34);
+        border-radius: 14px;
+        background:
+          linear-gradient(145deg, rgba(255,122,26,.18), rgba(255,122,26,.04)),
+          rgba(0,0,0,.24);
+        box-shadow: 0 18px 44px rgba(255,122,26,.16);
+      }
+
+      .radar-brandmark svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .radar-brandtext strong {
+        display: block;
+        color: #fffaf1;
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 800;
+      }
+
+      .radar-brandtext span {
+        display: block;
+        margin-top: 4px;
+        color: rgba(255,250,241,.5);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        line-height: 1;
+        letter-spacing: 0;
       }
 
       .radar-badge {
@@ -387,6 +433,14 @@
           padding: 20px;
         }
 
+        .radar-copy {
+          padding-top: 22px;
+        }
+
+        .radar-brandline {
+          margin-bottom: 22px;
+        }
+
         .radar-title {
           font-size: clamp(32px, 8.7vw, 36px);
           line-height: 1.04;
@@ -444,6 +498,18 @@
   <div class="radar-shell">
     <section class="radar-card" aria-labelledby="radar-title">
       <div class="radar-copy">
+        <div class="radar-brandline" aria-label="AI-Team">
+          <span class="radar-brandmark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="#ff7a1a"/>
+              <path d="M17.4 5.8 9.2 17h6.1l-1 9.2L22.8 14h-6.3l.9-8.2Z" fill="#fffaf1"/>
+            </svg>
+          </span>
+          <span class="radar-brandtext">
+            <strong>AI-Team</strong>
+            <span>NEWSLETTER DARKA</span>
+          </span>
+        </div>
         <div class="radar-badge"><span class="radar-dot"></span>AI RADAR · NEWSLETTER DARKA</div>
         <h1 class="radar-title" id="radar-title">Jeden mail o AI, który przeczytasz <em>przy kawie.</em></h1>
         <p class="radar-lead">Piszę o tym, co sam testuję: agenci, automatyzacje, CRM, narzędzia i konkretne wnioski z pracy AI-Team. Bez newsowego szumu i obietnic z kosmosu.</p>
@@ -555,7 +621,7 @@ newsletterForm.addEventListener('submit', async function(event) {
 
   try {
     if (honeypot) {
-      showNewsletterMessage('success', 'Jesteś zapisany. Pierwszy AI Radar wyślę na podany adres.');
+      window.location.href = '/ai-radar-dziekuje.html';
       return;
     }
 
@@ -585,9 +651,7 @@ newsletterForm.addEventListener('submit', async function(event) {
       merge: true
     });
 
-    newsletterForm.reset();
-    document.getElementById('newsletterGroup').value = group;
-    showNewsletterMessage('success', 'Jesteś zapisany. Pierwszy AI Radar wyślę na podany adres.');
+    window.location.href = '/ai-radar-dziekuje.html';
   } catch (error) {
     showNewsletterMessage('error', error.message || 'Coś poszło nie tak. Spróbuj za chwilę albo napisz do mnie bezpośrednio.');
   } finally {
