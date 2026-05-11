@@ -590,7 +590,7 @@ function renderNewsletterIssueCard(issue) {
     const scheduled = formatDate(issue.scheduled_at);
     const previewUrl = issue.preview_url || '';
     const group = getNewsletterGroupLabel(issue.group || 'ai-radar');
-    const sourceLabel = issue.source === 'local' ? 'plik lokalny' : 'baza';
+    const sourceLabel = issue.source === 'local' || issue.source === 'local-file' ? 'plik lokalny' : 'baza';
 
     return `
     <div class="rounded-xl border border-white/10 bg-black/20 p-4 flex flex-col gap-4">
@@ -616,6 +616,21 @@ function renderNewsletterIssueCard(issue) {
                 <i data-lucide="eye" class="w-4 h-4"></i>
                 Podgląd HTML
             </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'dry')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i data-lucide="list-checks" class="w-4 h-4"></i>
+                Sprawdź
+            </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'test')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Test do mnie
+            </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'send')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:border-red-500 hover:text-red-300">
+                <i data-lucide="radio-tower" class="w-4 h-4"></i>
+                Wyślij teraz
+            </button>
             <a href="${escAttr(previewUrl)}" target="_blank"
                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
                 <i data-lucide="external-link" class="w-4 h-4"></i>
@@ -629,6 +644,8 @@ function getIssueStatusBadge(status) {
     const map = {
         draft: { label: 'Szkic', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' },
         scheduled: { label: 'Zaplanowane', classes: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
+        sending: { label: 'Wysyłka', classes: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
+        partial: { label: 'Częściowo', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
         sent: { label: 'Wysłane', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
         paused: { label: 'Wstrzymane', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' }
     };
@@ -653,6 +670,54 @@ function closeIssuePreview() {
     document.getElementById('issuePreviewFrame').src = 'about:blank';
     document.getElementById('issuePreviewModal').classList.add('hidden');
     document.body.style.overflow = '';
+}
+
+async function sendNewsletterIssue(issueId, mode) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Zaloguj się ponownie do panelu.');
+
+        const payload = { issueId };
+        if (mode === 'dry') {
+            payload.dryRun = true;
+        } else if (mode === 'test') {
+            const defaultEmail = user.email || 'darek@ai-team.pl';
+            const testTo = window.prompt('Na jaki adres wysłać test?', defaultEmail);
+            if (!testTo) return;
+            payload.dryRun = false;
+            payload.testTo = testTo.trim();
+            payload.limit = 1;
+        } else if (mode === 'send') {
+            const confirmed = window.confirm('To wyśle wydanie do aktywnych kontaktów z tej grupy. Kontynuować?');
+            if (!confirmed) return;
+            payload.mode = 'send';
+            payload.dryRun = false;
+        }
+
+        showToast(mode === 'dry' ? 'Sprawdzam wydanie...' : 'Uruchamiam wysyłkę...', 'info');
+
+        const token = await user.getIdToken();
+        const response = await fetch('/api/newsletter-send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok) {
+            throw new Error(data.error || 'Nie udało się uruchomić wysyłki.');
+        }
+
+        const summary = mode === 'dry'
+            ? `Gotowe: ${data.planned || 0} adresów do wysyłki.`
+            : `Wysłano: ${data.sent || 0}, błędy: ${data.failed || 0}.`;
+        showToast(summary, data.failed ? 'error' : 'success');
+    } catch (error) {
+        console.error('Newsletter send error:', error);
+        showToast(error.message || 'Błąd wysyłki newslettera', 'error');
+    }
 }
 
 function renderSubscriberCard(subscriber) {

@@ -1,6 +1,12 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "crons": [
+    {
+      "path": "/api/newsletter-send",
+      "schedule": "0 16 * * 2"
+    }
+  ],
   "rewrites": [
     { "source": "/app", "destination": "/app.html" },
     { "source": "/produkt1-tracker", "destination": "/produkt1-tracker.html" },
