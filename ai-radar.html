@@ -240,6 +240,22 @@
         border-left: 1px solid rgba(255,255,255,.1);
       }
 
+      .radar-schedule {
+        max-width: 620px;
+        margin: auto 0 0;
+        padding-top: 22px;
+        color: rgba(255,250,241,.54);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .radar-schedule strong {
+        display: block;
+        margin-bottom: 3px;
+        color: rgba(255,250,241,.82);
+        font-size: 14px;
+      }
+
       .radar-side {
         border-left: 1px solid var(--radar-line);
         background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(0,0,0,.1));
@@ -475,6 +491,11 @@
           min-height: 0;
         }
 
+        .radar-schedule {
+          margin-top: 18px;
+          padding-top: 0;
+        }
+
         .radar-format-list {
           grid-template-columns: 1fr;
         }
@@ -546,6 +567,7 @@
             <span>Jedna rzecz do odpuszczenia, zanim zabierze czas.</span>
           </div>
         </div>
+        <p class="radar-schedule"><strong>W każdy wtorek o 18:00.</strong> AI Radar planujemy z wyprzedzeniem, więc możesz zapisać się raz i dostawać kolejne wydania bez pilnowania premier.</p>
       </div>
 
       <aside class="radar-side" aria-label="Formularz zapisu">
