@@ -188,6 +188,58 @@
         line-height: 1.35;
       }
 
+      .radar-format {
+        max-width: 620px;
+        margin-top: 18px;
+        border: 1px solid rgba(255,255,255,.14);
+        border-radius: 18px;
+        background:
+          linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+          rgba(0,0,0,.18);
+        overflow: hidden;
+      }
+
+      .radar-format-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 15px 16px 13px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+
+      .radar-format-head span {
+        color: var(--radar-orange-2);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        line-height: 1;
+      }
+
+      .radar-format-head strong {
+        color: rgba(255,250,241,.9);
+        font-size: 14px;
+        line-height: 1.2;
+      }
+
+      .radar-format-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .radar-format-list span {
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        padding: 15px 16px;
+        color: rgba(255,250,241,.74);
+        font-size: 13.5px;
+        line-height: 1.35;
+      }
+
+      .radar-format-list span + span {
+        border-left: 1px solid rgba(255,255,255,.1);
+      }
+
       .radar-side {
         border-left: 1px solid var(--radar-line);
         background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(0,0,0,.1));
@@ -422,6 +474,19 @@
         .radar-value span {
           min-height: 0;
         }
+
+        .radar-format-list {
+          grid-template-columns: 1fr;
+        }
+
+        .radar-format-list span {
+          min-height: 0;
+        }
+
+        .radar-format-list span + span {
+          border-left: 0;
+          border-top: 1px solid rgba(255,255,255,.1);
+        }
       }
     </style>
 </head>
@@ -469,6 +534,17 @@
           <span>Co warto sprawdzić, zanim zniknie Ci pół dnia.</span>
           <span>Jak używać AI w sprzedaży, treściach i obsłudze klientów.</span>
           <span>Co omijać, bo wygląda dobrze tylko na prezentacji.</span>
+        </div>
+        <div class="radar-format" aria-label="Stały układ newslettera">
+          <div class="radar-format-head">
+            <span>STAŁY UKŁAD</span>
+            <strong>Krótko, praktycznie, bez szumu</strong>
+          </div>
+          <div class="radar-format-list">
+            <span>Jedna rzecz z AI, którą realnie warto sprawdzić.</span>
+            <span>Jeden wniosek z pracy nad stronami, CRM albo automatyzacją.</span>
+            <span>Jedna rzecz do odpuszczenia, zanim zabierze czas.</span>
+          </div>
         </div>
       </div>
 
