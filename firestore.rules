@@ -1,0 +1,50 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function hasNewsletterShape() {
+      return request.resource.data.keys().hasOnly([
+        'id',
+        'email',
+        'name',
+        'group',
+        'groups',
+        'status',
+        'source',
+        'page_url',
+        'referrer',
+        'consent',
+        'created_at',
+        'updated_at',
+        'last_signup_at'
+      ])
+      && request.resource.data.email is string
+      && request.resource.data.email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$')
+      && request.resource.data.status == 'active'
+      && request.resource.data.consent.newsletter == true;
+    }
+
+    match /newsletter_subscribers/{subscriberId} {
+      allow create: if hasNewsletterShape();
+      allow update: if isSignedIn() || (
+        hasNewsletterShape()
+        && resource.data.email == request.resource.data.email
+        && resource.data.id == request.resource.data.id
+      );
+      allow read, delete: if isSignedIn();
+    }
+
+    match /zlecenia/{orderId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

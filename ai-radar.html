@@ -28,6 +28,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <style>
       :root {
         --radar-bg: #070706;
@@ -498,6 +500,21 @@
 
 <script>
 const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną.';
+const firebaseConfig = {
+  apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
+  authDomain: 'ai-team-zlecenia.firebaseapp.com',
+  projectId: 'ai-team-zlecenia',
+  storageBucket: 'ai-team-zlecenia.firebasestorage.app',
+  messagingSenderId: '715537035293',
+  appId: '1:715537035293:web:fe2978df1e20bfc3e0d6f4',
+  measurementId: 'G-N62YHVDCKC'
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+const newsletterDb = firebase.firestore();
 
 const newsletterForm = document.getElementById('newsletterForm');
 const newsletterButton = document.getElementById('newsletterButton');
@@ -506,6 +523,10 @@ const newsletterMessage = document.getElementById('newsletterMessage');
 function showNewsletterMessage(type, text) {
   newsletterMessage.className = 'radar-message is-visible ' + type;
   newsletterMessage.textContent = text;
+}
+
+function newsletterSubscriberId(email) {
+  return btoa(email).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
 
 newsletterForm.addEventListener('submit', async function(event) {
@@ -533,27 +554,36 @@ newsletterForm.addEventListener('submit', async function(event) {
   newsletterMessage.textContent = '';
 
   try {
-    const response = await fetch('/api/newsletter-subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        name,
-        group,
-        consent,
-        consentText: NEWSLETTER_CONSENT_TEXT,
-        company: honeypot,
-        source: 'ai-radar',
-        pageUrl: window.location.href,
-        referrer: document.referrer || ''
-      })
-    });
-
-    const data = await response.json().catch(() => ({}));
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.error || 'Nie udało się zapisać adresu.');
+    if (honeypot) {
+      showNewsletterMessage('success', 'Jesteś zapisany. Pierwszy AI Radar wyślę na podany adres.');
+      return;
     }
+
+    const now = new Date().toISOString();
+    const id = newsletterSubscriberId(email);
+    await newsletterDb.collection('newsletter_subscribers').doc(id).set({
+      id,
+      email,
+      name,
+      group,
+      groups: Array.from(new Set(['ai-radar', group])),
+      status: 'active',
+      source: 'ai-radar',
+      page_url: window.location.href,
+      referrer: document.referrer || '',
+      consent: {
+        newsletter: true,
+        text: NEWSLETTER_CONSENT_TEXT,
+        accepted_at: now,
+        privacy_url: 'https://ai-team.pl/privacy',
+        privacy_version: '2026-05-11'
+      },
+      created_at: now,
+      updated_at: now,
+      last_signup_at: now
+    }, {
+      merge: true
+    });
 
     newsletterForm.reset();
     document.getElementById('newsletterGroup').value = group;

@@ -649,20 +649,26 @@ async function listenToNewsletter() {
         const user = auth.currentUser;
         if (!user) throw new Error('Brak aktywnej sesji.');
 
-        const token = await user.getIdToken();
-        const response = await fetch('/api/newsletter-list', {
-            headers: { Authorization: 'Bearer ' + token }
-        });
-        const data = await response.json().catch(() => ({}));
-
-        if (!response.ok || !data.success) {
-            throw new Error(data.error || 'Nie udało się pobrać kontaktów.');
-        }
-
-        allSubscribers = Array.isArray(data.subscribers) ? data.subscribers : [];
-        loading.classList.add('hidden');
-        updateNewsletterStats();
-        renderNewsletter();
+        db.collection('newsletter_subscribers')
+            .orderBy('created_at', 'desc')
+            .onSnapshot(
+                (snapshot) => {
+                    allSubscribers = [];
+                    snapshot.forEach(doc => {
+                        allSubscribers.push({ id: doc.id, ...doc.data() });
+                    });
+                    loading.classList.add('hidden');
+                    errorEl.classList.add('hidden');
+                    updateNewsletterStats();
+                    renderNewsletter();
+                },
+                (error) => {
+                    console.error('Newsletter Firestore error:', error);
+                    loading.classList.add('hidden');
+                    errorEl.classList.remove('hidden');
+                    errorEl.textContent = 'Błąd ładowania newslettera: ' + error.message;
+                }
+            );
     } catch (error) {
         console.error('Newsletter list error:', error);
         loading.classList.add('hidden');
@@ -974,29 +980,21 @@ async function updateNewsletterContact(id, changes) {
         const user = auth.currentUser;
         if (!user) throw new Error('Brak aktywnej sesji.');
 
-        const token = await user.getIdToken();
-        const response = await fetch('/api/newsletter-update', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token
-            },
-            body: JSON.stringify({ id, ...changes })
-        });
-        const data = await response.json().catch(() => ({}));
+        const update = {
+            ...changes,
+            updated_at: new Date().toISOString()
+        };
 
-        if (!response.ok || !data.success) {
-            throw new Error(data.error || 'Nie udało się zapisać zmian.');
+        if (changes.group) {
+            const current = allSubscribers.find(sub => sub.id === id);
+            update.groups = Array.from(new Set([...(current?.groups || []), 'ai-radar', changes.group]));
         }
 
-        allSubscribers = allSubscribers.map(sub => sub.id === id ? data.subscriber : sub);
-        updateNewsletterStats();
-        renderNewsletter();
+        await db.collection('newsletter_subscribers').doc(id).update(update);
         showToast('Zapisano kontakt newslettera', 'success');
     } catch (error) {
         console.error('Newsletter update error:', error);
         showToast(error.message || 'Błąd zapisu newslettera', 'error');
-        listenToNewsletter();
     }
 }
 
