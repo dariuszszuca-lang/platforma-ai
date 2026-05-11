@@ -86,7 +86,7 @@
     return n.toLocaleString('pl-PL').replace(/,/g, ' ');
   }
 
-  function showStep(n) {
+  function showStep(n, options = {}) {
     card.querySelectorAll('.quiz-step').forEach(el => {
       el.classList.toggle('is-active', parseInt(el.dataset.step) === n);
     });
@@ -105,8 +105,9 @@
       next.disabled = !isStepValid(n);
     }
 
-    // scroll quiz card into view (smooth)
-    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (options.scroll) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function isStepValid(n) {
@@ -175,17 +176,17 @@
     if (currentStep === TOTAL_STEPS) {
       calculate();
       currentStep = RESULT_STEP;
-      showStep(RESULT_STEP);
+      showStep(RESULT_STEP, { scroll: true });
     } else {
       currentStep++;
-      showStep(currentStep);
+      showStep(currentStep, { scroll: true });
     }
   });
 
   document.getElementById('quizBack').addEventListener('click', () => {
     if (currentStep > 1) {
       currentStep--;
-      showStep(currentStep);
+      showStep(currentStep, { scroll: true });
     }
   });
 
@@ -196,7 +197,7 @@
     if (rateSlider) { rateSlider.value = 200; rateValue.textContent = 200; }
     card.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('is-selected'));
     currentStep = 1;
-    showStep(1);
+    showStep(1, { scroll: true });
   });
 
   // Make "Rozpocznij quiz" CTAs scroll into view (fallback) — but quiz is already inline
