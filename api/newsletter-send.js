@@ -383,7 +383,7 @@ function renderTemplate(template, data) {
 
 async function requirePanelOrServerToken(req) {
   const bearer = bearerToken(req);
-  const cronSecret = process.env.CRON_SECRET || "";
+  const cronSecret = getCronSecret();
 
   if (bearer && bearer !== cronSecret) return bearer;
   if (bearer && cronSecret && bearer === cronSecret) return getServerFirestoreToken();
@@ -392,11 +392,11 @@ async function requirePanelOrServerToken(req) {
 }
 
 async function requireCronToken(req) {
-  const cronSecret = process.env.CRON_SECRET || "";
+  const cronSecret = getCronSecret();
   const bearer = bearerToken(req);
 
   if (!cronSecret) {
-    throw publicError(500, "Brak CRON_SECRET w Vercel.");
+    throw publicError(500, "Brak sekretu crona w Vercel.");
   }
 
   if (bearer !== cronSecret) {
@@ -404,6 +404,10 @@ async function requireCronToken(req) {
   }
 
   return getServerFirestoreToken();
+}
+
+function getCronSecret() {
+  return process.env.NEWSLETTER_CRON_SECRET || process.env.CRON_SECRET || "";
 }
 
 async function getServerFirestoreToken() {
