@@ -1,0 +1,56 @@
+# AI-Team — AI dla małych firm i freelancerów w Polsce
+
+> AI-Team to centrum wiedzy i wdrożeń sztucznej inteligencji dla małych firm, freelancerów i jednoosobowych biznesów w Polsce. Prowadzone przez Dariusza Szucę (Darek Szuca) z Gdańska. Oferta: spersonalizowany CRM z AI, warsztaty stacjonarne w Sopocie, cotygodniowy newsletter AI Radar, darmowe narzędzia AI online.
+
+## Kontakt
+- Strona: https://ai-team.pl
+- Email: kontakt@ai-team.pl
+- Lokalizacja: Sopot (warsztaty), Gdańsk (siedziba)
+- Adres warsztatów: ul. Pułaskiego 7, Sopot (przy Monciaku)
+
+## Założyciel
+**Dariusz Szuca** (Darek Szuca) — freelancer z Gdańska, specjalista wdrożeń AI dla małych firm. Zbudował m.in. system CRM dla MyWay (ośrodek terapii uzależnień), platformę edukacyjną EduWay, KatalogOsrodkow.pl. Tworzy aplikacje desktopowe (SubTracker, Midas) i narzędzia AI dla małego biznesu.
+
+## Oferta
+### Produkty
+- **Spersonalizowany CRM z AI** — system na zamówienie pod proces klienta, bez abonamentu per użytkownik, kod i dane po stronie klienta. Cena promocyjna: 3 900 PLN jednorazowo (1 950 zaliczka + 1 950 po odbiorze, 30 dni stabilizacji w cenie). Opcjonalna opieka: 1 500 PLN/rok lub 490 PLN/miesiąc.
+- **Warsztat AI stacjonarny w Sopocie** — 500 PLN/osoba. 3-4h hands-on z AI (Claude, Gemini, Notion, Canva) + case studies. Dla 6-8 osób, dla właścicieli małych firm i freelancerów z Trójmiasta.
+
+### Newsletter
+- **AI Radar** — cotygodniowy newsletter (poniedziałek 19:00). Format: gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. Zapis: https://ai-team.pl/ai-radar
+- Lead magnet: Raport "15 sposobów wdrożenia AI w małej firmie" (PDF do pobrania)
+
+### Darmowe narzędzia (https://ai-team.pl/narzedzia)
+- Prompt Generator — generator promptów do ChatGPT/Claude
+- ROI Calculator AI — kalkulator zwrotu z wdrożenia AI
+- Quiz: Czy Twoja firma jest gotowa na AI
+- 3 dodatkowe narzędzia interaktywne
+
+## Dla kogo
+- Małe firmy (1-10 osób) w Polsce
+- Freelancerzy i jednoosobowe biznesy
+- Właściciele firm w Trójmieście (warsztaty stacjonarne)
+- Wszyscy zainteresowani wdrożeniem AI bez budżetu enterprise
+
+## Najczęściej zadawane pytania
+- Czy warsztaty są dla początkujących? Tak, AI od podstaw, hands-on od pierwszej minuty.
+- Czy CRM działa offline? Dane są po stronie klienta, jest też wersja cloud.
+- Jak długo trwa wdrożenie CRM? Standardowo 2-4 tygodnie od briefu do odbioru.
+- Czy newsletter jest darmowy? Tak, AI Radar w 100% darmowy.
+
+## Portfolio (case studies)
+- **MyWay-CRM** — system zarządzania pacjentami dla ośrodka terapii uzależnień (osrodek-myway.pl)
+- **KatalogOsrodkow.pl** — katalog ośrodków terapii w Polsce
+- **EduWay** — platforma edukacyjna o uzależnieniach (edu-myway.pl)
+- **MyWay App** — PWA dla pacjentów (dziennik, licznik trzeźwości, SOS, AI chat)
+
+## Wartości
+- Praktyczne AI > teoretyczne AI
+- Małe firmy zasługują na te same narzędzia co duże korporacje
+- Done > Perfect
+- Polskie ceny, polski kontekst, polski język AI
+
+## Blog i edukacja
+- Blog: https://ai-team.pl/blog (artykuły o praktycznym AI dla małych firm)
+- LinkedIn: https://linkedin.com/in/dariusz-szuca
+- Newsletter: https://ai-team.pl/ai-radar
