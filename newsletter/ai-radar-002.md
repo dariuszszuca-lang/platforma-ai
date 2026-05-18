@@ -7,7 +7,7 @@ Ten numer jest o prostej zmianie: AI przestaje być tylko oknem do pisania promp
 
 Możesz odpalić zadanie w Codexie na komputerze, a potem sprawdzić je z telefonu. Możesz poprosić agenta o grafiki i wideo przez Higgsfield. Możesz zrobić audyt strony w Claude SEO i od razu dostać listę poprawek. A przy większym projekcie przydaje się Product Manager, który pilnuje priorytetów: co robić teraz, co odpuścić i czy to w ogóle pomaga firmie.
 
-Dzisiaj mam sześć rzeczy.
+Dzisiaj mam pięć rzeczy.
 
 ---
 
@@ -15,6 +15,12 @@ GORĄCE NEWSY
 
 1. Codex i Remote. Telefon jako pilot do pracy agenta
 OpenAI pokazało 14 maja Codex w aplikacji mobilnej ChatGPT. W praktyce działa to tak: Codex nadal pracuje na Twoim Macu, laptopie, devboxie albo środowisku zdalnym, a telefon pozwala Ci zobaczyć sesje, odpisać agentowi, zaakceptować akcję, zmienić kierunek, przejrzeć diffy, terminal, screenshoty i wyniki testów. Ważne: pliki, klucze i lokalna konfiguracja zostają na maszynie, na której działa Codex. Telefon jest pilotem, nie nowym środowiskiem pracy.
+
+Jak to wdrożyć u siebie:
+  1. Zaktualizuj aplikację ChatGPT na telefonie i aplikację Codex na komputerze.
+  2. Połącz telefon z Codexem przez Remote Connection.
+  3. Zostaw komputer albo devbox online, bo tam dalej pracuje agent.
+  4. Z telefonu sprawdzaj postęp, diffy, terminal i prośby o zgodę.
 → https://openai.com/index/work-with-codex-from-anywhere/
 
 2. Higgsfield MCP. Generowanie obrazów i wideo z poziomu agenta
@@ -24,24 +30,6 @@ Higgsfield odpalił MCP, czyli złącze, przez które agent może korzystać z n
 3. Claude SEO. Skill, który warto sprawdzić
 Rzadko polecam tu skille, ale ten jest dobry. Claude SEO ma zestaw komend do audytu strony, analizy pojedynczej podstrony, schema, SEO technicznego, contentu, lokalnego SEO i GEO, czyli optymalizacji pod odpowiedzi AI. Repo opisuje 25 sub-skilli i 18 subagentów. U mnie to pasuje do rytmu pracy: asystent robi audyt, wykrywa dziury, a potem wracamy z poprawkami i aktualizacją strony.
 → https://github.com/AgriciDaniel/claude-seo
-
----
-
-NARZĘDZIE TYGODNIA
-
-Codex Remote w aplikacji ChatGPT
-Co to robi: Pozwala sterować aktywnymi sesjami Codexa z telefonu, kiedy agent dalej pracuje na Twojej maszynie albo środowisku zdalnym.
-Dla kogo: Dla osób, które puszczają dłuższe zadania w Codexie i nie chcą siedzieć przy biurku tylko po to, żeby kliknąć approve albo wybrać wariant.
-
-Jak to działa:
-  1. Zaktualizuj aplikację ChatGPT na telefonie i aplikację Codex na macOS.
-  2. Na Macu otwórz Codex App i rozpocznij konfigurację Remote Connection.
-  3. Zeskanuj kod QR telefonem w aplikacji ChatGPT.
-  4. Zostaw hosta online, wybudzonego i z uruchomionym Codexem.
-  5. Z telefonu przeglądaj sesje, terminal, diffy, screenshoty i prośby o zgodę.
-  6. Jeśli pracujesz na devboxie albo Mac mini, skonfiguruj Remote SSH w Codex App i dopiero wtedy spinaj to z mobile.
-
-Cena: W ramach planów z dostępem do Codex; OpenAI podaje też preview na iOS i Androidzie w obsługiwanych regionach. | Ocena: 9/10 | Link: https://openai.com/index/work-with-codex-from-anywhere/
 
 ---
 
