@@ -1,221 +1,166 @@
-# AI RADAR #2
+AI RADAR #002
+Newsletter o AI dla Twojego biznesu | Wydanie #002 | Maj 2026
 
-**Newsletter o AI dla Twojego biznesu | Styczeń 2026**
+Cześć,
 
----
+Drugie wydanie AI Radar jest o jednym kierunku: AI coraz mniej siedzi w oknie czatu, a coraz częściej zaczyna działać w narzędziach.
 
-Cześć!
+Telefon staje się pilotem do agenta kodującego. Claude może dostać studio wideo przez MCP. SEO można odpalać jako proces z checklistą i subagentami. A przy większym projekcie zaczyna brakować nie kolejnego wykonawcy, tylko Product Managera, który patrzy na liczby, roadmapę i wzrost.
 
-Nowy rok, nowe możliwości. W tym wydaniu: przełomowe zmiany u Anthropic, narzędzie które samo wykonuje zadania, i mój własny projekt SaaS - od pomysłu do działającej aplikacji.
-
-**W tym wydaniu:**
-- Anthropic Cowork - programowanie bez programowania
-- Zapier Agents - automatyzacje które myślą
-- Prompt do analizy konkurencji
-- Case study: jak zbudowałem Subtracker w 2 tygodnie
-
-Zaczynamy.
+Dzisiaj mam sześć rzeczy.
 
 ---
 
-## GORĄCE NEWSY
+GORĄCE NEWSY
 
-**1. Anthropic uruchomił Cowork (12 stycznia)**
+1. Codex i Remote. Telefon jako pilot do pracy agenta
+OpenAI pokazało 14 maja Codex w aplikacji mobilnej ChatGPT. W praktyce działa to tak: Codex nadal pracuje na Twoim Macu, laptopie, devboxie albo środowisku zdalnym, a telefon pozwala Ci zobaczyć sesje, odpisać agentowi, zaakceptować akcję, zmienić kierunek, przejrzeć diffy, terminal, screenshoty i wyniki testów. Ważne: pliki, klucze i lokalna konfiguracja zostają na maszynie, na której działa Codex. Telefon jest pilotem, nie nowym środowiskiem pracy.
+→ https://openai.com/index/work-with-codex-from-anywhere/
 
-Rewolucja dla osób nietechnicznych. Cowork to Claude Code dla zwykłych użytkowników - AI który sam pisze kod, tworzy pliki, buduje aplikacje. Mówisz co chcesz, on wykonuje. Bez znajomości programowania możesz teraz tworzyć własne narzędzia.
+2. Higgsfield MCP. Generowanie obrazów i wideo z poziomu agenta
+Higgsfield odpalił MCP, czyli złącze, przez które agent może korzystać z narzędzi do obrazów i wideo. Według strony Higgsfield po podłączeniu agent może generować obrazy, tworzyć krótkie wideo, trenować postacie i przeglądać historię kreacji w jednej sesji. Dla małej firmy to nie jest zabawka. To może być sposób na szybkie warianty reklam, miniatur, rolek i moodboardów bez ręcznego skakania po pięciu narzędziach.
+→ https://higgsfield.ai/mcp
 
-Dostępne dla subskrybentów Claude Pro ($20/mies).
-
-**2. Claude Opus 4.5 - nowy lider rankingów**
-
-Najnowszy model Anthropic przeskoczył GPT-5.2 w większości benchmarków. Szczególnie silny w rozumowaniu, analizie dokumentów i pisaniu kodu. Jeśli jeszcze korzystasz tylko z ChatGPT - czas przetestować alternatywę.
-
-**3. Gemini 3 z generatywnym UI**
-
-Google pokazał coś nowego: AI który nie tylko odpowiada tekstem, ale generuje interaktywne interfejsy. Pytasz o wykres sprzedaży - dostajesz klikalne wizualizacje. Na razie w fazie testów, ale kierunek ciekawy.
+3. Claude SEO. Skill, który warto sprawdzić
+Rzadko polecam tu skille, ale ten jest dobry. Claude SEO ma zestaw komend do audytu strony, analizy pojedynczej podstrony, schema, SEO technicznego, contentu, lokalnego SEO i GEO, czyli optymalizacji pod odpowiedzi AI. Repo opisuje 25 sub-skilli i 18 subagentów. U mnie to pasuje do rytmu pracy: asystent robi audyt, wykrywa dziury, a potem wracamy z poprawkami i aktualizacją strony.
+→ https://github.com/AgriciDaniel/claude-seo
 
 ---
 
-## NARZĘDZIE TYGODNIA: Zapier Agents
+NARZĘDZIE TYGODNIA
 
-**Co to robi:** Autonomiczne automatyzacje które same podejmują decyzje i wykonują wieloetapowe zadania.
+Codex Remote w aplikacji ChatGPT
+Co to robi: Pozwala sterować aktywnymi sesjami Codexa z telefonu, kiedy agent dalej pracuje na Twojej maszynie albo środowisku zdalnym.
+Dla kogo: Dla osób, które puszczają dłuższe zadania w Codexie i nie chcą siedzieć przy biurku tylko po to, żeby kliknąć approve albo wybrać wariant.
 
-**Dla kogo:** Właściciele małych firm którzy chcą zautomatyzować powtarzalne procesy bez zatrudniania asystenta.
+Jak to działa:
+  1. Zaktualizuj aplikację ChatGPT na telefonie i aplikację Codex na macOS.
+  2. Na Macu otwórz Codex App i rozpocznij konfigurację Remote Connection.
+  3. Zeskanuj kod QR telefonem w aplikacji ChatGPT.
+  4. Zostaw hosta online, wybudzonego i z uruchomionym Codexem.
+  5. Z telefonu przeglądaj sesje, terminal, diffy, screenshoty i prośby o zgodę.
+  6. Jeśli pracujesz na devboxie albo Mac mini, skonfiguruj Remote SSH w Codex App i dopiero wtedy spinaj to z mobile.
 
-**Jak to działa:**
-1. Opisujesz zadanie słowami (np. "Gdy klient zamówi produkt, sprawdź stan magazynu, jeśli mało - zamów u dostawcy, powiadom mnie")
-2. Agent sam łączy aplikacje i wykonuje kroki
-3. Uczy się z Twoich poprawek
-
-**Różnica vs zwykły Zapier:** Klasyczne automatyzacje działają na zasadzie "jeśli X to Y". Agents potrafią analizować kontekst i dostosowywać działania.
-
-**Cena:** Od $69/mies w planie Team. Dużo, ale zastępuje kilka godzin ręcznej pracy tygodniowo.
-
-**Moja ocena:** 7/10. Potencjał ogromny, ale wymaga czasu na naukę i konfigurację. Dla prostych automatyzacji - klasyczny Zapier nadal wystarczy.
-
-**Link:** zapier.com/agents
+Cena: W ramach planów z dostępem do Codex; OpenAI podaje też preview na iOS i Androidzie w obsługiwanych regionach. | Ocena: 9/10 | Link: https://openai.com/index/work-with-codex-from-anywhere/
 
 ---
 
-## PROMPT DNIA: Analiza konkurencji
+PROMPT TYGODNIA
 
-Skopiuj do ChatGPT lub Claude:
+Czy ten proces nadaje się dla agenta?
+Skopiuj do ChatGPT, Claude albo Codexa i podstaw swój proces. Ten prompt ma wyłapać, czy automatyzacja ma sens, zanim zaczniesz ją budować.
 
-```
-Jesteś analitykiem biznesowym specjalizującym się w analizie konkurencji.
+---prompt start---
+Działaj jako Product Manager i COO od automatyzacji.
 
-Przeprowadź analizę konkurencji dla:
-- Moja firma: [NAZWA I KRÓTKI OPIS]
-- Branża: [TWOJA BRANŻA]
-- Główni konkurenci: [WYMIEŃ 2-3 KONKURENTÓW]
+Przeanalizuj proces:
+[OPIS PROCESU]
 
-Analiza powinna zawierać:
+Oceń go w 7 punktach:
+1. Czy proces jest powtarzalny?
+2. Jakie dane wejściowe są potrzebne?
+3. Jaki jest poprawny wynik końcowy?
+4. Gdzie potrzebna jest decyzja człowieka?
+5. Co może pójść źle i jaki jest koszt błędu?
+6. Czy lepsza będzie automatyzacja, checklistowy proces, czy człowiek z AI?
+7. Jaki pierwszy test mogę zrobić w 60 minut?
 
-1. POZYCJONOWANIE
-Jak każdy konkurent się pozycjonuje? Co obiecuje klientom?
+Na końcu daj decyzję: automatyzować teraz / najpierw uporządkować / nie ruszać.
+---prompt end---
 
-2. MOCNE STRONY
-Co robią dobrze? Czego mogę się od nich nauczyć?
-
-3. SŁABE STRONY
-Gdzie mają luki? Gdzie mogę być lepszy?
-
-4. CENNIK
-Jak się pozycjonują cenowo? Premium, budżetowy, środek?
-
-5. KOMUNIKACJA
-Jaki ton głosu? Gdzie są aktywni online?
-
-6. REKOMENDACJE
-3 konkretne działania które mogę wdrożyć aby się wyróżnić.
-
-Bądź konkretny. Unikaj ogólników typu "lepszy marketing".
-```
-
-**Tip:** Przed użyciem przejrzyj strony konkurentów i wklej fragmenty ich ofert jako kontekst - analiza będzie dużo trafniejsza.
+Tip: Jeśli odpowiedź mówi „najpierw uporządkować”, to nie jest porażka. To znaczy, że problemem nie jest AI, tylko brak procesu.
 
 ---
 
-## 3 SZYBKIE TIPY
+3 SZYBKIE TIPY
 
-**1. Używaj Claude do długich dokumentów**
+1. Nie dawaj agentowi całego biznesu naraz
+   Daj mu jeden proces, jeden cel i jeden miernik. Przykład: „zmniejsz czas przygotowania newslettera z 3 godzin do 45 minut”.
 
-ChatGPT ma limit kontekstu ok. 128k tokenów, Claude - 200k. Jeśli analizujesz długie umowy, raporty, dokumentację - Claude lepiej zachowa spójność na przestrzeni całego tekstu.
+2. MCP traktuj jak dostęp do narzędzia, nie jak magię
+   Jeśli agent ma robić wideo przez Higgsfield, najpierw ustal styl, format, ograniczenia i gdzie trafiają pliki.
 
-**2. Eksportuj historię rozmów**
-
-Zarówno ChatGPT jak i Claude pozwalają eksportować rozmowy. Rób to regularnie - masz backup cennych promptów i odpowiedzi. W ChatGPT: Ustawienia > Dane > Eksportuj dane.
-
-**3. Testuj te same prompty w różnych modelach**
-
-Jeden model może źle zrozumieć Twoje polecenie, inny zrozumie idealnie. Zamiast godzinę poprawiać prompt - spróbuj w konkurencyjnym narzędziu. Często to szybsze.
+3. SEO audyt bez wdrożenia nic nie zmienia
+   Claude SEO może znaleźć problemy, ale wynik pojawia się dopiero wtedy, gdy ktoś poprawi schema, nagłówki, linkowanie i treść.
 
 ---
 
-## AUTOMATYZACJA TYGODNIA: Inteligentna segregacja maili
+AUTOMATYZACJA TYGODNIA
 
-**Problem:** Skrzynka pęka w szwach. Ważne maile toną między newsletterami i powiadomieniami. Tracisz czas na sortowanie.
+Product Manager to must
+Problem: W większych projektach łatwo wpaść w tryb „dorzućmy więcej ficzerów”. A czasami problemem nie jest produkt, tylko brak ruchu, słaby onboarding albo źle ustawiona oferta.
 
-**Rozwiązanie (Make.com + AI):**
+Rozwiązanie:
+  1. Daj PM-owi dostęp do roadmapy, backlogu, changelogu, zgłoszeń klientów i danych z analityki.
+  2. Raz w tygodniu każ mu odpowiedzieć: co budować, co zatrzymać, co uprościć, co promować.
+  3. Niech porównuje ficzery z celem biznesowym: więcej leadów, większa aktywacja, mniej ręcznej obsługi, większa sprzedaż.
+  4. Jeśli widzi, że problemem jest ruch, ma zaproponować taktyki growth hackingu, content, SEO, partnerstwa albo dystrybucję, a nie kolejną funkcję.
+  5. Po każdej decyzji zapisuj: hipoteza, akcja, metryka, termin sprawdzenia.
 
-1. **Trigger:** Nowy mail w Gmail
-2. **Action 1:** Wyślij treść do Claude API z promptem: "Sklasyfikuj tego maila: PILNE / KLIENT / NEWSLETTER / SPAM"
-3. **Action 2:** Automatycznie przenieś do odpowiedniego folderu
-4. **Action 3:** Jeśli PILNE - wyślij powiadomienie na telefon
-
-**Efekt:** Otwierasz skrzynkę i widzisz od razu co wymaga uwagi. Zero rozpraszaczy.
-
-**Koszt:** Make.com darmowy do 1000 operacji + Claude API ok. $2-5/mies przy normalnym użyciu.
-
-**Czas setup:** 30 minut.
+Efekt: Mniej losowego budowania, więcej decyzji opartych o cel i liczby. | Koszt: 0 zł, jeśli używasz własnego asystenta PM; koszt to dyscyplina w danych. | Setup: 30-60 minut na pierwszy przegląd projektu.
 
 ---
 
-## Z WARSZTATU DARKA: Case Study Subtracker
+Z WARSZTATU DARKA
 
-Przez ostatnie 2 tygodnie zbudowałem własną aplikację SaaS - Subtracker.
+Jak wdrożyłbym to u siebie w małej firmie
+Nie zaczynałbym od wielkiego systemu. Zrobiłbym trzy małe wdrożenia.
 
-**Co to jest:**
-Aplikacja do śledzenia subskrypcji. Wpisujesz Netflix, Spotify, ChatGPT Plus - widzisz ile wydajesz miesięcznie, dostajesz powiadomienia przed odnowieniem.
+Pierwsze: Codex Remote do pilnowania długich zadań. Agent robi audyt, poprawkę albo analizę, a ja z telefonu tylko podejmuję decyzje, gdy staje w miejscu.
 
-**Jak powstała:**
-Całość zbudowana z pomocą AI. Claude Code pisał kod, ja nadzorowałem i testowałem. React + Firebase, deployment na Vercel.
+Drugie: Higgsfield MCP do szybkich wariantów wizualnych. Nie do finalnej kreacji bez kontroli, tylko do pierwszych 5-10 kierunków: reklama, miniatura, rolka, grafika do posta.
 
-**Liczby:**
-- Czas: ~40 godzin przez 2 tygodnie
-- Koszt: $20 (Claude Pro) + $0 (darmowe plany Firebase i Vercel)
-- Linie kodu: ~3000 (napisane przez AI)
-- Moja znajomość programowania: podstawowa
+Trzecie: Claude SEO jako cykliczny audyt. Raz w tygodniu jedna strona, jeden raport, jedna lista poprawek. Bez wielkiego „projektu SEO”. Po prostu rytm: audyt, poprawka, publikacja, sprawdzenie.
 
-**Co się nauczyłem:**
-- AI radzi sobie z 80% kodu, ale ostatnie 20% wymaga ludzkiego debugowania
-- Dokumentacja to podstawa - AI nie zgadnie czego chcesz
-- MVP > perfekcja - lepiej wypuścić coś działającego niż polerować w nieskończoność
-
-**Efekt:** Działająca aplikacja, darmowa dla użytkowników, plany premium w przygotowaniu.
-
-Sprawdź: **subtracker.app**
+I do tego PM, który patrzy na całość. Bo agent wykonawczy zrobi zadanie. PM ma pilnować, czy to zadanie w ogóle warto robić.
 
 ---
 
-## WARTO PRZECZYTAĆ
+WARTO PRZECZYTAĆ
 
-**1. "State of AI 2026" - raport**
-Coroczne podsumowanie branży AI. Trendy, liczby, prognozy. Obowiązkowa lektura dla każdego kto chce rozumieć kierunek rozwoju.
+• Codex w telefonie od OpenAI
+  Oficjalny opis działania Remote: mobile widzi live state, a środowisko zostaje na hoście.
+  → https://openai.com/index/work-with-codex-from-anywhere/
 
-**2. Dokumentacja Claude - prompting guide**
-Oficjalny poradnik Anthropic jak pisać skuteczne prompty. Konkretne przykłady i techniki prosto od twórców.
-→ docs.anthropic.com/claude/docs/prompt-engineering
+• Higgsfield MCP
+  MCP do obrazów i wideo z poziomu agenta.
+  → https://higgsfield.ai/mcp
 
-**3. "Building AI Products" - newsletter Lennyego**
-Praktyczne porady jak budować produkty z AI. Po angielsku, ale wartościowy dla przedsiębiorców.
+• Claude SEO
+  Skill do audytów SEO, schema, GEO/AEO i planów poprawek.
+  → https://github.com/AgriciDaniel/claude-seo
 
----
-
-## Q&A
-
-**"Czy warto płacić $20/mies za Claude Pro skoro jest darmowy ChatGPT?"**
-
-Zależy od zastosowania.
-
-Darmowy ChatGPT wystarczy do:
-- Prostych pytań i odpowiedzi
-- Krótkich tekstów
-- Okazjonalnego użycia
-
-Claude Pro (lub ChatGPT Plus) warto gdy:
-- Pracujesz z długimi dokumentami
-- Potrzebujesz konsystentnej jakości (darmowe modele mają wahania)
-- Używasz AI codziennie do pracy
-- Chcesz dostęp do najnowszych funkcji (Cowork, Projects)
-
-Moja zasada: jeśli AI oszczędza Ci więcej niż 2h miesięcznie - subskrypcja się zwraca.
-
-**Masz pytanie?** Odpisz na tego maila.
+• Claude FM - For Developers
+  Link do posłuchania podczas pracy z agentami. Traktuję jako inspirację, nie dokumentację techniczną.
+  → https://www.youtube.com/live/YmQ7jRgf4f0
 
 ---
 
-## CO U NAS
+Q&A
 
-**Poranek z AI - darmowe spotkanie**
-90 minut praktycznej wiedzy o AI. Sopot, mała grupa.
-→ ai-team.pl/poranek-z-ai.html
+"Czy agent może sam prowadzić projekt?"
 
-**Warsztaty AI dla firm**
-Stacjonarnie w Sopocie lub online. Wdrażamy narzędzia na Twoim biznesie.
-→ ai-team.pl/warsztaty
+Może dużo zrobić, ale nie powinien udawać właściciela decyzji. Najlepszy układ to: człowiek ustala cel i granice, Product Manager analizuje roadmapę i liczby, a agenci wykonawczy robią konkretne zadania.
 
-**Blog - nowe artykuły**
-Praktyczne poradniki bez technicznego żargonu.
-→ ai-team.pl/blog
+Jeśli pozwolisz agentowi tylko dopisywać ficzery, szybko dostaniesz większy chaos. Jeśli każesz mu patrzeć na metryki, blokery i wzrost, zaczyna być naprawdę użyteczny.
 
 ---
 
-Do zobaczenia za tydzień.
+CO U NAS
+
+• Konsultacje AI i automatyzacji
+  Pomagam poukładać AI w firmie: procesy, automatyzacje, asystenci, CRM, newsletter, proste systemy operacyjne. Mogę dojechać do klienta albo spotkać się w Gdańsku. Wyślij zapytanie na dariusz.szuca@gmail.com i napisz w 2 zdaniach, co chcesz usprawnić.
+  → mailto:dariusz.szuca@gmail.com
+
+• Zajawka: META ADS AI
+  Odpalamy META ADS AI. Reklamy robią się same: brief, warianty copy, kreacje, testy i raport. Więcej info w kolejnym wydaniu.
+  → https://ai-team.pl
+
+---
 
 Darek
 AI-Team.pl
 
----
+Jeśli ten newsletter był przydatny - prześlij go komuś kto też szuka praktycznej wiedzy o AI.
 
-*Jeśli ten newsletter był przydatny - prześlij go komuś kto też szuka praktycznej wiedzy o AI.*
+Wypis: [link wypisu SES]
