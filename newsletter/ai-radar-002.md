@@ -3,9 +3,9 @@ Newsletter o AI dla Twojego biznesu | Wydanie #002 | Maj 2026
 
 Cześć,
 
-Drugie wydanie AI Radar jest o jednym kierunku: AI coraz mniej siedzi w oknie czatu, a coraz częściej zaczyna działać w narzędziach.
+Ten numer jest o prostej zmianie: AI przestaje być tylko oknem do pisania promptów. Coraz częściej działa tam, gdzie faktycznie pracujemy.
 
-Telefon staje się pilotem do agenta kodującego. Claude może dostać studio wideo przez MCP. SEO można odpalać jako proces z checklistą i subagentami. A przy większym projekcie zaczyna brakować nie kolejnego wykonawcy, tylko Product Managera, który patrzy na liczby, roadmapę i wzrost.
+Możesz odpalić zadanie w Codexie na komputerze, a potem sprawdzić je z telefonu. Możesz poprosić agenta o grafiki i wideo przez Higgsfield. Możesz zrobić audyt strony w Claude SEO i od razu dostać listę poprawek. A przy większym projekcie przydaje się Product Manager, który pilnuje priorytetów: co robić teraz, co odpuścić i czy to w ogóle pomaga firmie.
 
 Dzisiaj mam sześć rzeczy.
 
