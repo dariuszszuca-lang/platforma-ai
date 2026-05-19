@@ -71,7 +71,7 @@
     'docs': { title: 'Sprint Automatyzacji AI', desc: 'Generowanie dokumentów, umów, ofert na podstawie szablonu. Wypełniasz formularz, dostajesz gotowy PDF. Koniec ręcznego przerabiania.', price: 'Wycena indywidualna', roi: 'Skróci pracę nad dokumentami o 70%', cta: '/wdrozenie-ai.html' },
     'reports': { title: 'Audyt AI firmy', desc: 'Diagnoza procesów raportowania, mapa automatyzacji, ROI każdej zmiany. Wychodzisz z konkretnym planem na 5-7 wdrożeń.', price: 'Wycena indywidualna', roi: '2-5 dni roboczych', cta: '/wdrozenie-ai.html' },
     'content': { title: 'Zewnętrzny Dział AI (retainer)', desc: 'Pełnoetatowe wsparcie produkcji contentu. Stała opieka, posty, artykuły, newsletter. Tak działa MyWay od 2 lat.', price: 'Wycena indywidualna', roi: 'Stała współpraca', cta: '/wdrozenie-ai.html' },
-    'planning': { title: 'Tracker Czasu Freelancera', desc: '7-dniowy audyt na czym tracisz czas. Notion template + PDF + raport AI. Wiesz dokładnie co automatyzować w pierwszej kolejności.', price: '47 zł', roi: 'Lifetime, płatność raz', cta: '/produkt1-tracker.html' },
+    'planning': { title: 'Tracker Czasu Freelancera', desc: '7-dniowy audyt na czym tracisz czas. Darmowy panel + raport + zapis do AI Radar. Wiesz dokładnie co automatyzować w pierwszej kolejności.', price: '0 zł', roi: 'Darmowy dostęp', cta: '/produkt1-tracker.html' },
     'default': { title: 'Mapa AI · konsultacja 0 zł', desc: '30-minutowa rozmowa diagnostyczna. Wychodzisz z konkretną listą 5-7 priorytetów dla swojej firmy. Bez zobowiązań.', price: '0 zł', roi: 'Bez zobowiązań', cta: '#cta' },
   };
 

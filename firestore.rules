@@ -51,6 +51,14 @@ service cloud.firestore {
       allow read, update, delete: if isSignedIn();
     }
 
+    match /tracker_users/{userId} {
+      allow read, create, update, delete: if isSignedIn() && request.auth.uid == userId;
+
+      match /tasks/{taskId} {
+        allow read, create, update, delete: if isSignedIn() && request.auth.uid == userId;
+      }
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
