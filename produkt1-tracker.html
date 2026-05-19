@@ -74,6 +74,7 @@ html { scroll-behavior: smooth; }
   }
 </script>
 
+  <script src="/assets/meta-pixel.js"></script>
 </head>
 <body class="bg-[#f0f0f0]">
 
@@ -1110,6 +1111,15 @@ html { scroll-behavior: smooth; }
 
 <script>
   lucide.createIcons();
+
+  if (typeof fbq === 'function') {
+    fbq('track', 'ViewContent', {
+      content_name: 'Tracker Czasu',
+      content_category: 'AI Radar lead magnet',
+      value: 0,
+      currency: 'PLN'
+    });
+  }
 
   const passthroughParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
   const currentParams = new URLSearchParams(window.location.search);

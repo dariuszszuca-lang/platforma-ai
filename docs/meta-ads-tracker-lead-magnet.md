@@ -1,6 +1,6 @@
 # Meta Ads: Tracker Czasu jako lead magnet AI Radar
 
-Status: przygotowane do uruchomienia, bez publikacji reklam i bez budżetu.
+Status: Pixel włączony na stronie, kampania przygotowana, bez publikacji reklam i bez budżetu.
 Data: 2026-05-19
 
 ## Cel kampanii
@@ -9,20 +9,19 @@ Zbudować listę AI Radar przez darmowy Tracker Czasu.
 
 Główna konwersja: zapis i utworzenie konta w `/app`.
 
-Technicznie aplikacja zapisuje teraz źródło zapisu w Firestore (`newsletter_subscribers.utm` i `tracker_users.marketing.attribution`) oraz ma hooki pod standardowe eventy Meta Pixel: `Lead` i `CompleteRegistration`. Eventy zaczną działać dopiero po dodaniu bazowego Meta Pixela dla AI-Team.
+Technicznie aplikacja zapisuje źródło zapisu w Firestore (`newsletter_subscribers.utm` i `tracker_users.marketing.attribution`) oraz wysyła standardowe eventy Meta Pixel: `Lead` i `CompleteRegistration`.
 
 ## Warunek przed startem
 
 Nie uruchamiać kampanii, dopóki nie ma:
 
-1. Pixel/Dataset AI-Team w Business Managerze.
-2. Bazowy Pixel na `produkt1-tracker.html` i `app.html`.
-3. Test w Events Manager: `PageView`, `Lead`, `CompleteRegistration`.
-4. Zgoda Darka na budżet dzienny i datę startu.
+1. Test w Events Manager: `PageView`, `ViewContent`, `Lead`, `CompleteRegistration`.
+2. 2-3 proste kreacje graficzne z ekranem Trackera.
+3. Zgoda Darka na datę startu i uruchomienie kampanii.
 
 AI-Team nie ma jeszcze skonfigurowanych danych Meta Ads API w lokalnych plikach, więc nie używać żadnych tokenów MyWay.
 
-Budżet zaakceptowany przez Darka: 20 PLN dziennie.
+Pixel AI-Team utworzony i podpięty 19 maja 2026. Budżet zaakceptowany przez Darka: 20 PLN dziennie.
 
 ## Struktura kampanii
 
