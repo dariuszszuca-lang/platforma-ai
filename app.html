@@ -190,6 +190,65 @@
           </div>
         </section>
 
+        <section class="panel help-panel" aria-labelledby="trackerHelpTitle">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Przewodnik</p>
+              <h3 id="trackerHelpTitle">Co oznaczają opcje w Trackerze</h3>
+            </div>
+            <span class="pill">Czytaj raz, potem pracuj</span>
+          </div>
+          <div class="help-grid">
+            <details class="help-detail" open>
+              <summary>
+                <i data-lucide="layout-dashboard"></i>
+                Dashboard
+              </summary>
+              <p>To ekran startowy. Tu widzisz stan tygodnia, szybki formularz, rytm 7 dni i ostatnie wpisy.</p>
+              <p><strong>Dni z wpisami</strong> pokazują, ile dni audytu ma już dane. Im więcej dni, tym pewniejszy raport.</p>
+            </details>
+            <details class="help-detail">
+              <summary>
+                <i data-lucide="list-plus"></i>
+                Szybki wpis
+              </summary>
+              <p>Tu zapisujesz każde większe zadanie z dnia. Wpis nie musi być idealny. Lepiej dodać prosty szacunek niż pominąć zadanie.</p>
+              <p><strong>Kategoria</strong> jest najważniejsza, bo od niej zależy, czy czas trafi do pracy głównej, administracji, sprzedaży, komunikacji albo strat.</p>
+            </details>
+            <details class="help-detail">
+              <summary>
+                <i data-lucide="tags"></i>
+                Kategorie
+              </summary>
+              <p>Kategorie mówią, jaki typ pracy zabiera czas. Tracker inaczej traktuje pracę dla klienta, a inaczej maile, statusy, rozproszenia czy poprawki.</p>
+              <p>Jeśli nie wiesz, co wybrać, wybierz kategorię najbliższą temu, co robiłeś. Po kilku dniach i tak zobaczysz powtarzający się wzór.</p>
+            </details>
+            <details class="help-detail">
+              <summary>
+                <i data-lucide="bar-chart-3"></i>
+                Raport
+              </summary>
+              <p>Raport sumuje wpisy, liczy koszt czasu i pokazuje kategorie, które mają największy potencjał do odzyskania.</p>
+              <p><strong>Do odzyskania</strong> nie znaczy, że cały ten czas zniknie. To sygnał, gdzie warto najpierw szukać automatyzacji, szablonu albo prostszej zasady pracy.</p>
+            </details>
+            <details class="help-detail">
+              <summary>
+                <i data-lucide="route"></i>
+                Decyzja
+              </summary>
+              <p>Decyzja zamienia raport w pierwszy konkretny ruch. Nie wybiera dziesięciu zmian naraz, tylko jedną kategorię, od której warto zacząć.</p>
+              <p>Jeśli najmocniej wychodzi admin albo komunikacja, szukaj szablonów i automatyzacji. Jeśli straty, zacznij od zasad pracy i ograniczenia rozproszeń.</p>
+            </details>
+            <details class="help-detail">
+              <summary>
+                <i data-lucide="download"></i>
+                Eksporty i Prompt AI
+              </summary>
+              <p><strong>CSV</strong> służy do arkusza. <strong>PDF</strong> do zapisania raportu. <strong>Prompt AI</strong> kopiuje podsumowanie, które można wkleić do Claude albo ChatGPT i poprosić o plan usprawnień.</p>
+            </details>
+          </div>
+        </section>
+
         <div class="stats-grid" id="statsGrid"></div>
 
         <div class="content-grid">
@@ -204,10 +263,12 @@
               <div class="field field-wide">
                 <label for="taskTitle">Co robiłeś?</label>
                 <input id="taskTitle" name="title" type="text" maxlength="120" placeholder="np. odpowiadanie na maile po spotkaniu" required>
+                <p class="field-helper">Pisz normalnie: „mail do klienta”, „status projektu”, „poprawki w ofercie”. To ma pomóc w analizie, nie być idealnym raportem.</p>
               </div>
               <div class="field">
                 <label for="taskCategory">Kategoria</label>
                 <select id="taskCategory" name="category" required></select>
+                <p class="field-helper">Kategoria wpływa na wnioski. Admin, komunikacja i straty zwykle mają większy potencjał do automatyzacji niż praca główna.</p>
               </div>
               <div class="field">
                 <label for="taskMinutes">Czas</label>
@@ -215,10 +276,12 @@
                   <input id="taskMinutes" name="minutes" type="number" min="5" max="720" step="5" value="30" required>
                   <span>min</span>
                 </div>
+                <p class="field-helper">Wystarczy przybliżenie. Jeśli zadanie trwało około pół godziny, wpisz 30 minut.</p>
               </div>
               <div class="field">
                 <label for="taskDate">Dzień</label>
                 <input id="taskDate" name="date" type="date" required>
+                <p class="field-helper">Możesz uzupełnić wpis z dzisiaj albo z poprzednich dni audytu.</p>
               </div>
               <button type="submit" class="btn btn-primary field-submit">
                 <i data-lucide="plus"></i>
@@ -239,6 +302,33 @@
             <div id="weekTimeline" class="week-timeline"></div>
           </section>
         </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Jak czytać liczby</p>
+              <h3>Skąd biorą się wyniki</h3>
+            </div>
+          </div>
+          <div class="explanation-grid">
+            <article class="explanation-card">
+              <h4>Łączny czas</h4>
+              <p>Suma minut ze wszystkich wpisów. To pokazuje, ile pracy faktycznie zmierzyłeś, a nie ile „wydaje się”, że zrobiłeś.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Koszt czasu</h4>
+              <p>Łączny czas pomnożony przez stawkę godzinową z ustawień. Dzięki temu widać, ile kosztują powtarzalne zadania.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Do odzyskania</h4>
+              <p>Szacunek oparty o kategorię zadania. Maile, statusy i rozproszenia mają wyższy potencjał niż praca merytoryczna dla klienta.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Pełne dni</h4>
+              <p>Dzień liczy się jako pełny, gdy ma minimum 5 wpisów. To zabezpiecza raport przed decyzją na podstawie zbyt małej próbki.</p>
+            </article>
+          </div>
+        </section>
 
         <section class="panel">
           <div class="panel-head">
@@ -266,6 +356,25 @@
           </div>
           <div id="allTasks" class="task-list task-list-full"></div>
         </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Opcje</p>
+              <h3>Co możesz zrobić z wpisami</h3>
+            </div>
+          </div>
+          <div class="explanation-grid">
+            <article class="explanation-card">
+              <h4>Wstaw przykład</h4>
+              <p>Dodaje przykładowy tydzień, żeby zobaczyć jak wygląda raport. Używaj tego na początku albo na testowym koncie, bo wpisy trafią do dziennika.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Usuń wpis</h4>
+              <p>Ikona X przy zadaniu usuwa pojedynczy wpis. Użyj jej, gdy pomyliłeś kategorię, czas albo dodałeś zadanie dwa razy.</p>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section id="view-report" class="view" data-title="Raport">
@@ -297,6 +406,33 @@
           </div>
           <div id="insightsList" class="insights-list"></div>
         </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Interpretacja</p>
+              <h3>Co wynika z raportu</h3>
+            </div>
+          </div>
+          <div class="explanation-grid">
+            <article class="explanation-card">
+              <h4>Najdłuższa kategoria</h4>
+              <p>Pokazuje, gdzie idzie najwięcej czasu. To nie zawsze jest problem. Praca dla klienta może zajmować dużo czasu i nadal być dobra.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Największy potencjał</h4>
+              <p>Pokazuje, gdzie jest największa szansa na odzyskanie czasu. To zwykle lepszy punkt startu niż największy hałas w głowie.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Wniosek praktyczny</h4>
+              <p>Nie automatyzuj wszystkiego. Wybierz jedną kategorię, spisz 5-10 powtarzalnych przykładów i dopiero wtedy dobierz narzędzie AI.</p>
+            </article>
+            <article class="explanation-card">
+              <h4>Za mało danych</h4>
+              <p>Jeśli masz mniej niż 3 pełne dni, traktuj raport jako trop. Po 7 dniach decyzja będzie dużo spokojniejsza.</p>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section id="view-decision" class="view" data-title="Decyzja">
@@ -308,15 +444,28 @@
             <div id="decisionChecklist" class="checklist"></div>
           </section>
 
-          <aside class="panel offer-panel">
-            <p class="eyebrow">Następny produkt</p>
-            <h3 id="nextOfferTitle">Decoder Stack AI</h3>
-            <p id="nextOfferText">Po Trackerze dostajesz jasny obraz strat. Decoder dobiera narzędzia AI do tej pierwszej kategorii.</p>
-            <a href="/playbooki" class="btn btn-dark">
-              <i data-lucide="arrow-right"></i>
-              Zobacz playbooki
-            </a>
-          </aside>
+          <div class="side-stack">
+            <aside class="panel">
+              <p class="eyebrow">Jak użyć decyzji</p>
+              <h3>Jeden ruch na start</h3>
+              <div class="help-list">
+                <p><strong>1.</strong> Weź kategorię z decyzji i wypisz konkretne przykłady z tygodnia.</p>
+                <p><strong>2.</strong> Zaznacz, co się powtarza: ten sam mail, ten sam status, ta sama poprawka, ten sam brief.</p>
+                <p><strong>3.</strong> Wybierz najprostsze rozwiązanie: szablon, checklistę, automatyzację albo zasadę pracy.</p>
+                <p><strong>4.</strong> Testuj jedną zmianę przez 7 dni. Dopiero potem bierz kolejną.</p>
+              </div>
+            </aside>
+
+            <aside class="panel offer-panel">
+              <p class="eyebrow">Następny produkt</p>
+              <h3 id="nextOfferTitle">Decoder Stack AI</h3>
+              <p id="nextOfferText">Po Trackerze dostajesz jasny obraz strat. Decoder dobiera narzędzia AI do tej pierwszej kategorii.</p>
+              <a href="/playbooki" class="btn btn-dark">
+                <i data-lucide="arrow-right"></i>
+                Zobacz playbooki
+              </a>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -336,6 +485,7 @@
                   <input id="hourlyRate" name="hourlyRate" type="number" min="20" max="5000" step="10" required>
                   <span>zł/h</span>
                 </div>
+                <p class="field-helper">Używana do liczenia kosztu czasu. Jeśli nie masz stawki, wpisz kwotę, za którą chcesz wyceniać godzinę swojej pracy.</p>
               </div>
               <div class="field">
                 <label for="industry">Branża</label>
@@ -349,6 +499,7 @@
                   <option>E-commerce</option>
                   <option>Inne</option>
                 </select>
+                <p class="field-helper">Pomaga opisać kontekst raportu. Nie zmienia dostępu do funkcji.</p>
               </div>
               <div class="field">
                 <label for="teamSize">Zespół</label>
@@ -358,10 +509,12 @@
                   <option value="6-10">6-10 osób</option>
                   <option value="10+">10+ osób</option>
                 </select>
+                <p class="field-helper">Przy większym zespole te same straty zwykle szybciej się mnożą.</p>
               </div>
               <div class="field">
                 <label for="startDate">Start 7 dni</label>
                 <input id="startDate" name="startDate" type="date" required>
+                <p class="field-helper">Od tej daty buduje się tygodniowa oś audytu na dashboardzie.</p>
               </div>
               <button type="submit" class="btn btn-primary">
                 <i data-lucide="save"></i>

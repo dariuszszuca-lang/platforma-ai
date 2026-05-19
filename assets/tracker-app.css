@@ -544,6 +544,73 @@ textarea:focus {
   font-size: 13px;
 }
 
+.help-panel {
+  margin-bottom: 14px;
+}
+
+.help-grid,
+.explanation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.help-detail,
+.explanation-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  padding: 14px;
+}
+
+.help-detail summary {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+  list-style: none;
+  cursor: pointer;
+}
+
+.help-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.help-detail summary::after {
+  content: '+';
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.help-detail[open] summary::after {
+  content: '-';
+}
+
+.help-detail p,
+.explanation-card p,
+.help-list p {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.help-detail p:last-child,
+.explanation-card p:last-child,
+.help-list p:last-child {
+  margin-bottom: 0;
+}
+
+.explanation-card h4 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 15px;
+}
+
 .stat-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -620,6 +687,13 @@ textarea:focus {
 
 .field-submit {
   align-self: end;
+}
+
+.field-helper {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .input-suffix {
@@ -869,6 +943,16 @@ textarea:focus {
   min-height: 360px;
 }
 
+.side-stack {
+  display: grid;
+  align-self: start;
+  gap: 14px;
+}
+
+.side-stack .panel + .panel {
+  margin-top: 0;
+}
+
 .offer-panel {
   align-self: start;
   background: #fff7ed;
@@ -892,6 +976,11 @@ textarea:focus {
 
   .start-guide-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .help-grid,
+  .explanation-grid {
+    grid-template-columns: 1fr;
   }
 
   .content-grid,
