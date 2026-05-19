@@ -17,6 +17,7 @@ service cloud.firestore {
         'source',
         'page_url',
         'referrer',
+        'utm',
         'consent',
         'created_at',
         'updated_at',

@@ -479,6 +479,71 @@ textarea:focus {
   margin-bottom: 14px;
 }
 
+.start-guide {
+  margin-bottom: 14px;
+}
+
+.start-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  min-height: 190px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  padding: 14px;
+}
+
+.guide-step.is-done {
+  border-color: rgba(15, 118, 110, 0.28);
+  background: #ecfdf5;
+}
+
+.guide-step.is-current {
+  border-color: rgba(37, 99, 235, 0.42);
+  background: #eff6ff;
+}
+
+.guide-number {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.guide-step.is-done .guide-number {
+  background: var(--green);
+}
+
+.guide-step.is-current .guide-number {
+  background: var(--blue);
+}
+
+.guide-step h4 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.guide-step p {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .stat-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -825,6 +890,10 @@ textarea:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .start-guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .content-grid,
   .report-grid,
   .decision-layout,
@@ -873,6 +942,14 @@ textarea:focus {
   .stats-grid,
   .report-numbers {
     grid-template-columns: 1fr;
+  }
+
+  .start-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-step {
+    min-height: 0;
   }
 
   .task-form,

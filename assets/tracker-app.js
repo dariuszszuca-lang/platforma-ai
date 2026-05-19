@@ -1,6 +1,8 @@
 (function () {
   const BACKUP_KEY = 'aiTeamTrackerP1.backup';
+  const ATTRIBUTION_KEY = 'aiTeamTrackerP1.attribution';
   const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną.';
+  const ATTRIBUTION_PARAMS = ['source', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
 
   const firebaseConfig = {
     apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
@@ -60,6 +62,7 @@
   let state = loadBackup() || defaultState();
 
   document.addEventListener('DOMContentLoaded', () => {
+    captureAttribution();
     initFirebase();
     bindAuth();
 
@@ -217,6 +220,7 @@
       const credential = await auth.createUserWithEmailAndPassword(fields.email, fields.password);
       await upsertNewsletter(fields);
       await createOrUpdateTrackerUser(credential.user, fields, true);
+      trackSignupConversion(fields);
     } catch (error) {
       if (error && error.code === 'auth/email-already-in-use') {
         showToast('Ten email już ma konto. Kliknij „Mam konto” i zaloguj się.');
@@ -229,6 +233,7 @@
   async function upsertNewsletter(fields) {
     const now = new Date().toISOString();
     const id = newsletterSubscriberId(fields.email);
+    const attribution = getAttribution();
     await db.collection('newsletter_subscribers').doc(id).set({
       id,
       email: fields.email,
@@ -238,7 +243,8 @@
       status: 'active',
       source: 'tracker',
       page_url: window.location.href,
-      referrer: document.referrer || '',
+      referrer: attribution.referrer || document.referrer || '',
+      utm: attribution,
       consent: {
         newsletter: true,
         text: NEWSLETTER_CONSENT_TEXT,
@@ -254,6 +260,93 @@
 
   function newsletterSubscriberId(email) {
     return btoa(email.toLowerCase()).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  }
+
+  function captureAttribution() {
+    const incoming = readAttributionFromUrl();
+    if (!hasAttribution(incoming)) return;
+    const stored = readStoredAttribution();
+    writeAttribution({
+      ...stored,
+      ...incoming,
+      first_page_url: stored.first_page_url || window.location.href,
+      last_page_url: window.location.href,
+      captured_at: new Date().toISOString()
+    });
+  }
+
+  function getAttribution() {
+    const stored = readStoredAttribution();
+    const incoming = readAttributionFromUrl();
+    const merged = {
+      ...stored,
+      ...incoming,
+      page_url: window.location.href,
+      referrer: document.referrer || stored.referrer || ''
+    };
+    return Object.fromEntries(
+      Object.entries(merged).filter(([, value]) => typeof value === 'string' && value.trim())
+    );
+  }
+
+  function readAttributionFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return ATTRIBUTION_PARAMS.reduce((result, key) => {
+      const value = params.get(key);
+      if (value) result[key] = value.slice(0, 250);
+      return result;
+    }, {});
+  }
+
+  function readStoredAttribution() {
+    try {
+      const raw = localStorage.getItem(ATTRIBUTION_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function writeAttribution(attribution) {
+    try {
+      localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
+    } catch {
+      // Atrybucja jest pomocnicza. Brak localStorage nie blokuje dostępu do aplikacji.
+    }
+  }
+
+  function hasAttribution(attribution) {
+    return Object.values(attribution).some((value) => typeof value === 'string' && value.trim());
+  }
+
+  function trackSignupConversion(fields) {
+    const attribution = getAttribution();
+    const params = {
+      content_name: 'Tracker Czasu',
+      content_category: 'AI Radar lead magnet',
+      status: 'free_tracker_signup',
+      value: 0,
+      currency: 'PLN'
+    };
+    trackMetaEvent('Lead', params);
+    trackMetaEvent('CompleteRegistration', params);
+    trackAnalyticsEvent('sign_up', {
+      method: 'email',
+      source: attribution.utm_source || attribution.source || 'tracker',
+      campaign: attribution.utm_campaign || ''
+    });
+  }
+
+  function trackMetaEvent(eventName, params) {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', eventName, params);
+    }
+  }
+
+  function trackAnalyticsEvent(eventName, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
   }
 
   async function loadAccount(user) {
@@ -277,6 +370,7 @@
   async function createOrUpdateTrackerUser(user, fields, isFreshSignup) {
     userRef = db.collection('tracker_users').doc(user.uid);
     taskRef = userRef.collection('tasks');
+    const attribution = getAttribution();
     const payload = {
       email: fields.email || user.email,
       name: fields.name || '',
@@ -290,7 +384,8 @@
       marketing: {
         source: 'tracker',
         groups: ['ai-radar', 'tracker', 'narzedzia'],
-        consentAt: isFreshSignup ? new Date().toISOString() : null
+        consentAt: isFreshSignup ? new Date().toISOString() : null,
+        attribution
       },
       updatedAt: window.firebase.firestore.FieldValue.serverTimestamp()
     };
@@ -327,6 +422,12 @@
     });
     $$('[data-view-jump]').forEach((button) => {
       button.addEventListener('click', () => switchView(button.dataset.viewJump));
+    });
+    $$('[data-focus-task]').forEach((button) => {
+      button.addEventListener('click', () => {
+        switchView('dashboard');
+        setTimeout(() => $('#taskTitle')?.focus(), 180);
+      });
     });
   }
 
@@ -521,6 +622,7 @@
   function renderAll() {
     const summary = getSummary();
     renderHeadline(summary);
+    renderGuide(summary);
     renderStats(summary);
     renderWeek(summary);
     renderTasks('#recentTasks', state.tasks.slice(0, 6));
@@ -552,6 +654,24 @@
     $('#statsGrid').innerHTML = cards.map(([label, value, note]) => (
       `<article class="stat-card"><p class="eyebrow">${label}</p><strong>${value}</strong><span>${note}</span></article>`
     )).join('');
+  }
+
+  function renderGuide(summary) {
+    const steps = [
+      ['settings', summary.taskCount > 0],
+      ['first-task', summary.taskCount > 0],
+      ['habit', summary.completeDays > 0],
+      ['report', summary.trackedDays >= 3],
+      ['decision', summary.trackedDays >= 7]
+    ];
+    const current = steps.find(([, done]) => !done)?.[0];
+
+    steps.forEach(([id, done]) => {
+      const item = $(`[data-guide-step="${id}"]`);
+      if (!item) return;
+      item.classList.toggle('is-done', done);
+      item.classList.toggle('is-current', !done && id === current);
+    });
   }
 
   function renderWeek(summary) {

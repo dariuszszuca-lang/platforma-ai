@@ -1111,6 +1111,21 @@ html { scroll-behavior: smooth; }
 <script>
   lucide.createIcons();
 
+  const passthroughParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  const currentParams = new URLSearchParams(window.location.search);
+
+  document.querySelectorAll('a[href^="/app"]').forEach(link => {
+    const url = new URL(link.getAttribute('href'), window.location.origin);
+    passthroughParams.forEach(param => {
+      const value = currentParams.get(param);
+      if (value && !url.searchParams.has(param)) url.searchParams.set(param, value);
+    });
+    if (currentParams.get('source') && !url.searchParams.has('source')) {
+      url.searchParams.set('source', currentParams.get('source'));
+    }
+    link.href = `${url.pathname}${url.search}${url.hash}`;
+  });
+
   // IntersectionObserver dla fade-up i fade-scale (whileInView z Framer)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
