@@ -1,7 +1,7 @@
 # Meta Ads: Tracker Czasu jako lead magnet AI Radar
 
-Status: Pixel włączony na stronie, kampania przygotowana, bez publikacji reklam i bez budżetu.
-Data: 2026-05-19
+Status: Pixel włączony, kampania i zestaw reklam utworzone w Meta jako `PAUSED`, bez emisji.
+Data: 2026-05-20
 
 ## Cel kampanii
 
@@ -17,11 +17,46 @@ Nie uruchamiać kampanii, dopóki nie ma:
 
 1. Test w Events Manager: `PageView`, `ViewContent`, `Lead`, `CompleteRegistration`.
 2. 2-3 proste kreacje graficzne z ekranem Trackera.
-3. Zgoda Darka na datę startu i uruchomienie kampanii.
+3. Dodać reklamę ręcznie w Ads Managerze albo przełączyć aplikację Meta API na tryb publiczny.
+4. Zgoda Darka na datę startu i aktywowanie kampanii.
 
-AI-Team nie ma jeszcze skonfigurowanych danych Meta Ads API w lokalnych plikach, więc nie używać żadnych tokenów MyWay.
+Nie używać żadnych tokenów MyWay.
 
 Pixel AI-Team utworzony i podpięty 19 maja 2026. Budżet zaakceptowany przez Darka: 20 PLN dziennie.
+
+Konto reklamowe:
+
+`act_463494268184877`
+
+Strona:
+
+`AI-Team`, Page ID: `940319999168472`
+
+Pixel:
+
+`AI-Team Pixel`
+
+Kampania utworzona 20 maja 2026:
+
+- ID: `120246845370010295`
+- nazwa: `AI-Team | Tracker Czasu | AI Radar | Leads | 2026-05`
+- status: `PAUSED`
+- cel: `OUTCOME_LEADS`
+
+Zestaw reklam utworzony 20 maja 2026:
+
+- ID: `120246845385890295`
+- nazwa: `PL | Broad | Tracker AI Radar | 20 PLN dziennie | PAUSED`
+- status: `PAUSED`
+- budżet: 20 PLN dziennie
+- optymalizacja: `OFFSITE_CONVERSIONS`
+- event: `Lead`
+
+Reklama/kreatywa:
+
+- nieutworzona przez API
+- powód: Meta zwraca błąd, że post reklamowy tworzony przez aplikację w trybie deweloperskim wymaga przełączenia aplikacji na tryb publiczny/live
+- obejście: dodać reklamę ręcznie w Ads Managerze w istniejącym zestawie reklam albo przełączyć aplikację `AI-Team Ads API` na tryb publiczny
 
 ## Struktura kampanii
 
