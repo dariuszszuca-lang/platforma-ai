@@ -13,6 +13,7 @@
 
 ## Oferta
 ### Produkty
+- **System Operacyjny Firmy** — portal, baza danych, dokumenty, procesy, role, wspólny kontekst AI i firmowy skill dla zespołów do ok. 10 osób. Oferta dla firm, które mają chaos w wiedzy, plikach, procesach i komunikacji między właścicielem a pracownikami. Strona: https://ai-team.pl/system-operacyjny-firmy.html
 - **Spersonalizowany CRM z AI** — system na zamówienie pod proces klienta, bez abonamentu per użytkownik, kod i dane po stronie klienta. Cena promocyjna: 3 900 PLN jednorazowo (1 950 zaliczka + 1 950 po odbiorze, 30 dni stabilizacji w cenie). Opcjonalna opieka: 1 500 PLN/rok lub 490 PLN/miesiąc.
 - **Warsztat AI stacjonarny w Sopocie** — 500 PLN/osoba. 3-4h hands-on z AI (Claude, Gemini, Notion, Canva) + case studies. Dla 6-8 osób, dla właścicieli małych firm i freelancerów z Trójmiasta.
 
