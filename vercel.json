@@ -9,6 +9,10 @@
     {
       "path": "/api/newsletter-send",
       "schedule": "0 16 * * 2"
+    },
+    {
+      "path": "/api/newsletter-send",
+      "schedule": "0 17 26 5 *"
     }
   ],
   "rewrites": [
