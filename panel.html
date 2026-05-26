@@ -437,6 +437,18 @@ let allNewsletterIssues = [];
 
 const fallbackNewsletterIssues = [
     {
+        id: 'ai-radar-003',
+        number: '003',
+        title: 'AI Radar #003',
+        subject: 'AI Radar #003: Firma nie potrzebuje kolejnego chatu AI',
+        preheader: 'System Operacyjny Firmy, Meta Ads AI, async konsultacje i praca agentów bez gonienia ludzi po statusy.',
+        group: 'ai-radar',
+        status: 'scheduled',
+        scheduled_at: '2026-05-26T19:00:00+02:00',
+        preview_url: '/newsletter/ai-radar-003-system-mailowy.html',
+        source: 'local'
+    },
+    {
         id: 'ai-radar-002',
         number: '002',
         title: 'AI Radar #002',
@@ -537,9 +549,9 @@ function listenToNewsletterIssues() {
         .orderBy('scheduled_at', 'desc')
         .onSnapshot(
             (snapshot) => {
-                const issues = [];
-                snapshot.forEach(doc => issues.push({ id: doc.id, ...doc.data() }));
-                allNewsletterIssues = issues.length ? issues : fallbackNewsletterIssues;
+                const remoteIssues = [];
+                snapshot.forEach(doc => remoteIssues.push({ id: doc.id, ...doc.data() }));
+                allNewsletterIssues = mergeNewsletterIssues(remoteIssues, fallbackNewsletterIssues);
                 renderNewsletterIssues();
             },
             (error) => {
@@ -548,6 +560,23 @@ function listenToNewsletterIssues() {
                 renderNewsletterIssues();
             }
         );
+}
+
+function mergeNewsletterIssues(remoteIssues, localIssues) {
+    const byId = new Map();
+    localIssues.forEach(issue => byId.set(issue.id, issue));
+    remoteIssues.forEach(issue => {
+        byId.set(issue.id, {
+            ...(byId.get(issue.id) || {}),
+            ...issue,
+            source: issue.source || 'firestore'
+        });
+    });
+    return Array.from(byId.values()).sort((a, b) => {
+        const aTime = Date.parse(a.scheduled_at || '') || 0;
+        const bTime = Date.parse(b.scheduled_at || '') || 0;
+        return bTime - aTime;
+    });
 }
 
 // ===== NEWSLETTER =====
