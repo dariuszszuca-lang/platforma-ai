@@ -78,7 +78,7 @@ AUTOMATYZACJA TYGODNIA: Meta Ads AI
 
 Problem: kampanie Meta Ads często startują za szybko. Jest budżet, jest grafika, jest "puśćmy coś", ale nie ma jasnego celu, trackingu, listy testów ani decyzji, kiedy wyłączyć słabe reklamy.
 
-Rozwiązanie: system, który prowadzi kampanię przez checklistę. Poniżej daję pełną wersję, do skopiowania przed startem kampanii.
+Rozwiązanie: system, który prowadzi kampanię przez checklistę. Poniżej zostawiam skrót, a pełna wersja jest pod przyciskiem.
 
 Skrócona checklista przed startem:
 
