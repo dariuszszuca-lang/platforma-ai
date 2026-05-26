@@ -78,14 +78,159 @@ AUTOMATYZACJA TYGODNIA: Meta Ads AI
 
 Problem: kampanie Meta Ads często startują za szybko. Jest budżet, jest grafika, jest "puśćmy coś", ale nie ma jasnego celu, trackingu, listy testów ani decyzji, kiedy wyłączyć słabe reklamy.
 
-Rozwiązanie: system, który prowadzi kampanię przez checklistę.
+Rozwiązanie: system, który prowadzi kampanię przez checklistę. Poniżej daję pełną wersję, do skopiowania przed startem kampanii.
 
-1. Najpierw cel: leady, sprzedaż, ruch albo zasięg.
-2. Potem tracking: Pixel, eventy, CAPI, UTM i testowe zdarzenia.
-3. Potem kreacje: minimum kilka wariantów grafiki, hooków i tekstów.
-4. Potem struktura: kampania, zestawy reklam, grupy odbiorców, budżet i placementy.
-5. Po starcie: 24-48 godzin kontroli technicznej, potem cierpliwość w fazie uczenia.
-6. Po danych: CTR, CPC, CPL, ROAS, frequency i decyzja, co wyłączyć, co skalować, co przepisać.
+PEŁNA CHECKLISTA REKLAM META ADS
+
+Przed startem kampanii
+
+Cel i strategia:
+- Określ jeden jasny cel kampanii: leady, sprzedaż, ruch albo zasięg.
+- Wybierz odpowiedni cel w Ads Managerze.
+- Ustal budżet dzienny albo całkowity.
+- Ustal czas trwania kampanii.
+- Zdefiniuj sukces: koszt za lead, ROAS, koszt za kliknięcie albo inny główny KPI.
+
+Pixel i tracking:
+- Meta Pixel jest zainstalowany na stronie.
+- Pixel świeci na zielono w Events Manager.
+- Eventy są skonfigurowane: PageView, Lead, Purchase lub inne właściwe dla celu.
+- Conversions API jest skonfigurowane, jeśli kampania ma zbierać leady albo sprzedaż.
+- Testowe zdarzenia przechodzą w Test Events.
+- Linki mają UTM-y.
+
+Grupa docelowa:
+- Custom Audience z bazy mailingowej, jeśli baza jest wystarczająco duża.
+- Custom Audience z odwiedzających stronę, np. 180 dni.
+- Lookalike 1% z najlepszych klientów albo kupujących.
+- Lookalike 1% z zapisanych na newsletter, jeśli lista ma sensowną jakość.
+- Zainteresowania są ograniczone do kilku powiązanych z ofertą.
+- Obecni klienci są wykluczeni, jeśli celem jest pozyskanie nowych.
+- Osoby, które już kupiły albo się zapisały, są wykluczone z kampanii pozyskującej.
+
+Kreacja reklamowa
+
+Grafika / wideo:
+- Format pasuje do placementu: 1:1 do feedu, 9:16 do Stories i Reels.
+- Kreacja jest czytelna na telefonie.
+- Jeśli pasuje do marki, pokazuje twarz człowieka.
+- Tekst na grafice jest krótki i nie dominuje.
+- Kolory odcinają się od interfejsu Facebooka i Instagrama.
+- Logo albo branding jest widoczny, ale nie krzyczy.
+- Są minimum 3 różne kreacje do testów.
+
+Wideo:
+- Pierwsze 3 sekundy zatrzymują scroll.
+- Film działa bez dźwięku, ma napisy albo tekst.
+- Długość jest dopasowana do odbiorcy: krócej na zimny ruch, dłużej na cieplejszy.
+- CTA pojawia się w filmie.
+- Miniatura jest wybrana ręcznie.
+
+Copy reklamy:
+- Pierwszy wiersz jest hookiem.
+- Tekst ma prostą logikę: problem, rozwiązanie, dowód, CTA.
+- Są konkrety i liczby, jeśli naprawdę je mamy.
+- Tekst mówi językiem korzyści, nie listą cech.
+- Emoji są użyte z umiarem albo wcale.
+- Testujemy krótką i dłuższą wersję tekstu.
+- CTA jest na końcu.
+
+Headline i description:
+- Headline mieści się w mobile, najlepiej do około 40 znaków.
+- Headline mówi jedną korzyść albo jedno działanie.
+- Nie ma clickbaitu.
+- Description dopowiada korzyść albo social proof i jest krótki.
+
+Landing page:
+- Strona ładuje się szybko na telefonie.
+- Obietnica z reklamy zgadza się z obietnicą na stronie.
+- Język i ton są spójne z reklamą.
+- CTA widać bez scrollowania.
+- Formularz ma tylko niezbędne pola.
+- Strona jest przetestowana na telefonie.
+- Thank you page działa i ma event konwersji.
+
+Ustawienia kampanii
+
+Struktura:
+- 1 kampania ma 1 cel.
+- Na start nie robimy chaosu: kilka zestawów reklam wystarczy.
+- W zestawie jest kilka reklam do testów, nie kilkadziesiąt.
+- Nazewnictwo jest czytelne: data, cel, audience, kreacja.
+
+Budżet i bidding:
+- Budżet dzienny pozwala zebrać dane, a nie tylko „coś puścić”.
+- Na start zwykle wystarczy Lowest Cost.
+- CBO / Advantage Campaign Budget ma sens przy skalowaniu.
+- Budżetu nie zwiększamy skokowo. Maksymalnie około 20% dziennie.
+
+Harmonogram i placementy:
+- Na start dajemy algorytmowi czas na naukę, zwykle 24/7.
+- Faza uczenia trwa minimum kilka dni.
+- Advantage+ Placements może być dobrym startem, jeśli nie mamy danych.
+- Ręcznie warto sprawdzić Feed, Stories i Reels.
+- Audience Network często daje słabszą jakość, więc trzeba je kontrolować.
+- Podgląd reklamy jest sprawdzony na każdym placementcie.
+
+Po uruchomieniu
+
+Pierwsze 24-48 godzin:
+- Reklamy są zatwierdzone.
+- Pixel rejestruje zdarzenia.
+- Nie zmieniamy ustawień co chwilę.
+- Monitorujemy CPC, CTR i pierwsze sygnały jakości ruchu.
+
+Faza uczenia:
+- Czekamy na dane, nie panikujemy po kilku kliknięciach.
+- Unikamy dużych zmian, bo resetują uczenie.
+- Wyższe koszty na początku są normalne.
+
+Optymalizacja:
+- Wyłączamy reklamy z bardzo niskim CTR.
+- Wyłączamy reklamy z kosztem dużo wyższym od średniej.
+- Zwycięzcom zwiększamy budżet stopniowo.
+- Nowe kreacje testujemy co 2-4 tygodnie, zanim pojawi się zmęczenie reklamą.
+- Lookalike można rozszerzać stopniowo: 1%, potem 2%, potem 3%.
+
+Metryki do śledzenia:
+- CTR: czy reklama zatrzymuje uwagę.
+- CPC: ile kosztuje kliknięcie.
+- CPM: ile płacisz za dotarcie do 1000 osób.
+- Conversion Rate na landing page: czy strona dowozi obietnicę reklamy.
+- Cost Per Lead / Purchase: główny KPI dla leadów albo sprzedaży.
+- ROAS: jeśli kampania sprzedaje bezpośrednio.
+- Frequency: jeśli rośnie zbyt wysoko, grupa zaczyna się wypalać.
+
+Błędy do uniknięcia:
+- Nie zmieniaj reklam codziennie.
+- Nie targetuj zbyt wąsko na start.
+- Nie puszczaj całej Polski bez sensownych zawężeń, jeśli oferta tego nie wymaga.
+- Nie ignoruj mobile.
+- Nie kopiuj reklam konkurencji 1:1.
+- Nie rezygnuj przed zebraniem danych.
+- Nie zwiększaj budżetu skokowo.
+- Nie uruchamiaj kampanii „bo dziś jest wolna chwila”, jeśli tracking i landing nie są gotowe.
+
+Troubleshooting
+
+Reklama się nie wyświetla:
+- Sprawdź status zatwierdzenia.
+- Sprawdź metodę płatności.
+- Sprawdź, czy grupa odbiorców nie jest za mała.
+- Sprawdź limity konta reklamowego.
+
+Wysoki koszt, mało konwersji:
+- Najpierw sprawdź kreację.
+- Potem audience.
+- Potem landing page.
+- Potem budżet i ilość danych.
+
+Dużo kliknięć, mało konwersji:
+- Problem zwykle jest na stronie, nie w reklamie.
+- Sprawdź spójność reklama-strona.
+- Sprawdź szybkość ładowania.
+- Uprość formularz.
+- Sprawdź, czy event konwersji odpala się poprawnie.
 
 Moja rola: przygotowuję system, pilnuję logiki kampanii, tworzę warianty reklam, porządkuję checklistę i pomagam podejmować decyzje na podstawie danych. Ty nie musisz pamiętać o każdym polu w Ads Managerze.
 
