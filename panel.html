@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Panel AI-Team — newsletter</title>
+    <title>Panel AI-Team — Async i newsletter</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,7 @@
                 </div>
                 <div>
                     <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
-                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Newsletter AI Radar</span>
+                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Async desk i AI Radar</span>
                 </div>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
@@ -208,6 +208,11 @@
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
                     <i data-lucide="mail-check" class="w-4 h-4"></i>
                     <span class="hidden sm:inline">Newsletter</span>
+                </a>
+                <a href="#asyncPanel"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="inbox" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Async</span>
                 </a>
                 <a href="https://ai-team.pl/ai-radar" target="_blank"
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
@@ -223,6 +228,60 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- Async panel -->
+        <section id="asyncPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                        <i data-lucide="inbox" class="w-4 h-4"></i>
+                        Async desk
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white">Tematy do odpowiedzi</h2>
+                    <p class="text-sm text-gray-400 mt-1">Zgłoszenia z /async: brief, status, odpowiedź i prywatny link klienta.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <a href="/async" target="_blank" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        Otwórz formularz
+                    </a>
+                    <button onclick="copyOpenAsyncLinks()" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Kopiuj otwarte linki
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Wszystkie</div>
+                    <div class="text-2xl font-bold font-heading" id="asyncStatAll">0</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Nowe</div>
+                    <div class="text-2xl font-bold font-heading text-brand-light" id="asyncStatNew">0</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">W analizie</div>
+                    <div class="text-2xl font-bold font-heading text-blue-400" id="asyncStatTriage">0</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Odpowiedziane</div>
+                    <div class="text-2xl font-bold font-heading text-green-400" id="asyncStatAnswered">0</div>
+                </div>
+            </div>
+
+            <div id="asyncLoading" class="space-y-3">
+                <div class="skeleton h-28"></div>
+                <div class="skeleton h-28"></div>
+            </div>
+            <div id="asyncError" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 p-4 text-sm"></div>
+            <div id="asyncEmpty" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 text-center">
+                <i data-lucide="inbox" class="w-10 h-10 text-gray-600 mx-auto mb-3"></i>
+                <p class="text-gray-400">Brak tematów async.</p>
+            </div>
+            <div id="asyncCasesList" class="space-y-4"></div>
+        </section>
 
         <!-- Newsletter panel -->
         <section id="newsletterPanel" class="glass-card rounded-2xl p-5 sm:p-6">
@@ -431,6 +490,7 @@ auth.onAuthStateChanged(function(user) {
 });
 
 // ===== STATE =====
+let allAsyncCases = [];
 let allSubscribers = [];
 let currentNewsletterGroup = 'all';
 let allNewsletterIssues = [];
@@ -476,9 +536,245 @@ const fallbackNewsletterIssues = [
 
 // ===== DASHBOARD INIT =====
 function initDashboard() {
+    listenToAsyncCases();
     setupNewsletterGroupTabs();
     listenToNewsletter();
     listenToNewsletterIssues();
+}
+
+// ===== ASYNC DESK =====
+function listenToAsyncCases() {
+    const loading = document.getElementById('asyncLoading');
+    const errorEl = document.getElementById('asyncError');
+
+    try {
+        loading.classList.remove('hidden');
+        errorEl.classList.add('hidden');
+
+        db.collection('zlecenia')
+            .onSnapshot(
+                (snapshot) => {
+                    allAsyncCases = [];
+                    snapshot.forEach(doc => {
+                        const data = { id: doc.id, ...doc.data() };
+                        if (data.case_type === 'async' || data.source === 'async-platform') {
+                            allAsyncCases.push(data);
+                        }
+                    });
+                    allAsyncCases.sort((a, b) => dateValue(b.created_at || b.createdAt) - dateValue(a.created_at || a.createdAt));
+                    loading.classList.add('hidden');
+                    errorEl.classList.add('hidden');
+                    updateAsyncStats();
+                    renderAsyncCases();
+                },
+                (error) => {
+                    console.error('Async Firestore error:', error);
+                    loading.classList.add('hidden');
+                    errorEl.classList.remove('hidden');
+                    errorEl.textContent = 'Błąd ładowania tematów async: ' + error.message;
+                }
+            );
+    } catch (error) {
+        console.error('Async list error:', error);
+        loading.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        errorEl.textContent = error.message || 'Błąd ładowania tematów async.';
+    }
+}
+
+function updateAsyncStats() {
+    document.getElementById('asyncStatAll').textContent = allAsyncCases.length;
+    document.getElementById('asyncStatNew').textContent = allAsyncCases.filter(item => (item.status || 'new') === 'new').length;
+    document.getElementById('asyncStatTriage').textContent = allAsyncCases.filter(item => ['triage', 'waiting'].includes(item.status)).length;
+    document.getElementById('asyncStatAnswered').textContent = allAsyncCases.filter(item => ['answered', 'closed'].includes(item.status)).length;
+}
+
+function renderAsyncCases() {
+    const list = document.getElementById('asyncCasesList');
+    const empty = document.getElementById('asyncEmpty');
+    const loading = document.getElementById('asyncLoading');
+
+    loading.classList.add('hidden');
+
+    if (allAsyncCases.length === 0) {
+        list.innerHTML = '';
+        empty.classList.remove('hidden');
+        lucide.createIcons();
+        return;
+    }
+
+    empty.classList.add('hidden');
+    list.innerHTML = allAsyncCases.map(renderAsyncCaseCard).join('');
+    lucide.createIcons();
+}
+
+function renderAsyncCaseCard(item) {
+    const status = getAsyncStatusBadge(item.status || 'new');
+    const priority = getAsyncPriorityBadge(item.priority || 'medium');
+    const date = formatDate(item.created_at || item.createdAt);
+    const category = getAsyncCategoryLabel(item.category || 'inne');
+    const publicUrl = item.public_url || '';
+    const responseText = item.response_text || '';
+    const responseUrl = item.response_url || '';
+    const notes = item.internal_notes || '';
+    const agentBrief = item.agent_brief || 'Brak briefu agenta.';
+
+    return `
+    <div class="rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:p-5">
+        <div class="flex flex-col xl:flex-row xl:items-start gap-5">
+            <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="${status.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${status.label}</span>
+                    <span class="${priority.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${priority.label}</span>
+                    <span class="text-xs text-brand-light bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">${escHtml(category)}</span>
+                    <span class="text-xs text-gray-500">${escHtml(date)}</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-white">${escHtml(item.title || 'Temat async')}</h3>
+                <p class="text-sm text-gray-400 mt-1">${escHtml(item.name || 'Bez nazwy')} · ${escHtml(item.email || '')}${item.company ? ' · ' + escHtml(item.company) : ''}</p>
+                <p class="text-sm text-gray-300 mt-4 whitespace-pre-wrap">${escHtml(item.context || '')}</p>
+                ${renderAsyncLinks(item.links)}
+                <div class="rounded-xl border border-brand-primary/20 bg-brand-primary/10 p-4 mt-4">
+                    <div class="text-xs uppercase tracking-wider text-brand-light font-semibold mb-2">Brief dla agenta</div>
+                    <pre class="whitespace-pre-wrap text-xs leading-5 text-gray-300 font-mono">${escHtml(agentBrief)}</pre>
+                </div>
+            </div>
+            <div class="xl:w-[420px] grid gap-3">
+                <select id="asyncStatus-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    ${renderAsyncStatusOptions(item.status || 'new')}
+                </select>
+                <textarea id="asyncResponse-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[132px] focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Odpowiedź widoczna dla klienta">${escHtml(responseText)}</textarea>
+                <input id="asyncResponseUrl-${escAttr(item.id)}" value="${escAttr(responseUrl)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Link do Looma, dokumentu albo materiału">
+                <textarea id="asyncNotes-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[82px] focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Notatki wewnętrzne">${escHtml(notes)}</textarea>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="saveAsyncCase('${escJs(item.id)}')" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        Zapisz
+                    </button>
+                    <button onclick="copyText('${escJs(publicUrl)}', 'Skopiowano link klienta')" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Link
+                    </button>
+                    <a href="${escAttr(publicUrl)}" target="_blank" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        Widok
+                    </a>
+                    <a href="mailto:${escAttr(item.email || '')}?subject=${encodeURIComponent('Re: ' + (item.title || 'Konsultacja async'))}&body=${encodeURIComponent(publicUrl || '')}"
+                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Mail
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderAsyncLinks(links) {
+    if (!Array.isArray(links) || !links.length) return '';
+    return `
+    <div class="flex flex-wrap gap-2 mt-4">
+        ${links.map((link, index) => `
+            <a href="${escAttr(link)}" target="_blank" rel="noopener"
+               class="text-xs text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">
+                materiał ${index + 1}
+            </a>
+        `).join('')}
+    </div>`;
+}
+
+function renderAsyncStatusOptions(active) {
+    const statuses = {
+        new: 'Nowe',
+        triage: 'W analizie',
+        waiting: 'Czeka na dane',
+        answered: 'Odpowiedziane',
+        closed: 'Zamknięte'
+    };
+    return Object.keys(statuses).map(key =>
+        `<option value="${key}" ${active === key ? 'selected' : ''}>${statuses[key]}</option>`
+    ).join('');
+}
+
+async function saveAsyncCase(id) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        const current = allAsyncCases.find(item => item.id === id) || {};
+        const status = document.getElementById(`asyncStatus-${id}`).value;
+        const responseText = document.getElementById(`asyncResponse-${id}`).value.trim();
+        const responseUrl = document.getElementById(`asyncResponseUrl-${id}`).value.trim();
+        const notes = document.getElementById(`asyncNotes-${id}`).value.trim();
+        const now = new Date().toISOString();
+
+        const update = {
+            status,
+            response_text: responseText,
+            response_url: responseUrl,
+            internal_notes: notes,
+            updated_at: now
+        };
+
+        if (status === 'answered' && !current.answered_at) update.answered_at = now;
+
+        await db.collection('zlecenia').doc(id).update(update);
+        showToast('Zapisano sprawę async', 'success');
+    } catch (error) {
+        console.error('Async save error:', error);
+        showToast(error.message || 'Błąd zapisu sprawy async', 'error');
+    }
+}
+
+function copyOpenAsyncLinks() {
+    const links = allAsyncCases
+        .filter(item => !['answered', 'closed'].includes(item.status || 'new'))
+        .map(item => item.public_url)
+        .filter(Boolean);
+    if (!links.length) {
+        showToast('Brak otwartych linków async', 'info');
+        return;
+    }
+    copyText(links.join('\n'), 'Skopiowano otwarte linki async');
+}
+
+function getAsyncStatusBadge(status) {
+    const map = {
+        new: { label: 'Nowe', classes: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
+        triage: { label: 'W analizie', classes: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
+        waiting: { label: 'Czeka na dane', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
+        answered: { label: 'Odpowiedziane', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        closed: { label: 'Zamknięte', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
+    };
+    return map[status] || map.new;
+}
+
+function getAsyncPriorityBadge(priority) {
+    const map = {
+        high: { label: 'Pilne', classes: 'bg-red-500/20 text-red-300 border-red-500/30' },
+        medium: { label: '24-48h', classes: 'bg-brand-primary/20 text-brand-light border-brand-primary/30' },
+        normal: { label: 'Normalne', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
+    };
+    return map[priority] || map.medium;
+}
+
+function getAsyncCategoryLabel(category) {
+    const labels = {
+        meta_ads: 'Meta Ads',
+        landing: 'Strona / landing',
+        ai_system: 'AI w firmie',
+        crm: 'CRM / mini-system',
+        content: 'Content / newsletter',
+        decision: 'Decyzja biznesowa',
+        inne: 'Inne'
+    };
+    return labels[category] || category || 'Inne';
 }
 
 function setupNewsletterGroupTabs() {
@@ -924,6 +1220,14 @@ function csvCell(value) {
 
 // ===== HELPERS =====
 
+function dateValue(ts) {
+    if (!ts) return 0;
+    if (ts.toDate) return ts.toDate().getTime();
+    if (ts.seconds) return ts.seconds * 1000;
+    const value = new Date(ts).getTime();
+    return isNaN(value) ? 0 : value;
+}
+
 function formatDate(ts) {
     if (!ts) return '—';
     let d;
@@ -950,6 +1254,24 @@ function escJs(str) {
         .replace(/\\/g, '\\\\')
         .replace(/'/g, "\\'")
         .replace(/\r?\n/g, ' ');
+}
+
+function copyText(text, successMessage = 'Skopiowano') {
+    if (!text) {
+        showToast('Brak tekstu do skopiowania', 'info');
+        return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage, 'success');
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(successMessage, 'success');
+    });
 }
 
 // ===== TOAST =====
