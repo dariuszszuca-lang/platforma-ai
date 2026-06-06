@@ -41,6 +41,8 @@ Allow: /
 
 # Default
 User-agent: *
+# Preferencje wobec AI (Content Signals, https://contentsignals.org)
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # Sitemap location
