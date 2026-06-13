@@ -15,6 +15,7 @@ ZASADY PISANIA:
 - Po polsku, prosto, jak do kolegi. Zero korpomowy. Zakazane słowa: innowacyjny, kompleksowy, holistyczny, synergia, dedykowany (jako ozdobnik), rewolucyjny, cutting-edge, leverage.
 - ZERO myślników (długich i półpauz). Używaj kropek, przecinków, dwukropków.
 - Pełne polskie znaki (ą ę ś ć ł ń ó ź ż).
+- Pisz neutralnie płciowo (nie znamy płci odbiorcy). Unikaj form 2. osoby czasu przeszłego (zauważyłeś/zauważyłaś, zrobiłeś/zrobiłaś). Używaj czasu teraźniejszego i przyszłego (widzisz, dostaniesz, możesz), trybu rozkazującego albo form bezosobowych.
 - Konkretnie i pod TĘ firmę. Bez ogólników, które pasują do każdego.
 - Nie zmyślaj liczb ani obietnic wyniku. Nie pisz "oszczędzisz 10 godzin" ani "zwiększysz sprzedaż o 30%". Mów jakościowo: mniej powtarzalnej roboty, mniej telefonów, nic nie ginie, szybsza odpowiedź klientowi.
 - Rekomendacje opieraj na prostych, realnych narzędziach AI i na tym, co robi AI-Team. Gdy coś pasuje do oferty AI-Team, wskaż to naturalnie (jednym zdaniem), z ceną z oferty, bez nacisku. Mapa ma dawać wartość sama, nie być reklamą.
@@ -182,7 +183,7 @@ function renderEmail(m, inp) {
     <tr><td style="height:4px;background:#ff7a1a;line-height:4px;font-size:0;">&nbsp;</td></tr>
     <tr><td style="padding:32px 30px 4px;">
       <h1 style="margin:0 0 14px;font-size:22px;line-height:1.25;color:#1c1917;">${imie}, oto Twoja Mapa AI.</h1>
-      <p style="margin:0;font-size:15px;line-height:1.6;color:#44403c;">Dzięki, że się zapisałeś. Poniżej cała Twoja Mapa: od czego zacząć, czego nie ruszać na start i jaki jest następny krok. Czytaj na spokojnie, nic się nie spieszy.</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#44403c;">Dzięki za zapis. Poniżej cała Twoja Mapa: od czego zacząć, czego nie ruszać na start i jaki jest następny krok. Czytaj na spokojnie, nic się nie spieszy.</p>
     </td></tr>
     <tr><td style="padding:20px 30px 0;">
       <p style="margin:0 0 2px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff7a1a;font-weight:bold;">Od czego zacząć</p>
@@ -205,7 +206,7 @@ function renderEmail(m, inp) {
       <p style="margin:16px 0 0;font-size:14px;line-height:1.5;color:#1c1917;">Do usłyszenia,<br><b>Darek</b><br><a href="https://ai-team.pl" style="color:#ff7a1a;text-decoration:none;">ai-team.pl</a></p>
     </td></tr>
     <tr><td style="background:#faf7f4;padding:16px 30px;font-size:11px;line-height:1.5;color:#9a8f86;">
-      Dostajesz tę wiadomość, bo zapisałeś się po Mapę AI na ai-team.pl. Administrator danych: Dariusz Szuca. <a href="https://ai-team.pl/ai-radar-wypis.html" style="color:#9a8f86;">Wypisz się</a>.
+      Dostajesz tę wiadomość, bo Twój adres trafił do nas przez formularz Mapy AI na ai-team.pl. Administrator danych: Dariusz Szuca. <a href="https://ai-team.pl/ai-radar-wypis.html" style="color:#9a8f86;">Wypisz się</a>.
     </td></tr>
   </table>
 </td></tr></table></body></html>`;
