@@ -9,6 +9,10 @@ const lib = require("./newsletter-send.js");
 const MODEL = "claude-sonnet-4-6";
 const ANTHROPIC_VERSION = "2023-06-01";
 
+const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID || "ai-team-zlecenia";
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY || "";
+const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents`;
+
 const MAPA_PROMPT = `Jesteś planistą wdrożeń AI w AI-Team (studio Darka Szucy: strony, systemy/CRM i automatyzacje dla małych firm). Dostajesz krótkie odpowiedzi właściciela małej firmy z formularza i tworzysz dla NIEGO konkretną, praktyczną Mapę AI: od czego zacząć, czym to zrobić, w jakiej kolejności.
 
 ZASADY PISANIA:
@@ -159,13 +163,39 @@ function parseMapaJson(textRaw) {
   return JSON.parse(t);
 }
 
+// Ten sam schemat id co formularz (base64 url-safe), zeby nie tworzyc duplikatow.
+function subscriberId(email) {
+  return Buffer.from(lib.cleanEmail(email))
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
+
+function fsEncodeValue(v) {
+  if (v === null) return { nullValue: null };
+  if (typeof v === "boolean") return { booleanValue: v };
+  if (typeof v === "number" && Number.isInteger(v)) return { integerValue: String(v) };
+  if (typeof v === "number") return { doubleValue: v };
+  if (Array.isArray(v)) return { arrayValue: { values: v.map(fsEncodeValue) } };
+  if (typeof v === "object") return { mapValue: { fields: fsEncodeFields(v) } };
+  return { stringValue: String(v) };
+}
+
+function fsEncodeFields(o) {
+  const out = {};
+  for (const [k, val] of Object.entries(o)) if (val !== undefined) out[k] = fsEncodeValue(val);
+  return out;
+}
+
+// Zapis nieuwierzytelniony z kluczem API, dokladnie jak formularz na stronie
+// (reguly Firestore dopuszczaja zapis newsletter_subscribers dla anonimowych).
 async function saveSubscriber({ email, name, what, pain, stage }) {
-  const token = await lib.getServerFirestoreToken();
-  const id = lib.docIdFromEmail(email);
+  const id = subscriberId(email);
   const now = new Date().toISOString();
   const data = {
     id,
-    email,
+    email: lib.cleanEmail(email),
     name: name || "",
     group: "ai-radar",
     groups: ["ai-radar"],
@@ -182,7 +212,20 @@ async function saveSubscriber({ email, name, what, pain, stage }) {
     updated_at: now,
     last_signup_at: now,
   };
-  await lib.setDoc(`newsletter_subscribers/${id}`, data, token, Object.keys(data));
+
+  const url = new URL(`${FIRESTORE_BASE}/newsletter_subscribers/${id}`);
+  if (FIREBASE_API_KEY) url.searchParams.set("key", FIREBASE_API_KEY);
+  for (const field of Object.keys(data)) url.searchParams.append("updateMask.fieldPaths", field);
+
+  const resp = await fetch(String(url), {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ fields: fsEncodeFields(data) }),
+  });
+  if (!resp.ok) {
+    const errText = await resp.text().catch(() => "");
+    throw new Error(`Firestore ${resp.status}: ${errText.slice(0, 200)}`);
+  }
   return true;
 }
 
