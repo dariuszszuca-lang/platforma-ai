@@ -850,3 +850,20 @@ function setCors(res) {
 function sendJson(res, status, data) {
   return res.status(status).json(data);
 }
+
+// Named exports for reuse by sibling functions (e.g. api/mapa-send.js).
+// Append-only — does not change the default handler export above.
+Object.assign(module.exports, {
+  getServerFirestoreToken,
+  setDoc,
+  getDoc,
+  sendSesEmail,
+  getAwsConfig,
+  setCors,
+  sendJson,
+  parseBody,
+  cleanEmail,
+  publicError,
+  firstName,
+  docIdFromEmail,
+});
