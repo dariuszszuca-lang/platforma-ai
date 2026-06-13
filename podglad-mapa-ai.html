@@ -2,7 +2,7 @@
 <!--
   STRONA PODGLĄDOWA (do akceptacji). URL: ai-team.pl/podglad-mapa-ai
   Przebudowa strony ai-radar pod lead magnet "Mapa AI" (Cloud CSO). noindex, nielinkowana z menu.
-  Formularz NIC nie wysyła. Backend (generowanie Mapy + wysyłka PDF) = AWS, za bramką COSTSEC (osobny OK).
+  Formularz NIC nie wysyła. Backend (generowanie Mapy + wysyłka maila) = funkcja Vercel + SES, za bramką COSTSEC (osobny OK).
   Po akceptacji: zastąpi treść właściwej strony ai-radar wraz z backendem.
 -->
 <html lang="pl">
@@ -602,7 +602,7 @@
           <div class="radar-format-list">
             <span>Piszesz, czym się zajmujesz i co najbardziej zjada Ci czas.</span>
             <span>AI układa plan dopasowany do Twojej firmy.</span>
-            <span>Plan dostajesz na maila, w PDF, od razu.</span>
+            <span>Cały plan dostajesz mailem, od razu.</span>
           </div>
         </div>
         <div class="radar-format radar-sample" aria-label="Fragment przykładowej Mapy AI">
@@ -680,7 +680,7 @@
 
 <script>
 // ROBOCZA WERSJA STRONY (podgląd treści i układu).
-// Generowanie Mapy AI i wysyłka PDF to backend AWS, który podłączymy po osobnym OK i rytuale COSTSEC.
+// Generowanie Mapy AI i wysyłka maila to funkcja Vercel (Claude API + SES), którą podłączymy po osobnym OK i rytuale COSTSEC.
 // Ten formularz NIC nie wysyła, tylko sprawdza pola i pokazuje, co stanie się dalej.
 const mapForm = document.getElementById('mapForm');
 const mapMessage = document.getElementById('mapMessage');
@@ -712,7 +712,7 @@ mapForm.addEventListener('submit', function(event) {
     return;
   }
 
-  showMapMessage('success', 'To robocza wersja strony. Tu podłączymy generowanie Mapy AI i wysyłkę PDF (backend AWS).');
+  showMapMessage('success', 'To robocza wersja strony. Po uruchomieniu dostaniesz Mapę AI mailem od razu.');
 });
 </script>
 <script src="assets/main.js" defer></script>
