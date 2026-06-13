@@ -2,8 +2,8 @@
 <!--
   STRONA PODGLĄDOWA (do akceptacji). URL: ai-team.pl/podglad-mapa-ai
   Przebudowa strony ai-radar pod lead magnet "Mapa AI" (Cloud CSO). noindex, nielinkowana z menu.
-  Formularz NIC nie wysyła. Backend (generowanie Mapy + wysyłka maila) = funkcja Vercel + SES, za bramką COSTSEC (osobny OK).
-  Po akceptacji: zastąpi treść właściwej strony ai-radar wraz z backendem.
+  Formularz DZIAŁA: zapis do AI Radar (Firestore) + POST /api/mapa-send (Claude + SES, ten sam produkcyjny co newsletter).
+  Strona testowa przed publikacją. Po akceptacji: zastąpi treść właściwej strony ai-radar.
 -->
 <html lang="pl">
 <head>
@@ -679,40 +679,100 @@
 </main>
 
 <script>
-// ROBOCZA WERSJA STRONY (podgląd treści i układu).
-// Generowanie Mapy AI i wysyłka maila to funkcja Vercel (Claude API + SES), którą podłączymy po osobnym OK i rytuale COSTSEC.
-// Ten formularz NIC nie wysyła, tylko sprawdza pola i pokazuje, co stanie się dalej.
+// Formularz Mapy AI: zapis do listy AI Radar (Firestore, jak newsletter) + POST do /api/mapa-send (Claude + SES).
+const MAPA_CONSENT_TEXT = 'Zapis do newslettera AI Radar i zgoda na przygotowanie Mapy AI (ai-team.pl/mapa-ai).';
+const firebaseConfig = {
+  apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
+  authDomain: 'ai-team-zlecenia.firebaseapp.com',
+  projectId: 'ai-team-zlecenia',
+  storageBucket: 'ai-team-zlecenia.firebasestorage.app',
+  messagingSenderId: '715537035293',
+  appId: '1:715537035293:web:fe2978df1e20bfc3e0d6f4',
+  measurementId: 'G-N62YHVDCKC'
+};
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const mapaDb = firebase.firestore();
+
 const mapForm = document.getElementById('mapForm');
+const mapButton = document.getElementById('mapButton');
 const mapMessage = document.getElementById('mapMessage');
+const MAP_BTN_LABEL = mapButton.textContent;
 
 function showMapMessage(type, text) {
   mapMessage.className = 'radar-message is-visible ' + type;
   mapMessage.textContent = text;
 }
+function mapSubscriberId(email) {
+  return btoa(email).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
 
-mapForm.addEventListener('submit', function(event) {
+mapForm.addEventListener('submit', async function (event) {
   event.preventDefault();
 
   const email = document.getElementById('mapEmail').value.trim().toLowerCase();
+  const name = document.getElementById('mapName').value.trim();
   const what = document.getElementById('mapWhat').value.trim();
+  const pain = document.getElementById('mapPain').value;
+  const stage = document.getElementById('mapStage').value;
   const consent = document.getElementById('mapConsent').checked;
   const honeypot = document.getElementById('mapCompany').value;
 
-  if (honeypot) { return; }
-  if (!email || !email.includes('@')) {
-    showMapMessage('error', 'Wpisz poprawny adres email.');
-    return;
-  }
-  if (!what) {
-    showMapMessage('error', 'Napisz w dwóch słowach, czym się zajmujesz.');
-    return;
-  }
-  if (!consent) {
-    showMapMessage('error', 'Zaznacz zgodę, bez tego nie przygotuję Mapy.');
-    return;
+  if (honeypot) { window.location.href = '/ai-radar-dziekuje.html'; return; }
+  if (!email || !email.includes('@')) { showMapMessage('error', 'Wpisz poprawny adres email.'); return; }
+  if (!what) { showMapMessage('error', 'Napisz w dwóch słowach, czym się zajmujesz.'); return; }
+  if (!consent) { showMapMessage('error', 'Zaznacz zgodę, bez tego nie przygotuję Mapy.'); return; }
+
+  mapButton.disabled = true;
+  mapButton.textContent = 'Przygotowuję Mapę...';
+  mapMessage.className = 'radar-message';
+  mapMessage.textContent = '';
+
+  const now = new Date().toISOString();
+
+  // 1. Zapis do listy AI Radar (Firestore, jak formularz newslettera). Best-effort.
+  try {
+    const id = mapSubscriberId(email);
+    await mapaDb.collection('newsletter_subscribers').doc(id).set({
+      id,
+      email,
+      name,
+      group: 'ai-radar',
+      groups: ['ai-radar'],
+      status: 'active',
+      source: 'mapa-ai',
+      mapa_survey: { firma: what, problem: pain, etap: stage },
+      consent: {
+        newsletter: true,
+        text: MAPA_CONSENT_TEXT,
+        accepted_at: now,
+        privacy_url: 'https://ai-team.pl/privacy',
+        privacy_version: '2026-06-13'
+      },
+      created_at: now,
+      updated_at: now,
+      last_signup_at: now
+    }, { merge: true });
+  } catch (e) {
+    console.warn('subscribe', e && e.message);
   }
 
-  showMapMessage('success', 'To robocza wersja strony. Po uruchomieniu dostaniesz Mapę AI mailem od razu.');
+  // 2. Generacja + wysyłka Mapy mailem (backend).
+  try {
+    const resp = await fetch('/api/mapa-send', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email, name, what, pain, stage, consent: true })
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok || !data.ok) throw new Error(data.error || 'Nie udało się wysłać Mapy. Spróbuj za chwilę.');
+    showMapMessage('success', 'Gotowe. Twoja Mapa AI leci na ' + email + '. Sprawdź skrzynkę za chwilę, czasem trafia do spamu.');
+    mapForm.reset();
+    mapButton.textContent = 'Mapa wysłana';
+  } catch (error) {
+    mapButton.disabled = false;
+    mapButton.textContent = MAP_BTN_LABEL;
+    showMapMessage('error', (error && error.message) || 'Coś poszło nie tak. Spróbuj za chwilę.');
+  }
 });
 </script>
 <script src="assets/main.js" defer></script>

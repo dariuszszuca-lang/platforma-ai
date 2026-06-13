@@ -33,6 +33,38 @@ OFERTA AI-TEAM (fakty, używaj tylko tych cen):
 Zwróć WYŁĄCZNIE poprawny JSON, bez komentarzy:
 {"tytul":"Mapa AI dla ...","wstep":"1-2 zdania osobiście pod tę firmę i jej problem","od_czego_zaczac":[{"krok":1,"tytul":"...","co_da":"...","jak":"..."},{"krok":2,"tytul":"...","co_da":"...","jak":"..."},{"krok":3,"tytul":"...","co_da":"...","jak":"..."}],"czego_nie_ruszac":["..."],"nastepny_krok":"..."}`;
 
+// --- Zabezpieczenie publicznego endpointu (bez zewnetrznej infry) ---
+const ALLOWED_HOSTS = ["ai-team.pl", "www.ai-team.pl"];
+function originAllowed(req) {
+  const src = req.headers.origin || req.headers.referer || "";
+  if (!src) return false; // przegladarka wysyla Origin/Referer przy POST; goly skrypt zwykle nie
+  try {
+    const h = new URL(src).hostname;
+    return ALLOWED_HOSTS.includes(h) || h.endsWith(".vercel.app") || h === "localhost";
+  } catch {
+    return false;
+  }
+}
+function clientIp(req) {
+  const xff = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  return xff || String(req.headers["x-real-ip"] || "") || "unknown";
+}
+const RL_HITS = new Map();
+const RL_MAX = 5;
+const RL_WINDOW_MS = 10 * 60 * 1000;
+function rateLimited(ip) {
+  const now = Date.now();
+  const hits = (RL_HITS.get(ip) || []).filter((t) => now - t < RL_WINDOW_MS);
+  if (hits.length >= RL_MAX) {
+    RL_HITS.set(ip, hits);
+    return true;
+  }
+  hits.push(now);
+  RL_HITS.set(ip, hits);
+  if (RL_HITS.size > 5000) RL_HITS.clear();
+  return false;
+}
+
 module.exports = async function handler(req, res) {
   lib.setCors(res);
   if (req.method === "OPTIONS") return res.status(200).end();
@@ -56,6 +88,12 @@ module.exports = async function handler(req, res) {
     const isAdmin = adminToken && String(body.token || "") === adminToken;
     const dryRun = body.dryRun === true && isAdmin;
     const testTo = isAdmin ? lib.cleanEmail(body.testTo || "") : "";
+
+    // Publiczne zadania: tylko z naszej strony + limit na IP. Admin (token) omija.
+    if (!isAdmin) {
+      if (!originAllowed(req)) return lib.sendJson(res, 403, { ok: false, error: "Nieprawidłowe źródło żądania." });
+      if (rateLimited(clientIp(req))) return lib.sendJson(res, 429, { ok: false, error: "Za dużo zgłoszeń z tego adresu. Spróbuj za parę minut." });
+    }
 
     if (!email) return lib.sendJson(res, 400, { ok: false, error: "Podaj poprawny adres email." });
     if (!what) return lib.sendJson(res, 400, { ok: false, error: "Napisz w dwóch słowach, czym się zajmujesz." });
