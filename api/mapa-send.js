@@ -60,6 +60,16 @@ module.exports = async function handler(req, res) {
     if (!what) return lib.sendJson(res, 400, { ok: false, error: "Napisz w dwóch słowach, czym się zajmujesz." });
     if (!consent) return lib.sendJson(res, 400, { ok: false, error: "Zaznacz zgodę, bez tego nie przygotuję Mapy." });
 
+    // TYMCZASOWA diagnostyka zapisu (bez Claude, bez SES). Usunac po naprawie.
+    if (body.saveOnly) {
+      try {
+        const s = await saveSubscriber({ email, name, what, pain, stage });
+        return lib.sendJson(res, 200, { ok: true, saveOnly: true, saved: s });
+      } catch (e) {
+        return lib.sendJson(res, 200, { ok: true, saveOnly: true, saved: false, save_error: (e && e.message) || String(e) });
+      }
+    }
+
     // 1. Generacja Mapy (Claude)
     const mapa = await generateMapa({ imie: name, firma: what, co_zjada: pain, etap: stage });
 
@@ -74,10 +84,12 @@ module.exports = async function handler(req, res) {
 
     // 3. Zapis do listy AI Radar (Firebase) - merge, nie kasuje innych pol
     let saved = false;
+    let saveError;
     try {
       saved = await saveSubscriber({ email, name, what, pain, stage });
     } catch (e) {
-      console.error("mapa-send firebase:", e && e.message);
+      saveError = (e && e.message) || String(e);
+      console.error("mapa-send firebase:", saveError);
     }
 
     // 4. Wysylka mailem (SES) - do testTo (admin) albo na podany adres
@@ -95,7 +107,7 @@ module.exports = async function handler(req, res) {
       aws
     );
 
-    return lib.sendJson(res, 200, { ok: true, saved, sent_to: testTo || email });
+    return lib.sendJson(res, 200, { ok: true, saved, save_error: saveError, sent_to: testTo || email });
   } catch (error) {
     const status = error.statusCode || 500;
     console.error("mapa-send error:", error && (error.message || error));
