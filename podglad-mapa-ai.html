@@ -91,9 +91,9 @@
 
       .radar-card {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
-        gap: 22px;
-        min-height: 628px;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 410px);
+        gap: 16px;
+        min-height: 0;
         border: 1px solid var(--radar-line);
         background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.035));
         border-radius: 28px;
@@ -104,7 +104,7 @@
 
       .radar-copy,
       .radar-side {
-        padding: clamp(30px, 4vw, 50px);
+        padding: clamp(20px, 2.2vw, 30px);
         min-width: 0;
       }
 
@@ -112,7 +112,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: clamp(22px, 2.6vw, 34px);
+        padding-top: clamp(16px, 1.6vw, 22px);
       }
 
       .radar-badge {
@@ -151,10 +151,10 @@
 
       .radar-title {
         max-width: 690px;
-        margin: 26px 0 20px;
+        margin: 14px 0 10px;
         font-family: "Inter", sans-serif;
-        font-size: clamp(44px, 5.2vw, 72px);
-        line-height: 1.02;
+        font-size: clamp(28px, 3vw, 40px);
+        line-height: 1.06;
         letter-spacing: 0;
         font-weight: 800;
         color: #fffaf1;
@@ -170,34 +170,34 @@
         max-width: 620px;
         margin: 0;
         color: rgba(255,250,241,.78);
-        font-size: clamp(17px, 1.55vw, 20px);
-        line-height: 1.48;
+        font-size: clamp(14px, 1.1vw, 15.5px);
+        line-height: 1.45;
       }
 
       .radar-value {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        gap: 9px;
         max-width: 620px;
-        margin: 30px 0 0;
+        margin: 14px 0 0;
       }
 
       .radar-value span {
-        min-height: 72px;
+        min-height: 50px;
         display: flex;
         align-items: center;
-        padding: 14px;
+        padding: 9px 11px;
         border: 1px solid var(--radar-line);
-        border-radius: 16px;
+        border-radius: 13px;
         background: rgba(0,0,0,.18);
         color: rgba(255,250,241,.82);
-        font-size: 13.5px;
-        line-height: 1.35;
+        font-size: 12px;
+        line-height: 1.32;
       }
 
       .radar-format {
         max-width: 620px;
-        margin-top: 24px;
+        margin-top: 13px;
         border: 1px solid rgba(255,255,255,.14);
         border-radius: 18px;
         background:
@@ -211,7 +211,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 14px;
-        padding: 15px 16px 13px;
+        padding: 10px 14px 9px;
         border-bottom: 1px solid rgba(255,255,255,.1);
       }
 
@@ -234,13 +234,13 @@
       }
 
       .radar-format-list span {
-        min-height: 82px;
+        min-height: 54px;
         display: flex;
         align-items: center;
-        padding: 15px 16px;
+        padding: 9px 13px;
         color: rgba(255,250,241,.74);
-        font-size: 13.5px;
-        line-height: 1.35;
+        font-size: 12px;
+        line-height: 1.32;
       }
 
       .radar-format-list span + span {
@@ -276,7 +276,7 @@
 
       .radar-schedule {
         max-width: 620px;
-        margin: 18px 0 0;
+        margin: 12px 0 0;
         padding-top: 0;
         color: rgba(255,250,241,.54);
         font-size: 13px;
@@ -298,17 +298,17 @@
       .radar-photo {
         position: relative;
         overflow: hidden;
-        border-radius: 24px;
+        border-radius: 18px;
         border: 1px solid rgba(255,255,255,.2);
         background: #111;
-        aspect-ratio: 4 / 5;
+        height: 148px;
       }
 
       .radar-photo img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 54% 50%;
+        object-position: 50% 22%;
         display: block;
       }
 
@@ -340,27 +340,28 @@
       }
 
       .radar-form {
-        margin-top: 18px;
+        margin-top: 13px;
         display: grid;
-        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px 12px;
       }
 
       .radar-field {
         display: grid;
-        gap: 7px;
+        gap: 5px;
       }
 
       .radar-field label {
         color: rgba(255,250,241,.78);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
       }
 
       .radar-field input,
       .radar-field select {
         width: 100%;
-        height: 52px;
-        min-height: 52px;
+        height: 46px;
+        min-height: 46px;
         border: 1px solid rgba(255,255,255,.16);
         border-radius: 14px;
         background: rgba(0,0,0,.28);
@@ -385,12 +386,12 @@
 
       .radar-consent {
         display: flex;
-        gap: 10px;
+        gap: 9px;
         align-items: flex-start;
-        margin-top: 2px;
+        margin-top: 0;
         color: rgba(255,250,241,.66);
-        font-size: 12px;
-        line-height: 1.45;
+        font-size: 11.5px;
+        line-height: 1.38;
       }
 
       .radar-consent input {
@@ -407,7 +408,7 @@
       }
 
       .radar-button {
-        min-height: 54px;
+        min-height: 47px;
         border: 0;
         border-radius: 14px;
         background: linear-gradient(135deg, #fff7ed, #ff8a2b);
@@ -430,10 +431,10 @@
       }
 
       .radar-note {
-        margin: 10px 0 0;
+        margin: 8px 0 0;
         color: rgba(255,250,241,.56);
-        font-size: 12px;
-        line-height: 1.5;
+        font-size: 11px;
+        line-height: 1.45;
       }
 
       .radar-message {
@@ -480,7 +481,8 @@
         }
 
         .radar-photo {
-          aspect-ratio: 16 / 11;
+          height: auto;
+          aspect-ratio: 16 / 10;
         }
       }
 
@@ -521,6 +523,10 @@
         }
 
         .radar-value {
+          grid-template-columns: 1fr;
+        }
+
+        .radar-form {
           grid-template-columns: 1fr;
         }
 
@@ -605,18 +611,6 @@
             <span>Plan dostajesz na maila, w PDF, od razu.</span>
           </div>
         </div>
-        <div class="radar-format radar-sample" aria-label="Fragment przykładowej Mapy AI">
-          <div class="radar-format-head">
-            <span>PRZYKŁAD</span>
-            <strong>Tak wygląda fragment Mapy</strong>
-          </div>
-          <div class="radar-sample-list">
-            <span><b>1.</b> Pierwszy kontakt: krótki asystent na stronie odpowiada na częste pytania i zbiera dane klienta.</span>
-            <span><b>2.</b> Pilnowanie kontaktów: automatyczne przypomnienia o ofertach bez odpowiedzi, nic nie ginie.</span>
-            <span><b>3.</b> Dokumenty: gotowe szablony i podpowiedzi AI, mniej przepisywania ręcznie.</span>
-            <span><b>4.</b> Opinie: prośba o opinię wysyłana sama po realizacji, więcej recenzji w Google.</span>
-          </div>
-        </div>
         <p class="radar-schedule"><strong>Przy okazji możesz dopisać się do AI Radar.</strong> Raz w tygodniu krótki mail o tym, co w AI warto sprawdzić. Nie musisz, sama Mapa i tak do Ciebie trafi.</p>
       </div>
 
@@ -639,7 +633,7 @@
             <label for="mapName">Imię <span style="font-weight:500;color:rgba(255,250,241,.48);">(opcjonalnie)</span></label>
             <input type="text" id="mapName" name="name" autocomplete="given-name" placeholder="Darek">
           </div>
-          <div class="radar-field">
+          <div class="radar-field" style="grid-column:1 / -1">
             <label for="mapWhat">Czym zajmuje się Twoja firma?</label>
             <input type="text" id="mapWhat" name="what" placeholder="np. gabinet stomatologiczny, sklep, biuro rachunkowe" required>
           </div>
@@ -679,16 +673,16 @@
               <option value="10+">Ponad 10 godzin</option>
             </select>
           </div>
-          <label class="radar-consent">
+          <label class="radar-consent" style="grid-column:1 / -1">
             <input type="checkbox" id="mapConsent" name="consent" required>
             <span>Zgadzam się, żeby AI-Team wykorzystał moje odpowiedzi do przygotowania Mapy AI i wysłał mi ją mailem. Mogę poprosić o usunięcie danych w każdej chwili. Szczegóły w <a href="/privacy.html">polityce prywatności</a>.</span>
           </label>
-          <label class="radar-consent">
+          <label class="radar-consent" style="grid-column:1 / -1">
             <input type="checkbox" id="mapNewsletter" name="newsletter">
             <span>Przy okazji chcę dostawać AI Radar, krótki newsletter o AI raz w tygodniu. Mogę zrezygnować kiedy zechcę.</span>
           </label>
-          <button class="radar-button" id="mapButton" type="submit">Przygotuj moją Mapę AI</button>
-          <div class="radar-message" id="mapMessage" role="status" aria-live="polite"></div>
+          <button class="radar-button" id="mapButton" type="submit" style="grid-column:1 / -1">Przygotuj moją Mapę AI</button>
+          <div class="radar-message" id="mapMessage" role="status" aria-live="polite" style="grid-column:1 / -1"></div>
         </form>
 
         <p class="radar-note">Administratorem danych jest Dariusz Szuca. Mapę przygotowuję na podstawie Twoich odpowiedzi i wysyłam na podany adres. Nie sprzedaję listy.</p>
