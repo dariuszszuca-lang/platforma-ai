@@ -247,10 +247,37 @@
         border-left: 1px solid rgba(255,255,255,.1);
       }
 
+      .radar-sample {
+        max-width: 620px;
+        margin-top: 16px;
+      }
+
+      .radar-sample-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .radar-sample-list span {
+        padding: 13px 16px;
+        color: rgba(255,250,241,.74);
+        font-size: 13.5px;
+        line-height: 1.4;
+      }
+
+      .radar-sample-list span + span {
+        border-top: 1px solid rgba(255,255,255,.1);
+      }
+
+      .radar-sample-list b {
+        color: var(--radar-orange-2);
+        margin-right: 9px;
+        font-weight: 600;
+      }
+
       .radar-schedule {
         max-width: 620px;
-        margin: auto 0 0;
-        padding-top: 22px;
+        margin: 18px 0 0;
+        padding-top: 0;
         color: rgba(255,250,241,.54);
         font-size: 13px;
         line-height: 1.5;
@@ -573,6 +600,18 @@
             <span>Piszesz, czym się zajmujesz i co najbardziej zjada Ci czas.</span>
             <span>AI układa plan dopasowany do Twojej firmy.</span>
             <span>Plan dostajesz na maila, w PDF, od razu.</span>
+          </div>
+        </div>
+        <div class="radar-format radar-sample" aria-label="Fragment przykładowej Mapy AI">
+          <div class="radar-format-head">
+            <span>PRZYKŁAD</span>
+            <strong>Tak wygląda fragment Mapy</strong>
+          </div>
+          <div class="radar-sample-list">
+            <span><b>1.</b> Pierwszy kontakt: krótki asystent na stronie odpowiada na częste pytania i zbiera dane klienta.</span>
+            <span><b>2.</b> Pilnowanie kontaktów: automatyczne przypomnienia o ofertach bez odpowiedzi, nic nie ginie.</span>
+            <span><b>3.</b> Dokumenty: gotowe szablony i podpowiedzi AI, mniej przepisywania ręcznie.</span>
+            <span><b>4.</b> Opinie: prośba o opinię wysyłana sama po realizacji, więcej recenzji w Google.</span>
           </div>
         </div>
         <p class="radar-schedule"><strong>Przy okazji możesz dopisać się do AI Radar.</strong> Raz w tygodniu krótki mail o tym, co w AI warto sprawdzić. Nie musisz, sama Mapa i tak do Ciebie trafi.</p>
