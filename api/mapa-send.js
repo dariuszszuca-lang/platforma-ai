@@ -9,10 +9,6 @@ const lib = require("./newsletter-send.js");
 const MODEL = "claude-sonnet-4-6";
 const ANTHROPIC_VERSION = "2023-06-01";
 
-const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID || "ai-team-zlecenia";
-const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY || "";
-const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents`;
-
 const MAPA_PROMPT = `Jesteś planistą wdrożeń AI w AI-Team (studio Darka Szucy: strony, systemy/CRM i automatyzacje dla małych firm). Dostajesz krótkie odpowiedzi właściciela małej firmy z formularza i tworzysz dla NIEGO konkretną, praktyczną Mapę AI: od czego zacząć, czym to zrobić, w jakiej kolejności.
 
 ZASADY PISANIA:
@@ -64,16 +60,6 @@ module.exports = async function handler(req, res) {
     if (!what) return lib.sendJson(res, 400, { ok: false, error: "Napisz w dwóch słowach, czym się zajmujesz." });
     if (!consent) return lib.sendJson(res, 400, { ok: false, error: "Zaznacz zgodę, bez tego nie przygotuję Mapy." });
 
-    // TYMCZASOWA diagnostyka zapisu (bez Claude, bez SES). Usunac po naprawie.
-    if (body.saveOnly) {
-      try {
-        const s = await saveSubscriber({ email, name, what, pain, stage });
-        return lib.sendJson(res, 200, { ok: true, saveOnly: true, saved: s });
-      } catch (e) {
-        return lib.sendJson(res, 200, { ok: true, saveOnly: true, saved: false, save_error: (e && e.message) || String(e) });
-      }
-    }
-
     // 1. Generacja Mapy (Claude)
     const mapa = await generateMapa({ imie: name, firma: what, co_zjada: pain, etap: stage });
 
@@ -86,17 +72,9 @@ module.exports = async function handler(req, res) {
       return lib.sendJson(res, 200, { ok: true, dryRun: true, mapa, subject, html });
     }
 
-    // 3. Zapis do listy AI Radar (Firebase) - merge, nie kasuje innych pol
-    let saved = false;
-    let saveError;
-    try {
-      saved = await saveSubscriber({ email, name, what, pain, stage });
-    } catch (e) {
-      saveError = (e && e.message) || String(e);
-      console.error("mapa-send firebase:", saveError);
-    }
-
-    // 4. Wysylka mailem (SES) - do testTo (admin) albo na podany adres
+    // 3. Wysylka mailem (SES) - do testTo (admin) albo na podany adres.
+    //    Zapis do listy AI Radar robi FRONTEND (Firestore JS SDK, jak obecny formularz);
+    //    reguly Firestore dopuszczaja zapis newsletter_subscribers tylko z klienta, nie z serwera.
     const aws = lib.getAwsConfig();
     await lib.sendSesEmail(
       {
@@ -111,7 +89,7 @@ module.exports = async function handler(req, res) {
       aws
     );
 
-    return lib.sendJson(res, 200, { ok: true, saved, save_error: saveError, sent_to: testTo || email });
+    return lib.sendJson(res, 200, { ok: true, sent_to: testTo || email });
   } catch (error) {
     const status = error.statusCode || 500;
     console.error("mapa-send error:", error && (error.message || error));
@@ -161,72 +139,6 @@ function parseMapaJson(textRaw) {
   const e = t.lastIndexOf("}");
   if (s >= 0 && e > s) t = t.slice(s, e + 1);
   return JSON.parse(t);
-}
-
-// Ten sam schemat id co formularz (base64 url-safe), zeby nie tworzyc duplikatow.
-function subscriberId(email) {
-  return Buffer.from(lib.cleanEmail(email))
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/g, "");
-}
-
-function fsEncodeValue(v) {
-  if (v === null) return { nullValue: null };
-  if (typeof v === "boolean") return { booleanValue: v };
-  if (typeof v === "number" && Number.isInteger(v)) return { integerValue: String(v) };
-  if (typeof v === "number") return { doubleValue: v };
-  if (Array.isArray(v)) return { arrayValue: { values: v.map(fsEncodeValue) } };
-  if (typeof v === "object") return { mapValue: { fields: fsEncodeFields(v) } };
-  return { stringValue: String(v) };
-}
-
-function fsEncodeFields(o) {
-  const out = {};
-  for (const [k, val] of Object.entries(o)) if (val !== undefined) out[k] = fsEncodeValue(val);
-  return out;
-}
-
-// Zapis nieuwierzytelniony z kluczem API, dokladnie jak formularz na stronie
-// (reguly Firestore dopuszczaja zapis newsletter_subscribers dla anonimowych).
-async function saveSubscriber({ email, name, what, pain, stage }) {
-  const id = subscriberId(email);
-  const now = new Date().toISOString();
-  const data = {
-    id,
-    email: lib.cleanEmail(email),
-    name: name || "",
-    group: "ai-radar",
-    groups: ["ai-radar"],
-    status: "active",
-    source: "mapa-ai",
-    mapa_survey: { firma: what, problem: pain, etap: stage },
-    consent: {
-      newsletter: true,
-      text: "Zapis do AI Radar i zgoda na przygotowanie Mapy AI (ai-team.pl/mapa-ai).",
-      accepted_at: now,
-      privacy_url: "https://ai-team.pl/privacy",
-    },
-    created_at: now,
-    updated_at: now,
-    last_signup_at: now,
-  };
-
-  const url = new URL(`${FIRESTORE_BASE}/newsletter_subscribers/${id}`);
-  if (FIREBASE_API_KEY) url.searchParams.set("key", FIREBASE_API_KEY);
-  for (const field of Object.keys(data)) url.searchParams.append("updateMask.fieldPaths", field);
-
-  const resp = await fetch(String(url), {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ fields: fsEncodeFields(data) }),
-  });
-  if (!resp.ok) {
-    const errText = await resp.text().catch(() => "");
-    throw new Error(`Firestore ${resp.status}: ${errText.slice(0, 200)}`);
-  }
-  return true;
 }
 
 function esc(s) {
