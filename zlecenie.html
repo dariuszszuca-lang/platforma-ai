@@ -113,7 +113,8 @@
       <span class="label-mono">FORMULARZ · BEZ ZOBOWIĄZAŃ</span>
       <h3>Opisz co potrzebujesz</h3>
       <p>Po wysłaniu briefu zadzwonię w ciągu 24h. Rozmowa zwykle 15-30 minut. Potem konkretna wycena emailem.</p>
-      <form action="https://formspree.io/f/your-id" method="POST" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
+      <form id="zlecenie-form" method="POST" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
         <input type="text" name="name" placeholder="Imię i nazwisko *" required style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
         <input type="email" name="email" placeholder="Email *" required style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
         <input type="tel" name="phone" placeholder="Telefon (jeśli wolisz rozmowę)" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
@@ -149,6 +150,7 @@
           <input type="checkbox" required style="margin-top: 4px;" />
           <span>Zgadzam się na kontakt w sprawie wyceny. Dane wykorzystam tylko do tego celu.</span>
         </label>
+        <div id="zlecenie-status" role="alert" style="display:none; color:#ffb4a2; font-size:13px; line-height:1.5;"></div>
         <button type="submit" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Wyślij brief · oddzwonię w 24h →</button>
       </form>
     </div>
@@ -208,6 +210,50 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var f = document.getElementById('zlecenie-form');
+  if (!f) return;
+  var statusEl = document.getElementById('zlecenie-status');
+  f.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = f.querySelector('button[type=submit]');
+    var orig = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Wysyłam…';
+    if (statusEl) { statusEl.style.display = 'none'; statusEl.textContent = ''; }
+    var fd = new FormData(f);
+    var payload = {
+      name: fd.get('name'), email: fd.get('email'), phone: fd.get('phone'),
+      category: fd.get('type'), description: fd.get('brief'),
+      budget: fd.get('budget'), timeline: fd.get('timeline'), company: fd.get('company')
+    };
+    try {
+      var r = await fetch('/api/notify-zlecenie', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      });
+      var d = await r.json().catch(function () { return {}; });
+      if (r.ok && d.ok) {
+        if (window.fbq) fbq('track', 'Lead');
+        if (window.gtag) gtag('event', 'qualify_lead', { method: 'zlecenie_form' });
+        f.innerHTML = '<div style="text-align:center; padding:28px 8px;">' +
+          '<div style="font-size:44px; line-height:1;">✅</div>' +
+          '<h3 style="margin:14px 0 8px;">Dzięki, mam Twój brief.</h3>' +
+          '<p style="color:rgba(251,248,241,0.8);">Oddzwonię w ciągu 24h. Jeśli to pilne: ' +
+          '<a href="tel:+48730600383" style="color:var(--cream);">730 600 383</a> albo ' +
+          '<a href="https://wa.me/48730600383" style="color:var(--cream);">WhatsApp</a>.</p></div>';
+      } else {
+        throw new Error((d && d.error) || 'błąd wysyłki');
+      }
+    } catch (err) {
+      btn.disabled = false; btn.textContent = orig;
+      if (statusEl) {
+        statusEl.style.display = 'block';
+        statusEl.textContent = 'Nie udało się wysłać. Zadzwoń 730 600 383 albo napisz na WhatsApp, odbieram osobiście.';
+      }
+    }
+  });
+})();
+</script>
 <script src="assets/main.js" defer></script>
 </body>
 </html>
