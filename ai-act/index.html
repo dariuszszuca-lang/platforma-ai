@@ -149,17 +149,22 @@ footer p{margin-bottom:6px;max-width:540px}
       <span class="shield"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="#2f6fed" opacity=".18"/><path d="M9.5 12l1.8 1.8L15 10" stroke="#2358c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Na podstawie oficjalnych źródeł AI Act. Aktualne na lipiec 2026.
     </div>
-    <div class="ctas">
-      <a class="btn btn-primary" href="https://buy.stripe.com/eVq8wOczQ1HU6J243c1kA0K">Kup i pobierz za 67 zł</a>
-      <a class="btn btn-ghost" href="#co-dostajesz">Zobacz zawartość</a>
-    </div>
-    <p class="paynote"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#8a97ab" stroke-width="2"/><path d="M3 10h18" stroke="#8a97ab" stroke-width="2"/></svg> Płatność obsługuje Stripe. Po opłaceniu pobierasz pliki od razu.</p>
+    <form id="fragForm" style="max-width:430px;display:flex;flex-direction:column;gap:10px;margin-top:4px">
+      <p style="font-weight:700;color:var(--ink);margin:0 0 2px">Zacznij za darmo. Wyślemy Ci checklistę zgodności AI Act na maila:</p>
+      <input type="email" name="email" placeholder="Twój email" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
+      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:.85rem;color:var(--muted)"><input type="checkbox" name="consent" required style="margin-top:3px">Chcę dostać darmową checklistę. To materiał edukacyjny, nie porada prawna.</label>
+      <button type="submit" class="btn btn-primary" style="padding:15px">Wyślij mi darmową checklistę</button>
+      <div id="fragMsg" style="font-size:.9rem;min-height:18px"></div>
+    </form>
+    <p class="paynote">Wolisz od razu całość? <a href="#oferta" style="color:var(--blue-d);font-weight:700">Zobacz pełny pakiet za 67 zł &darr;</a></p>
   </div>
   <div><img class="art" src="/ai-act/hero.png" alt="Ilustracja: tarcza z checklistą i elementami AI, symbol zgodności z AI Act"></div>
 </div></header>
 
 <!-- OFERTA -->
-<section class="offer"><div class="wrap">
+<section class="offer" id="oferta"><div class="wrap">
+  <p class="eyebrow" style="margin-bottom:14px">Gotowy na całość?</p>
   <div class="pcard">
     <div class="price">67 zł</div>
     <div class="per">jednorazowo &middot; pobierasz od razu</div>
@@ -219,22 +224,6 @@ footer p{margin-bottom:6px;max-width:540px}
     <details><summary><span class="q">?</span>Czy dostanę rachunek?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Tak, na życzenie. Po zakupie napisz na dariusz.szuca@gmail.com, a odeślę dokument.</div></details>
   </div>
 </div></section></div>
-
-<!-- FRAGMENT / LEAD MAGNET -->
-<section style="background:#eef3fe;border-top:1px solid #d9e4fb;border-bottom:1px solid #d9e4fb">
-  <div class="wrap section" style="max-width:640px">
-    <p class="eyebrow">Nie na teraz?</p>
-    <h2 style="text-align:center">Weź samą checklistę za darmo</h2>
-    <p class="sub" style="text-align:center">Zostaw maila, a wyślę Ci checklistę zgodności AI Act do wydruku. Bez zobowiązań, a jak spodoba Ci się podejście, resztę masz w pełnym pakiecie.</p>
-    <form id="fragForm" style="max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
-      <input type="email" name="email" placeholder="Twój email" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
-      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-      <label style="display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--muted);text-align:left"><input type="checkbox" name="consent" required style="margin-top:3px">Chcę dostać checklistę na tego maila. Wiem, że to materiał edukacyjny, nie porada prawna.</label>
-      <button type="submit" class="btn btn-primary" style="padding:14px">Wyślij mi checklistę</button>
-      <div id="fragMsg" style="text-align:center;font-size:.92rem;min-height:20px"></div>
-    </form>
-  </div>
-</section>
 
 <!-- TRUST BAR -->
 <section class="tbar"><div class="wrap">
