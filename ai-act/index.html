@@ -115,6 +115,16 @@ details .a{padding:0 4px 22px 42px;color:var(--muted);font-size:.98rem}
   .tbar .row4{grid-template-columns:1fr 1fr;gap:28px 20px}
 }
 
+/* MOBILE FIX: zero poziomego overflow */
+@media(max-width:560px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .wrap{padding:0 18px}
+  .hero form,.hero input,.hero .art,.pcard,.fcard,.author img{max-width:100%!important}
+  img{max-width:100%;height:auto}
+  .hero h1{font-size:2rem;overflow-wrap:break-word;word-break:break-word}
+  .hero .lead,.section .sub,.author p,.disc div{overflow-wrap:break-word}
+  .author .in{grid-template-columns:1fr}
+}
 /* FOOTER */
 footer{background:var(--navy);color:#9fb0cc;padding:40px 0;font-size:.9rem}
 footer strong{color:#fff}
