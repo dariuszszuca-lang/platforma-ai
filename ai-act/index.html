@@ -220,6 +220,22 @@ footer p{margin-bottom:6px;max-width:540px}
   </div>
 </div></section></div>
 
+<!-- FRAGMENT / LEAD MAGNET -->
+<section style="background:#eef3fe;border-top:1px solid #d9e4fb;border-bottom:1px solid #d9e4fb">
+  <div class="wrap section" style="max-width:640px">
+    <p class="eyebrow">Nie na teraz?</p>
+    <h2 style="text-align:center">Weź samą checklistę za darmo</h2>
+    <p class="sub" style="text-align:center">Zostaw maila, a wyślę Ci checklistę zgodności AI Act do wydruku. Bez zobowiązań, a jak spodoba Ci się podejście, resztę masz w pełnym pakiecie.</p>
+    <form id="fragForm" style="max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+      <input type="email" name="email" placeholder="Twój email" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
+      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--muted);text-align:left"><input type="checkbox" name="consent" required style="margin-top:3px">Chcę dostać checklistę na tego maila. Wiem, że to materiał edukacyjny, nie porada prawna.</label>
+      <button type="submit" class="btn btn-primary" style="padding:14px">Wyślij mi checklistę</button>
+      <div id="fragMsg" style="text-align:center;font-size:.92rem;min-height:20px"></div>
+    </form>
+  </div>
+</section>
+
 <!-- TRUST BAR -->
 <section class="tbar"><div class="wrap">
   <div class="row4">
@@ -246,5 +262,18 @@ footer p{margin-bottom:6px;max-width:540px}
   </div>
 </div></footer>
 
+<script>
+document.getElementById('fragForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var f=e.target, msg=document.getElementById('fragMsg'), btn=f.querySelector('button');
+  btn.disabled=true; msg.style.color='#69788f'; msg.textContent='Wysyłam...';
+  try{
+    var r=await fetch('/api/fragment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,consent:f.consent.checked,company:f.company.value})});
+    var d=await r.json();
+    if(d.ok){ msg.style.color='#1f9d68'; msg.textContent='Gotowe! Sprawdź maila, zajrzyj też do spamu.'; f.reset(); }
+    else { msg.style.color='#e0466e'; msg.textContent=d.error||'Coś poszło nie tak.'; btn.disabled=false; }
+  }catch(err){ msg.style.color='#e0466e'; msg.textContent='Błąd sieci. Spróbuj za chwilę.'; btn.disabled=false; }
+});
+</script>
 </body>
 </html>
