@@ -94,8 +94,7 @@ module.exports = async function handler(req, res) {
     let failed = 0;
 
     for (const to of recipients) {
-      const pixel = `<img src="${SITE}/api/px?l=${sha256(to)}&c=${campaign}" width="1" height="1" alt="" style="display:none">`;
-      const html = base.html.includes("</body>") ? base.html.replace("</body>", pixel + "</body>") : base.html + pixel;
+      const html = base.html;
       try {
         const r = await lib.sendSesEmail(
           { from, replyTo, to, subject: base.subject, html, text: base.text,
@@ -124,6 +123,7 @@ module.exports = async function handler(req, res) {
 
 function buildEmail(template) {
   if (template === "reminder") return reminderEmail();
+  if (template === "question") return questionEmail();
   return defaultEmail();
 }
 
@@ -205,6 +205,26 @@ function reminderEmail() {
     </td></tr>
     <tr><td style="padding:16px 30px 26px;">
       <p style="margin:0;font-size:15px;line-height:1.6;color:#44403c;">Gdyby coś było niejasne, po prostu odpisz.</p>
+      ${signatureHtml()}
+    </td></tr>`;
+  return { subject, html: shell(inner), text };
+}
+
+function questionEmail() {
+  const subject = "Jak poszło z checklistą AI Act?";
+  const text = [
+    "Czesc,", "",
+    "pare dni temu pobrales moja checkliste zgodnosci AI Act.", "",
+    "Pisze z jednym pytaniem: udalo Ci sie przez nia przejsc? I co bylo najbardziej niejasne albo najtrudniejsze przy AI Act w Twojej firmie?", "",
+    "Pytam serio, bez haczyka. Zbieram najczestsze watpliwosci malych firm. Wystarczy, ze odpiszesz jednym zdaniem.", "",
+    "Pozdrawiam,", "Darek, AI-Team", SITE, "",
+    "---", "Dostajesz te wiadomosc, bo pobrales checkliste AI Act przez reklame AI-Team. Administrator danych: Dariusz Szuca. Nie chcesz wiecej wiadomosci? Odpisz STOP.",
+  ].join("\n");
+  const inner = `<tr><td style="padding:32px 30px 26px;">
+      <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:#1c1917;">Jak poszło z checklistą AI Act?</h1>
+      <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#44403c;">Cześć, parę dni temu pobrałeś moją checklistę zgodności AI Act.</p>
+      <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#44403c;">Piszę z jednym pytaniem: udało Ci się przez nią przejść? I co było najbardziej niejasne albo najtrudniejsze przy AI Act w Twojej firmie?</p>
+      <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#44403c;">Pytam serio, bez haczyka. Zbieram najczęstsze wątpliwości małych firm. Wystarczy, że odpiszesz jednym zdaniem.</p>
       ${signatureHtml()}
     </td></tr>`;
   return { subject, html: shell(inner), text };
