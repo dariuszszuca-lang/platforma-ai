@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opisy AI — generator sprzedażowych opisów produktów pod Allegro i sklep (po polsku, SEO)</title>
+<meta name="description" content="Wpisujesz produkt, dostajesz gotowy, sprzedażowy opis z frazami SEO pod Allegro i sklep internetowy. Po polsku. Pierwsze opisy za darmo.">
+<style>
+  :root{--ink:#17140f;--muted:#6c6459;--bg:#f6f2ec;--card:#fff;--line:#e7ded2;--orange:#ff7a1a;--orange-d:#e05e00;--navy:#0d0d0b;--ok:#1f9d68}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+  header.top{background:var(--navy);color:#fff}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+  .logo{font-family:Georgia,serif;font-size:20px}.logo b{color:var(--orange)}
+  .hero{text-align:center;padding:44px 0 8px}
+  .hero h1{font-size:2.1rem;line-height:1.2;margin:0 0 12px}
+  .hero p{font-size:1.1rem;color:var(--muted);max-width:620px;margin:0 auto 14px}
+  .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin-bottom:8px}
+  .badge{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  label{display:block;font-weight:700;font-size:.9rem;margin:12px 0 5px}
+  input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit;background:#fff}
+  textarea{min-height:90px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .btn{display:inline-block;border:0;border-radius:10px;padding:14px 22px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:var(--orange-d)}
+  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:700;padding:9px 14px;font-size:.9rem}
+  .btn:disabled{opacity:.6;cursor:default}
+  .genrow{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+  .note{font-size:.85rem;color:var(--muted)}
+  #out{display:none}
+  .outhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:2px 0 6px}
+  .outhead h3{margin:0;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-d)}
+  .tytul{font-size:1.15rem;font-weight:800;margin:0 0 4px}
+  .opis{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+  .opis :is(p,ul){margin:0 0 10px}.opis ul{padding-left:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chip{background:#fff4ea;border:1px solid #ffd2ad;color:#8a4b12;border-radius:999px;padding:5px 11px;font-size:.85rem}
+  .spin{display:none;align-items:center;gap:10px;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);animation:b .9s infinite alternate}
+  @keyframes b{to{opacity:.25;transform:translateY(-3px)}}
+  .pay{display:none;background:linear-gradient(180deg,#fff,#fff6ee);border:1px solid #ffd2ad;border-radius:16px;padding:22px;text-align:center;margin:18px 0}
+  .pay h3{margin:0 0 6px}.pay p{color:var(--muted);margin:0 0 14px}
+  .err{display:none;color:#b3261e;font-size:.9rem;margin-top:10px}
+  footer{color:var(--muted);font-size:.85rem;text-align:center;padding:28px 0 40px}
+  @media(max-width:560px){.hero h1{font-size:1.7rem}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><span class="logo">AI <b>Team</b></span><a class="note" style="color:#cbb8a3" href="https://ai-team.pl">ai-team.pl</a></div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Opisy produktów, które sprzedają. W 20 sekund.</h1>
+    <p>Wpisz produkt, dostań gotowy, sprzedażowy opis z frazami SEO pod Allegro i sklep internetowy. Po polsku, bez korpomowy.</p>
+    <div class="badges"><span class="badge">🇵🇱 pod polski rynek</span><span class="badge">🛒 Allegro i sklepy</span><span class="badge">🔎 frazy SEO</span><span class="badge">✨ pierwsze opisy gratis</span></div>
+  </section>
+
+  <section class="card">
+    <label for="nazwa">Nazwa produktu *</label>
+    <input id="nazwa" placeholder="np. Plecak turystyczny 40L wodoodporny, męski">
+    <div class="row">
+      <div><label for="kategoria">Kategoria</label><input id="kategoria" placeholder="np. Turystyka / plecaki"></div>
+      <div><label for="ton">Ton</label><select id="ton">
+        <option value="sprzedażowy, konkretny">Sprzedażowy</option>
+        <option value="rzeczowy, ekspercki">Rzeczowy / ekspercki</option>
+        <option value="ciepły, przyjazny">Ciepły / przyjazny</option>
+        <option value="premium, elegancki">Premium / elegancki</option>
+      </select></div>
+    </div>
+    <label for="cechy">Cechy i parametry (im więcej, tym lepszy opis)</label>
+    <textarea id="cechy" placeholder="np. pojemność 40L, materiał nylon 600D, wodoodporny, pasy piersiowy i biodrowy, kieszeń na laptopa 15,6 cala, waga 900 g, kolor grafitowy"></textarea>
+    <div class="genrow">
+      <button class="btn btn-primary" id="go">Generuj opis</button>
+      <div class="spin" id="spin"><span class="dot"></span> Piszę opis…</div>
+      <span class="note" id="left"></span>
+    </div>
+    <div class="err" id="err"></div>
+  </section>
+
+  <section class="card" id="out">
+    <div class="outhead"><h3>Tytuł oferty</h3><button class="btn-ghost" data-copy="tytul">Kopiuj</button></div>
+    <div class="tytul" id="tytul"></div>
+    <div class="outhead" style="margin-top:16px"><h3>Opis</h3><button class="btn-ghost" data-copy="opis">Kopiuj opis</button></div>
+    <div class="opis" id="opis"></div>
+    <div class="outhead" style="margin-top:16px"><h3>Najważniejsze cechy</h3></div>
+    <ul id="cechyOut" class="opis" style="border:0;padding-top:0;margin-top:0"></ul>
+    <div class="outhead" style="margin-top:8px"><h3>Frazy SEO</h3><button class="btn-ghost" data-copy="frazy">Kopiuj frazy</button></div>
+    <div class="chips" id="frazy"></div>
+  </section>
+
+  <section class="pay" id="pay">
+    <h3>Masz więcej produktów? Odblokuj tryb hurtowy 🚀</h3>
+    <p>Generuj bez limitu i rób opisy paczkami. Jednorazowo, płacisz raz.</p>
+    <a class="btn btn-primary" id="buy" href="#">Odblokuj — 49 zł</a>
+    <p style="margin-top:12px;font-size:.8rem">Póki co darmowe opisy odnawiają się codziennie.</p>
+  </section>
+
+  <footer>Opisy AI od <b>AI-Team</b> · <a href="https://ai-team.pl">ai-team.pl</a> · materiał generowany przez AI, sprawdź dane techniczne przed publikacją.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let last=null;
+const PRO=new URLSearchParams(location.search).get('pro')||localStorage.getItem('opisy_pro')||'';
+if(new URLSearchParams(location.search).get('pro')) localStorage.setItem('opisy_pro', PRO);
+
+$('go').addEventListener('click', async ()=>{
+  const nazwa=$('nazwa').value.trim();
+  if(!nazwa){ $('nazwa').focus(); return; }
+  $('err').style.display='none'; $('pay').style.display='none';
+  $('go').disabled=true; $('spin').style.display='flex';
+  try{
+    const r=await fetch('/api/opis-generuj',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nazwa,kategoria:$('kategoria').value,cechy:$('cechy').value,ton:$('ton').value,pro:PRO})});
+    const d=await r.json();
+    if(r.status===402){ $('pay').style.display='block'; return; }
+    if(!d.ok){ throw new Error(d.error||'Błąd'); }
+    render(d);
+    if(!d.pro && typeof d.remaining==='number'){ $('left').textContent = d.remaining>0? ('Zostało '+d.remaining+' darmowych opisów dziś'):'To był ostatni darmowy opis dziś'; }
+  }catch(e){ $('err').textContent=e.message; $('err').style.display='block'; }
+  finally{ $('go').disabled=false; $('spin').style.display='none'; }
+});
+
+function render(d){
+  last=d;
+  $('tytul').textContent=d.tytul||'';
+  $('opis').innerHTML=d.opis_html||'';
+  $('cechyOut').innerHTML=(d.cechy||[]).map(c=>'<li>'+esc(c)+'</li>').join('');
+  $('frazy').innerHTML=(d.frazy_seo||[]).map(f=>'<span class="chip">'+esc(f)+'</span>').join('');
+  $('out').style.display='block';
+  $('out').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+  if(!last) return; const k=b.getAttribute('data-copy'); let t='';
+  if(k==='tytul') t=last.tytul||'';
+  if(k==='opis') t=($('opis').innerText||'');
+  if(k==='frazy') t=(last.frazy_seo||[]).join(', ');
+  navigator.clipboard.writeText(t).then(()=>{const o=b.textContent;b.textContent='Skopiowano ✓';setTimeout(()=>b.textContent=o,1400)});
+}));
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+</script>
+</body>
+</html>
