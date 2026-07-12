@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recepcja AI dla warsztatu — odbiera telefon, umawia wizyty 24/7 | AI-Team</title>
+<meta name="description" content="AI, która odbiera telefon w Twoim warsztacie, umawia wizyty i nie traci klientów po godzinach. Porozmawiaj z demo na żywo.">
+<style>
+  :root{--ink:#17140f;--muted:#6c6459;--bg:#f6f2ec;--card:#fff;--line:#e7ded2;--orange:#ff7a1a;--orange-d:#e05e00;--navy:#0d0d0b;--ok:#1f9d68;--red:#d33}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+  header.top{background:var(--navy);color:#fff}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+  .logo{font-family:Georgia,serif;font-size:20px}.logo b{color:var(--orange)}
+  .hero{text-align:center;padding:40px 0 6px}
+  .hero h1{font-size:2rem;line-height:1.2;margin:0 0 12px}
+  .hero p{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 6px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .phone{text-align:center}
+  .status{font-size:.95rem;color:var(--muted);min-height:24px;margin:6px 0 14px;font-weight:600}
+  .pulse{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ok);margin-right:7px;animation:p 1s infinite alternate;vertical-align:middle}
+  @keyframes p{to{opacity:.3}}
+  .btn{border:0;border-radius:999px;padding:16px 30px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit}
+  .btn-call{background:var(--ok);color:#fff}
+  .btn-hang{background:var(--red);color:#fff}
+  .chat{text-align:left;max-height:340px;overflow-y:auto;margin:16px 0 0;display:none;flex-direction:column;gap:10px}
+  .msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:.98rem}
+  .msg.ai{background:#fff4ea;border:1px solid #ffd2ad;align-self:flex-start;border-bottom-left-radius:4px}
+  .msg.me{background:var(--navy);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+  .msg .who{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.6;margin-bottom:2px}
+  .textrow{display:flex;gap:8px;margin-top:14px}
+  .textrow input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit}
+  .textrow button{border:0;background:var(--orange);color:#fff;border-radius:10px;padding:0 18px;font-weight:700;cursor:pointer}
+  .book{display:none;background:#eafaf1;border:1px solid #bfe8cf;border-radius:14px;padding:16px 18px;margin-top:14px;text-align:left}
+  .book h4{margin:0 0 8px;color:#137a45}
+  .book div{font-size:.95rem;margin:2px 0}
+  .hint{font-size:.82rem;color:var(--muted);margin-top:12px}
+  .sell{margin-top:8px}
+  .sell h2{text-align:center;font-size:1.5rem;margin:6px 0 14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .b{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .b b{color:var(--orange-d)}
+  footer{color:var(--muted);font-size:.85rem;text-align:center;padding:26px 0 40px}
+  @media(max-width:560px){.hero h1{font-size:1.6rem}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><span class="logo">AI <b>Team</b></span><a class="hint" style="color:#cbb8a3" href="https://ai-team.pl">ai-team.pl</a></div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Twój warsztat nigdy nie przegapi telefonu</h1>
+    <p>Recepcja AI odbiera każde połączenie, odpowiada klientowi i umawia wizytę. Także po godzinach, w sobotę i gdy masz ręce w silniku.</p>
+  </section>
+
+  <section class="card phone">
+    <div class="status" id="status">Kliknij i porozmawiaj z recepcją AI na żywo</div>
+    <button class="btn btn-call" id="call">📞 Zadzwoń do recepcji</button>
+    <div class="chat" id="chat"></div>
+    <div class="textrow" id="textrow" style="display:none">
+      <input id="txt" placeholder="albo napisz, jeśli wolisz…" autocomplete="off">
+      <button id="send">Wyślij</button>
+    </div>
+    <div class="book" id="book">
+      <h4>✅ Wizyta umówiona</h4>
+      <div id="bookBody"></div>
+    </div>
+    <div class="hint" id="hint">Demo działa w Chrome i Edge, pozwól na dostęp do mikrofonu. To przykładowy warsztat „Auto-Serwis Kowalski".</div>
+  </section>
+
+  <section class="sell">
+    <h2>Co to znaczy dla Twojego warsztatu</h2>
+    <div class="grid">
+      <div class="b"><b>Zero straconych klientów</b><br>Nawet 4 na 10 telefonów po godzinach to stracone rezerwacje. AI odbiera każdy.</div>
+      <div class="b"><b>Umawia wizyty sama</b><br>Pyta o usługę, auto i termin, zapisuje i potwierdza. Ty dostajesz gotowe zgłoszenie.</div>
+      <div class="b"><b>Mówi po polsku, naturalnie</b><br>Klient nie czuje, że gada z automatem z lat 90.</div>
+      <div class="b"><b>Tańsza niż jeden dzień recepcji</b><br>Pracuje 24/7, nie choruje, nie bierze urlopu.</div>
+    </div>
+  </section>
+
+  <footer>Recepcja AI od <b>AI-Team</b> · <a href="https://ai-team.pl">ai-team.pl</a> · demo, głos generowany przez AI</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let messages=[], active=false, rec=null, plVoice=null;
+
+// glos PL
+function pickVoice(){ const vs=speechSynthesis.getVoices(); plVoice = vs.find(v=>/pl[-_]/i.test(v.lang)) || vs.find(v=>/polish|polski/i.test(v.name)) || null; }
+speechSynthesis.onvoiceschanged=pickVoice; pickVoice();
+
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function setStatus(t,listening){ $('status').innerHTML=(listening?'<span class="pulse"></span>':'')+t; }
+function addMsg(who,text){ const c=$('chat'); c.style.display='flex'; const d=document.createElement('div'); d.className='msg '+(who==='me'?'me':'ai'); d.innerHTML='<div class="who">'+(who==='me'?'Ty':'Recepcja')+'</div>'+esc(text); c.appendChild(d); c.scrollTop=c.scrollHeight; }
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function speak(text,then){
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; if(plVoice)u.voice=plVoice; u.rate=1.05;
+    u.onend=()=>then&&then(); u.onerror=()=>then&&then(); speechSynthesis.speak(u);
+  }catch(e){ then&&then(); }
+}
+function listen(){
+  if(!active) return;
+  if(!SR){ setStatus('Mikrofon niedostępny w tej przeglądarce — pisz poniżej.'); $('textrow').style.display='flex'; return; }
+  try{
+    rec=new SR(); rec.lang='pl-PL'; rec.interimResults=false; rec.maxAlternatives=1;
+    setStatus('Słucham…',true);
+    rec.onresult=e=>{ const t=e.results[0][0].transcript.trim(); if(t){ stopRec(); handleUser(t); } };
+    rec.onerror=()=>{ if(active) setStatus('Nie dosłyszałam. Kliknij mikrofon lub pisz.'); $('textrow').style.display='flex'; };
+    rec.onend=()=>{};
+    rec.start();
+  }catch(e){ $('textrow').style.display='flex'; }
+}
+function stopRec(){ try{rec&&rec.stop()}catch(e){} rec=null; }
+
+async function handleUser(text){
+  addMsg('me',text); messages.push({role:'user',content:text}); setStatus('Recepcja myśli…');
+  try{
+    const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+    const d=await r.json();
+    if(!d.ok) throw new Error(d.error||'Błąd');
+    addMsg('ai',d.reply); messages.push({role:'assistant',content:d.reply});
+    if(d.booking){ showBooking(d.booking); }
+    setStatus('Recepcja mówi…');
+    speak(d.reply, ()=>{ if(d.booking){ endCall('Gotowe. Wizyta umówiona ✅'); } else { listen(); } });
+  }catch(e){ setStatus('Błąd: '+e.message); if(active) setTimeout(listen,800); }
+}
+function showBooking(b){ $('book').style.display='block';
+  $('bookBody').innerHTML=['usluga','auto','termin','imie','telefon'].filter(k=>b[k]).map(k=>'<div><b>'+({usluga:'Usługa',auto:'Auto',termin:'Termin',imie:'Imię',telefon:'Telefon'})[k]+':</b> '+esc(b[k])+'</div>').join('');
+}
+
+async function startCall(){
+  active=true; messages=[]; $('chat').innerHTML=''; $('book').style.display='none';
+  $('call').textContent='● Rozłącz'; $('call').className='btn btn-hang';
+  setStatus('Łączę…');
+  try{
+    const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[]})});
+    const d=await r.json(); const g=d.reply||'Auto-Serwis Kowalski, dzień dobry.';
+    addMsg('ai',g); messages.push({role:'assistant',content:g});
+    setStatus('Recepcja mówi…'); speak(g, listen);
+  }catch(e){ setStatus('Nie udało się połączyć.'); }
+}
+function endCall(msg){ active=false; stopRec(); try{speechSynthesis.cancel()}catch(e){}
+  $('call').textContent='📞 Zadzwoń ponownie'; $('call').className='btn btn-call'; if(msg)setStatus(msg); }
+
+$('call').addEventListener('click',()=>{ active?endCall('Rozłączono.'):startCall(); });
+$('send').addEventListener('click',()=>{ const t=$('txt').value.trim(); if(t){ $('txt').value=''; if(!active){active=true;} handleUser(t); }});
+$('txt').addEventListener('keydown',e=>{ if(e.key==='Enter') $('send').click(); });
+$('textrow').style.display='flex';
+</script>
+</body>
+</html>
