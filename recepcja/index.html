@@ -101,6 +101,17 @@ function speak(text,then){
     u.onend=()=>then&&then(); u.onerror=()=>then&&then(); speechSynthesis.speak(u);
   }catch(e){ then&&then(); }
 }
+let curAudio=null;
+function say(audioB64,text,then){
+  if(audioB64){
+    try{ speechSynthesis.cancel(); if(curAudio){try{curAudio.pause()}catch(e){}}
+      curAudio=new Audio('data:audio/mpeg;base64,'+audioB64);
+      curAudio.onended=()=>then&&then(); curAudio.onerror=()=>speak(text,then);
+      curAudio.play().catch(()=>speak(text,then)); return;
+    }catch(e){}
+  }
+  speak(text,then);
+}
 function listen(){
   if(!active) return;
   if(!SR){ setStatus('Mikrofon niedostępny w tej przeglądarce — pisz poniżej.'); $('textrow').style.display='flex'; return; }
@@ -124,7 +135,7 @@ async function handleUser(text){
     addMsg('ai',d.reply); messages.push({role:'assistant',content:d.reply});
     if(d.booking){ showBooking(d.booking); }
     setStatus('Recepcja mówi…');
-    speak(d.reply, ()=>{ if(d.booking){ endCall('Gotowe. Wizyta umówiona ✅'); } else { listen(); } });
+    say(d.audio, d.reply, ()=>{ if(d.booking){ endCall('Gotowe. Wizyta umówiona ✅'); } else { listen(); } });
   }catch(e){ setStatus('Błąd: '+e.message); if(active) setTimeout(listen,800); }
 }
 function showBooking(b){ $('book').style.display='block';
@@ -139,7 +150,7 @@ async function startCall(){
     const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[]})});
     const d=await r.json(); const g=d.reply||'Auto-Serwis Kowalski, dzień dobry.';
     addMsg('ai',g); messages.push({role:'assistant',content:g});
-    setStatus('Recepcja mówi…'); speak(g, listen);
+    setStatus('Recepcja mówi…'); say(d.audio, g, listen);
   }catch(e){ setStatus('Nie udało się połączyć.'); }
 }
 function endCall(msg){ active=false; stopRec(); try{speechSynthesis.cancel()}catch(e){}

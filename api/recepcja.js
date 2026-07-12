@@ -9,6 +9,8 @@ const RL_MAX = 60;                 // tur na IP / okno (demo)
 const RL_WINDOW_MS = 60 * 60 * 1000;
 
 const GREETING = "Auto-Serwis Kowalski, dzień dobry. W czym mogę pomóc?";
+const VOICE_ID = process.env.RECEPCJA_VOICE_ID || "EXAVITQu4vr4xnSDxMaL"; // Sarah (żeński, multilingual)
+const TTS_MODEL = "eleven_multilingual_v2";
 
 const SYSTEM = `Jesteś Ola, recepcjonistka telefoniczna warsztatu samochodowego "Auto-Serwis Kowalski" w Gdańsku. Odbierasz telefon, gdy mechanicy pracują. To rozmowa TELEFONICZNA, więc mów krótko, naturalnie i ciepło, jak żywy człowiek.
 
@@ -42,7 +44,7 @@ module.exports = async function handler(req, res) {
     let messages = Array.isArray(body.messages) ? body.messages : [];
 
     // Pierwsze wejscie: recepcja wita, bez wolania modelu.
-    if (!messages.length) return sendJson(res, 200, { ok: true, reply: GREETING });
+    if (!messages.length) return sendJson(res, 200, { ok: true, reply: GREETING, audio: await ttsBase64(GREETING) });
 
     if (!originAllowed(req)) return sendJson(res, 403, { ok: false, error: "Nieprawidłowe źródło." });
     if (rateLimited(clientIp(req))) return sendJson(res, 429, { ok: false, error: "Za dużo zapytań, chwila przerwy." });
@@ -81,12 +83,27 @@ module.exports = async function handler(req, res) {
       text = text.replace(m[0], "").trim();
     }
 
-    return sendJson(res, 200, { ok: true, reply: text || "Przepraszam, może Pan powtórzyć?", booking });
+    const reply = text || "Przepraszam, może Pan powtórzyć?";
+    return sendJson(res, 200, { ok: true, reply, booking, audio: await ttsBase64(reply) });
   } catch (error) {
     console.error("recepcja error:", error && (error.message || error));
     return sendJson(res, 500, { ok: false, error: "Błąd. Spróbuj ponownie." });
   }
 };
+
+async function ttsBase64(text) {
+  const key = process.env.ELEVENLABS_API_KEY;
+  if (!key || !text) return null;
+  try {
+    const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
+      method: "POST",
+      headers: { "xi-api-key": key, "content-type": "application/json", accept: "audio/mpeg" },
+      body: JSON.stringify({ text: String(text).slice(0, 600), model_id: TTS_MODEL, voice_settings: { stability: 0.45, similarity_boost: 0.8 } }),
+    });
+    if (!r.ok) return null;
+    return Buffer.from(await r.arrayBuffer()).toString("base64");
+  } catch (e) { return null; }
+}
 
 const RL = new Map();
 function rateLimited(ip) {
