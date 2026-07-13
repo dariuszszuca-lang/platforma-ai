@@ -1,38 +1,32 @@
-// Vercel Serverless Function - mozg recepcjonistki AI (demo: warsztat samochodowy)
-// POST /api/recepcja { messages: [{role:"user"|"assistant", content:"..."}] }
-//   -> { ok, reply, booking? }  (booking wypelnione, gdy wizyta umowiona)
-// Freemium/demo: origin z ai-team.pl + limit na IP. Reuzywa ANTHROPIC_API_KEY z Vercel.
+// Vercel Serverless Function - recepcjonistka AI (demo: warsztat). Glos: nagranie -> STT -> Claude -> TTS.
+// POST /api/recepcja { messages:[{role,content}], audio?:base64, mime?:string }
+//   - puste messages i brak audio -> powitanie (z audio)
+//   - audio -> transkrypcja (ElevenLabs Scribe) jako nowa tura usera
+//   -> { ok, transcript?, reply, booking?, audio }
+// Jeden klucz ELEVENLABS_API_KEY (STT + TTS) + ANTHROPIC_API_KEY (mozg). Origin z ai-team.pl + limit na IP.
 
 const MODEL = "claude-haiku-4-5-20251001";
 const ANTHROPIC_VERSION = "2023-06-01";
-const RL_MAX = 60;                 // tur na IP / okno (demo)
+const RL_MAX = 80;
 const RL_WINDOW_MS = 60 * 60 * 1000;
 
 const GREETING = "Auto-Serwis Kowalski, dzień dobry. W czym mogę pomóc?";
-const VOICE_ID = process.env.RECEPCJA_VOICE_ID || "EXAVITQu4vr4xnSDxMaL"; // Sarah (żeński, multilingual)
+const VOICE_ID = process.env.RECEPCJA_VOICE_ID || "EXAVITQu4vr4xnSDxMaL"; // Sarah (żeński)
 const TTS_MODEL = "eleven_multilingual_v2";
 
 const SYSTEM = `Jesteś Ola, recepcjonistka telefoniczna warsztatu samochodowego "Auto-Serwis Kowalski" w Gdańsku. Odbierasz telefon, gdy mechanicy pracują. To rozmowa TELEFONICZNA, więc mów krótko, naturalnie i ciepło, jak żywy człowiek.
 
-TWOJE ZADANIE: pomóc dzwoniącemu i UMÓWIĆ WIZYTĘ. Zbierz naturalnie, po kolei (nie jak formularz, jedno pytanie na raz):
-1) jakiej usługi potrzebuje, 2) marka i model auta, 3) preferowany dzień i godzina, 4) imię, 5) numer telefonu.
-Gdy masz komplet, potwierdź termin własnymi słowami i zakończ miło.
+TWOJE ZADANIE: pomóc dzwoniącemu i UMÓWIĆ WIZYTĘ. Zbierz naturalnie, po kolei (jedno pytanie na raz): 1) jakiej usługi potrzebuje, 2) marka i model auta, 3) preferowany dzień i godzina, 4) imię, 5) numer telefonu. Gdy masz komplet, potwierdź termin własnymi słowami i zakończ miło.
 
-WARSZTAT (fakty, trzymaj się ich):
+WARSZTAT (fakty):
 - Usługi: wymiana oleju, opony (wymiana i przechowywanie), klocki i tarcze hamulcowe, przegląd okresowy, diagnostyka komputerowa, serwis klimatyzacji.
 - Godziny: poniedziałek-piątek 8-17, sobota 9-13.
-- Ceny orientacyjne (mów ostrożnie, zawsze dodaj że dokładna wycena po obejrzeniu auta): wymiana oleju od 150 zł, sezonowa wymiana opon od 120 zł, wymiana klocków od 250 zł, diagnostyka komputerowa 100 zł.
+- Ceny orientacyjne (mów ostrożnie, dodaj że dokładna wycena po obejrzeniu auta): wymiana oleju od 150 zł, sezonowa wymiana opon od 120 zł, wymiana klocków od 250 zł, diagnostyka komputerowa 100 zł.
 
-ZASADY MOWY:
-- Krótkie zdania. Jedno pytanie na raz. Pełne polskie znaki (ą ę ś ć ł ń ó ź ż).
-- Zero korpomowy, zero AI-słów, zero długich myślników.
-- NIE zmyślaj cen, terminów ani faktów, których nie znasz. Jak ktoś pyta o coś spoza warsztatu, grzecznie wróć do tematu wizyty.
-- Nie podawaj konkretnej wolnej godziny jako pewnej. Przyjmij preferencję klienta i potwierdź ją jako propozycję ("zapiszę Pana na...").
+ZASADY MOWY: krótkie zdania, jedno pytanie na raz, pełne polskie znaki. Zero korpomowy, zero AI-słów, zero długich myślników. NIE zmyślaj cen ani faktów. Jak ktoś pyta o coś spoza warsztatu, grzecznie wróć do wizyty.
 
-FORMAT ODPOWIEDZI:
-Odpowiadasz normalnym tekstem (to, co ma zostać wypowiedziane). Gdy wizyta jest kompletna (masz usługę, auto, termin, imię i telefon), NA KOŃCU odpowiedzi dołącz w OSOBNEJ linii marker:
-[[UMOWIONO| usluga=...; auto=...; termin=...; imie=...; telefon=...]]
-Marker jest tylko dla systemu, nie czytaj go na głos, nie komentuj.`;
+FORMAT: odpowiadasz normalnym tekstem do wypowiedzenia. Gdy wizyta jest kompletna (usługa, auto, termin, imię, telefon), NA KOŃCU dołącz w OSOBNEJ linii marker (nie czytaj go na głos):
+[[UMOWIONO| usluga=...; auto=...; termin=...; imie=...; telefon=...]]`;
 
 module.exports = async function handler(req, res) {
   setCors(res);
@@ -43,17 +37,27 @@ module.exports = async function handler(req, res) {
     const body = parseBody(req);
     let messages = Array.isArray(body.messages) ? body.messages : [];
 
-    // Pierwsze wejscie: recepcja wita, bez wolania modelu.
-    if (!messages.length) return sendJson(res, 200, { ok: true, reply: GREETING, audio: await ttsBase64(GREETING) });
+    // Powitanie
+    if (!messages.length && !body.audio) {
+      return sendJson(res, 200, { ok: true, reply: GREETING, audio: await ttsBase64(GREETING) });
+    }
 
     if (!originAllowed(req)) return sendJson(res, 403, { ok: false, error: "Nieprawidłowe źródło." });
     if (rateLimited(clientIp(req))) return sendJson(res, 429, { ok: false, error: "Za dużo zapytań, chwila przerwy." });
 
-    // Sanityzacja historii
+    // Historia
     messages = messages.slice(-20).map((m) => ({
       role: m.role === "assistant" ? "assistant" : "user",
       content: String(m.content || "").slice(0, 1000),
     })).filter((m) => m.content);
+
+    // Nowa tura usera: z nagrania (STT) albo z tekstu (ostatnia wiadomosc)
+    let transcript = null;
+    if (body.audio) {
+      transcript = await sttFromBase64(body.audio, body.mime);
+      if (!transcript) return sendJson(res, 200, { ok: true, transcript: "", reply: "Przepraszam, nie dosłyszałam. Może Pan powtórzyć?", audio: await ttsBase64("Przepraszam, nie dosłyszałam. Może Pan powtórzyć?") });
+      messages.push({ role: "user", content: transcript });
+    }
     if (!messages.length || messages[messages.length - 1].role !== "user") {
       return sendJson(res, 400, { ok: false, error: "Brak wypowiedzi klienta." });
     }
@@ -71,7 +75,6 @@ module.exports = async function handler(req, res) {
 
     let text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").trim();
 
-    // Wyciagnij marker rezerwacji, jesli jest
     let booking = null;
     const m = text.match(/\[\[UMOWIONO\|([^\]]*)\]\]/i);
     if (m) {
@@ -82,14 +85,28 @@ module.exports = async function handler(req, res) {
       }
       text = text.replace(m[0], "").trim();
     }
-
     const reply = text || "Przepraszam, może Pan powtórzyć?";
-    return sendJson(res, 200, { ok: true, reply, booking, audio: await ttsBase64(reply) });
+    return sendJson(res, 200, { ok: true, transcript, reply, booking, audio: await ttsBase64(reply) });
   } catch (error) {
     console.error("recepcja error:", error && (error.message || error));
     return sendJson(res, 500, { ok: false, error: "Błąd. Spróbuj ponownie." });
   }
 };
+
+async function sttFromBase64(b64, mime) {
+  const key = process.env.ELEVENLABS_API_KEY;
+  if (!key || !b64) return "";
+  try {
+    const buf = Buffer.from(b64, "base64");
+    const fd = new FormData();
+    fd.append("model_id", "scribe_v1");
+    fd.append("file", new Blob([buf], { type: mime || "audio/webm" }), "nagranie");
+    const r = await fetch("https://api.elevenlabs.io/v1/speech-to-text", { method: "POST", headers: { "xi-api-key": key }, body: fd });
+    if (!r.ok) return "";
+    const d = await r.json().catch(() => ({}));
+    return String(d.text || "").trim();
+  } catch (e) { return ""; }
+}
 
 async function ttsBase64(text) {
   const key = process.env.ELEVENLABS_API_KEY;
@@ -114,9 +131,7 @@ function rateLimited(ip) {
   if (RL.size > 5000) RL.clear();
   return false;
 }
-function clientIp(req) {
-  return String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-}
+function clientIp(req) { return String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown"; }
 function originAllowed(req) {
   const src = req.headers.origin || req.headers.referer || "";
   if (!src) return false;
