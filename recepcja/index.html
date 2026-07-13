@@ -19,12 +19,15 @@
   .hero p{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 6px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
   .phone{text-align:center}
-  .status{font-size:.95rem;color:var(--muted);min-height:24px;margin:6px 0 14px;font-weight:600}
-  .pulse{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ok);margin-right:7px;animation:p 1s infinite alternate;vertical-align:middle}
+  .status{font-size:1rem;color:var(--ink);min-height:24px;margin:6px 0 16px;font-weight:600}
+  .pulse{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:7px;animation:p 1s infinite alternate;vertical-align:middle}
   @keyframes p{to{opacity:.3}}
-  .btn{border:0;border-radius:999px;padding:16px 30px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit}
+  .controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{border:0;border-radius:999px;padding:15px 28px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit}
   .btn-call{background:var(--ok);color:#fff}
   .btn-hang{background:var(--red);color:#fff}
+  .btn-mic{background:#fff;border:2px solid var(--orange);color:var(--orange-d)}
+  .btn-mic.on{background:var(--orange);color:#fff;border-color:var(--orange)}
   .chat{text-align:left;max-height:340px;overflow-y:auto;margin:16px 0 0;display:none;flex-direction:column;gap:10px}
   .msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:.98rem}
   .msg.ai{background:#fff4ea;border:1px solid #ffd2ad;align-self:flex-start;border-bottom-left-radius:4px}
@@ -36,7 +39,7 @@
   .book{display:none;background:#eafaf1;border:1px solid #bfe8cf;border-radius:14px;padding:16px 18px;margin-top:14px;text-align:left}
   .book h4{margin:0 0 8px;color:#137a45}
   .book div{font-size:.95rem;margin:2px 0}
-  .hint{font-size:.82rem;color:var(--muted);margin-top:12px}
+  .hint{font-size:.82rem;color:var(--muted);margin-top:14px}
   .sell{margin-top:8px}
   .sell h2{text-align:center;font-size:1.5rem;margin:6px 0 14px}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -56,10 +59,13 @@
   </section>
 
   <section class="card phone">
-    <div class="status" id="status">Kliknij i porozmawiaj z recepcją AI na żywo</div>
-    <button class="btn btn-call" id="call">📞 Zadzwoń do recepcji</button>
+    <div class="status" id="status">Kliknij „Zadzwoń", pozwól na mikrofon i mów</div>
+    <div class="controls">
+      <button class="btn btn-call" id="call">📞 Zadzwoń do recepcji</button>
+      <button class="btn btn-mic" id="mic" style="display:none">🎤 Mów</button>
+    </div>
     <div class="chat" id="chat"></div>
-    <div class="textrow" id="textrow" style="display:none">
+    <div class="textrow" id="textrow">
       <input id="txt" placeholder="albo napisz, jeśli wolisz…" autocomplete="off">
       <button id="send">Wyślij</button>
     </div>
@@ -67,7 +73,7 @@
       <h4>✅ Wizyta umówiona</h4>
       <div id="bookBody"></div>
     </div>
-    <div class="hint" id="hint">Demo działa w Chrome i Edge, pozwól na dostęp do mikrofonu. To przykładowy warsztat „Auto-Serwis Kowalski".</div>
+    <div class="hint" id="hint">Rozmowa głosem działa w Chrome i Edge (na telefonie też). Pozwól na dostęp do mikrofonu. To przykładowy warsztat „Auto-Serwis Kowalski".</div>
   </section>
 
   <section class="sell">
@@ -85,81 +91,78 @@
 
 <script>
 const $=id=>document.getElementById(id);
-let messages=[], active=false, rec=null, plVoice=null;
+let messages=[], active=false, rec=null, plVoice=null, micReady=false, listening=false, curAudio=null;
 
-// glos PL
-function pickVoice(){ const vs=speechSynthesis.getVoices(); plVoice = vs.find(v=>/pl[-_]/i.test(v.lang)) || vs.find(v=>/polish|polski/i.test(v.name)) || null; }
+function pickVoice(){ const vs=speechSynthesis.getVoices(); plVoice=vs.find(v=>/pl[-_]/i.test(v.lang))||null; }
 speechSynthesis.onvoiceschanged=pickVoice; pickVoice();
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-function setStatus(t,listening){ $('status').innerHTML=(listening?'<span class="pulse"></span>':'')+t; }
-function addMsg(who,text){ const c=$('chat'); c.style.display='flex'; const d=document.createElement('div'); d.className='msg '+(who==='me'?'me':'ai'); d.innerHTML='<div class="who">'+(who==='me'?'Ty':'Recepcja')+'</div>'+esc(text); c.appendChild(d); c.scrollTop=c.scrollHeight; }
+function setStatus(t,dot){ $('status').innerHTML=(dot?'<span class="pulse"></span>':'')+t; }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function addMsg(who,text){ const c=$('chat'); c.style.display='flex'; const d=document.createElement('div'); d.className='msg '+(who==='me'?'me':'ai'); d.innerHTML='<div class="who">'+(who==='me'?'Ty':'Recepcja')+'</div>'+esc(text); c.appendChild(d); c.scrollTop=c.scrollHeight; }
+function micLabel(on){ const b=$('mic'); b.textContent=on?'🔴 Słucham…':'🎤 Mów'; b.className='btn btn-mic'+(on?' on':''); }
 
-function speak(text,then){
-  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; if(plVoice)u.voice=plVoice; u.rate=1.05;
-    u.onend=()=>then&&then(); u.onerror=()=>then&&then(); speechSynthesis.speak(u);
-  }catch(e){ then&&then(); }
+function speak(text,then){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; if(plVoice)u.voice=plVoice; u.rate=1.05; u.onend=()=>then&&then(); u.onerror=()=>then&&then(); speechSynthesis.speak(u);}catch(e){then&&then();} }
+function say(audioB64,text,then){ if(audioB64){ try{ speechSynthesis.cancel(); if(curAudio){try{curAudio.pause()}catch(e){}} curAudio=new Audio('data:audio/mpeg;base64,'+audioB64); curAudio.onended=()=>then&&then(); curAudio.onerror=()=>speak(text,then); curAudio.play().catch(()=>speak(text,then)); return; }catch(e){} } speak(text,then); }
+
+async function ensureMic(){
+  if(micReady) return true;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia) return false;
+  try{ const s=await navigator.mediaDevices.getUserMedia({audio:true}); s.getTracks().forEach(t=>t.stop()); micReady=true; return true; }
+  catch(e){ return false; }
 }
-let curAudio=null;
-function say(audioB64,text,then){
-  if(audioB64){
-    try{ speechSynthesis.cancel(); if(curAudio){try{curAudio.pause()}catch(e){}}
-      curAudio=new Audio('data:audio/mpeg;base64,'+audioB64);
-      curAudio.onended=()=>then&&then(); curAudio.onerror=()=>speak(text,then);
-      curAudio.play().catch(()=>speak(text,then)); return;
-    }catch(e){}
-  }
-  speak(text,then);
-}
-function listen(){
-  if(!active) return;
-  if(!SR){ setStatus('Mikrofon niedostępny w tej przeglądarce — pisz poniżej.'); $('textrow').style.display='flex'; return; }
+
+function startListen(){
+  if(!active||listening) return;
+  if(!SR){ setStatus('Ta przeglądarka nie obsługuje mowy. Użyj Chrome/Edge albo pisz poniżej.'); $('mic').style.display='none'; return; }
+  let got=false;
   try{
     rec=new SR(); rec.lang='pl-PL'; rec.interimResults=false; rec.maxAlternatives=1;
-    setStatus('Słucham…',true);
-    rec.onresult=e=>{ const t=e.results[0][0].transcript.trim(); if(t){ stopRec(); handleUser(t); } };
-    rec.onerror=()=>{ if(active) setStatus('Nie dosłyszałam. Kliknij mikrofon lub pisz.'); $('textrow').style.display='flex'; };
-    rec.onend=()=>{};
+    listening=true; micLabel(true); setStatus('Słucham, mów teraz…',true);
+    rec.onresult=e=>{ got=true; const t=(e.results[0][0].transcript||'').trim(); listening=false; try{rec.stop()}catch(_){}; if(t){ handleUser(t); } };
+    rec.onerror=ev=>{ listening=false; micLabel(false);
+      if(ev.error==='not-allowed'||ev.error==='service-not-allowed'){ setStatus('Brak zgody na mikrofon. Kliknij kłódkę w pasku adresu → zezwól na mikrofon, albo pisz poniżej.'); }
+      else if(ev.error==='no-speech'){ setStatus('Nie usłyszałam. Kliknij 🎤 Mów i powiedz coś.'); }
+      else { setStatus('Kliknij 🎤 Mów, żeby mówić (albo pisz poniżej).'); } };
+    rec.onend=()=>{ listening=false; micLabel(false); if(active&&!got) setStatus('Kliknij 🎤 Mów i mów (albo napisz poniżej).'); };
     rec.start();
-  }catch(e){ $('textrow').style.display='flex'; }
+  }catch(e){ listening=false; micLabel(false); setStatus('Kliknij 🎤 Mów, żeby mówić.'); }
 }
-function stopRec(){ try{rec&&rec.stop()}catch(e){} rec=null; }
 
 async function handleUser(text){
   addMsg('me',text); messages.push({role:'user',content:text}); setStatus('Recepcja myśli…');
   try{
     const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
-    const d=await r.json();
-    if(!d.ok) throw new Error(d.error||'Błąd');
+    const d=await r.json(); if(!d.ok) throw new Error(d.error||'Błąd');
     addMsg('ai',d.reply); messages.push({role:'assistant',content:d.reply});
-    if(d.booking){ showBooking(d.booking); }
-    setStatus('Recepcja mówi…');
-    say(d.audio, d.reply, ()=>{ if(d.booking){ endCall('Gotowe. Wizyta umówiona ✅'); } else { listen(); } });
-  }catch(e){ setStatus('Błąd: '+e.message); if(active) setTimeout(listen,800); }
+    if(d.booking) showBooking(d.booking);
+    setStatus('Recepcja mówi…',true);
+    say(d.audio,d.reply,()=>{ if(d.booking){ endCall('Gotowe. Wizyta umówiona ✅'); } else { startListen(); } });
+  }catch(e){ setStatus('Błąd: '+e.message+'. Spróbuj jeszcze raz.'); }
 }
-function showBooking(b){ $('book').style.display='block';
-  $('bookBody').innerHTML=['usluga','auto','termin','imie','telefon'].filter(k=>b[k]).map(k=>'<div><b>'+({usluga:'Usługa',auto:'Auto',termin:'Termin',imie:'Imię',telefon:'Telefon'})[k]+':</b> '+esc(b[k])+'</div>').join('');
-}
+function showBooking(b){ $('book').style.display='block'; $('bookBody').innerHTML=['usluga','auto','termin','imie','telefon'].filter(k=>b[k]).map(k=>'<div><b>'+({usluga:'Usługa',auto:'Auto',termin:'Termin',imie:'Imię',telefon:'Telefon'})[k]+':</b> '+esc(b[k])+'</div>').join(''); }
 
 async function startCall(){
   active=true; messages=[]; $('chat').innerHTML=''; $('book').style.display='none';
-  $('call').textContent='● Rozłącz'; $('call').className='btn btn-hang';
-  setStatus('Łączę…');
+  $('call').textContent='● Rozłącz'; $('call').className='btn btn-hang'; $('mic').style.display='inline-block'; micLabel(false);
+  setStatus('Proszę o dostęp do mikrofonu…');
+  const ok=await ensureMic();
+  if(!ok){ setStatus('Nie mam dostępu do mikrofonu. Zezwól w przeglądarce i kliknij 🎤 Mów, albo napisz poniżej.'); }
   try{
+    setStatus('Łączę…');
     const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[]})});
     const d=await r.json(); const g=d.reply||'Auto-Serwis Kowalski, dzień dobry.';
     addMsg('ai',g); messages.push({role:'assistant',content:g});
-    setStatus('Recepcja mówi…'); say(d.audio, g, listen);
-  }catch(e){ setStatus('Nie udało się połączyć.'); }
+    setStatus('Recepcja mówi…',true);
+    say(d.audio,g,()=>{ if(ok){ startListen(); } else { setStatus('Kliknij 🎤 Mów (zezwól na mikrofon) albo napisz poniżej.'); } });
+  }catch(e){ setStatus('Nie udało się połączyć. Odśwież i spróbuj ponownie.'); }
 }
-function endCall(msg){ active=false; stopRec(); try{speechSynthesis.cancel()}catch(e){}
-  $('call').textContent='📞 Zadzwoń ponownie'; $('call').className='btn btn-call'; if(msg)setStatus(msg); }
+function endCall(msg){ active=false; listening=false; try{rec&&rec.stop()}catch(e){} rec=null; try{speechSynthesis.cancel()}catch(e){} if(curAudio){try{curAudio.pause()}catch(e){}} $('call').textContent='📞 Zadzwoń ponownie'; $('call').className='btn btn-call'; $('mic').style.display='none'; if(msg)setStatus(msg); }
 
 $('call').addEventListener('click',()=>{ active?endCall('Rozłączono.'):startCall(); });
-$('send').addEventListener('click',()=>{ const t=$('txt').value.trim(); if(t){ $('txt').value=''; if(!active){active=true;} handleUser(t); }});
+$('mic').addEventListener('click',async ()=>{ if(!active){ startCall(); return; } if(listening){ try{rec&&rec.stop()}catch(e){} return; } if(!micReady){ await ensureMic(); } startListen(); });
+$('send').addEventListener('click',()=>{ const t=$('txt').value.trim(); if(t){ $('txt').value=''; if(!active){ active=true; $('call').textContent='● Rozłącz'; $('call').className='btn btn-hang'; } handleUser(t); }});
 $('txt').addEventListener('keydown',e=>{ if(e.key==='Enter') $('send').click(); });
-$('textrow').style.display='flex';
 </script>
 </body>
 </html>
