@@ -79,7 +79,7 @@
       <input id="txt" placeholder="albo napisz…" autocomplete="off">
       <button id="send">Wyślij</button>
     </div>
-    <div class="hint" id="hint">Naciśnij mikrofon, powiedz coś, naciśnij ponownie. Działa na telefonie i na komputerze. Demo: warsztat „Auto-Serwis Kowalski".</div>
+    <div class="hint" id="hint">Rozmawiasz głosem, jak przez telefon. Recepcja sama wykrywa, kiedy skończysz mówić. Możesz też napisać poniżej. Demo: warsztat „Auto-Serwis Kowalski".</div>
   </section>
 
   <section class="sell">
@@ -98,6 +98,7 @@
 <script>
 const $=id=>document.getElementById(id);
 let messages=[], active=false, state='idle', stream=null, mr=null, chunks=[], mime='', lastBooking=null;
+let vadCtx=null, analyser=null, srcNode=null, vadTimer=null, spoke=false, discardNext=false, idleCycles=0, autoMode=true;
 const player=new Audio();
 
 function setStatus(t,dot){ $('status').innerHTML=(dot?'<span class="pulse"></span>':'')+t; }
@@ -111,12 +112,14 @@ function pickMime(){ const t=['audio/webm;codecs=opus','audio/webm','audio/mp4',
 function blobToB64(b){ return new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(String(fr.result).split(',')[1]||''); fr.onerror=rej; fr.readAsDataURL(b); }); }
 
 async function startCall(){
-  active=true; messages=[]; lastBooking=null; $('chat').innerHTML=''; $('summary').style.display='none';
+  active=true; messages=[]; lastBooking=null; idleCycles=0; $('chat').innerHTML=''; $('summary').style.display='none';
   $('hang').style.display='inline-block'; $('textrow').style.display='flex';
   try{ player.src='data:audio/mpeg;base64,//uQx'; player.play().catch(()=>{}); }catch(e){} // odblokuj audio (iOS)
+  try{ const AC=window.AudioContext||window.webkitAudioContext; if(AC){ if(!vadCtx) vadCtx=new AC(); if(vadCtx.resume) vadCtx.resume().catch(()=>{}); } }catch(e){ vadCtx=null; } // kontekst analizy głosu odblokowany w geście (iOS)
+  autoMode=!!vadCtx;
   setStatus('Proszę o dostęp do mikrofonu…'); setTalk('busy','');
   try{ stream=await navigator.mediaDevices.getUserMedia({audio:true}); }
-  catch(e){ stream=null; setStatus('Nie mam dostępu do mikrofonu. Zezwól w przeglądarce, albo napisz poniżej.'); }
+  catch(e){ stream=null; }
   setStatus('Łączę…');
   try{
     const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[]})});
@@ -127,21 +130,78 @@ async function startCall(){
   }catch(e){ setStatus('Nie udało się połączyć. Odśwież stronę.'); setTalk('idle','Zadzwoń'); }
 }
 function ready(){ if(!active) return; state='idle';
-  if(stream){ setStatus('Twoja kolej — naciśnij mikrofon i mów'); setTalk('mic','Naciśnij i mów'); }
-  else { setStatus('Napisz wiadomość poniżej (brak mikrofonu)'); setTalk('busy',''); }
+  if(!stream){ setStatus('Napisz wiadomość poniżej (brak mikrofonu)'); setTalk('busy',''); return; }
+  if(autoMode) autoListen();
+  else { setStatus('Twoja kolej: naciśnij mikrofon i mów'); setTalk('mic','Naciśnij i mów'); }
 }
 
-function startRec(){
-  if(!stream){ ready(); return; }
+// iOS potrafi wyciszyć albo zabić ścieżkę mikrofonu po odtworzeniu głosu recepcji
+async function ensureStream(){
+  let t=stream&&stream.getAudioTracks()[0];
+  if(t&&t.muted){ await new Promise(r=>setTimeout(r,350)); t=stream.getAudioTracks()[0]; }
+  if(!t||t.readyState!=='live'||t.muted){
+    try{ if(stream) stream.getTracks().forEach(x=>x.stop()); stream=await navigator.mediaDevices.getUserMedia({audio:true}); srcNode=null; }
+    catch(e){ stream=null; }
+  }
+  return !!stream;
+}
+
+function startRecorder(){
   try{
     chunks=[]; mime=pickMime();
     mr=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream);
     mr.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
-    mr.onstop=async ()=>{ const blob=new Blob(chunks,{type:mime||'audio/webm'}); await sendAudio(blob); };
-    mr.start(); state='rec'; setStatus('Słucham… naciśnij, gdy skończysz',true); setTalk('rec','Nagrywam — kliknij, gdy skończysz');
-  }catch(e){ setStatus('Nie mogę nagrywać. Napisz poniżej.'); }
+    mr.onstop=async ()=>{ if(discardNext){ discardNext=false; return; } const blob=new Blob(chunks,{type:mime||'audio/webm'}); await sendAudio(blob); };
+    mr.start();
+    return true;
+  }catch(e){ setStatus('Nie mogę nagrywać. Napisz poniżej.'); setTalk('busy',''); return false; }
 }
-function stopRec(){ try{ mr&&mr.state!=='inactive'&&mr.stop(); }catch(e){} state='busy'; setStatus('Przetwarzam…'); setTalk('busy',''); }
+
+// tryb głośnomówiący: nasłuch startuje sam, koniec wypowiedzi wykrywa cisza
+async function autoListen(){
+  if(!active) return;
+  if(vadCtx&&vadCtx.resume) vadCtx.resume().catch(()=>{});
+  if(!(await ensureStream())){ setStatus('Nie mam dostępu do mikrofonu. Napisz poniżej.'); setTalk('busy',''); return; }
+  if(!active) return;
+  if(!startRecorder()) return;
+  spoke=false; state='rec';
+  setStatus('Słucham, mów śmiało',true); setTalk('rec','Mów normalnie, wyślę gdy skończysz');
+  runVad();
+}
+
+function runVad(){
+  try{
+    if(!srcNode){ srcNode=vadCtx.createMediaStreamSource(stream); analyser=vadCtx.createAnalyser(); analyser.fftSize=2048; srcNode.connect(analyser); }
+  }catch(e){ autoMode=false; spoke=true; setStatus('Nagrywam… naciśnij, gdy skończysz',true); setTalk('rec','Kliknij, gdy skończysz'); return; }
+  const data=new Uint8Array(analyser.fftSize);
+  let speechFrames=0, silenceMs=0, started=Date.now(), lastT=Date.now();
+  stopVadTimer();
+  vadTimer=setInterval(()=>{
+    if(state!=='rec'){ stopVadTimer(); return; }
+    analyser.getByteTimeDomainData(data);
+    let sum=0; for(let i=0;i<data.length;i++){ const v=(data[i]-128)/128; sum+=v*v; }
+    const rms=Math.sqrt(sum/data.length);
+    const now=Date.now(), dt=now-lastT; lastT=now;
+    if(rms>0.045){ speechFrames++; silenceMs=0; if(speechFrames>=3&&!spoke){ spoke=true; idleCycles=0; setStatus('Słucham…',true); } }
+    else { speechFrames=0; if(spoke&&rms<0.028) silenceMs+=dt; }
+    if(spoke&&(silenceMs>=1400||now-started>20000)){ stopRec(); return; }
+    if(!spoke&&now-started>9000){
+      if(mr&&mr.state!=='inactive'){ discardNext=true; try{ mr.stop(); }catch(e){} }
+      stopVadTimer(); state='idle'; idleCycles++;
+      if(idleCycles>=2){ autoMode=false; setStatus('Nie słyszę Cię. Naciśnij mikrofon i mów, albo napisz poniżej'); setTalk('mic','Naciśnij i mów'); }
+      else autoListen();
+    }
+  },60);
+}
+function stopVadTimer(){ if(vadTimer){ clearInterval(vadTimer); vadTimer=null; } }
+
+function startRec(){ // tryb ręczny (gdy automatyczny nasłuch niedostępny)
+  if(!stream){ ready(); return; }
+  if(!startRecorder()) return;
+  spoke=true; state='rec'; setStatus('Słucham… naciśnij, gdy skończysz',true); setTalk('rec','Nagrywam, kliknij gdy skończysz');
+}
+function stopRec(){ stopVadTimer(); try{ mr&&mr.state!=='inactive'&&mr.stop(); }catch(e){} state='busy'; setStatus('Przetwarzam…'); setTalk('busy',''); }
+function cancelRec(){ stopVadTimer(); if(state==='rec'&&mr&&mr.state!=='inactive'){ discardNext=true; try{ mr.stop(); }catch(e){} } }
 
 async function sendAudio(blob){
   try{
@@ -153,6 +213,7 @@ async function sendAudio(blob){
   }catch(e){ setStatus('Błąd: '+e.message); ready(); }
 }
 async function sendText(text){
+  cancelRec(); state='busy';
   addMsg('me',text); messages.push({role:'user',content:text}); setStatus('Recepcja myśli…'); setTalk('busy','');
   try{
     const r=await fetch('/api/recepcja',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
@@ -166,9 +227,9 @@ function handleReply(d){
   playAudio(d.audio,()=>{ if(d.booking){ endCall(true); } else { ready(); } });
 }
 
-function endCall(booked){ active=false; state='idle';
-  try{ mr&&mr.state!=='inactive'&&mr.stop(); }catch(e){}
-  if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; }
+function endCall(booked){ active=false;
+  cancelRec(); state='idle';
+  if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; srcNode=null; }
   try{ player.pause(); }catch(e){}
   $('hang').style.display='none'; setTalk('idle','Zadzwoń ponownie'); setStatus(booked?'Wizyta umówiona ✅':'Rozmowa zakończona');
   showSummary(booked);
