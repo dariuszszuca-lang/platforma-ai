@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Act dla małej firmy: darmowa checklista zgodności</title>
-<meta name="description" content="Darmowa checklista AI Act dla małej firmy: co musisz mieć i do kiedy. Kolejne przepisy zaczynają obowiązywać 2 sierpnia 2026. Prostym językiem, bez straszenia.">
+<title>Audyt AI Act dla małej firmy: zdąż przed 2 sierpnia</title>
+<meta name="description" content="Godzina konkretnej rozmowy o AI w Twojej firmie i raport z planem: co Cię dotyczy i co zrobić przed 2 sierpnia 2026. Prostym językiem, bez straszenia. 290 zł promo.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -156,11 +156,11 @@ footer p{margin-bottom:6px;max-width:540px}
     AI Act <small>&middot; dla małych firm</small>
   </div>
   <div class="links">
+    <a href="#jak-audyt">Jak to działa</a>
     <a href="#co-dostajesz">Co dostajesz</a>
     <a href="#autor">O autorze</a>
     <a href="#faq">FAQ</a>
-    <a href="#oferta">Pakiet 67 zł</a>
-    <a class="btn btn-primary" href="#checklista">Darmowa checklista</a>
+    <a class="btn btn-primary" href="#zgloszenie">Umów audyt</a>
   </div>
 </div></nav>
 
@@ -174,34 +174,49 @@ footer p{margin-bottom:6px;max-width:540px}
 <!-- HERO -->
 <header class="hero"><div class="wrap grid">
   <div>
-    <span class="badge">AI Act &middot; obowiązuje małe firmy</span>
-    <h1>Używasz AI w firmie?<br><span class="b">AI Act już Cię obowiązuje.</span></h1>
-    <p class="lead">Zacznij od darmowej checklisty. Zobaczysz, co musisz mieć i do kiedy, prostym językiem, bez prawniczego żargonu. Obowiązek wiedzy o AI w zespole obowiązuje od 2 lutego 2025, kolejne przepisy od 2 sierpnia 2026.</p>
+    <span class="badge">Audyt AI Act &middot; dla małych firm</span>
+    <h1>Używasz AI w firmie?<br><span class="b">Sprawdźmy, czy jesteś gotowy na 2 sierpnia.</span></h1>
+    <p class="lead">Godzina konkretnej rozmowy o narzędziach AI w Twojej firmie i raport z planem: co Cię dotyczy, co masz w porządku, co zrobić przed 2 sierpnia. Prostym językiem, bez prawniczego żargonu i bez straszenia.</p>
     <div class="trust">
       <span class="shield"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="#2f6fed" opacity=".18"/><path d="M9.5 12l1.8 1.8L15 10" stroke="#2358c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Na podstawie oficjalnych źródeł AI Act. Aktualne na lipiec 2026.
     </div>
-    <div class="freebox" id="checklista">
-      <div class="ft">Darmowa checklista zgodności AI Act</div>
-      <div class="fs">Wyślemy Ci ją na maila od razu. Za darmo, bez zobowiązań.</div>
-      <form id="fragForm" style="display:flex;flex-direction:column;gap:10px">
+    <div class="freebox" id="zgloszenie">
+      <div class="ft">Zgłoś się na audyt</div>
+      <div class="fs">290 zł, cena promocyjna do 2 sierpnia (docelowo 490 zł). Odezwę się do 24 godzin, płatność dopiero po umówieniu terminu.</div>
+      <form id="audytForm" style="display:flex;flex-direction:column;gap:10px">
+        <input type="text" name="name" placeholder="Imię" autocomplete="name" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
         <input type="email" name="email" placeholder="Twój email" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
+        <input type="tel" name="phone" placeholder="Telefon" required autocomplete="tel" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
         <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-        <label style="display:flex;gap:9px;align-items:flex-start;font-size:.85rem;color:var(--muted)"><input type="checkbox" name="consent" required style="margin-top:3px">Chcę dostać darmową checklistę. To materiał edukacyjny, nie porada prawna.</label>
-        <button type="submit" class="btn btn-primary" style="padding:16px;font-size:1.05rem">Wyślij mi darmową checklistę</button>
-        <div id="fragMsg" style="font-size:.9rem;min-height:18px"></div>
+        <label style="display:flex;gap:9px;align-items:flex-start;font-size:.85rem;color:var(--muted)"><input type="checkbox" name="consent" required style="margin-top:3px">Zgadzam się na kontakt w sprawie audytu. Audyt ma charakter edukacyjno-organizacyjny, nie jest poradą prawną.</label>
+        <button type="submit" class="btn btn-primary" style="padding:16px;font-size:1.05rem">Zgłoś się na audyt</button>
+        <div id="audytMsg" style="font-size:.9rem;min-height:18px"></div>
       </form>
     </div>
-    <p style="margin-top:14px;font-size:.88rem;color:var(--muted);line-height:1.5">Checklista wystarczy, żeby zacząć. Wolisz od razu całość, z gotowymi dokumentami? <a href="#oferta" style="color:var(--blue-d);font-weight:700">Zobacz pakiet za 67 zł &darr;</a></p>
+    <p style="margin-top:14px;font-size:.88rem;color:var(--muted);line-height:1.5">Nie jesteś gotowy na rozmowę? <a href="#checklista" style="color:var(--blue-d);font-weight:700">Zacznij od darmowej checklisty &darr;</a></p>
   </div>
   <div><img class="art" src="/ai-act/hero.png" alt="Ilustracja: tarcza z checklistą i elementami AI, symbol zgodności z AI Act"></div>
 </div></header>
 
+<!-- JAK WYGLĄDA AUDYT -->
+<section class="section" id="jak-audyt"><div class="wrap">
+  <p class="eyebrow">Jak to działa</p>
+  <h2>Trzy kroki, zero teorii</h2>
+  <p class="sub">Cały proces zamyka się w kilku dniach. Twojego czasu potrzeba mniej niż dwie godziny.</p>
+  <div class="cards">
+    <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M3 9l9 5 9-5" stroke="#2358c9" stroke-width="1.7"/></svg></div><div><h3><span class="n">1</span>Zgłoszenie i 5 pytań</h3><p>Wypełniasz formularz, odzywam się do 24 godzin. Przed rozmową dostajesz 5 prostych pytań o narzędzia AI w firmie, żebyśmy nie tracili czasu na rozgrzewkę.</p></div></div>
+    <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#2358c9" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h3><span class="n">2</span>Rozmowa 60 do 90 minut</h3><p>Online albo przez telefon. Przechodzimy przez wszystkie narzędzia AI, których używasz: chatboty, generowanie treści, co robią pracownicy na własną rękę. Konkretnie, o Twojej firmie.</p></div></div>
+    <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M8 8h8M8 12h8M8 16h5" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round"/></svg></div><div><h3><span class="n">3</span>Raport z planem</h3><p>W ciągu 2 dni roboczych dostajesz raport: co masz w porządku, co Cię dotyczy, co zrobić przed 2 sierpnia i po nim. Kroki w kolejności, do odhaczenia.</p></div></div>
+    <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#2358c9" stroke-width="1.7"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3><span class="n">+</span>290 zł do odliczenia</h3><p>Jeśli po audycie zdecydujesz się na warsztat albo wdrożenie z AI-Team, całą kwotę audytu odliczam od ceny. Audyt wychodzi wtedy za zero.</p></div></div>
+  </div>
+</div></section>
+
 <!-- CO DOSTAJESZ -->
-<section class="section" id="co-dostajesz"><div class="wrap">
+<section class="section" id="co-dostajesz" style="padding-top:0"><div class="wrap">
   <p class="eyebrow">Co dostajesz</p>
-  <h2>Cztery pliki do pobrania od razu po zakupie</h2>
-  <p class="sub">Przewodnik plus trzy gotowe dokumenty do wypełnienia.</p>
+  <h2>Raport plus komplet dokumentów w cenie</h2>
+  <p class="sub">Oprócz raportu z planem dostajesz cztery gotowe dokumenty.</p>
   <div class="cards">
     <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M8 8h8M8 12h8M8 16h5" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round"/></svg></div><div><h3><span class="n">1</span>Przewodnik</h3><p>Co AI Act naprawdę znaczy dla małej firmy, które obowiązki są aktualne już teraz i co dokładnie zrobić. Na spokojnie, bez straszenia.</p></div></div>
     <div class="fcard"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M8 12l2.5 2.5L16 9" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3><span class="n">2</span>Checklista zgodności</h3><p>Kroki w kolejności, każdy do odhaczenia. Wiesz, od czego zacząć i kiedy wrócić do tematu.</p></div></div>
@@ -210,25 +225,43 @@ footer p{margin-bottom:6px;max-width:540px}
   </div>
   <div class="disc">
     <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="#2358c9" stroke-width="1.6"/><path d="M12 8v4M12 15h.01" stroke="#2358c9" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-    <div><strong>Ważne:</strong> ten pakiet ma charakter edukacyjny i organizacyjny. Pomaga się zorientować i uporządkować, ale nie stanowi porady prawnej. W sprawach wątpliwych albo przy nietypowym wykorzystaniu AI warto skonsultować się z prawnikiem.</div>
+    <div><strong>Ważne:</strong> audyt ma charakter edukacyjny i organizacyjny. Pomaga się zorientować i uporządkować, ale nie stanowi porady prawnej. W sprawach wątpliwych albo przy nietypowym wykorzystaniu AI kieruję do prawnika i mówię to wprost także podczas rozmowy.</div>
   </div>
 </div></section>
 
 <!-- OFERTA -->
 <section class="offer" id="oferta"><div class="wrap">
-  <p class="eyebrow" style="margin-bottom:6px">Opcja dodatkowa</p>
-  <p class="sub" style="margin-bottom:24px">Checklistę dostajesz za darmo. Jeśli chcesz do tego gotowe dokumenty, jest pełny pakiet.</p>
+  <p class="eyebrow" style="margin-bottom:6px">Ile to kosztuje</p>
+  <p class="sub" style="margin-bottom:24px">Jedna cena, bez subskrypcji. Płatność dopiero po umówieniu terminu.</p>
   <div class="pcard">
-    <div class="price">67 zł</div>
-    <div class="per">jednorazowo &middot; pobierasz od razu</div>
+    <div class="price">290 zł</div>
+    <div class="per">cena promocyjna do 2 sierpnia &middot; docelowo 490 zł</div>
     <ul>
-      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>4 pliki gotowe do użycia w Twojej firmie</li>
-      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Napisane prostym językiem, nie prawniczym</li>
-      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dwa dokumenty, które porządkują papiery</li>
-      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Aktualne daty i obowiązki, sprawdzone u źródła</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Rozmowa 60 do 90 minut o Twojej firmie</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Raport z planem krok po kroku w 2 dni robocze</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Komplet 4 dokumentów w cenie (przewodnik, checklista, rejestr, polityka)</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1f9d68" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#1f9d68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Całe 290 zł odliczysz od warsztatu albo wdrożenia</li>
     </ul>
-    <a class="btn btn-ghost cta" href="https://buy.stripe.com/eVq8wOczQ1HU6J243c1kA0K">Kup i pobierz za 67 zł</a>
-    <div class="assure"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="#2358c9" stroke-width="1.6"/></svg> Bez subskrypcji. Bez ukrytych kosztów.</div>
+    <a class="btn btn-primary cta" href="#zgloszenie">Zgłoś się na audyt</a>
+    <div class="assure"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="#2358c9" stroke-width="1.6"/></svg> Faktura do każdego audytu. Bez ukrytych kosztów.</div>
+  </div>
+</div></section>
+
+<!-- DARMOWA CHECKLISTA -->
+<section class="section" id="checklista" style="padding-top:0"><div class="wrap">
+  <p class="eyebrow">Na początek</p>
+  <h2>Wolisz najpierw sprawdzić samodzielnie?</h2>
+  <p class="sub">Pobierz darmową checklistę zgodności. Przejdziesz ją w kwadrans i zobaczysz, gdzie stoisz.</p>
+  <div class="freebox" style="margin:0 auto">
+    <div class="ft">Darmowa checklista zgodności AI Act</div>
+    <div class="fs">Wyślę Ci ją na maila od razu. Za darmo, bez zobowiązań.</div>
+    <form id="fragForm" style="display:flex;flex-direction:column;gap:10px">
+      <input type="email" name="email" placeholder="Twój email" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit">
+      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:.85rem;color:var(--muted)"><input type="checkbox" name="consent" required style="margin-top:3px">Chcę dostać darmową checklistę. To materiał edukacyjny, nie porada prawna.</label>
+      <button type="submit" class="btn btn-ghost" style="padding:15px;font-size:1rem">Wyślij mi darmową checklistę</button>
+      <div id="fragMsg" style="font-size:.9rem;min-height:18px"></div>
+    </form>
   </div>
 </div></section>
 
@@ -255,16 +288,18 @@ footer p{margin-bottom:6px;max-width:540px}
   <p class="eyebrow">Krótkie pytania</p>
   <h2>Najczęściej zadawane pytania</h2>
   <div style="margin-top:30px">
-    <details open><summary><span class="q">?</span>Czy AI Act dotyczy tak małej firmy jak moja?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Jeśli używasz narzędzi AI, to tak. Przepisy nie patrzą na wielkość firmy, tylko na to, czy korzystasz z AI. Dla firm, które tylko używają gotowych narzędzi, obowiązki są proste i da się je ogarnąć samodzielnie. Ten pakiet prowadzi Cię krok po kroku.</div></details>
-    <details><summary><span class="q">?</span>Czy to nie jest tylko straszenie karami?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Nie. W sieci krążą wielkie kwoty, ale dotyczą one najcięższych naruszeń, których zwykła mała firma po prostu nie popełnia. Ta strona i pakiet skupiają się na porządku, nie na panice: chodzi o to, żebyś wiedział, czego używasz i miał to spisane.</div></details>
-    <details><summary><span class="q">?</span>Czy dostanę rachunek?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Tak, na życzenie. Po zakupie napisz na dariusz.szuca@gmail.com, a odeślę dokument.</div></details>
+    <details open><summary><span class="q">?</span>Czy AI Act dotyczy tak małej firmy jak moja?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Jeśli używasz narzędzi AI, to tak. Przepisy nie patrzą na wielkość firmy, tylko na to, czy korzystasz z AI. Dla firm, które używają gotowych narzędzi, obowiązki są do ogarnięcia. Audyt pokazuje, które z nich dotyczą właśnie Ciebie.</div></details>
+    <details><summary><span class="q">?</span>Czy to nie jest tylko straszenie karami?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Nie. W sieci krążą wielkie kwoty, ale dotyczą one najcięższych naruszeń, których zwykła mała firma po prostu nie popełnia. Audyt skupia się na porządku, nie na panice: masz wiedzieć, czego używasz, i mieć to spisane.</div></details>
+    <details><summary><span class="q">?</span>Nie wyrobię się przed 2 sierpnia. Czy audyt nadal ma sens?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Ma. Obowiązki 2 sierpnia dopiero zaczynają obowiązywać, nie kończą. Lepiej uporządkować temat tydzień po terminie niż wcale. Cena promocyjna obowiązuje jednak tylko do 2 sierpnia.</div></details>
+    <details><summary><span class="q">?</span>Czy mogę kupić same dokumenty, bez rozmowy?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Tak. Pakiet czterech dokumentów do samodzielnego wypełnienia kosztuje 67 zł: <a href="https://buy.stripe.com/eVq8wOczQ1HU6J243c1kA0K" style="color:var(--blue-d);font-weight:700">kup i pobierz od razu</a>. Audyt to te same dokumenty plus rozmowa o Twojej firmie i raport z planem.</div></details>
+    <details><summary><span class="q">?</span>Czy dostanę fakturę?<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary><div class="a">Tak, do każdego audytu wystawiam fakturę.</div></details>
   </div>
 </div></section></div>
 
 <!-- TRUST BAR -->
 <section class="tbar"><div class="wrap">
   <div class="row4">
-    <div class="t"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M3 9l9 5 9-5" stroke="#2358c9" stroke-width="1.7"/></svg></span><b>Dostęp natychmiastowy</b><span>Pliki od razu po płatności</span></div>
+    <div class="t"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#2358c9" stroke-width="1.7"/><path d="M3 9l9 5 9-5" stroke="#2358c9" stroke-width="1.7"/></svg></span><b>Kontakt do 24 godzin</b><span>Szybki termin, jeszcze przed 2 sierpnia</span></div>
     <div class="t"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#2358c9" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round"/></svg></span><b>Aktualne informacje</b><span>Na podstawie oficjalnych źródeł</span></div>
     <div class="t"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16l-7-3-7 3V4z" stroke="#2358c9" stroke-width="1.7" stroke-linejoin="round"/></svg></span><b>Prosty język</b><span>Bez prawniczego żargonu</span></div>
     <div class="t"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#2358c9" stroke-width="1.7"/><path d="M12 8v4l2 2" stroke="#2358c9" stroke-width="1.7" stroke-linecap="round"/></svg></span><b>Oszczędność czasu</b><span>Zrób to raz, miej spokój</span></div>
@@ -275,9 +310,9 @@ footer p{margin-bottom:6px;max-width:540px}
 <footer><div class="wrap">
   <div class="cols">
     <div>
-      <p><strong>AI Act dla małej firmy</strong>, pakiet zgodności.</p>
-      <p>Materiał edukacyjno-organizacyjny, nie stanowi porady prawnej.</p>
-      <p>Produkt cyfrowy. Kupując i zaznaczając zgodę na natychmiastowy dostęp, akceptujesz utratę prawa odstąpienia od umowy po rozpoczęciu pobierania (treści cyfrowe).</p>
+      <p><strong>Audyt AI Act dla małej firmy</strong> &middot; AI-Team.</p>
+      <p>Audyt i materiały mają charakter edukacyjno-organizacyjny, nie stanowią porady prawnej.</p>
+      <p>Pakiet dokumentów (67 zł) to produkt cyfrowy. Kupując i zaznaczając zgodę na natychmiastowy dostęp, akceptujesz utratę prawa odstąpienia od umowy po rozpoczęciu pobierania (treści cyfrowe).</p>
     </div>
     <div>
       <p>Sprzedawca: <strong>Dariusz Szuca</strong></p>
@@ -305,6 +340,19 @@ footer p{margin-bottom:6px;max-width:540px}
   else if(dni===0){ el.textContent='To dzisiaj'; }
   else { el.textContent='Przepisy już obowiązują'; }
 })();
+
+document.getElementById('audytForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var f=e.target, msg=document.getElementById('audytMsg'), btn=f.querySelector('button');
+  btn.disabled=true; msg.style.color='#69788f'; msg.textContent='Wysyłam...';
+  try{
+    var el=f.elements;
+    var r=await fetch('/api/audyt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:el['name'].value,email:el['email'].value,phone:el['phone'].value,consent:el['consent'].checked,company:el['company'].value})});
+    var d=await r.json();
+    if(d.ok){ msg.style.color='#1f9d68'; msg.textContent='Zgłoszenie przyjęte! Sprawdź maila, odezwę się do 24 godzin.'; f.reset(); }
+    else { msg.style.color='#e0466e'; msg.textContent=d.error||'Coś poszło nie tak.'; btn.disabled=false; }
+  }catch(err){ msg.style.color='#e0466e'; msg.textContent='Błąd sieci. Spróbuj za chwilę.'; btn.disabled=false; }
+});
 
 document.getElementById('fragForm').addEventListener('submit', async function(e){
   e.preventDefault();
