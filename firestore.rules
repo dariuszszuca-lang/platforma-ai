@@ -29,9 +29,20 @@ service cloud.firestore {
       && request.resource.data.consent.newsletter == true;
     }
 
+    // Wypis z newslettera (ai-radar-wypis.html). Jedyne, na co pozwala:
+    // zmiana status na 'unsubscribed' i dopisanie unsubscribed_at, na istniejacym
+    // dokumencie. Zaden inny klucz nie moze sie zmienic ani zniknac, wiec tedy nie da sie
+    // podmienic maila, zgody, grupy ani niczego innego.
+    function isUnsubscribeOnly() {
+      return resource != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'unsubscribed_at'])
+        && request.resource.data.status == 'unsubscribed'
+        && request.resource.data.unsubscribed_at is string;
+    }
+
     match /newsletter_subscribers/{subscriberId} {
       allow create: if hasNewsletterShape();
-      allow update: if isSignedIn() || (
+      allow update: if isSignedIn() || isUnsubscribeOnly() || (
         hasNewsletterShape()
         && resource.data.email == request.resource.data.email
         && resource.data.id == request.resource.data.id
