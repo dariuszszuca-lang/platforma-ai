@@ -290,6 +290,20 @@ const wypisMessage = document.getElementById('wypisMessage');
 const WYPIS_BTN_LABEL = wypisButton.textContent;
 const WYPIS_KONTAKT = '<a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>';
 
+// Prefill adresu z linku w mailu AI Radar (?email=...). TYLKO wypełnia pole.
+// Celowo NIE wysyła formularza sam: skanery linków w skrzynkach pobierają adresy
+// (GET) i auto-wysyłka wypisywałaby ludzi przez pomyłkę. Klik przycisku zostaje przy odbiorcy.
+(function prefillEmailFromUrl() {
+  try {
+    var raw = new URLSearchParams(window.location.search).get('email');
+    if (!raw) return;
+    var field = document.getElementById('wypisEmail');
+    if (field && !field.value) field.value = raw.trim();
+  } catch (error) {
+    // Zły parametr w URL nie może zablokować ręcznego wpisania adresu.
+  }
+})();
+
 function showWypisMessage(type, html) {
   wypisMessage.className = 'radar-message is-visible ' + type;
   wypisMessage.innerHTML = html;

@@ -343,6 +343,7 @@ function renderIssueForSubscriber(issue, subscriber, options = {}) {
     issue_number: issue.number || issue.data?.issue_number || "",
     issue_title: issue.title || issue.name || "AI Radar",
     email: subscriber.email,
+    email_encoded: encodeURIComponent(subscriber.email || ""),
     name: subscriber.name || "",
     first_name: firstName(subscriber.name),
     firstName: firstName(subscriber.name),
@@ -866,4 +867,6 @@ Object.assign(module.exports, {
   publicError,
   firstName,
   docIdFromEmail,
+  renderIssueForSubscriber,
+  buildSesPayload,
 });
