@@ -347,7 +347,7 @@ document.getElementById('audytForm').addEventListener('submit', async function(e
   btn.disabled=true; msg.style.color='#69788f'; msg.textContent='Wysyłam...';
   try{
     var el=f.elements;
-    var r=await fetch('/api/audyt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:el['name'].value,email:el['email'].value,phone:el['phone'].value,consent:el['consent'].checked,company:el['company'].value})});
+    var r=await fetch('/api/fragment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'audyt',name:el['name'].value,email:el['email'].value,phone:el['phone'].value,consent:el['consent'].checked,company:el['company'].value})});
     var d=await r.json();
     if(d.ok){ msg.style.color='#1f9d68'; msg.textContent='Zgłoszenie przyjęte! Sprawdź maila, odezwę się do 24 godzin.'; f.reset(); }
     else { msg.style.color='#e0466e'; msg.textContent=d.error||'Coś poszło nie tak.'; btn.disabled=false; }
