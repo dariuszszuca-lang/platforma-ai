@@ -112,7 +112,9 @@ module.exports = async function handler(req, res) {
       to: email, subject: "Twoja darmowa checklista AI Act",
       html: userHtml(), text: userText(), tags: { product: "ai_act_fragment", lead: "1" },
     }, aws);
-    // 2. notyfikacja leada do wlasciciela
+    // 2. notyfikacja leada do wlasciciela (pomijana, gdy checkliste dostarcza automat leadow Meta,
+    //    bo o tym leadzie wlasciciel dostal juz osobne powiadomienie z eksportu)
+    if (body.delivered_by === "meta-automat") return lib.sendJson(res, 200, { ok: true });
     await lib.sendSesEmail({
       from: process.env.SES_FROM, to: OWNER_EMAIL,
       subject: "Nowy lead: checklista AI Act",
