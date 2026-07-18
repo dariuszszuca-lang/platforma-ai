@@ -5,7 +5,7 @@
 const lib = require("./newsletter-send.js");
 
 const CHECKLIST_URL = "https://ai-team.pl/ai-act/checklista-ai-act.pdf";
-const PRODUCT_URL = "https://ai-team.pl/ai-act";
+const PRODUCT_URL = "https://ai-team.pl/ai-act#pakiet";
 const OWNER_EMAIL = "dariusz.szuca@gmail.com";
 function esc(s) { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
@@ -16,7 +16,7 @@ function audytUserHtml(name) {
     <p style="font-size:16px">${hello}</p>
     <p style="font-size:15px;line-height:1.6">dostałem Twoje zgłoszenie na <b>Audyt AI Act</b>. Odezwę się najpóźniej w ciągu 24 godzin, żeby umówić termin rozmowy i zadać kilka krótkich pytań o narzędzia AI w Twojej firmie.</p>
     <p style="font-size:15px;line-height:1.6">Jak to dalej wygląda: ustalamy termin, przed rozmową odsyłasz mi odpowiedzi na 5 prostych pytań, rozmawiamy 60 do 90 minut, a po rozmowie dostajesz raport z konkretnym planem. Płatność (290 zł, cena promocyjna do 2 sierpnia) dopiero po ustaleniu terminu.</p>
-    <p style="font-size:13px;color:#69788f;line-height:1.5;margin-top:26px">Audyt ma charakter edukacyjno-organizacyjny, nie stanowi porady prawnej. Dostałeś tego maila, bo zgłosiłeś się przez ${PRODUCT_URL}.</p>
+    <p style="font-size:13px;color:#69788f;line-height:1.5;margin-top:26px">Audyt ma charakter edukacyjno-organizacyjny, nie stanowi porady prawnej. Dostałeś tego maila, bo zgłosiłeś się przez https://ai-team.pl/ai-act.</p>
     <p style="font-size:13px;color:#8a97ab">Dariusz Szuca &middot; ai-team.pl</p>
   </div></body></html>`;
 }
