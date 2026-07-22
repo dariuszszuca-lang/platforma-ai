@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnoza etapu wdrożenia AI: darmowa, 60 sekund | AI Team</title>
+<meta name="description" content="12 pytań, 60 sekund. Sprawdź, na którym z 6 etapów wdrożenia AI jest Twoja firma, i poznaj 3 pierwsze kroki.">
+<link rel="icon" href="/assets/ai-team-logo-256.png">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a2233;--ink2:#4a5568;--muted:#6b7687;--faint:#8a94a6;--or:#ff7a1a;--or-d:#e56a0f;--copper:#c2570f;--or-soft:#fff4ea;--bg:#faf9f7;--card:#fff;--line:#e8e4db;--soft:#f4f1ea}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+.nav{background:rgba(250,249,247,.9);border-bottom:1px solid var(--line);padding:13px 0}
+.nav .row{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand img{width:34px;height:34px;border-radius:50%}
+.nav a.back{color:var(--ink2);font-size:.9rem;font-weight:600}
+.head{text-align:center;padding:40px 0 10px}
+.head h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:900;letter-spacing:-.01em}
+.head p{color:var(--muted);margin-top:8px}
+.progress{max-width:680px;margin:26px auto 0;padding:0 24px}
+.pbar{height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.pbar b{display:block;height:100%;width:0;background:var(--or);border-radius:999px;transition:width .25s}
+.pinfo{font-size:.82rem;color:var(--faint);margin-top:7px;text-align:right}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;margin:22px 0 60px;box-shadow:0 18px 44px rgba(26,34,51,.06)}
+.qcard h2{font-size:1.25rem;font-weight:800;line-height:1.35;margin-bottom:6px}
+.qcard .area{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;font-size:1rem;color:var(--ink);cursor:pointer;margin-top:11px;font-family:inherit;transition:border-color .12s,background .12s}
+.opt:hover{border-color:var(--or);background:var(--or-soft)}
+.result{display:none}
+.rhead{text-align:center;padding-top:6px}
+.rhead .lbl{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--copper)}
+.rhead h2{font-size:2rem;font-weight:900;margin:6px 0 10px}
+.rhead p{color:var(--ink2)}
+.stages{display:flex;gap:6px;margin:22px 0 26px}
+.st{flex:1;padding:9px 4px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--faint);font-size:.68rem;font-weight:700;text-align:center}
+.st.you{background:var(--or-soft);border:2px solid var(--or);color:var(--copper)}
+.kroki{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.kroki h3{font-size:.95rem;font-weight:800;margin-bottom:10px}
+.kroki li{margin-left:20px;padding:4px 0;color:var(--ink2)}
+.cta-box{text-align:center;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.cta-box p{color:var(--ink2);max-width:460px;margin:0 auto 16px}
+.btn{display:inline-block;font-weight:800;border-radius:10px;padding:15px 28px;font-size:1rem;background:var(--or);color:#fff;box-shadow:0 10px 26px rgba(255,122,26,.28)}
+.btn:hover{background:var(--or-d)}
+.cta-box .minor{display:block;margin-top:14px;font-size:.88rem;color:var(--muted)}
+.cta-box .minor a{color:var(--copper);font-weight:700}
+.again{margin-top:16px;font-size:.85rem;color:var(--faint);text-align:center}
+.again a{text-decoration:underline}
+footer{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;border-top:1px solid var(--line);background:#fff}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="row">
+  <a class="brand" href="/mapa-wdrozenia.html"><img src="/assets/ai-team-logo-256.png" alt="AI Team"> AI Team</a>
+  <a class="back" href="/mapa-wdrozenia.html">← Wróć do Mapy</a>
+</div></nav>
+
+<div class="head wrap">
+  <h1>Na którym etapie wdrożenia AI jest Twoja firma?</h1>
+  <p>12 pytań, około 60 sekund. Bez maila, wynik od razu.</p>
+</div>
+
+<div class="progress" id="progressWrap"><div class="pbar"><b id="pfill"></b></div><div class="pinfo" id="pinfo">Pytanie 1 z 12</div></div>
+
+<div class="wrap">
+  <div class="qcard" id="quiz"></div>
+
+  <div class="qcard result" id="result">
+    <div class="rhead">
+      <div class="lbl">Twój wynik</div>
+      <h2 id="rTitle"></h2>
+      <p id="rDesc"></p>
+    </div>
+    <div class="stages" id="rStages"></div>
+    <div class="kroki">
+      <h3>3 pierwsze kroki na Twoim etapie:</h3>
+      <ol id="rSteps"></ol>
+    </div>
+    <div class="cta-box">
+      <p>To są pierwsze 3 kroki. Pełną ścieżkę Twojego etapu i wszystkich następnych (tabele obszarów, fokus na 2 tygodnie, kryteria przejścia) znajdziesz w Mapie Wdrożenia AI.</p>
+      <a class="btn" href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę w przedsprzedaży za 147 zł</a>
+      <span class="minor">Po premierze 11.08 cena wraca na 197 zł. <a href="/mapa-wdrozenia.html">Zobacz, co dokładnie jest w środku →</a></span>
+    </div>
+    <div class="again"><a href="#" onclick="location.reload();return false;">Zrób diagnozę jeszcze raz</a></div>
+  </div>
+</div>
+
+<footer>AI Team · Dariusz Szuca · Wynik diagnozy ma charakter edukacyjno-organizacyjny, nie jest poradą prawną.</footer>
+
+<script>
+const QS=[
+ {a:"Start",q:"Jak często ktoś w Twojej firmie używa narzędzi AI?",o:[["Wcale albo od święta, z ciekawości",0],["Regularnie, ale każdy po swojemu",1],["Codziennie, mamy ulubione zastosowania",2],["Codziennie, w ramach ustalonych procesów i automatyzacji",4]]},
+ {a:"Porządek",q:"Czy wiesz, jakich narzędzi AI używa Twoja firma (także pracownicy na własną rękę)?",o:[["Nie mam pojęcia",0],["Mniej więcej, trzymam to w głowie",0],["Mam spisany rejestr narzędzi",1],["Rejestr plus zasady, przeglądane co jakiś czas",2]]},
+ {a:"Zasady",q:"Zasady używania AI w firmie (np. czego nie wklejamy do publicznych narzędzi):",o:[["Nie ma tematu",0],["Mówiliśmy o tym ustnie",1],["Jest spisana jedna strona zasad",2],["Zasady spisane, zespół je zna",3]]},
+ {a:"Marketing",q:"Treści marketingowe (posty, oferty, grafiki) powstają u Ciebie:",o:[["Ręcznie, AI nie pomaga",0],["Czasem z pomocą AI, bez systemu",1],["Mam stałe prompty i szablony",2],["Content ma stały tor z AI: plan, produkcja, publikacja",3]]},
+ {a:"Sprzedaż",q:"Oferty i wyceny dla klientów:",o:[["Każda od zera, ręcznie",0],["Kopiuję stare i przerabiam",1],["AI pomaga według wzorca",2],["Proces ofertowy z AI: szablony plus follow-up",3]]},
+ {a:"Obsługa klienta",q:"Powtarzalne pytania klientów:",o:[["Odpisuję za każdym razem ręcznie",0],["Mam gotowe odpowiedzi do wklejania",1],["AI pomaga mi pisać odpowiedzi",2],["Chatbot albo automat odpowiada, ja tylko doglądam",4]]},
+ {a:"Dokumenty",q:"Umowy, faktury, podsumowania, raporty:",o:[["Wszystko ręcznie",0],["Szablony w Wordzie albo Excelu",1],["AI pomaga tworzyć i streszczać",2],["Generują się same z danych",4]]},
+ {a:"Zgodność",q:"Czy klient wie, kiedy rozmawia z AI (chatbot, automatyczne odpowiedzi)?",o:[["Nie mamy nic z AI od strony klienta",1],["Mamy, ale bez oznaczenia",0],["Tak, jest oznaczone",2],["Oznaczone i spisane w zasadach firmy",3]]},
+ {a:"Automatyzacje",q:"Powtarzalne zadania (raporty, przypomnienia, publikacje):",o:[["Robię ręcznie",0],["Część mam w szablonach",1],["Pojedyncze automatyzacje już działają",3],["Kilka automatyzacji chodzi beze mnie i wiem, ile czasu oddają",4]]},
+ {a:"Zespół",q:"Zespół i AI:",o:[["Tylko ja czasem używam",0],["Każdy używa, jak umie",1],["Mamy wspólne prompty i narzędzia",2],["Zespół przeszkolony, nowi dostają zasady na starcie",3]]},
+ {a:"Systemy",q:"Narzędzia szyte pod Waszą firmę (własny CRM, panel, asystent):",o:[["Nie mamy",0],["Myślimy o tym",1],["Mamy jedno narzędzie pod nasz proces",4],["Własne systemy to nasz standard pracy",5]]},
+ {a:"Podsumowanie",q:"Gdyby jutro ktoś zapytał „jak u was działa AI”, co pokażesz?",o:[["Nic konkretnego",0],["Kilka czatów i przykładów",1],["Rejestr, zasady i przykłady użycia",2],["Rejestr, procesy, automatyzacje i liczby, ile czasu oddają",4]]}
+];
+const ET=[
+ {n:"Etap 0 · Chaos",d:"AI pojawia się u Was od święta i bez planu. Dobra wiadomość: z etapu 0 wychodzi się najszybciej ze wszystkich.",s:["Wybierz jedno narzędzie (np. ChatGPT albo Claude) i używaj go codziennie przez tydzień do prawdziwych zadań.","Spisz na jednej kartce, kto w firmie czego próbował i co z tego wyszło.","Wybierz jedno powtarzalne zadanie, które chcesz oddać AI w pierwszej kolejności."]},
+ {n:"Etap 1 · Porządek",d:"Używacie AI, ale bez rejestru i zasad. Zanim pójdziesz dalej, zrób porządek: to fundament, także pod AI Act.",s:["Zrób rejestr narzędzi AI: tabela 4 kolumny (narzędzie, kto używa, do czego, dane klientów tak/nie). 30 minut.","Spisz jedną stronę zasad, zaczynając od: danych klientów nie wklejamy do publicznych narzędzi.","Jeśli macie chatbota albo automat do klientów, dopisz oznaczenie, że to AI."]},
+ {n:"Etap 2 · Codzienność",d:"AI jest w Waszej codziennej pracy, ale wiedza siedzi w głowach. Czas ją spisać, żeby przestała zależeć od jednej osoby.",s:["Zbuduj bibliotekę promptów dla 5 najczęstszych zadań i trzymaj ją w jednym miejscu.","Zamień najlepsze prompty w szablony, z których korzysta cały zespół.","Zarezerwuj 30 minut tygodniowo na ulepszanie jednego zastosowania AI."]},
+ {n:"Etap 3 · Procesy",d:"Pojedyncze zadania śmigają. Następny poziom to całe procesy, które przechodzą przez AI od początku do końca.",s:["Wybierz jeden proces (oferty albo content) i rozpisz jego tor krok po kroku.","Wstaw AI w konkretne kroki toru i ustal, kto odpowiada za efekt.","Zmierz czas przed i po. Liczby powiedzą, czy proces działa."]},
+ {n:"Etap 4 · Automatyzacje",d:"Procesy działają, część rzeczy dzieje się sama. Teraz liczy się skala i wiedza, ile czasu naprawdę odzyskujesz.",s:["Wypisz 3 zadania, które dziś dzieją się bez Ciebie, i 3 kolejne do automatyzacji.","Policz oddany czas w godzinach miesięcznie. To Twoja twarda liczba.","Ustal miesięczny przegląd automatyzacji: co działa, co się wysypało, co dołożyć."]},
+ {n:"Etap 5 · Systemy",d:"AI to Wasza przewaga, nie gadżet. Na tym etapie wygrywa się własnymi narzędziami szytymi pod proces firmy.",s:["Spisz proces, którego nie obsłuży żadne gotowe narzędzie z półki.","Sprawdź, czy własny system (CRM, panel, asystent) nie zrobi tego lepiej niż 5 abonamentów.","Mierz przewagę: czas obsługi, liczba leadów, koszt narzędzi przed i po."]}
+];
+let i=0,sum=0,vals=[];
+const quiz=document.getElementById('quiz');
+function show(){
+  const q=QS[i];
+  document.getElementById('pfill').style.width=Math.round(i/QS.length*100)+'%';
+  document.getElementById('pinfo').textContent='Pytanie '+(i+1)+' z '+QS.length;
+  quiz.innerHTML='<div class="area">'+q.a+'</div><h2>'+q.q+'</h2>'+q.o.map((o,j)=>'<button class="opt" onclick="pick('+j+')">'+o[0]+'</button>').join('');
+}
+function pick(j){
+  vals.push(QS[i].o[j][1]);
+  i++;
+  if(i<QS.length){show();window.scrollTo({top:0,behavior:'smooth'});}else{finish();}
+}
+function finish(){
+  const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+  let e=Math.round(avg);
+  if(avg>=3.4&&vals[10]>=4)e=5;
+  if(e>5)e=5;
+  document.getElementById('progressWrap').style.display='none';
+  quiz.style.display='none';
+  const r=document.getElementById('result');
+  r.style.display='block';
+  document.getElementById('rTitle').textContent=ET[e].n;
+  document.getElementById('rDesc').textContent=ET[e].d;
+  document.getElementById('rSteps').innerHTML=ET[e].s.map(s=>'<li>'+s+'</li>').join('');
+  document.getElementById('rStages').innerHTML=ET.map((t,k)=>'<div class="st'+(k===e?' you':'')+'">'+k+' · '+t.n.split('· ')[1]+'</div>').join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+show();
+</script>
+</body>
+</html>
