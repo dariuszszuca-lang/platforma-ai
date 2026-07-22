@@ -1,13 +1,15 @@
 # Meta Ads: Tracker Czasu jako lead magnet AI Radar
 
-Status: Pixel włączony, kampania i zestaw reklam utworzone w Meta jako `PAUSED`, bez emisji.
-Data: 2026-05-20
+Status: stary wariant www spauzowany, nowy wariant Lead Form przygotowany jako `PAUSED`, bez emisji.
+Data: 2026-05-22
 
 ## Cel kampanii
 
 Zbudować listę AI Radar przez darmowy Tracker Czasu.
 
-Główna konwersja: zapis i utworzenie konta w `/app`.
+Główna konwersja wariantu www: zapis i utworzenie konta w `/app`.
+
+Główna konwersja wariantu Lead Form: zostawienie imienia i emaila w natywnym formularzu Meta, a dopiero potem przejście do `/app`.
 
 Technicznie aplikacja zapisuje źródło zapisu w Firestore (`newsletter_subscribers.utm` i `tracker_users.marketing.attribution`) oraz wysyła standardowe eventy Meta Pixel: `Lead` i `CompleteRegistration`.
 
@@ -36,14 +38,14 @@ Pixel:
 
 `AI-Team Pixel`
 
-Kampania utworzona 20 maja 2026:
+Kampania www utworzona 20 maja 2026, spauzowana 22 maja 2026 po wydaniu 35,86 PLN bez leadów:
 
 - ID: `120246845370010295`
 - nazwa: `AI-Team | Tracker Czasu | AI Radar | Leads | 2026-05`
 - status: `PAUSED`
 - cel: `OUTCOME_LEADS`
 
-Zestaw reklam utworzony 20 maja 2026:
+Zestaw reklam www utworzony 20 maja 2026:
 
 - ID: `120246845385890295`
 - nazwa: `PL | Broad | Tracker AI Radar | 20 PLN dziennie | PAUSED`
@@ -52,11 +54,33 @@ Zestaw reklam utworzony 20 maja 2026:
 - optymalizacja: `OFFSITE_CONVERSIONS`
 - event: `Lead`
 
-Reklama/kreatywa:
+Reklama www:
+
+- ID: `120246850593860295`
+- nazwa: `AI-Team | Tracker Czasu | AI Radar | Leads | 2026-05`
+- status reklamy: `ACTIVE`
+- effective status po pauzie kampanii: `CAMPAIGN_PAUSED`
+
+Nowy wariant Lead Form utworzony 22 maja 2026:
+
+- formularz ID: `1730276631670244`
+- formularz: `Darmowy Tracker Czasu | AI Radar | 2026-05-22`
+- pola: `FULL_NAME`, `EMAIL`
+- follow-up: `https://ai-team.pl/app?source=meta-lead-form&utm_source=meta&utm_medium=lead_form&utm_campaign=tracker_ai_radar_leadform_2026_05`
+- kampania ID: `120246957516130295`
+- kampania: `AI-Team | Tracker Czasu | Lead Form | 2026-05`
+- status kampanii: `PAUSED`
+- adset ID: `120246957532730295`
+- adset: `PL | Broad | Tracker Lead Form | 20 PLN dziennie | PAUSED`
+- status adsetu: `PAUSED`
+- budżet roboczy: 20 PLN dziennie
+- optymalizacja: `LEAD_GENERATION`
+
+Reklama Lead Form:
 
 - nieutworzona przez API
 - powód: Meta zwraca błąd, że post reklamowy tworzony przez aplikację w trybie deweloperskim wymaga przełączenia aplikacji na tryb publiczny/live
-- obejście: dodać reklamę ręcznie w Ads Managerze w istniejącym zestawie reklam albo przełączyć aplikację `AI-Team Ads API` na tryb publiczny
+- obejście: dodać reklamę ręcznie w Ads Managerze w nowym adsecie `120246957532730295` albo przełączyć aplikację `AI-Team Ads API` na tryb publiczny
 
 ## Struktura kampanii
 
@@ -90,6 +114,10 @@ Zestawy reklam:
 Landing:
 
 `https://ai-team.pl/produkt1-tracker?utm_source=meta&utm_medium=paid_social&utm_campaign=tracker_ai_radar_leadmagnet_2026_05&utm_content={{ad.name}}`
+
+Lead Form follow-up:
+
+`https://ai-team.pl/app?source=meta-lead-form&utm_source=meta&utm_medium=lead_form&utm_campaign=tracker_ai_radar_leadform_2026_05`
 
 Parametry są przenoszone z landing page’a do `/app`, więc zapis powinien trafiać do Firestore z kampanią.
 
@@ -160,6 +188,17 @@ Tracker Czasu pomaga to policzyć i zapisać się do AI Radar.
 Nagłówek: `Co automatyzować pierwsze?`
 Opis: `Zacznij od darmowego Trackera.`
 
+Wariant Lead Form:
+
+Nie zaczynaj od kolejnego narzędzia AI.
+
+Najpierw sprawdź, gdzie w tygodniu jest najwięcej ręcznej pracy.
+
+Zostaw email, dostaniesz darmowy Tracker Czasu i AI Radar. Bez zakładania konta na start.
+
+Nagłówek: `Darmowy Tracker Czasu`
+Opis: `Zapis przez prosty formularz Meta.`
+
 ## Compliance
 
 Unikać tekstów typu:
@@ -190,6 +229,7 @@ Reguły decyzji:
 - po 2 dniach bez leadów: sprawdzić Pixel, formularz, mobile i zgodę newsletterową
 - CTR poniżej 0,6% po 1000 wyświetleń: zmienić kreację/copy
 - dużo klików i brak kont: skrócić landing albo prowadzić bezpośrednio do `/app`
+- gdy wariant Lead Form ruszy: po 20-30 PLN sprawdzić liczbę formularzy, CPL i jakość emaili; jeśli są leady, dopiero wtedy wrócić do dłuższej ścieżki konta
 
 ## Źródła Meta
 
