@@ -5,6 +5,7 @@
 // Admin-only (token = CRON_SECRET): dryRun (zwraca Mape+HTML bez wysylki/zapisu), testTo (inny odbiorca).
 
 const lib = require("./newsletter-send.js");
+const { saveVenture03Lead } = require("../server/venture03-lead.js");
 
 const MODEL = "claude-sonnet-4-6";
 const ANTHROPIC_VERSION = "2023-06-01";
@@ -76,13 +77,6 @@ module.exports = async function handler(req, res) {
     // Honeypot: bot wypelnil ukryte pole -> udajemy sukces, nic nie robimy.
     if (body.company) return lib.sendJson(res, 200, { ok: true });
 
-    const email = lib.cleanEmail(body.email);
-    const name = String(body.name || "").trim().slice(0, 120);
-    const what = String(body.what || "").trim().slice(0, 500);
-    const pain = String(body.pain || "").trim().slice(0, 160);
-    const stage = String(body.stage || "").trim().slice(0, 160);
-    const consent = body.consent === true || body.consent === "true" || body.consent === "on";
-
     // Admin-only opcje (chronia SES przed naduzyciem jako open-relay):
     const adminToken = process.env.NEWSLETTER_CRON_SECRET || process.env.CRON_SECRET || "";
     const isAdmin = adminToken && String(body.token || "") === adminToken;
@@ -94,6 +88,20 @@ module.exports = async function handler(req, res) {
       if (!originAllowed(req)) return lib.sendJson(res, 403, { ok: false, error: "Nieprawidłowe źródło żądania." });
       if (rateLimited(clientIp(req))) return lib.sendJson(res, 429, { ok: false, error: "Za dużo zgłoszeń z tego adresu. Spróbuj za parę minut." });
     }
+
+    // VENTURE-03 korzysta z tej samej funkcji, aby nie przekroczyc limitu
+    // funkcji Vercel Hobby. Dane trafiaja do osobnej kolekcji, nie do AI Radar.
+    if (body.mode === "venture03-lead") {
+      const result = await saveVenture03Lead(body);
+      return lib.sendJson(res, 200, result);
+    }
+
+    const email = lib.cleanEmail(body.email);
+    const name = String(body.name || "").trim().slice(0, 120);
+    const what = String(body.what || "").trim().slice(0, 500);
+    const pain = String(body.pain || "").trim().slice(0, 160);
+    const stage = String(body.stage || "").trim().slice(0, 160);
+    const consent = body.consent === true || body.consent === "true" || body.consent === "on";
 
     if (!email) return lib.sendJson(res, 400, { ok: false, error: "Podaj poprawny adres email." });
     if (!what) return lib.sendJson(res, 400, { ok: false, error: "Napisz w dwóch słowach, czym się zajmujesz." });

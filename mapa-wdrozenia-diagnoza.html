@@ -6,6 +6,8 @@
 <title>Diagnoza etapu wdrożenia AI: darmowa, 60 sekund | AI Team</title>
 <meta name="description" content="12 pytań, 60 sekund. Sprawdź, na którym z 6 etapów wdrożenia AI jest Twoja firma, i poznaj 3 pierwsze kroki.">
 <link rel="icon" href="/assets/ai-team-logo-256.png">
+<script src="/assets/meta-pixel.js"></script>
+<script src="/assets/venture03-tracking.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#1a2233;--ink2:#4a5568;--muted:#6b7687;--faint:#8a94a6;--or:#ff7a1a;--or-d:#e56a0f;--copper:#c2570f;--or-soft:#fff4ea;--bg:#faf9f7;--card:#fff;--line:#e8e4db;--soft:#f4f1ea}
@@ -29,6 +31,18 @@ a{text-decoration:none;color:inherit}
 .qcard .area{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
 .opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;font-size:1rem;color:var(--ink);cursor:pointer;margin-top:11px;font-family:inherit;transition:border-color .12s,background .12s}
 .opt:hover{border-color:var(--or);background:var(--or-soft)}
+.lead-gate{display:none}
+.lead-gate p{color:var(--ink2);margin-bottom:18px}
+.lead-form label.field{display:block;font-size:.86rem;font-weight:800;margin-bottom:7px}
+.lead-form input[type="email"]{display:block;width:100%;border:1px solid var(--line);border-radius:11px;padding:14px 15px;font:inherit;color:var(--ink);background:#fff}
+.lead-form input[type="email"]:focus{outline:3px solid rgba(255,122,26,.18);border-color:var(--or)}
+.lead-consent{display:flex;align-items:flex-start;gap:10px;margin-top:15px;color:var(--muted);font-size:.82rem;line-height:1.45}
+.lead-consent input{margin-top:3px;flex:0 0 auto}
+.lead-consent a{color:var(--copper);text-decoration:underline}
+.lead-submit{display:block;width:100%;border:0;border-radius:10px;margin-top:18px;padding:15px 18px;background:var(--or);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.lead-submit:hover{background:var(--or-d)}
+.lead-submit:disabled{opacity:.65;cursor:wait}
+.lead-message{min-height:22px;margin-top:10px;font-size:.86rem;color:#b42318}
 .result{display:none}
 .rhead{text-align:center;padding-top:6px}
 .rhead .lbl{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--copper)}
@@ -60,13 +74,30 @@ footer{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;borde
 
 <div class="head wrap">
   <h1>Na którym etapie wdrożenia AI jest Twoja firma?</h1>
-  <p>12 pytań, około 60 sekund. Bez maila, wynik od razu.</p>
+  <p>12 pytań, około 60 sekund. Wynik zobaczysz od razu po podaniu emaila.</p>
 </div>
 
 <div class="progress" id="progressWrap"><div class="pbar"><b id="pfill"></b></div><div class="pinfo" id="pinfo">Pytanie 1 z 12</div></div>
 
 <div class="wrap">
   <div class="qcard" id="quiz"></div>
+
+  <div class="qcard lead-gate" id="leadGate">
+    <div class="area">Wynik gotowy</div>
+    <h2>Podaj email, żeby zobaczyć swój etap</h2>
+    <p>Na ten adres mogę też wysłać Ci informacje dotyczące Mapy Wdrożenia AI. Nie zapisuję Cię do newslettera AI Radar.</p>
+    <form class="lead-form" id="leadForm" novalidate>
+      <input type="text" id="leadCompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+      <label class="field" for="leadEmail">Email</label>
+      <input type="email" id="leadEmail" name="email" autocomplete="email" placeholder="twoj@email.pl" required>
+      <label class="lead-consent">
+        <input type="checkbox" id="leadConsent" name="consent" required>
+        <span>Zgadzam się na zapis wyniku diagnozy i kontakt mailowy AI-Team dotyczący Mapy Wdrożenia AI. Mogę wycofać zgodę w każdej chwili. Szczegóły w <a href="/privacy">polityce prywatności</a>.</span>
+      </label>
+      <button class="lead-submit" id="leadSubmit" type="submit">Pokaż mój wynik</button>
+      <div class="lead-message" id="leadMessage" role="status" aria-live="polite"></div>
+    </form>
+  </div>
 
   <div class="qcard result" id="result">
     <div class="rhead">
@@ -81,7 +112,7 @@ footer{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;borde
     </div>
     <div class="cta-box">
       <p>To są pierwsze 3 kroki. Pełną ścieżkę Twojego etapu i wszystkich następnych (tabele obszarów, fokus na 2 tygodnie, kryteria przejścia) znajdziesz w Mapie Wdrożenia AI.</p>
-      <a class="btn" href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę w przedsprzedaży za 147 zł</a>
+      <a class="btn" data-venture03-checkout href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę w przedsprzedaży za 147 zł</a>
       <span class="minor">Po premierze 11.08 cena wraca na 197 zł. <a href="/mapa-wdrozenia">Zobacz, co dokładnie jest w środku →</a></span>
     </div>
     <div class="again"><a href="#" onclick="location.reload();return false;">Zrób diagnozę jeszcze raz</a></div>
@@ -113,8 +144,12 @@ const ET=[
  {n:"Etap 4 · Automatyzacje",d:"Procesy działają, część rzeczy dzieje się sama. Teraz liczy się skala i wiedza, ile czasu naprawdę odzyskujesz.",s:["Wypisz 3 zadania, które dziś dzieją się bez Ciebie, i 3 kolejne do automatyzacji.","Policz oddany czas w godzinach miesięcznie. To Twoja twarda liczba.","Ustal miesięczny przegląd automatyzacji: co działa, co się wysypało, co dołożyć."]},
  {n:"Etap 5 · Systemy",d:"AI to Wasza przewaga, nie gadżet. Na tym etapie wygrywa się własnymi narzędziami szytymi pod proces firmy.",s:["Spisz proces, którego nie obsłuży żadne gotowe narzędzie z półki.","Sprawdź, czy własny system (CRM, panel, asystent) nie zrobi tego lepiej niż 5 abonamentów.","Mierz przewagę: czas obsługi, liczba leadów, koszt narzędzi przed i po."]}
 ];
-let i=0,sum=0,vals=[];
+let i=0,vals=[],pendingStage=null;
 const quiz=document.getElementById('quiz');
+const leadGate=document.getElementById('leadGate');
+const leadForm=document.getElementById('leadForm');
+const leadSubmit=document.getElementById('leadSubmit');
+const leadMessage=document.getElementById('leadMessage');
 function show(){
   const q=QS[i];
   document.getElementById('pfill').style.width=Math.round(i/QS.length*100)+'%';
@@ -133,6 +168,13 @@ function finish(){
   if(e>5)e=5;
   document.getElementById('progressWrap').style.display='none';
   quiz.style.display='none';
+  pendingStage=e;
+  leadGate.style.display='block';
+  document.getElementById('leadEmail').focus();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderResult(e){
+  leadGate.style.display='none';
   const r=document.getElementById('result');
   r.style.display='block';
   document.getElementById('rTitle').textContent=ET[e].n;
@@ -140,6 +182,55 @@ function finish(){
   document.getElementById('rSteps').innerHTML=ET[e].s.map(s=>'<li>'+s+'</li>').join('');
   document.getElementById('rStages').innerHTML=ET.map((t,k)=>'<div class="st'+(k===e?' you':'')+'">'+k+' · '+t.n.split('· ')[1]+'</div>').join('');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+leadForm.addEventListener('submit',async function(event){
+  event.preventDefault();
+  const email=document.getElementById('leadEmail').value.trim().toLowerCase();
+  const consent=document.getElementById('leadConsent').checked;
+  const company=document.getElementById('leadCompany').value;
+  if(company){renderResult(pendingStage);return;}
+  if(!email||!email.includes('@')){leadMessage.textContent='Wpisz poprawny adres email.';return;}
+  if(!consent){leadMessage.textContent='Zaznacz zgodę, żeby zobaczyć wynik.';return;}
+  leadSubmit.disabled=true;
+  leadSubmit.textContent='Zapisuję wynik...';
+  leadMessage.textContent='';
+  try{
+    const response=await fetch('/api/mapa-send',{
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify({
+        mode:'venture03-lead',
+        email,
+        stage:pendingStage,
+        stageName:ET[pendingStage].n,
+        consent:true,
+        company,
+        pageUrl:window.location.href,
+        referrer:document.referrer||'',
+        utm:window.Venture03Tracking?window.Venture03Tracking.getAttribution():{}
+      })
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.ok)throw new Error(data.error||'Nie udało się zapisać wyniku. Spróbuj ponownie.');
+    if(window.Venture03Tracking){
+      window.Venture03Tracking.track('Lead',{
+        content_name:'Mapa Wdrożenia AI: diagnoza',
+        content_category:'lead_quiz',
+        stage:pendingStage
+      });
+    }
+    renderResult(pendingStage);
+  }catch(error){
+    leadMessage.textContent=(error&&error.message)||'Nie udało się zapisać wyniku. Spróbuj ponownie.';
+    leadSubmit.disabled=false;
+    leadSubmit.textContent='Pokaż mój wynik';
+  }
+});
+if(window.Venture03Tracking){
+  window.Venture03Tracking.track('ViewContent',{
+    content_name:'Mapa Wdrożenia AI: diagnoza',
+    content_category:'lead_quiz'
+  });
 }
 show();
 </script>

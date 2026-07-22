@@ -6,6 +6,8 @@
 <title>Mapa Wdrożenia AI dla małej firmy: sprawdź swój etap | AI Team</title>
 <meta name="description" content="Sprawdź, na którym z 6 etapów wdrożenia AI jest Twoja firma, i co dokładnie zrobić dalej. Darmowa diagnoza w 60 sekund. Mapa w przedsprzedaży 147 zł.">
 <link rel="icon" href="/assets/ai-team-logo-256.png">
+<script src="/assets/meta-pixel.js"></script>
+<script src="/assets/venture03-tracking.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -119,7 +121,7 @@ footer a{color:var(--ink2)}
   <p class="lead">Darmowa diagnoza w 60 sekund pokazuje Twój etap i 3 pierwsze kroki. Mapa prowadzi dalej: etap po etapie, z fokusem na 2 tygodnie zamiast listy 100 narzędzi.</p>
   <div class="ctas">
     <a class="btn btn-p" href="/mapa-wdrozenia-diagnoza">Zrób darmową diagnozę</a>
-    <a class="btn btn-g" href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę za 147 zł</a>
+    <a class="btn btn-g" data-venture03-checkout href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę za 147 zł</a>
   </div>
   <div class="paynote">Po premierze 11.08 cena wraca na 197 zł. Diagnoza zostaje darmowa.</div>
   <div class="stages" id="etapy">
@@ -236,7 +238,7 @@ footer a{color:var(--ink2)}
   <div class="pcard" style="margin-top:26px">
     <div class="price">147 zł <small>197 zł</small></div>
     <div class="per">płatność jednorazowa · faktura · dostęp z aktualizacjami bez dopłat</div>
-    <a class="btn btn-p cta" href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę w przedsprzedaży</a>
+    <a class="btn btn-p cta" data-venture03-checkout href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L">Kup Mapę w przedsprzedaży</a>
     <div class="fair"><strong>Uczciwie o przedsprzedaży:</strong> Mapa jest w produkcji. Diagnozę robisz od razu, komplet 6 przewodników dostajesz najpóźniej 11.08. Po premierze cena wraca na 197 zł.</div>
     <div class="fair">Masz już Pakiet dokumentów AI Act za 67 zł? Użyj kodu <strong>MAPA67</strong> przy płatności: odliczamy całe 67 zł od ceny Mapy.</div>
   </div>
@@ -260,7 +262,7 @@ footer a{color:var(--ink2)}
   <p class="sub" style="margin-top:10px">To dobre pierwsze 60 sekund wdrożenia.</p>
   <div class="ctas">
     <a class="btn btn-p" href="/mapa-wdrozenia-diagnoza" style="padding:16px 30px">Zrób darmową diagnozę</a>
-    <a class="btn btn-g" href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L" style="padding:16px 30px">Kup Mapę za 147 zł</a>
+    <a class="btn btn-g" data-venture03-checkout href="https://buy.stripe.com/fZu8wOdDUfyKffy57g1kA0L" style="padding:16px 30px">Kup Mapę za 147 zł</a>
   </div>
   <p class="ps">PS. Nawet jeśli nie kupisz Mapy, zrób darmową diagnozę i przeczytaj wynik. Sam rejestr narzędzi z 3 pierwszych kroków załatwia Ci więcej niż niejeden kurs. A jak będziesz gotowy na resztę, Mapa poczeka.</p>
 </div></section>
@@ -280,5 +282,15 @@ footer a{color:var(--ink2)}
   </div>
 </div></footer>
 
+<script>
+if (window.Venture03Tracking) {
+  window.Venture03Tracking.track('ViewContent', {
+    content_name: 'Mapa Wdrożenia AI',
+    content_category: 'produkt_cyfrowy',
+    value: 147,
+    currency: 'PLN'
+  });
+}
+</script>
 </body>
 </html>
