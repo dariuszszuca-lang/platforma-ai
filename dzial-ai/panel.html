@@ -145,7 +145,18 @@
   .chip { font-size: 12px; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 5px 11px; border-radius: 999px; cursor: pointer; }
   .chip:hover { border-color: var(--accent); color: var(--text); }
 
-  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
+  .fb-inner { padding: 14px 18px 16px; }
+  .fb-lead { margin: 0 0 11px; font-size: 12.8px; color: var(--text-dim); }
+  .fb-field { display: flex; gap: 8px; align-items: flex-end; }
+  .fb-ta { flex: 1; font-family: var(--sans); font-size: 13px; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 9px; padding: 9px 11px; resize: none; outline: none; line-height: 1.4; }
+  .fb-ta::placeholder { color: var(--text-faint); }
+  .fb-ta:focus { border-color: var(--accent); }
+  .fb-send { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: var(--sans); white-space: nowrap; }
+  .fb-send:hover { background: var(--accent-bright); }
+  .fb-hint { display: flex; gap: 7px; align-items: flex-start; margin-top: 10px; font-size: 11.5px; color: var(--text-faint); line-height: 1.4; }
+  .fb-hint .robot { color: var(--accent); flex: none; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
 
   @media (max-width: 980px) {
     .app { grid-template-columns: 1fr; }
@@ -336,6 +347,21 @@
               <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Baza firmy</b> odpytana 2 min temu, 3 713 klientów.</div></div>
               <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Bramka SMS</b> aktywna, limit dzienny 6% wykorzystania.</div></div>
               <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Kopia danych</b> z ostatniej nocy wykonana.</div></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-h">
+              <h2>Ulepsz system</h2>
+              <span class="count">uczy się</span>
+            </div>
+            <div class="fb-inner">
+              <p class="fb-lead">Coś robi nie tak albo chcesz to inaczej? Napisz zwykłym zdaniem, trafi do Twojego działu AI.</p>
+              <div class="fb-field">
+                <textarea class="fb-ta" rows="2" placeholder="np. Nie wysyłaj SMS po 20:00" aria-label="Zgłoś, co poprawić"></textarea>
+                <button class="fb-send">Wyślij</button>
+              </div>
+              <div class="fb-hint"><span class="robot">✷</span> <span>Drobne rzeczy system zastosuje od razu, większe zmiany po Twojej akceptacji.</span></div>
             </div>
           </section>
         </div>
