@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dział AI: jak to działa — cztery warstwy i proces | AI-Team</title>
+<meta name="description" content="Jak działa Dział AI dla firmy: cztery warstwy (panel, skill, model, dane), proces w sześciu krokach i ten sam szkielet na przykładzie firmy przewozowej i sklepu z zegarkami.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+<style>
+  :root {
+    --accent: #14708f;
+    --accent-bright: #1c88ab;
+    --nordic: #14708f;
+    --salon: #a9803a;
+    --good: #2f9e6f;
+    --warn: #c17d1c;
+    --crit: #cf463f;
+
+    --bg: #e9edf1;
+    --surface: #ffffff;
+    --surface-2: #f2f5f8;
+    --surface-3: #e7ecf0;
+    --border: #d6dde4;
+    --border-strong: #c1ccd5;
+    --text: #16222c;
+    --text-dim: #52616c;
+    --text-faint: #83919d;
+    --shadow: 0 1px 2px rgba(20,40,55,0.05), 0 10px 26px rgba(20,40,55,0.07);
+
+    --sans: "Inter var", "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+    --r: 13px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #2699bd; --accent-bright: #38aed2;
+      --nordic: #35a9cc; --salon: #d0a24f;
+      --good: #38b783; --warn: #d99a3a; --crit: #e05b54;
+      --bg: #0b1219; --surface: #111b24; --surface-2: #16222d; --surface-3: #1b2833;
+      --border: #243340; --border-strong: #31424f;
+      --text: #e7eef4; --text-dim: #9aa8b4; --text-faint: #61707c;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 26px 24px 72px; }
+  a { color: inherit; }
+
+  .brandbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
+  .brandbar .logo { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; text-decoration: none; color: var(--text); }
+  .brandbar .logo span { color: var(--accent); }
+  .brandbar .back { font-size: 13px; font-weight: 600; color: var(--text-dim); text-decoration: none; }
+  .brandbar .back:hover { color: var(--accent); }
+
+  header.top { margin-bottom: 40px; }
+  .eyebrow { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); font-weight: 700; }
+  h1 { margin: 12px 0 8px; font-size: 32px; font-weight: 720; letter-spacing: -0.025em; text-wrap: balance; }
+  .lede { font-size: 16px; color: var(--text-dim); max-width: 60ch; }
+
+  h2.sec { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); font-weight: 700; margin: 46px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .layer { display: grid; grid-template-columns: 128px 1fr auto; align-items: center; gap: 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--shadow); position: relative; }
+  .layer .role { font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; color: var(--text-faint); text-transform: uppercase; }
+  .layer .lt { font-weight: 660; font-size: 15.5px; letter-spacing: -0.01em; }
+  .layer .ld { font-size: 13.5px; color: var(--text-dim); margin-top: 2px; }
+  .layer .tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .tag.reuse { background: var(--surface-3); color: var(--text-faint); }
+  .tag.custom { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
+  .layer.skill { border-color: var(--accent); border-width: 1.5px; }
+  .layer.skill .lt { color: var(--accent); }
+  .conn { text-align: center; color: var(--border-strong); font-size: 15px; line-height: 0.4; height: 8px; }
+
+  .note { font-size: 13px; color: var(--text-dim); margin-top: 16px; padding: 12px 15px; background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: 8px; }
+  .note b { color: var(--text); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 15px 16px; box-shadow: var(--shadow); }
+  .step .n { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; margin-bottom: 10px; }
+  .step .st { font-weight: 640; font-size: 14.5px; letter-spacing: -0.01em; }
+  .step .sd { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+  .step .who { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 9px; }
+  .loop { margin-top: 14px; text-align: center; font-size: 13px; color: var(--text-dim); }
+  .loop b { color: var(--accent); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .firm { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+  .firm-h { padding: 15px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 10px; }
+  .firm.n .firm-h { border-top: 3px solid var(--nordic); }
+  .firm.s .firm-h { border-top: 3px solid var(--salon); }
+  .firm-h .fname { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+  .firm.n .fname { color: var(--nordic); }
+  .firm.s .fname { color: var(--salon); }
+  .firm-h .fkind { font-size: 12.5px; color: var(--text-faint); }
+  .frow { padding: 13px 18px; border-bottom: 1px solid var(--border); }
+  .frow:last-child { border-bottom: 0; }
+  .frow .fl { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-bottom: 5px; }
+  .frow .fc { font-size: 13.3px; color: var(--text-dim); }
+  .frow .fc b { color: var(--text); font-weight: 600; }
+  .frow.skill-row { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+
+  .kicker { margin-top: 34px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--r); box-shadow: var(--shadow); }
+  .kicker h3 { margin: 0 0 6px; font-size: 16px; font-weight: 680; letter-spacing: -0.01em; }
+  .kicker p { margin: 0; font-size: 14px; color: var(--text-dim); }
+  .kicker .hi { color: var(--accent); font-weight: 600; }
+
+  .cta-row { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; }
+  .cta-primary { background: var(--accent); color: #fff; }
+  .cta-primary:hover { background: var(--accent-bright); }
+  .cta-ghost { border: 1px solid var(--border-strong); color: var(--text-dim); }
+  .cta-ghost:hover { color: var(--text); border-color: var(--accent); }
+
+  footer.foot { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer.foot a { color: var(--text-dim); text-decoration: none; font-weight: 600; }
+  footer.foot a:hover { color: var(--accent); }
+
+  @media (max-width: 780px) {
+    .steps { grid-template-columns: 1fr; }
+    .two { grid-template-columns: 1fr; }
+    .layer { grid-template-columns: 1fr; gap: 6px; }
+    .layer .tag { justify-self: start; }
+    h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandbar">
+    <a class="logo" href="https://ai-team.pl">AI<span>-</span>Team</a>
+    <a class="back" href="https://ai-team.pl">ai-team.pl</a>
+  </div>
+
+  <header class="top">
+    <div class="eyebrow">Dział AI · jak to działa pod spodem</div>
+    <h1>Cztery warstwy, jeden proces, dwie różne firmy</h1>
+    <p class="lede">Panel, który klient widzi, to tylko twarz. Pod nim pracują cztery warstwy. Ta sama konstrukcja obsługuje firmę przewozową i sklep z zegarkami, zmienia się tylko jedna warstwa.</p>
+  </header>
+
+  <h2 class="sec">Cztery warstwy (od tego, co widać, po to, co myśli)</h2>
+  <div class="stack">
+    <div class="layer">
+      <span class="role">Lada</span>
+      <div><div class="lt">Panel (twarz)</div><div class="ld">To, co człowiek widzi i klika. Liczby, sprawy do zrobienia, pole rozmowy.</div></div>
+      <span class="tag reuse">wspólne, gotowe</span>
+    </div>
+    <div class="conn">▲ pyta w dół &nbsp; ▼ odpowiedź w górę</div>
+    <div class="layer skill">
+      <span class="role">Instrukcja</span>
+      <div><div class="lt">Skill (mózg i proces)</div><div class="ld">Reguły tej firmy: co przeczytać, co jest pilne, co zaproponować, co wolno zrobić, co zapisać. To ją piszemy pod każdego klienta.</div></div>
+      <span class="tag custom">piszemy pod firmę</span>
+    </div>
+    <div class="conn">▲ steruje</div>
+    <div class="layer">
+      <span class="role">Pracownik</span>
+      <div><div class="lt">Model AI (myśli)</div><div class="ld">Sztuczna inteligencja. Mądra, ale sama z siebie nie zna Twojej firmy. Skill mówi jej, jak pracować.</div></div>
+      <span class="tag reuse">wspólne, gotowe</span>
+    </div>
+    <div class="conn">▲ czyta i zapisuje</div>
+    <div class="layer">
+      <span class="role">Magazyn</span>
+      <div><div class="lt">Backend i dane</div><div class="ld">Gdzie leżą fakty: klienci, zamówienia, kursy, płatności, logi. Systemy, które firma już ma.</div></div>
+      <span class="tag reuse">system klienta</span>
+    </div>
+  </div>
+  <div class="note"><b>Sedno:</b> skill to nie osobny program. To zestaw instrukcji, który zamienia ogólne AI w pracownika znającego akurat tę firmę. Tylko tę jedną warstwę piszemy od nowa dla każdego klienta, reszta jest wspólna, dlatego drugi klient jest tańszy od pierwszego.</div>
+
+  <h2 class="sec">Proces w sześciu krokach (to jest pętla)</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div class="st">Wejście</div><div class="sd">Ktoś otwiera panel albo budzik odpala skill sam z rana.</div><div class="who">Panel / budzik</div></div>
+    <div class="step"><div class="n">2</div><div class="st">Skill czyta stan</div><div class="sd">Odpytuje bazę, płatności, formularz. To zasila kafelki „stan na teraz".</div><div class="who">Skill + Magazyn</div></div>
+    <div class="step"><div class="n">3</div><div class="st">Wykrywa sprawy</div><div class="sd">Przepuszcza dane przez reguły firmy i tworzy listę „co wymaga uwagi" z propozycją.</div><div class="who">Skill + Model</div></div>
+    <div class="step"><div class="n">4</div><div class="st">Człowiek decyduje</div><div class="sd">Klika „zrób wg propozycji" albo pisze polecenie zwykłym językiem.</div><div class="who">Panel</div></div>
+    <div class="step"><div class="n">5</div><div class="st">Skill wykonuje</div><div class="sd">Wysyła SMS, publikuje, liczy wycenę. Prawdziwe akcje dopiero za zgodą klienta.</div><div class="who">Skill + Magazyn</div></div>
+    <div class="step"><div class="n">6</div><div class="st">Loguje i zapisuje</div><div class="sd">Wpisuje „co AI zrobił za Ciebie" i odświeża stan na następny raz.</div><div class="who">Skill + Magazyn</div></div>
+  </div>
+  <div class="loop">Krok 6 wraca do kroku 2, więc każde następne wejście startuje ze świeżego obrazu. <b>To pętla, nie lista jednorazowa.</b></div>
+
+  <h2 class="sec">Ten sam szkielet, dwie firmy</h2>
+  <div class="two">
+    <div class="firm n">
+      <div class="firm-h"><span class="fname">Firma przewozowa</span><span class="fkind">przewozy pasażerskie</span></div>
+      <div class="frow"><div class="fl">Magazyn / dane</div><div class="fc"><b>Baza w chmurze:</b> tysiące klientów, zlecenia, kursy, trasy, pojazdy, kierowcy, logi SMS.</div></div>
+      <div class="frow skill-row"><div class="fl">Skill (reguły firmy)</div><div class="fc">Zlecenie na jutro <b>bez auta = pilne</b>. Kurs nieopublikowany <b>= SMS do kierowcy</b>. Nieopłacony przejazd <b>= przypomnienie</b>. Układanie trasy od godziny na granicy.</div></div>
+      <div class="frow"><div class="fl">Panel (twarz)</div><div class="fc">Dyspozytornia: zlecenia dziś, kursy do publikacji, mapa trasy, przypomnienia płatności. Asystent: <b>„ułóż trasę na jutro"</b>.</div></div>
+    </div>
+    <div class="firm s">
+      <div class="firm-h"><span class="fname">Sklep z zegarkami</span><span class="fkind">sprzedaż i serwis</span></div>
+      <div class="frow"><div class="fl">Magazyn / dane</div><div class="fc"><b>Sklep i kokpit:</b> produkty, zamówienia, zegarki w serwisie, klienci, stany magazynowe, zapytania o wycenę.</div></div>
+      <div class="frow skill-row"><div class="fl">Skill (reguły firmy)</div><div class="fc">Nowe zapytanie <b>= gotowy draft wyceny</b>. Zegarek w serwisie X dni <b>= „gdzie mój zegarek"</b> do klienta. Sztuka z drugiej ręki sprzedana <b>= zdejmij ze strony</b>. Opisy produktów w tonie marki.</div></div>
+      <div class="frow"><div class="fl">Panel (twarz)</div><div class="fc">Sprzedawca za ladą: zamówienia na dziś, zegarki do odbioru, zapytania z draftem odpowiedzi. Asystent: <b>„napisz opis tego zegarka"</b>.</div></div>
+    </div>
+  </div>
+
+  <div class="kicker">
+    <h3>Dlaczego to się skaluje</h3>
+    <p>Model AI, szkielet panelu i sam proces w sześciu krokach są <span class="hi">wspólne dla każdej firmy</span>. Różni się tylko warstwa skilla, czyli reguły danego biznesu, plus podłączenie do jego magazynu danych. Pierwszy klient to zbudowanie całości. Każdy następny to głównie napisanie nowego skilla na gotowym szkielecie, dlatego jest szybszy i tańszy.</p>
+  </div>
+
+  <div class="cta-row">
+    <a class="cta cta-primary" href="/dzial-ai/panel">Zobacz makietę panelu &rarr;</a>
+    <a class="cta cta-ghost" href="https://ai-team.pl">Wróć na ai-team.pl</a>
+  </div>
+
+  <footer class="foot">
+    <span>AI-Team · Dział AI dla małych firm</span>
+    <a href="https://ai-team.pl">ai-team.pl</a>
+  </footer>
+</div>
+</body>
+</html>

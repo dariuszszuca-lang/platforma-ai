@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dział AI: makieta panelu klienta | AI-Team</title>
+<meta name="description" content="Makieta panelu, który klient otwiera w Dziale AI: stan firmy na żywo, sprawy do zrobienia z propozycją AI, log działań i asystent na zwykłym języku.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛰️</text></svg>">
+<style>
+  :root {
+    --accent: #14708f;
+    --accent-bright: #1c88ab;
+    --good: #2f9e6f;
+    --good-soft: rgba(47,158,111,0.14);
+    --warn: #c17d1c;
+    --warn-soft: rgba(193,125,28,0.16);
+    --crit: #cf463f;
+    --crit-soft: rgba(207,70,63,0.14);
+
+    --bg: #e9edf1;
+    --surface: #ffffff;
+    --surface-2: #f3f6f8;
+    --border: #d7dee4;
+    --border-strong: #c2cdd6;
+    --text: #16222c;
+    --text-dim: #55636e;
+    --text-faint: #8593a0;
+    --shadow: 0 1px 2px rgba(20,40,55,0.05), 0 8px 24px rgba(20,40,55,0.06);
+
+    --sans: "Inter var", "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "SF Mono", "JetBrains Mono", "Roboto Mono", ui-monospace, "Cascadia Code", monospace;
+    --r: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #2699bd; --accent-bright: #38aed2;
+      --good: #38b783; --good-soft: rgba(56,183,131,0.16);
+      --warn: #d99a3a; --warn-soft: rgba(217,154,58,0.18);
+      --crit: #e05b54; --crit-soft: rgba(224,91,84,0.17);
+      --bg: #0b1219; --surface: #111b24; --surface-2: #16222d;
+      --border: #243340; --border-strong: #31424f;
+      --text: #e7eef4; --text-dim: #9aa8b4; --text-faint: #61707c;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+  .demobar { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 26px; font-size: 13px; color: var(--text-dim); background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .demobar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .demobar a:hover { text-decoration: underline; }
+  .demobar .mk { font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-faint); border: 1px dashed var(--border-strong); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+  .app { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; max-width: 1440px; margin: 0 auto; }
+
+  .side { background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 22px 16px; gap: 26px; }
+  .brand { display: flex; align-items: center; gap: 11px; padding: 0 6px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 9px; flex: none; background: linear-gradient(150deg, var(--accent), var(--accent-bright)); display: grid; place-items: center; color: #fff; font-size: 17px; box-shadow: 0 3px 10px rgba(20,112,143,0.35); }
+  .brand-name { font-weight: 680; letter-spacing: -0.01em; font-size: 15px; }
+  .brand-sub { font-size: 11px; color: var(--text-faint); letter-spacing: 0.02em; }
+  .nav { display: flex; flex-direction: column; gap: 2px; }
+  .nav-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--text-faint); padding: 0 8px; margin-bottom: 8px; font-weight: 600; }
+  .nav a { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 9px; color: var(--text-dim); text-decoration: none; font-size: 13.5px; font-weight: 500; }
+  .nav a .ic { width: 17px; text-align: center; opacity: 0.85; }
+  .nav a:hover { background: var(--surface-2); color: var(--text); }
+  .nav a.active { background: var(--accent); color: #fff; }
+  .nav a.active .ic { opacity: 1; }
+  .side-foot { margin-top: auto; }
+  .conn { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r); padding: 13px; }
+  .conn h4 { margin: 0 0 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); font-weight: 600; }
+  .conn ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .conn li { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-dim); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); flex: none; box-shadow: 0 0 0 3px var(--good-soft); }
+
+  .main { padding: 20px 26px 120px; min-width: 0; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+  .top-left h1 { margin: 0; font-size: 20px; font-weight: 680; letter-spacing: -0.02em; }
+  .top-left p { margin: 3px 0 0; font-size: 13px; color: var(--text-dim); }
+  .top-right { display: flex; align-items: center; gap: 12px; }
+  .live { display: inline-flex; align-items: center; gap: 7px; background: var(--good-soft); color: var(--good); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .live .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--good); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .who { display: flex; align-items: center; gap: 9px; }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-strong); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--text-dim); }
+  .who small { display: block; font-size: 11px; color: var(--text-faint); }
+  .who b { font-size: 13px; font-weight: 600; }
+  .demo-tag { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-faint); border: 1px dashed var(--border-strong); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 13px; margin-bottom: 22px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 15px 16px; box-shadow: var(--shadow); }
+  .kpi .k-label { font-size: 12px; color: var(--text-dim); font-weight: 500; }
+  .kpi .k-val { font-family: var(--mono); font-size: 27px; font-weight: 600; letter-spacing: -0.02em; margin-top: 7px; font-variant-numeric: tabular-nums; }
+  .kpi .k-val small { font-size: 14px; color: var(--text-faint); font-weight: 500; }
+  .kpi .k-meta { display: flex; align-items: center; gap: 6px; margin-top: 7px; font-size: 12px; }
+  .k-up { color: var(--good); font-weight: 600; }
+  .k-warn { color: var(--warn); font-weight: 600; }
+  .k-flat { color: var(--text-faint); }
+
+  .grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 18px; align-items: start; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+  .panel-h { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; border-bottom: 1px solid var(--border); }
+  .panel-h h2 { margin: 0; font-size: 14.5px; font-weight: 660; letter-spacing: -0.01em; }
+  .panel-h .count { font-family: var(--mono); font-size: 12px; color: var(--text-faint); background: var(--surface-2); padding: 2px 9px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+
+  .acts { display: flex; flex-direction: column; }
+  .act { display: flex; gap: 14px; padding: 15px 18px; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .act:last-child { border-bottom: 0; }
+  .act .stripe { width: 3px; align-self: stretch; border-radius: 3px; flex: none; }
+  .act.crit .stripe { background: var(--crit); }
+  .act.warn .stripe { background: var(--warn); }
+  .act.info .stripe { background: var(--accent); }
+  .act-body { flex: 1; min-width: 0; }
+  .act-top { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; flex-wrap: wrap; }
+  .sev { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+  .sev.crit { background: var(--crit-soft); color: var(--crit); }
+  .sev.warn { background: var(--warn-soft); color: var(--warn); }
+  .sev.info { background: var(--good-soft); color: var(--accent); }
+  .act-title { font-weight: 620; font-size: 14px; letter-spacing: -0.01em; }
+  .act-ai { font-size: 12.5px; color: var(--text-dim); margin-top: 5px; display: flex; gap: 7px; }
+  .act-ai .robot { color: var(--accent); flex: none; }
+  .act-action { display: flex; gap: 8px; margin-top: 11px; flex-wrap: wrap; }
+  .btn { font-family: var(--sans); font-size: 12.5px; font-weight: 600; border-radius: 8px; padding: 7px 13px; cursor: pointer; border: 1px solid transparent; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-bright); }
+  .btn-ghost { background: transparent; color: var(--text-dim); border-color: var(--border-strong); }
+  .btn-ghost:hover { background: var(--surface-2); color: var(--text); }
+
+  .col-right { display: flex; flex-direction: column; gap: 18px; }
+  .log { display: flex; flex-direction: column; }
+  .log-item { display: flex; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--border); }
+  .log-item:last-child { border-bottom: 0; }
+  .log-time { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); white-space: nowrap; padding-top: 1px; font-variant-numeric: tabular-nums; }
+  .log-txt { font-size: 12.8px; color: var(--text-dim); }
+  .log-txt b { color: var(--text); font-weight: 600; }
+
+  .assistant { position: sticky; bottom: 18px; margin-top: 20px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 14px; padding: 13px 14px; box-shadow: var(--shadow); }
+  .as-row { display: flex; align-items: center; gap: 11px; }
+  .as-ic { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(150deg, var(--accent), var(--accent-bright)); display: grid; place-items: center; color: #fff; font-size: 15px; flex: none; }
+  .as-input { flex: 1; font-family: var(--sans); font-size: 14px; color: var(--text); background: transparent; border: 0; outline: none; }
+  .as-input::placeholder { color: var(--text-faint); }
+  .as-send { background: var(--accent); color: #fff; border: 0; border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 15px; flex: none; }
+  .as-send:hover { background: var(--accent-bright); }
+  .chips { display: flex; gap: 7px; margin-top: 11px; flex-wrap: wrap; }
+  .chip { font-size: 12px; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 5px 11px; border-radius: 999px; cursor: pointer; }
+  .chip:hover { border-color: var(--accent); color: var(--text); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
+
+  @media (max-width: 980px) {
+    .app { grid-template-columns: 1fr; }
+    .side { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .nav { flex-direction: row; flex-wrap: wrap; }
+    .nav-label { display: none; }
+    .side-foot { margin: 0; width: 100%; }
+    .grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .live .pulse { animation: none; } }
+</style>
+</head>
+<body>
+  <div class="demobar">
+    <a href="/dzial-ai">&larr; Wróć do wyjaśnienia</a>
+    <span class="mk">Makieta · dane przykładowe</span>
+  </div>
+
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="brand-mark">◆</div>
+        <div>
+          <div class="brand-name">Dział AI</div>
+          <div class="brand-sub">System OS</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-label">Panel</div>
+        <a href="#" class="active"><span class="ic">▤</span> Pulpit</a>
+        <a href="#"><span class="ic">▦</span> Zlecenia</a>
+        <a href="#"><span class="ic">◷</span> Kursy i trasy</a>
+        <a href="#"><span class="ic">☺</span> Klienci</a>
+        <a href="#"><span class="ic">▚</span> Finanse</a>
+        <a href="#"><span class="ic">▧</span> Raporty</a>
+        <div class="nav-label" style="margin-top:14px">Asystent</div>
+        <a href="#"><span class="ic">✷</span> Rozmowa z AI</a>
+        <a href="#"><span class="ic">⚙</span> Ustawienia AI</a>
+      </nav>
+
+      <div class="side-foot">
+        <div class="conn">
+          <h4>Podłączone systemy</h4>
+          <ul>
+            <li><span class="dot"></span> Baza firmy · odczyt</li>
+            <li><span class="dot"></span> Wysyłka SMS · aktywna</li>
+            <li><span class="dot"></span> Formularz na stronie</li>
+            <li><span class="dot"></span> Mapy i trasy</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="top-left">
+          <h1>Dzień dobry, Beata</h1>
+          <p>Czwartek, 23 lipca &nbsp;·&nbsp; <span class="demo-tag">Makieta · dane przykładowe</span></p>
+        </div>
+        <div class="top-right">
+          <span class="live"><span class="pulse"></span> AI pilnuje na żywo</span>
+          <div class="who">
+            <div class="avatar">BK</div>
+            <div><b>Beata</b><small>Dyspozytornia</small></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="kpis">
+        <div class="kpi">
+          <div class="k-label">Zlecenia dziś</div>
+          <div class="k-val">14</div>
+          <div class="k-meta"><span class="k-up">▲ 3</span> <span class="k-flat">vs wczoraj</span></div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">Kursy na jutro</div>
+          <div class="k-val">6 <small>/ 2 do publikacji</small></div>
+          <div class="k-meta"><span class="k-warn">● wymaga akcji</span></div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">SMS 24h</div>
+          <div class="k-val">41</div>
+          <div class="k-meta"><span class="k-up">0 błędów</span></div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">Przychód dziś</div>
+          <div class="k-val">4 820 <small>zł</small></div>
+          <div class="k-meta"><span class="k-up">▲ 12%</span></div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">Nowe leady</div>
+          <div class="k-val">3</div>
+          <div class="k-meta"><span class="k-flat">z formularza</span></div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="panel-h">
+            <h2>Co wymaga Twojej uwagi dziś</h2>
+            <span class="count">4 sprawy</span>
+          </div>
+          <div class="acts">
+            <div class="act crit">
+              <div class="stripe"></div>
+              <div class="act-body">
+                <div class="act-top"><span class="sev crit">Pilne</span></div>
+                <div class="act-title">2 zlecenia na jutro bez przypisanego auta</div>
+                <div class="act-ai"><span class="robot">✷</span> AI proponuje: kurs poranny do Renault Trafic GD 4J507, kurs 14:00 do drugiego busa. Oba mieszczą się w trasie.</div>
+                <div class="act-action">
+                  <button class="btn btn-primary">Przydziel wg propozycji</button>
+                  <button class="btn btn-ghost">Zobacz zlecenia</button>
+                </div>
+              </div>
+            </div>
+            <div class="act warn">
+              <div class="stripe"></div>
+              <div class="act-body">
+                <div class="act-top"><span class="sev warn">Do zrobienia</span></div>
+                <div class="act-title">Kurs poranny do Berlina nieopublikowany</div>
+                <div class="act-ai"><span class="robot">✷</span> AI przygotował trasę i listę pasażerów. Po publikacji wyśle SMS do kierowcy i potwierdzenia do 8 klientów.</div>
+                <div class="act-action">
+                  <button class="btn btn-primary">Opublikuj i wyślij SMS</button>
+                  <button class="btn btn-ghost">Podgląd trasy</button>
+                </div>
+              </div>
+            </div>
+            <div class="act warn">
+              <div class="stripe"></div>
+              <div class="act-body">
+                <div class="act-top"><span class="sev warn">Finanse</span></div>
+                <div class="act-title">3 klientów nie opłaciło przejazdu, łącznie 2 340 zł</div>
+                <div class="act-ai"><span class="robot">✷</span> AI ma gotowe uprzejme przypomnienie SMS z kwotą i danymi do przelewu dla każdego z osobna.</div>
+                <div class="act-action">
+                  <button class="btn btn-primary">Wyślij przypomnienia</button>
+                  <button class="btn btn-ghost">Zobacz listę</button>
+                </div>
+              </div>
+            </div>
+            <div class="act info">
+              <div class="stripe"></div>
+              <div class="act-body">
+                <div class="act-top"><span class="sev info">Nowy lead</span></div>
+                <div class="act-title">Zapytanie ze strony: przewóz Gdańsk – Hamburg, 12 sierpnia</div>
+                <div class="act-ai"><span class="robot">✷</span> AI wyliczył sugerowaną cenę na podstawie trasy i Twojego cennika: 1 180 zł. Wycena czeka na Twoją akceptację.</div>
+                <div class="act-action">
+                  <button class="btn btn-primary">Sprawdź i wyślij wycenę</button>
+                  <button class="btn btn-ghost">Odłóż</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="col-right">
+          <section class="panel">
+            <div class="panel-h">
+              <h2>Co AI zrobił za Ciebie</h2>
+              <span class="count">dziś</span>
+            </div>
+            <div class="log">
+              <div class="log-item">
+                <div class="log-time">08:14</div>
+                <div class="log-txt">Wysłano SMS potwierdzający do <b>12 klientów</b> jutrzejszego kursu do Berlina.</div>
+              </div>
+              <div class="log-item">
+                <div class="log-time">07:50</div>
+                <div class="log-txt">Zoptymalizowano kolejność <b>porannej zbiórki</b>, trasa krótsza o 18 minut.</div>
+              </div>
+              <div class="log-item">
+                <div class="log-time">07:02</div>
+                <div class="log-txt">Nowy lead z formularza dodany do <b>wycen</b> i wstępnie policzony.</div>
+              </div>
+              <div class="log-item">
+                <div class="log-time">wczoraj<br>21:03</div>
+                <div class="log-txt">Przygotowano <b>raport dzienny</b> i wysłano na Twój mail.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-h">
+              <h2>Stan systemów</h2>
+              <span class="count">wszystko OK</span>
+            </div>
+            <div class="log">
+              <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Baza firmy</b> odpytana 2 min temu, 3 713 klientów.</div></div>
+              <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Bramka SMS</b> aktywna, limit dzienny 6% wykorzystania.</div></div>
+              <div class="log-item"><div class="log-time"><span class="dot"></span></div><div class="log-txt"><b>Kopia danych</b> z ostatniej nocy wykonana.</div></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="assistant">
+        <div class="as-row">
+          <div class="as-ic">✷</div>
+          <input class="as-input" placeholder="Zapytaj albo zleć zadanie, np. ułóż trasę na jutro" aria-label="Polecenie do asystenta AI">
+          <button class="as-send" aria-label="Wyślij">→</button>
+        </div>
+        <div class="chips">
+          <span class="chip">Kto jeszcze nie zapłacił?</span>
+          <span class="chip">Ułóż trasę na jutro rano</span>
+          <span class="chip">Ile zarobiliśmy w tym tygodniu?</span>
+          <span class="chip">Przygotuj raport dla właściciela</span>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
