@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MX6DBXQ66D');
+    </script>
+    <title>44 systemy autonomicznej firmy | AI-Team</title>
+
+    <!-- SEO -->
+    <meta name="description" content="44 systemy firmy na autopilocie w kolejności budowy: co zbudować najpierw, co z czego wynika i co odblokowuje. 28 już działa u mnie. Najedź na system i zobacz połączenia.">
+    <link rel="canonical" href="https://ai-team.pl/systemy">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-team.pl/systemy">
+    <meta property="og:title" content="44 systemy autonomicznej firmy | AI-Team">
+    <meta property="og:description" content="Droga do firmy na autopilocie krok po kroku: 44 systemy w kolejności budowy, 28 już działa. Najedź i zobacz, co się z czym łączy.">
+    <meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
+
+    <script src="/assets/meta-pixel.js"></script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2530116617406428');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2530116617406428&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+
+<style>
+.sys-wrap{max-width:1240px;margin:0 auto;padding:120px 40px 30px;position:relative}
+.sys-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#B85C2E}
+.sys-h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(30px,4.2vw,44px);margin:12px 0 8px;color:#1C1917;line-height:1.1}
+.sys-h1 em{font-style:italic;color:#B85C2E}
+.sys-sub{font-size:15px;color:rgba(28,25,23,.65);max-width:800px;line-height:1.55}
+.sys-sub b{color:#2D7A2D}
+.sys-how{display:inline-block;font-size:12.5px;color:#8B4220;background:rgba(184,92,46,.08);border:1px solid rgba(184,92,46,.3);border-radius:8px;padding:7px 13px;margin-top:12px;line-height:1.5}
+.sys-how b{font-weight:700}
+.sys-how .g{color:#2D7A2D;font-weight:700}
+/* GRID 4 KOLUMNY W KOLEJNOŚCI BUDOWY */
+#sys-map{margin-top:22px;position:relative}
+#sys-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.etap-head{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:16px 0 4px;padding-top:16px;border-top:1px solid rgba(28,25,23,.12)}
+.etap-head:first-child{margin-top:0;padding-top:0;border-top:none}
+.e-no{width:38px;height:38px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600;color:#FBF8F1}
+.etap-head.e1 .e-no{background:#8B6B3D}.etap-head.e2 .e-no{background:#B85C2E}.etap-head.e3 .e-no{background:#2D7A2D}
+.e-name{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:500;color:#1C1917}
+.e-name em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;margin-left:10px;font-weight:600}
+.etap-head.e1 .e-name em{color:#8B6B3D}.etap-head.e2 .e-name em{color:#B85C2E}.etap-head.e3 .e-name em{color:#2D7A2D}
+.e-desc{font-size:12px;color:rgba(28,25,23,.55);line-height:1.45;max-width:720px}
+.e-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(28,25,23,.5);white-space:nowrap}
+.e-count b{color:#2D7A2D}
+.blk{position:relative;border:1px solid rgba(28,25,23,.16);background:#FDFAF3;border-radius:11px;padding:10px 12px;min-height:88px;cursor:pointer;transition:opacity .18s,box-shadow .18s;text-align:left}
+.blk:focus-visible{outline:2px solid #B85C2E;outline-offset:2px}
+.blk.done{border-left:3px solid #2D7A2D}
+.blk.next{border:1.5px solid #B85C2E;background:#FFF;box-shadow:0 5px 18px rgba(184,92,46,.16)}
+.b-num{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:rgba(28,25,23,.42);display:flex;align-items:center;gap:6px}
+.b-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex:0 0 auto}
+.b-dot.done{background:#2D7A2D}
+.b-dot.wip{background:transparent;border:1.5px solid rgba(28,25,23,.3)}
+.b-dot.nx{background:#B85C2E}
+.b-st{font-size:7.5px;letter-spacing:.1em;color:#2D7A2D;font-weight:700}
+.b-st.nx{color:#B85C2E}
+.b-organ{margin-left:auto;font-size:7.5px;letter-spacing:.1em;color:rgba(28,25,23,.4);font-weight:600}
+.b-name{font-size:13px;font-weight:600;margin:3px 0 3px;color:#1C1917}
+.b-desc{font-size:10px;line-height:1.35;color:rgba(28,25,23,.55)}
+#sys-map.lit .blk{opacity:.15}
+#sys-map.lit .blk.on{opacity:1}
+.blk.active{background:#B85C2E;border-color:#B85C2E;box-shadow:0 6px 20px rgba(184,92,46,.35)}
+.blk.active .b-name{color:#FBF8F1}
+.blk.active .b-desc{color:rgba(251,248,241,.85)}
+.blk.active .b-num,.blk.active .b-organ{color:rgba(251,248,241,.7)}
+.blk.active .b-st{color:#4ADE80}
+.blk.rel{border:1.5px solid #B85C2E;background:#FFF}
+.b-tag{position:absolute;top:-9px;right:8px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.06em;background:#FBF8F1;border:1px solid #B85C2E;color:#8B4220;border-radius:999px;padding:2px 7px;font-weight:700;z-index:4}
+#sys-lines{position:absolute;top:0;left:0;pointer-events:none;z-index:3}
+#sys-map.lit .etap-head{opacity:.25}
+/* STOPKA SEKCJI I CTA */
+.sys-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid rgba(28,25,23,.12);padding-top:16px;margin-top:22px;flex-wrap:wrap}
+.sys-legend{font-size:12.5px;color:rgba(28,25,23,.55)}
+.sys-count{font-family:Fraunces,Georgia,serif;font-size:14px;color:rgba(28,25,23,.55);white-space:nowrap}
+.sys-count b{color:#B85C2E;font-size:20px;font-weight:500}
+.sys-count b.g{color:#2D7A2D}
+.sys-cta{background:#1C1917;border-radius:16px;margin:34px 0 60px;padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sys-cta h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:26px;color:#FBF8F1;margin:0 0 6px}
+.sys-cta h2 em{font-style:italic;color:#D97B4A}
+.sys-cta p{font-size:13.5px;color:rgba(251,248,241,.7);margin:0;max-width:560px;line-height:1.5}
+.sys-cta a{display:inline-block;background:#B85C2E;color:#FBF8F1;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap}
+.sys-cta a:hover{background:#8B4220}
+/* MODAL */
+#sys-modal{position:fixed;inset:0;background:rgba(28,25,23,.45);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
+#sys-modal.open{display:flex}
+.sys-card{background:#FBF8F1;border-radius:16px;max-width:460px;width:100%;max-height:86vh;overflow:auto;padding:26px 28px;position:relative;border:1px solid rgba(28,25,23,.15)}
+.sys-card .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:rgba(28,25,23,.5);cursor:pointer;line-height:1}
+.sys-card .area{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;color:#8B4220}
+.sys-card .area .g{color:#2D7A2D}
+.sys-card h3{font-family:Fraunces,Georgia,serif;font-size:26px;font-weight:500;margin:6px 0 8px;color:#1C1917}
+.sys-card .desc{font-size:13.5px;line-height:1.55;color:rgba(28,25,23,.7);margin-bottom:16px}
+.sys-card h4{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:rgba(28,25,23,.5);margin:14px 0 7px;font-weight:600}
+.sys-card .rels{display:flex;flex-wrap:wrap;gap:6px}
+.sys-card .rel-chip{font-size:11.5px;border:1px solid rgba(184,92,46,.5);color:#8B4220;background:#FDFAF3;border-radius:999px;padding:4px 11px;cursor:pointer}
+.sys-card .rel-chip:hover{background:#B85C2E;color:#FBF8F1}
+.sys-card .none{font-size:11.5px;color:rgba(28,25,23,.45)}
+.sys-card .card-cta{display:block;text-align:center;margin-top:18px;background:#B85C2E;color:#FBF8F1;text-decoration:none;font-weight:600;font-size:13.5px;padding:12px 18px;border-radius:10px}
+.sys-card .card-cta:hover{background:#8B4220}
+@media(max-width:1080px){#sys-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:960px){
+  .sys-wrap{padding:104px 18px 20px}
+  #sys-grid{grid-template-columns:repeat(2,1fr)}
+  .e-desc{display:none}
+  #sys-lines{display:none}
+}
+@media(max-width:480px){#sys-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="inner">
+    <a href="/" class="brand" aria-label="AI Team | strona główna">
+      <svg class="logo-mark" width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+        <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+        <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+      </svg>
+      <span class="wordmark">
+        AI · <em>Team</em>
+        <span class="tagline-mini">EST · 2024 · POLSKA</span>
+      </span>
+    </a>
+    <div class="menu">
+      <a href="/system-operacyjny-firmy.html">System firmy</a>
+      <a href="/wdrozenie-ai.html">Wdrożenie</a>
+      <a href="/warsztaty-ai.html">Akademia</a>
+      <a href="/playbooki.html">Playbooki</a>
+      <a href="/ai-radar.html">AI Radar</a>
+      <a href="/#offer">Cennik</a>
+      <a href="/#case">Portfolio</a>
+      <a href="/#about">O autorze</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></button>
+    <a href="/#cta" class="nav-cta">
+      <span>Mapa AI · 0 zł</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</nav>
+
+<div class="sys-wrap">
+  <span class="sys-kicker">AI-TEAM · DROGA DO AUTONOMICZNEJ FIRMY</span>
+  <h1 class="sys-h1">44 systemy, jedna droga: <em>firma na autopilocie</em></h1>
+  <p class="sys-sub">To nie jest lista życzeń, to kolejność budowy. Każdy system buduje na poprzednich i odblokowuje następne. <b>Zielone już działają u mnie</b>, pomarańczowy jest w budowie teraz. Tę samą drogę przechodzę potem z klientami.</p>
+  <div class="sys-how">Najedź na bloczek → reszta gaśnie, linie pokazują wszystkie połączenia. <b>BUDUJE NA ←</b> z czego korzysta · <b>→ ODBLOKOWUJE</b> co dzięki niemu ruszy · <span class="g">●</span> działa u mnie. Kliknij → karta systemu.</div>
+
+  <div id="sys-map"><div id="sys-grid"></div><svg id="sys-lines"></svg></div>
+
+  <div class="sys-foot">
+    <div class="sys-legend">Nie musisz budować 44 naraz. Zaczyna się od jednego kroku, tam gdzie firma traci najwięcej.</div>
+    <div class="sys-count" id="sys-count"></div>
+  </div>
+
+  <div class="sys-cta">
+    <div>
+      <h2>Który krok Twoja firma powinna zrobić <em>jako pierwszy?</em></h2>
+      <p>Bezpłatna Mapa AI: pokażę Ci na tej drodze, gdzie Twoja firma traci czas i pieniądze, i od którego systemu wystartować. Bez zobowiązań.</p>
+    </div>
+    <a href="/#cta">Zacznij od Mapy AI · 0 zł →</a>
+  </div>
+</div>
+
+<div id="sys-modal" role="dialog" aria-modal="true">
+  <div class="sys-card">
+    <button class="close" aria-label="Zamknij">×</button>
+    <div class="area" id="sm-area"></div>
+    <h3 id="sm-name"></h3>
+    <p class="desc" id="sm-desc"></p>
+    <h4>BUDUJE NA ← Z CZEGO KORZYSTA</h4>
+    <div class="rels" id="sm-src"></div>
+    <h4>ODBLOKOWUJE → CO DZIĘKI NIEMU RUSZY</h4>
+    <div class="rels" id="sm-dst"></div>
+    <a class="card-cta" href="/#cta">Chcę taki system u siebie → Mapa AI · 0 zł</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand" style="margin-bottom: 18px;">
+          <svg class="logo-mark" width="36" height="36" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="20" stroke="#1C1917" stroke-width="1"/>
+            <circle cx="21" cy="21" r="16" stroke="#B85C2E" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#1C1917">A</text>
+            <text x="21" y="26" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="500" font-style="italic" fill="#B85C2E" opacity="0.6" transform="translate(2,0)">T</text>
+          </svg>
+          <span class="wordmark">AI · <em>Team</em></span>
+        </a>
+        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Sopot, ul. Pułaskiego 7. Klienci z całej Polski. Założone 2024.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Oferta</h5>
+        <a href="/system-operacyjny-firmy.html">System Operacyjny Firmy</a>
+        <a href="/wdrozenie-ai.html">Wdrożenie AI</a>
+        <a href="/warsztaty-ai.html">Akademia AI</a>
+        <a href="/playbooki.html">Playbooki</a>
+        <a href="/zlecenie.html">Mini-System / CRM</a>
+        <a href="/produkt1-tracker.html">Tracker Czasu</a>
+        <a href="/#cta">Mapa AI · 0 zł</a>
+      </div>
+      <div class="footer-col">
+        <h5>O nas</h5>
+        <a href="/#about">O autorze</a>
+        <a href="/#case">Przykład MyWay</a>
+        <a href="/ai-radar.html">Newsletter AI Radar</a>
+        <a href="/#quiz">Quiz „Ile tracisz"</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
+        <a href="tel:+48730600383">+48 730 600 383</a>
+        <a href="https://wa.me/48730600383">WhatsApp</a>
+        <a href="#">Warsztaty: Sopot, Pułaskiego 7</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
+      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js" defer></script>
+<script>
+// s: [nazwa, opis, 1 = działa u mnie / 0 = w drodze]
+const SYS_GROUPS=[
+ {r:"I",n:"Mózg",s:[
+  ["Radar Popytu","czego rynek szuka w tym tygodniu",1],
+  ["Sygnały Zakupowe","wyłapuje firmy gotowe do zakupu",0],
+  ["Obserwator Konkurencji","co robi konkurencja, gdzie jest luka",0],
+  ["Puls Technologii","nowości AI przefiltrowane pod firmę",1],
+  ["Brama Szans","maks. 3 decyzje tygodniowo: wchodzimy albo nie",1],
+  ["Kierownik Produktu AI","prowadzi roadmapę firmy i pilnuje priorytetów",1],
+  ["Biblioteka Researchu","zebrana wiedza, do której się wraca",0]]},
+ {r:"II",n:"Głos",s:[
+  ["Obsługa Skrzynki","czyta maile, klasyfikuje, podpowiada odpowiedzi",1],
+  ["Social Media","codzienna obecność bez codziennej pracy",1],
+  ["Treści i Blog","artykuły, które sprzedają latami",0],
+  ["Newsletter","cotygodniowy kontakt z bazą",1],
+  ["Wideo i Rolki","rolki produkowane z automatu",1],
+  ["Lead Magnety","strony zamieniające ruch w kontakty",1],
+  ["SEO i Widoczność w AI","Google i ChatGPT znajdują firmę",0],
+  ["Reklamy Płatne","płatny ruch pod kontrolą budżetu",0],
+  ["Webinary","edukacja, która ogrzewa do zakupu",0],
+  ["PR i Partnerstwa","wspólne akcje i obecność w mediach",0]]},
+ {r:"III",n:"Serce",s:[
+  ["Baza Klientów (CRM)","jedno źródło prawdy o klientach",0],
+  ["Dogrzewanie Leadów","lead nie stygnie, sekwencje same przypominają",1],
+  ["Autopilot Sprzedaży","prowadzi lejek, człowiek tylko zatwierdza",1],
+  ["Oferty i Wyceny","oferta gotowa w minuty, nie dni",0],
+  ["Rozmowy i Domykanie","przygotowanie, obiekcje, zamknięcie",0],
+  ["Płatności i Umowy","od decyzji do opłaconej faktury",1],
+  ["Głos Klienta","opinie i pytania klientów w jednym miejscu",0],
+  ["Polecenia i Dosprzedaż","zadowoleni klienci wracają i polecają",0]]},
+ {r:"IV",n:"Ręce",s:[
+  ["Budowniczy Chmury","stawia bezpieczną infrastrukturę pod systemy",1],
+  ["Zespół Agentów","role AI od strategii po wykonanie",1],
+  ["Studio Produkcji AI","grafiki, wideo i lektor z automatu",1],
+  ["Produkcja Stron","strona z AI w dni, nie tygodnie",1],
+  ["Produkty Cyfrowe","produkty, które sprzedają się same",1],
+  ["Systemy dla Klientów","CRM-y i aplikacje szyte pod firmę",1],
+  ["Onboarding Klienta","start współpracy bez chaosu",0],
+  ["Opieka i Utrzymanie","systemy klientów pod stałą opieką",1]]},
+ {r:"V",n:"DNA",s:[
+  ["Głos Marki","jeden styl w każdym tekście",1],
+  ["Pamięć Firmy","decyzje i stan zapisane, nie w głowie",1],
+  ["Rytmy i Harmonogramy","praca dzieje się o czasie, sama",1],
+  ["Dyrygent","rozdziela pracę między agentów",1]]},
+ {r:"VI",n:"Odporność",s:[
+  ["Sejf Dostępów","klucze i hasła poza plikami",1],
+  ["Strażnik Kosztów","chmura i narzędzia bez niespodzianek",1],
+  ["Bezpiecznik Publikacji","nic nie wychodzi bez zgody właściciela",1],
+  ["Centrum Notyfikacji","jeden worek sygnałów zamiast 10 okien",1],
+  ["Monitor Systemów","status wszystkiego na jednym ekranie",1],
+  ["Kopie i Odtwarzanie","każdy system da się odtworzyć",0],
+  ["Zgodność i AI Act","AI zgodne z prawem, bez strachu",0]]}
+];
+// KOLEJNOŚĆ BUDOWY: 44 kroki w 3 etapach. next = w budowie teraz.
+const SYS_ORDER={
+ etapy:[
+  {cls:"e1",name:"Fundament",em:"KROKI 1-9",desc:"Bezpieczna baza, na której stoi reszta: infrastruktura, dostępy, koszty, pamięć, styl, rytm i bramki zgód."},
+  {cls:"e2",name:"Pętla wiedzy",em:"KROKI 10-26",desc:"Firma zaczyna widzieć i mówić: radar rynku, monitoring, decyzje na danych i kanały publikujące bez Twojej ręki."},
+  {cls:"e3",name:"Silnik przychodu",em:"KROKI 27-44",desc:"Maszyna, która zarabia: leady w jednej bazie, dogrzewanie, oferty, płatności, dostarczanie i polecenia."}
+ ],
+ kroki:[
+  ["Budowniczy Chmury",1],["Sejf Dostępów",1],["Strażnik Kosztów",1],["Obsługa Skrzynki",1],["Pamięć Firmy",1],["Głos Marki",1],["Zespół Agentów",1],["Rytmy i Harmonogramy",1],["Bezpiecznik Publikacji",1],
+  ["Centrum Notyfikacji",2],["Monitor Systemów",2],["Radar Popytu",2],["Puls Technologii",2],["Sygnały Zakupowe",2],["Obserwator Konkurencji",2],["Biblioteka Researchu",2],["Brama Szans",2],["Kierownik Produktu AI",2],["Dyrygent",2],["Studio Produkcji AI",2],["Głos Klienta",2],["Treści i Blog",2],["Social Media",2],["Newsletter",2],["Wideo i Rolki",2],["SEO i Widoczność w AI",2],
+  ["Lead Magnety",3],["Baza Klientów (CRM)",3],["Dogrzewanie Leadów",3],["Autopilot Sprzedaży",3],["Oferty i Wyceny",3],["Rozmowy i Domykanie",3],["Płatności i Umowy",3],["Onboarding Klienta",3],["Produkcja Stron",3],["Systemy dla Klientów",3],["Produkty Cyfrowe",3],["Opieka i Utrzymanie",3],["Reklamy Płatne",3],["Webinary",3],["PR i Partnerstwa",3],["Polecenia i Dosprzedaż",3],["Kopie i Odtwarzanie",3],["Zgodność i AI Act",3]
+ ],
+ next:"Baza Klientów (CRM)"
+};
+const SYS_EDGES={
+ "Radar Popytu":["Sygnały Zakupowe","Treści i Blog","Reklamy Płatne","Brama Szans"],
+ "Sygnały Zakupowe":["Baza Klientów (CRM)","Brama Szans"],
+ "Obserwator Konkurencji":["Sygnały Zakupowe","Oferty i Wyceny","Brama Szans"],
+ "Puls Technologii":["Treści i Blog","Newsletter","Zespół Agentów"],
+ "Brama Szans":["Kierownik Produktu AI","Pamięć Firmy"],
+ "Kierownik Produktu AI":["Dyrygent","Pamięć Firmy"],
+ "Biblioteka Researchu":["Treści i Blog","Webinary","Oferty i Wyceny"],
+ "Social Media":["Baza Klientów (CRM)","Newsletter"],
+ "Treści i Blog":["Social Media","Newsletter","SEO i Widoczność w AI"],
+ "SEO i Widoczność w AI":["Lead Magnety","Baza Klientów (CRM)"],
+ "Newsletter":["Baza Klientów (CRM)","Webinary","Polecenia i Dosprzedaż"],
+ "Obsługa Skrzynki":["Baza Klientów (CRM)","Głos Klienta"],
+ "Reklamy Płatne":["Lead Magnety","Baza Klientów (CRM)"],
+ "Wideo i Rolki":["Social Media","Reklamy Płatne"],
+ "Lead Magnety":["Baza Klientów (CRM)","Newsletter"],
+ "Webinary":["Baza Klientów (CRM)","Newsletter"],
+ "PR i Partnerstwa":["Baza Klientów (CRM)","Webinary"],
+ "Baza Klientów (CRM)":["Dogrzewanie Leadów","Autopilot Sprzedaży"],
+ "Dogrzewanie Leadów":["Rozmowy i Domykanie"],
+ "Autopilot Sprzedaży":["Oferty i Wyceny","Rozmowy i Domykanie"],
+ "Oferty i Wyceny":["Rozmowy i Domykanie"],
+ "Rozmowy i Domykanie":["Płatności i Umowy"],
+ "Płatności i Umowy":["Onboarding Klienta"],
+ "Głos Klienta":["Treści i Blog","Oferty i Wyceny","Głos Marki"],
+ "Polecenia i Dosprzedaż":["Baza Klientów (CRM)","Oferty i Wyceny"],
+ "Budowniczy Chmury":["Systemy dla Klientów","Produkcja Stron","Monitor Systemów"],
+ "Produkcja Stron":["SEO i Widoczność w AI","Opieka i Utrzymanie"],
+ "Produkty Cyfrowe":["Płatności i Umowy","Newsletter"],
+ "Systemy dla Klientów":["Opieka i Utrzymanie"],
+ "Onboarding Klienta":["Produkcja Stron","Systemy dla Klientów"],
+ "Opieka i Utrzymanie":["Polecenia i Dosprzedaż"],
+ "Studio Produkcji AI":["Social Media","Wideo i Rolki","Reklamy Płatne","Produkcja Stron"],
+ "Zespół Agentów":["Treści i Blog","Studio Produkcji AI","Autopilot Sprzedaży"],
+ "Głos Marki":["Treści i Blog","Social Media","Newsletter","Oferty i Wyceny"],
+ "Pamięć Firmy":["Zespół Agentów","Kierownik Produktu AI"],
+ "Dyrygent":["Zespół Agentów","Rytmy i Harmonogramy"],
+ "Rytmy i Harmonogramy":["Social Media","Newsletter","Zespół Agentów"],
+ "Strażnik Kosztów":["Centrum Notyfikacji","Reklamy Płatne"],
+ "Sejf Dostępów":["Zespół Agentów","Systemy dla Klientów"],
+ "Centrum Notyfikacji":["Dyrygent","Kierownik Produktu AI"],
+ "Monitor Systemów":["Centrum Notyfikacji","Opieka i Utrzymanie"],
+ "Kopie i Odtwarzanie":["Pamięć Firmy","Systemy dla Klientów"],
+ "Zgodność i AI Act":["Bezpiecznik Publikacji","Systemy dla Klientów"],
+ "Bezpiecznik Publikacji":["Social Media","Newsletter","Reklamy Płatne","Wideo i Rolki"]
+};
+(function(){
+ const SOURCES={}, META={}, ORG={}, STEP={}, BLKS={};
+ Object.keys(SYS_EDGES).forEach(a=>SYS_EDGES[a].forEach(b=>{(SOURCES[b]=SOURCES[b]||[]).push(a)}));
+ let doneCount=0;
+ SYS_GROUPS.forEach(g=>g.s.forEach(p=>{
+   ORG[p[0]]={organ:g.n,r:g.r};
+   META[p[0]]={desc:p[1],done:p[2]===1};
+   if(p[2]===1)doneCount++;
+ }));
+ SYS_ORDER.kroki.forEach((k,i)=>{STEP[k[0]]={no:i+1,etap:k[1]}});
+ document.getElementById('sys-count').innerHTML='<b class="g">'+doneCount+'</b> działa · <b>44</b> systemy · <b>3</b> etapy';
+
+ const map=document.getElementById('sys-map'), grid=document.getElementById('sys-grid'), svg=document.getElementById('sys-lines');
+ let lastEtap=0;
+ SYS_ORDER.kroki.forEach(k=>{
+   const n=k[0], et=k[1], m=META[n], st=STEP[n];
+   if(et!==lastEtap){
+     lastEtap=et;
+     const e=SYS_ORDER.etapy[et-1];
+     const done=SYS_ORDER.kroki.filter(x=>x[1]===et&&META[x[0]].done).length;
+     const total=SYS_ORDER.kroki.filter(x=>x[1]===et).length;
+     const eh=document.createElement('div');eh.className='etap-head '+e.cls;
+     eh.innerHTML='<span class="e-no">'+et+'</span><div><div class="e-name">'+e.name+'<em>'+e.em+'</em></div><div class="e-desc">'+e.desc+'</div></div><span class="e-count"><b>'+done+'</b>/'+total+' DZIAŁA</span>';
+     grid.appendChild(eh);
+   }
+   const isNext=n===SYS_ORDER.next;
+   const el=document.createElement('div');
+   el.className='blk'+(m.done?' done':'')+(isNext?' next':'');
+   el.tabIndex=0;el.setAttribute('role','button');el.dataset.n=n;
+   const badge=m.done?'<span class="b-st">DZIAŁA</span>':(isNext?'<span class="b-st nx">W BUDOWIE</span>':'');
+   const dot=m.done?'done':(isNext?'nx':'wip');
+   el.innerHTML='<div class="b-num"><span class="b-dot '+dot+'"></span>'+String(st.no).padStart(2,'0')+' '+badge+'<span class="b-organ">'+ORG[n].organ.toUpperCase()+'</span></div><div class="b-name">'+n+'</div><div class="b-desc">'+m.desc+'</div>';
+   BLKS[n]=el;grid.appendChild(el);
+ });
+ map.appendChild(svg);
+
+ const isDesktop=()=>window.matchMedia('(min-width: 961px)').matches;
+ function clearSel(){
+   map.classList.remove('lit');svg.innerHTML='';
+   Object.values(BLKS).forEach(el=>{el.classList.remove('active','rel','on');const tg=el.querySelector('.b-tag');if(tg)tg.remove()});
+ }
+ function drawLine(a,b){
+   const mr=map.getBoundingClientRect();
+   const A=a.getBoundingClientRect(),B=b.getBoundingClientRect();
+   const ax=A.left-mr.left+A.width/2, ay=A.top-mr.top+A.height/2;
+   const bx=B.left-mr.left+B.width/2, by=B.top-mr.top+B.height/2;
+   const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+   p.setAttribute('d','M'+ax+','+ay+' Q'+((ax+bx)/2)+','+(Math.min(ay,by)-40)+' '+bx+','+by);
+   p.setAttribute('fill','none');p.setAttribute('stroke','#B85C2E');p.setAttribute('stroke-width','1.6');
+   p.setAttribute('stroke-dasharray','5 4');p.setAttribute('opacity','.75');
+   svg.appendChild(p);
+ }
+ function select(n){
+   clearSel();
+   const src=SOURCES[n]||[], dst=SYS_EDGES[n]||[];
+   map.classList.add('lit');
+   svg.setAttribute('width',map.scrollWidth);svg.setAttribute('height',map.scrollHeight);
+   const act=BLKS[n];act.classList.add('active','on');
+   src.forEach(s=>{const el=BLKS[s];if(!el)return;el.classList.add('rel','on');el.insertAdjacentHTML('afterbegin','<span class="b-tag">BUDUJE NA ←</span>');if(isDesktop())drawLine(act,el)});
+   dst.forEach(s=>{const el=BLKS[s];if(!el)return;el.classList.add('rel','on');el.insertAdjacentHTML('afterbegin','<span class="b-tag">→ ODBLOKOWUJE</span>');if(isDesktop())drawLine(act,el)});
+ }
+ Object.entries(BLKS).forEach(([n,el])=>{
+   el.addEventListener('mouseenter',()=>{if(isDesktop())select(n)});
+   el.addEventListener('click',()=>{select(n);openCard(n)});
+   el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(n);openCard(n)}});
+ });
+ map.addEventListener('mouseleave',()=>{if(isDesktop()&&!document.getElementById('sys-modal').classList.contains('open'))clearSel()});
+
+ const modal=document.getElementById('sys-modal');
+ function chip(n){return '<span class="rel-chip" data-n="'+n+'">'+String(STEP[n].no).padStart(2,'0')+' · '+n+'</span>'}
+ function openCard(n){
+   const st=STEP[n], e=SYS_ORDER.etapy[st.etap-1];
+   const status=META[n].done?' · <span class="g">● DZIAŁA U MNIE</span>':(n===SYS_ORDER.next?' · ◐ W BUDOWIE TERAZ':' · ○ W KOLEJCE');
+   document.getElementById('sm-area').innerHTML='KROK '+String(st.no).padStart(2,'0')+'/44 · ETAP '+st.etap+' '+e.name.toUpperCase()+' · ORGAN: '+ORG[n].organ.toUpperCase()+status;
+   document.getElementById('sm-name').textContent=n;
+   document.getElementById('sm-desc').textContent=META[n].desc.charAt(0).toUpperCase()+META[n].desc.slice(1)+'.';
+   const src=SOURCES[n]||[], dst=SYS_EDGES[n]||[];
+   document.getElementById('sm-src').innerHTML=src.length?src.map(chip).join(''):'<span class="none">start drogi, nie potrzebuje niczego przed sobą</span>';
+   document.getElementById('sm-dst').innerHTML=dst.length?dst.map(chip).join(''):'<span class="none">koniec łańcucha, wynik trafia do Ciebie</span>';
+   modal.classList.add('open');
+   if(typeof gtag==='function')gtag('event','system_card_open',{system:n});
+ }
+ modal.addEventListener('click',e=>{
+   const c=e.target.closest('.rel-chip');
+   if(c){openCard(c.dataset.n);select(c.dataset.n);return}
+   if(e.target.closest('.close')||e.target===modal)modal.classList.remove('open');
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+
+ // kotwica #nazwa-systemu
+ const norm=s=>s.toLowerCase().replace(/[^a-ząćęłńóśźż0-9]+/gi,'-').replace(/^-+|-+$/g,'');
+ const h=decodeURIComponent((location.hash||'').replace('#',''));
+ if(h){const hit=Object.keys(BLKS).find(n=>norm(n)===norm(h));if(hit){setTimeout(()=>{select(hit);BLKS[hit].scrollIntoView({block:'center'})},150)}}
+})();
+</script>
+</body>
+</html>
