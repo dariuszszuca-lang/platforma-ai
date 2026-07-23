@@ -106,6 +106,26 @@
   .kicker p { margin: 0; font-size: 14px; color: var(--text-dim); }
   .kicker .hi { color: var(--accent); font-weight: 600; }
 
+  .fbbox { display: flex; align-items: center; gap: 11px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); margin-bottom: 9px; }
+  .fbbox .fic { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(150deg, var(--accent), var(--accent-bright)); display: grid; place-items: center; color: #fff; font-size: 15px; flex: none; }
+  .fbbox .ftxt { color: var(--text-faint); font-size: 14px; }
+  .fbchips { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 22px; }
+  .fbchip { font-size: 12px; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 5px 11px; border-radius: 999px; }
+  .floop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .fnode { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 15px; box-shadow: var(--shadow); }
+  .fnode .fn-n { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 700; }
+  .fnode .fn-t { font-weight: 640; font-size: 14px; margin-top: 4px; letter-spacing: -0.01em; }
+  .fnode .fn-d { font-size: 12.5px; color: var(--text-dim); margin-top: 3px; }
+  .floop-back { text-align: center; margin-top: 13px; font-size: 13px; color: var(--text-dim); }
+  .floop-back b { color: var(--accent); }
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .mode { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--shadow); }
+  .mode .m-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 999px; display: inline-block; }
+  .mode.now .m-tag { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+  .mode.rev .m-tag { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+  .mode h4 { margin: 10px 0 6px; font-size: 15px; font-weight: 660; letter-spacing: -0.01em; }
+  .mode p { margin: 0; font-size: 13.3px; color: var(--text-dim); }
+
   .cta-row { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; }
   .cta-primary { background: var(--accent); color: #fff; }
@@ -122,6 +142,8 @@
     .two { grid-template-columns: 1fr; }
     .layer { grid-template-columns: 1fr; gap: 6px; }
     .layer .tag { justify-self: start; }
+    .floop { grid-template-columns: 1fr; }
+    .modes { grid-template-columns: 1fr; }
     h1 { font-size: 26px; }
   }
 </style>
@@ -193,6 +215,41 @@
       <div class="frow"><div class="fl">Panel (twarz)</div><div class="fc">Sprzedawca za ladą: zamówienia na dziś, zegarki do odbioru, zapytania z draftem odpowiedzi. Asystent: <b>„napisz opis tego zegarka"</b>.</div></div>
     </div>
   </div>
+
+  <h2 class="sec">Jak system uczy się Twojej firmy</h2>
+  <p class="lede" style="margin-bottom:18px">Panel ma okienko, w które szef albo pracownik wpisuje zwykłym językiem, co poprawić. Ten feedback trafia do skilla i do Ciebie, a system stopniowo dopasowuje się do tego, jak naprawdę pracuje ta firma.</p>
+
+  <div class="fbbox">
+    <div class="fic">✎</div>
+    <div class="ftxt">Napisz, co system ma robić inaczej...</div>
+  </div>
+  <div class="fbchips">
+    <span class="fbchip">Nie wysyłaj SMS po 20:00</span>
+    <span class="fbchip">Dla tego klienta zawsze mail, nie SMS</span>
+    <span class="fbchip">Wyceny tras zagranicznych licz ostrożniej</span>
+  </div>
+
+  <div class="floop">
+    <div class="fnode"><div class="fn-n">01</div><div class="fn-t">Klient pisze</div><div class="fn-d">W oknie panelu, jednym zdaniem, co poprawić.</div></div>
+    <div class="fnode"><div class="fn-n">02</div><div class="fn-t">Feedback trafia do skilla</div><div class="fn-d">I do Ciebie, w jedno miejsce, z kontekstem sprawy.</div></div>
+    <div class="fnode"><div class="fn-n">03</div><div class="fn-t">System się dostraja</div><div class="fn-d">Drobne rzeczy od razu, zmiany procesu po Twoim przeglądzie.</div></div>
+    <div class="fnode"><div class="fn-n">04</div><div class="fn-t">Panel działa mądrzej</div><div class="fn-d">Następnym razem robi to już po nowemu.</div></div>
+  </div>
+  <div class="floop-back">Krok 4 wraca do początku. <b>Im dłużej firma korzysta, tym lepiej system ją zna.</b></div>
+
+  <div class="modes">
+    <div class="mode now">
+      <span class="m-tag">Od razu</span>
+      <h4>Drobne rzeczy i preferencje</h4>
+      <p>Feedback typu „pisz krócej", „ten klient woli mail", „nie dzwoń w niedzielę". Skill zapisuje to jako regułę firmy i stosuje od następnej sprawy. Bez czekania, bo to ustawienie, nie zmiana logiki.</p>
+    </div>
+    <div class="mode rev">
+      <span class="m-tag">Po przeglądzie</span>
+      <h4>Zmiana samego procesu</h4>
+      <p>Feedback typu „dodaj krok potwierdzenia" albo „inaczej licz wyceny". To zmiana reguł skilla, więc trafia najpierw do Ciebie. Poprawiasz i wypuszczasz. Nic ryzykownego nie wchodzi na żywo samo.</p>
+    </div>
+  </div>
+  <div class="note" style="margin-top:16px"><b>Bezpiecznik:</b> system słucha i podpowiada, ale prawdziwe zmiany w procesie zatwierdza człowiek. To ta sama zasada, co w całej firmie: AI proponuje, decyzja jest po Twojej stronie.</div>
 
   <div class="kicker">
     <h3>Dlaczego to się skaluje</h3>
