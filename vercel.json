@@ -1,6 +1,9 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "functions": {
+    "api/newsletter-send.js": { "maxDuration": 300 }
+  },
   "crons": [
     {
       "path": "/api/newsletter-send",
