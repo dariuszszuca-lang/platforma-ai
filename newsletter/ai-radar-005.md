@@ -119,7 +119,17 @@ Dlatego ten numer jest o porządku, nie o kolejnym narzędziu.
 
 To nie magia. To spisany kontekst i kilka reguł. Dokładnie to, o czym piszę wyżej.
 
-Poza maszyną: wieczór bez ekranu i spacer nad zatoką.
+[BOX: POZA MASZYNOWNIĄ — kremowe tło, pomarańczowy pasek z lewej]
+
+POZA MASZYNOWNIĄ
+
+Jedno wiem na pewno. Nie chcę siedzieć cały dzień przed komputerem.
+
+Codziennie wychodzę na spacer z dzieciakami, za każdym razem w innej dzielnicy Gdańska. Zbieramy kroki, zaglądamy w miejsca, w których nigdy wcześniej nie byłem. Miasto, które niby znam od lat, ciągle ma coś nowego.
+
+A robota i tak się robi. Systemy pracują, kiedy ja jestem na dworze.
+
+Pytasz pewnie, czy da się pracować więcej i mieć czas na wszystko. Da się. Tylko trzeba przestać robić wszystko samemu.
 
 Tyle na dziś.
 
