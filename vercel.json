@@ -7,7 +7,7 @@
   "crons": [
     {
       "path": "/api/newsletter-send",
-      "schedule": "0 16 * * 2"
+      "schedule": "0 * * * *"
     }
   ],
   "rewrites": [

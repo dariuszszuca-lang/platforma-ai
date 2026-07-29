@@ -915,11 +915,17 @@ const LEAD_SOURCES = {
 
 function leadDelivered(sub) {
     const chips = [];
-    if (sub.source === 'meta-lead-ad') {
+    if (sub.lead_magnet === 'starter-wdrozen-ai') {
+        chips.push('Starter Wdrożeń AI (mail powitalny przy zapisie)');
+    } else if (sub.lead_magnet === 'system-ai-tygodnia-01') {
+        chips.push('System AI tygodnia #01 (mail powitalny przy zapisie)');
+    } else if (sub.source === 'meta-lead-ad') {
         chips.push('Checklista AI Act (mail powitalny przy zapisie)');
     }
     if ((sub.status || 'active') === 'active') {
-        chips.push('AI Radar co wtorek (od #004, 21.07)');
+        chips.push((sub.groups || []).includes('ai-radar-2x')
+            ? 'AI Radar w poniedziałki i czwartki o 18:00'
+            : 'AI Radar w poniedziałki o 18:00');
     }
     return chips;
 }

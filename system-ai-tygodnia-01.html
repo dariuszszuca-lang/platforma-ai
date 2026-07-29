@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System AI tygodnia #01 | Obsługa zapytań i follow-up</title>
+  <link rel="stylesheet" href="assets/lead-magnet-ai-radar.css">
+</head>
+<body>
+  <section class="page cover">
+    <div class="brand"><img class="brand-logo" src="assets/ai-team-logo-256.png" alt="AI-Team"></div>
+    <div class="cover-copy">
+      <p class="kicker">System AI tygodnia · wydanie #01</p>
+      <h1>System obsługi zapytań i follow-upu</h1>
+      <p class="lead">Od wiadomości klienta do przypisanego kolejnego kroku. Pełny przepływ, statusy, rola AI, kontrola człowieka, testy i plan uruchomienia.</p>
+    </div>
+    <div class="cover-meta">
+      <span>Wejście · kwalifikacja · odpowiedź · follow-up · pomiar</span>
+      <span>Wydanie 1.0 · lipiec 2026</span>
+    </div>
+    <div class="page-footer"><span>AI-Team · ai-team.pl</span><span>01</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Problem</p>
+    <h2>Zapytania rzadko giną dlatego, że nikt ich nie chce</h2>
+    <p class="lead">Giną pomiędzy kanałami, niepełną informacją i brakiem jasno przypisanego kolejnego kroku.</p>
+    <div class="grid-2">
+      <div class="card red">
+        <h3>Typowy obraz</h3>
+        <ul>
+          <li>Formularz trafia na wspólną skrzynkę.</li>
+          <li>Wiadomość z Facebooka widzi tylko jedna osoba.</li>
+          <li>Po rozmowie notatka zostaje w kalendarzu.</li>
+          <li>Oferta została wysłana, ale nie ma daty follow-upu.</li>
+          <li>CRM pokazuje „w toku”, choć nikt nie zna kolejnego kroku.</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <h3>Stan docelowy</h3>
+        <ul>
+          <li>Każde zapytanie dostaje identyfikator i źródło.</li>
+          <li>System sprawdza kompletność i temat.</li>
+          <li>Odpowiedzialna osoba dostaje sprawę z terminem.</li>
+          <li>Klient otrzymuje właściwą wiadomość po zatwierdzeniu.</li>
+          <li>Brak ruchu uruchamia przypomnienie, nie ciszę.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><strong>Zadanie AI w tym systemie:</strong> odczytać treść, uporządkować informacje, przygotować szkic i zwrócić uwagę na brakujące dane. Nie decydować samodzielnie o cenie, obietnicy, odrzuceniu klienta ani wysyłce w sytuacji nietypowej.</div>
+    <h3>Trzy wyniki, które system ma zapewnić</h3>
+    <div class="grid-3">
+      <div class="metric"><strong>Widoczność</strong><span>Wiadomo, gdzie jest każde zapytanie.</span></div>
+      <div class="metric"><strong>Odpowiedzialność</strong><span>Każda sprawa ma właściciela.</span></div>
+      <div class="metric"><strong>Ciąg dalszy</strong><span>Każda aktywna sprawa ma następny krok i datę.</span></div>
+    </div>
+    <div class="page-footer"><span>System AI tygodnia #01</span><span>02</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Architektura</p>
+    <h2>Cały system na jednej stronie</h2>
+    <div class="flow">
+      <div class="flow-step"><strong>1. Wejście</strong>Formularz, e-mail, telefon, wiadomość społecznościowa</div>
+      <div class="flow-step"><strong>2. Rejestr</strong>ID, czas, źródło, zgoda, dane kontaktowe</div>
+      <div class="flow-step"><strong>3. Analiza AI</strong>Temat, intencja, kompletność, streszczenie</div>
+      <div class="flow-step"><strong>4. Reguły</strong>Właściciel, priorytet, termin, wyjątek</div>
+    </div>
+    <div class="flow">
+      <div class="flow-step"><strong>5. Szkic</strong>Odpowiedź albo pytania uzupełniające</div>
+      <div class="flow-step"><strong>6. Kontrola</strong>Człowiek sprawdza fakty i decyzje</div>
+      <div class="flow-step"><strong>7. Działanie</strong>Wysyłka, zadanie, spotkanie albo oferta</div>
+      <div class="flow-step"><strong>8. Follow-up</strong>Przypomnienie i kolejny krok</div>
+    </div>
+    <h3>Warstwy systemu</h3>
+    <table>
+      <tr><th>Warstwa</th><th>Odpowiada za</th><th>Nie powinna robić</th></tr>
+      <tr><td><strong>Kanały wejścia</strong></td><td>Przyjęcie zapytania i podstawowych danych.</td><td>Przechowywać jedynej kopii informacji.</td></tr>
+      <tr><td><strong>Rejestr spraw</strong></td><td>Status, właściciel, historia, następny krok.</td><td>Ukrywać zmian bez śladu.</td></tr>
+      <tr><td><strong>AI</strong></td><td>Klasyfikacja, ekstrakcja, streszczenie, szkic.</td><td>Podejmować decyzji o dużych skutkach.</td></tr>
+      <tr><td><strong>Automatyzacja</strong></td><td>Przenoszenie danych, terminy, powiadomienia.</td><td>Ponawiać działania bez limitu.</td></tr>
+      <tr><td><strong>Człowiek</strong></td><td>Ocena wyjątku, zatwierdzenie, relacja z klientem.</td><td>Ręcznie przepisywać dane, które już istnieją.</td></tr>
+    </table>
+    <div class="page-footer"><span>Mapa przepływu</span><span>03</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 1 · wejście</p>
+    <h2>Najpierw wspólny standard, potem wiele kanałów</h2>
+    <p>Każde źródło daje inne dane. Formularz ma pola. E-mail ma temat i treść. Telefon ma notatkę. System musi zamienić je na ten sam minimalny rekord.</p>
+    <h3>Minimalny rekord zapytania</h3>
+    <table>
+      <tr><th>Pole</th><th>Przykład</th><th>Po co</th></tr>
+      <tr><td><strong>ID sprawy</strong></td><td>LEAD-2026-0041</td><td>Łączy wiadomości, zadania i zmiany statusu.</td></tr>
+      <tr><td><strong>Czas wejścia</strong></td><td>2026-07-29 10:42</td><td>Liczy czas reakcji i pilnuje kolejności.</td></tr>
+      <tr><td><strong>Źródło</strong></td><td>formularz / kampania / polecenie</td><td>Pokazuje, skąd przyszła sprawa.</td></tr>
+      <tr><td><strong>Kontakt</strong></td><td>imię, e-mail lub telefon</td><td>Umożliwia odpowiedź i deduplikację.</td></tr>
+      <tr><td><strong>Treść oryginalna</strong></td><td>pełna wiadomość bez przeróbek</td><td>Pozwala sprawdzić interpretację AI.</td></tr>
+      <tr><td><strong>Zgoda / podstawa kontaktu</strong></td><td>tekst, wersja, czas, formularz</td><td>Dokumentuje, na jaki kontakt umówiła się osoba.</td></tr>
+    </table>
+    <div class="grid-2">
+      <div class="card orange">
+        <h3>Nie usuwaj oryginału</h3>
+        <p>Streszczenie AI pomaga pracować, ale nie powinno zastępować treści klienta. Przy sporze lub niejasności trzeba wrócić do źródła.</p>
+      </div>
+      <div class="card">
+        <h3>Nie zbieraj „na zapas”</h3>
+        <p>Jeśli do pierwszej odpowiedzi wystarczy e-mail i opis sprawy, nie wymagaj adresu, stanowiska, budżetu i telefonu bez wyraźnej potrzeby.</p>
+      </div>
+    </div>
+    <div class="callout"><strong>Pierwszy pilotaż:</strong> zacznij od jednego kanału, np. formularza kontaktowego. Włączenie wszystkich skrzynek i komunikatorów na starcie utrudnia znalezienie błędu.</div>
+    <div class="page-footer"><span>Wejście i dane</span><span>04</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 2 · statusy</p>
+    <h2>Status ma mówić, co dzieje się teraz</h2>
+    <p class="lead">„W toku” nie jest statusem operacyjnym. Nie mówi, kto ma wykonać ruch ani na co czekamy.</p>
+    <table>
+      <tr><th>Status</th><th>Znaczenie</th><th>Wymagany kolejny krok</th></tr>
+      <tr><td><span class="tag">NOWE</span></td><td>Zapytanie zapisane, jeszcze nieprzejrzane.</td><td>Analiza i przypisanie właściciela.</td></tr>
+      <tr><td><span class="tag">BRAK DANYCH</span></td><td>Nie można przygotować sensownej odpowiedzi.</td><td>Pytania uzupełniające.</td></tr>
+      <tr><td><span class="tag">DO OCENY</span></td><td>AI przygotowało streszczenie i propozycję.</td><td>Kontrola człowieka.</td></tr>
+      <tr><td><span class="tag">ODPOWIEDŹ WYSŁANA</span></td><td>Klient otrzymał pierwszą wiadomość.</td><td>Termin odpowiedzi albo follow-upu.</td></tr>
+      <tr><td><span class="tag">SPOTKANIE</span></td><td>Termin uzgodniony.</td><td>Agenda, przygotowanie, notatka po spotkaniu.</td></tr>
+      <tr><td><span class="tag">OFERTA</span></td><td>Oferta wysłana.</td><td>Data decyzji lub kontaktu kontrolnego.</td></tr>
+      <tr><td><span class="tag">CZEKA NA KLIENTA</span></td><td>Ruch należy do klienta.</td><td>Jedna zaplanowana data przypomnienia.</td></tr>
+      <tr><td><span class="tag">ZAMKNIĘTE</span></td><td>Sprawa zakończona.</td><td>Powód zamknięcia i krótki wniosek.</td></tr>
+    </table>
+    <h3>Reguły jakości statusu</h3>
+    <ul class="checklist">
+      <li>Każda aktywna sprawa ma właściciela.</li>
+      <li>Każda aktywna sprawa ma kolejny krok i termin.</li>
+      <li>Status zmienia się po zdarzeniu, nie po wrażeniu.</li>
+      <li>Zamknięcie zapisuje powód: wygrane, przegrane, brak dopasowania, brak kontaktu.</li>
+      <li>„Czeka na klienta” nie może trwać bez daty ponownego sprawdzenia.</li>
+    </ul>
+    <div class="page-footer"><span>Statusy i odpowiedzialność</span><span>05</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 3 · analiza AI</p>
+    <h2>AI porządkuje treść. Reguły biznesowe podejmują decyzję.</h2>
+    <div class="grid-2">
+      <div class="card green">
+        <h3>Dobry zakres dla AI</h3>
+        <ul>
+          <li>krótkie streszczenie zapytania;</li>
+          <li>wyodrębnienie podanych danych;</li>
+          <li>przypisanie tematu z zamkniętej listy;</li>
+          <li>wskazanie braków i sprzeczności;</li>
+          <li>szkic odpowiedzi na bazie zatwierdzonego wzorca;</li>
+          <li>wyjaśnienie, dlaczego sprawa wymaga człowieka.</li>
+        </ul>
+      </div>
+      <div class="card red">
+        <h3>Zły zakres dla AI</h3>
+        <ul>
+          <li>wymyślanie ceny lub terminu;</li>
+          <li>odrzucanie klienta bez kontroli;</li>
+          <li>składanie obietnic poza ofertą;</li>
+          <li>interpretowanie zgody marketingowej;</li>
+          <li>wysyłka w temacie reklamacji lub sporu;</li>
+          <li>ukrywanie niepewności pod pewnym tonem.</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:20px">Format odpowiedzi maszyny</h3>
+    <div class="prompt">{
+  "temat": "oferta | wsparcie | partnerstwo | inne",
+  "streszczenie": "maksymalnie 3 zdania",
+  "dane_podane": ["..."],
+  "dane_brakujace": ["..."],
+  "priorytet_sugerowany": "standard | pilne_do_oceny",
+  "powod_eskalacji": "brak | reklamacja | dane_wrazliwe | niestandardowa_obietnica",
+  "proponowany_kolejny_krok": "...",
+  "pewnosc": "niska | srednia | wysoka"
+}</div>
+    <div class="callout">Struktura jest ważniejsza niż „ładna” odpowiedź. Automatyzacja łatwiej sprawdzi konkretne pola niż swobodny akapit.</div>
+    <div class="page-footer"><span>Rola AI</span><span>06</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 4 · reguły i eskalacja</p>
+    <h2>Najpierw proste reguły. AI dopiero tam, gdzie potrzebne jest rozumienie treści.</h2>
+    <table>
+      <tr><th>Warunek</th><th>Działanie systemu</th><th>Kto zatwierdza</th></tr>
+      <tr><td>Brak danych kontaktowych</td><td>Zatrzymaj. Nie twórz zadania wysyłki.</td><td>Nie dotyczy</td></tr>
+      <tr><td>Duplikat tego samego formularza</td><td>Połącz z istniejącą sprawą i zapisz zdarzenie.</td><td>Automatycznie, jeśli reguła jest jednoznaczna</td></tr>
+      <tr><td>Zapytanie zgodne ze standardową usługą</td><td>Przypisz właściciela i przygotuj szkic.</td><td>Opiekun sprzedaży</td></tr>
+      <tr><td>Reklamacja, groźba sporu, dane wrażliwe</td><td>Oznacz jako eskalację. Bez automatycznej odpowiedzi.</td><td>Wyznaczona osoba</td></tr>
+      <tr><td>Pytanie o cenę spoza cennika</td><td>Nie zgaduj. Poproś człowieka o decyzję.</td><td>Właściciel oferty</td></tr>
+      <tr><td>Brak ruchu po terminie</td><td>Utwórz przypomnienie i zaproponuj follow-up.</td><td>Właściciel sprawy</td></tr>
+    </table>
+    <h3>Minimalna ścieżka eskalacji</h3>
+    <div class="flow">
+      <div class="flow-step"><strong>Wykrycie wyjątku</strong>Reguła lub AI oznacza powód</div>
+      <div class="flow-step"><strong>Zatrzymanie</strong>Brak wysyłki i zmiany ważnych danych</div>
+      <div class="flow-step"><strong>Powiadomienie</strong>Właściciel dostaje kontekst i termin</div>
+      <div class="flow-step"><strong>Decyzja</strong>Człowiek wybiera dalszy krok</div>
+    </div>
+    <div class="card orange">
+      <h3>Próg niepewności</h3>
+      <p>Jeśli klasyfikacja jest niepewna albo brakuje danych, poprawnym wynikiem systemu jest: „nie wiem, potrzebna ocena”. To funkcja bezpieczeństwa, nie porażka.</p>
+    </div>
+    <div class="page-footer"><span>Reguły i wyjątki</span><span>07</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 5 · pierwsza wiadomość</p>
+    <h2>Szybka odpowiedź nie może być pustym potwierdzeniem</h2>
+    <p>Pierwsza wiadomość powinna powiedzieć klientowi: co zostało przyjęte, czego brakuje, kto wróci z odpowiedzią i kiedy.</p>
+    <div class="card dark">
+      <p class="kicker">Szablon po zatwierdzeniu</p>
+      <p style="font-size:17px">Dzień dobry, [imię]. Dziękuję za wiadomość dotyczącą [konkretny temat]. Żeby przygotować sensowną odpowiedź, potrzebuję jeszcze [maksymalnie 2–3 informacje]. Gdy je dostanę, wrócę z [rodzaj kolejnego kroku] do [realny termin]. Wiadomością zajmuje się [imię / rola].</p>
+    </div>
+    <h3 style="margin-top:20px">Kontrola przed wysyłką</h3>
+    <ul class="checklist">
+      <li>Temat zgadza się z oryginalną wiadomością.</li>
+      <li>Nie ma ceny, terminu ani obietnicy spoza zatwierdzonych danych.</li>
+      <li>Pytania dotyczą tylko informacji potrzebnych do kolejnego kroku.</li>
+      <li>Termin odpowiedzi jest realny.</li>
+      <li>Ton pasuje do firmy i sytuacji klienta.</li>
+      <li>Wiadomość nie udaje osobistego doświadczenia, którego autor nie ma.</li>
+    </ul>
+    <div class="callout"><strong>Dobra personalizacja</strong> odnosi się do sprawy klienta. <strong>Zła personalizacja</strong> dokleja imię do ogólnego tekstu.</div>
+    <div class="page-footer"><span>Odpowiedź na zapytanie</span><span>08</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Krok 6 · follow-up</p>
+    <h2>Follow-up wynika z ustaleń, nie z automatycznego kalendarza</h2>
+    <p class="lead">System powinien przypominać o zobowiązaniu i następnej decyzji. Nie wysyłać w kółko tej samej wiadomości.</p>
+    <table>
+      <tr><th>Sytuacja</th><th>Kiedy</th><th>Cel</th><th>Przykładowy kierunek</th></tr>
+      <tr><td>Brak danych po pierwszym kontakcie</td><td>Po ustalonym terminie</td><td>Ułatwić uzupełnienie</td><td>Powtórz 2 najważniejsze pytania, dodaj prostą formę odpowiedzi.</td></tr>
+      <tr><td>Po spotkaniu</td><td>Tego samego dnia</td><td>Zamknąć ustalenia</td><td>Decyzje, zadania, właściciele, terminy i następny krok.</td></tr>
+      <tr><td>Po wysłaniu oferty</td><td>W dniu uzgodnionej decyzji</td><td>Poznać stan decyzji</td><td>Odnieś się do kryterium klienta, zapytaj o brakującą informację.</td></tr>
+      <tr><td>Po braku decyzji</td><td>Jeden rozsądny termin</td><td>Zamknąć otwartą pętlę</td><td>Zapytaj, czy temat jest aktualny; daj łatwą opcję zamknięcia.</td></tr>
+    </table>
+    <h3>Reguły, które chronią relację</h3>
+    <div class="grid-2">
+      <div class="card green">
+        <h3>Rób</h3>
+        <ul>
+          <li>odwołuj się do ustalonego terminu;</li>
+          <li>dodawaj nową informację lub ułatwienie;</li>
+          <li>pozwól łatwo zamknąć temat;</li>
+          <li>zatrzymaj sekwencję po odpowiedzi.</li>
+        </ul>
+      </div>
+      <div class="card red">
+        <h3>Nie rób</h3>
+        <ul>
+          <li>nie udawaj, że „wracasz do skrzynki”;</li>
+          <li>nie twórz fałszywej pilności;</li>
+          <li>nie wysyłaj po sprzeciwie;</li>
+          <li>nie ponawiaj bez limitu.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-footer"><span>Follow-up</span><span>09</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Odporność systemu</p>
+    <h2>Co ma się wydarzyć, kiedy coś pójdzie nie tak?</h2>
+    <table>
+      <tr><th>Zdarzenie</th><th>Bezpieczna reakcja</th><th>Co zapisać</th></tr>
+      <tr><td>To samo zapytanie wpada drugi raz</td><td>Nie wysyłaj drugiego powitania. Połącz zdarzenia.</td><td>ID duplikatu, czas, źródło.</td></tr>
+      <tr><td>Brak odpowiedzi modelu</td><td>Oznacz do ręcznej obsługi. Nie blokuj kolejki.</td><td>Błąd, próba, czas, właściciel.</td></tr>
+      <tr><td>Nieprawidłowy format wyniku</td><td>Jedna kontrolowana próba naprawy, potem eskalacja.</td><td>Wejście, wynik, walidacja.</td></tr>
+      <tr><td>Nie udała się wysyłka</td><td>Ograniczone ponowienie i alert dla właściciela.</td><td>Status dostawy i komunikat błędu.</td></tr>
+      <tr><td>Klient odpowiada w trakcie sekwencji</td><td>Natychmiast zatrzymaj kolejne automatyczne wiadomości.</td><td>Czas odpowiedzi i nowy status.</td></tr>
+      <tr><td>Brak właściciela sprawy</td><td>Przekaż do kolejki awaryjnej.</td><td>Czas bez przypisania.</td></tr>
+      <tr><td>Sprzeciw wobec kontaktu</td><td>Zatrzymaj komunikację objętą sprzeciwem i zapisz zdarzenie.</td><td>Zakres i czas sprzeciwu.</td></tr>
+    </table>
+    <div class="grid-3">
+      <div class="metric"><strong>1×</strong><span>Maksymalna automatyczna próba naprawy treści.</span></div>
+      <div class="metric"><strong>0</strong><span>Automatycznych wysyłek po odpowiedzi klienta.</span></div>
+      <div class="metric"><strong>100%</strong><span>Aktywnych spraw z właścicielem i terminem.</span></div>
+    </div>
+    <div class="callout">Najgorszy system to taki, który działa dobrze w demonstracji, a po błędzie milczy. Alert i ręczna kolejka są częścią wdrożenia, nie dodatkiem.</div>
+    <div class="page-footer"><span>Błędy, duplikaty i alerty</span><span>10</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Trzy poziomy wdrożenia</p>
+    <h2>Nie każda firma potrzebuje od razu integracji wszystkiego</h2>
+    <div class="grid-3">
+      <div class="card">
+        <span class="number">1</span>
+        <h3>Asystent ręczny</h3>
+        <p><strong>Jak działa:</strong> pracownik wkleja wiadomość do zatwierdzonego promptu i zapisuje wynik.</p>
+        <p><strong>Dla kogo:</strong> mało zapytań, potrzeba nauczenia się procesu.</p>
+        <p><strong>Plus:</strong> szybki test bez integracji.</p>
+        <p><strong>Ryzyko:</strong> brak spójnego rejestru i pomijanie kroków.</p>
+      </div>
+      <div class="card orange">
+        <span class="number">2</span>
+        <h3>Półautomat</h3>
+        <p><strong>Jak działa:</strong> nowe zapytanie tworzy rekord, AI przygotowuje analizę i szkic, człowiek zatwierdza.</p>
+        <p><strong>Dla kogo:</strong> regularne zapytania i jedna osoba odpowiedzialna.</p>
+        <p><strong>Plus:</strong> mniej przepisywania, nadal pełna kontrola.</p>
+        <p><strong>Ryzyko:</strong> wyjątki i duplikaty wymagają reguł.</p>
+      </div>
+      <div class="card">
+        <span class="number">3</span>
+        <h3>System wielokanałowy</h3>
+        <p><strong>Jak działa:</strong> kilka źródeł, wspólny rejestr, routing, SLA, alerty i raport.</p>
+        <p><strong>Dla kogo:</strong> większy wolumen i kilku opiekunów.</p>
+        <p><strong>Plus:</strong> pełna widoczność przepływu.</p>
+        <p><strong>Ryzyko:</strong> więcej utrzymania, uprawnień i testów.</p>
+      </div>
+    </div>
+    <div class="callout"><strong>Rekomendowany pierwszy krok:</strong> poziom 2 dla jednego kanału i jednego rodzaju zapytania. Poziom 3 ma sens dopiero wtedy, gdy statusy, wyjątki i odpowiedzialność działają na mniejszej skali.</div>
+    <h3>Warunek przejścia poziom wyżej</h3>
+    <ul class="checklist">
+      <li>Co najmniej 20 kolejnych przypadków przeszło pełny proces.</li>
+      <li>Zespół rozumie i poprawnie obsługuje wyjątki.</li>
+      <li>Miary są lepsze niż w starym sposobie pracy.</li>
+      <li>Koszt utrzymania jest znany.</li>
+    </ul>
+    <div class="page-footer"><span>Zakres wdrożenia</span><span>11</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Plan uruchomienia</p>
+    <h2>10 dni do pilotażu na prawdziwych sprawach</h2>
+    <table>
+      <tr><th>Dzień</th><th>Zadanie</th><th>Gotowy wynik</th></tr>
+      <tr><td><span class="score">1</span></td><td>Wybierz jeden kanał, rodzaj zapytania i właściciela.</td><td>Jednozdaniowy zakres pilotażu.</td></tr>
+      <tr><td><span class="score">2</span></td><td>Zbierz 20 historycznych wiadomości i wyniki obsługi.</td><td>Próbka bez niepotrzebnych danych.</td></tr>
+      <tr><td><span class="score">3</span></td><td>Zdefiniuj pola rekordu i statusy.</td><td>Jedna karta danych.</td></tr>
+      <tr><td><span class="score">4</span></td><td>Ustal typowe tematy, braki i czerwone flagi.</td><td>Zamknięta lista kategorii.</td></tr>
+      <tr><td><span class="score">5</span></td><td>Napisz prompt analizy i format wyniku.</td><td>Strukturalna odpowiedź AI.</td></tr>
+      <tr><td><span class="score">6</span></td><td>Przygotuj 3 szablony odpowiedzi i kryteria kontroli.</td><td>Biblioteka zatwierdzonych wzorców.</td></tr>
+      <tr><td><span class="score">7</span></td><td>Dodaj reguły właściciela, terminu i eskalacji.</td><td>Tablica decyzji.</td></tr>
+      <tr><td><span class="score">8</span></td><td>Przetestuj błędy, duplikat, brak danych i odpowiedź klienta.</td><td>Raport testów wyjątków.</td></tr>
+      <tr><td><span class="score">9</span></td><td>Uruchom na 3–5 nowych sprawach z ręcznym zatwierdzeniem.</td><td>Pierwsze wyniki i lista poprawek.</td></tr>
+      <tr><td><span class="score">10</span></td><td>Porównaj czas, jakość i kompletność z punktem odniesienia.</td><td>Decyzja: poprawiamy, rozwijamy lub zatrzymujemy.</td></tr>
+    </table>
+    <div class="card dark">
+      <h3>Zakres przykładowego pilotażu</h3>
+      <p>„Przez 10 dni wszystkie zapytania z formularza o usługę X tworzą rekord, są streszczane i otrzymują szkic pierwszej odpowiedzi. Opiekun zatwierdza każdą wysyłkę. Mierzymy czas reakcji, czas pracy człowieka i liczbę istotnych poprawek.”</p>
+    </div>
+    <div class="page-footer"><span>Plan pilotażu</span><span>12</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Testy przed uruchomieniem</p>
+    <h2>Przejście typowego przypadku nie wystarczy</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Testy danych</h3>
+        <ul class="checklist">
+          <li>Brak imienia.</li>
+          <li>Nieprawidłowy e-mail.</li>
+          <li>Sprzeczne informacje.</li>
+          <li>Bardzo długa wiadomość.</li>
+          <li>Załącznik bez treści.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Testy procesu</h3>
+        <ul class="checklist">
+          <li>Ten sam lead dwa razy.</li>
+          <li>Brak właściciela.</li>
+          <li>Odpowiedź klienta przed follow-upem.</li>
+          <li>Zmiana statusu w złej kolejności.</li>
+          <li>Przekroczony termin.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Testy AI</h3>
+        <ul class="checklist">
+          <li>Temat spoza listy.</li>
+          <li>Próba wymuszenia instrukcji przez treść wiadomości.</li>
+          <li>Niepewna klasyfikacja.</li>
+          <li>Wymyślona cena lub termin.</li>
+          <li>Brak poprawnego formatu.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Testy wysyłki</h3>
+        <ul class="checklist">
+          <li>Błąd dostawcy poczty.</li>
+          <li>Podwójne kliknięcie.</li>
+          <li>Błędny odbiorca.</li>
+          <li>Brak szablonu.</li>
+          <li>Sprzeciw wobec kontaktu.</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">Karta testu</h3>
+    <table>
+      <tr><th>Przypadek</th><th>Oczekiwany wynik</th><th>Wynik rzeczywisty</th><th>Decyzja</th></tr>
+      <tr><td>........................</td><td>........................</td><td>........................</td><td>OK / poprawka</td></tr>
+      <tr><td>........................</td><td>........................</td><td>........................</td><td>OK / poprawka</td></tr>
+      <tr><td>........................</td><td>........................</td><td>........................</td><td>OK / poprawka</td></tr>
+    </table>
+    <div class="page-footer"><span>Testy jakości</span><span>13</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Pomiar systemu</p>
+    <h2>Nie mierz tylko liczby zapisanych leadów</h2>
+    <div class="grid-2">
+      <div class="metric"><strong>Czas reakcji</strong><span>Od wpływu zapytania do pierwszej wartościowej odpowiedzi.</span></div>
+      <div class="metric"><strong>Czas człowieka</strong><span>Minuty ręcznej pracy na jedną sprawę.</span></div>
+      <div class="metric"><strong>Kompletność</strong><span>Odsetek aktywnych spraw z właścicielem, terminem i kolejnym krokiem.</span></div>
+      <div class="metric"><strong>Jakość szkicu</strong><span>Odsetek wiadomości bez istotnej poprawki.</span></div>
+      <div class="metric"><strong>Skuteczny kontakt</strong><span>Odsetek spraw, w których klient odpowiedział albo wykonał ustalony krok.</span></div>
+      <div class="metric"><strong>Błędy istotne</strong><span>Duplikaty, niewłaściwe wysyłki, zgubione sprawy i błędne obietnice.</span></div>
+    </div>
+    <h3 style="margin-top:20px">Raport tygodniowy</h3>
+    <table>
+      <tr><th>Miara</th><th>Stan przed</th><th>Tydzień 1</th><th>Tydzień 2</th><th>Wniosek</th></tr>
+      <tr><td>Mediana czasu pierwszej odpowiedzi</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Minuty pracy / sprawę</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>% spraw z kolejnym krokiem</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>% szkiców bez istotnej poprawki</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Liczba błędów istotnych</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div class="callout"><strong>Ważne:</strong> spadek czasu reakcji nie jest sukcesem, jeśli rośnie liczba nietrafionych odpowiedzi lub wypada kontrola człowieka.</div>
+    <div class="page-footer"><span>Metryki</span><span>14</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Prompt projektowy</p>
+    <h2>Rozrysuj własny system obsługi zapytań</h2>
+    <div class="prompt">Jesteś analitykiem procesu obsługi zapytań. Nie projektuj jeszcze automatyzacji. Najpierw pomóż mi opisać stan obecny i wykryć luki.
+
+Kontekst firmy:
+[branża, oferta, liczba osób obsługujących zapytania]
+
+Kanały wejścia:
+[formularz, e-mail, telefon, social media, inne]
+
+Obecny przebieg:
+[opisz, co dzieje się od wpływu wiadomości do zamknięcia sprawy]
+
+Przygotuj:
+1. Wspólny minimalny rekord zapytania.
+2. Propozycję 6–8 jednoznacznych statusów.
+3. Typowe kategorie spraw z zamkniętej listy.
+4. Reguły przypisania właściciela i terminu.
+5. Miejsca, w których AI może: wyodrębnić dane, streścić, sklasyfikować albo przygotować szkic.
+6. Miejsca wymagające zatwierdzenia człowieka.
+7. Listę wyjątków: duplikat, brak danych, odpowiedź klienta, reklamacja, błąd wysyłki, niepewna klasyfikacja.
+8. Pięć testów przed uruchomieniem.
+9. Jedną miarę główną i cztery pomocnicze.
+
+Oddziel:
+- fakty z mojego opisu,
+- swoje założenia,
+- pytania, na które muszę odpowiedzieć.
+
+Nie wymyślaj cen, terminów, zgód ani procedur firmy. Jeżeli danych brakuje, oznacz lukę zamiast ją uzupełniać.</div>
+    <div class="card orange">
+      <h3>Po użyciu promptu</h3>
+      <p>Przejdź wynik z osobą, która naprawdę obsługuje zapytania. To ona zauważy wyjątki, których nie ma w procedurze, ale pojawiają się w codziennej pracy.</p>
+    </div>
+    <div class="page-footer"><span>Prompt do własnego procesu</span><span>15</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">Checklista uruchomienia</p>
+    <h2>System jest gotowy, gdy da się odpowiedzieć „tak” na każde pytanie</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Proces i dane</h3>
+        <ul class="checklist">
+          <li>Zakres pilotażu mieści się w jednym zdaniu.</li>
+          <li>Każde zapytanie ma źródło i oryginalną treść.</li>
+          <li>Statusy mają jednoznaczne znaczenie.</li>
+          <li>Każda aktywna sprawa ma kolejny krok.</li>
+          <li>Duplikaty są wykrywane.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Kontrola</h3>
+        <ul class="checklist">
+          <li>Wiadomo, co zatwierdza człowiek.</li>
+          <li>Wyjątek zatrzymuje wysyłkę.</li>
+          <li>Odpowiedź klienta zatrzymuje sekwencję.</li>
+          <li>Błąd tworzy alert i ręczne zadanie.</li>
+          <li>Istnieje wyłącznik całego przepływu.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Jakość</h3>
+        <ul class="checklist">
+          <li>Przetestowano przypadki typowe i nietypowe.</li>
+          <li>Jest rejestr zmian i błędów.</li>
+          <li>Wynik można porównać ze stanem przed.</li>
+          <li>Koszt obejmuje czas kontroli człowieka.</li>
+          <li>Jest data decyzji po pilotażu.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>Odpowiedzialność</h3>
+        <ul class="checklist">
+          <li>System ma właściciela biznesowego.</li>
+          <li>Ktoś odpowiada za źródła wiedzy.</li>
+          <li>Ktoś obsługuje alerty.</li>
+          <li>Zespół zna ścieżkę eskalacji.</li>
+          <li>Użytkownik może łatwo zgłosić błąd.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-footer"><span>Checklista uruchomienia</span><span>16</span></div>
+  </section>
+
+  <section class="page">
+    <p class="chapter-no">System AI tygodnia</p>
+    <h2>Następny system zaczyna się od problemu, nie od narzędzia</h2>
+    <p class="lead">W czwartkowych wydaniach AI Radar pokazujemy kolejne procesy od środka: wejście, dane, reguły, rolę AI, kontrolę człowieka, błędy i sposób pomiaru.</p>
+    <div class="grid-2">
+      <div class="card"><h3>CRM i pilnowanie szans</h3><p>Jak sprawić, żeby aktywne sprawy zawsze miały właściciela i następny krok.</p></div>
+      <div class="card"><h3>Raport zarządczy</h3><p>Jak łączyć dane, wykrywać odchylenia i nie mylić komentarza AI z faktem.</p></div>
+      <div class="card"><h3>Baza wiedzy firmy</h3><p>Jak odpowiadać na podstawie zatwierdzonych źródeł i obsługiwać brak odpowiedzi.</p></div>
+      <div class="card"><h3>Produkcja treści</h3><p>Jak z materiału źródłowego tworzyć spójne warianty bez utraty tonu i faktów.</p></div>
+    </div>
+    <div class="cta">
+      <p class="kicker">Masz proces, który stoi między skrzynką, arkuszem i pamięcią?</p>
+      <h2>Możemy rozrysować go razem.</h2>
+      <p>AI-Team projektuje i wdraża systemy AI dla firm: od diagnozy procesu, przez pilotaż, po działający przepływ z kontrolą i pomiarem.</p>
+      <p><a href="https://ai-team.pl/#kontakt">Opisz swój proces na ai-team.pl</a></p>
+    </div>
+    <div class="page-footer"><span>AI-Team · ai-team.pl</span><span>17</span></div>
+  </section>
+</body>
+</html>

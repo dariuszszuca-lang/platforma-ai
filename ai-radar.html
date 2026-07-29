@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/ai-radar">
     <meta property="og:title" content="AI Radar. krótki newsletter o AI | AI-Team">
-    <meta property="og:description" content="Raz w tygodniu: narzędzia, agenci, automatyzacje i konkretne wnioski z pracy AI-Team. Bez szumu.">
+    <meta property="og:description" content="W poniedziałki i czwartki: narzędzia, agenci, automatyzacje i konkretne wnioski z pracy AI-Team. Bez szumu.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-ai-radar-20260511.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -584,7 +584,7 @@
             <span>Jedna rzecz do odpuszczenia, zanim zabierze czas.</span>
           </div>
         </div>
-        <p class="radar-schedule"><strong>W każdy wtorek o 18:00.</strong> AI Radar planujemy z wyprzedzeniem, więc możesz zapisać się raz i dostawać kolejne wydania bez pilnowania premier.</p>
+        <p class="radar-schedule"><strong>W każdy poniedziałek i czwartek o 18:00.</strong> AI Radar planujemy z wyprzedzeniem, więc możesz zapisać się raz i dostawać kolejne wydania bez pilnowania premier.</p>
       </div>
 
       <aside class="radar-side" aria-label="Formularz zapisu">
@@ -618,7 +618,7 @@
           </div>
           <label class="radar-consent">
             <input type="checkbox" id="newsletterConsent" name="consent" required>
-            <span>Zgadzam się na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną. Wiem, że mogę wycofać zgodę w każdej chwili. Szczegóły są w <a href="/privacy.html">polityce prywatności</a>.</span>
+            <span>Zgadzam się na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu, w poniedziałki i czwartki o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Wiem, że mogę wycofać zgodę w każdej chwili. Szczegóły są w <a href="/privacy.html">polityce prywatności</a>.</span>
           </label>
           <button class="radar-button" id="newsletterButton" type="submit">Zapisz mnie na AI Radar</button>
           <div class="radar-message" id="newsletterMessage" role="status" aria-live="polite"></div>
@@ -627,12 +627,12 @@
         <p class="radar-note">Administratorem danych jest Dariusz Szuca. Wysyłka idzie przez własny system AI-Team. Nie sprzedaję listy i nie wysyłam codziennych wiadomości.</p>
       </aside>
     </section>
-    <p class="radar-foot">Raz w tygodniu. Krótko. Po polsku. Dla ludzi, którzy chcą używać AI w pracy, a nie tylko czytać o premierach modeli.</p>
+    <p class="radar-foot">Dwa razy w tygodniu. Krótko. Po polsku. Dla ludzi, którzy chcą używać AI w pracy, a nie tylko czytać o premierach modeli.</p>
   </div>
 </main>
 
 <script>
-const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team drogą elektroniczną.';
+const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu, w poniedziałki i czwartki o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Zgodę można wycofać w każdej chwili przez link wypisu.';
 const firebaseConfig = {
   apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
   authDomain: 'ai-team-zlecenia.firebaseapp.com',
@@ -699,7 +699,7 @@ newsletterForm.addEventListener('submit', async function(event) {
       email,
       name,
       group,
-      groups: Array.from(new Set(['ai-radar', group])),
+      groups: Array.from(new Set(['ai-radar', 'ai-radar-2x', group])),
       status: 'active',
       source: 'ai-radar',
       page_url: window.location.href,
@@ -709,7 +709,9 @@ newsletterForm.addEventListener('submit', async function(event) {
         text: NEWSLETTER_CONSENT_TEXT,
         accepted_at: now,
         privacy_url: 'https://ai-team.pl/privacy',
-        privacy_version: '2026-05-11'
+        privacy_version: '2026-07-29',
+        version: '2026-07-29-ai-radar-2x-v1',
+        frequency: 'twice_weekly'
       },
       created_at: now,
       updated_at: now,
