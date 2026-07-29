@@ -14,11 +14,14 @@ test('nowe zapisy AI Radar mają jawną zgodę na poniedziałki i czwartki', () 
   assert.match(html, /okazjonalne informacje o usługach/i);
 });
 
-test('cron sprawdza zaplanowane wydania co godzinę', () => {
+test('cron mieści się w limicie Hobby i obsługuje czas letni oraz zimowy', () => {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
-  const newsletterCron = config.crons.find((item) => item.path === '/api/newsletter-send');
+  const newsletterCrons = config.crons
+    .filter((item) => item.path === '/api/newsletter-send')
+    .map((item) => item.schedule)
+    .sort();
 
-  assert.equal(newsletterCron.schedule, '0 * * * *');
+  assert.deepEqual(newsletterCrons, ['0 16 * * 1,4', '0 17 * * 1,4']);
 });
 
 test('czwartek trafia tylko do zgody 2x, a poniedziałek do całej listy', () => {
