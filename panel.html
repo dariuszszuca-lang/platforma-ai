@@ -913,21 +913,52 @@ const LEAD_SOURCES = {
     'mapa-ai':      { label: 'Mapa AI',      cls: 'bg-purple-500/20 text-purple-300 border-purple-500/30' },
 };
 
-function leadDelivered(sub) {
-    const chips = [];
-    if (sub.lead_magnet === 'starter-wdrozen-ai') {
-        chips.push('Starter Wdrożeń AI (mail powitalny przy zapisie)');
-    } else if (sub.lead_magnet === 'system-ai-tygodnia-01') {
-        chips.push('System AI tygodnia #01 (mail powitalny przy zapisie)');
-    } else if (sub.source === 'meta-lead-ad') {
-        chips.push('Checklista AI Act (mail powitalny przy zapisie)');
+function leadMaterialLabel(sub) {
+    const material = sub.utm?.delivery?.material || '';
+    const labels = {
+        'starter-wdrozen-ai': 'Starter Wdrożeń AI',
+        'system-ai-tygodnia-01': 'System AI tygodnia #01',
+        'system-ai-tygodnia': 'System AI tygodnia #01',
+        'ai-act-checklist': 'Checklista AI Act',
+        'ai-reset': 'AI RESET'
+    };
+    return labels[material] || material || 'materiał powitalny';
+}
+
+function leadDeliveryStatus(sub) {
+    const status = sub.utm?.delivery?.status;
+    const material = leadMaterialLabel(sub);
+    if (status === 'sent') {
+        return { label: `Wysłano: ${material}`, icon: 'check', cls: 'text-green-300' };
     }
-    if ((sub.status || 'active') === 'active') {
-        chips.push((sub.groups || []).includes('ai-radar-2x')
-            ? 'AI Radar w poniedziałki i czwartki o 18:00'
-            : 'AI Radar w poniedziałki o 18:00');
+    if (status === 'failed') {
+        return { label: `Nie udało się wysłać materiału: ${material}`, icon: 'circle-alert', cls: 'text-red-300' };
     }
-    return chips;
+    if (status === 'pending') {
+        return { label: `Oczekuje na wysyłkę materiału: ${material}`, icon: 'clock-3', cls: 'text-yellow-300' };
+    }
+    return { label: 'Brak potwierdzonego statusu dostawy', icon: 'circle-help', cls: 'text-gray-500' };
+}
+
+function leadOwnerNotificationStatus(sub) {
+    const status = sub.utm?.owner_notification?.status;
+    if (status === 'sent') {
+        return { label: 'Powiadomienie do Ciebie: wysłane', icon: 'mail-check', cls: 'text-green-300' };
+    }
+    if (status === 'failed') {
+        return { label: 'Powiadomienie do Ciebie: błąd', icon: 'mail-warning', cls: 'text-red-300' };
+    }
+    return { label: 'Powiadomienie do Ciebie: oczekuje', icon: 'mail-clock', cls: 'text-yellow-300' };
+}
+
+function leadAttribution(sub) {
+    const attribution = sub.utm?.attribution || {};
+    return [
+        ['Formularz', attribution?.form_name],
+        ['Kampania', attribution?.campaign_name],
+        ['Zestaw', attribution?.adset_name],
+        ['Reklama', attribution?.ad_name]
+    ].filter(([, value]) => value);
 }
 
 function renderLeads() {
@@ -945,8 +976,12 @@ function renderLeads() {
     list.innerHTML = subs.map(sub => {
         const src = LEAD_SOURCES[sub.source] || { label: sub.source || 'inne', cls: 'bg-white/10 text-gray-300 border-white/20' };
         const when = sub.created_at ? new Date(sub.created_at).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '?';
-        const chips = leadDelivered(sub).map(c =>
-            `<span class="inline-flex items-center gap-1 text-xs text-green-300"><i data-lucide="check" class="w-3 h-3"></i>${c}</span>`
+        const statuses = [leadDeliveryStatus(sub), leadOwnerNotificationStatus(sub)];
+        const chips = statuses.map(item =>
+            `<span class="inline-flex items-center gap-1 text-xs ${item.cls}"><i data-lucide="${item.icon}" class="w-3 h-3"></i>${escHtml(item.label)}</span>`
+        ).join('');
+        const attribution = leadAttribution(sub).map(([label, value]) =>
+            `<span class="text-xs text-gray-500"><span class="text-gray-600">${label}:</span> ${escHtml(value)}</span>`
         ).join('');
         const testBadge = (sub.status || '') !== 'active' && (sub.status || '') !== ''
             ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${sub.status}</span>` : '';
@@ -959,7 +994,8 @@ function renderLeads() {
                     ${testBadge}
                     <span class="text-xs text-gray-500">${when}</span>
                 </div>
-                <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">${chips || '<span class="text-xs text-gray-500">jeszcze nic nie wysłane</span>'}</div>
+                <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">${chips}</div>
+                ${attribution ? `<div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">${attribution}</div>` : ''}
             </div>
             <div class="flex items-center gap-2 shrink-0">
                 <a href="${gmail}" target="_blank" class="text-xs px-3 py-1.5 rounded-full border border-white/15 text-gray-300 hover:text-white hover:border-brand-primary transition flex items-center gap-1.5">
