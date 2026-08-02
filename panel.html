@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Panel AI-Team — Async i newsletter</title>
+    <title>Panel AI-Team — Newsletter i leady</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,7 @@
                 </div>
                 <div>
                     <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
-                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Async desk i AI Radar</span>
+                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Newsletter, leady i AI Radar</span>
                 </div>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
@@ -208,11 +208,6 @@
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
                     <i data-lucide="mail-check" class="w-4 h-4"></i>
                     <span class="hidden sm:inline">Newsletter</span>
-                </a>
-                <a href="#asyncPanel"
-                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                    <i data-lucide="inbox" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Async</span>
                 </a>
                 <a href="https://ai-team.pl/ai-radar" target="_blank"
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
@@ -228,60 +223,6 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
-
-        <!-- Async panel -->
-        <section id="asyncPanel" class="glass-card rounded-2xl p-5 sm:p-6">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
-                <div>
-                    <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
-                        <i data-lucide="inbox" class="w-4 h-4"></i>
-                        Async desk
-                    </div>
-                    <h2 class="font-heading text-2xl font-bold text-white">Tematy do odpowiedzi</h2>
-                    <p class="text-sm text-gray-400 mt-1">Zgłoszenia z /async: brief, status, odpowiedź i prywatny link klienta.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <a href="/async" target="_blank" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
-                        <i data-lucide="external-link" class="w-4 h-4"></i>
-                        Otwórz formularz
-                    </a>
-                    <button onclick="copyOpenAsyncLinks()" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
-                        <i data-lucide="copy" class="w-4 h-4"></i>
-                        Kopiuj otwarte linki
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">Wszystkie</div>
-                    <div class="text-2xl font-bold font-heading" id="asyncStatAll">0</div>
-                </div>
-                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">Nowe</div>
-                    <div class="text-2xl font-bold font-heading text-brand-light" id="asyncStatNew">0</div>
-                </div>
-                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">W analizie</div>
-                    <div class="text-2xl font-bold font-heading text-blue-400" id="asyncStatTriage">0</div>
-                </div>
-                <div class="rounded-xl bg-white/[0.04] border border-white/10 p-4">
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">Odpowiedziane</div>
-                    <div class="text-2xl font-bold font-heading text-green-400" id="asyncStatAnswered">0</div>
-                </div>
-            </div>
-
-            <div id="asyncLoading" class="space-y-3">
-                <div class="skeleton h-28"></div>
-                <div class="skeleton h-28"></div>
-            </div>
-            <div id="asyncError" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 p-4 text-sm"></div>
-            <div id="asyncEmpty" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 text-center">
-                <i data-lucide="inbox" class="w-10 h-10 text-gray-600 mx-auto mb-3"></i>
-                <p class="text-gray-400">Brak tematów async.</p>
-            </div>
-            <div id="asyncCasesList" class="space-y-4"></div>
-        </section>
 
         <!-- Newsletter panel -->
         <section id="newsletterPanel" class="glass-card rounded-2xl p-5 sm:p-6">
@@ -353,6 +294,11 @@
                 <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="warsztaty">Warsztaty</button>
             </div>
 
+            <div class="relative mb-4">
+                <i data-lucide="search" class="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                <input id="newsletterSearch" oninput="onNewsletterSearch(this.value)" placeholder="Szukaj po mailu albo nazwie"
+                    class="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50">
+            </div>
             <div id="newsletterLoading" class="space-y-3">
                 <div class="skeleton h-20 w-full"></div>
                 <div class="skeleton h-20 w-full"></div>
@@ -364,6 +310,7 @@
                 <p class="text-sm text-gray-500 mt-1">Gdy ktoś zapisze się na AI Radar, pojawi się tutaj.</p>
             </div>
             <div id="newsletterList" class="space-y-3"></div>
+            <div id="newsletterPager" class="flex items-center justify-center gap-3 mt-5"></div>
         </section>
 
         <!-- LEADY AI ACT: kto, skad, co dostal, odpowiedzi -->
@@ -393,7 +340,14 @@
                     <div class="text-xs text-gray-500 mt-1">dziś</div>
                 </div>
             </div>
+            <div class="relative mb-4">
+                <i data-lucide="search" class="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                <input id="leadsSearch" oninput="onLeadsSearch(this.value)" placeholder="Szukaj po mailu, nazwie albo grupie"
+                    class="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50">
+            </div>
+            <div id="leadsGroupTabs" class="flex flex-wrap gap-2 mb-4"></div>
             <div id="leadsList" class="space-y-2"></div>
+            <div id="leadsPager" class="flex items-center justify-center gap-3 mt-5"></div>
         </section>
 
     </main>
@@ -520,10 +474,12 @@ auth.onAuthStateChanged(function(user) {
 });
 
 // ===== STATE =====
-let allAsyncCases = [];
 let allSubscribers = [];
 let currentNewsletterGroup = 'all';
 let allNewsletterIssues = [];
+const PER_PAGE = 20;
+let leadsPage = 1, leadsSearch = '', leadsGroup = 'all';
+let newsletterPage = 1, newsletterSearch = '';
 
 const fallbackNewsletterIssues = [
     {
@@ -566,245 +522,9 @@ const fallbackNewsletterIssues = [
 
 // ===== DASHBOARD INIT =====
 function initDashboard() {
-    listenToAsyncCases();
     setupNewsletterGroupTabs();
     listenToNewsletter();
     listenToNewsletterIssues();
-}
-
-// ===== ASYNC DESK =====
-function listenToAsyncCases() {
-    const loading = document.getElementById('asyncLoading');
-    const errorEl = document.getElementById('asyncError');
-
-    try {
-        loading.classList.remove('hidden');
-        errorEl.classList.add('hidden');
-
-        db.collection('zlecenia')
-            .onSnapshot(
-                (snapshot) => {
-                    allAsyncCases = [];
-                    snapshot.forEach(doc => {
-                        const data = { id: doc.id, ...doc.data() };
-                        if (data.case_type === 'async' || data.source === 'async-platform') {
-                            allAsyncCases.push(data);
-                        }
-                    });
-                    allAsyncCases.sort((a, b) => dateValue(b.created_at || b.createdAt) - dateValue(a.created_at || a.createdAt));
-                    loading.classList.add('hidden');
-                    errorEl.classList.add('hidden');
-                    updateAsyncStats();
-                    renderAsyncCases();
-                },
-                (error) => {
-                    console.error('Async Firestore error:', error);
-                    loading.classList.add('hidden');
-                    errorEl.classList.remove('hidden');
-                    errorEl.textContent = 'Błąd ładowania tematów async: ' + error.message;
-                }
-            );
-    } catch (error) {
-        console.error('Async list error:', error);
-        loading.classList.add('hidden');
-        errorEl.classList.remove('hidden');
-        errorEl.textContent = error.message || 'Błąd ładowania tematów async.';
-    }
-}
-
-function updateAsyncStats() {
-    document.getElementById('asyncStatAll').textContent = allAsyncCases.length;
-    document.getElementById('asyncStatNew').textContent = allAsyncCases.filter(item => (item.status || 'new') === 'new').length;
-    document.getElementById('asyncStatTriage').textContent = allAsyncCases.filter(item => ['triage', 'waiting'].includes(item.status)).length;
-    document.getElementById('asyncStatAnswered').textContent = allAsyncCases.filter(item => ['answered', 'closed'].includes(item.status)).length;
-}
-
-function renderAsyncCases() {
-    const list = document.getElementById('asyncCasesList');
-    const empty = document.getElementById('asyncEmpty');
-    const loading = document.getElementById('asyncLoading');
-
-    loading.classList.add('hidden');
-
-    if (allAsyncCases.length === 0) {
-        list.innerHTML = '';
-        empty.classList.remove('hidden');
-        lucide.createIcons();
-        return;
-    }
-
-    empty.classList.add('hidden');
-    list.innerHTML = allAsyncCases.map(renderAsyncCaseCard).join('');
-    lucide.createIcons();
-}
-
-function renderAsyncCaseCard(item) {
-    const status = getAsyncStatusBadge(item.status || 'new');
-    const priority = getAsyncPriorityBadge(item.priority || 'medium');
-    const date = formatDate(item.created_at || item.createdAt);
-    const category = getAsyncCategoryLabel(item.category || 'inne');
-    const publicUrl = item.public_url || '';
-    const responseText = item.response_text || '';
-    const responseUrl = item.response_url || '';
-    const notes = item.internal_notes || '';
-    const agentBrief = item.agent_brief || 'Brak briefu agenta.';
-
-    return `
-    <div class="rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:p-5">
-        <div class="flex flex-col xl:flex-row xl:items-start gap-5">
-            <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-2 mb-3">
-                    <span class="${status.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${status.label}</span>
-                    <span class="${priority.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${priority.label}</span>
-                    <span class="text-xs text-brand-light bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">${escHtml(category)}</span>
-                    <span class="text-xs text-gray-500">${escHtml(date)}</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-white">${escHtml(item.title || 'Temat async')}</h3>
-                <p class="text-sm text-gray-400 mt-1">${escHtml(item.name || 'Bez nazwy')} · ${escHtml(item.email || '')}${item.company ? ' · ' + escHtml(item.company) : ''}</p>
-                <p class="text-sm text-gray-300 mt-4 whitespace-pre-wrap">${escHtml(item.context || '')}</p>
-                ${renderAsyncLinks(item.links)}
-                <div class="rounded-xl border border-brand-primary/20 bg-brand-primary/10 p-4 mt-4">
-                    <div class="text-xs uppercase tracking-wider text-brand-light font-semibold mb-2">Brief dla agenta</div>
-                    <pre class="whitespace-pre-wrap text-xs leading-5 text-gray-300 font-mono">${escHtml(agentBrief)}</pre>
-                </div>
-            </div>
-            <div class="xl:w-[420px] grid gap-3">
-                <select id="asyncStatus-${escAttr(item.id)}"
-                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
-                    ${renderAsyncStatusOptions(item.status || 'new')}
-                </select>
-                <textarea id="asyncResponse-${escAttr(item.id)}"
-                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[132px] focus:outline-none focus:border-brand-primary/50"
-                    placeholder="Odpowiedź widoczna dla klienta">${escHtml(responseText)}</textarea>
-                <input id="asyncResponseUrl-${escAttr(item.id)}" value="${escAttr(responseUrl)}"
-                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50"
-                    placeholder="Link do Looma, dokumentu albo materiału">
-                <textarea id="asyncNotes-${escAttr(item.id)}"
-                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[82px] focus:outline-none focus:border-brand-primary/50"
-                    placeholder="Notatki wewnętrzne">${escHtml(notes)}</textarea>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="saveAsyncCase('${escJs(item.id)}')" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
-                        <i data-lucide="save" class="w-4 h-4"></i>
-                        Zapisz
-                    </button>
-                    <button onclick="copyText('${escJs(publicUrl)}', 'Skopiowano link klienta')" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
-                        <i data-lucide="copy" class="w-4 h-4"></i>
-                        Link
-                    </button>
-                    <a href="${escAttr(publicUrl)}" target="_blank" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
-                        <i data-lucide="external-link" class="w-4 h-4"></i>
-                        Widok
-                    </a>
-                    <a href="mailto:${escAttr(item.email || '')}?subject=${encodeURIComponent('Re: ' + (item.title || 'Konsultacja async'))}&body=${encodeURIComponent(publicUrl || '')}"
-                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        Mail
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>`;
-}
-
-function renderAsyncLinks(links) {
-    if (!Array.isArray(links) || !links.length) return '';
-    return `
-    <div class="flex flex-wrap gap-2 mt-4">
-        ${links.map((link, index) => `
-            <a href="${escAttr(link)}" target="_blank" rel="noopener"
-               class="text-xs text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">
-                materiał ${index + 1}
-            </a>
-        `).join('')}
-    </div>`;
-}
-
-function renderAsyncStatusOptions(active) {
-    const statuses = {
-        new: 'Nowe',
-        triage: 'W analizie',
-        waiting: 'Czeka na dane',
-        answered: 'Odpowiedziane',
-        closed: 'Zamknięte'
-    };
-    return Object.keys(statuses).map(key =>
-        `<option value="${key}" ${active === key ? 'selected' : ''}>${statuses[key]}</option>`
-    ).join('');
-}
-
-async function saveAsyncCase(id) {
-    try {
-        const user = auth.currentUser;
-        if (!user) throw new Error('Brak aktywnej sesji.');
-
-        const current = allAsyncCases.find(item => item.id === id) || {};
-        const status = document.getElementById(`asyncStatus-${id}`).value;
-        const responseText = document.getElementById(`asyncResponse-${id}`).value.trim();
-        const responseUrl = document.getElementById(`asyncResponseUrl-${id}`).value.trim();
-        const notes = document.getElementById(`asyncNotes-${id}`).value.trim();
-        const now = new Date().toISOString();
-
-        const update = {
-            status,
-            response_text: responseText,
-            response_url: responseUrl,
-            internal_notes: notes,
-            updated_at: now
-        };
-
-        if (status === 'answered' && !current.answered_at) update.answered_at = now;
-
-        await db.collection('zlecenia').doc(id).update(update);
-        showToast('Zapisano sprawę async', 'success');
-    } catch (error) {
-        console.error('Async save error:', error);
-        showToast(error.message || 'Błąd zapisu sprawy async', 'error');
-    }
-}
-
-function copyOpenAsyncLinks() {
-    const links = allAsyncCases
-        .filter(item => !['answered', 'closed'].includes(item.status || 'new'))
-        .map(item => item.public_url)
-        .filter(Boolean);
-    if (!links.length) {
-        showToast('Brak otwartych linków async', 'info');
-        return;
-    }
-    copyText(links.join('\n'), 'Skopiowano otwarte linki async');
-}
-
-function getAsyncStatusBadge(status) {
-    const map = {
-        new: { label: 'Nowe', classes: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
-        triage: { label: 'W analizie', classes: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
-        waiting: { label: 'Czeka na dane', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
-        answered: { label: 'Odpowiedziane', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
-        closed: { label: 'Zamknięte', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
-    };
-    return map[status] || map.new;
-}
-
-function getAsyncPriorityBadge(priority) {
-    const map = {
-        high: { label: 'Pilne', classes: 'bg-red-500/20 text-red-300 border-red-500/30' },
-        medium: { label: '24-48h', classes: 'bg-brand-primary/20 text-brand-light border-brand-primary/30' },
-        normal: { label: 'Normalne', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
-    };
-    return map[priority] || map.medium;
-}
-
-function getAsyncCategoryLabel(category) {
-    const labels = {
-        meta_ads: 'Meta Ads',
-        landing: 'Strona / landing',
-        ai_system: 'AI w firmie',
-        crm: 'CRM / mini-system',
-        content: 'Content / newsletter',
-        decision: 'Decyzja biznesowa',
-        inne: 'Inne'
-    };
-    return labels[category] || category || 'Inne';
 }
 
 function setupNewsletterGroupTabs() {
@@ -813,6 +533,7 @@ function setupNewsletterGroupTabs() {
             document.querySelectorAll('.newsletter-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             currentNewsletterGroup = tab.dataset.group;
+            newsletterPage = 1;
             renderNewsletter();
         });
     });
@@ -961,35 +682,69 @@ function leadAttribution(sub) {
     ].filter(([, value]) => value);
 }
 
-function renderLeads() {
-    const list = document.getElementById('leadsList');
-    if (!list) return;
-    const subs = (allSubscribers || []).slice().sort((a, b) =>
-        (Date.parse(b.created_at || '') || 0) - (Date.parse(a.created_at || '') || 0));
+// ===== PAGINACJA (wspolne) =====
+function pagerHtml(page, pages, fnName) {
+    if (pages <= 1) return '';
+    const prevDis = page <= 1 ? 'opacity-40 pointer-events-none' : '';
+    const nextDis = page >= pages ? 'opacity-40 pointer-events-none' : '';
+    return `
+        <button onclick="${fnName}(${page - 1})" class="btn-cosmic px-3 py-2 rounded-lg text-sm ${prevDis}">‹ Poprzednia</button>
+        <span class="text-sm text-gray-400">strona ${page} z ${pages}</span>
+        <button onclick="${fnName}(${page + 1})" class="btn-cosmic px-3 py-2 rounded-lg text-sm ${nextDis}">Następna ›</button>`;
+}
 
-    const today = new Date().toISOString().slice(0, 10);
-    document.getElementById('leadsStatAll').textContent = subs.length;
-    document.getElementById('leadsStatMeta').textContent = subs.filter(s => s.source === 'meta-lead-ad').length;
-    document.getElementById('leadsStatOrganic').textContent = subs.filter(s => s.source !== 'meta-lead-ad').length;
-    document.getElementById('leadsStatToday').textContent = subs.filter(s => (s.created_at || '').slice(0, 10) === today).length;
+// ===== LEADY: grupy, szukanie, strony =====
+function leadGroupKey(sub) {
+    const camp = (sub.utm && (sub.utm.campaign_name || sub.utm.campaign)) || '';
+    if (camp) return String(camp);
+    const pu = sub.page_url || '';
+    if (pu.indexOf('meta:') === 0) return pu.slice(5);
+    return sub.group || sub.source || 'inne';
+}
+function leadGroupLabel(key) {
+    const known = { 'ai-radar': 'AI Radar', 'starter-wdrozen-ai': 'Starter', 'system-ai-tygodnia': 'System AI tygodnia', 'meta-lead-ad': 'Reklama Meta' };
+    if (known[key]) return known[key];
+    const k = String(key).toLowerCase();
+    if (k.indexOf('ai-act') >= 0 || k.indexOf('ai act') >= 0 || k.indexOf('aiact') >= 0) return 'AI Act';
+    if (k.indexOf('starter') >= 0) return 'Starter';
+    return String(key).replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+function setLeadsGroup(key) { leadsGroup = key; leadsPage = 1; renderLeads(); }
+function setLeadsPage(n) { leadsPage = n; renderLeads(); const el = document.getElementById('leadsPanel'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function onLeadsSearch(v) { leadsSearch = v; leadsPage = 1; renderLeads(); }
 
-    list.innerHTML = subs.map(sub => {
-        const src = LEAD_SOURCES[sub.source] || { label: sub.source || 'inne', cls: 'bg-white/10 text-gray-300 border-white/20' };
-        const when = sub.created_at ? new Date(sub.created_at).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '?';
-        const statuses = [leadDeliveryStatus(sub), leadOwnerNotificationStatus(sub)];
-        const chips = statuses.map(item =>
-            `<span class="inline-flex items-center gap-1 text-xs ${item.cls}"><i data-lucide="${item.icon}" class="w-3 h-3"></i>${escHtml(item.label)}</span>`
-        ).join('');
-        const attribution = leadAttribution(sub).map(([label, value]) =>
-            `<span class="text-xs text-gray-500"><span class="text-gray-600">${label}:</span> ${escHtml(value)}</span>`
-        ).join('');
-        const testBadge = (sub.status || '') !== 'active' && (sub.status || '') !== ''
-            ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${sub.status}</span>` : '';
-        const gmail = `https://mail.google.com/mail/u/0/#search/${encodeURIComponent('from:' + (sub.email || ''))}`;
-        return `<div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+function buildLeadsGroupTabs(subs) {
+    const tabsEl = document.getElementById('leadsGroupTabs');
+    if (!tabsEl) return;
+    const counts = {};
+    subs.forEach(s => { const k = leadGroupKey(s); counts[k] = (counts[k] || 0) + 1; });
+    const keys = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const btn = (key, label, count, active) =>
+        `<button onclick="setLeadsGroup('${escJs(key)}')" class="px-3 py-1.5 rounded-full text-sm border transition ${active ? 'bg-brand-primary/20 text-brand-light border-brand-primary/40' : 'bg-white/5 text-gray-400 border-white/10 hover:text-white'}">${escHtml(label)} <span class="text-xs opacity-70">${count}</span></button>`;
+    let html = btn('all', 'Wszystkie', subs.length, leadsGroup === 'all');
+    html += keys.map(k => btn(k, leadGroupLabel(k), counts[k], leadsGroup === k)).join('');
+    tabsEl.innerHTML = html;
+}
+
+function renderLeadCard(sub) {
+    const src = LEAD_SOURCES[sub.source] || { label: sub.source || 'inne', cls: 'bg-white/10 text-gray-300 border-white/20' };
+    const groupLabel = leadGroupLabel(leadGroupKey(sub));
+    const when = sub.created_at ? new Date(sub.created_at).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '?';
+    const statuses = [leadDeliveryStatus(sub), leadOwnerNotificationStatus(sub)];
+    const chips = statuses.map(item =>
+        `<span class="inline-flex items-center gap-1 text-xs ${item.cls}"><i data-lucide="${item.icon}" class="w-3 h-3"></i>${escHtml(item.label)}</span>`
+    ).join('');
+    const attribution = leadAttribution(sub).map(([label, value]) =>
+        `<span class="text-xs text-gray-500"><span class="text-gray-600">${label}:</span> ${escHtml(value)}</span>`
+    ).join('');
+    const testBadge = (sub.status || '') !== 'active' && (sub.status || '') !== ''
+        ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${sub.status}</span>` : '';
+    const gmail = `https://mail.google.com/mail/u/0/#search/${encodeURIComponent('from:' + (sub.email || ''))}`;
+    return `<div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex flex-wrap items-center gap-x-4 gap-y-2">
             <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-2 flex-wrap">
                     <span class="font-mono text-sm text-gray-200 break-all">${sub.email || sub.id}</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full border bg-brand-primary/10 text-brand-light border-brand-primary/20">${escHtml(groupLabel)}</span>
                     <span class="text-xs px-2 py-0.5 rounded-full border ${src.cls}">${src.label}</span>
                     ${testBadge}
                     <span class="text-xs text-gray-500">${when}</span>
@@ -1003,7 +758,40 @@ function renderLeads() {
                 </a>
             </div>
         </div>`;
-    }).join('');
+}
+
+function renderLeads() {
+    const list = document.getElementById('leadsList');
+    if (!list) return;
+    const all = (allSubscribers || []).slice().sort((a, b) =>
+        (Date.parse(b.created_at || '') || 0) - (Date.parse(a.created_at || '') || 0));
+
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById('leadsStatAll').textContent = all.length;
+    document.getElementById('leadsStatMeta').textContent = all.filter(s => s.source === 'meta-lead-ad').length;
+    document.getElementById('leadsStatOrganic').textContent = all.filter(s => s.source !== 'meta-lead-ad').length;
+    document.getElementById('leadsStatToday').textContent = all.filter(s => (s.created_at || '').slice(0, 10) === today).length;
+
+    buildLeadsGroupTabs(all);
+
+    let subs = all;
+    if (leadsGroup !== 'all') subs = subs.filter(s => leadGroupKey(s) === leadsGroup);
+    const q = (leadsSearch || '').trim().toLowerCase();
+    if (q) subs = subs.filter(s =>
+        ((s.email || '') + ' ' + (s.name || '') + ' ' + leadGroupLabel(leadGroupKey(s))).toLowerCase().indexOf(q) >= 0);
+
+    const total = subs.length;
+    const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+    if (leadsPage > pages) leadsPage = pages;
+    if (leadsPage < 1) leadsPage = 1;
+    const startI = (leadsPage - 1) * PER_PAGE;
+    const pageSubs = subs.slice(startI, startI + PER_PAGE);
+
+    list.innerHTML = pageSubs.length
+        ? pageSubs.map(renderLeadCard).join('')
+        : '<div class="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-center text-sm text-gray-500">Brak wyników dla tego filtra.</div>';
+    const pager = document.getElementById('leadsPager');
+    if (pager) pager.innerHTML = pagerHtml(leadsPage, pages, 'setLeadsPage');
     if (window.lucide) lucide.createIcons();
 }
 
@@ -1024,16 +812,25 @@ function getFilteredSubscribers() {
     return filtered.filter(s => (s.status || 'active') !== 'archived');
 }
 
+function setNewsletterPage(n) { newsletterPage = n; renderNewsletter(); const el = document.getElementById('newsletterPanel'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function onNewsletterSearch(v) { newsletterSearch = v; newsletterPage = 1; renderNewsletter(); }
+
 function renderNewsletter() {
     const list = document.getElementById('newsletterList');
     const empty = document.getElementById('newsletterEmpty');
     const loading = document.getElementById('newsletterLoading');
-    const subscribers = getFilteredSubscribers();
+    const pagerEl = document.getElementById('newsletterPager');
+    let subscribers = getFilteredSubscribers();
+
+    const q = (newsletterSearch || '').trim().toLowerCase();
+    if (q) subscribers = subscribers.filter(s =>
+        ((s.email || '') + ' ' + (s.name || '')).toLowerCase().indexOf(q) >= 0);
 
     loading.classList.add('hidden');
 
     if (subscribers.length === 0) {
         list.innerHTML = '';
+        if (pagerEl) pagerEl.innerHTML = '';
         empty.classList.remove('hidden');
         updateNewsletterTabStyles();
         lucide.createIcons();
@@ -1041,7 +838,13 @@ function renderNewsletter() {
     }
 
     empty.classList.add('hidden');
-    list.innerHTML = subscribers.map(renderSubscriberCard).join('');
+    const total = subscribers.length;
+    const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+    if (newsletterPage > pages) newsletterPage = pages;
+    if (newsletterPage < 1) newsletterPage = 1;
+    const startI = (newsletterPage - 1) * PER_PAGE;
+    list.innerHTML = subscribers.slice(startI, startI + PER_PAGE).map(renderSubscriberCard).join('');
+    if (pagerEl) pagerEl.innerHTML = pagerHtml(newsletterPage, pages, 'setNewsletterPage');
     updateNewsletterTabStyles();
     lucide.createIcons();
 }
