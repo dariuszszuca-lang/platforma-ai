@@ -64,14 +64,14 @@ function audytUserHtml(name) {
   <div style="max-width:560px;margin:0 auto;padding:28px 22px">
     <p style="font-size:16px">${hello}</p>
     <p style="font-size:15px;line-height:1.6">dostałem Twoje zgłoszenie na <b>Audyt AI Act</b>. Odezwę się najpóźniej w ciągu 24 godzin, żeby umówić termin rozmowy i zadać kilka krótkich pytań o narzędzia AI w Twojej firmie.</p>
-    <p style="font-size:15px;line-height:1.6">Jak to dalej wygląda: ustalamy termin, przed rozmową odsyłasz mi odpowiedzi na 5 prostych pytań, rozmawiamy 60 do 90 minut, a po rozmowie dostajesz raport z konkretnym planem. Płatność (290 zł, cena promocyjna do 2 sierpnia) dopiero po ustaleniu terminu.</p>
+    <p style="font-size:15px;line-height:1.6">Jak to dalej wygląda: ustalamy termin, przed rozmową odsyłasz mi odpowiedzi na 5 prostych pytań, rozmawiamy 60 do 90 minut, a po rozmowie dostajesz raport z konkretnym planem. Płatność (290 zł) dopiero po ustaleniu terminu.</p>
     <p style="font-size:13px;color:#69788f;line-height:1.5;margin-top:26px">Audyt ma charakter edukacyjno-organizacyjny, nie stanowi porady prawnej. Dostałeś tego maila, bo zgłosiłeś się przez https://ai-team.pl/ai-act.</p>
     <p style="font-size:13px;color:#8a97ab">Dariusz Szuca &middot; ai-team.pl</p>
   </div></body></html>`;
 }
 function audytUserText(name) {
   const hello = name ? `Cześć ${name},` : "Cześć,";
-  return `${hello}\n\ndostałem Twoje zgłoszenie na Audyt AI Act. Odezwę się w ciągu 24 godzin, żeby umówić termin i zadać kilka pytań o narzędzia AI w Twojej firmie.\n\nDalej: termin, 5 krótkich pytań przed rozmową, rozmowa 60-90 minut, raport z planem. Płatność (290 zł promo do 2 sierpnia) po ustaleniu terminu.\n\nAudyt ma charakter edukacyjno-organizacyjny, nie stanowi porady prawnej.\nDariusz Szuca, ai-team.pl`;
+  return `${hello}\n\ndostałem Twoje zgłoszenie na Audyt AI Act. Odezwę się w ciągu 24 godzin, żeby umówić termin i zadać kilka pytań o narzędzia AI w Twojej firmie.\n\nDalej: termin, 5 krótkich pytań przed rozmową, rozmowa 60-90 minut, raport z planem. Płatność (290 zł) po ustaleniu terminu.\n\nAudyt ma charakter edukacyjno-organizacyjny, nie stanowi porady prawnej.\nDariusz Szuca, ai-team.pl`;
 }
 
 async function handleAudyt(body, res) {
