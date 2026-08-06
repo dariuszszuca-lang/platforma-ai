@@ -4,9 +4,9 @@
 // Reuzywa helpery SES z newsletter-send.js. Zero Claude, zero zapisu do bazy (lead = mail do wlasciciela).
 const crypto = require("node:crypto");
 const lib = require("./newsletter-send.js");
+const { buildAiActProductUrl } = require("./_ai-act-attribution.js");
 
 const CHECKLIST_URL = "https://ai-team.pl/ai-act/checklista-ai-act.pdf";
-const PRODUCT_URL = "https://ai-team.pl/ai-act#pakiet";
 const AI_RESET_URL = "https://ai-team.pl/ai-reset.html";
 const LEAD_MAGNET_EMAILS = {
   "starter-wdrozen-ai": {
@@ -123,20 +123,20 @@ function originAllowed(req) {
     || /\.vercel\.app$/.test(o) || o.startsWith("http://localhost");
 }
 
-function userHtml() {
+function userHtml(productUrl) {
   return `<!doctype html><html><body style="margin:0;background:#f4f7fc;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#1c2a44">
   <div style="max-width:560px;margin:0 auto;padding:28px 22px">
     <p style="font-size:16px">Cześć,</p>
     <p style="font-size:15px;line-height:1.6">dzięki, że sięgasz po temat AI Act. Oto Twoja darmowa <b>checklista zgodności</b> do wydruku. Przejdź ją krok po kroku, odhacz i masz podstawy w porządku.</p>
     <p style="margin:22px 0"><a href="${CHECKLIST_URL}" style="background:#2f6fed;color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:10px;display:inline-block">Pobierz checklistę (PDF)</a></p>
     <p style="font-size:15px;line-height:1.6">Jeśli chcesz mieć całość ogarniętą w jeden wieczór, w pełnym pakiecie za 67 zł jest jeszcze przewodnik (12 sekcji, prostym językiem), gotowy rejestr narzędzi AI i wzór polityki dla zespołu z oświadczeniem do podpisu.</p>
-    <p style="margin:18px 0"><a href="${PRODUCT_URL}" style="color:#2358c9;font-weight:700">Zobacz pełny pakiet →</a></p>
+    <p style="margin:18px 0"><a href="${productUrl}" style="color:#2358c9;font-weight:700">Zobacz pełny pakiet →</a></p>
     <p style="font-size:13px;color:#69788f;line-height:1.5;margin-top:26px">To materiał edukacyjno-organizacyjny, nie porada prawna. Dostałeś tego maila, bo poprosiłeś o checklistę na ai-team.pl/ai-act. Nie chcesz więcej wiadomości? Po prostu nie odpisuj, nie dopisuję Cię do żadnej listy.</p>
     <p style="font-size:13px;color:#8a97ab">Dariusz Szuca &middot; ai-team.pl</p>
   </div></body></html>`;
 }
-function userText() {
-  return `Cześć,\n\ndzięki za zainteresowanie tematem AI Act. Twoja darmowa checklista zgodności (PDF):\n${CHECKLIST_URL}\n\nChcesz całość w jeden wieczór? Pełny pakiet (67 zł) ma jeszcze przewodnik, rejestr narzędzi i wzór polityki:\n${PRODUCT_URL}\n\nMateriał edukacyjno-organizacyjny, nie porada prawna.\nDariusz Szuca, ai-team.pl`;
+function userText(productUrl) {
+  return `Cześć,\n\ndzięki za zainteresowanie tematem AI Act. Twoja darmowa checklista zgodności (PDF):\n${CHECKLIST_URL}\n\nChcesz całość w jeden wieczór? Pełny pakiet (67 zł) ma jeszcze przewodnik, rejestr narzędzi i wzór polityki:\n${productUrl}\n\nMateriał edukacyjno-organizacyjny, nie porada prawna.\nDariusz Szuca, ai-team.pl`;
 }
 
 const AI_RESET_EMAILS = {
@@ -364,12 +364,18 @@ module.exports = async function handler(req, res) {
     if (!email) return lib.sendJson(res, 400, { ok: false, error: "Podaj poprawny adres email." });
     if (!consent) return lib.sendJson(res, 400, { ok: false, error: "Zaznacz zgodę, żeby dostać checklistę." });
 
+    const attribution = body.attribution && typeof body.attribution === "object" ? body.attribution : {};
+    const productUrl = buildAiActProductUrl({
+      email,
+      attribution,
+      secret: process.env.ATTRIBUTION_HMAC_SECRET,
+    });
     const aws = lib.getAwsConfig();
     // 1. checklista do zapisujacego sie
     await lib.sendSesEmail({
       from: process.env.SES_FROM, replyTo: process.env.SES_REPLY_TO || "",
       to: email, subject: "Twoja darmowa checklista AI Act",
-      html: userHtml(), text: userText(), tags: { product: "ai_act_fragment", lead: "1" },
+      html: userHtml(productUrl), text: userText(productUrl), tags: { product: "ai_act_fragment", lead: "1" },
     }, aws);
     // 2. notyfikacja leada do wlasciciela (pomijana, gdy checkliste dostarcza automat leadow Meta,
     //    bo o tym leadzie wlasciciel dostal juz osobne powiadomienie z eksportu)
