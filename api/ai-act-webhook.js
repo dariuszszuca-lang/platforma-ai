@@ -5,10 +5,14 @@
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { sendSesEmail, getAwsConfig } = require("./newsletter-send.js");
+const {
+  buildPurchaseEvent,
+  isAiActPurchase,
+  sendCapiPurchase,
+  shouldProcessStripeEvent,
+} = require("./_ai-act-purchase.js");
 
 const PAKIET_URL = "https://ai-team.pl/ai-act/dziekujemy";
-const AI_ACT_AMOUNT = 6700; // 67 zł, unikalna cena AI Act
-const AI_ACT_PAYMENT_LINK = "plink_1TqfWqC5TxNbsygYDmHCsjJ8";
 
 module.exports.config = { api: { bodyParser: false } };
 
@@ -42,7 +46,9 @@ module.exports = async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  if (event.type !== "checkout.session.completed") {
+  const supportedEvent = event.type === "checkout.session.completed"
+    || event.type === "checkout.session.async_payment_succeeded";
+  if (!supportedEvent) {
     return res.status(200).json({ ignored: event.type });
   }
 
@@ -50,11 +56,8 @@ module.exports = async function handler(req, res) {
   if (session.payment_status !== "paid") {
     return res.status(200).json({ ignored: "not paid" });
   }
-  // tylko AI Act: po cenie (67 zł) lub po payment linku
-  const isAiAct =
-    (session.amount_total === AI_ACT_AMOUNT && session.currency === "pln") ||
-    session.payment_link === AI_ACT_PAYMENT_LINK;
-  if (!isAiAct) {
+  // Konto Stripe ma kilka produktów. Sama kwota nigdy nie identyfikuje produktu.
+  if (!isAiActPurchase(session) || !shouldProcessStripeEvent(event)) {
     return res.status(200).json({ ignored: "other product" });
   }
 
@@ -62,6 +65,27 @@ module.exports = async function handler(req, res) {
   if (!email) {
     console.error("[ai-act-webhook] brak e-maila w sesji", session.id);
     return res.status(200).json({ ignored: "no email" });
+  }
+
+  try {
+    const capiResult = await sendCapiPurchase(buildPurchaseEvent({
+      session,
+      email,
+      eventTime: event.created,
+    }));
+    if (capiResult.skipped) {
+      console.warn("[ai-act-webhook] CAPI pominięte: brak konfiguracji");
+    } else {
+      console.log(
+        "[ai-act-webhook] CAPI Purchase",
+        capiResult.eventsReceived,
+        capiResult.traceId || "bez-trace-id",
+      );
+    }
+  } catch (error) {
+    console.error("[ai-act-webhook] błąd CAPI:", error.message);
+    // 500 -> Stripe ponowi webhook; event_id pozostanie ten sam i Meta zdeduplikuje zdarzenie.
+    return res.status(500).json({ error: "capi failed" });
   }
 
   const html = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;">
