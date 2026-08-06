@@ -67,7 +67,7 @@ async function sendDueIssues({ token }) {
       token,
       dryRun: false,
       resend: false,
-      limit: parseLimit(process.env.NEWSLETTER_BATCH_LIMIT || 25),
+      limit: parseLimit(process.env.NEWSLETTER_BATCH_LIMIT || 1000),
     }));
   }
 
@@ -93,7 +93,7 @@ async function sendIssueById(issueId, options) {
 async function sendIssue(issue, options) {
   const dryRun = Boolean(options.dryRun);
   const testTo = cleanEmail(options.testTo || "");
-  const limit = Number(options.limit || process.env.NEWSLETTER_BATCH_LIMIT || 25);
+  const limit = Number(options.limit || process.env.NEWSLETTER_BATCH_LIMIT || 1000);
   const issueId = issue.id;
   const subject = issue.subject || issue.name || issue.title || "AI Radar";
 
@@ -135,6 +135,8 @@ async function sendIssue(issue, options) {
   }
 
   const aws = getAwsConfig();
+  const runStart = Date.now();
+  const timeBudgetMs = Number(process.env.NEWSLETTER_TIME_BUDGET_MS || 45000);
   const results = [];
   let sent = 0;
   let failed = 0;
@@ -147,6 +149,7 @@ async function sendIssue(issue, options) {
   }
 
   for (const subscriber of candidates) {
+    if (!testTo && Date.now() - runStart > timeBudgetMs) break;
     const rendered = renderIssueForSubscriber(issue, subscriber, { testTo });
     const sendDocId = buildSendDocId(issueId, subscriber.id);
     const startedAt = new Date().toISOString();
@@ -189,7 +192,7 @@ async function sendIssue(issue, options) {
       if (!testTo) await setDoc(`newsletter_sends/${sendDocId}`, item, options.token);
     }
 
-    const delayMs = Number(process.env.NEWSLETTER_SEND_DELAY_MS || 250);
+    const delayMs = Number(process.env.NEWSLETTER_SEND_DELAY_MS || 120);
     if (delayMs > 0 && candidates.length > 1) await sleep(delayMs);
   }
 
