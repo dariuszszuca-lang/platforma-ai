@@ -25,8 +25,9 @@ module.exports = async function handler(req, res) {
         return handleTracking(req, res, q);
       }
       const token = await requireCronToken(req);
+      const welcome = await processWelcomeSequence({ token }).catch((e) => ({ ok: false, error: e.message }));
       const result = await sendDueIssues({ token });
-      return sendJson(res, 200, result);
+      return sendJson(res, 200, { welcome, ...result });
     }
 
     if (req.method !== "POST") {
@@ -35,6 +36,9 @@ module.exports = async function handler(req, res) {
 
     const body = parseBody(req);
     const token = await requirePanelOrServerToken(req);
+    if (body.welcomeTest) {
+      return sendJson(res, 200, await sendWelcomeTest(String(body.welcomeTest), Number(body.welcomeStep || 1)));
+    }
     const issueId = String(body.issueId || body.id || "").trim();
     if (!issueId) return sendJson(res, 400, { ok: false, error: "Brak issueId." });
 
@@ -82,6 +86,84 @@ async function sendDueIssues({ token }) {
     processed: results.length,
     results,
   };
+}
+
+// ===== SEKWENCJA POWITALNA (welcome) =====
+// Cron dzienny: każdy NOWY lead (created_at >= WELCOME_START) dostaje 4 maile,
+// jeden na wieczór, od dnia zapisu (dzień 0..3). Stan trzymany na subskrybencie: welcome_step.
+function loadWelcomeEmails() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(__dirname, "_welcome-emails.json"), "utf8"));
+  } catch (error) {
+    return null;
+  }
+}
+
+async function processWelcomeSequence({ token }) {
+  const emails = loadWelcomeEmails();
+  if (!Array.isArray(emails) || !emails.length) return { ok: false, error: "brak sekwencji powitalnej" };
+  const startMs = Date.parse((process.env.WELCOME_START || "2026-08-07") + "T00:00:00Z") || 0;
+  const all = await listCollection("newsletter_subscribers", token);
+  const aws = getAwsConfig();
+  const now = Date.now(), DAY = 86400000, runStart = now;
+  const budgetMs = Number(process.env.WELCOME_TIME_BUDGET_MS || 20000);
+  const maxRun = Number(process.env.WELCOME_MAX_PER_RUN || 300);
+  let checked = 0, sent = 0, failed = 0;
+  for (const sub of all) {
+    if (Date.now() - runStart > budgetMs || sent >= maxRun) break;
+    const email = cleanEmail(sub.email);
+    if (!email) continue;
+    if ((sub.status || "active") !== "active") continue;
+    if (sub.consent?.newsletter !== true) continue;
+    const grp = sub.group || "";
+    if (!(grp === "ai-radar" || (sub.groups || []).includes("ai-radar"))) continue;
+    const createdRaw = sub.created_at || sub.createdAt || sub.timestamp || sub.created || "";
+    const createdMs = typeof createdRaw === "number" ? createdRaw : (Date.parse(createdRaw) || 0);
+    if (!createdMs || createdMs < startMs) continue; // tylko nowi leadzi od startu automatu
+    const step = Number(sub.welcome_step || 0);
+    if (step >= emails.length) continue; // sekwencja skończona
+    checked++;
+    const daysSince = Math.floor((now - createdMs) / DAY);
+    if (step >= Math.min(emails.length, daysSince + 1)) continue; // jeszcze nie czas na kolejny
+    const em = emails[step];
+    const subId = sub.id || docIdFromEmail(email);
+    const issueId = `welcome-${em.step || step + 1}`;
+    const data = { email, email_encoded: encodeURIComponent(email), name: sub.name || "", first_name: firstName(sub.name), firstName: firstName(sub.name), subscriber_id: subId };
+    const rendered = {
+      to: email, from: process.env.SES_FROM || "", replyTo: process.env.SES_REPLY_TO || "",
+      configurationSetName: process.env.SES_CONFIGURATION_SET || "", contactListName: process.env.SES_CONTACT_LIST || "", topicName: process.env.SES_TOPIC || "",
+      subject: renderTemplate(em.subject, data), text: renderTemplate(em.text, data),
+      html: injectTracking(renderTemplate(em.html, data), issueId, subId),
+      tags: { newsletter: "ai_radar_welcome", issue: issueId, subscriber: subId, test: "false" },
+    };
+    try {
+      const r = await sendSesEmail(rendered, aws);
+      await setDoc(`newsletter_subscribers/${subId}`, { welcome_step: step + 1, welcome_last_at: new Date().toISOString() }, token, ["welcome_step", "welcome_last_at"]);
+      const sid = buildSendDocId(issueId, subId);
+      await setDoc(`newsletter_sends/${sid}`, { id: sid, issue_id: issueId, subscriber_id: subId, email, status: "sent", subject: rendered.subject, ses_message_id: r.MessageId || "", sent_at: new Date().toISOString() }, token);
+      sent++;
+    } catch (error) { failed++; console.error("welcome send fail:", email, safeError(error)); }
+    await sleep(120);
+  }
+  return { ok: true, checked, sent, failed };
+}
+
+async function sendWelcomeTest(email, step) {
+  const emails = loadWelcomeEmails();
+  if (!Array.isArray(emails) || !emails.length) throw publicError(500, "brak sekwencji powitalnej");
+  const em = emails[Math.max(0, Math.min(emails.length - 1, (step || 1) - 1))];
+  const to = cleanEmail(email);
+  if (!to) throw publicError(400, "brak adresu testowego");
+  const aws = getAwsConfig();
+  const data = { email: to, email_encoded: encodeURIComponent(to), name: "", first_name: "", firstName: "", subscriber_id: "test" };
+  const rendered = {
+    to, from: process.env.SES_FROM || "", replyTo: process.env.SES_REPLY_TO || "",
+    configurationSetName: process.env.SES_CONFIGURATION_SET || "",
+    subject: "[TEST] " + renderTemplate(em.subject, data), text: renderTemplate(em.text, data), html: renderTemplate(em.html, data),
+    tags: { newsletter: "ai_radar_welcome_test", issue: `welcome-${em.step}`, test: "true" },
+  };
+  const r = await sendSesEmail(rendered, aws);
+  return { ok: true, mode: "welcome-test", step: em.step, to, messageId: r.MessageId || "" };
 }
 
 async function sendIssueById(issueId, options) {
