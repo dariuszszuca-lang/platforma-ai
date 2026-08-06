@@ -63,7 +63,7 @@
         "longitude": "18.5601"
       },
       "areaServed": ["Gdańsk", "Sopot", "Trójmiasto", "Pomorskie", "Polska"],
-      "priceRange": "47-25000 PLN",
+      "priceRange": "600-12000 PLN",
       "founder": {
         "@type": "Person",
         "name": "Dariusz Szuca",
@@ -76,18 +76,18 @@
         "itemListElement": [
           {
             "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "System OS / dedykowana aplikacja", "description": "Custom system operacyjny pod proces firmy. Panel, baza, logika biznesowa, automatyzacje." },
-            "price": "3000", "priceCurrency": "PLN"
+            "itemOffered": { "@type": "Service", "name": "System OS / dedykowana aplikacja biznesowa", "description": "Custom system operacyjny pod proces firmy: portal, baza, dokumenty, role, automatyzacje. Czas 2-3 miesiące." },
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "3000", "maxPrice": "12000", "priceCurrency": "PLN" }
           },
           {
             "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "Mini-System / CRM", "description": "CRM dopasowany do procesu małej firmy. Kod i dane do ustalenia." },
+            "itemOffered": { "@type": "Service", "name": "Mini-System z Bazą / CRM", "description": "CRM dopasowany do procesu małej firmy, bez abonamentu za kod. Promocja 3 900 zł jednorazowo, docelowo od 5 900 zł." },
             "price": "3900", "priceCurrency": "PLN"
           },
           {
             "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "Strona z AI", "description": "Wizytówka, strona firmowa, sklep albo landing budowane z AI." },
-            "price": "1500", "priceCurrency": "PLN"
+            "itemOffered": { "@type": "Service", "name": "Strona z AI + abonament", "description": "Strona budowana z AI plus abonament 490 zł/mies all-in (SEO, GEO, chatbot AI, hosting, opieka). Budowa 1 200-1 900 zł zależnie od wariantu." },
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1200", "maxPrice": "1900", "priceCurrency": "PLN" }
           },
           {
             "@type": "Offer",
@@ -101,18 +101,49 @@
           },
           {
             "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Opieka Techniczna", "description": "Monitoring 24/7, aktualizacje bezpieczeństwa, kontrola SSL, domeny i backupu, kwartalny test. Za 12 miesięcy." },
+            "price": "1500", "priceCurrency": "PLN"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Opieka Widoczność", "description": "Opieka Techniczna plus aktywne SEO i GEO, miesięczna optymalizacja i raport. Bez gwarancji pozycji." },
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "490", "priceCurrency": "PLN", "unitText": "MONTH" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Zewnętrzny Dział AI", "description": "Stała opieka wyższego poziomu, abonament za zakres. Od 2 500 zł/mies, wycena indywidualna, minimum 3 miesiące." },
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "2500", "priceCurrency": "PLN", "unitText": "MONTH" }
+          },
+          {
+            "@type": "Offer",
             "itemOffered": { "@type": "Service", "name": "Tracker Czasu Freelancera", "description": "Darmowy 7-dniowy panel do audytu strat czasu, raportu i zapisu do AI Radar." },
-            "price": "47", "priceCurrency": "PLN"
+            "price": "0", "priceCurrency": "PLN"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Decoder Stack AI", "description": "Cyfrowy produkt samoobsługowy, lifetime." },
+            "price": "97", "priceCurrency": "PLN"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "System Asystenta AI", "description": "Cyfrowy produkt samoobsługowy, lifetime." },
+            "price": "297", "priceCurrency": "PLN"
           },
           {
             "@type": "Offer",
             "itemOffered": { "@type": "Service", "name": "Akademia AI: Nieruchomości. Część I", "description": "2 dni warsztatów + 12h praktyki + dostęp do platformy 13 narzędzi AI." },
             "price": "750", "priceCurrency": "PLN"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Akademia AI: Nieruchomości. Część I + II", "description": "Pełny pakiet szkoleniowy Akademii AI dla nieruchomości." },
+            "price": "1399", "priceCurrency": "PLN"
           }
         ]
       },
       "sameAs": [
         "https://wa.me/48730600383",
+        "https://linkedin.com/in/dariusz-szuca",
         "https://akademia-ai-nieruchomosci.pl"
       ]
     }
