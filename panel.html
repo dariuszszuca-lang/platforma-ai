@@ -940,14 +940,21 @@ function renderNewsletterIssueCard(issue) {
 function renderIssueStats(issue) {
     const sent = Number(issue.sent_count || 0);
     const eligible = Number(issue.eligible_count || 0);
+    const opened = Number(issue.opened_count || 0);
+    const clicked = Number(issue.clicked_count || 0);
+    const hasTracking = issue.opened_count !== undefined || issue.clicked_count !== undefined;
     const lastSend = issue.last_send_at ? formatDate(issue.last_send_at) : '';
     if (!sent && !eligible) return '';
     const pct = eligible ? Math.min(100, Math.round(sent / eligible * 100)) : 0;
     const remaining = Math.max(0, eligible - sent);
+    const openRate = sent ? Math.round(opened / sent * 100) : 0;
+    const clickRate = sent ? Math.round(clicked / sent * 100) : 0;
     return `
         <div class="rounded-lg border border-white/10 bg-white/5 p-3">
             <div class="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm">
                 <div><span class="text-gray-400">Wysłane</span> <span class="font-semibold text-white">${sent}${eligible ? ' / ' + eligible : ''}</span></div>
+                ${hasTracking ? `<div><span class="text-gray-400">Otwarcia</span> <span class="font-semibold text-white">${opened}</span> <span class="text-gray-500 text-xs">(${openRate}%)</span></div>` : ''}
+                ${hasTracking ? `<div><span class="text-gray-400">Kliki</span> <span class="font-semibold text-white">${clicked}</span> <span class="text-gray-500 text-xs">(${clickRate}%)</span></div>` : ''}
                 ${remaining > 0
                     ? `<div class="text-yellow-300">Zostało: <span class="font-semibold">${remaining}</span> — kliknij „Wyślij teraz"</div>`
                     : (sent ? `<div class="text-green-400">✓ cała baza</div>` : '')}

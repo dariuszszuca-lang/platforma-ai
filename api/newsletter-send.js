@@ -20,6 +20,10 @@ module.exports = async function handler(req, res) {
 
   try {
     if (req.method === "GET") {
+      const q = req.query || {};
+      if (q.e === "open" || q.e === "click") {
+        return handleTracking(req, res, q);
+      }
       const token = await requireCronToken(req);
       const result = await sendDueIssues({ token });
       return sendJson(res, 200, result);
@@ -366,7 +370,9 @@ function renderIssueForSubscriber(issue, subscriber, options = {}) {
     topicName: issue.topicName || process.env.SES_TOPIC || "",
     subject: `${options.testTo ? "[TEST] " : ""}${renderTemplate(issue.subject || issue.name || issue.title, data)}`,
     text: renderTemplate(issue.text || "", data),
-    html: renderTemplate(issue.html || "", data),
+    html: options.testTo
+      ? renderTemplate(issue.html || "", data)
+      : injectTracking(renderTemplate(issue.html || "", data), issue.id, subscriber.id),
     tags: {
       newsletter: "ai_radar",
       issue: issue.id,
@@ -374,6 +380,89 @@ function renderIssueForSubscriber(issue, subscriber, options = {}) {
       test: options.testTo ? "true" : "false",
     },
   };
+}
+
+const TRACK_BASE = () => (process.env.PUBLIC_BASE_URL || "https://ai-team.pl") + "/api/newsletter-send";
+
+function injectTracking(html, issueId, subscriberId) {
+  if (!html) return html;
+  const base = TRACK_BASE();
+  const i = encodeURIComponent(String(issueId || ""));
+  const s = encodeURIComponent(String(subscriberId || ""));
+  let out = String(html).replace(/href=(["'])(https?:\/\/[^"']+)\1/gi, (m, quote, url) => {
+    if (url.indexOf("/api/newsletter-send?e=") !== -1) return m; // już otagowane / pixel
+    return `href=${quote}${base}?e=click&i=${i}&s=${s}&u=${encodeURIComponent(url)}${quote}`;
+  });
+  const pixel = `<img src="${base}?e=open&i=${i}&s=${s}" width="1" height="1" alt="" style="display:none;max-height:1px;max-width:1px" />`;
+  out = /<\/body>/i.test(out) ? out.replace(/<\/body>/i, pixel + "</body>") : out + pixel;
+  return out;
+}
+
+function safeRedirectUrl(u) {
+  try {
+    const url = new URL(decodeURIComponent(String(u || "")));
+    if (url.protocol === "http:" || url.protocol === "https:") return url.toString();
+  } catch (error) { /* ignore */ }
+  return process.env.PUBLIC_BASE_URL || "https://ai-team.pl";
+}
+
+async function handleTracking(req, res, q) {
+  const type = q.e === "click" ? "click" : "open";
+  const issueId = String(q.i || "");
+  const subId = String(q.s || "");
+  try {
+    if (issueId && subId) {
+      const token = await getServerFirestoreToken();
+      await recordEngagement(issueId, subId, type, token);
+    }
+  } catch (error) {
+    console.error("newsletter-track error:", safeError(error));
+  }
+  if (type === "click") {
+    res.statusCode = 302;
+    res.setHeader("Location", safeRedirectUrl(q.u));
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    return res.end();
+  }
+  const gif = Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64");
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "image/gif");
+  res.setHeader("Content-Length", String(gif.length));
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+  res.setHeader("Pragma", "no-cache");
+  return res.end(gif);
+}
+
+// Zapis zaangażowania z dedupem: liczymy UNIKALNE otwarcia/kliki (na dokument wysyłki).
+async function recordEngagement(issueId, subId, type, token) {
+  const docId = buildSendDocId(issueId, subId);
+  const send = await getDoc(`newsletter_sends/${docId}`, token);
+  if (!send) return; // brak dokumentu (np. wysyłka testowa) — nie liczymy
+  const current = String(send.status || "");
+  const now = new Date().toISOString();
+  let newOpen = false, newClick = false;
+  const patch = {};
+  if (type === "click") {
+    if (current === "clicked") return; // klik już policzony
+    newClick = true;
+    if (current === "sent" || current === "delivered") newOpen = true; // klik implikuje otwarcie
+    patch.status = "clicked";
+    patch.clicked_at = now;
+    patch.opened_at = send.opened_at || now;
+  } else {
+    if (current !== "sent" && current !== "delivered") return; // już opened/clicked/failed
+    newOpen = true;
+    patch.status = "opened";
+    patch.opened_at = now;
+  }
+  await setDoc(`newsletter_sends/${docId}`, patch, token, Object.keys(patch));
+  if (newOpen || newClick) {
+    const issue = await getDoc(`newsletter_issues/${issueId}`, token);
+    const bump = { updated_at: now };
+    if (newOpen) bump.opened_count = Number((issue && issue.opened_count) || 0) + 1;
+    if (newClick) bump.clicked_count = Number((issue && issue.clicked_count) || 0) + 1;
+    await setDoc(`newsletter_issues/${issueId}`, bump, token, Object.keys(bump));
+  }
 }
 
 function renderTemplate(template, data) {
