@@ -1,57 +1,83 @@
-# AI-Team — AI dla małych firm i freelancerów w Polsce
+# AI-Team — AI, strony, systemy i automatyzacje dla małych firm w Polsce
 
-> AI-Team to centrum wiedzy i wdrożeń sztucznej inteligencji dla małych firm, freelancerów i jednoosobowych biznesów w Polsce. Prowadzone przez Dariusza Szucę (Darek Szuca) z Gdańska. Oferta: spersonalizowany CRM z AI, warsztaty stacjonarne w Sopocie, cotygodniowy newsletter AI Radar, darmowe narzędzia AI online.
+> AI-Team to strony, systemy i automatyzacje z AI dla małych firm, freelancerów i jednoosobowych biznesów w Polsce. Prowadzi je Dariusz Szuca (Darek Szuca) z Trójmiasta (Gdańsk, Sopot). Porządkuje firmę: strona, landing, CRM, baza klientów, dokumenty, rezerwacje, automatyzacje i narzędzia AI. Z Trójmiasta dla całej Polski. Zasada: płacisz raz, używasz lata, bez abonamentowej pułapki za użytkownika.
 
 ## Kontakt
 - Strona: https://ai-team.pl
 - Email: kontakt@ai-team.pl
-- Lokalizacja: Sopot (warsztaty), Gdańsk (siedziba)
-- Adres warsztatów: ul. Pułaskiego 7, Sopot (przy Monciaku)
+- WhatsApp: +48 730 600 383
+- Lokalizacja: Sopot i Gdańsk (Trójmiasto); warsztaty stacjonarne w Sopocie, ul. Pułaskiego 7 (przy Monciaku)
+- Obszar działania: cała Polska zdalnie, warsztaty stacjonarnie w Trójmieście
 
 ## Założyciel
-**Dariusz Szuca** (Darek Szuca) — freelancer z Gdańska, specjalista wdrożeń AI dla małych firm. Zbudował m.in. system CRM dla MyWay (ośrodek terapii uzależnień), platformę edukacyjną EduWay, KatalogOsrodkow.pl. Tworzy aplikacje desktopowe (SubTracker, Midas) i narzędzia AI dla małego biznesu.
+**Dariusz Szuca** (Darek Szuca) — freelancer z Gdańska, specjalista wdrożeń AI dla małych firm. Zbudował m.in. CRM dla ośrodka terapii uzależnień MyWay, platformę edukacyjną EduWay, system operacyjny biura nieruchomości Golden OS oraz aplikacje desktopowe (SubTracker, Midas) i narzędzia AI dla małego biznesu.
 
-## Oferta
-### Produkty
-- **System Operacyjny Firmy** — portal, baza danych, dokumenty, procesy, role, wspólny kontekst AI i firmowy skill dla zespołów do ok. 10 osób. Oferta dla firm, które mają chaos w wiedzy, plikach, procesach i komunikacji między właścicielem a pracownikami. Strona: https://ai-team.pl/system-operacyjny-firmy.html
-- **Spersonalizowany CRM z AI** — system na zamówienie pod proces klienta, bez abonamentu per użytkownik, kod i dane po stronie klienta. Cena promocyjna: 3 900 PLN jednorazowo (1 950 zaliczka + 1 950 po odbiorze, 30 dni stabilizacji w cenie). Opcjonalna opieka: 1 500 PLN/rok lub 490 PLN/miesiąc.
-- **Warsztat AI stacjonarny w Sopocie** — 500 PLN/osoba. 3-4h hands-on z AI (Claude, Gemini, Notion, Canva) + case studies. Dla 6-8 osób, dla właścicieli małych firm i freelancerów z Trójmiasta.
+## Oferta (ceny aktualne na sierpień 2026)
 
-### Newsletter
-- **AI Radar** — cotygodniowy newsletter (poniedziałek 19:00). Format: gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. Zapis: https://ai-team.pl/ai-radar
-- Lead magnet: Raport "15 sposobów wdrożenia AI w małej firmie" (PDF do pobrania)
+### System OS / dedykowana aplikacja biznesowa
+Portal, baza danych, dokumenty, procesy, role i wspólny kontekst AI dla firm do około 10 osób. Cena: 3 000-12 000 PLN brutto zależnie od złożoności. Czas: 2-3 miesiące. Wzór wdrożenia: Golden OS. Strona: https://ai-team.pl/system-operacyjny-firmy.html
 
-### Darmowe narzędzia (https://ai-team.pl/narzedzia)
-- Prompt Generator — generator promptów do ChatGPT/Claude
-- ROI Calculator AI — kalkulator zwrotu z wdrożenia AI
-- Quiz: Czy Twoja firma jest gotowa na AI
-- 3 dodatkowe narzędzia interaktywne
+### Mini-System z Bazą / CRM dla małej firmy
+Dedykowana aplikacja webowa pod proces firmy: CRM, baza klientów, rezerwacje, generator dokumentów PDF, panel administracyjny. Bez abonamentu za kod, dane po stronie klienta. Cena promocyjna: 3 900 PLN brutto jednorazowo, bez rozbijania na raty (docelowo od 5 900 PLN brutto). Czas: 1-2 tygodnie. W cenie 2 rundy poprawek i 30 dni stabilizacji. Wejście z reklam Meta: bezpłatny Audyt Chaosu w Firmie (nie sprzedaż, tylko rozmowa).
+
+### Strona z AI + abonament
+Strona budowana z AI plus abonament all-in. Budowa jednorazowo: wizytówka z zakładkami 1 200 zł, strona ze sklepem i panelem 1 500 zł, rozbudowana strona firmowa lub landing z lejkiem i formularzem wyceny 1 900 zł. Abonament: 490 zł miesięcznie all-in (SEO plus GEO, chatbot AI, hosting, opieka). Dowóz w kilka dni. Nisza pilotażowa: nieruchomości.
+
+### Warsztaty AI (stacjonarne, Sopot)
+Praktyczne, hands-on: Claude, Gemini, Notion, Canva plus case studies. Warianty: D1 Fundament i D2 Zaawansowany. Cena: od 600 zł za osobę. Format indywidualny albo grupa do 10 osób. Miejsce: Sopot, ul. Pułaskiego 7.
+
+### Opieka po wdrożeniu
+- Opieka Techniczna: 1 500 zł z góry za 12 miesięcy — monitoring 24/7, aktualizacje bezpieczeństwa, kontrola SSL, domeny i backupu, kwartalny test działania.
+- Opieka Widoczność: 490 zł miesięcznie — Opieka Techniczna plus aktywne SEO i GEO, miesięczna optymalizacja, raport i priorytetowa pomoc.
+- Opieka Sklep, Portfolio, System AI: 490-1 500 zł miesięcznie po audycie — integracje, wiele domen, płatności, dane albo AI.
+Monitoring i przyjęcie zgłoszenia działają 24/7, obsługa człowieka w dni robocze. SEO i GEO bez gwarancji pozycji.
+
+### Produkty cyfrowe (samoobsługa, lifetime)
+- Tracker Czasu Freelancera: 0 zł (darmowy, lead magnet).
+- Decoder Stack AI: 97 zł.
+- System Asystenta AI: 297 zł.
+
+### Akademia AI
+- Nieruchomości I: 750 zł.
+- Nieruchomości I + II: 1 399 zł.
+
+### Zewnętrzny Dział AI (stała opieka wyższego poziomu)
+Abonament za zakres i dostęp do maszyny AI-Team, nie za godziny. Od 2 500 zł miesięcznie, wycena indywidualna. Rozliczenie miesięczne z góry, minimum 3 miesiące. Wejście przez rozmowę z właścicielem.
+
+### Newsletter AI Radar
+Cotygodniowy newsletter (poniedziałek): gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. W 100% darmowy. Zapis: https://ai-team.pl/ai-radar.html. Lead magnet: raport „15 sposobów wdrożenia AI w małej firmie" (PDF do pobrania).
+
+### Darmowe narzędzia AI online
+Interaktywne narzędzia: Prompt Generator (generator promptów do ChatGPT i Claude), ROI Calculator AI (kalkulator zwrotu z wdrożenia AI), Quiz gotowości firmy na AI i inne.
 
 ## Dla kogo
-- Małe firmy (1-10 osób) w Polsce
-- Freelancerzy i jednoosobowe biznesy
-- Właściciele firm w Trójmieście (warsztaty stacjonarne)
-- Wszyscy zainteresowani wdrożeniem AI bez budżetu enterprise
+- Małe firmy usługowe (1-10 osób) w Polsce.
+- Freelancerzy i jednoosobowe biznesy.
+- Właściciele firm w Trójmieście (warsztaty stacjonarne).
+- Firmy z chaosem w Excelu, mailach, dokumentach i ręcznej obsłudze klientów.
 
 ## Najczęściej zadawane pytania
-- Czy warsztaty są dla początkujących? Tak, AI od podstaw, hands-on od pierwszej minuty.
-- Czy CRM działa offline? Dane są po stronie klienta, jest też wersja cloud.
-- Jak długo trwa wdrożenie CRM? Standardowo 2-4 tygodnie od briefu do odbioru.
-- Czy newsletter jest darmowy? Tak, AI Radar w 100% darmowy.
+- Ile kosztuje CRM od AI-Team? Mini-System z bazą: 3 900 zł brutto jednorazowo w promocji, bez rat i bez abonamentu za kod (docelowo od 5 900 zł).
+- Czym różni się od gotowego CRM jak Pipedrive, HubSpot czy Bitrix? Płacisz raz, bez abonamentu za użytkownika, a system jest dopasowany do procesu firmy, zamiast zmuszać firmę do procesu narzędzia.
+- Ile kosztują warsztaty AI? Od 600 zł za osobę, stacjonarnie w Sopocie, indywidualnie albo w grupie do 10 osób.
+- Czy strona z AI ma abonament? Tak, budowa jednorazowo od 1 200 do 1 900 zł plus 490 zł miesięcznie all-in z SEO, GEO, chatbotem AI, hostingiem i opieką.
+- Czy newsletter AI Radar jest darmowy? Tak, w 100% darmowy.
+- Czy AI-Team prowadzi SEO i GEO? Tak, w ramach Opieki Widoczność (490 zł miesięcznie) oraz abonamentu Strony z AI, bez gwarancji pozycji.
+- Gdzie działa AI-Team? Zdalnie w całej Polsce, a warsztaty stacjonarnie w Sopocie na Trójmieście.
 
 ## Portfolio (case studies)
-- **MyWay-CRM** — system zarządzania pacjentami dla ośrodka terapii uzależnień (osrodek-myway.pl)
-- **KatalogOsrodkow.pl** — katalog ośrodków terapii w Polsce
-- **EduWay** — platforma edukacyjna o uzależnieniach (edu-myway.pl)
-- **MyWay App** — PWA dla pacjentów (dziennik, licznik trzeźwości, SOS, AI chat)
+- MyWay CRM — system zarządzania pacjentami dla ośrodka terapii uzależnień (osrodek-myway.pl).
+- EduWay — platforma edukacyjna o uzależnieniach (edu-myway.pl).
+- Golden OS — system operacyjny biura nieruchomości.
+- SubTracker, Midas — aplikacje desktopowe.
 
 ## Wartości
-- Praktyczne AI > teoretyczne AI
-- Małe firmy zasługują na te same narzędzia co duże korporacje
-- Done > Perfect
-- Polskie ceny, polski kontekst, polski język AI
+- Praktyczne AI ponad teoretyczne AI.
+- Małe firmy zasługują na te same narzędzia co duże korporacje.
+- Płacisz raz, używasz lata, bez abonamentowej pułapki za użytkownika.
+- Polskie ceny, polski kontekst, polski język AI.
 
-## Blog i edukacja
-- Blog: https://ai-team.pl/blog (artykuły o praktycznym AI dla małych firm)
+## Blog i kanały
+- Blog: https://ai-team.pl/blog/ — praktyczne AI dla małych firm, m.in. AI Act dla małej firmy, automatyzacja bez kodowania, prompty dla biznesu, chatbot w obsłudze klienta.
+- Newsletter: https://ai-team.pl/ai-radar.html
 - LinkedIn: https://linkedin.com/in/dariusz-szuca
-- Newsletter: https://ai-team.pl/ai-radar
