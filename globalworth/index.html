@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan szkolenia i wdrożenia AI dla Property Management | AI-Team × Globalworth</title>
+<meta name="description" content="Odpowiedź na potrzeby zespołu Property Management: siedem procesów, wstępny program szkolenia, pytania do IT i sześć kroków od diagnozy do pilota.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+  :root{
+    --ink:#14181c;
+    --navy:#0b1f3a;
+    --navy-2:#132a4a;
+    --navy-3:#1a365b;
+    --green:#1f7a4e;
+    --green-dark:#175f3d;
+    --green-bright:#43aa73;
+    --mint:#dff2e7;
+    --cream:#f6f4ef;
+    --cream-2:#ece8de;
+    --paper:#fbfaf7;
+    --white:#fff;
+    --muted:#59636e;
+    --line:rgba(11,31,58,.15);
+    --line-soft:rgba(11,31,58,.08);
+    --line-dark:rgba(255,255,255,.16);
+    --shadow:0 1px 0 rgba(11,31,58,.04),0 22px 50px -32px rgba(11,31,58,.4);
+    --shadow-strong:0 30px 80px -38px rgba(0,0,0,.62);
+    --maxw:1180px;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}
+  body{
+    margin:0;
+    max-width:100%;
+    overflow-x:hidden;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::selection{background:var(--mint);color:var(--navy)}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-.018em;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  button,summary,a{-webkit-tap-highlight-color:transparent}
+  .wrap{width:min(var(--maxw),calc(100% - 56px));margin:0 auto}
+  .skip-link{position:fixed;top:10px;left:10px;z-index:1000;background:#fff;color:var(--navy);padding:10px 14px;border-radius:8px;transform:translateY(-160%)}
+  .skip-link:focus{transform:none}
+  :focus-visible{outline:3px solid var(--green-bright);outline-offset:4px;border-radius:4px}
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex:none}
+  .eyebrow.on-dark{color:var(--green-bright)}
+  .section{padding:104px 0;position:relative}
+  .section.paper{background:var(--paper)}
+  .section.cream{background:var(--cream)}
+  .section.navy{background:var(--navy);color:#fff}
+  .sec-head{max-width:780px}
+  .sec-head.wide{max-width:920px}
+  .sec-head h2{font-size:clamp(32px,4.2vw,50px);margin-top:19px}
+  .sec-head .lead{font-size:19px;color:var(--muted);max-width:68ch;margin-top:22px}
+  .section.navy .sec-head .lead{color:rgba(255,255,255,.72)}
+  .index{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--green);text-transform:uppercase}
+  .section.navy .index{color:var(--green-bright)}
+
+  /* Navigation */
+  .nav{position:sticky;top:0;z-index:100;background:rgba(251,250,247,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+  .nav-in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
+  .brand img{display:block;width:34px;height:34px;border-radius:50%}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s ease}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    min-height:46px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:11px 21px;
+    border:1px solid transparent;
+    border-radius:9px;
+    font-family:var(--sans);
+    font-size:15px;
+    font-weight:600;
+    line-height:1.2;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--green);color:#fff;box-shadow:0 14px 28px -16px rgba(31,122,78,.78)}
+  .btn-primary:hover{background:var(--green-dark)}
+  .btn-outline{border-color:rgba(255,255,255,.3);color:#fff;background:transparent}
+  .btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.48)}
+  .btn-paper{border-color:var(--line);background:var(--paper);color:var(--navy)}
+  .btn-paper:hover{border-color:rgba(31,122,78,.45);box-shadow:var(--shadow)}
+  .nav .btn{min-height:42px;padding:9px 17px}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.22;
+    background-image:
+      linear-gradient(rgba(67,170,115,.28) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(67,170,115,.28) 1px,transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(90deg,transparent,black 48%,black);
+  }
+  .hero::after{content:"";position:absolute;width:620px;height:620px;right:-240px;top:-260px;border:1px solid rgba(67,170,115,.22);border-radius:50%;box-shadow:0 0 0 80px rgba(67,170,115,.025),0 0 0 160px rgba(67,170,115,.018)}
+  .hero-in{position:relative;z-index:1;padding:90px 0 0}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .hero-grid > *{min-width:0}
+  .hero h1{font-size:clamp(38px,5vw,64px);max-width:16ch;margin-top:20px;text-wrap:balance}
+  .hero-sub{font-size:clamp(17px,2vw,20px);line-height:1.58;color:rgba(255,255,255,.79);max-width:61ch;margin-top:27px}
+  .hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+  .hero-note{font-family:var(--mono);font-size:12px;letter-spacing:.035em;color:rgba(255,255,255,.48);margin-top:18px}
+
+  .route-card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:25px;box-shadow:var(--shadow-strong)}
+  .route-card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(67,170,115,.12);border-radius:12px;pointer-events:none}
+  .route-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);margin-bottom:18px}
+  .route-input{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:10px;padding:15px 16px;font-size:14px;color:rgba(255,255,255,.86);overflow-wrap:anywhere}
+  .route-arrow{height:28px;display:grid;place-items:center;color:var(--green-bright);font-family:var(--mono)}
+  .route-split{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .route-split span{display:grid;place-items:center;min-height:74px;text-align:center;border:1px solid rgba(67,170,115,.3);background:rgba(31,122,78,.14);border-radius:9px;padding:10px 7px;font-family:var(--mono);font-size:11px;line-height:1.45;color:#fff}
+  .route-output{border:1px solid rgba(67,170,115,.38);background:rgba(31,122,78,.2);border-radius:10px;padding:15px 16px;font-size:14px;color:#fff}
+  .route-output b{color:var(--green-bright)}
+
+  .hero-proof{margin-top:72px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark)}
+  .proof-cell{padding:27px 28px 31px;border-right:1px solid var(--line-dark)}
+  .proof-cell:last-child{border-right:none}
+  .proof-cell strong{display:block;font-family:var(--serif);font-size:39px;font-weight:500;line-height:1;color:#fff}
+  .proof-cell span{display:block;margin-top:9px;font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+  /* Direct answer */
+  .answer-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;margin-top:52px}
+  .answer-card{background:var(--navy);color:#fff;border-radius:18px;padding:35px;box-shadow:var(--shadow-strong);position:relative;overflow:hidden}
+  .answer-card::after{content:"TAK";position:absolute;right:-8px;bottom:-39px;font-family:var(--serif);font-size:142px;color:rgba(255,255,255,.045);line-height:1}
+  .answer-mark{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-bright)}
+  .answer-card p{font-family:var(--serif);font-size:clamp(24px,3vw,32px);line-height:1.3;margin-top:20px;max-width:24ch;position:relative;z-index:1}
+  .answer-list{display:flex;flex-direction:column;gap:16px}
+  .answer-item{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .answer-item:first-child{padding-top:4px}
+  .answer-item:last-child{border-bottom:0}
+  .answer-item .n{width:48px;height:48px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--green)}
+  .answer-item h3{font-family:var(--sans);font-size:18px;font-weight:600;letter-spacing:-.01em}
+  .answer-item p{font-size:15px;color:var(--muted);margin-top:6px}
+
+  /* Process matrix */
+  .legend{display:flex;flex-wrap:wrap;gap:9px;margin-top:34px}
+  .legend span,.type-chip{display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border:1px solid transparent;border-radius:999px;font-family:var(--mono);font-size:10.5px;letter-spacing:.055em;text-transform:uppercase;font-weight:500;line-height:1.25}
+  .legend .training,.type-chip.training{color:#694800;background:#f5ead1;border-color:#e6d19e}
+  .legend .assistant,.type-chip.assistant{color:var(--navy);background:#e4eaf0;border-color:#c9d4df}
+  .legend .automation,.type-chip.automation{color:#175f3d;background:var(--mint);border-color:#b9ddc7}
+  .process-matrix{margin-top:42px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+  .process-head,.process-row{display:grid;grid-template-columns:66px minmax(180px,.8fr) minmax(240px,1.1fr) minmax(280px,1.35fr);align-items:center}
+  .process-head{background:var(--navy);color:#fff;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase}
+  .process-head > div{padding:15px 18px;border-right:1px solid rgba(255,255,255,.12)}
+  .process-head > div:last-child{border-right:0}
+  .process-row{min-height:112px;border-bottom:1px solid var(--line)}
+  .process-row:last-child{border-bottom:0}
+  .process-row > div{padding:20px 18px}
+  .process-number{height:100%;align-self:stretch;display:grid;place-items:center!important;background:rgba(11,31,58,.025);font-family:var(--mono);font-size:12px;color:var(--green);border-right:1px solid var(--line-soft)}
+  .process-name{font-weight:600;font-size:16px;line-height:1.35}
+  .process-type{display:flex;flex-wrap:wrap;gap:6px}
+  .process-result{font-size:14.5px;color:var(--muted);line-height:1.55}
+  .matrix-note{font-family:var(--mono);font-size:12px;color:var(--green-dark);background:rgba(31,122,78,.08);border:1px solid rgba(31,122,78,.18);border-radius:9px;padding:13px 15px;margin-top:18px}
+
+  /* Program */
+  .program-intro{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:50px}
+  .program-rule{background:var(--navy);color:#fff;border-radius:16px;padding:32px}
+  .program-rule .small{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-bright)}
+  .program-rule h3{font-size:28px;margin-top:16px;line-height:1.25}
+  .module-rhythm{border:1px solid var(--line);border-radius:16px;padding:30px;background:var(--paper)}
+  .module-rhythm h3{font-family:var(--sans);font-size:17px;font-weight:600}
+  .rhythm-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .rhythm-line span{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 9px;font-family:var(--mono);font-size:10.5px;color:var(--navy)}
+  .rhythm-line i{font-style:normal;color:var(--green)}
+  .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+  .module{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:24px;min-height:190px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .module:hover{transform:translateY(-2px);border-color:rgba(31,122,78,.38);box-shadow:var(--shadow)}
+  .module .module-n{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.1em}
+  .module h3{font-family:var(--sans);font-size:18px;font-weight:600;line-height:1.35;margin-top:13px}
+  .module p{font-size:14.5px;color:var(--muted);margin-top:10px}
+
+  /* Journey */
+  .journey{position:relative;margin-top:60px}
+  .journey::before{content:"";position:absolute;top:44px;bottom:44px;left:54px;width:1px;background:linear-gradient(var(--green-bright),rgba(67,170,115,.18))}
+  .journey-step{position:relative;display:grid;grid-template-columns:110px 1fr;gap:28px;margin-bottom:24px}
+  .journey-step:last-child{margin-bottom:0}
+  .journey-index{position:relative;z-index:2;width:68px;height:68px;margin-left:20px;border:1px solid rgba(67,170,115,.45);border-radius:50%;display:grid;place-items:center;background:var(--navy);font-family:var(--mono);font-size:14px;color:var(--green-bright);box-shadow:0 0 0 9px var(--navy)}
+  .journey-card{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.045);border-radius:16px;padding:27px 28px 29px}
+  .journey-title{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+  .journey-title h3{font-family:var(--sans);font-size:22px;font-weight:600;letter-spacing:-.015em}
+  .journey-title p{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-bright);white-space:nowrap;margin-top:4px}
+  .responsibility-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+  .responsibility{border-top:1px solid rgba(255,255,255,.15);padding-top:15px}
+  .responsibility b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-bright)}
+  .responsibility span{display:block;color:rgba(255,255,255,.74);font-size:14px;line-height:1.5;margin-top:7px}
+
+  /* IT gate */
+  .gate-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:40px;margin-top:52px;align-items:start}
+  .gate-map{position:sticky;top:96px;background:var(--navy);color:#fff;border-radius:17px;padding:30px;box-shadow:var(--shadow-strong)}
+  .gate-map .label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-bright)}
+  .gate-node{border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:15px;margin-top:13px;font-size:14.5px;background:rgba(255,255,255,.045)}
+  .gate-node.output{border-color:rgba(67,170,115,.38);background:rgba(31,122,78,.18)}
+  .gate-down{text-align:center;color:var(--green-bright);height:27px;line-height:27px}
+  .gate-note{font-size:13px;line-height:1.55;color:rgba(255,255,255,.65);margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+  .it-list{border-top:1px solid var(--line)}
+  .it-list details{border-bottom:1px solid var(--line)}
+  .it-list summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:42px 1fr 26px;align-items:center;gap:14px;min-height:72px;padding:16px 3px;color:var(--navy)}
+  .it-list summary::-webkit-details-marker{display:none}
+  .it-list .sn{font-family:var(--mono);font-size:11px;color:var(--green);width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
+  .it-list .st{font-weight:600;font-size:17px}
+  .it-list .plus{font-family:var(--mono);font-size:22px;color:var(--green);transition:transform .2s ease}
+  .it-list details[open] .plus{transform:rotate(45deg)}
+  .it-list ol{margin:0;padding:0 6px 25px 74px;color:var(--muted);font-size:15px}
+  .it-list li{padding:6px 0 6px 7px}
+
+  /* Deliverables */
+  .deliverables{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:52px}
+  .deliverable{grid-column:span 4;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px;min-height:190px;position:relative;overflow:hidden}
+  .deliverable:nth-child(1),.deliverable:nth-child(6){grid-column:span 6;background:var(--navy);color:#fff}
+  .deliverable .dn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--green)}
+  .deliverable:nth-child(1) .dn,.deliverable:nth-child(6) .dn{color:var(--green-bright)}
+  .deliverable h3{font-family:var(--sans);font-size:19px;font-weight:600;line-height:1.35;margin-top:15px}
+  .deliverable p{font-size:14.5px;color:var(--muted);margin-top:9px}
+  .deliverable:nth-child(1) p,.deliverable:nth-child(6) p{color:rgba(255,255,255,.72)}
+  .deliverable::after{content:attr(data-mark);position:absolute;right:12px;bottom:-28px;font-family:var(--serif);font-size:92px;color:rgba(31,122,78,.06);line-height:1}
+  .deliverable:nth-child(1)::after,.deliverable:nth-child(6)::after{color:rgba(255,255,255,.045)}
+
+  .guardrail{margin-top:50px;display:grid;grid-template-columns:110px 1fr;gap:24px;align-items:center;background:var(--mint);border:1px solid #b9ddc7;border-radius:14px;padding:26px 30px}
+  .guardrail .gmark{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-dark)}
+  .guardrail p{font-family:var(--serif);font-size:23px;line-height:1.35;color:var(--navy)}
+
+  /* CTA and footer */
+  .cta{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+  .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.9%,rgba(67,170,115,.22) 50%,transparent 50.1%),linear-gradient(0deg,transparent 49.9%,rgba(67,170,115,.18) 50%,transparent 50.1%);background-size:150px 150px;opacity:.4}
+  .cta-in{position:relative;padding:104px 0;text-align:center}
+  .cta h2{font-size:clamp(35px,4.8vw,56px);max-width:20ch;margin:19px auto 0;text-wrap:balance}
+  .cta p{font-size:18px;color:rgba(255,255,255,.75);max-width:60ch;margin:22px auto 0}
+  .cta-actions{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:34px}
+  footer{background:#07162a;color:rgba(255,255,255,.58);padding:42px 0;font-size:14px}
+  .footer-in{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .footer-in .brand{color:#fff}
+  .footer-meta{font-family:var(--mono);font-size:11.5px;line-height:1.75;text-align:right}
+
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:980px){
+    .nav-links{display:none}
+    .hero-grid,.answer-grid,.gate-grid{grid-template-columns:1fr}
+    .hero-grid{gap:42px}
+    .route-card{max-width:700px}
+    .process-head{display:none}
+    .process-row{grid-template-columns:60px 1fr 1.1fr}
+    .process-result{grid-column:2 / -1;padding-top:0!important}
+    .program-grid{grid-template-columns:repeat(2,1fr)}
+    .gate-map{position:relative;top:auto}
+    .deliverable,.deliverable:nth-child(1),.deliverable:nth-child(6){grid-column:span 6}
+  }
+
+  @media(max-width:720px){
+    body{font-size:16px}
+    .wrap{width:min(100% - 40px,var(--maxw))}
+    .nav .btn{display:none}
+    .section{padding:74px 0}
+    .hero-in{padding-top:64px}
+    .hero h1{font-size:clamp(38px,11vw,52px)}
+    .hero-actions,.cta-actions{flex-direction:column}
+    .hero-actions .btn,.cta-actions .btn{width:100%}
+    .route-split{grid-template-columns:1fr}
+    .route-split span{min-height:54px}
+    .hero-proof{grid-template-columns:1fr}
+    .proof-cell{border-right:0;border-bottom:1px solid var(--line-dark);padding-left:0}
+    .proof-cell:last-child{border-bottom:0}
+    .program-intro,.program-grid{grid-template-columns:1fr}
+    .process-row{display:grid;grid-template-columns:48px 1fr;align-items:start;padding:18px}
+    .process-row > div{padding:0}
+    .process-number{width:38px;height:38px;align-self:start;border:1px solid var(--line);border-radius:50%;background:transparent}
+    .process-name{padding:7px 0 13px!important}
+    .process-type,.process-result{grid-column:2;padding:0 0 12px!important}
+    .process-result::before{content:"Rezultat";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:5px}
+    .journey::before{left:28px}
+    .journey-step{grid-template-columns:58px 1fr;gap:12px}
+    .journey-index{width:50px;height:50px;margin-left:3px;box-shadow:0 0 0 6px var(--navy)}
+    .journey-title{display:block}
+    .journey-title p{white-space:normal;margin-top:8px}
+    .responsibility-grid{grid-template-columns:1fr}
+    .deliverables{grid-template-columns:1fr}
+    .deliverable,.deliverable:nth-child(1),.deliverable:nth-child(6){grid-column:1}
+    .guardrail{grid-template-columns:1fr;gap:9px}
+    .footer-meta{text-align:left}
+  }
+
+  @media(max-width:480px){
+    .wrap{width:min(100% - 32px,var(--maxw))}
+    .nav-in{height:62px}
+    .route-card{padding:18px}
+    .route-arrow{height:24px}
+    .answer-card,.program-rule,.module-rhythm,.journey-card,.gate-map{padding:23px}
+    .it-list summary{grid-template-columns:38px 1fr 20px;gap:10px}
+    .it-list ol{padding-left:50px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;animation-iteration-count:1!important}
+    .js .reveal{opacity:1;transform:none}
+  }
+</style>
+<link rel="stylesheet" href="assets/it-questionnaire.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<div class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="AI-Team, początek strony">
+      <img src="../assets/ai-team-logo-256.png" alt="" width="34" height="34">
+      AI-Team
+    </a>
+    <nav class="nav-links" aria-label="Główna nawigacja">
+      <a href="#procesy">Procesy</a>
+      <a href="#program">Program</a>
+      <a href="#plan">6 kroków</a>
+      <a href="#it">Pytania do IT</a>
+      <a href="#rezultaty">Rezultaty</a>
+    </nav>
+    <a class="btn btn-primary" href="#it">Pytania do IT</a>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow on-dark">Odpowiedź na potrzeby zespołu Property Management</span>
+        <h1>Od 7 czasochłonnych procesów do programu, który kończy się wdrożeniem.</h1>
+        <p class="hero-sub">Przesłane informacje wystarczają do przygotowania wstępnego programu. Poniżej pokazujemy, co może być ćwiczeniem szkoleniowym, co wymaga asystenta lub automatyzacji, czego potrzebujemy od IT i jak przejdziemy od diagnozy do pilota.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#plan">Zobacz plan działania <span aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="#it">Przejdź do pytań dla IT</a>
+        </div>
+        <p class="hero-note">Dokument roboczy przygotowany dla Globalworth Poland na podstawie informacji przekazanych przez HR.</p>
+      </div>
+
+      <aside class="route-card" aria-label="Droga od zgłoszonych potrzeb do pilota">
+        <div class="route-label">// od potrzeb do działania</div>
+        <div class="route-input">7 obszarów przekazanych przez zespół Property</div>
+        <div class="route-arrow" aria-hidden="true">↓</div>
+        <div class="route-split">
+          <span>Szkolenie<br>i standard pracy</span>
+          <span>Asystent<br>z kontrolą człowieka</span>
+          <span>Automatyzacja<br>i monitoring</span>
+        </div>
+        <div class="route-arrow" aria-hidden="true">↓</div>
+        <div class="route-output"><b>Wynik:</b> dedykowany program, jeden proces pilotażowy i mierzalna decyzja o dalszym wdrożeniu.</div>
+      </aside>
+    </div>
+
+    <div class="hero-proof" aria-label="Zakres opracowania">
+      <div class="proof-cell"><strong>7</strong><span>procesów od zespołu</span></div>
+      <div class="proof-cell"><strong>3</strong><span>typy odpowiedzi</span></div>
+      <div class="proof-cell"><strong>6</strong><span>kroków do pilota</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section paper" aria-labelledby="answer-title">
+    <div class="wrap">
+      <div class="sec-head wide reveal">
+        <span class="index">01 / Odpowiedź dla HR</span>
+        <h2 id="answer-title">Tak. To wystarczy, żeby przygotować program wstępny.</h2>
+        <p class="lead">Siedem obszarów daje nam wystarczający obraz codziennych obciążeń zespołu. Pozwala zaprojektować strukturę szkolenia i wskazać proces, który warto sprawdzić w pilocie.</p>
+      </div>
+
+      <div class="answer-grid">
+        <div class="answer-card reveal">
+          <div class="answer-mark">Najważniejszy wniosek</div>
+          <p>Nie każdy problem rozwiązuje kolejne ćwiczenie z obsługi czatu AI.</p>
+        </div>
+        <div class="answer-list">
+          <div class="answer-item reveal">
+            <div class="n">01</div>
+            <div><h3>Potrzebujemy odpowiedzi IT</h3><p>Musimy znać dopuszczone narzędzia, środowisko pracy, zasady przetwarzania danych oraz sposób akceptacji nowych rozwiązań.</p></div>
+          </div>
+          <div class="answer-item reveal">
+            <div class="n">02</div>
+            <div><h3>Potrzebujemy potwierdzenia procesu</h3><p>Osoby wykonujące zadania pokazują przebieg pracy, wyjątki i miejsca, w których dziś ginie czas albo informacja.</p></div>
+          </div>
+          <div class="answer-item reveal">
+            <div class="n">03</div>
+            <div><h3>Resztę zamieniamy w konkretny program</h3><p>Ćwiczenia, materiały i pilot powstają na realnych przypadkach, a nie na ogólnych przykładach z prezentacji.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cream" id="procesy" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="sec-head wide reveal">
+        <span class="index">02 / Mapa potrzeb</span>
+        <h2 id="process-title">Siedem procesów, trzy typy odpowiedzi</h2>
+        <p class="lead">Każdy punkt z wiadomości HR ma inną naturę. Dlatego najpierw rozdzielamy to, czego uczymy, od tego, co powinien wspierać asystent albo wykonywać system.</p>
+        <div class="legend" aria-label="Legenda typów odpowiedzi">
+          <span class="training">Szkolenie</span>
+          <span class="assistant">Asystent</span>
+          <span class="automation">Automatyzacja</span>
+        </div>
+      </div>
+
+      <div class="process-matrix reveal" role="table" aria-label="Klasyfikacja siedmiu procesów">
+        <div class="process-head" role="row">
+          <div role="columnheader">Nr</div>
+          <div role="columnheader">Proces</div>
+          <div role="columnheader">Typ odpowiedzi</div>
+          <div role="columnheader">Możliwy rezultat</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">01</div>
+          <div class="process-name" role="cell">Ogromna liczba maili od najemców</div>
+          <div class="process-type" role="cell"><span class="type-chip training">Szkolenie</span><span class="type-chip assistant">Asystent</span><span class="type-chip automation">Automatyzacja</span></div>
+          <div class="process-result" role="cell">Reguły priorytetów, propozycje odpowiedzi oraz zadania i terminy wyciągane z wiadomości.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">02</div>
+          <div class="process-name" role="cell">Zarządzanie umowami najmu i serwisowymi</div>
+          <div class="process-type" role="cell"><span class="type-chip assistant">Asystent</span><span class="type-chip automation">Alerty</span></div>
+          <div class="process-result" role="cell">Uporządkowane dane z umów, możliwość zadawania pytań do dokumentów i pilnowanie terminów.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">03</div>
+          <div class="process-name" role="cell">Budżetowanie i weryfikacja budżetów</div>
+          <div class="process-type" role="cell"><span class="type-chip assistant">Asystent</span><span class="type-chip training">Kontrola człowieka</span></div>
+          <div class="process-result" role="cell">Zestawienie pozycji budżetowych i odchyleń, które pracownik sprawdza przed użyciem.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">04</div>
+          <div class="process-name" role="cell">Zapytania ofertowe</div>
+          <div class="process-type" role="cell"><span class="type-chip training">Szkolenie</span><span class="type-chip assistant">Asystent</span></div>
+          <div class="process-result" role="cell">Szablon zapytania, treść dopasowana do parametrów i czytelne porównanie otrzymanych ofert.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">05</div>
+          <div class="process-name" role="cell">Bieżąca weryfikacja SLA</div>
+          <div class="process-type" role="cell"><span class="type-chip automation">Monitoring</span></div>
+          <div class="process-result" role="cell">Alert przed ryzykiem naruszenia oraz cykliczny status realizacji warunków serwisowych.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">06</div>
+          <div class="process-name" role="cell">Wyszukiwanie lokalnych dostawców</div>
+          <div class="process-type" role="cell"><span class="type-chip training">Szkolenie</span><span class="type-chip assistant">Asystent</span></div>
+          <div class="process-result" role="cell">Lista lokalnych dostawców według kryteriów wraz ze źródłami do sprawdzenia przez zespół.</div>
+        </div>
+
+        <div class="process-row" role="row">
+          <div class="process-number" role="cell">07</div>
+          <div class="process-name" role="cell">Bieżące raportowanie</div>
+          <div class="process-type" role="cell"><span class="type-chip automation">Automatyzacja</span><span class="type-chip assistant">Zatwierdzenie</span></div>
+          <div class="process-result" role="cell">Raport składany z maili, statusów i danych według uzgodnionego wzoru.</div>
+        </div>
+      </div>
+      <p class="matrix-note reveal">// To klasyfikacja wstępna. Finalny podział zależy od systemów, integracji i zasad bezpieczeństwa wskazanych przez IT.</p>
+    </div>
+  </section>
+
+  <section class="section paper" id="program" aria-labelledby="program-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="index">03 / Program szkolenia</span>
+        <h2 id="program-title">Szkolenie zaczyna się od sposobu pracy, nie od narzędzi.</h2>
+        <p class="lead">Każdy moduł prowadzi od prawdziwej sytuacji zespołu do gotowego rezultatu, który można wykorzystać po warsztacie.</p>
+      </div>
+
+      <div class="program-intro">
+        <div class="program-rule reveal">
+          <div class="small">Zasada projektowa</div>
+          <h3>Jeden moduł. Jeden realny przypadek. Jeden gotowy rezultat.</h3>
+        </div>
+        <div class="module-rhythm reveal">
+          <h3>Rytm każdego modułu</h3>
+          <div class="rhythm-line" aria-label="Przebieg modułu">
+            <span>Przypadek</span><i aria-hidden="true">→</i><span>Bezpieczna metoda</span><i aria-hidden="true">→</i><span>Ćwiczenie</span><i aria-hidden="true">→</i><span>Gotowy output</span><i aria-hidden="true">→</i><span>Kontrola</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-grid">
+        <article class="module reveal"><span class="module-n">MODUŁ 01</span><h3>Bezpieczna praca z AI i danymi</h3><p>Co można przekazać do narzędzia, czego nie wolno oraz jak weryfikować wynik przed użyciem.</p></article>
+        <article class="module reveal"><span class="module-n">MODUŁ 02</span><h3>Maile, priorytety i komunikacja</h3><p>Klasyfikowanie spraw, przygotowanie odpowiedzi i wydobywanie z wiadomości zadań oraz terminów.</p></article>
+        <article class="module reveal"><span class="module-n">MODUŁ 03</span><h3>Umowy, terminy i SLA</h3><p>Praca z dokumentami, wyszukiwanie zapisów oraz standard kontroli kluczowych danych.</p></article>
+        <article class="module reveal"><span class="module-n">MODUŁ 04</span><h3>Budżety i zapytania ofertowe</h3><p>Przygotowanie zestawień i porównań z obowiązkową weryfikacją liczb przez pracownika.</p></article>
+        <article class="module reveal"><span class="module-n">MODUŁ 05</span><h3>Research dostawców</h3><p>Budowanie list według kryteriów oraz sprawdzanie źródeł, danych kontaktowych i wiarygodności.</p></article>
+        <article class="module reveal"><span class="module-n">MODUŁ 06</span><h3>Raportowanie i standard pracy</h3><p>Projekt wzoru raportu, zakres odpowiedzialności oraz sposób pracy zespołu po szkoleniu.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section navy" id="plan" aria-labelledby="journey-title">
+    <div class="wrap">
+      <div class="sec-head wide reveal">
+        <span class="index">04 / Proces wdrożenia</span>
+        <h2 id="journey-title">Sześć kroków od potrzeb do wdrożenia</h2>
+        <p class="lead">Każdy etap ma właściciela i konkretny rezultat. Dzięki temu wiadomo, czego potrzebujemy od Globalworth, co przygotowuje AI-Team i kiedy można podjąć następną decyzję.</p>
+      </div>
+
+      <div class="journey">
+        <article class="journey-step reveal">
+          <div class="journey-index">01</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Potwierdzenie procesów</h3><p>Discovery</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Wskazuje właścicieli procesów i pokazuje realny przebieg pracy.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Porządkuje problemy, wolumeny, wyjątki i punkty ryzyka.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Lista procesów oraz kryteria sukcesu dla programu i pilota.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="journey-step reveal">
+          <div class="journey-index">02</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Brama IT i bezpieczeństwa</h3><p>Warunki działania</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Przekazuje zasady, dopuszczone narzędzia i ograniczenia danych.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Dopasowuje możliwe rozwiązania do środowiska i procesu akceptacji.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Zatwierdzone warunki techniczne, prawne i bezpieczeństwa.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="journey-step reveal">
+          <div class="journey-index">03</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Mapa sposobu pracy</h3><p>Dzisiaj i docelowo</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Opisuje obecny przebieg, wyjątki i momenty wymagające decyzji.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Projektuje docelowy proces i punkty kontroli człowieka.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Czytelna mapa „dzisiaj” i „po wdrożeniu”.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="journey-step reveal">
+          <div class="journey-index">04</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Program i materiały</h3><p>Projekt szkolenia</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Zatwierdza przypadki użycia, role uczestników i bezpieczne dane.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Tworzy ćwiczenia, instrukcje, szablony i prototypy.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Dedykowany program szkolenia oparty na procesach Property.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="journey-step reveal">
+          <div class="journey-index">05</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Warsztat i pilot</h3><p>Praca na realnym procesie</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Pracuje na uzgodnionych przypadkach i zgłasza obserwacje.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Prowadzi warsztat i uruchamia jeden proces pilotażowy.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Gotowy sposób pracy oraz pilot sprawdzony na realnym procesie.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="journey-step reveal">
+          <div class="journey-index">06</div>
+          <div class="journey-card">
+            <div class="journey-title"><h3>Pomiar i rekomendacja</h3><p>Decyzja na podstawie wyniku</p></div>
+            <div class="responsibility-grid">
+              <div class="responsibility"><b>Globalworth</b><span>Ocenia użyteczność, jakość i wpływ na codzienną pracę.</span></div>
+              <div class="responsibility"><b>AI-Team</b><span>Zbiera wyniki, poprawia rozwiązanie i opisuje dalsze kroki.</span></div>
+              <div class="responsibility"><b>Rezultat</b><span>Raport efektów i decyzja, czy oraz co wdrażać dalej.</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cream" id="it" aria-labelledby="it-title">
+    <div class="wrap">
+      <div class="sec-head wide reveal">
+        <span class="index">05 / Brama IT</span>
+        <h2 id="it-title">Zanim wybierzemy narzędzia, musimy poznać zasady.</h2>
+        <p class="lead">Odpowiedzi IT przesądzają, jakie ćwiczenia można wykonać na danych firmowych, z czym można się zintegrować i gdzie może działać przyszły pilot.</p>
+      </div>
+
+      <div id="it-questionnaire" class="itq-app" aria-live="polite"></div>
+      <noscript><p class="itq-noscript">Włącz JavaScript, aby zapisywać odpowiedzi. Pełna lista pytań pozostaje dostępna poniżej.</p></noscript>
+
+      <div class="gate-grid">
+        <aside class="gate-map reveal" aria-label="Wpływ odpowiedzi IT na program">
+          <div class="label">// brama decyzji</div>
+          <div class="gate-node">Odpowiedzi działu IT</div>
+          <div class="gate-down" aria-hidden="true">↓</div>
+          <div class="gate-node">Zatwierdzone narzędzia, dane i środowisko</div>
+          <div class="gate-down" aria-hidden="true">↓</div>
+          <div class="gate-node output">Finalny program szkolenia i zakres bezpiecznego pilota</div>
+          <p class="gate-note">Nie deklarujemy technologii przed poznaniem polityki i środowiska Globalworth.</p>
+        </aside>
+
+        <div class="it-list reveal">
+          <details open>
+            <summary><span class="sn">01</span><span class="st">Dopuszczone narzędzia i polityka AI</span><span class="plus" aria-hidden="true">+</span></summary>
+            <ol>
+              <li>Jakie narzędzia AI są oficjalnie dopuszczone do użytku?</li>
+              <li>Czy istnieje wewnętrzna polityka korzystania z AI i jakie ma ograniczenia?</li>
+              <li>Czy dane firmowe lub dane najemców mogą trafiać do narzędzi AI w wersji enterprise?</li>
+            </ol>
+          </details>
+          <details>
+            <summary><span class="sn">02</span><span class="st">Microsoft 365, systemy i integracje</span><span class="plus" aria-hidden="true">+</span></summary>
+            <ol start="4">
+              <li>Na jakim środowisku pracują zespoły: Microsoft 365, Google Workspace czy innym?</li>
+              <li>Czy jest wdrożony Microsoft 365 Copilot lub inny asystent w obecnych licencjach?</li>
+              <li>Jakich systemów używa zespół do zgłoszeń, relacji z najemcami, umów i budżetów?</li>
+              <li>Czy te systemy mają interfejsy integracyjne i czy logowanie odbywa się przez SSO?</li>
+            </ol>
+          </details>
+          <details>
+            <summary><span class="sn">03</span><span class="st">Dane, chmura i rezydencja</span><span class="plus" aria-hidden="true">+</span></summary>
+            <ol start="8">
+              <li>Czy dane muszą pozostać w Unii Europejskiej lub konkretnej lokalizacji?</li>
+              <li>Czy jest wymagany dostawca chmury lub firmowy tenant?</li>
+              <li>Czy treści maili i umów mogą być przetwarzane w usłudze zewnętrznej, czy wyłącznie w środowisku Globalworth?</li>
+            </ol>
+          </details>
+          <details>
+            <summary><span class="sn">04</span><span class="st">Bezpieczeństwo, RODO i akceptacja</span><span class="plus" aria-hidden="true">+</span></summary>
+            <ol start="11">
+              <li>Jak wygląda proces dopuszczenia nowego narzędzia lub dostawcy i ile zwykle trwa?</li>
+              <li>Czy wymagana jest umowa powierzenia danych oraz dodatkowe klauzule bezpieczeństwa?</li>
+              <li>Czy dane najemców podlegają dodatkowym zasadom, na przykład anonimizacji?</li>
+              <li>Czy pracownicy mogą instalować aplikacje i korzystać z narzędzi zewnętrznych?</li>
+              <li>Jakie ograniczenia dotyczą internetu i zewnętrznych interfejsów z komputerów firmowych?</li>
+            </ol>
+          </details>
+          <details>
+            <summary><span class="sn">05</span><span class="st">Właściciel decyzji po stronie IT</span><span class="plus" aria-hidden="true">+</span></summary>
+            <ol start="16">
+              <li>Kto jest właścicielem decyzji o dopuszczeniu narzędzi AI i z kim uzgadniamy architekturę oraz bezpieczeństwo?</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper" id="rezultaty" aria-labelledby="result-title">
+    <div class="wrap">
+      <div class="sec-head wide reveal">
+        <span class="index">06 / Rezultaty</span>
+        <h2 id="result-title">Po procesie zostają narzędzia i standard pracy, nie tylko slajdy.</h2>
+        <p class="lead">Ostateczny zakres potwierdzimy po odpowiedziach IT i spotkaniu z właścicielami procesów. Już teraz możemy wskazać, jakie rezultaty powinien dostarczyć dobrze zaprojektowany proces.</p>
+      </div>
+
+      <div class="deliverables">
+        <article class="deliverable reveal" data-mark="01"><span class="dn">REZULTAT 01</span><h3>Mapa siedmiu procesów i priorytetów</h3><p>Wspólny obraz tego, co dzieje się dzisiaj, gdzie powstaje ryzyko i od czego warto zacząć.</p></article>
+        <article class="deliverable reveal" data-mark="02"><span class="dn">REZULTAT 02</span><h3>Dedykowany program</h3><p>Moduły i ćwiczenia wynikające z codziennej pracy zespołu Property.</p></article>
+        <article class="deliverable reveal" data-mark="03"><span class="dn">REZULTAT 03</span><h3>Zasady bezpiecznej pracy</h3><p>Krótkie instrukcje dotyczące danych, weryfikacji i eskalacji błędnego wyniku.</p></article>
+        <article class="deliverable reveal" data-mark="04"><span class="dn">REZULTAT 04</span><h3>Szablony i checklisty</h3><p>Materiały dla konkretnych ról, gotowe do użycia po zakończeniu szkolenia.</p></article>
+        <article class="deliverable reveal" data-mark="05"><span class="dn">REZULTAT 05</span><h3>Prototyp procesu</h3><p>Jeden przepływ pilotażowy sprawdzony na uzgodnionych danych i przypadkach.</p></article>
+        <article class="deliverable reveal" data-mark="06"><span class="dn">REZULTAT 06</span><h3>Raport efektów i rekomendacja</h3><p>Decyzja o dalszym wdrożeniu oparta na wyniku, obserwacjach zespołu i warunkach IT.</p></article>
+      </div>
+
+      <div class="guardrail reveal">
+        <div class="gmark">Zasada stała</div>
+        <p>AI przygotowuje. Człowiek zatwierdza komunikację, liczby i decyzje.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap cta-in">
+    <span class="eyebrow on-dark">Następny krok</span>
+    <h2 id="cta-title">Najpierw odpowiedzi IT. Potem zamykamy program.</h2>
+    <p>Po otrzymaniu odpowiedzi spotykamy się z właścicielami procesów, potwierdzamy sposób pracy i przedstawiamy finalny program wraz z rekomendacją procesu pilotażowego.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="#it">Przekaż pytania do IT <span aria-hidden="true">↑</span></a>
+      <a class="btn btn-outline" href="mailto:dariusz.szuca@gmail.com?subject=Globalworth%20-%20spotkanie%20robocze%20dotycz%C4%85ce%20programu%20AI">Umów spotkanie robocze</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-in">
+    <a class="brand" href="#top" aria-label="AI-Team, początek strony"><img src="../assets/ai-team-logo-256.png" alt="" width="34" height="34">AI-Team</a>
+    <div class="footer-meta">Plan szkolenia i wdrożenia AI<br>Globalworth Poland · Property Management<br>Dokument roboczy · sierpień 2026 · ai-team.pl</div>
+  </div>
+</footer>
+
+<script src="assets/it-questionnaire.js"></script>
+<script>
+  (function(){
+    var elements=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      elements.forEach(function(element){element.classList.add('in')});
+      return;
+    }
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12,rootMargin:'0px 0px -32px 0px'});
+    elements.forEach(function(element){observer.observe(element)});
+  })();
+</script>
+</body>
+</html>

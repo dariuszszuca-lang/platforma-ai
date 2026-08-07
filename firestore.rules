@@ -40,6 +40,68 @@ service cloud.firestore {
         && request.resource.data.unsubscribed_at is string;
     }
 
+    function hasGlobalworthResponseShape(responseId) {
+      return request.resource.data.keys().hasOnly([
+        'schema_version',
+        'project_id',
+        'response_id',
+        'source',
+        'status',
+        'respondent',
+        'data_notice_accepted',
+        'answers',
+        'summary',
+        'created_at',
+        'updated_at',
+        'submitted_at'
+      ])
+      && request.resource.data.schema_version == 1
+      && request.resource.data.project_id == 'globalworth-property-ai'
+      && responseId.matches('^[A-Za-z0-9_-]{8,80}$')
+      && request.resource.data.response_id == responseId
+      && request.resource.data.source == 'globalworth-it-questionnaire'
+      && request.resource.data.status == 'submitted'
+      && request.resource.data.data_notice_accepted == true
+      && request.resource.data.respondent is map
+      && request.resource.data.respondent.keys().hasOnly(['name', 'email', 'role'])
+      && request.resource.data.respondent.name is string
+      && request.resource.data.respondent.email is string
+      && request.resource.data.answers is map
+      && request.resource.data.answers.keys().hasOnly([
+        'it-tools-01',
+        'it-tools-02',
+        'it-tools-03',
+        'it-systems-04',
+        'it-systems-05',
+        'it-systems-06',
+        'it-systems-07',
+        'it-data-08',
+        'it-data-09',
+        'it-data-10',
+        'it-security-11',
+        'it-security-12',
+        'it-security-13',
+        'it-security-14',
+        'it-security-15',
+        'it-owner-16'
+      ])
+      && request.resource.data.answers.keys().size() == 16
+      && request.resource.data.summary is map
+      && request.resource.data.summary.keys().hasOnly([
+        'total',
+        'complete',
+        'answered',
+        'needsClarification',
+        'notApplicable',
+        'openItems'
+      ])
+      && request.resource.data.summary.total == 16
+      && request.resource.data.summary.complete == 16
+      && request.resource.data.created_at is string
+      && request.resource.data.updated_at is string
+      && request.resource.data.submitted_at is string;
+    }
+
     match /newsletter_subscribers/{subscriberId} {
       allow create: if hasNewsletterShape();
       allow update: if isSignedIn() || isUnsubscribeOnly() || (
@@ -56,6 +118,15 @@ service cloud.firestore {
 
     match /newsletter_sends/{sendId} {
       allow read, write: if isSignedIn();
+    }
+
+    // Finalne formularze Globalworth zapisuje wylacznie backend po zalogowaniu
+    // technicznym kontem Firebase. Panel moze je czytac, ale nikt nie moze ich
+    // edytowac ani kasowac po wyslaniu.
+    match /globalworth_it_responses/{responseId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && hasGlobalworthResponseShape(responseId);
+      allow update, delete: if false;
     }
 
     match /zlecenia/{orderId} {

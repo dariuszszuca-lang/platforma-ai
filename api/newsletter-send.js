@@ -8,8 +8,7 @@ const https = require("https");
 const path = require("path");
 
 const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID || "ai-team-zlecenia";
-const FIREBASE_API_KEY =
-  process.env.FIREBASE_API_KEY || ["AIzaSyDKmfXRkX", "BhYa6yk9idY4QFZdRRhU5eV9I"].join("");
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
 const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents`;
 const RESERVED_PLACEHOLDERS = new Set(["amazonSESUnsubscribeUrl"]);
 
@@ -604,6 +603,9 @@ async function getServerFirestoreToken() {
   }
 
   if (process.env.FIREBASE_AUTH_EMAIL && process.env.FIREBASE_AUTH_PASSWORD) {
+    if (!FIREBASE_API_KEY) {
+      throw publicError(500, "Brak FIREBASE_API_KEY w Vercel.");
+    }
     return signInWithPassword(process.env.FIREBASE_AUTH_EMAIL, process.env.FIREBASE_AUTH_PASSWORD);
   }
 

@@ -41,6 +41,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="/api/firebase-client-config"></script>
 
     <style>
         body {
@@ -209,6 +210,11 @@
                     <i data-lucide="mail-check" class="w-4 h-4"></i>
                     <span class="hidden sm:inline">Newsletter</span>
                 </a>
+                <a href="#globalworthPanel"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Globalworth</span>
+                </a>
                 <a href="https://ai-team.pl/ai-radar" target="_blank"
                    class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
                     <i data-lucide="radio" class="w-4 h-4"></i>
@@ -360,6 +366,56 @@
             <div id="leadsPager" class="flex items-center justify-center gap-3 mt-5"></div>
         </section>
 
+        <!-- GLOBALWORTH: finalne odpowiedzi działu IT -->
+        <section id="globalworthPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        Globalworth IT
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white">Odpowiedzi do programu wdrożeniowego</h2>
+                    <p class="text-sm text-gray-400 mt-1">Finalne formularze zapisane w Firestore. Odpowiedzi są tylko do odczytu.</p>
+                </div>
+                <a href="/globalworth/" target="_blank"
+                   class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 w-fit">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    Otwórz formularz
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading" id="globalworthStatAll">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Formularze</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-yellow-300" id="globalworthStatOpen">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Otwarte ustalenia</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-blue-300" id="globalworthStatNotApplicable">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Nie dotyczy</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-green-400">16</div>
+                    <div class="text-xs text-gray-400 mt-1">Pytań kontrolnych</div>
+                </div>
+            </div>
+
+            <div id="globalworthLoading" class="space-y-3">
+                <div class="skeleton h-24 w-full"></div>
+                <div class="skeleton h-24 w-full"></div>
+            </div>
+            <div id="globalworthError" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 p-4 text-sm"></div>
+            <div id="globalworthEmpty" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 text-center">
+                <i data-lucide="clipboard-list" class="w-10 h-10 text-gray-600 mx-auto mb-3"></i>
+                <h3 class="font-heading font-semibold text-gray-300">Nie ma jeszcze finalnych odpowiedzi</h3>
+                <p class="text-sm text-gray-500 mt-1">Po wysłaniu formularza przez dział IT rekord pojawi się tutaj automatycznie.</p>
+            </div>
+            <div id="globalworthList" class="space-y-4"></div>
+        </section>
+
     </main>
 
 </div>
@@ -393,15 +449,13 @@
 <script>
 // ===== FIREBASE CONFIG =====
 // Konfiguracja Firebase dla panelu newslettera
-const firebaseConfig = {
-    apiKey: ["AIzaSyDKmfXRkX", "BhYa6yk9idY4QFZdRRhU5eV9I"].join(""),
-    authDomain: "ai-team-zlecenia.firebaseapp.com",
-    projectId: "ai-team-zlecenia",
-    storageBucket: "ai-team-zlecenia.firebasestorage.app",
-    messagingSenderId: "715537035293",
-    appId: "1:715537035293:web:fe2978df1e20bfc3e0d6f4",
-    measurementId: "G-N62YHVDCKC"
-};
+const firebaseConfig = window.__AITEAM_FIREBASE_CONFIG__;
+if (!firebaseConfig || !firebaseConfig.apiKey) {
+    const configError = document.getElementById('authError');
+    configError.textContent = 'Nie udało się załadować konfiguracji logowania. Odśwież stronę.';
+    configError.classList.remove('hidden');
+    throw new Error('Firebase client configuration unavailable.');
+}
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -488,6 +542,8 @@ let allSubscribers = [];
 let welcomeSends = [];
 let currentNewsletterGroup = 'all';
 let allNewsletterIssues = [];
+let globalworthResponses = [];
+let stopGlobalworthListener = null;
 const PER_PAGE = 20;
 let leadsPage = 1, leadsSearch = '', leadsGroup = 'all';
 let newsletterPage = 1, newsletterSearch = '';
@@ -561,6 +617,7 @@ function initDashboard() {
     listenToNewsletter();
     listenToNewsletterIssues();
     listenToWelcomeSends();
+    listenToGlobalworthResponses();
 }
 
 function setupNewsletterGroupTabs() {
@@ -830,6 +887,204 @@ function renderLeads() {
     const pager = document.getElementById('leadsPager');
     if (pager) pager.innerHTML = pagerHtml(leadsPage, pages, 'setLeadsPage');
     if (window.lucide) lucide.createIcons();
+}
+
+// ===== GLOBALWORTH IT =====
+
+const GLOBALWORTH_QUESTIONS = [
+    ['it-tools-01', 1, 'Dopuszczone narzędzia i polityka AI', 'Jakie narzędzia AI są oficjalnie dopuszczone do użytku?'],
+    ['it-tools-02', 2, 'Dopuszczone narzędzia i polityka AI', 'Czy istnieje wewnętrzna polityka korzystania z AI i jakie ma ograniczenia?'],
+    ['it-tools-03', 3, 'Dopuszczone narzędzia i polityka AI', 'Czy dane firmowe lub dane najemców mogą trafiać do narzędzi AI w wersji enterprise?'],
+    ['it-systems-04', 4, 'Microsoft 365, systemy i integracje', 'Na jakim środowisku pracują zespoły: Microsoft 365, Google Workspace czy innym?'],
+    ['it-systems-05', 5, 'Microsoft 365, systemy i integracje', 'Czy jest wdrożony Microsoft 365 Copilot lub inny asystent w obecnych licencjach?'],
+    ['it-systems-06', 6, 'Microsoft 365, systemy i integracje', 'Jakich systemów używa zespół do zgłoszeń, relacji z najemcami, umów i budżetów?'],
+    ['it-systems-07', 7, 'Microsoft 365, systemy i integracje', 'Czy te systemy mają interfejsy integracyjne i czy logowanie odbywa się przez SSO?'],
+    ['it-data-08', 8, 'Dane, chmura i rezydencja', 'Czy dane muszą pozostać w Unii Europejskiej lub konkretnej lokalizacji?'],
+    ['it-data-09', 9, 'Dane, chmura i rezydencja', 'Czy jest wymagany dostawca chmury lub firmowy tenant?'],
+    ['it-data-10', 10, 'Dane, chmura i rezydencja', 'Czy treści maili i umów mogą być przetwarzane w usłudze zewnętrznej, czy wyłącznie w środowisku Globalworth?'],
+    ['it-security-11', 11, 'Bezpieczeństwo, RODO i akceptacja', 'Jak wygląda proces dopuszczenia nowego narzędzia lub dostawcy i ile zwykle trwa?'],
+    ['it-security-12', 12, 'Bezpieczeństwo, RODO i akceptacja', 'Czy wymagana jest umowa powierzenia danych oraz dodatkowe klauzule bezpieczeństwa?'],
+    ['it-security-13', 13, 'Bezpieczeństwo, RODO i akceptacja', 'Czy dane najemców podlegają dodatkowym zasadom, na przykład anonimizacji?'],
+    ['it-security-14', 14, 'Bezpieczeństwo, RODO i akceptacja', 'Czy pracownicy mogą instalować aplikacje i korzystać z narzędzi zewnętrznych?'],
+    ['it-security-15', 15, 'Bezpieczeństwo, RODO i akceptacja', 'Jakie ograniczenia dotyczą internetu i zewnętrznych interfejsów z komputerów firmowych?'],
+    ['it-owner-16', 16, 'Właściciel decyzji po stronie IT', 'Kto jest właścicielem decyzji o dopuszczeniu narzędzi AI i z kim uzgadniamy architekturę oraz bezpieczeństwo?']
+];
+
+function listenToGlobalworthResponses() {
+    const loading = document.getElementById('globalworthLoading');
+    const errorEl = document.getElementById('globalworthError');
+    const user = auth.currentUser;
+
+    if (!user) {
+        loading.classList.add('hidden');
+        errorEl.textContent = 'Zaloguj się ponownie, aby zobaczyć odpowiedzi Globalworth.';
+        errorEl.classList.remove('hidden');
+        return;
+    }
+
+    if (stopGlobalworthListener) stopGlobalworthListener();
+    stopGlobalworthListener = db.collection('globalworth_it_responses')
+        .orderBy('submitted_at','desc')
+        .onSnapshot(function(snapshot) {
+            globalworthResponses = snapshot.docs.map(function(doc) {
+                return Object.assign({ id: doc.id }, doc.data());
+            });
+            loading.classList.add('hidden');
+            errorEl.classList.add('hidden');
+            renderGlobalworthResponses();
+        }, function(error) {
+            console.error('Globalworth responses error:', error);
+            loading.classList.add('hidden');
+            errorEl.textContent = 'Nie udało się pobrać odpowiedzi Globalworth. Sprawdź dostęp i odśwież panel.';
+            errorEl.classList.remove('hidden');
+        });
+}
+
+function globalworthStateMeta(state) {
+    if (state === 'answered') return { label: 'Odpowiedź', classes: 'bg-green-500/10 text-green-300 border-green-500/30' };
+    if (state === 'needs_clarification') return { label: 'Do ustalenia', classes: 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30' };
+    return { label: 'Nie dotyczy', classes: 'bg-blue-500/10 text-blue-300 border-blue-500/30' };
+}
+
+function globalworthAnswerBody(answer) {
+    if (!answer) return '<p class="text-sm text-red-300">Brak danych odpowiedzi.</p>';
+    if (answer.state === 'answered') {
+        const source = answer.source ? `<div class="text-xs text-gray-500 mt-3"><span class="text-gray-400">Źródło / dokument:</span> ${escHtml(answer.source)}</div>` : '';
+        const confirmed = answer.confirmedBy ? `<div class="text-xs text-gray-500 mt-1"><span class="text-gray-400">Potwierdził:</span> ${escHtml(answer.confirmedBy)}</div>` : '';
+        return `<p class="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed">${escHtml(answer.detail)}</p>${source}${confirmed}`;
+    }
+    if (answer.state === 'needs_clarification') {
+        return `<p class="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed">${escHtml(answer.missingInfo)}</p>
+            <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-gray-500">
+                <span><span class="text-gray-400">Właściciel:</span> ${escHtml(answer.owner || '—')}</span>
+                <span><span class="text-gray-400">Termin:</span> ${escHtml(answer.targetDate || 'nie ustalono')}</span>
+            </div>`;
+    }
+    return `<p class="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed"><span class="text-gray-400">Dlaczego nie dotyczy:</span> ${escHtml(answer.notApplicableReason)}</p>`;
+}
+
+function globalworthOpenItems(response) {
+    const items = (response.summary && response.summary.openItems) || [];
+    if (!items.length) {
+        return '<div class="rounded-xl border border-green-500/20 bg-green-500/[0.06] p-4 text-sm text-green-300">Brak otwartych ustaleń.</div>';
+    }
+    return `<div class="rounded-xl border border-yellow-500/20 bg-yellow-500/[0.06] p-4">
+        <h4 class="font-heading font-semibold text-yellow-200 mb-3">Otwarte ustalenia</h4>
+        <div class="space-y-3">${items.map(function(item) {
+            return `<div class="border-l-2 border-yellow-500/40 pl-3">
+                <div class="text-sm font-medium text-white">${escHtml(String(item.number || ''))}. ${escHtml(item.question)}</div>
+                <p class="text-sm text-gray-300 mt-1 whitespace-pre-wrap">${escHtml(item.missingInfo)}</p>
+                <div class="text-xs text-gray-500 mt-1">Właściciel: ${escHtml(item.owner || '—')} · Termin: ${escHtml(item.targetDate || 'nie ustalono')}</div>
+            </div>`;
+        }).join('')}</div>
+    </div>`;
+}
+
+function renderGlobalworthResponse(response) {
+    const respondent = response.respondent || {};
+    const summary = response.summary || {};
+    const answers = response.answers || {};
+    return `<details class="rounded-2xl border border-white/10 bg-black/20 overflow-hidden">
+        <summary class="cursor-pointer list-none p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center gap-4 hover:bg-white/[0.025] transition">
+            <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-heading font-semibold text-white">${escHtml(respondent.name || 'Bez nazwiska')}</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full border bg-green-500/10 text-green-300 border-green-500/30">Finalny</span>
+                    <span class="text-xs text-gray-500">${escHtml(formatDate(response.submitted_at))}</span>
+                </div>
+                <div class="text-sm text-gray-400 mt-1">${escHtml(respondent.email || '—')}${respondent.role ? ' · ' + escHtml(respondent.role) : ''}</div>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-sm">
+                <span class="text-green-300">${Number(summary.answered || 0)} odpowiedzi</span>
+                <span class="text-yellow-300">${Number(summary.needsClarification || 0)} do ustalenia</span>
+                <span class="text-blue-300">${Number(summary.notApplicable || 0)} nie dotyczy</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
+            </div>
+        </summary>
+        <div class="border-t border-white/10 p-4 sm:p-5 space-y-5">
+            ${globalworthOpenItems(response)}
+            <div class="flex flex-wrap gap-2">
+                <button onclick="exportGlobalworthResponse('${escAttr(escJs(response.id))}')" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>Eksport JSON
+                </button>
+                <button onclick="printGlobalworthResponse('${escAttr(escJs(response.id))}')" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="printer" class="w-4 h-4"></i>Drukuj
+                </button>
+                <span class="text-xs text-gray-600 self-center">ID: ${escHtml(response.response_id || response.id)}</span>
+            </div>
+            <div class="space-y-3">${GLOBALWORTH_QUESTIONS.map(function(question) {
+                const answer = answers[question[0]] || {};
+                const state = globalworthStateMeta(answer.state);
+                return `<article class="rounded-xl border border-white/10 bg-white/[0.025] p-4">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-3">
+                        <div class="flex-1">
+                            <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">${escHtml(question[2])}</div>
+                            <h4 class="font-medium text-white">${question[1]}. ${escHtml(question[3])}</h4>
+                        </div>
+                        <span class="shrink-0 text-xs px-2.5 py-1 rounded-full border ${state.classes}">${state.label}</span>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-white/5">${globalworthAnswerBody(answer)}</div>
+                </article>`;
+            }).join('')}</div>
+        </div>
+    </details>`;
+}
+
+function renderGlobalworthResponses() {
+    const list = document.getElementById('globalworthList');
+    const empty = document.getElementById('globalworthEmpty');
+    const all = globalworthResponses || [];
+    document.getElementById('globalworthStatAll').textContent = all.length;
+    document.getElementById('globalworthStatOpen').textContent = all.reduce(function(total, item) {
+        return total + Number((item.summary && item.summary.needsClarification) || 0);
+    }, 0);
+    document.getElementById('globalworthStatNotApplicable').textContent = all.reduce(function(total, item) {
+        return total + Number((item.summary && item.summary.notApplicable) || 0);
+    }, 0);
+    list.innerHTML = all.map(renderGlobalworthResponse).join('');
+    empty.classList.toggle('hidden', all.length > 0);
+    if (window.lucide) lucide.createIcons();
+}
+
+function exportGlobalworthResponse(responseId) {
+    const response = globalworthResponses.find(function(item) { return item.id === responseId; });
+    if (!response) return showToast('Nie znaleziono odpowiedzi do eksportu', 'error');
+    const blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `globalworth-it-${response.response_id || response.id}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Wyeksportowano odpowiedzi Globalworth', 'success');
+}
+
+function globalworthPrintHtml(response) {
+    const respondent = response.respondent || {};
+    const answers = response.answers || {};
+    const itemHtml = GLOBALWORTH_QUESTIONS.map(function(question) {
+        const answer = answers[question[0]] || {};
+        const state = globalworthStateMeta(answer.state).label;
+        let body = answer.detail || answer.missingInfo || answer.notApplicableReason || 'Brak danych';
+        if (answer.state === 'needs_clarification') body += `\nWłaściciel: ${answer.owner || '—'}\nTermin: ${answer.targetDate || 'nie ustalono'}`;
+        return `<section><p class="meta">${escHtml(question[2])} · ${escHtml(state)}</p><h2>${question[1]}. ${escHtml(question[3])}</h2><p>${escHtml(body).replace(/\n/g, '<br>')}</p></section>`;
+    }).join('');
+    return `<!doctype html><html lang="pl"><head><meta charset="utf-8"><title>Globalworth IT — ${escHtml(respondent.name || '')}</title><style>body{font:14px/1.55 Arial,sans-serif;color:#172033;max-width:900px;margin:32px auto;padding:0 24px}h1{font-size:26px;margin-bottom:4px}h2{font-size:16px;margin:5px 0 8px}.meta{font-size:11px;color:#667085;text-transform:uppercase;letter-spacing:.06em}section{border-top:1px solid #d9dee8;padding:16px 0}header{margin-bottom:28px}@media print{body{margin:0}}</style></head><body><header><h1>Globalworth IT — odpowiedzi</h1><p>${escHtml(respondent.name || '—')} · ${escHtml(respondent.email || '—')} · ${escHtml(formatDate(response.submitted_at))}</p></header>${itemHtml}</body></html>`;
+}
+
+function printGlobalworthResponse(responseId) {
+    const response = globalworthResponses.find(function(item) { return item.id === responseId; });
+    if (!response) return showToast('Nie znaleziono odpowiedzi do wydruku', 'error');
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return showToast('Przeglądarka zablokowała okno wydruku', 'error');
+    try { printWindow.opener = null; } catch (error) {}
+    printWindow.document.open();
+    printWindow.document.write(globalworthPrintHtml(response));
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(function() { printWindow.print(); }, 250);
 }
 
 // ===== NEWSLETTER =====
