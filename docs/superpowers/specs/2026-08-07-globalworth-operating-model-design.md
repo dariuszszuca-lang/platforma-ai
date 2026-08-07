@@ -26,7 +26,7 @@ Zmiana obejmuje meta description, hero, schemat drogi, dowody zakresu, sekcję o
 
 ## Nowa sekcja strony
 
-Sekcja pojawi się po „Rezultatach”, bezpośrednio przed końcowym wezwaniem do działania.
+Sekcja będzie ostatnią sekcją merytoryczną strony. Pojawi się po „Rezultatach”, bezpośrednio przed końcowym wezwaniem do działania, i otrzyma identyfikator `model-ai`.
 
 ### Nagłówek
 
@@ -63,7 +63,8 @@ Każdy etap ma być przedstawiony jako osobny krok, a nie jako obietnica wykonan
 - Sekcja otrzyma jasne tło oraz jedną dominującą granatową kartę modelu, aby nie zlewała się z granatowym CTA.
 - Układ ma być czytelny bez animacji i skalować się do jednej kolumny na telefonie.
 - Efekty wejścia korzystają wyłącznie z istniejącej klasy `reveal` i respektują `prefers-reduced-motion`.
-- Nie dokładamy nowej pozycji do menu, aby nie przeciążyć nawigacji. Sekcja jest naturalnym rozwinięciem „Rezultatów”.
+- Do menu dokładamy krótki odnośnik **Model AI**, prowadzący do `#model-ai`.
+- Na węższych ekranach odnośnik zachowuje obecne reguły responsywnej nawigacji i nie może powodować poziomego przewijania.
 
 ## Aktualizacja maila do Agnieszki
 
@@ -78,10 +79,11 @@ Zakończenie maila jasno mówi, że finalny program i oferta obejmująca zakres,
 1. W `globalworth/index.html` nie występują słowa „pilot”, „pilotaż” ani ich odmiany.
 2. Strona zawiera nagłówek „Docelowy model operacyjny AI” i cztery perspektywy odbiorców.
 3. Strona zawiera cztery kolejne etapy rozwoju, w tym „Pierwszy proces wdrożeniowy”.
-4. Sekcja nie zawiera nazwy „Zewnętrzny Dział AI”, cen ani abonamentu.
-5. Istniejące testy formularza i trwałego zapisu nadal przechodzą.
-6. Widok desktopowy i mobilny nie ma poziomego przewijania, a treść pozostaje czytelna przy wyłączonych animacjach.
-7. Po wdrożeniu `/globalworth/` zwraca HTTP 200, a publiczna strona zawiera nowe copy.
+4. Menu zawiera odnośnik `href="#model-ai"` z etykietą „Model AI”.
+5. Sekcja nie zawiera nazwy „Zewnętrzny Dział AI”, cen ani abonamentu.
+6. Istniejące testy formularza i trwałego zapisu nadal przechodzą.
+7. Widok desktopowy i mobilny nie ma poziomego przewijania, a treść pozostaje czytelna przy wyłączonych animacjach.
+8. Po wdrożeniu `/globalworth/` zwraca HTTP 200, a publiczna strona zawiera nowe copy.
 
 ## Granice zakresu
 
