@@ -2,7 +2,8 @@
   "version": 2,
   "cleanUrls": true,
   "functions": {
-    "api/newsletter-send.js": { "maxDuration": 300 }
+    "api/newsletter-send.js": { "maxDuration": 300 },
+    "api/newsletter-send-late.js": { "maxDuration": 300 }
   },
   "crons": [
     {
@@ -10,7 +11,7 @@
       "schedule": "0 16 * * *"
     },
     {
-      "path": "/api/newsletter-send",
+      "path": "/api/newsletter-send-late",
       "schedule": "0 17 * * *"
     }
   ],
