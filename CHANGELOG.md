@@ -1,6 +1,6 @@
 # Changelog
 
-## [2026-08-07] commits 70f3eaf, b3ab737, bd20c72
+## [2026-08-07] commits 70f3eaf, b3ab737, bd20c72, 67b1860
 
 - Dodano podstronę `/globalworth/` z pięcioetapowym formularzem 16 pytań IT,
   trwałym zapisem finalnych odpowiedzi w Firestore i lokalnym szkicem.
