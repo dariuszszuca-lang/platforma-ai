@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-08-07] rozbudowane odpowiedzi Globalworth
+
+- Formularz wyjaśnia, że odpowiedzi IT mogą być długie, napisane własnym
+  językiem i bez formalnego stylu.
+- Podpowiedzi dla „Mamy odpowiedź”, „Do ustalenia” i „Nie dotyczy” zachęcają do
+  przekazania pełnego kontekstu.
+- Pytania, walidacja, limity odpowiedzi i mechanizm zapisu pozostały bez zmian.
+
 ## [2026-08-07] commit 34cd8f8
 
 - Zastąpiono język pilotażu określeniami „proces wdrożeniowy” i „pierwsze
