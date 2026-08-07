@@ -49,3 +49,37 @@ test('formularz ładuje lokalne assety i zawiera awaryjny zestaw 16 pytań', () 
   const fallbackQuestions = html.match(/<li>[^<]+<\/li>/g) || [];
   assert.equal(fallbackQuestions.length, 16);
 });
+
+test('materiał używa języka procesu wdrożeniowego zamiast pilotażu', () => {
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const withoutProductName = html.replace(/Microsoft 365 Copilot/gi, 'Microsoft 365');
+
+  assert.doesNotMatch(withoutProductName, /\bpilot\w*|\bpilotaż\w*/i);
+  assert.match(html, /pierwszy proces wdrożeniowy/i);
+  assert.match(html, /kroków do wdrożenia/i);
+});
+
+test('docelowy model AI jest ostatnią sekcją merytoryczną i ma link w menu', () => {
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const resultsPosition = html.indexOf('id="rezultaty"');
+  const modelPosition = html.indexOf('id="model-ai"');
+  const ctaPosition = html.indexOf('<section class="cta"');
+
+  assert.ok(resultsPosition > -1);
+  assert.ok(modelPosition > resultsPosition);
+  assert.ok(ctaPosition > modelPosition);
+  assert.match(html, /<a href="#model-ai">Model AI<\/a>/);
+  assert.match(html, /Docelowy model operacyjny AI/i);
+});
+
+test('model AI pokazuje wspólny kontekst i cztery poziomy widoczności', () => {
+  const html = fs.readFileSync(htmlPath, 'utf8');
+
+  assert.match(html, /Wspólny kontekst operacyjny/i);
+  assert.match(html, />Pracownik</);
+  assert.match(html, />Proces</);
+  assert.match(html, />Manager</);
+  assert.match(html, />Dyrektor</);
+  assert.match(html, /Wspólna warstwa informacji i automatyzacji/i);
+  assert.doesNotMatch(html, /Zewnętrzny Dział AI/);
+});
