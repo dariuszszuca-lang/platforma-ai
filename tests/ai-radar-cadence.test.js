@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const newsletterHandler = require('../api/newsletter-send');
 
 const root = path.join(__dirname, '..');
 
@@ -14,14 +15,21 @@ test('nowe zapisy AI Radar mają jawną zgodę na poniedziałki i czwartki', () 
   assert.match(html, /okazjonalne informacje o usługach/i);
 });
 
-test('cron mieści się w limicie Hobby i obsługuje czas letni oraz zimowy', () => {
+test('cron uruchamia się codziennie w obu godzinach UTC potrzebnych dla Warszawy', () => {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
   const newsletterCrons = config.crons
     .filter((item) => item.path === '/api/newsletter-send')
     .map((item) => item.schedule)
     .sort();
 
-  assert.deepEqual(newsletterCrons, ['0 16 * * 1,4', '0 17 * * 1,4']);
+  assert.deepEqual(newsletterCrons, ['0 16 * * *', '0 17 * * *']);
+});
+
+test('welcome uruchamia się tylko o 18 w strefie Europe/Warsaw', () => {
+  assert.equal(newsletterHandler.isWarsawNewsletterHour('2026-08-07T16:15:00Z'), true);
+  assert.equal(newsletterHandler.isWarsawNewsletterHour('2026-08-07T17:15:00Z'), false);
+  assert.equal(newsletterHandler.isWarsawNewsletterHour('2026-12-07T16:15:00Z'), false);
+  assert.equal(newsletterHandler.isWarsawNewsletterHour('2026-12-07T17:15:00Z'), true);
 });
 
 test('czwartek trafia tylko do zgody 2x, a poniedziałek do całej listy', () => {

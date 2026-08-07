@@ -25,7 +25,9 @@ module.exports = async function handler(req, res) {
         return handleTracking(req, res, q);
       }
       const token = await requireCronToken(req);
-      const welcome = await processWelcomeSequence({ token }).catch((e) => ({ ok: false, error: e.message }));
+      const welcome = isWarsawNewsletterHour(new Date())
+        ? await processWelcomeSequence({ token }).catch((e) => ({ ok: false, error: e.message }))
+        : { ok: true, skipped: true, reason: "outside-warsaw-18" };
       const result = await sendDueIssues({ token });
       return sendJson(res, 200, { welcome, ...result });
     }
@@ -91,6 +93,17 @@ async function sendDueIssues({ token }) {
 // ===== SEKWENCJA POWITALNA (welcome) =====
 // Cron dzienny: każdy NOWY lead (created_at >= WELCOME_START) dostaje 4 maile,
 // jeden na wieczór, od dnia zapisu (dzień 0..3). Stan trzymany na subskrybencie: welcome_step.
+function isWarsawNewsletterHour(value) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return false;
+  const hour = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Warsaw",
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).format(date);
+  return hour === "18";
+}
+
 function loadWelcomeEmails() {
   try {
     return JSON.parse(fs.readFileSync(path.join(__dirname, "_welcome-emails.json"), "utf8"));
@@ -1043,4 +1056,5 @@ Object.assign(module.exports, {
   docIdFromEmail,
   renderIssueForSubscriber,
   buildSesPayload,
+  isWarsawNewsletterHour,
 });
