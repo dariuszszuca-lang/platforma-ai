@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-08-07] commit 8f805e8
+
+- Wyeksponowano logo AI-Team w nagłówku podstrony `/globalworth/`, pozostawiając
+  obok nazwę marki.
+- Linki menu zgrupowano w czytelnym panelu z poprawionymi stanami hover i focus,
+  a układ nagłówka dostosowano do desktopu, tabletu i telefonu.
+
 ## [2026-08-07] commits 70f3eaf, b3ab737, bd20c72, 67b1860
 
 - Dodano podstronę `/globalworth/` z pięcioetapowym formularzem 16 pytań IT,
