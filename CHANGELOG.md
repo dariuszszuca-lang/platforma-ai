@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-08-07] commit 34cd8f8
+
+- Zastąpiono język pilotażu określeniami „proces wdrożeniowy” i „pierwsze
+  wdrożenie” na całej podstronie `/globalworth/`, pozostawiając bez zmian nazwę
+  Microsoft 365 Copilot.
+- Dodano końcową sekcję „Docelowy model operacyjny AI” ze wspólnym kontekstem
+  operacyjnym, widokami dla pracownika, procesu, menedżera i dyrektora oraz
+  czteroetapową ścieżką rozwoju.
+- Dodano link „Model AI” w menu i zweryfikowano responsywność na 1440, 1024,
+  768 i 375 px.
+- Formularz i API pozostały bez zmian; 78/78 testów i build produkcyjny przeszły,
+  a strona live odpowiada HTTP 200.
+
 ## [2026-08-07] commit 8f805e8
 
 - Wyeksponowano logo AI-Team w nagłówku podstrony `/globalworth/`, pozostawiając
