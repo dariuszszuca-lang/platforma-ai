@@ -42,6 +42,16 @@ test('formularz komunikuje trwały zapis i ograniczenia danych', () => {
   assert.doesNotMatch(script, /\?view=answers/);
 });
 
+test('formularz pozwala na rozbudowane odpowiedzi własnym językiem', () => {
+  const script = fs.readFileSync(scriptPath, 'utf8');
+
+  assert.match(script, /Odpowiedzi mogą być rozbudowane i napisane własnym językiem/);
+  assert.match(script, /Nie wymagamy formalnego stylu ani skrótowych odpowiedzi/);
+  assert.match(script, /Możesz odpowiedzieć własnymi słowami/);
+  assert.match(script, /Możesz podać pełny kontekst/);
+  assert.match(script, /Możesz szerzej opisać stan organizacji, systemu lub procesu/);
+});
+
 test('formularz ładuje lokalne assety i zawiera awaryjny zestaw 16 pytań', () => {
   const html = fs.readFileSync(htmlPath, 'utf8');
   assert.match(html, /assets\/it-questionnaire\.css/);

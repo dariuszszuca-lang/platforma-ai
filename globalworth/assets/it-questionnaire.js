@@ -540,20 +540,20 @@
     function renderConditionalFields(question, answer) {
       if (answer.state === 'answered') {
         return '<div class="itq-conditional">' +
-          renderTextField(question.id, 'detail', 'Szczegółowa odpowiedź', 'Opisz stan obecny, obowiązujące warunki, ograniczenia i znane wyjątki.', answer.detail, true, 'textarea') +
+          renderTextField(question.id, 'detail', 'Szczegółowa odpowiedź', 'Możesz odpowiedzieć własnymi słowami. Pole pozwala na dłuższy, szczegółowy opis wraz z warunkami, ograniczeniami i wyjątkami.', answer.detail, true, 'textarea') +
           renderTextField(question.id, 'source', 'Podstawa lub źródło', 'Nazwa polityki, procedury, systemu albo właściciel informacji.', answer.source, false, 'text') +
           '</div>';
       }
       if (answer.state === 'needs_clarification') {
         return '<div class="itq-conditional">' +
-          renderTextField(question.id, 'missingInfo', 'Czego jeszcze nie wiemy?', 'Nazwij konkretną brakującą decyzję albo informację.', answer.missingInfo, true, 'textarea') +
+          renderTextField(question.id, 'missingInfo', 'Czego jeszcze nie wiemy?', 'Opisz własnymi słowami, czego jeszcze nie wiadomo i co trzeba ustalić. Możesz podać pełny kontekst.', answer.missingInfo, true, 'textarea') +
           renderTextField(question.id, 'owner', 'Kto może to potwierdzić?', 'Wskaż osobę, rolę albo zespół.', answer.owner, true, 'text') +
           renderTextField(question.id, 'targetDate', 'Planowany termin', '', answer.targetDate, false, 'date') +
           '</div>';
       }
       if (answer.state === 'not_applicable') {
         return '<div class="itq-conditional">' +
-          renderTextField(question.id, 'notApplicableReason', 'Dlaczego nie dotyczy?', 'Wyjaśnij, czego w organizacji, systemie albo procesie nie ma.', answer.notApplicableReason, true, 'textarea') +
+          renderTextField(question.id, 'notApplicableReason', 'Dlaczego nie dotyczy?', 'Wyjaśnij własnymi słowami, dlaczego pytanie nie dotyczy. Możesz szerzej opisać stan organizacji, systemu lub procesu.', answer.notApplicableReason, true, 'textarea') +
           renderTextField(question.id, 'confirmedBy', 'Kto lub co to potwierdza?', 'Rola, system albo obowiązująca procedura.', answer.confirmedBy, false, 'text') +
           '</div>';
       }
@@ -602,6 +602,7 @@
       var hasNoticeError = errors.indexOf('dataNoticeAccepted') !== -1;
       rootElement.innerHTML = '<div class="itq-card itq-intro">' +
         '<div class="itq-intro-copy"><span class="itq-kicker">Kwestionariusz roboczy</span><h3>Pięć kroków do bezpiecznego programu.</h3><p>Szkic zapisuje się automatycznie w tej przeglądarce. Finalny zestaw trafia do chronionej bazy AI-Team dopiero po użyciu przycisku końcowego.</p>' +
+        '<p><strong>Odpowiedzi mogą być rozbudowane i napisane własnym językiem.</strong> Prosimy opisać stan faktyczny tak szczegółowo, jak wymaga tego dane zagadnienie. Nie wymagamy formalnego stylu ani skrótowych odpowiedzi.</p>' +
         '<div class="itq-intro-steps"><div class="itq-intro-step"><span>01</span><span>Dane respondenta i zasady przekazania danych</span></div><div class="itq-intro-step"><span>02</span><span>16 pytań w pięciu krótkich etapach</span></div><div class="itq-intro-step"><span>03</span><span>Kontrola kompletności i trwały zapis odpowiedzi</span></div></div></div>' +
         '<form class="itq-start" id="itq-start-form" novalidate><h3>Rozpocznij uzupełnianie</h3><p>Jedna wskazana osoba z IT prowadzi cały zestaw odpowiedzi.</p>' +
         '<div class="itq-form-grid"><div class="itq-field"><label for="itq-name">Imię i nazwisko <span class="itq-required" aria-hidden="true">*</span></label><input id="itq-name" name="name" autocomplete="name" value="' + escapeHtml(introValues.name) + '"' + (hasNameError ? ' aria-invalid="true" aria-describedby="itq-name-error"' : '') + '>' + (hasNameError ? '<span class="itq-field-error" id="itq-name-error">Podaj imię i nazwisko.</span>' : '') + '</div>' +
