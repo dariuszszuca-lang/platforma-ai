@@ -16,6 +16,16 @@ test('podstrona Globalworth jest materiałem nieindeksowanym dla klienta', () =>
   assert.equal(fs.existsSync(path.join(root, 'assets', 'ai-team-logo-256.png')), true);
 });
 
+test('nagłówek mocniej eksponuje logo AI-Team i grupuje linki menu', () => {
+  const html = fs.readFileSync(htmlPath, 'utf8');
+
+  assert.match(html, /<span class="brand-mark">\s*<img[^>]+width="48"[^>]+height="48"[^>]*>\s*<\/span>/s);
+  assert.match(html, /<span class="brand-name">AI-Team<\/span>/);
+  assert.match(html, /\.nav \.brand-mark\{[^}]*width:54px[^}]*height:54px[^}]*\}/s);
+  assert.match(html, /\.nav-links\{[^}]*border:1px solid var\(--line-soft\)[^}]*border-radius:13px[^}]*\}/s);
+  assert.match(html, /\.nav-links a\{[^}]*min-height:40px[^}]*\}/s);
+});
+
 test('formularz komunikuje trwały zapis i ograniczenia danych', () => {
   const html = fs.readFileSync(htmlPath, 'utf8');
   const script = fs.readFileSync(scriptPath, 'utf8');

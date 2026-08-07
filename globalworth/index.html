@@ -60,6 +60,7 @@
   .skip-link{position:fixed;top:10px;left:10px;z-index:1000;background:#fff;color:var(--navy);padding:10px 14px;border-radius:8px;transform:translateY(-160%)}
   .skip-link:focus{transform:none}
   :focus-visible{outline:3px solid var(--green-bright);outline-offset:4px;border-radius:4px}
+  header[id],section[id]{scroll-margin-top:96px}
 
   .eyebrow{
     display:inline-flex;
@@ -87,13 +88,18 @@
   .section.navy .index{color:var(--green-bright)}
 
   /* Navigation */
-  .nav{position:sticky;top:0;z-index:100;background:rgba(251,250,247,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
-  .nav-in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .nav{position:sticky;top:0;z-index:100;background:rgba(251,250,247,.94);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-soft);box-shadow:0 12px 34px -32px rgba(11,31,58,.7)}
+  .nav-in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}
   .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
   .brand img{display:block;width:34px;height:34px;border-radius:50%}
-  .nav-links{display:flex;align-items:center;gap:28px}
-  .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s ease}
-  .nav-links a:hover{color:var(--ink)}
+  .nav .brand{gap:13px;color:var(--navy);font-size:19px}
+  .nav .brand-mark{display:grid;place-items:center;width:54px;height:54px;flex:none;padding:3px;background:#fff;border:1px solid rgba(11,31,58,.12);border-radius:50%;box-shadow:0 9px 22px -14px rgba(11,31,58,.55);transition:transform .2s ease,box-shadow .2s ease}
+  .nav .brand img{width:48px;height:48px}
+  .nav .brand:hover .brand-mark{transform:translateY(-1px);box-shadow:0 13px 25px -14px rgba(11,31,58,.66)}
+  .nav .brand-name{line-height:1}
+  .nav-links{display:flex;align-items:center;gap:2px;padding:4px;background:rgba(246,244,239,.86);border:1px solid var(--line-soft);border-radius:13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.72)}
+  .nav-links a{min-height:40px;display:inline-flex;align-items:center;padding:0 11px;border-radius:9px;text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:600;transition:color .2s ease,background .2s ease,box-shadow .2s ease}
+  .nav-links a:hover,.nav-links a:focus-visible{background:var(--paper);color:var(--navy);box-shadow:0 5px 14px -12px rgba(11,31,58,.8)}
   .btn{
     min-height:46px;
     display:inline-flex;
@@ -118,7 +124,7 @@
   .btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.48)}
   .btn-paper{border-color:var(--line);background:var(--paper);color:var(--navy)}
   .btn-paper:hover{border-color:rgba(31,122,78,.45);box-shadow:var(--shadow)}
-  .nav .btn{min-height:42px;padding:9px 17px}
+  .nav .btn{min-height:44px;padding:10px 18px;border-radius:10px}
 
   /* Hero */
   .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff}
@@ -322,7 +328,10 @@
 
   @media(max-width:480px){
     .wrap{width:min(100% - 32px,var(--maxw))}
-    .nav-in{height:62px}
+    .nav-in{height:70px}
+    .nav .brand{gap:10px;font-size:18px}
+    .nav .brand-mark{width:46px;height:46px;padding:2px}
+    .nav .brand img{width:40px;height:40px}
     .route-card{padding:18px}
     .route-arrow{height:24px}
     .answer-card,.program-rule,.module-rhythm,.journey-card,.gate-map{padding:23px}
@@ -344,8 +353,8 @@
 <div class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="AI-Team, początek strony">
-      <img src="../assets/ai-team-logo-256.png" alt="" width="34" height="34">
-      AI-Team
+      <span class="brand-mark"><img src="../assets/ai-team-logo-256.png" alt="" width="48" height="48"></span>
+      <span class="brand-name">AI-Team</span>
     </a>
     <nav class="nav-links" aria-label="Główna nawigacja">
       <a href="#procesy">Procesy</a>
