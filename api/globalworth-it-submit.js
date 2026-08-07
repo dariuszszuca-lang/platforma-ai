@@ -19,12 +19,16 @@ function createHandler(dependencies) {
     setDoc: firestore.setDoc,
     now: () => new Date().toISOString(),
     logger: console,
+    env: process.env,
     ...(dependencies || {}),
   };
 
   return async function handler(req, res) {
     setCors(req, res);
 
+    if (req.method === 'GET') {
+      return sendFirebaseClientConfig(res, deps.env);
+    }
     if (req.method === 'OPTIONS') {
       if (!allowedOrigin(req)) return sendJson(res, 403, { ok: false, error: 'Niedozwolone źródło żądania.' });
       return res.status(200).end();
@@ -123,9 +127,33 @@ function setCors(req, res) {
   const origin = clean(req && req.headers && (req.headers.origin || req.headers.Origin));
   if (ALLOWED_ORIGINS.has(origin)) res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store');
+}
+
+function sendFirebaseClientConfig(res, environment) {
+  const env = environment || {};
+  const projectId = clean(env.FIREBASE_PROJECT_ID || 'ai-team-zlecenia');
+  const apiKey = clean(env.FIREBASE_API_KEY);
+
+  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  if (!apiKey) {
+    return res.status(503).send('window.__AITEAM_FIREBASE_CONFIG_ERROR__ = true;');
+  }
+
+  const config = {
+    apiKey,
+    authDomain: `${projectId}.firebaseapp.com`,
+    projectId,
+    storageBucket: `${projectId}.firebasestorage.app`,
+    messagingSenderId: clean(env.FIREBASE_MESSAGING_SENDER_ID || '715537035293'),
+    appId: clean(env.FIREBASE_APP_ID || '1:715537035293:web:fe2978df1e20bfc3e0d6f4'),
+    measurementId: clean(env.FIREBASE_MEASUREMENT_ID || 'G-N62YHVDCKC'),
+  };
+
+  return res.status(200).send(`window.__AITEAM_FIREBASE_CONFIG__ = ${JSON.stringify(config)};`);
 }
 
 function safeError(error) {

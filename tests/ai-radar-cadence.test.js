@@ -18,16 +18,18 @@ test('nowe zapisy AI Radar mają jawną zgodę na poniedziałki i czwartki', () 
 test('cron uruchamia się codziennie w obu godzinach UTC potrzebnych dla Warszawy', () => {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
   const newsletterCrons = config.crons
-    .filter((item) => item.path.startsWith('/api/newsletter-send'))
-    .map(({ path: cronPath, schedule }) => ({ path: cronPath, schedule }));
+    .filter((item) => item.path === '/api/newsletter-send')
+    .map((item) => item.schedule)
+    .sort();
 
-  assert.deepEqual(newsletterCrons, [
-    { path: '/api/newsletter-send', schedule: '0 16 * * *' },
-    { path: '/api/newsletter-send-late', schedule: '0 17 * * *' },
-  ]);
+  assert.deepEqual(newsletterCrons, ['0 16 * * *', '0 17 * * *']);
+});
 
-  const lateHandler = fs.readFileSync(path.join(root, 'api', 'newsletter-send-late.js'), 'utf8');
-  assert.match(lateHandler, /require\(['"]\.\/newsletter-send['"]\)/);
+test('wdrożenie mieści się w limicie 12 funkcji planu Vercel Hobby', () => {
+  const functions = fs.readdirSync(path.join(root, 'api'))
+    .filter((file) => file.endsWith('.js') && !file.startsWith('_'));
+
+  assert.ok(functions.length <= 12, `Znaleziono ${functions.length} funkcji serwerowych.`);
 });
 
 test('welcome uruchamia się tylko o 18 w strefie Europe/Warsaw', () => {

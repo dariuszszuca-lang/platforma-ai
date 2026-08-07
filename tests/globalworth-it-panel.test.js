@@ -16,7 +16,7 @@ test('panel ma chronioną sekcję odpowiedzi Globalworth', () => {
 });
 
 test('panel pobiera publiczną konfigurację Firebase z Vercel zamiast trzymać klucz w HTML', () => {
-  assert.match(panel, /src="\/api\/firebase-client-config"/);
+  assert.match(panel, /src="\/api\/globalworth-it-submit"/);
   assert.match(panel, /window\.__AITEAM_FIREBASE_CONFIG__/);
   assert.doesNotMatch(panel, /AIzaSy/);
 });

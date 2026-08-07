@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { createHandler } = require('../api/globalworth-it-submit');
-const { createHandler: createFirebaseConfigHandler } = require('../api/firebase-client-config');
 
 test('serwerowe helpery nie zawierają zapasowego klucza Firebase w kodzie', () => {
   for (const file of ['_async-firestore.js', 'newsletter-send.js']) {
@@ -15,12 +14,14 @@ test('serwerowe helpery nie zawierają zapasowego klucza Firebase w kodzie', () 
 });
 
 test('konfiguracja klienta Firebase pochodzi z env i nie jest cachowana', () => {
-  const handler = createFirebaseConfigHandler({
-    FIREBASE_API_KEY: 'test-public-key',
-    FIREBASE_PROJECT_ID: 'test-project',
+  const handler = createHandler({
+    env: {
+      FIREBASE_API_KEY: 'test-public-key',
+      FIREBASE_PROJECT_ID: 'test-project',
+    },
   });
   const res = responseRecorder();
-  handler({ method: 'GET' }, res);
+  handler({ method: 'GET', headers: {} }, res);
   assert.equal(res.statusCode, 200);
   assert.equal(res.headers['cache-control'], 'no-store');
   assert.match(res.textBody, /window\.__AITEAM_FIREBASE_CONFIG__/);
@@ -90,7 +91,7 @@ function testHandler(overrides) {
 test('odrzuca metodę inną niż POST', async () => {
   const { handler } = testHandler();
   const res = responseRecorder();
-  await handler({ method: 'GET', headers: {} }, res);
+  await handler({ method: 'PUT', headers: {} }, res);
   assert.equal(res.statusCode, 405);
   assert.equal(res.body.ok, false);
 });

@@ -7,7 +7,8 @@
 - Dodano chroniony, tylko do odczytu widok odpowiedzi Globalworth w panelu
   AI-Team wraz z eksportem JSON i wydrukiem.
 - Poprawiono harmonogram AI Radar: dwa codzienne wywołania UTC obsługujące
-  zmianę czasu, z pojedynczą wysyłką sekwencji powitalnej o 18:00 w Warszawie;
-  każdy harmonogram ma osobny endpoint wymagany przez wdrożenie Vercel.
+  zmianę czasu, z pojedynczą wysyłką sekwencji powitalnej o 18:00 w Warszawie.
+- Połączono publiczną konfigurację panelu z endpointem Globalworth, aby całe
+  wdrożenie mieściło się w limicie 12 funkcji serwerowych planu Vercel Hobby.
 - Usunięto zapasową konfigurację klucza Firebase z kodu; wartość jest pobierana
   wyłącznie z konfiguracji środowiska Vercel.
