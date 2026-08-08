@@ -870,7 +870,7 @@ footer { padding: 80px 0 40px; background: var(--cream-deep); border-top: 1px so
 /* === RESPONSIVE === */
 @media (max-width: 1100px) {
   .hero-grid, .case-grid, .about-grid, .academy-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
-  .paths-grid, .testimonials-grid, .offer-grid-3 { grid-template-columns: 1fr; }
+  .paths-grid, .testimonials-grid, .offer-grid-3, .problems-grid { grid-template-columns: 1fr; }
   .offer-grid-4, .offer-grid-2 { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .sof-pain-grid { grid-template-columns: repeat(2, 1fr); }
@@ -935,4 +935,14 @@ footer { padding: 80px 0 40px; background: var(--cream-deep); border-top: 1px so
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
+}
+
+/* === WĄSKIE TELEFONY (fix przepełnienia 08.08.2026) === */
+@media (max-width: 640px) {
+  .container { padding: 0 22px; }
+  .offer-grid-4, .offer-grid-2, .process-grid, .sof-pain-grid, .sof-process-grid { grid-template-columns: 1fr; }
+  .problem-card { padding: 26px 22px; }
+  .problem-card .quote { font-size: 21px; }
+  .offer-item { min-width: 0; }
+  .display { overflow-wrap: anywhere; }
 }
