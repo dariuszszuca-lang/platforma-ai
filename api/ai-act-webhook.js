@@ -29,8 +29,9 @@ const NEW_PRODUCTS = {
   },
   plink_1U29jyC5TxNbsygYVyKo0Mu8: {
     slug: "kokpit-finansowy", amount: 14900,
-    subject: "Twój Kokpit Finansowy: zaczynamy",
-    body: "dziękuję za zakup Kokpitu Finansowego. W ciągu 24 godzin wyślę Ci na tego maila Twoją wersję kokpitu z instrukcją uruchomienia w 30 minut. Zanim paczka dojdzie, możesz poklikać wersję pokazową: https://ai-team.pl/kokpit",
+    subject: "Twój Kokpit Finansowy: paczka do pobrania",
+    body: "dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony: https://ai-team.pl/dziekujemy-kokpit \n\nW środku jest kokpit i instrukcja uruchomienia w 30 minut. Jeśli wolisz, żebym uruchomił kokpit z Tobą i wypełnił go Twoimi danymi, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
+    bodyHtml: 'dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony:</p><p><a href="https://ai-team.pl/dziekujemy-kokpit" style="color:#c8102e;font-weight:bold;text-decoration:none;">https://ai-team.pl/dziekujemy-kokpit</a></p><p>W środku jest kokpit i instrukcja uruchomienia w 30 minut. Jeśli wolisz, żebym uruchomił kokpit z Tobą i wypełnił go Twoimi danymi, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.',
   },
   plink_1U29jzC5TxNbsygYkcf1cKl9: {
     slug: "audyt-ai", amount: 29000,
@@ -89,7 +90,7 @@ module.exports = async function handler(req, res) {
       console.error("[produkty-webhook] brak e-maila w sesji", session.id);
       return res.status(200).json({ ignored: "no email" });
     }
-    const html2 = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;"><p>Dzień dobry,</p><p>${newProduct.body}</p><p>Potrzebujesz rachunku? Daj znać, przygotuję i odeślę.</p><p>Pozdrawiam,<br>Darek<br>AI-Team.pl</p></div>`;
+    const html2 = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;"><p>Dzień dobry,</p><p>${newProduct.bodyHtml || newProduct.body}</p><p>Potrzebujesz rachunku? Daj znać, przygotuję i odeślę.</p><p>Pozdrawiam,<br>Darek<br>AI-Team.pl</p></div>`;
     const text2 = `Dzień dobry,\n\n${newProduct.body}\n\nPotrzebujesz rachunku? Daj znać.\n\nPozdrawiam,\nDarek\nAI-Team.pl`;
     try {
       const aws = getAwsConfig();
