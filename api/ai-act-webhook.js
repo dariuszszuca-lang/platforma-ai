@@ -14,6 +14,31 @@ const {
 
 const PAKIET_URL = "https://ai-team.pl/ai-act/dziekujemy";
 
+// Pozostałe produkty cyfrowe (strona /produkty). Dopasowanie ZAWSZE po payment_link
+// + kwocie, nigdy po samej kwocie. CAPI (Meta) tylko dla AI Act.
+const NEW_PRODUCTS = {
+  plink_1U29jvC5TxNbsygYoYtIdk8h: {
+    slug: "monitor-opinii", amount: 9700,
+    subject: "Monitor Opinii Google: zaczynamy",
+    body: "dziękuję za zakup Monitora Opinii Google. W ciągu 24 godzin wyślę Ci na tego maila paczkę z monitorem i prostą instrukcją uruchomienia. Jeśli wolisz, żebym wdrożył go za Ciebie, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
+  },
+  plink_1U29jxC5TxNbsygYEYId1nLv: {
+    slug: "poranny-raport", amount: 9700,
+    subject: "Poranny Raport Firmowy: zaczynamy",
+    body: "dziękuję za zakup Porannego Raportu Firmowego. W ciągu 24 godzin wyślę Ci na tego maila paczkę z automatem i prostą instrukcją uruchomienia. Jeśli wolisz, żebym wdrożył go za Ciebie, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
+  },
+  plink_1U29jyC5TxNbsygYVyKo0Mu8: {
+    slug: "kokpit-finansowy", amount: 14900,
+    subject: "Twój Kokpit Finansowy: zaczynamy",
+    body: "dziękuję za zakup Kokpitu Finansowego. W ciągu 24 godzin wyślę Ci na tego maila Twoją wersję kokpitu z instrukcją uruchomienia w 30 minut. Zanim paczka dojdzie, możesz poklikać wersję pokazową: https://ai-team.pl/kokpit",
+  },
+  plink_1U29jzC5TxNbsygYkcf1cKl9: {
+    slug: "audyt-ai", amount: 29000,
+    subject: "Audyt AI: pierwszy krok",
+    body: "dziękuję za zamówienie audytu AI. Żeby ruszyć, odpisz mi proszę w kilku zdaniach: czym zajmuje się Twoja firma i ile osób w niej pracuje, co dziś zabiera Wam najwięcej czasu oraz z jakich narzędzi korzystacie na co dzień. Raport z konkretnym planem dostaniesz do 48 godzin od Twojej odpowiedzi.",
+  },
+};
+
 module.exports.config = { api: { bodyParser: false } };
 
 async function readRawBody(req) {
@@ -56,6 +81,38 @@ module.exports = async function handler(req, res) {
   if (session.payment_status !== "paid") {
     return res.status(200).json({ ignored: "not paid" });
   }
+  // Pozostałe produkty cyfrowe: mail powitalny po zakupie, bez CAPI.
+  const newProduct = NEW_PRODUCTS[session.payment_link];
+  if (newProduct && session.amount_total === newProduct.amount && session.currency === "pln") {
+    const email2 = (session.customer_details && session.customer_details.email) || session.customer_email;
+    if (!email2) {
+      console.error("[produkty-webhook] brak e-maila w sesji", session.id);
+      return res.status(200).json({ ignored: "no email" });
+    }
+    const html2 = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;"><p>Dzień dobry,</p><p>${newProduct.body}</p><p>Potrzebujesz rachunku? Daj znać, przygotuję i odeślę.</p><p>Pozdrawiam,<br>Darek<br>AI-Team.pl</p></div>`;
+    const text2 = `Dzień dobry,\n\n${newProduct.body}\n\nPotrzebujesz rachunku? Daj znać.\n\nPozdrawiam,\nDarek\nAI-Team.pl`;
+    try {
+      const aws = getAwsConfig();
+      await sendSesEmail(
+        {
+          from: process.env.SES_FROM,
+          replyTo: process.env.SES_REPLY_TO || "",
+          to: email2,
+          subject: newProduct.subject,
+          text: text2,
+          html: html2,
+          tags: { product: newProduct.slug, fulfillment: "1" },
+        },
+        aws
+      );
+      console.log("[produkty-webhook]", newProduct.slug, "mail wysłany do", maskEmail(email2), "sesja", session.id);
+      return res.status(200).json({ ok: true, product: newProduct.slug });
+    } catch (e) {
+      console.error("[produkty-webhook] błąd SES:", e.message);
+      return res.status(500).json({ error: "send failed" });
+    }
+  }
+
   // Konto Stripe ma kilka produktów. Sama kwota nigdy nie identyfikuje produktu.
   if (!isAiActPurchase(session) || !shouldProcessStripeEvent(event)) {
     return res.status(200).json({ ignored: "other product" });
