@@ -258,3 +258,17 @@
     if (h > 0) el.style.animationDuration = (h / 28) + 's'; // 28 px/s
   });
 })();
+
+/* Kotwice: po dojechaniu do sekcji czyścimy hash z adresu,
+   żeby odświeżenie strony zawsze zaczynało od góry (hero). */
+(function(){
+  var wyczysc = function(){ history.replaceState(null, '', location.pathname + location.search); };
+  if (location.hash) setTimeout(wyczysc, 600);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href*="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('#') === -1) return;
+    setTimeout(wyczysc, 600);
+  });
+})();
