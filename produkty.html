@@ -6,28 +6,44 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
     <title>Produkty cyfrowe AI dla małej firmy | AI-Team</title>
-    <meta name="description" content="Gotowe produkty AI do kupienia od ręki: pakiet AI Act za 67 zł, monitor opinii Google, poranny raport firmowy, kokpit finansowy i audyt AI z planem wdrożeń. Działające narzędzia, nie prompty.">
+    <meta name="description" content="Gotowe produkty AI do kupienia od ręki: pakiet AI Act za 67 zł z czterema dokumentami, kokpit finansowy freelancera i audyt AI z planem wdrożeń. Działające narzędzia, nie prompty.">
     <link rel="canonical" href="https://ai-team.pl/produkty">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
     <style>
-      .prod-hero { padding: 72px 0 24px; }
+      .prod-hero { padding: 72px 0 16px; }
       .prod-hero h1 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(34px, 5vw, 54px); line-height: 1.1; max-width: 720px; }
       .prod-hero p { max-width: 640px; margin-top: 16px; color: var(--ink-soft); font-size: 18px; }
-      .prod-ladder { display: flex; flex-direction: column; gap: 20px; padding: 32px 0 64px; max-width: 780px; }
-      .prod-card { background: var(--cream-soft); border: 1px solid var(--line); border-radius: 14px; padding: 28px 30px; }
+      .prod-featured { background: var(--ink); color: var(--cream); border-radius: 18px; padding: 44px 46px; margin: 36px 0 24px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+      .prod-featured h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 38px); line-height: 1.15; }
+      .prod-featured .cena { font-family: 'Fraunces', serif; font-size: 34px; color: var(--copper); margin-top: 6px; }
+      .prod-featured p { color: rgba(251,248,241,0.75); margin-top: 14px; }
+      .prod-featured .cta { display: inline-block; margin-top: 22px; background: var(--copper); color: var(--cream); padding: 14px 38px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 17px; }
+      .prod-featured .cta:hover { background: var(--copper-deep); }
+      .pliki { display: flex; flex-direction: column; gap: 10px; }
+      .plik { background: rgba(251,248,241,0.07); border: 1px solid rgba(251,248,241,0.16); border-left: 3px solid var(--copper); border-radius: 8px; padding: 13px 18px; font-size: 15px; display: flex; gap: 12px; align-items: center; }
+      .plik .pdf { font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 1px; color: var(--copper); border: 1px solid var(--copper); border-radius: 4px; padding: 2px 6px; }
+      .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding: 8px 0 64px; }
+      .prod-card { background: var(--cream-soft); border: 1px solid var(--line); border-radius: 14px; padding: 28px 30px; display: flex; flex-direction: column; }
       .prod-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-      .prod-head h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 24px; }
-      .prod-cena { font-family: 'Fraunces', serif; font-size: 26px; color: var(--copper); white-space: nowrap; }
+      .prod-head h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 23px; }
+      .prod-cena { font-family: 'Fraunces', serif; font-size: 25px; color: var(--copper); white-space: nowrap; }
       .prod-opis { margin-top: 10px; color: var(--ink-soft); }
       .prod-dostawa { margin-top: 10px; font-size: 14.5px; }
-      .demo-link { display: inline-block; margin-top: 10px; color: var(--copper); font-weight: 600; text-decoration: none; }
-      .prod-cta { display: inline-block; margin-top: 16px; background: var(--ink); color: var(--cream); padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-      .prod-cta:hover { background: var(--copper); }
+      .prod-wizual { margin-top: 16px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+      .prod-wizual img { display: block; width: 100%; }
+      .raport-kartka { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; margin-top: 16px; box-shadow: 0 6px 18px rgba(28,25,23,0.06); }
+      .raport-kartka .rk-tytul { font-family: 'Fraunces', serif; font-size: 15px; margin-bottom: 10px; }
+      .raport-kartka .rk-poz { font-size: 13.5px; color: var(--ink-soft); padding: 7px 0; border-top: 1px dashed var(--line); }
+      .demo-link { display: inline-block; margin-top: 12px; color: var(--copper); font-weight: 600; text-decoration: none; }
+      .prod-cta { display: inline-block; margin-top: auto; padding-top: 18px; }
+      .prod-cta a { display: inline-block; background: var(--ink); color: var(--cream); padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+      .prod-cta a:hover { background: var(--copper); }
       .prod-more { padding: 0 0 72px; color: var(--ink-soft); }
       .prod-more a { color: var(--copper); }
+      @media (max-width: 900px) { .prod-featured { grid-template-columns: 1fr; padding: 32px 26px; } .prod-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -46,7 +62,7 @@
       </span>
     </a>
     <div class="menu">
-      <a href="/produkty" style="color:var(--copper);font-weight:600;">Produkty</a>
+      <a href="/produkty">Produkty</a>
       <a href="/system-operacyjny-firmy.html">System firmy</a>
       <a href="/wdrozenie-ai.html">Wdrożenie</a>
       <a href="/warsztaty-ai.html">Akademia</a>
@@ -66,52 +82,51 @@
 <main>
   <section class="prod-hero"><div class="container">
     <h1>Działające narzędzia AI. <em>Nie prompty.</em></h1>
-    <p>Każdy produkt na tej stronie to coś, co naprawdę pracuje w mojej firmie albo u moich klientów. Kupujesz, dostajesz na maila, używasz. Ceny rosną razem z wartością, więc zacznij od góry listy i dokładaj, kiedy poczujesz efekt.</p>
+    <p>Każdy produkt na tej stronie to coś, co naprawdę pracuje w mojej firmie albo u moich klientów. Kupujesz, dostajesz na maila, używasz.</p>
   </div></section>
-  <section><div class="container"><div class="prod-ladder">
-<div class="prod-card">
-  <div class="prod-head"><h2>Tracker Czasu</h2><div class="prod-cena">0 zł</div></div>
-  <p class="prod-opis">Prosty tracker, który pokazuje, ile naprawdę kosztują Cię powtarzalne zadania. Od niego zaczyna większość moich klientów.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Dostajesz go na maila od razu po zapisie.</p>
-  
-  <a class="prod-cta" href="produkt1-tracker.html">Pobierz za darmo</a>
-</div>
-<div class="prod-card">
-  <div class="prod-head"><h2>Pakiet AI Act dla małej firmy</h2><div class="prod-cena">67 zł</div></div>
-  <p class="prod-opis">Cztery dokumenty, które porządkują temat AI Act w małej firmie. Bez prawniczego żargonu, do wdrożenia w jedno popołudnie.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Link do pakietu przychodzi na maila od razu po zakupie.</p>
-  
-  <a class="prod-cta" href="https://buy.stripe.com/eVq8wOczQ1HU6J243c1kA0K" target="_blank" rel="noopener">Kupuję</a>
-</div>
-<div class="prod-card">
-  <div class="prod-head"><h2>Monitor Opinii Google</h2><div class="prod-cena">97 zł</div></div>
-  <p class="prod-opis">Automat, który codziennie sprawdza, czy liczby na Twojej stronie zgadzają się z wizytówką Google. Mail tylko wtedy, gdy coś się rozjedzie. U jednego z klientów strona przez pół roku pokazywała stare opinie i nikt tego nie widział.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Mail startowy od razu, paczka z automatem i instrukcją do 24 godzin. Wolisz, żebym wdrożył za Ciebie? Piszesz jedno słowo.</p>
-  
-  <a class="prod-cta" href="https://buy.stripe.com/6oU9ASarI0DQebu0R01kA0M" target="_blank" rel="noopener">Kupuję</a>
-</div>
-<div class="prod-card">
-  <div class="prod-head"><h2>Poranny Raport Firmowy</h2><div class="prod-cena">97 zł</div></div>
-  <p class="prod-opis">Codziennie o 8:00 dostajesz jeden mail: co masz zaplanowane w socialach i jakie zapytania przyszły wczoraj. Zamiast otwierać pięć zakładek, czytasz jeden raport przy kawie.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Mail startowy od razu, paczka z automatem i instrukcją do 24 godzin.</p>
-  
-  <a class="prod-cta" href="https://buy.stripe.com/4gMeVc6bsbiu1oI43c1kA0N" target="_blank" rel="noopener">Kupuję</a>
-</div>
-<div class="prod-card">
-  <div class="prod-head"><h2>Kokpit Finansowy Freelancera</h2><div class="prod-cena">149 zł</div></div>
-  <p class="prod-opis">Jedna strona z PIN-em zamiast arkuszy: wpływy, koszty, Sejf na rezerwę i cele. Wpisujesz wpływ, kafle same się przeliczają. Dokładnie ten system, na którym sam prowadzę firmę.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Mail startowy od razu, Twoja wersja kokpitu z instrukcją uruchomienia do 24 godzin.</p>
-  <a class="demo-link" href="/kokpit" target="_blank" rel="noopener">Poklikaj wersję pokazową przed zakupem →</a>
-  <a class="prod-cta" href="https://buy.stripe.com/bJe7sK8jAaeqc3marA1kA0O" target="_blank" rel="noopener">Kupuję</a>
-</div>
-<div class="prod-card">
-  <div class="prod-head"><h2>Audyt AI Twojej firmy</h2><div class="prod-cena">290 zł</div></div>
-  <p class="prod-opis">Przyglądam się Twojej firmie i pokazuję, gdzie AI odda Ci najwięcej godzin. Dostajesz raport z konkretnym planem wdrożeń, wycenami i kolejnością. Bez teorii, same rzeczy do zrobienia.</p>
-  <p class="prod-dostawa"><strong>Co dostajesz:</strong> Po zakupie odpisujesz na trzy krótkie pytania, raport z planem masz do 48 godzin.</p>
-  
-  <a class="prod-cta" href="https://buy.stripe.com/fZu3cu8jAeuG0kE0R01kA0P" target="_blank" rel="noopener">Zamawiam</a>
-</div>
+
+  <section><div class="container">
+    <div class="prod-featured">
+      <div>
+        <h2>Pakiet AI Act dla małej firmy</h2>
+        <div class="cena">67 zł</div>
+        <p>AI Act obowiązuje także małe firmy, które używają ChatGPT czy Gemini. Ten pakiet porządkuje temat w jedno popołudnie: rozumiesz, co Cię dotyczy, wypełniasz gotowe dokumenty i masz spokój. Bez prawniczego żargonu.</p>
+        <p><strong style="color:var(--cream);">Co dostajesz:</strong> cztery gotowe dokumenty PDF, link na maila od razu po zakupie.</p>
+        <a class="cta" href="https://buy.stripe.com/eVq8wOczQ1HU6J243c1kA0K" target="_blank" rel="noopener">Kupuję za 67 zł</a>
+      </div>
+      <div class="pliki">
+        <div class="plik"><span class="pdf">PDF</span> 1. Przewodnik AI Act</div>
+        <div class="plik"><span class="pdf">PDF</span> 2. Checklista zgodności</div>
+        <div class="plik"><span class="pdf">PDF</span> 3. Rejestr narzędzi AI</div>
+        <div class="plik"><span class="pdf">PDF</span> 4. Polityka korzystania z AI</div>
+      </div>
+    </div>
+  </div></section>
+
+  <section><div class="container"><div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-head"><h2>Kokpit Finansowy Freelancera</h2><div class="prod-cena">149 zł</div></div>
+      <p class="prod-opis">Jedna strona z PIN-em zamiast arkuszy: wpływy, koszty, Sejf na rezerwę i cele. Wpisujesz wpływ, kafle same się przeliczają. Dokładnie ten system, na którym sam prowadzę firmę.</p>
+      <p class="prod-dostawa"><strong>Co dostajesz:</strong> Twoją wersję kokpitu oraz instrukcję krok po kroku, ekran po ekranie, od pierwszego uruchomienia do pierwszego wpisu. Mail startowy od razu, paczka do 24 godzin.</p>
+      <div class="prod-wizual"><img src="assets/produkt-kokpit-demo.jpg" alt="Kokpit Finansowy, widok Stan tygodnia z kaflami wpływów i Sejfu" loading="lazy"></div>
+      <a class="demo-link" href="/kokpit" target="_blank" rel="noopener">Poklikaj wersję pokazową przed zakupem →</a>
+      <div class="prod-cta"><a href="https://buy.stripe.com/bJe7sK8jAaeqc3marA1kA0O" target="_blank" rel="noopener">Kupuję za 149 zł</a></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-head"><h2>Audyt AI Twojej firmy</h2><div class="prod-cena">290 zł</div></div>
+      <p class="prod-opis">Przyglądam się Twojej firmie i pokazuję, gdzie AI odda Ci najwięcej godzin. Dostajesz raport z konkretnym planem wdrożeń, wycenami i kolejnością. Bez teorii, same rzeczy do zrobienia.</p>
+      <p class="prod-dostawa"><strong>Co dostajesz:</strong> po zakupie odpisujesz na trzy krótkie pytania, raport masz do 48 godzin. W raporcie każdy wdrożeniowy krok opisany konkretnie: co robisz, czym i w jakiej kolejności.</p>
+      <div class="raport-kartka">
+        <div class="rk-tytul">Raport z audytu, w środku:</div>
+        <div class="rk-poz">Gdzie dziś tracisz najwięcej godzin i pieniędzy</div>
+        <div class="rk-poz">Plan wdrożeń AI z wycenami, od najszybszych zwrotów</div>
+        <div class="rk-poz">Kolejność kroków na pierwsze 30 dni</div>
+        <div class="rk-poz">Czego nie wdrażać, bo się u Ciebie nie zwróci</div>
+      </div>
+      <div class="prod-cta"><a href="https://buy.stripe.com/fZu3cu8jAeuG0kE0R01kA0P" target="_blank" rel="noopener">Zamawiam za 290 zł</a></div>
+    </div>
   </div></div></section>
+
   <section class="prod-more"><div class="container">
     <p>Szukasz czegoś większego? Zobacz <a href="/starter-wdrozen-ai">Starter Wdrożeń AI</a> albo <a href="/pakiet-startowy-ai">Pakiet Startowy AI dla freelancera</a>. Pytanie przed zakupem? Napisz: kontakt@ai-team.pl</p>
   </div></section>
