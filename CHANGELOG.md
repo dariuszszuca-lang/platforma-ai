@@ -40,3 +40,12 @@
   wdrożenie mieściło się w limicie 12 funkcji serwerowych planu Vercel Hobby.
 - Usunięto zapasową konfigurację klucza Firebase z kodu; wartość jest pobierana
   wyłącznie z konfiguracji środowiska Vercel.
+
+## 2026-07-22
+
+- Wdrożono wyłącznie `firestore.rules` do produkcyjnego projektu Firebase `ai-team-zlecenia` w regionie `europe-west1`.
+- Dodano dostęp do kolekcji `venture_03_leads` wyłącznie dla jednego konta technicznego Vercela wskazanego przez UID; inne konta i klient publiczny nie mają dostępu, a usuwanie pozostaje zablokowane.
+- Dry-run i kompilacja reguł zakończone poprawnie. Produkcyjny test endpointu `/api/mapa-send` zwrócił HTTP 200, a rekord ze zgodą, etapem i UTM został potwierdzony w Firestore.
+- Wdrożenie wykonano z niezatwierdzonej jeszcze zmiany `firestore.rules` na bazie commita `bb71c418d77d21f2ae1fa1ba775a64af5cf67556`. Poprzedni stan reguł można odtworzyć z tego commita i ponownie wdrożyć wyłącznie `firestore:rules`.
+- Po bezpiecznej rotacji tokenu Meta kampania VENTURE-03, adset i reklamy A/B zostały aktywowane z budżetem 20 zł/dzień. Świeży odczyt Meta API o 21:37 CEST potwierdził `ACTIVE` na wszystkich poziomach.
+- Landing kampanii zwraca HTTP 200. Test w prawdziwym Chrome potwierdził `PageView`, `ViewContent`, `Lead` i `InitiateCheckout`, zachowanie UTM oraz brak PII w zdarzeniach Meta; `Purchase` czeka na pierwszą prawdziwą płatność w Stripe.

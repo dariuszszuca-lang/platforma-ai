@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AI RESET — gotowy system pracy z AI | AI-Team</title>
+  <meta name="description" content="Interaktywny workbook do uporządkowania narzędzi, promptów i zadań. Pięciu gotowych asystentów, karta kontekstu i pierwszy workflow.">
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..700;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/ai-reset.css">
+<link rel="canonical" href="https://ai-team.pl/ai-reset">
+</head>
+<body>
+  <a class="skip-link" href="#reset-main">Przejdź do materiału</a>
+
+  <header class="reset-topbar">
+    <a class="reset-brand" href="/" aria-label="AI-Team — strona główna">
+      <span class="reset-brand-mark" aria-hidden="true">A·T</span>
+      <span>AI-Team</span>
+    </a>
+    <span class="reset-edition">AI RADAR · FIELD MANUAL 01</span>
+    <div class="reset-actions" aria-label="Narzędzia materiału">
+      <button class="reset-button reset-button-quiet" id="clearReset" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5"/></svg>
+        Wyczyść
+      </button>
+      <button class="reset-button" id="printReset" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></svg>
+        Zapisz PDF
+      </button>
+    </div>
+  </header>
+
+  <header class="reset-hero">
+    <div class="reset-hero-grid">
+      <div>
+        <p class="reset-kicker">Nie dokładaj kolejnego narzędzia</p>
+        <h1>Najpierw zrób<br><em>AI RESET.</em></h1>
+        <p class="reset-lead">Uporządkuj narzędzia, prompty i zadania. Ten materiał przeprowadzi Cię od chaosu do prostego systemu, który da się powtórzyć następnego dnia.</p>
+        <div class="reset-hero-actions">
+          <a class="reset-cta" href="#modul-1">Zacznij reset</a>
+          <span class="reset-local-note">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Twoje notatki zostają na tym urządzeniu
+          </span>
+        </div>
+      </div>
+
+      <aside class="reset-brief" aria-label="Zakres AI RESET">
+        <div class="reset-brief-stamp">RESET / 01</div>
+        <p class="reset-brief-label">Po tej sesji masz:</p>
+        <ul class="reset-brief-list">
+          <li><strong>1</strong><span>rdzeń narzędzi zamiast przypadkowej kolekcji</span></li>
+          <li><strong>5</strong><span>asystentów gotowych do skopiowania</span></li>
+          <li><strong>1</strong><span>kartę kontekstu, której nie piszesz od nowa</span></li>
+          <li><strong>1</strong><span>workflow z kontrolą człowieka</span></li>
+        </ul>
+        <div class="reset-time">
+          <span>czas przejścia</span>
+          <strong>45 min</strong>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="reset-shell" id="reset-main">
+    <aside class="reset-rail" aria-label="Postęp i spis modułów">
+      <div class="reset-progress-card">
+        <div class="reset-progress-head">
+          <span>Twój postęp</span>
+          <strong id="resetProgressValue">0%</strong>
+        </div>
+        <div class="reset-progress-track" role="progressbar" aria-label="Postęp AI RESET" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="resetProgress"></span>
+        </div>
+        <p>Postęp zapisuje się automatycznie.</p>
+      </div>
+
+      <nav class="reset-toc" aria-label="Spis treści AI RESET">
+        <a href="#modul-1"><span>01</span> Reset chaosu</a>
+        <a href="#modul-2"><span>02</span> Rdzeń 1+1+1</a>
+        <a href="#modul-3"><span>03</span> Karta kontekstu</a>
+        <a href="#modul-4"><span>04</span> Pięciu asystentów</a>
+        <a href="#modul-5"><span>05</span> Dobry prompt</a>
+        <a href="#modul-6"><span>06</span> Pierwszy workflow</a>
+        <a href="#modul-7"><span>07</span> Siedem dni</a>
+        <a href="#modul-8"><span>08</span> Zasady bezpieczeństwa</a>
+      </nav>
+
+      <p class="reset-rail-note">Nie musisz zrobić wszystkiego naraz. Największą zmianę dadzą moduły 1, 3 i jeden wybrany asystent.</p>
+    </aside>
+
+    <div class="reset-manual">
+      <section class="reset-module" id="modul-1" data-module="reset-chaosu">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">01 / RESET CHAOSU</span>
+            <h2>Najpierw odejmij.</h2>
+          </div>
+          <span class="reset-duration">6 minut</span>
+        </header>
+
+        <p class="reset-intro">Chaos z AI rzadko bierze się z braku możliwości. Najczęściej masz za dużo otwartych opcji i za mało stałych zasad. Zaznacz to, co dzieje się u Ciebie.</p>
+
+        <div class="reset-checklist" aria-label="Audyt chaosu z AI">
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-tools">
+            <span><strong>Skaczę między narzędziami.</strong> To samo zadanie zaczynam w dwóch lub trzech aplikacjach.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-prompts">
+            <span><strong>Gubię dobre prompty.</strong> Wiem, że kiedyś dostałem dobry wynik, ale nie umiem go odtworzyć.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-context">
+            <span><strong>Powtarzam kontekst.</strong> Przy każdym zadaniu od nowa tłumaczę, kim jestem i czego potrzebuję.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-empty">
+            <span><strong>Zaczynam od pustego okna.</strong> Nie mam stałego punktu wejścia do typowych zadań.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-output">
+            <span><strong>Poprawiam generyczne wyniki.</strong> AI pisze dużo, ale za mało rzeczy nadaje się do użycia.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="chaos-no-check">
+            <span><strong>Nie mam kontroli jakości.</strong> Raz sprawdzam wynik dokładnie, innym razem wysyłam go za szybko.</span>
+          </label>
+        </div>
+
+        <div class="reset-rule reset-rule-copper">
+          <span class="reset-rule-label">Zasada resetu</span>
+          <p>Jeśli zaznaczasz cztery lub więcej punktów, przez siedem dni nie dodawaj nowego narzędzia. Najpierw ustaw jeden sposób pracy w tym, co już masz.</p>
+        </div>
+
+        <div class="reset-three">
+          <article>
+            <span>ODŁÓŻ</span>
+            <h3>Narzędzia „na kiedyś”</h3>
+            <p>Zostaw tylko te, których użyłeś do prawdziwego zadania w ostatnich 14 dniach.</p>
+          </article>
+          <article>
+            <span>ZAMKNIJ</span>
+            <h3>Rozmowy bez celu</h3>
+            <p>Nowy czat zaczynaj dopiero wtedy, gdy umiesz nazwać rezultat, którego oczekujesz.</p>
+          </article>
+          <article>
+            <span>ZACHOWAJ</span>
+            <h3>To, co da się powtórzyć</h3>
+            <p>Dobry wynik zamieniaj w instrukcję, szablon albo checklistę. Nie zostawiaj go w historii czatu.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-2" data-module="rdzen-111">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">02 / RDZEŃ 1+1+1</span>
+            <h2>Trzy role. Nie trzydzieści aplikacji.</h2>
+          </div>
+          <span class="reset-duration">5 minut</span>
+        </header>
+
+        <p class="reset-intro">Nie wybieraj „najlepszego AI”. Zbuduj minimalny rdzeń pod trzy różne rodzaje pracy. Jedno narzędzie może pełnić dwie role — ważne, żeby decyzja była świadoma.</p>
+
+        <div class="reset-stack">
+          <article class="reset-stack-card">
+            <div class="reset-stack-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9.5 4A3.5 3.5 0 0 0 6 7.5c0 .5.1 1 .3 1.4A3.8 3.8 0 0 0 4 12.5 3.5 3.5 0 0 0 7.5 16H9m5.5-12A3.5 3.5 0 0 1 18 7.5c0 .5-.1 1-.3 1.4a3.8 3.8 0 0 1 2.3 3.6 3.5 3.5 0 0 1-3.5 3.5H15M9 3v18m6-18v18M9 9H6.5M15 9h2.5M9 16H7.5M15 16h1.5"/></svg>
+            </div>
+            <span>1 / MYŚL</span>
+            <h3>Główny partner do pracy</h3>
+            <p>Tu analizujesz, planujesz, piszesz i rozwijasz materiały. To narzędzie dostaje Twoją kartę kontekstu i stałych asystentów.</p>
+            <p class="reset-example"><strong>Przykłady:</strong> ChatGPT, Claude, Gemini.</p>
+            <label class="reset-check reset-check-compact">
+              <input type="checkbox" data-reset-check data-key="stack-think">
+              <span>Wybrałem jedno główne narzędzie</span>
+            </label>
+          </article>
+
+          <article class="reset-stack-card">
+            <div class="reset-stack-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11l2 2 4-4"/></svg>
+            </div>
+            <span>1 / SPRAWDŹ</span>
+            <h3>Research i źródła</h3>
+            <p>Tu weryfikujesz aktualne fakty, ceny, prawo, specyfikacje i cytaty. Odpowiedź bez źródła jest wskazówką, nie dowodem.</p>
+            <p class="reset-example"><strong>Przykłady:</strong> wyszukiwarka z AI, Deep Research, oficjalne dokumentacje.</p>
+            <label class="reset-check reset-check-compact">
+              <input type="checkbox" data-reset-check data-key="stack-research">
+              <span>Wiem, gdzie sprawdzam fakty</span>
+            </label>
+          </article>
+
+          <article class="reset-stack-card">
+            <div class="reset-stack-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 5h5v5H5zM14 14h5v5h-5zM14 5h5v5h-5zM10 7.5h4M16.5 10v4M10 7.5v9h4"/></svg>
+            </div>
+            <span>1 / ZRÓB</span>
+            <h3>Miejsce wykonania</h3>
+            <p>Tu wynik trafia do realnego procesu: dokumentu, CRM, kalendarza, automatyzacji albo systemu zadań.</p>
+            <p class="reset-example"><strong>Przykłady:</strong> Notion, Google Workspace, CRM, Make, n8n, Zapier.</p>
+            <label class="reset-check reset-check-compact">
+              <input type="checkbox" data-reset-check data-key="stack-do">
+              <span>Wybrałem miejsce docelowe</span>
+            </label>
+          </article>
+        </div>
+
+        <div class="reset-decision">
+          <h3>Filtr przed dodaniem nowego narzędzia</h3>
+          <ol>
+            <li><span>01</span><p><strong>Jakie konkretne zadanie ma przejąć?</strong> Jeśli odpowiedź brzmi „zobaczę”, nie dodawaj go.</p></li>
+            <li><span>02</span><p><strong>Czy obecny rdzeń naprawdę tego nie potrafi?</strong> Najpierw sprawdź funkcje, które już opłacasz.</p></li>
+            <li><span>03</span><p><strong>Co usuwasz w zamian?</strong> Każde nowe narzędzie powinno zastąpić stare albo zamknąć konkretną lukę.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-3" data-module="karta-kontekstu">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">03 / KARTA KONTEKSTU</span>
+            <h2>Napisz raz. Używaj codziennie.</h2>
+          </div>
+          <span class="reset-duration">8 minut</span>
+        </header>
+
+        <p class="reset-intro">AI nie zna Twojej sytuacji, dopóki jej nie opiszesz. Uzupełnij kartę konkretnymi zdaniami. To nie jest bio — to instrukcja współpracy.</p>
+
+        <div class="reset-context-grid">
+          <label class="reset-field">
+            <span>01 · Moja rola i odpowiedzialność</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-role" placeholder="Np. Odpowiadam za sprzedaż, ofertę i decyzje produktowe. Sam przygotowuję pierwsze wersje materiałów."></textarea>
+            <small>Co robisz i za co odpowiadasz?</small>
+          </label>
+          <label class="reset-field">
+            <span>02 · Odbiorca mojej pracy</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-audience" placeholder="Np. Piszę do osób, które chcą używać AI praktycznie, ale nie mają uporządkowanego procesu."></textarea>
+            <small>Do kogo trafia wynik?</small>
+          </label>
+          <label class="reset-field">
+            <span>03 · Co jest dobrym wynikiem</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-success" placeholder="Np. Wynik ma być konkretny, możliwy do wykonania i gotowy do użycia bez długiej redakcji."></textarea>
+            <small>Po czym poznasz, że zadanie jest zrobione?</small>
+          </label>
+          <label class="reset-field">
+            <span>04 · Styl i ton</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-tone" placeholder="Np. Prosto, rzeczowo, bez nadęcia. Krótkie zdania. Najpierw wniosek, potem szczegóły."></textarea>
+            <small>Jak wynik ma brzmieć?</small>
+          </label>
+          <label class="reset-field">
+            <span>05 · Źródła prawdy</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-sources" placeholder="Np. Aktualna oferta, cennik, dokumentacja projektu i oficjalne źródła. Jeśli brakuje danych — zaznacz brak."></textarea>
+            <small>Na czym AI ma opierać fakty?</small>
+          </label>
+          <label class="reset-field">
+            <span>06 · Granice</span>
+            <textarea rows="4" data-context-field data-local-field data-key="context-constraints" placeholder="Np. Nie wymyślaj liczb, opinii ani historii. Nie wysyłaj i nie publikuj bez mojej akceptacji."></textarea>
+            <small>Czego AI nie może robić lub zakładać?</small>
+          </label>
+        </div>
+
+        <div class="reset-template">
+          <div class="reset-template-head">
+            <span>Blok startowy do każdej ważnej rozmowy</span>
+            <span>Wypełnij własnymi zdaniami</span>
+          </div>
+          <pre>PRACUJESZ ZE MNĄ W TAKIM KONTEKŚCIE:
+
+Moja rola: [wklej z karty]
+Odbiorca: [wklej z karty]
+Dobry wynik oznacza: [wklej z karty]
+Styl: [wklej z karty]
+Źródła prawdy: [wklej z karty]
+Granice: [wklej z karty]
+
+Jeśli brakuje informacji potrzebnej do dobrej decyzji,
+nie zgaduj. Wskaż dokładnie, czego brakuje.</pre>
+        </div>
+
+        <div class="reset-rule">
+          <span class="reset-rule-label">Ważne</span>
+          <p>Karta kontekstu nie powinna zawierać haseł, numerów dokumentów, danych medycznych, danych klientów ani informacji, których nie wysłałbyś obcej osobie.</p>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-4" data-module="pieciu-asystentow">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">04 / PIĘCIU ASYSTENTÓW</span>
+            <h2>Nie prompt. Stała rola.</h2>
+          </div>
+          <span class="reset-duration">10 minut</span>
+        </header>
+
+        <p class="reset-intro">Wybierz jednego asystenta pod zadanie, które naprawdę powtarzasz. Wklej instrukcję do projektu, własnego GPT, Gem-a albo pierwszej wiadomości w osobnym czacie. Do instrukcji dodaj kartę kontekstu.</p>
+
+        <div class="reset-assistants">
+          <article class="reset-assistant" data-assistant-card>
+            <div class="reset-assistant-index">A / 01</div>
+            <div class="reset-assistant-summary">
+              <div>
+                <span>DECYZJE I PRIORYTETY</span>
+                <h3>Szef Sztabu</h3>
+                <p>Porządkuje chaos, oddziela fakty od założeń i kończy rozmowę jasną rekomendacją.</p>
+              </div>
+              <button class="reset-copy" type="button" data-copy-target="prompt-szef-sztabu">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                <span>Kopiuj instrukcję</span>
+              </button>
+            </div>
+            <details>
+              <summary>Pokaż pełną instrukcję</summary>
+              <pre id="prompt-szef-sztabu">ROLA
+Jesteś moim Szefem Sztabu. Pomagasz mi zamieniać nieuporządkowane informacje w decyzje, priorytety i konkretne następne kroki.
+
+ZASADY PRACY
+1. Najpierw nazwij rzeczywisty cel. Nie zakładaj, że pierwsze sformułowanie problemu jest trafne.
+2. Oddzielaj: fakty, założenia, opinie i brakujące informacje.
+3. Jeśli bez odpowiedzi łatwo podjąć złą decyzję, zadaj maksymalnie 3 krótkie pytania. W innym przypadku działaj na rozsądnych założeniach i nazwij je.
+4. Oceniaj opcje według: wpływu, kosztu, czasu, ryzyka i odwracalności.
+5. Nie twórz długiej listy równorzędnych pomysłów. Wskaż jedną rekomendację i wyjaśnij, dlaczego wygrywa.
+6. Nie wymyślaj danych, terminów, wyników ani opinii innych osób.
+7. Kończ odpowiedź decyzją albo konkretnym ruchem do wykonania.
+
+FORMAT ODPOWIEDZI
+- Sedno sytuacji: 2–4 zdania.
+- Fakty / założenia / braki: trzy krótkie listy.
+- Opcje: maksymalnie 3, każda z głównym plusem i kosztem.
+- Rekomendacja: jedna.
+- Następny ruch: działanie, właściciel i termin, jeśli termin został podany.
+- Co może zmienić decyzję: maksymalnie 3 warunki.
+
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+
+SPRAWA DO UPORZĄDKOWANIA
+[Wklej notatki, wiadomość, problem albo decyzję]</pre>
+            </details>
+          </article>
+
+          <article class="reset-assistant" data-assistant-card>
+            <div class="reset-assistant-index">A / 02</div>
+            <div class="reset-assistant-summary">
+              <div>
+                <span>RESEARCH I WERYFIKACJA</span>
+                <h3>Researcher</h3>
+                <p>Szuka aktualnych źródeł, pokazuje poziom pewności i nie maskuje luk ładnie brzmiącym tekstem.</p>
+              </div>
+              <button class="reset-copy" type="button" data-copy-target="prompt-researcher">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                <span>Kopiuj instrukcję</span>
+              </button>
+            </div>
+            <details>
+              <summary>Pokaż pełną instrukcję</summary>
+              <pre id="prompt-researcher">ROLA
+Jesteś Researcherem i weryfikatorem faktów. Twoim zadaniem jest dostarczyć materiał, na którym można bezpiecznie oprzeć decyzję.
+
+ZASADY PRACY
+1. Najpierw przepisz pytanie badawcze tak, żeby było jednoznaczne.
+2. Przy informacjach, które mogły się zmienić, korzystaj z aktualnych źródeł. Preferuj dokumentacje, rejestry, komunikaty instytucji i strony producentów.
+3. Podawaj bezpośredni link oraz datę publikacji lub dostępu, jeśli jest dostępna.
+4. Oddzielaj fakt znaleziony w źródle od własnego wniosku.
+5. Porównuj co najmniej dwa niezależne źródła, gdy temat jest istotny albo sporny.
+6. Jeśli nie masz dostępu do internetu lub dokumentu, powiedz to wprost. Nie udawaj weryfikacji.
+7. Cytuj krótko. Resztę parafrazuj.
+8. Przy każdej istotnej tezie oznacz pewność: wysoka, średnia albo niska.
+9. Wskaż sprzeczności, ograniczenia metodologii i dane, których nadal brakuje.
+
+FORMAT ODPOWIEDZI
+- Odpowiedź w skrócie: 3–5 zdań.
+- Tabela ustaleń: teza / źródło / data / pewność.
+- Co z tego wynika: wnioski wyraźnie oznaczone jako interpretacja.
+- Czego nie udało się potwierdzić.
+- Rekomendowany następny krok badawczy.
+
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+
+PYTANIE BADAWCZE
+[Wpisz, co dokładnie trzeba sprawdzić i do jakiej decyzji]</pre>
+            </details>
+          </article>
+
+          <article class="reset-assistant" data-assistant-card>
+            <div class="reset-assistant-index">A / 03</div>
+            <div class="reset-assistant-summary">
+              <div>
+                <span>PROCESY I AUTOMATYZACJE</span>
+                <h3>Architekt Procesu</h3>
+                <p>Najpierw upraszcza pracę, dopiero później proponuje automatyzację i narzędzia.</p>
+              </div>
+              <button class="reset-copy" type="button" data-copy-target="prompt-architekt-procesu">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                <span>Kopiuj instrukcję</span>
+              </button>
+            </div>
+            <details>
+              <summary>Pokaż pełną instrukcję</summary>
+              <pre id="prompt-architekt-procesu">ROLA
+Jesteś Architektem Procesu. Pomagasz zamienić ręczną, chaotyczną pracę w prosty i bezpieczny workflow. Nie automatyzujesz bałaganu.
+
+ZASADY PRACY
+1. Najpierw opisz proces obecny: trigger, kroki, osoby, narzędzia, wejścia, wynik i wyjątki.
+2. Wskaż wąskie gardło oraz krok, który generuje najwięcej błędów, oczekiwania albo przepisywania.
+3. Zanim dodasz technologię, usuń zbędne kroki i ujednolić wejścia.
+4. Rozdziel zadania na: do wykonania przez AI, do automatyzacji regułą i wymagające decyzji człowieka.
+5. Każdy workflow musi mieć punkt kontroli człowieka przed wysłaniem, publikacją, płatnością lub zmianą danych.
+6. Nie proponuj integracji bez wskazania źródła danych, miejsca docelowego, błędów i sposobu powrotu.
+7. Zacznij od najmniejszego testu możliwego do cofnięcia. Nie projektuj pełnego systemu, jeśli wystarczy formularz, szablon albo pojedyncza automatyzacja.
+8. Oznacz ryzyka dotyczące danych osobowych, dostępów i poufności.
+
+FORMAT ODPOWIEDZI
+- Proces obecny: maksymalnie 7 kroków.
+- Co usunąć lub uprościć.
+- Proces docelowy: trigger → wejście → AI/reguła → kontrola człowieka → wynik.
+- Podział odpowiedzialności: AI / automat / człowiek.
+- Minimalny test na 7 dni.
+- Miernik: czas, liczba błędów albo liczba ręcznych kroków.
+- Ryzyka i plan awaryjny.
+
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+
+PROCES DO UPORZĄDKOWANIA
+[Opisz, co uruchamia proces, co dzieje się dziś i jaki wynik ma powstać]</pre>
+            </details>
+          </article>
+
+          <article class="reset-assistant" data-assistant-card>
+            <div class="reset-assistant-index">A / 04</div>
+            <div class="reset-assistant-summary">
+              <div>
+                <span>PISANIE I KOMUNIKACJA</span>
+                <h3>Redaktor</h3>
+                <p>Przerabia surowe notatki na naturalny tekst bez dopisywania historii, liczb i sztucznego tonu.</p>
+              </div>
+              <button class="reset-copy" type="button" data-copy-target="prompt-redaktor">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                <span>Kopiuj instrukcję</span>
+              </button>
+            </div>
+            <details>
+              <summary>Pokaż pełną instrukcję</summary>
+              <pre id="prompt-redaktor">ROLA
+Jesteś moim Redaktorem. Zamieniasz surowe notatki w klarowny tekst, zachowując mój sposób myślenia i intencję.
+
+ZASADY PRACY
+1. Najpierw ustal: odbiorcę, cel tekstu, kanał i jedno działanie, które ma wykonać czytelnik.
+2. Nie dopisuj historii, case studies, wyników, emocji, cytatów ani opinii, których nie ma w materiale.
+3. Jeśli brakuje faktu koniecznego do publikacji, oznacz go nawiasem [BRAK: ...] zamiast zgadywać.
+4. Zaczynaj od sedna. Usuwaj rozgrzewkowe akapity, powtórzenia i oczywistości.
+5. Używaj konkretnych rzeczowników i czasowników. Ogranicz abstrakcje, modne frazy i przesadne obietnice.
+6. Zachowuj naturalny rytm: mieszaj krótkie i dłuższe zdania. Nie buduj sztucznej listy, jeśli lepszy jest zwykły akapit.
+7. Nie zmieniaj stanowiska autora tylko po to, żeby tekst brzmiał mocniej.
+8. Po redakcji wykonaj kontrolę: fakty, logika, ton, powtórzenia i jasność CTA.
+
+FORMAT ODPOWIEDZI
+- Wersja gotowa do użycia.
+- Lista maksymalnie 5 istotnych zmian redakcyjnych.
+- Brakujące fakty lub ryzyka przed publikacją.
+- Jeden alternatywny nagłówek, jeśli materiał go potrzebuje.
+
+MÓJ KONTEKST I STYL
+[Wklej Kartę Kontekstu oraz 2–3 własne przykłady tekstu]
+
+ZADANIE
+Kanał:
+Cel:
+Odbiorca:
+Oczekiwane działanie:
+
+MATERIAŁ ŹRÓDŁOWY
+[Wklej notatki. Nie oczekuj, że AI samo zna fakty]</pre>
+            </details>
+          </article>
+
+          <article class="reset-assistant" data-assistant-card>
+            <div class="reset-assistant-index">A / 05</div>
+            <div class="reset-assistant-summary">
+              <div>
+                <span>KONTROLA PRZED UŻYCIEM</span>
+                <h3>Kontroler Jakości</h3>
+                <p>Próbuje znaleźć błąd, zanim znajdzie go klient, odbiorca albo zespół.</p>
+              </div>
+              <button class="reset-copy" type="button" data-copy-target="prompt-kontroler-jakosci">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                <span>Kopiuj instrukcję</span>
+              </button>
+            </div>
+            <details>
+              <summary>Pokaż pełną instrukcję</summary>
+              <pre id="prompt-kontroler-jakosci">ROLA
+Jesteś Kontrolerem Jakości. Nie masz chwalić materiału. Masz znaleźć błędy, luki i ryzyka przed jego użyciem.
+
+ZASADY PRACY
+1. Najpierw nazwij cel materiału i kryteria, które musi spełnić.
+2. Sprawdź osobno: zgodność z celem, fakty, logikę, kompletność, język, ryzyka i następny krok.
+3. Każdy zarzut podeprzyj konkretnym fragmentem. Nie pisz ogólnie „można dopracować”.
+4. Oznacz wagę problemu:
+   - KRYTYCZNY — blokuje użycie albo może wyrządzić szkodę,
+   - WAŻNY — obniża skuteczność lub wiarygodność,
+   - DROBIAZG — poprawia odbiór, ale nie zmienia sensu.
+5. Wyszukaj liczby, daty, nazwy, ceny i twierdzenia, które wymagają źródła.
+6. Sprawdź, czy materiał nie obiecuje więcej, niż można udowodnić.
+7. Sprawdź perspektywę odbiorcy: co jest niejasne, co budzi opór i czego brakuje do działania.
+8. Nie przepisuj całości. Zaproponuj najmniejszą zmianę, która usuwa problem.
+
+FORMAT ODPOWIEDZI
+- Werdykt: gotowe / gotowe po poprawkach / nie używać.
+- Problemy krytyczne.
+- Problemy ważne.
+- Drobiazgi.
+- Fakty wymagające potwierdzenia.
+- Konkretne poprawki: „było → proponuję”.
+- Ostatnia checklista przed użyciem.
+
+KONTEKST I KRYTERIA
+[Wklej Kartę Kontekstu, cel oraz warunki akceptacji]
+
+MATERIAŁ DO KONTROLI
+[Wklej tekst, plan, ofertę, analizę lub odpowiedź]</pre>
+            </details>
+          </article>
+        </div>
+
+        <div class="reset-rule reset-rule-copper">
+          <span class="reset-rule-label">Nie uruchamiaj wszystkich</span>
+          <p>W tym tygodniu wybierz jednego asystenta do zadania, które powtarza się najczęściej. Dopiero gdy użyjesz go trzy razy, zdecyduj, czy potrzebujesz kolejnego.</p>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-5" data-module="dobry-prompt">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">05 / DOBRY PROMPT</span>
+            <h2>Sześć elementów zamiast magicznego zdania.</h2>
+          </div>
+          <span class="reset-duration">5 minut</span>
+        </header>
+
+        <p class="reset-intro">Dobry prompt nie jest zaklęciem. Jest porządnym zleceniem. Im ważniejsze zadanie, tym mniej miejsca na domysły.</p>
+
+        <div class="reset-formula" aria-label="Sześć elementów dobrego promptu">
+          <article><span>K</span><div><strong>Kontekst</strong><p>Co AI musi wiedzieć o sytuacji?</p></div></article>
+          <article><span>C</span><div><strong>Cel</strong><p>Jaki rezultat ma powstać i po co?</p></div></article>
+          <article><span>M</span><div><strong>Materiał</strong><p>Na jakich danych i źródłach ma pracować?</p></div></article>
+          <article><span>O</span><div><strong>Ograniczenia</strong><p>Czego nie wolno zakładać albo robić?</p></div></article>
+          <article><span>F</span><div><strong>Format</strong><p>Jak ma wyglądać gotowa odpowiedź?</p></div></article>
+          <article><span>J</span><div><strong>Jakość</strong><p>Po czym poznamy, że wynik jest dobry?</p></div></article>
+        </div>
+
+        <div class="reset-before-after">
+          <article>
+            <span class="reset-before-label">ZA SŁABO</span>
+            <p>„Napisz mi ofertę automatyzacji.”</p>
+            <small>AI musi zgadnąć odbiorcę, cel, zakres, fakty, ton i CTA.</small>
+          </article>
+          <article>
+            <span class="reset-after-label">DO POWTÓRZENIA</span>
+            <p>„Na podstawie notatek poniżej przygotuj jednostronicową ofertę dla osoby, która traci czas na ręczne przepisywanie leadów. Nie wymyślaj wyników ani cen. Zacznij od problemu, pokaż zakres w trzech punktach i zakończ pytaniem o 20-minutową rozmowę. Dobry wynik jest konkretny i nie wymaga znajomości technicznych pojęć.”</p>
+          </article>
+        </div>
+
+        <div class="reset-template">
+          <div class="reset-template-head">
+            <span>Szablon zadania</span>
+            <span>Używaj przy ważnych wynikach</span>
+          </div>
+          <pre>KONTEKST
+[Co dzieje się teraz i kto będzie używał wyniku]
+
+CEL
+[Jaki rezultat ma powstać i do jakiej decyzji lub działania]
+
+MATERIAŁ
+[Notatki, dane, źródła, przykłady]
+
+OGRANICZENIA
+[Czego nie zgadywać, czego nie robić, co zachować]
+
+FORMAT
+[Struktura, długość, kanał, język]
+
+KRYTERIA JAKOŚCI
+[Po czym poznasz, że materiał jest gotowy]
+
+Jeśli brakuje faktu koniecznego do poprawnego wykonania,
+wskaż brak zamiast go uzupełniać.</pre>
+        </div>
+
+        <label class="reset-check reset-check-standalone">
+          <input type="checkbox" data-reset-check data-key="prompt-template">
+          <span><strong>Zapisałem ten wzór.</strong> Użyję go przy następnym ważnym zadaniu zamiast zaczynać od jednego zdania.</span>
+        </label>
+      </section>
+
+      <section class="reset-module" id="modul-6" data-module="pierwszy-workflow">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">06 / PIERWSZY WORKFLOW</span>
+            <h2>Zamień rozmowę w proces.</h2>
+          </div>
+          <span class="reset-duration">6 minut</span>
+        </header>
+
+        <p class="reset-intro">Pojedynczy dobry wynik oszczędza czas raz. Workflow oszczędza podejmowanie tej samej decyzji przy każdym powtórzeniu zadania.</p>
+
+        <div class="reset-flow" aria-label="Schemat workflow">
+          <span>TRIGGER</span><i aria-hidden="true">→</i>
+          <span>WEJŚCIE</span><i aria-hidden="true">→</i>
+          <span>AI</span><i aria-hidden="true">→</i>
+          <span>KONTROLA</span><i aria-hidden="true">→</i>
+          <span>CEL</span>
+        </div>
+
+        <div class="reset-workflow-grid">
+          <label class="reset-field">
+            <span>01 · Trigger</span>
+            <textarea rows="3" data-local-field data-key="workflow-trigger" placeholder="Kiedy dokładnie proces ma się rozpocząć? Np. po rozmowie z potencjalnym klientem."></textarea>
+          </label>
+          <label class="reset-field">
+            <span>02 · Wejście</span>
+            <textarea rows="3" data-local-field data-key="workflow-input" placeholder="Jakie dane muszą być kompletne? Np. notatki, potrzeba, zakres i termin."></textarea>
+          </label>
+          <label class="reset-field">
+            <span>03 · Praca AI</span>
+            <textarea rows="3" data-local-field data-key="workflow-ai" placeholder="Co AI ma przygotować? Np. szkic podsumowania i listę ustaleń."></textarea>
+          </label>
+          <label class="reset-field">
+            <span>04 · Kontrola człowieka</span>
+            <textarea rows="3" data-local-field data-key="workflow-human" placeholder="Co zawsze sprawdzasz? Np. ceny, terminy, obietnice i dane odbiorcy."></textarea>
+          </label>
+          <label class="reset-field reset-field-wide">
+            <span>05 · Miejsce docelowe</span>
+            <textarea rows="3" data-local-field data-key="workflow-output" placeholder="Gdzie trafia zatwierdzony wynik? Np. email, CRM, dokument lub system zadań."></textarea>
+          </label>
+        </div>
+
+        <div class="reset-example-flow">
+          <span>PRZYKŁAD · FOLLOW-UP PO ROZMOWIE</span>
+          <ol>
+            <li><strong>Trigger:</strong> rozmowa została zakończona.</li>
+            <li><strong>Wejście:</strong> notatki, ustalenia, terminy i pytania bez odpowiedzi.</li>
+            <li><strong>AI:</strong> porządkuje notatki, przygotowuje mail i listę zadań.</li>
+            <li><strong>Człowiek:</strong> sprawdza fakty, obietnice, ceny i ton.</li>
+            <li><strong>Cel:</strong> zatwierdzony mail trafia do skrzynki, a zadania do systemu pracy.</li>
+          </ol>
+        </div>
+
+        <div class="reset-checklist">
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="workflow-one-input">
+            <span><strong>Jedno wejście.</strong> Dane nie są zbierane z pięciu przypadkowych miejsc.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="workflow-human-check">
+            <span><strong>Kontrola człowieka.</strong> Wiem, co zawsze sprawdzam przed użyciem wyniku.</span>
+          </label>
+          <label class="reset-check">
+            <input type="checkbox" data-reset-check data-key="workflow-one-output">
+            <span><strong>Jedno miejsce docelowe.</strong> Wynik nie zostaje wyłącznie w historii czatu.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-7" data-module="siedem-dni">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">07 / SIEDEM DNI</span>
+            <h2>Nie optymalizuj. Najpierw ustabilizuj.</h2>
+          </div>
+          <span class="reset-duration">7 × 15 minut</span>
+        </header>
+
+        <p class="reset-intro">Przez tydzień nie poluj na kolejną premierę. Używaj jednego rdzenia i obserwuj, gdzie naprawdę powstaje wartość.</p>
+
+        <div class="reset-week">
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-1">
+            <span class="reset-day">DZIEŃ 1</span>
+            <strong>Usuń szum</strong>
+            <p>Zamknij nieużywane konta z zakładek, wybierz główne narzędzie i nazwij jedno powtarzalne zadanie.</p>
+            <small>GOTOWE, GDY: wiesz, czego przez tydzień nie testujesz.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-2">
+            <span class="reset-day">DZIEŃ 2</span>
+            <strong>Uzupełnij kontekst</strong>
+            <p>Dokończ Kartę Kontekstu i popraw zdania, które nadal są ogólne.</p>
+            <small>GOTOWE, GDY: obca osoba zrozumiałaby Twoje zasady pracy.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-3">
+            <span class="reset-day">DZIEŃ 3</span>
+            <strong>Uruchom jednego asystenta</strong>
+            <p>Wybierz rolę z modułu 4 i powierz jej jedno prawdziwe zadanie.</p>
+            <small>GOTOWE, GDY: masz wynik, który można ocenić.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-4">
+            <span class="reset-day">DZIEŃ 4</span>
+            <strong>Popraw wejście</strong>
+            <p>Zamiast poprawiać odpowiedź pięć razy, uzupełnij brakujący materiał, kryteria albo ograniczenia.</p>
+            <small>GOTOWE, GDY: umiesz powiedzieć, dlaczego drugi wynik był lepszy.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-5">
+            <span class="reset-day">DZIEŃ 5</span>
+            <strong>Zapisz to, co działa</strong>
+            <p>Przenieś dobrą instrukcję i przykład wyniku do jednego stałego miejsca.</p>
+            <small>GOTOWE, GDY: nie musisz szukać w historii czatów.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-6">
+            <span class="reset-day">DZIEŃ 6</span>
+            <strong>Powtórz zadanie</strong>
+            <p>Użyj tej samej instrukcji na nowym materiale i sprawdź, czy wynik trzyma poziom.</p>
+            <small>GOTOWE, GDY: proces działa drugi raz, nie tylko na jednym przykładzie.</small>
+          </label>
+          <label>
+            <input type="checkbox" data-reset-check data-key="day-7">
+            <span class="reset-day">DZIEŃ 7</span>
+            <strong>Zdecyduj</strong>
+            <p>Zachowaj, popraw albo usuń proces. Nie trzymaj go tylko dlatego, że był ciekawym eksperymentem.</p>
+            <small>GOTOWE, GDY: masz jedną decyzję i jeden następny krok.</small>
+          </label>
+        </div>
+
+        <div class="reset-scorecard">
+          <div>
+            <span>Pytanie kontrolne</span>
+            <h3>Czy system działa lepiej niż przed tygodniem?</h3>
+          </div>
+          <ul>
+            <li>Mniej razy tłumaczę ten sam kontekst.</li>
+            <li>Szybciej znajduję właściwą instrukcję.</li>
+            <li>Wynik częściej nadaje się do użycia.</li>
+            <li>Wiem, co sprawdzić przed wysłaniem.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reset-module" id="modul-8" data-module="bezpieczenstwo">
+        <header class="reset-module-head">
+          <div>
+            <span class="reset-module-number">08 / ZASADY BEZPIECZEŃSTWA</span>
+            <h2>AI przygotowuje. Człowiek odpowiada.</h2>
+          </div>
+          <span class="reset-duration">5 minut</span>
+        </header>
+
+        <p class="reset-intro">Im łatwiej coś wygenerować, tym łatwiej użyć tego za szybko. Te zasady są częścią systemu, nie dodatkiem na końcu.</p>
+
+        <div class="reset-safety">
+          <article>
+            <span class="reset-safety-level reset-safety-green">MOŻNA</span>
+            <h3>Materiały publiczne</h3>
+            <p>Ogólnodostępne informacje, własne pomysły, anonimowe przykłady i teksty bez danych wrażliwych.</p>
+          </article>
+          <article>
+            <span class="reset-safety-level reset-safety-amber">OSTROŻNIE</span>
+            <h3>Dane wewnętrzne</h3>
+            <p>Oferty, procedury, wyniki i korespondencja. Usuń dane osobowe i sprawdź zasady używanego narzędzia.</p>
+          </article>
+          <article>
+            <span class="reset-safety-level reset-safety-red">NIE WKLEJAJ</span>
+            <h3>Sekrety i dane chronione</h3>
+            <p>Hasła, klucze API, dane płatnicze, dokumentacja medyczna, numery dokumentów i poufne dane klientów.</p>
+          </article>
+        </div>
+
+        <div class="reset-guardrails">
+          <article><span>01</span><p><strong>Weryfikuj fakty zmienne w czasie.</strong> Ceny, prawo, funkcje produktów, terminy i osoby sprawdzaj w aktualnym źródle.</p></article>
+          <article><span>02</span><p><strong>Nie publikuj jednym kliknięciem.</strong> Tekst, reklama, mail i dokument przechodzą kontrolę człowieka.</p></article>
+          <article><span>03</span><p><strong>Nie myl płynności z prawdą.</strong> Pewny ton odpowiedzi nie jest dowodem poprawności.</p></article>
+          <article><span>04</span><p><strong>Ogranicz zakres automatyzacji.</strong> Pierwsza wersja ma być możliwa do zatrzymania i cofnięcia.</p></article>
+          <article><span>05</span><p><strong>Zapisz źródło i decyzję.</strong> Przy ważnym wyniku zachowaj materiał wejściowy, wersję końcową i osobę zatwierdzającą.</p></article>
+        </div>
+
+        <div class="reset-final">
+          <div class="reset-final-mark" aria-hidden="true">R</div>
+          <div>
+            <span>TWÓJ SYSTEM STARTOWY</span>
+            <h2>Mniej narzędzi.<br>Więcej powtarzalnej pracy.</h2>
+            <p>AI Radar będzie pomagał Ci rozwijać ten system bez gonienia każdej premiery. Raz w tygodniu dostaniesz jeden sygnał, narzędzie albo workflow, który warto sprawdzić.</p>
+            <label class="reset-check reset-check-final">
+              <input type="checkbox" data-reset-check data-key="reset-complete">
+              <span><strong>Mój AI RESET jest rozpoczęty.</strong> Mam rdzeń, kontekst i jeden proces do powtórzenia.</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <footer class="reset-footer">
+        <span>AI RESET · FIELD MANUAL 01</span>
+        <p>Materiał przygotowany przez AI-Team dla czytelników AI Radar.</p>
+        <a href="/ai-radar.html">ai-team.pl/ai-radar</a>
+      </footer>
+    </div>
+  </main>
+
+  <div class="reset-toast" id="copyStatus" role="status" aria-live="polite"></div>
+
+  <script src="assets/ai-reset.js"></script>
+</body>
+</html>

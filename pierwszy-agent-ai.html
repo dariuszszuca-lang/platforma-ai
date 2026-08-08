@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!--
+  LEAD MAGNET: „Twój Pierwszy Agent AI" — interaktywny konfigurator (60 s). PRODUKCJA.
+  Zbudowany 2026-07-28 przez @cmo (AI Marketing Lab).
+  Konfigurator liczy wynik po stronie przeglądarki. Zapis leada: Firestore (lista AI Radar, config z mapa-ai)
+  + POST /api/agent-send (Claude + SES wysyła spersonalizowaną specyfikację agenta mailem). Wzorzec 1:1 z mapa-ai.html.
+-->
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twój Pierwszy Agent AI. konfigurator w 60 sekund | AI-Team</title>
+<meta name="description" content="Odpowiedz na 3 pytania i zobacz, jakiego agenta AI opłaca Ci się zbudować najpierw: co robi, ile godzin miesięcznie odzyskujesz i od czego zacząć.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070706;
+    --bg-soft:#111110;
+    --card:#161615;
+    --line:#26251f;
+    --ink:#f4f1ea;
+    --muted:#a19c8f;
+    --orange:#ff7a1a;
+    --orange-soft:#ffb070;
+    --green:#7bd88f;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    min-height:100vh;overflow-x:hidden;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .serif{font-family:"Fraunces",serif}
+
+  /* nagłówek marki */
+  .brand{display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.02em;color:var(--muted)}
+  .brand b{color:var(--ink)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,122,26,.15)}
+
+  /* HERO */
+  .hero{padding:46px 0 8px}
+  .kicker{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+  h1{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(34px,7.4vw,58px);line-height:1.02;letter-spacing:-.015em}
+  h1 em{font-style:italic;color:var(--orange-soft)}
+  .lead{color:var(--muted);font-size:clamp(16px,2.4vw,19px);margin-top:20px;max-width:56ch}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:24px;font-size:13.5px;color:var(--muted)}
+  .meta-row span{display:flex;align-items:center;gap:7px}
+  .tick{color:var(--orange)}
+
+  .cta{
+    display:inline-flex;align-items:center;gap:11px;margin-top:32px;
+    background:var(--orange);color:#140a02;border:none;cursor:pointer;
+    font-weight:700;font-size:17px;padding:16px 26px;border-radius:999px;
+    transition:transform .16s ease, box-shadow .16s ease;
+    box-shadow:0 12px 30px -12px rgba(255,122,26,.6);
+  }
+  .cta:hover{transform:translateY(-2px)}
+  .cta .arrow{font-size:19px;transition:transform .16s ease}
+  .cta:hover .arrow{transform:translateX(4px)}
+  .cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+  .cta.ghost:hover{border-color:var(--orange)}
+
+  /* KROKI */
+  .stage{display:none;animation:rise .45s cubic-bezier(.2,.7,.2,1)}
+  .stage.on{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .progress{display:flex;align-items:center;gap:10px;margin:6px 0 30px}
+  .bar{flex:1;height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+  .bar > i{display:block;height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+  .step-n{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);white-space:nowrap}
+
+  .q{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(24px,4.6vw,34px);line-height:1.12;letter-spacing:-.01em;margin-bottom:6px}
+  .q-sub{color:var(--muted);font-size:15px;margin-bottom:26px}
+
+  .opts{display:grid;gap:12px}
+  .opt{
+    display:flex;align-items:center;gap:15px;text-align:left;width:100%;
+    background:var(--card);border:1px solid var(--line);color:var(--ink);
+    padding:17px 18px;border-radius:var(--radius);cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .12s ease;
+  }
+  .opt:hover{border-color:var(--orange);transform:translateY(-1px)}
+  .opt.sel{border-color:var(--orange);background:rgba(255,122,26,.08)}
+  .opt .ic{font-size:24px;flex:none;width:30px;text-align:center}
+  .opt .tx b{display:block;font-weight:600;font-size:16px}
+  .opt .tx small{color:var(--muted);font-size:13.5px}
+
+  /* slider */
+  .slider-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;margin-top:4px}
+  .slider-val{font-family:"Fraunces",serif;font-size:52px;font-weight:500;color:var(--orange-soft);line-height:1}
+  .slider-val small{font-family:"Inter",sans-serif;font-size:16px;color:var(--muted);font-weight:500}
+  input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line);margin-top:22px;outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--orange);cursor:pointer;box-shadow:0 4px 14px -3px rgba(255,122,26,.8);border:3px solid #140a02}
+  input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--orange);cursor:pointer;border:3px solid #140a02}
+  .scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:10px;font-family:"JetBrains Mono",monospace}
+
+  .nav{display:flex;gap:12px;margin-top:26px}
+  .back{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14.5px;padding:14px 4px}
+  .back:hover{color:var(--ink)}
+
+  /* WYNIK */
+  .agent-card{background:linear-gradient(180deg,var(--card),#0f0f0e);border:1px solid var(--line);border-radius:24px;overflow:hidden;position:relative}
+  .agent-top{padding:26px 24px 22px;border-bottom:1px solid var(--line);position:relative}
+  .agent-badge{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+  .agent-name{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(28px,5.4vw,40px);line-height:1.05;margin-top:8px;letter-spacing:-.01em}
+  .agent-role{color:var(--muted);font-size:15px;margin-top:8px;max-width:52ch}
+  .agent-emoji{position:absolute;top:22px;right:22px;font-size:42px;opacity:.9}
+
+  .stat-strip{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  .stat{background:#121211;padding:20px 22px}
+  .stat .n{font-family:"Fraunces",serif;font-size:34px;font-weight:500;color:var(--orange-soft);line-height:1}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:7px}
+
+  .sec{padding:22px 24px;border-top:1px solid var(--line)}
+  .sec h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px;font-family:"JetBrains Mono",monospace}
+  .task{display:flex;gap:12px;padding:9px 0;font-size:15.5px}
+  .task .b{color:var(--orange);flex:none;margin-top:2px}
+  .proof{background:rgba(255,122,26,.06);border:1px solid rgba(255,122,26,.22);border-radius:14px;padding:15px 17px;font-size:14.5px;color:var(--ink)}
+  .proof b{color:var(--orange-soft)}
+  .first-step{font-size:16px}
+  .first-step b{color:var(--ink)}
+
+  /* kalkulator zł (uczciwy: user podaje swoją stawkę) */
+  .rate-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:14.5px;color:var(--muted)}
+  .rate-row input{width:110px;background:#0e0e0d;border:1px solid var(--line);color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:16px;padding:10px 12px;border-radius:10px}
+  .rate-row input:focus{outline:none;border-color:var(--orange)}
+  .save-line{margin-top:14px;font-size:15px}
+  .save-line .zl{font-family:"Fraunces",serif;font-size:30px;color:var(--green);font-weight:500}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+
+  /* formularz lead */
+  .lead-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;margin-top:22px}
+  .lead-box h2{font-family:"Fraunces",serif;font-weight:500;font-size:24px;line-height:1.15;margin-bottom:8px}
+  .lead-box p{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+  .field{display:flex;gap:10px;flex-wrap:wrap}
+  .field input[type=email]{flex:1;min-width:200px;background:#0e0e0d;border:1px solid var(--line);color:var(--ink);font-size:16px;padding:15px 16px;border-radius:12px}
+  .field input[type=email]:focus{outline:none;border-color:var(--orange)}
+  .consent{display:flex;gap:10px;margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+  .consent input{margin-top:3px;flex:none;accent-color:var(--orange)}
+  .consent a{color:var(--orange-soft)}
+  .form-msg{margin-top:14px;font-size:14.5px;display:none}
+  .form-msg.ok{display:block;color:var(--green)}
+  .form-msg.err{display:block;color:#ff8a6b}
+
+  .restart{display:block;margin:26px auto 0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+  .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:40px;line-height:1.7}
+  .foot a{color:var(--orange-soft)}
+  @media(max-width:560px){.stat-strip{grid-template-columns:1fr}}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<link rel="canonical" href="https://ai-team.pl/pierwszy-agent-ai">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="dot"></span> <b>AI-Team</b> · konfigurator agenta</div>
+
+  <!-- HERO -->
+  <section class="stage on" id="s0">
+    <div class="hero">
+      <div class="kicker">60 sekund · 3 pytania · zero teorii</div>
+      <h1>Który agent AI<br><em>zrobi za Ciebie</em> najwięcej?</h1>
+      <p class="lead">Nie musisz zatrudniać. Jedno powtarzalne zadanie w Twojej firmie może przejąć agent AI. Odpowiedz na trzy pytania, a pokażę Ci, którego zbudować najpierw, co dokładnie będzie robił i ile godzin miesięcznie Ci odda.</p>
+      <div class="meta-row">
+        <span><span class="tick">✓</span> spersonalizowane pod Twoją firmę</span>
+        <span><span class="tick">✓</span> konkretny pierwszy krok</span>
+        <span><span class="tick">✓</span> bez zapisu, żeby zacząć</span>
+      </div>
+      <button class="cta" onclick="go(1)">Pokaż mojego agenta <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- KROK 1: branża -->
+  <section class="stage" id="s1">
+    <div class="progress"><span class="step-n">01 / 03</span><div class="bar"><i style="width:33%"></i></div></div>
+    <div class="q">Czym się zajmujesz?</div>
+    <div class="q-sub">Dobiorę przykłady i język do Twojej branży.</div>
+    <div class="opts" id="opts-branza"></div>
+    <div class="nav"><button class="back" onclick="go(0)">← wstecz</button></div>
+  </section>
+
+  <!-- KROK 2: pożeracz czasu -->
+  <section class="stage" id="s2">
+    <div class="progress"><span class="step-n">02 / 03</span><div class="bar"><i style="width:66%"></i></div></div>
+    <div class="q">Co zjada najwięcej Twojego czasu?</div>
+    <div class="q-sub">Wybierz jedno, to które najbardziej Cię męczy. Od tego zaczniemy.</div>
+    <div class="opts" id="opts-bol"></div>
+    <div class="nav"><button class="back" onclick="go(1)">← wstecz</button></div>
+  </section>
+
+  <!-- KROK 3: godziny -->
+  <section class="stage" id="s3">
+    <div class="progress"><span class="step-n">03 / 03</span><div class="bar"><i style="width:100%"></i></div></div>
+    <div class="q">Ile godzin tygodniowo na tym schodzi?</div>
+    <div class="q-sub">Policzę, ile z tego realnie odzyskasz w miesiącu.</div>
+    <div class="slider-box">
+      <div class="slider-val"><span id="hrsVal">6</span> <small>godz. / tydzień</small></div>
+      <input type="range" id="hrs" min="1" max="30" value="6" oninput="document.getElementById('hrsVal').textContent=this.value">
+      <div class="scale"><span>1 godz.</span><span>15 godz.</span><span>30+ godz.</span></div>
+    </div>
+    <div class="nav">
+      <button class="cta" onclick="build()">Zobacz mojego agenta <span class="arrow">→</span></button>
+      <button class="back" onclick="go(2)">← wstecz</button>
+    </div>
+  </section>
+
+  <!-- WYNIK -->
+  <section class="stage" id="s4">
+    <div class="kicker" style="margin-bottom:16px">Twój wynik</div>
+    <div class="agent-card">
+      <div class="agent-top">
+        <div class="agent-emoji" id="rEmoji">🤖</div>
+        <div class="agent-badge">Twój pierwszy agent AI</div>
+        <div class="agent-name" id="rName">Agent</div>
+        <div class="agent-role" id="rRole"></div>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="n" id="rHrs">0 godz.</div><div class="l">odzyskane w miesiącu (z Twojej odpowiedzi)</div></div>
+        <div class="stat"><div class="n" id="rDays">0 dni</div><div class="l">tyle roboczych dni to rocznie</div></div>
+      </div>
+      <div class="sec">
+        <h3>Co robi za Ciebie</h3>
+        <div id="rTasks"></div>
+      </div>
+      <div class="sec">
+        <h3>Ile to warte dla Ciebie</h3>
+        <div class="rate-row">
+          <span>Twoja godzina jest warta ok.</span>
+          <input type="number" id="rate" value="80" min="0" step="10" oninput="calcZl()"> <span>zł</span>
+        </div>
+        <div class="save-line">To około <span class="zl" id="rZl">0 zł</span> miesięcznie, które dziś zamieniasz w rutynę.</div>
+        <div class="hint">Liczby z Twoich odpowiedzi, nie z tabelki marketingowej. Zmień stawkę, żeby było uczciwie.</div>
+      </div>
+      <div class="sec">
+        <h3>Jak to robimy w AI-Team</h3>
+        <div class="proof" id="rProof"></div>
+      </div>
+      <div class="sec">
+        <h3>Twój pierwszy krok w tym tygodniu</h3>
+        <div class="first-step" id="rStep"></div>
+      </div>
+    </div>
+
+    <!-- LEAD -->
+    <div class="lead-box">
+      <h2>Chcesz pełną specyfikację tego agenta i wycenę?</h2>
+      <p>Zostaw maila. Przygotuję dokument: co dokładnie ten agent robi u Ciebie, czym go zbudować, ile to trwa i kosztuje. Przy okazji dostaniesz AI Radar, mój cotygodniowy mail z jednym praktycznym ruchem AI dla małej firmy.</p>
+      <div class="field">
+        <input type="email" id="email" placeholder="twoj@email.pl" autocomplete="email">
+        <button class="cta" style="margin-top:0" onclick="saveLead()">Wyślij mi specyfikację <span class="arrow">→</span></button>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent">
+        <span>Zapisuję się do AI Radar i zgadzam się, żeby AI-Team użył moich odpowiedzi do przygotowania specyfikacji agenta i wysłał mi ją mailem. Mogę zrezygnować w każdej chwili. Szczegóły w <a href="/privacy.html">polityce prywatności</a>.</span>
+      </label>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+
+    <button class="restart" onclick="location.reload()">↺ policz od nowa dla innego zadania</button>
+  </section>
+
+  <div class="foot">
+    AI-Team · praktyczne AI dla małych firm i freelancerów<br>
+    <a href="/">ai-team.pl</a> · <a href="/ai-radar.html">AI Radar</a> · <a href="/wdrozenie-ai.html">wdrożenia AI</a>
+  </div>
+
+</div>
+
+<script>
+// ====== FIREBASE (config z mapa-ai.html, ta sama lista AI Radar) ======
+const firebaseConfig = {
+  apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
+  authDomain: 'ai-team-zlecenia.firebaseapp.com',
+  projectId: 'ai-team-zlecenia',
+  storageBucket: 'ai-team-zlecenia.firebasestorage.app',
+  messagingSenderId: '715537035293',
+  appId: '1:715537035293:web:fe2978df1e20bfc3e0d6f4',
+  measurementId: 'G-N62YHVDCKC'
+};
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const agentDb = firebase.firestore();
+
+// ====== DANE KONFIGURATORA ======
+const BRANZE = [
+  {id:"nieruchomosci", ic:"🏠", b:"Nieruchomości", s:"biuro, agent, deweloper, wynajem"},
+  {id:"ecommerce",    ic:"🛒", b:"Sklep / e-commerce", s:"sprzedaż online, zamówienia"},
+  {id:"uslugi",       ic:"🔧", b:"Usługi lokalne", s:"salon, gabinet, warsztat, gastronomia"},
+  {id:"freelancer",   ic:"💼", b:"Freelancer / agencja", s:"projekty, klienci, konsulting"},
+  {id:"inne",         ic:"✳️", b:"Coś innego", s:"każda mała firma z powtarzalną robotą"}
+];
+
+// pożeracze czasu -> agent (mapowanie jawne, deterministyczne)
+const BOLE = [
+  {id:"pytania",  ic:"💬", b:"Odpisywanie na te same pytania", s:"klienci pytają o to samo w kółko"},
+  {id:"terminy",  ic:"📅", b:"Umawianie i pilnowanie terminów", s:"rezerwacje, spotkania, przypomnienia"},
+  {id:"tresci",   ic:"✍️", b:"Tworzenie treści i postów", s:"social, opisy, newsletter"},
+  {id:"oferty",   ic:"📄", b:"Wyceny i oferty", s:"za każdym razem od zera"},
+  {id:"dokumenty",ic:"🗂️", b:"Dokumenty i faktury", s:"przepisywanie danych, porządki"},
+  {id:"leady",    ic:"🎯", b:"Obsługa leadów i follow-up", s:"kontakty gubią się i stygną"}
+];
+
+const AGENCI = {
+  pytania:{
+    emoji:"💬", name:"Agent Recepcja",
+    role:"Odpowiada Twoim klientom od razu, o każdej porze, i nie gubi żadnego pytania.",
+    tasks:[
+      "Odpowiada na najczęstsze pytania na stronie, w mailu i na czacie, w Twoim tonie",
+      "Kwalifikuje pytającego i zbiera dane, zanim trafi do Ciebie",
+      "Umawia kontakt albo przekazuje Ci tylko to, co naprawdę wymaga człowieka"
+    ],
+    proof:"To pierwsza rzecz, którą wpinamy w <b>strony z AI w abonamencie</b>: chatbot, który zna Twoją ofertę i odpowiada, gdy Ty śpisz. Klient nie czeka do rana.",
+    step:"Wypisz 15 pytań, które słyszysz najczęściej, i gotowe odpowiedzi. To całe paliwo agenta. Resztę robimy my."
+  },
+  terminy:{
+    emoji:"📅", name:"Agent Kalendarz",
+    role:"Przyjmuje rezerwacje i pilnuje terminów, żeby Twój grafik zapełniał się sam.",
+    tasks:[
+      "Przyjmuje rezerwacje i zapisy bez Twojego udziału, 24 godziny na dobę",
+      "Wysyła potwierdzenia i przypomnienia SMS lub mailem, tnie na wizytach",
+      "Obsługuje przełożenia i odwołania, aktualizuje Twój kalendarz"
+    ],
+    proof:"Zbudowaliśmy taki system rezerwacji dla ośrodka <b>MyWay</b>: klient sam wybiera termin, dostaje potwierdzenie i przypomnienie, a zespół nie odbiera dziesięciu telefonów dziennie.",
+    step:"Zapisz swój realny grafik i zasady (ile trwa, kiedy przyjmujesz, co przed wizytą). To fundament, na którym stawiamy agenta."
+  },
+  tresci:{
+    emoji:"✍️", name:"Agent Treści",
+    role:"Pisze Twoje posty, opisy i maile w Twoim głosie, zamiast pustej kartki co tydzień.",
+    tasks:[
+      "Planuje tydzień treści pod Twoją firmę i Twoich klientów",
+      "Pisze posty, opisy i newsletter w Twoim stylu, nie generycznie",
+      "Podsuwa gotowe wersje do zatwierdzenia, Ty tylko mówisz tak albo poprawiam"
+    ],
+    proof:"Tak działa nasz własny <b>@cmo</b>: planuje tydzień, pisze wpisy w głosie właściciela i zostawia je do akceptacji. Content przestaje być rzeczą, którą się odkłada.",
+    step:"Wrzuć do jednego pliku 5 swoich najlepszych wpisów albo maili. Z tego agent uczy się, jak brzmisz."
+  },
+  oferty:{
+    emoji:"📄", name:"Agent Ofertowanie",
+    role:"Składa spersonalizowane oferty i wyceny w minuty, a nie w wieczór po pracy.",
+    tasks:[
+      "Buduje ofertę z Twojego cennika i zasad, dopasowaną do konkretnego klienta",
+      "Pilnuje spójności cen i warunków, żeby nic Ci nie uciekło",
+      "Zwraca gotowy dokument albo mail do wysłania, po Twojej akceptacji"
+    ],
+    proof:"Robimy z tego <b>generatory ofert i decki sprzedażowe</b>: wpisujesz kilka danych, wychodzi kompletny, brandowany dokument. Klient dostaje ofertę tego samego dnia, nie za trzy.",
+    step:"Zbierz w jedno miejsce swój cennik i typowe warianty oferty. To wsad, z którego agent liczy i pisze."
+  },
+  dokumenty:{
+    emoji:"🗂️", name:"Agent Dokumenty",
+    role:"Czyta faktury i dokumenty za Ciebie i przepisuje dane tam, gdzie mają być.",
+    tasks:[
+      "Wyciąga dane z faktur, umów i formularzy bez ręcznego przepisywania",
+      "Porządkuje je i wpisuje do Twojego arkusza albo systemu",
+      "Sygnalizuje to, co wygląda nietypowo i wymaga Twojego oka"
+    ],
+    proof:"To klasyczna <b>automatyzacja, którą wdrażamy w opiece miesięcznej</b>: dane z dokumentów lądują tam, gdzie trzeba, bez godziny przepisywania wieczorem.",
+    step:"Zbierz 10 przykładowych dokumentów jednego typu (np. faktury). Na nich pokazujemy agentowi, czego szukać."
+  },
+  leady:{
+    emoji:"🎯", name:"Agent Sprzedaż",
+    role:"Pilnuje każdego kontaktu i przypomina o follow-upie, żeby leady nie stygły.",
+    tasks:[
+      "Zbiera leady z formularzy, maila i wiadomości w jedno miejsce",
+      "Przypomina, do kogo i kiedy wrócić, zanim kontakt ostygnie",
+      "Podsuwa gotową treść odezwania się w Twoim stylu, do wysłania po akceptacji"
+    ],
+    proof:"Budujemy pod to <b>mini-CRM i asystenta sprzedaży</b>: żaden lead nie ginie w skrzynce, a follow-up dzieje się na czas. 80% sprzedaży zamyka się po piątym kontakcie, nie pierwszym.",
+    step:"Wypisz, skąd dziś przychodzą Twoje kontakty i gdzie się gubią. To mapa, którą agent zaczyna pilnować."
+  }
+};
+
+const BRANZA_TWIST = {
+  nieruchomosci:"W nieruchomościach ",
+  ecommerce:"W sklepie online ",
+  uslugi:"W usługach lokalnych ",
+  freelancer:"U freelancera i w agencji ",
+  inne:"W małej firmie "
+};
+
+const state = {branza:null, bol:null, hrs:6};
+
+// render opcji
+function renderOpts(){
+  document.getElementById("opts-branza").innerHTML = BRANZE.map(o=>optHtml("branza",o)).join("");
+  document.getElementById("opts-bol").innerHTML   = BOLE.map(o=>optHtml("bol",o)).join("");
+}
+function optHtml(group,o){
+  return `<button class="opt" data-g="${group}" data-id="${o.id}" onclick="pick('${group}','${o.id}')">
+    <span class="ic">${o.ic}</span>
+    <span class="tx"><b>${o.b}</b><small>${o.s}</small></span>
+  </button>`;
+}
+function pick(group,id){
+  state[group]=id;
+  document.querySelectorAll(`.opt[data-g="${group}"]`).forEach(el=>el.classList.toggle("sel", el.dataset.id===id));
+  // auto-przejście dalej
+  if(group==="branza") setTimeout(()=>go(2),260);
+  if(group==="bol")    setTimeout(()=>go(3),260);
+}
+
+// nawigacja
+function go(n){
+  document.querySelectorAll(".stage").forEach(s=>s.classList.remove("on"));
+  document.getElementById("s"+n).classList.add("on");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// budowa wyniku
+function build(){
+  state.hrs = parseInt(document.getElementById("hrs").value,10);
+  const a = AGENCI[state.bol] || AGENCI.pytania;
+  const hrsM = Math.round(state.hrs*4.33);
+  const days = Math.round(state.hrs*52/8);
+
+  document.getElementById("rEmoji").textContent = a.emoji;
+  document.getElementById("rName").textContent  = a.name;
+  document.getElementById("rRole").textContent  = (BRANZA_TWIST[state.branza]||"") + a.role.charAt(0).toLowerCase() + a.role.slice(1);
+  document.getElementById("rHrs").textContent    = hrsM + " godz.";
+  document.getElementById("rDays").textContent   = "~" + days + " dni";
+  document.getElementById("rTasks").innerHTML = a.tasks.map(t=>`<div class="task"><span class="b">▸</span><span>${t}</span></div>`).join("");
+  document.getElementById("rProof").innerHTML = a.proof;
+  document.getElementById("rStep").innerHTML  = "<b>"+a.step+"</b>";
+  calcZl();
+  go(4);
+}
+function calcZl(){
+  const rate = parseFloat(document.getElementById("rate").value)||0;
+  const hrsM = Math.round(state.hrs*4.33);
+  const zl = Math.round(hrsM*rate);
+  document.getElementById("rZl").textContent = zl.toLocaleString("pl-PL")+" zł";
+}
+
+// ====== PODŁĄCZENIE ZAPISU (przed deployem: wklej config Firebase + endpoint jak w mapa-ai.html) ======
+// Teraz działa w trybie demo: waliduje, zapisuje do localStorage i pokazuje sukces, żeby przejść cały flow lokalnie.
+async function saveLead(){
+  const email = document.getElementById("email").value.trim();
+  const consent = document.getElementById("consent").checked;
+  const msg = document.getElementById("formMsg");
+  msg.className="form-msg";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.className="form-msg err"; msg.textContent="Wpisz poprawny adres e-mail."; return; }
+  if(!consent){ msg.className="form-msg err"; msg.textContent="Zaznacz zgodę, żebym mógł wysłać Ci specyfikację."; return; }
+
+  msg.className="form-msg"; msg.style.display="block"; msg.style.color="#a19c8f"; msg.textContent="Zapisuję…";
+
+  const now = new Date().toISOString();
+  const agentName = (AGENCI[state.bol]||{}).name || "agenta";
+  const CONSENT_TEXT = "Zapis do newslettera AI Radar i zgoda na przygotowanie specyfikacji agenta (ai-team.pl/pierwszy-agent-ai).";
+
+  // 1. Zapis do listy AI Radar (Firestore, jak mapa-ai). Best-effort.
+  try{
+    const id = email.toLowerCase().replace(/[^a-z0-9]/g,'_');
+    await agentDb.collection('newsletter_subscribers').doc(id).set({
+      id, email, name:'',
+      group:'ai-radar', groups:['ai-radar'], status:'active',
+      source:'pierwszy-agent-ai',
+      agent_survey:{ branza:state.branza, agent:agentName, zadanie:state.bol, godziny_tydzien:state.hrs },
+      consent:{ newsletter:true, text:CONSENT_TEXT, accepted_at:now, privacy_url:'https://ai-team.pl/privacy', privacy_version:'2026-06-13' },
+      created_at:now, updated_at:now, last_signup_at:now
+    }, { merge:true });
+  }catch(e){ console.warn('subscribe', e && e.message); }
+
+  // 2. Generacja + wysyłka specyfikacji mailem (backend Claude + SES).
+  try{
+    const resp = await fetch('/api/agent-send', {
+      method:'POST', headers:{'content-type':'application/json'},
+      body:JSON.stringify({ email, branza:state.branza, bol:state.bol, agent:agentName, godziny_tydzien:state.hrs, consent:true })
+    });
+    const data = await resp.json().catch(()=>({}));
+    if(!resp.ok || !data.ok) throw new Error(data.error || 'Nie udało się wysłać specyfikacji. Spróbuj za chwilę.');
+    msg.className="form-msg ok";
+    msg.innerHTML="Gotowe. Specyfikacja Twojego <b>"+agentName+"</b> leci na "+email+". Sprawdź skrzynkę (czasem trafia do spamu)."+
+      "<br><br><a href='/wdrozenie-ai.html' style='color:var(--orange-soft);text-decoration:underline;text-underline-offset:3px'>Nie chcesz czekać? Zobacz, jak wygląda wdrożenie →</a>";
+    document.getElementById("email").value="";
+  }catch(error){
+    msg.className="form-msg err";
+    msg.textContent=(error && error.message) || "Coś nie zadziałało. Napisz na kontakt@ai-team.pl, wyślemy ręcznie.";
+  }
+}
+
+renderOpts();
+</script>
+</body>
+</html>

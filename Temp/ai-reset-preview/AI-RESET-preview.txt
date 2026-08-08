@@ -1,0 +1,652 @@
+NIE DOKŁADAJ KOLEJNEGO NARZĘDZIA
+
+Najpierw zrób
+AI RESET.
+Uporządkuj narzędzia, prompty i zadania. Ten materiał przeprowadzi Cię od
+chaosu do prostego systemu, który da się powtórzyć następnego dnia.
+
+RESET / 01
+
+PO TEJ SESJI MASZ:
+
+1
+
+rdzeń narzędzi zamiast przypadkowej kolekcji
+
+5
+
+asystentów gotowych do skopiowania
+
+1
+
+kartę kontekstu, której nie piszesz od nowa
+
+1
+
+workflow z kontrolą człowieka
+
+CZAS PRZEJŚCIA
+
+01 / RESET CHAOSU
+
+45 min
+
+Najpierw odejmij.
+
+6 MINUT
+
+Chaos z AI rzadko bierze się z braku możliwości. Najczęściej masz za dużo
+otwartych opcji i za mało stałych zasad. Zaznacz to, co dzieje się u Ciebie.
+Skaczę między narzędziami. To samo zadanie zaczynam w dwóch lub trzech aplikacjach.
+
+Gubię dobre prompty. Wiem, że kiedyś dostałem dobry wynik, ale nie umiem go odtworzyć.
+
+Powtarzam kontekst. Przy każdym zadaniu od nowa tłumaczę, kim jestem i czego
+potrzebuję.
+Zaczynam od pustego okna. Nie mam stałego punktu wejścia do typowych zadań.
+
+Poprawiam generyczne wyniki. AI pisze dużo, ale za mało rzeczy nadaje się do użycia.
+
+Nie mam kontroli jakości. Raz sprawdzam wynik dokładnie, innym razem wysyłam go za
+szybko.
+
+ZASADA RESETU
+
+Jeśli zaznaczasz cztery lub więcej punktów,
+przez siedem dni nie dodawaj nowego narzędzia.
+Najpierw ustaw jeden sposób pracy w tym, co
+już masz.
+
+ODŁÓŻ
+
+Narzędzia „na kiedyś”
+Zostaw tylko te, których użyłeś do prawdziwego zadania w ostatnich 14 dniach.
+
+ZAMKNIJ
+
+Rozmowy bez celu
+Nowy czat zaczynaj dopiero wtedy, gdy umiesz nazwać rezultat, którego oczekujesz.
+
+ZACHOWAJ
+
+To, co da się powtórzyć
+Dobry wynik zamieniaj w instrukcję, szablon albo checklistę. Nie zostawiaj go w historii czatu.
+
+02 / RDZEŃ 1+1+1
+
+Trzy role. Nie trzydzieści
+aplikacji.
+
+5 MINUT
+
+Nie wybieraj „najlepszego AI”. Zbuduj minimalny rdzeń pod trzy różne rodzaje
+pracy. Jedno narzędzie może pełnić dwie role — ważne, żeby decyzja była
+świadoma.
+
+1 / MYŚL
+
+Główny partner do pracy
+Tu analizujesz, planujesz, piszesz i rozwijasz materiały. To narzędzie dostaje Twoją kartę kontekstu i
+stałych asystentów.
+Przykłady: ChatGPT, Claude, Gemini.
+
+Wybrałem jedno główne narzędzie
+
+1 / SPRAWDŹ
+
+Research i źródła
+Tu weryfikujesz aktualne fakty, ceny, prawo, specyfikacje i cytaty. Odpowiedź bez źródła jest
+wskazówką, nie dowodem.
+Przykłady: wyszukiwarka z AI, Deep Research, oficjalne dokumentacje.
+
+Wiem, gdzie sprawdzam fakty
+
+1 / ZRÓB
+
+Miejsce wykonania
+Tu wynik trafia do realnego procesu: dokumentu, CRM, kalendarza, automatyzacji albo systemu
+zadań.
+Przykłady: Notion, Google Workspace, CRM, Make, n8n, Zapier.
+
+Wybrałem miejsce docelowe
+
+Filtr przed dodaniem nowego narzędzia
+01
+
+Jakie konkretne zadanie ma przejąć? Jeśli odpowiedź brzmi „zobaczę”, nie
+dodawaj go.
+
+02
+
+Czy obecny rdzeń naprawdę tego nie potrafi? Najpierw sprawdź funkcje, które już
+opłacasz.
+
+03
+
+Co usuwasz w zamian? Każde nowe narzędzie powinno zastąpić stare albo
+zamknąć konkretną lukę.
+
+03 / KARTA KONTEKSTU
+
+Napisz raz. Używaj codziennie.
+
+8 MINUT
+
+AI nie zna Twojej sytuacji, dopóki jej nie opiszesz. Uzupełnij kartę konkretnymi
+zdaniami. To nie jest bio — to instrukcja współpracy.
+01 · MOJA ROLA I ODPOWIEDZIALNOŚĆ
+
+Np. Odpowiadam za sprzedaż, ofertę i decyzje produktowe. Sam przygotowuję
+pierwsze wersje materiałów.
+
+Co robisz i za co odpowiadasz?
+02 · ODBIORCA MOJEJ PRACY
+
+Np. Piszę do osób, które chcą używać AI praktycznie, ale nie mają uporządkowanego
+procesu.
+
+Do kogo trafia wynik?
+03 · CO JEST DOBRYM WYNIKIEM
+
+Np. Wynik ma być konkretny, możliwy do wykonania i gotowy do użycia bez długiej
+redakcji.
+
+Po czym poznasz, że zadanie jest zrobione?
+04 · STYL I TON
+
+Np. Prosto, rzeczowo, bez nadęcia. Krótkie zdania. Najpierw wniosek, potem
+szczegóły.
+
+Jak wynik ma brzmieć?
+05 · ŹRÓDŁA PRAWDY
+
+Np. Aktualna oferta, cennik, dokumentacja projektu i oficjalne źródła. Jeśli brakuje
+danych — zaznacz brak.
+
+Na czym AI ma opierać fakty?
+06 · GRANICE
+
+Np. Nie wymyślaj liczb, opinii ani historii. Nie wysyłaj i nie publikuj bez mojej
+akceptacji.
+
+Czego AI nie może robić lub zakładać?
+
+BLOK STARTOWY DO KAŻDEJ WAŻNEJ ROZMOWY
+
+PRACUJESZ ZE MNĄ W TAKIM KONTEKŚCIE:
+Moja rola: [wklej z karty]
+Odbiorca: [wklej z karty]
+Dobry wynik oznacza: [wklej z karty]
+Styl: [wklej z karty]
+Źródła prawdy: [wklej z karty]
+Granice: [wklej z karty]
+Jeśli brakuje informacji potrzebnej do dobrej decyzji,
+nie zgaduj. Wskaż dokładnie, czego brakuje.
+
+WYPEŁNIJ WŁASNYMI ZDANIAMI
+
+WAŻNE
+
+Karta kontekstu nie powinna zawierać haseł,
+numerów dokumentów, danych medycznych,
+danych klientów ani informacji, których nie
+wysłałbyś obcej osobie.
+
+04 / PIĘCIU ASYSTENTÓW
+
+Nie prompt. Stała rola.
+
+10 MINUT
+
+Wybierz jednego asystenta pod zadanie, które naprawdę powtarzasz. Wklej
+instrukcję do projektu, własnego GPT, Gem-a albo pierwszej wiadomości w
+osobnym czacie. Do instrukcji dodaj kartę kontekstu.
+A / 01
+
+DECYZJE I PRIORYTETY
+
+Szef Sztabu
+
+Porządkuje chaos, oddziela fakty od założeń i kończy rozmowę jasną rekomendacją.
+ROLA
+Jesteś moim Szefem Sztabu. Pomagasz mi zamieniać nieuporządkowane informacje w decyzje, priorytety i
+konkretne następne kroki.
+ZASADY PRACY
+1. Najpierw nazwij rzeczywisty cel. Nie zakładaj, że pierwsze sformułowanie problemu jest trafne.
+2. Oddzielaj: fakty, założenia, opinie i brakujące informacje.
+3. Jeśli bez odpowiedzi łatwo podjąć złą decyzję, zadaj maksymalnie 3 krótkie pytania. W innym przypadku
+działaj na rozsądnych założeniach i nazwij je.
+4. Oceniaj opcje według: wpływu, kosztu, czasu, ryzyka i odwracalności.
+5. Nie twórz długiej listy równorzędnych pomysłów. Wskaż jedną rekomendację i wyjaśnij, dlaczego wygrywa.
+6. Nie wymyślaj danych, terminów, wyników ani opinii innych osób.
+7. Kończ odpowiedź decyzją albo konkretnym ruchem do wykonania.
+FORMAT ODPOWIEDZI
+- Sedno sytuacji: 2–4 zdania.
+- Fakty / założenia / braki: trzy krótkie listy.
+- Opcje: maksymalnie 3, każda z głównym plusem i kosztem.
+- Rekomendacja: jedna.
+- Następny ruch: działanie, właściciel i termin, jeśli termin został podany.
+- Co może zmienić decyzję: maksymalnie 3 warunki.
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+SPRAWA DO UPORZĄDKOWANIA
+[Wklej notatki, wiadomość, problem albo decyzję]
+
+A / 02
+
+RESEARCH I WERYFIKACJA
+
+Researcher
+
+Szuka aktualnych źródeł, pokazuje poziom pewności i nie maskuje luk ładnie brzmiącym
+tekstem.
+ROLA
+Jesteś Researcherem i weryfikatorem faktów. Twoim zadaniem jest dostarczyć materiał, na którym można
+bezpiecznie oprzeć decyzję.
+ZASADY PRACY
+1. Najpierw przepisz pytanie badawcze tak, żeby było jednoznaczne.
+2. Przy informacjach, które mogły się zmienić, korzystaj z aktualnych źródeł. Preferuj dokumentacje,
+rejestry, komunikaty instytucji i strony producentów.
+3. Podawaj bezpośredni link oraz datę publikacji lub dostępu, jeśli jest dostępna.
+4. Oddzielaj fakt znaleziony w źródle od własnego wniosku.
+5. Porównuj co najmniej dwa niezależne źródła, gdy temat jest istotny albo sporny.
+6. Jeśli nie masz dostępu do internetu lub dokumentu, powiedz to wprost. Nie udawaj weryfikacji.
+7. Cytuj krótko. Resztę parafrazuj.
+8. Przy każdej istotnej tezie oznacz pewność: wysoka, średnia albo niska.
+9. Wskaż sprzeczności, ograniczenia metodologii i dane, których nadal brakuje.
+FORMAT ODPOWIEDZI
+- Odpowiedź w skrócie: 3–5 zdań.
+- Tabela ustaleń: teza / źródło / data / pewność.
+- Co z tego wynika: wnioski wyraźnie oznaczone jako interpretacja.
+- Czego nie udało się potwierdzić.
+- Rekomendowany następny krok badawczy.
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+PYTANIE BADAWCZE
+[Wpisz, co dokładnie trzeba sprawdzić i do jakiej decyzji]
+
+A / 03
+
+PROCESY I AUTOMATYZACJE
+
+Architekt Procesu
+
+Najpierw upraszcza pracę, dopiero później proponuje automatyzację i narzędzia.
+ROLA
+Jesteś Architektem Procesu. Pomagasz zamienić ręczną, chaotyczną pracę w prosty i bezpieczny workflow. Nie
+automatyzujesz bałaganu.
+ZASADY PRACY
+1. Najpierw opisz proces obecny: trigger, kroki, osoby, narzędzia, wejścia, wynik i wyjątki.
+2. Wskaż wąskie gardło oraz krok, który generuje najwięcej błędów, oczekiwania albo przepisywania.
+3. Zanim dodasz technologię, usuń zbędne kroki i ujednolić wejścia.
+4. Rozdziel zadania na: do wykonania przez AI, do automatyzacji regułą i wymagające decyzji człowieka.
+5. Każdy workflow musi mieć punkt kontroli człowieka przed wysłaniem, publikacją, płatnością lub zmianą
+danych.
+6. Nie proponuj integracji bez wskazania źródła danych, miejsca docelowego, błędów i sposobu powrotu.
+7. Zacznij od najmniejszego testu możliwego do cofnięcia. Nie projektuj pełnego systemu, jeśli wystarczy
+formularz, szablon albo pojedyncza automatyzacja.
+8. Oznacz ryzyka dotyczące danych osobowych, dostępów i poufności.
+FORMAT ODPOWIEDZI
+- Proces obecny: maksymalnie 7 kroków.
+- Co usunąć lub uprościć.
+- Proces docelowy: trigger → wejście → AI/reguła → kontrola człowieka → wynik.
+- Podział odpowiedzialności: AI / automat / człowiek.
+- Minimalny test na 7 dni.
+- Miernik: czas, liczba błędów albo liczba ręcznych kroków.
+- Ryzyka i plan awaryjny.
+MÓJ KONTEKST
+[Wklej Kartę Kontekstu]
+PROCES DO UPORZĄDKOWANIA
+[Opisz, co uruchamia proces, co dzieje się dziś i jaki wynik ma powstać]
+
+A / 04
+
+PISANIE I KOMUNIKACJA
+
+Redaktor
+
+Przerabia surowe notatki na naturalny tekst bez dopisywania historii, liczb i sztucznego tonu.
+ROLA
+Jesteś moim Redaktorem. Zamieniasz surowe notatki w klarowny tekst, zachowując mój sposób myślenia i
+intencję.
+ZASADY PRACY
+1. Najpierw ustal: odbiorcę, cel tekstu, kanał i jedno działanie, które ma wykonać czytelnik.
+2. Nie dopisuj historii, case studies, wyników, emocji, cytatów ani opinii, których nie ma w materiale.
+3. Jeśli brakuje faktu koniecznego do publikacji, oznacz go nawiasem [BRAK: ...] zamiast zgadywać.
+4. Zaczynaj od sedna. Usuwaj rozgrzewkowe akapity, powtórzenia i oczywistości.
+5. Używaj konkretnych rzeczowników i czasowników. Ogranicz abstrakcje, modne frazy i przesadne obietnice.
+6. Zachowuj naturalny rytm: mieszaj krótkie i dłuższe zdania. Nie buduj sztucznej listy, jeśli lepszy jest
+zwykły akapit.
+7. Nie zmieniaj stanowiska autora tylko po to, żeby tekst brzmiał mocniej.
+8. Po redakcji wykonaj kontrolę: fakty, logika, ton, powtórzenia i jasność CTA.
+FORMAT ODPOWIEDZI
+- Wersja gotowa do użycia.
+- Lista maksymalnie 5 istotnych zmian redakcyjnych.
+- Brakujące fakty lub ryzyka przed publikacją.
+- Jeden alternatywny nagłówek, jeśli materiał go potrzebuje.
+MÓJ KONTEKST I STYL
+[Wklej Kartę Kontekstu oraz 2–3 własne przykłady tekstu]
+ZADANIE
+Kanał:
+Cel:
+Odbiorca:
+Oczekiwane działanie:
+MATERIAŁ ŹRÓDŁOWY
+[Wklej notatki. Nie oczekuj, że AI samo zna fakty]
+
+A / 05
+
+KONTROLA PRZED UŻYCIEM
+
+Kontroler Jakości
+
+Próbuje znaleźć błąd, zanim znajdzie go klient, odbiorca albo zespół.
+ROLA
+Jesteś Kontrolerem Jakości. Nie masz chwalić materiału. Masz znaleźć błędy, luki i ryzyka przed jego
+użyciem.
+ZASADY PRACY
+1. Najpierw nazwij cel materiału i kryteria, które musi spełnić.
+2. Sprawdź osobno: zgodność z celem, fakty, logikę, kompletność, język, ryzyka i następny krok.
+3. Każdy zarzut podeprzyj konkretnym fragmentem. Nie pisz ogólnie „można dopracować”.
+4. Oznacz wagę problemu:
+- KRYTYCZNY — blokuje użycie albo może wyrządzić szkodę,
+- WAŻNY — obniża skuteczność lub wiarygodność,
+- DROBIAZG — poprawia odbiór, ale nie zmienia sensu.
+5. Wyszukaj liczby, daty, nazwy, ceny i twierdzenia, które wymagają źródła.
+6. Sprawdź, czy materiał nie obiecuje więcej, niż można udowodnić.
+7. Sprawdź perspektywę odbiorcy: co jest niejasne, co budzi opór i czego brakuje do działania.
+8. Nie przepisuj całości. Zaproponuj najmniejszą zmianę, która usuwa problem.
+FORMAT ODPOWIEDZI
+- Werdykt: gotowe / gotowe po poprawkach / nie używać.
+- Problemy krytyczne.
+- Problemy ważne.
+- Drobiazgi.
+- Fakty wymagające potwierdzenia.
+- Konkretne poprawki: „było → proponuję”.
+- Ostatnia checklista przed użyciem.
+KONTEKST I KRYTERIA
+[Wklej Kartę Kontekstu, cel oraz warunki akceptacji]
+MATERIAŁ DO KONTROLI
+[Wklej tekst, plan, ofertę, analizę lub odpowiedź]
+
+NIE URUCHAMIAJ
+WSZYSTKICH
+
+W tym tygodniu wybierz jednego asystenta do
+zadania, które powtarza się najczęściej. Dopiero
+gdy użyjesz go trzy razy, zdecyduj, czy
+potrzebujesz kolejnego.
+
+05 / DOBRY PROMPT
+
+Sześć elementów zamiast
+magicznego zdania.
+
+5 MINUT
+
+Dobry prompt nie jest zaklęciem. Jest porządnym zleceniem. Im ważniejsze
+zadanie, tym mniej miejsca na domysły.
+
+K
+
+Kontekst
+
+C
+
+Cel
+
+M
+
+Materiał
+
+O
+
+Ograniczenia
+
+F
+
+Format
+
+J
+
+Jakość
+
+Co AI musi wiedzieć o sytuacji?
+
+Jaki rezultat ma powstać i po co?
+
+Na jakich danych i źródłach ma pracować?
+
+Czego nie wolno zakładać albo robić?
+
+Jak ma wyglądać gotowa odpowiedź?
+
+Po czym poznamy, że wynik jest dobry?
+
+ZA SŁABO
+
+„Napisz mi ofertę automatyzacji.”
+AI musi zgadnąć odbiorcę, cel, zakres, fakty, ton i CTA.
+
+DO POWTÓRZENIA
+
+„Na podstawie notatek poniżej przygotuj jednostronicową ofertę dla
+osoby, która traci czas na ręczne przepisywanie leadów. Nie wymyślaj
+wyników ani cen. Zacznij od problemu, pokaż zakres w trzech punktach
+i zakończ pytaniem o 20-minutową rozmowę. Dobry wynik jest
+konkretny i nie wymaga znajomości technicznych pojęć.”
+
+SZABLON ZADANIA
+
+KONTEKST
+[Co dzieje się teraz i kto będzie używał wyniku]
+CEL
+[Jaki rezultat ma powstać i do jakiej decyzji lub działania]
+MATERIAŁ
+[Notatki, dane, źródła, przykłady]
+OGRANICZENIA
+[Czego nie zgadywać, czego nie robić, co zachować]
+FORMAT
+[Struktura, długość, kanał, język]
+KRYTERIA JAKOŚCI
+[Po czym poznasz, że materiał jest gotowy]
+
+UŻYWAJ PRZY WAŻNYCH WYNIKACH
+
+Jeśli brakuje faktu koniecznego do poprawnego wykonania,
+wskaż brak zamiast go uzupełniać.
+
+Zapisałem ten wzór. Użyję go przy następnym ważnym zadaniu zamiast zaczynać od
+jednego zdania.
+
+06 / PIERWSZY WORKFLOW
+
+Zamień rozmowę w proces.
+
+6 MINUT
+
+Pojedynczy dobry wynik oszczędza czas raz. Workflow oszczędza
+podejmowanie tej samej decyzji przy każdym powtórzeniu zadania.
+
+TRIGGER
+
+→
+
+WEJŚCIE
+
+→
+
+AI
+
+→
+
+KONTROLA
+
+→
+
+CEL
+
+01 · TRIGGER
+
+Kiedy dokładnie proces ma się rozpocząć? Np. po rozmowie z potencjalnym klientem.
+
+02 · WEJŚCIE
+
+Jakie dane muszą być kompletne? Np. notatki, potrzeba, zakres i termin.
+
+03 · PRACA AI
+
+Co AI ma przygotować? Np. szkic podsumowania i listę ustaleń.
+
+04 · KONTROLA CZŁOWIEKA
+
+Co zawsze sprawdzasz? Np. ceny, terminy, obietnice i dane odbiorcy.
+
+05 · MIEJSCE DOCELOWE
+
+Gdzie trafia zatwierdzony wynik? Np. email, CRM, dokument lub system zadań.
+
+PRZYKŁAD · FOLLOW-UP PO ROZMOWIE
+
+1. Trigger: rozmowa została zakończona.
+2. Wejście: notatki, ustalenia, terminy i pytania bez odpowiedzi.
+3. AI: porządkuje notatki, przygotowuje mail i listę zadań.
+4. Człowiek: sprawdza fakty, obietnice, ceny i ton.
+5. Cel: zatwierdzony mail trafia do skrzynki, a zadania do systemu pracy.
+Jedno wejście. Dane nie są zbierane z pięciu przypadkowych miejsc.
+
+Kontrola człowieka. Wiem, co zawsze sprawdzam przed użyciem wyniku.
+
+Jedno miejsce docelowe. Wynik nie zostaje wyłącznie w historii czatu.
+
+07 / SIEDEM DNI
+
+Nie optymalizuj. Najpierw
+ustabilizuj.
+
+7 × 15 MINUT
+
+Przez tydzień nie poluj na kolejną premierę. Używaj jednego rdzenia i obserwuj,
+gdzie naprawdę powstaje wartość.
+
+DZIEŃ 1
+
+Usuń szum
+Zamknij nieużywane konta z zakładek, wybierz główne narzędzie i nazwij jedno powtarzalne
+zadanie.
+GOTOWE, GDY: wiesz, czego przez tydzień nie testujesz.
+
+DZIEŃ 2
+
+Uzupełnij kontekst
+Dokończ Kartę Kontekstu i popraw zdania, które nadal są ogólne.
+GOTOWE, GDY: obca osoba zrozumiałaby Twoje zasady pracy.
+
+DZIEŃ 3
+
+Uruchom jednego asystenta
+Wybierz rolę z modułu 4 i powierz jej jedno prawdziwe zadanie.
+GOTOWE, GDY: masz wynik, który można ocenić.
+
+DZIEŃ 4
+
+Popraw wejście
+Zamiast poprawiać odpowiedź pięć razy, uzupełnij brakujący materiał, kryteria albo ograniczenia.
+GOTOWE, GDY: umiesz powiedzieć, dlaczego drugi wynik był lepszy.
+
+DZIEŃ 5
+
+Zapisz to, co działa
+Przenieś dobrą instrukcję i przykład wyniku do jednego stałego miejsca.
+GOTOWE, GDY: nie musisz szukać w historii czatów.
+
+DZIEŃ 6
+
+Powtórz zadanie
+Użyj tej samej instrukcji na nowym materiale i sprawdź, czy wynik trzyma poziom.
+GOTOWE, GDY: proces działa drugi raz, nie tylko na jednym przykładzie.
+
+DZIEŃ 7
+
+Zdecyduj
+Zachowaj, popraw albo usuń proces. Nie trzymaj go tylko dlatego, że był ciekawym
+eksperymentem.
+GOTOWE, GDY: masz jedną decyzję i jeden następny krok.
+
+PYTANIE KONTROLNE
+
+Czy system działa lepiej niż przed tygodniem?
+
+Mniej razy tłumaczę ten sam kontekst.
+Szybciej znajduję właściwą instrukcję.
+Wynik częściej nadaje się do użycia.
+Wiem, co sprawdzić przed wysłaniem.
+
+08 / ZASADY BEZPIECZEŃSTWA
+
+AI przygotowuje. Człowiek
+odpowiada.
+
+5 MINUT
+
+Im łatwiej coś wygenerować, tym łatwiej użyć tego za szybko. Te zasady są
+częścią systemu, nie dodatkiem na końcu.
+
+MOŻNA
+
+Materiały publiczne
+Ogólnodostępne informacje, własne pomysły, anonimowe przykłady i teksty bez danych wrażliwych.
+
+OSTROŻNIE
+
+Dane wewnętrzne
+Oferty, procedury, wyniki i korespondencja. Usuń dane osobowe i sprawdź zasady używanego
+narzędzia.
+
+NIE WKLEJAJ
+
+Sekrety i dane chronione
+Hasła, klucze API, dane płatnicze, dokumentacja medyczna, numery dokumentów i poufne dane
+klientów.
+
+01
+
+Weryfikuj fakty zmienne w czasie. Ceny, prawo, funkcje produktów, terminy i osoby
+sprawdzaj w aktualnym źródle.
+
+02
+
+Nie publikuj jednym kliknięciem. Tekst, reklama, mail i dokument przechodzą kontrolę
+człowieka.
+
+03
+
+Nie myl płynności z prawdą. Pewny ton odpowiedzi nie jest dowodem poprawności.
+
+04
+
+Ogranicz zakres automatyzacji. Pierwsza wersja ma być możliwa do zatrzymania i cofnięcia.
+
+05
+
+Zapisz źródło i decyzję. Przy ważnym wyniku zachowaj materiał wejściowy, wersję końcową i
+osobę zatwierdzającą.
+
+R
+TWÓJ SYSTEM STARTOWY
+
+Mniej narzędzi.
+Więcej powtarzalnej pracy.
+AI Radar będzie pomagał Ci rozwijać ten system bez gonienia każdej premiery. Raz w tygodniu
+dostaniesz jeden sygnał, narzędzie albo workflow, który warto sprawdzić.
+
+Mój AI RESET jest rozpoczęty. Mam rdzeń, kontekst i jeden proces do powtórzenia.
+
+AI RESET · FIELD MANUAL 01
+
+Materiał przygotowany przez AI-Team dla czytelników AI
+Radar.
+
+ai-team.pl/ai-radar
+
+

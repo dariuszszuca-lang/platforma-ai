@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <title>Panel AI-Team — Newsletter i leady</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        dark: '#020203',
+                        primary: '#f97316',
+                        secondary: '#ea580c',
+                        light: '#fb923c',
+                        accent: '#ffedd5',
+                        surface: 'rgba(255, 255, 255, 0.12)'
+                    }
+                },
+                fontFamily: {
+                    body: ['Inter', 'sans-serif'],
+                    heading: ['Space Grotesk', 'sans-serif']
+                }
+            }
+        }
+    }
+    </script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020203;
+            color: white;
+            min-height: 100vh;
+        }
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-cosmic {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .btn-cosmic:hover {
+            border-color: #f97316;
+            box-shadow: 0 0 20px rgba(249,115,22,0.3);
+        }
+        .btn-primary {
+            background: white;
+            color: black;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+        .btn-orange {
+            background: #f97316;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-orange:hover {
+            background: #ea580c;
+            box-shadow: 0 0 25px rgba(249,115,22,0.4);
+            transform: scale(1.02);
+        }
+
+        /* Shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-6px); }
+            80% { transform: translateX(6px); }
+        }
+        .shake { animation: shake 0.5s ease-in-out; }
+
+        /* Toast */
+        @keyframes toast-in {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes toast-out {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(20px); opacity: 0; }
+        }
+        .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+        .toast-exit { animation: toast-out 0.3s ease-in forwards; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+        /* Badge pulse */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Loading skeleton */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        /* Grid background like main site */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="relative">
+
+<!-- ===== AUTH MODAL ===== -->
+<div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div class="glass-card rounded-2xl p-8 w-full max-w-sm mx-4" id="authCard">
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-brand-primary"></i>
+                </div>
+                <span class="font-heading font-bold text-xl gradient-text">AI-Team</span>
+            </div>
+            <h2 class="font-heading font-semibold text-lg text-white">Panel AI-Team</h2>
+            <p class="text-sm text-gray-400 mt-1">Zaloguj się aby kontynuować</p>
+        </div>
+        <div class="space-y-4">
+            <div class="relative">
+                <input type="email" id="authEmail" placeholder="Email..."
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 transition"
+                    onkeydown="if(event.key==='Enter')document.getElementById('authPassword').focus()">
+                <i data-lucide="mail" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            </div>
+            <div class="relative">
+                <input type="password" id="authPassword" placeholder="Hasło..."
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 transition"
+                    onkeydown="if(event.key==='Enter')checkAuth()">
+                <i data-lucide="lock" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            </div>
+            <p id="authError" class="text-red-400 text-sm hidden"></p>
+            <button onclick="checkAuth()" id="authBtn" class="btn-orange w-full py-3 rounded-xl font-semibold text-sm tracking-wide">
+                Zaloguj
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" class="hidden relative z-10 min-h-screen">
+
+    <!-- Top bar -->
+    <header class="sticky top-0 z-40 glass-card border-t-0 border-l-0 border-r-0 rounded-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                    <i data-lucide="bot" class="w-5 h-5 text-brand-primary"></i>
+                </div>
+                <div>
+                    <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
+                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Newsletter, leady i AI Radar</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#newsletterPanel"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="mail-check" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Newsletter</span>
+                </a>
+                <a href="https://ai-team.pl/ai-radar" target="_blank"
+                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="radio" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">AI Radar</span>
+                </a>
+                <button onclick="logout()" class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Wyloguj</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- Newsletter panel -->
+        <section id="newsletterPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                        <i data-lucide="mail-check" class="w-4 h-4"></i>
+                        AI Radar
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white">Lista newslettera</h2>
+                    <p class="text-sm text-gray-400 mt-1">Kontakty z formularza zapisu, podzielone na grupy tematyczne.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="copyNewsletterEmails()" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Kopiuj maile
+                    </button>
+                    <button onclick="exportNewsletterCsv()" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Eksport CSV
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-6 rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:p-5">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
+                    <div>
+                        <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                            <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+                            Wydania
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white">Plan AI Radar</h3>
+                        <p class="text-sm text-gray-400 mt-1">Tu sprawdzisz status, datę wysyłki i podgląd HTML każdego wydania.</p>
+                    </div>
+                    <a href="/newsletter/ai-radar-001-system-mailowy.html" target="_blank"
+                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 w-fit">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                        Podgląd #001
+                    </a>
+                </div>
+                <div id="newsletterIssuesList" class="grid gap-3 lg:grid-cols-2"></div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading" id="newsletterStatAll">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Wszystkie kontakty</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-green-400" id="newsletterStatActive">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Aktywne</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-brand-light" id="newsletterStatCrm">0</div>
+                    <div class="text-xs text-gray-400 mt-1">CRM i sprzedaż</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div class="text-2xl font-bold font-heading text-blue-400" id="newsletterStatAutomation">0</div>
+                    <div class="text-xs text-gray-400 mt-1">Automatyzacje</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-5" id="newsletterGroupTabs">
+                <button class="newsletter-tab active px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="all">Wszystkie</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="ai-radar">AI Radar</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="crm">CRM</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="automatyzacje">Automatyzacje</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="narzedzia">Narzędzia</button>
+                <button class="newsletter-tab px-4 py-2 rounded-full text-sm font-medium transition-all" data-group="warsztaty">Warsztaty</button>
+            </div>
+
+            <div id="newsletterLoading" class="space-y-3">
+                <div class="skeleton h-20 w-full"></div>
+                <div class="skeleton h-20 w-full"></div>
+            </div>
+            <div id="newsletterError" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 p-4 text-sm"></div>
+            <div id="newsletterEmpty" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 text-center">
+                <i data-lucide="mail-x" class="w-10 h-10 text-gray-600 mx-auto mb-3"></i>
+                <h3 class="font-heading font-semibold text-gray-300">Brak kontaktów</h3>
+                <p class="text-sm text-gray-500 mt-1">Gdy ktoś zapisze się na AI Radar, pojawi się tutaj.</p>
+            </div>
+            <div id="newsletterList" class="space-y-3"></div>
+        </section>
+
+        <!-- LEADY AI ACT: kto, skad, co dostal, odpowiedzi -->
+        <section id="leadsPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="font-heading font-bold text-lg flex items-center gap-2">
+                    <i data-lucide="users" class="w-5 h-5 text-brand-light"></i>
+                    Leady: kto, skąd, co dostał
+                </h2>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">Każdy zapis na listę z historią wysyłek. Kliknij „odpowiedzi", żeby zobaczyć w Gmailu, czy odpisał. 23 leady ze starej kampanii VENTURE-01 są poza listą (bez zgody newsletterowej, obowiązuje cisza).</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                <div class="rounded-xl bg-white/[0.03] border border-white/10 p-3 text-center">
+                    <div class="text-2xl font-bold font-heading" id="leadsStatAll">0</div>
+                    <div class="text-xs text-gray-500 mt-1">na liście</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.03] border border-white/10 p-3 text-center">
+                    <div class="text-2xl font-bold font-heading text-brand-light" id="leadsStatMeta">0</div>
+                    <div class="text-xs text-gray-500 mt-1">z reklamy Meta</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.03] border border-white/10 p-3 text-center">
+                    <div class="text-2xl font-bold font-heading text-blue-400" id="leadsStatOrganic">0</div>
+                    <div class="text-xs text-gray-500 mt-1">ze strony</div>
+                </div>
+                <div class="rounded-xl bg-white/[0.03] border border-white/10 p-3 text-center">
+                    <div class="text-2xl font-bold font-heading text-green-400" id="leadsStatToday">0</div>
+                    <div class="text-xs text-gray-500 mt-1">dziś</div>
+                </div>
+            </div>
+            <div id="leadsList" class="space-y-2"></div>
+        </section>
+
+    </main>
+
+</div>
+
+<!-- Newsletter issue preview modal -->
+<div id="issuePreviewModal" class="hidden fixed inset-0 z-[70] bg-black/85 backdrop-blur-sm">
+    <div class="h-full w-full flex flex-col">
+        <div class="glass-card rounded-none border-l-0 border-r-0 border-t-0 px-4 sm:px-6 py-3 flex items-center justify-between">
+            <div>
+                <div class="text-xs uppercase tracking-wider text-brand-light font-semibold">Podgląd HTML</div>
+                <div id="issuePreviewTitle" class="font-heading font-semibold text-white">AI Radar</div>
+            </div>
+            <div class="flex items-center gap-2">
+                <a id="issuePreviewOpen" href="#" target="_blank" class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    Otwórz
+                </a>
+                <button onclick="closeIssuePreview()" class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                    Zamknij
+                </button>
+            </div>
+        </div>
+        <iframe id="issuePreviewFrame" title="Podgląd wydania AI Radar" class="flex-1 w-full bg-white border-0"></iframe>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div id="toastContainer" class="fixed bottom-24 right-6 z-50 space-y-2"></div>
+
+<script>
+// ===== FIREBASE CONFIG =====
+// Konfiguracja Firebase dla panelu newslettera
+const firebaseConfig = {
+    apiKey: ["AIzaSyDKmfXRkX", "BhYa6yk9idY4QFZdRRhU5eV9I"].join(""),
+    authDomain: "ai-team-zlecenia.firebaseapp.com",
+    projectId: "ai-team-zlecenia",
+    storageBucket: "ai-team-zlecenia.firebasestorage.app",
+    messagingSenderId: "715537035293",
+    appId: "1:715537035293:web:fe2978df1e20bfc3e0d6f4",
+    measurementId: "G-N62YHVDCKC"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ===== AUTH =====
+const auth = firebase.auth();
+let dashboardInitialized = false;
+
+function showDashboard() {
+    document.getElementById('authModal').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+
+    if (dashboardInitialized) return;
+    dashboardInitialized = true;
+
+    setTimeout(function() {
+        try {
+            initDashboard();
+        } catch (error) {
+            console.error('Dashboard init error:', error);
+            showToast('Zalogowano, ale panel nie załadował danych. Odśwież stronę.', 'error');
+        }
+    }, 0);
+}
+
+function showAuthError(error) {
+    const card = document.getElementById('authCard');
+    const err = document.getElementById('authError');
+
+    console.error('Auth error:', error);
+    err.classList.remove('hidden');
+
+    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        err.textContent = 'Błędny email lub hasło';
+    } else if (error.code === 'auth/too-many-requests') {
+        err.textContent = 'Za dużo prób — spróbuj za chwilę';
+    } else if (error.code === 'auth/invalid-api-key') {
+        err.textContent = 'Błąd konfiguracji logowania';
+    } else {
+        err.textContent = 'Błąd logowania: ' + (error.code || 'sprawdź konsolę');
+    }
+
+    card.classList.add('shake');
+    setTimeout(function() { card.classList.remove('shake'); }, 500);
+}
+
+function checkAuth() {
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const btn = document.getElementById('authBtn');
+    const err = document.getElementById('authError');
+
+    if (!email || !password) {
+        err.classList.remove('hidden');
+        err.textContent = 'Wpisz email i hasło';
+        return;
+    }
+
+    btn.textContent = 'Logowanie...';
+    btn.disabled = true;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then(showDashboard)
+        .catch(function(error) {
+            showAuthError(error);
+            btn.textContent = 'Zaloguj';
+            btn.disabled = false;
+        });
+}
+
+function logout() {
+    auth.signOut().then(function() { location.reload(); });
+}
+
+// Check if already logged in
+auth.onAuthStateChanged(function(user) {
+    if (user) {
+        showDashboard();
+    }
+});
+
+// ===== STATE =====
+let allSubscribers = [];
+let currentNewsletterGroup = 'all';
+let allNewsletterIssues = [];
+
+const fallbackNewsletterIssues = [
+    {
+        id: 'ai-radar-003',
+        number: '003',
+        title: 'AI Radar #003',
+        subject: 'AI Radar #003: Firma nie potrzebuje kolejnego chatu AI',
+        preheader: 'System Operacyjny Firmy, Meta Ads AI, async konsultacje i praca agentów bez gonienia ludzi po statusy.',
+        group: 'ai-radar',
+        status: 'scheduled',
+        scheduled_at: '2026-05-26T19:00:00+02:00',
+        preview_url: '/newsletter/ai-radar-003-system-mailowy.html',
+        source: 'local'
+    },
+    {
+        id: 'ai-radar-002',
+        number: '002',
+        title: 'AI Radar #002',
+        subject: 'AI Radar #002: Codex w telefonie i PM w projekcie',
+        preheader: 'Codex Remote, Higgsfield MCP, Claude SEO, Product Manager i konsultacje AI w Gdańsku.',
+        group: 'ai-radar',
+        status: 'scheduled',
+        scheduled_at: '2026-05-19T18:00:00+02:00',
+        preview_url: '/newsletter/ai-radar-002-system-mailowy.html',
+        source: 'local'
+    },
+    {
+        id: 'ai-radar-001',
+        number: '001',
+        title: 'AI Radar #001',
+        subject: 'AI Radar #001: MailerLite w koszu i agent z celem',
+        preheader: 'To wydanie z poprzedniego tygodnia. Drugie AI Radar wyślę jutro o 18:00.',
+        group: 'ai-radar',
+        status: 'scheduled',
+        scheduled_at: '2026-05-18T20:00:00+02:00',
+        preview_url: '/newsletter/ai-radar-001-system-mailowy.html',
+        source: 'local'
+    }
+];
+
+// ===== DASHBOARD INIT =====
+function initDashboard() {
+    setupNewsletterGroupTabs();
+    listenToNewsletter();
+    listenToNewsletterIssues();
+}
+
+// ===== ASYNC DESK =====
+function listenToAsyncCases() {
+    const loading = document.getElementById('asyncLoading');
+    const errorEl = document.getElementById('asyncError');
+
+    try {
+        loading.classList.remove('hidden');
+        errorEl.classList.add('hidden');
+
+        db.collection('zlecenia')
+            .onSnapshot(
+                (snapshot) => {
+                    allAsyncCases = [];
+                    snapshot.forEach(doc => {
+                        const data = { id: doc.id, ...doc.data() };
+                        if (data.case_type === 'async' || data.source === 'async-platform') {
+                            allAsyncCases.push(data);
+                        }
+                    });
+                    allAsyncCases.sort((a, b) => dateValue(b.created_at || b.createdAt) - dateValue(a.created_at || a.createdAt));
+                    loading.classList.add('hidden');
+                    errorEl.classList.add('hidden');
+                    updateAsyncStats();
+                    renderAsyncCases();
+                },
+                (error) => {
+                    console.error('Async Firestore error:', error);
+                    loading.classList.add('hidden');
+                    errorEl.classList.remove('hidden');
+                    errorEl.textContent = 'Błąd ładowania tematów async: ' + error.message;
+                }
+            );
+    } catch (error) {
+        console.error('Async list error:', error);
+        loading.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        errorEl.textContent = error.message || 'Błąd ładowania tematów async.';
+    }
+}
+
+function updateAsyncStats() {
+    document.getElementById('asyncStatAll').textContent = allAsyncCases.length;
+    document.getElementById('asyncStatNew').textContent = allAsyncCases.filter(item => (item.status || 'new') === 'new').length;
+    document.getElementById('asyncStatTriage').textContent = allAsyncCases.filter(item => ['triage', 'waiting'].includes(item.status)).length;
+    document.getElementById('asyncStatAnswered').textContent = allAsyncCases.filter(item => ['answered', 'closed'].includes(item.status)).length;
+}
+
+function renderAsyncCases() {
+    const list = document.getElementById('asyncCasesList');
+    const empty = document.getElementById('asyncEmpty');
+    const loading = document.getElementById('asyncLoading');
+
+    loading.classList.add('hidden');
+
+    if (allAsyncCases.length === 0) {
+        list.innerHTML = '';
+        empty.classList.remove('hidden');
+        lucide.createIcons();
+        return;
+    }
+
+    empty.classList.add('hidden');
+    list.innerHTML = allAsyncCases.map(renderAsyncCaseCard).join('');
+    lucide.createIcons();
+}
+
+function renderAsyncCaseCard(item) {
+    const status = getAsyncStatusBadge(item.status || 'new');
+    const priority = getAsyncPriorityBadge(item.priority || 'medium');
+    const date = formatDate(item.created_at || item.createdAt);
+    const category = getAsyncCategoryLabel(item.category || 'inne');
+    const publicUrl = item.public_url || '';
+    const responseText = item.response_text || '';
+    const responseUrl = item.response_url || '';
+    const notes = item.internal_notes || '';
+    const agentBrief = item.agent_brief || 'Brak briefu agenta.';
+
+    return `
+    <div class="rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:p-5">
+        <div class="flex flex-col xl:flex-row xl:items-start gap-5">
+            <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="${status.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${status.label}</span>
+                    <span class="${priority.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${priority.label}</span>
+                    <span class="text-xs text-brand-light bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">${escHtml(category)}</span>
+                    <span class="text-xs text-gray-500">${escHtml(date)}</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-white">${escHtml(item.title || 'Temat async')}</h3>
+                <p class="text-sm text-gray-400 mt-1">${escHtml(item.name || 'Bez nazwy')} · ${escHtml(item.email || '')}${item.company ? ' · ' + escHtml(item.company) : ''}</p>
+                <p class="text-sm text-gray-300 mt-4 whitespace-pre-wrap">${escHtml(item.context || '')}</p>
+                ${renderAsyncLinks(item.links)}
+                <div class="rounded-xl border border-brand-primary/20 bg-brand-primary/10 p-4 mt-4">
+                    <div class="text-xs uppercase tracking-wider text-brand-light font-semibold mb-2">Brief dla agenta</div>
+                    <pre class="whitespace-pre-wrap text-xs leading-5 text-gray-300 font-mono">${escHtml(agentBrief)}</pre>
+                </div>
+            </div>
+            <div class="xl:w-[420px] grid gap-3">
+                <select id="asyncStatus-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    ${renderAsyncStatusOptions(item.status || 'new')}
+                </select>
+                <textarea id="asyncResponse-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[132px] focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Odpowiedź widoczna dla klienta">${escHtml(responseText)}</textarea>
+                <input id="asyncResponseUrl-${escAttr(item.id)}" value="${escAttr(responseUrl)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Link do Looma, dokumentu albo materiału">
+                <textarea id="asyncNotes-${escAttr(item.id)}"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-3 text-sm text-white placeholder-gray-500 min-h-[82px] focus:outline-none focus:border-brand-primary/50"
+                    placeholder="Notatki wewnętrzne">${escHtml(notes)}</textarea>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="saveAsyncCase('${escJs(item.id)}')" class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        Zapisz
+                    </button>
+                    <button onclick="copyText('${escJs(publicUrl)}', 'Skopiowano link klienta')" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Link
+                    </button>
+                    <a href="${escAttr(publicUrl)}" target="_blank" class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        Widok
+                    </a>
+                    <a href="mailto:${escAttr(item.email || '')}?subject=${encodeURIComponent('Re: ' + (item.title || 'Konsultacja async'))}&body=${encodeURIComponent(publicUrl || '')}"
+                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Mail
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderAsyncLinks(links) {
+    if (!Array.isArray(links) || !links.length) return '';
+    return `
+    <div class="flex flex-wrap gap-2 mt-4">
+        ${links.map((link, index) => `
+            <a href="${escAttr(link)}" target="_blank" rel="noopener"
+               class="text-xs text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">
+                materiał ${index + 1}
+            </a>
+        `).join('')}
+    </div>`;
+}
+
+function renderAsyncStatusOptions(active) {
+    const statuses = {
+        new: 'Nowe',
+        triage: 'W analizie',
+        waiting: 'Czeka na dane',
+        answered: 'Odpowiedziane',
+        closed: 'Zamknięte'
+    };
+    return Object.keys(statuses).map(key =>
+        `<option value="${key}" ${active === key ? 'selected' : ''}>${statuses[key]}</option>`
+    ).join('');
+}
+
+async function saveAsyncCase(id) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        const current = allAsyncCases.find(item => item.id === id) || {};
+        const status = document.getElementById(`asyncStatus-${id}`).value;
+        const responseText = document.getElementById(`asyncResponse-${id}`).value.trim();
+        const responseUrl = document.getElementById(`asyncResponseUrl-${id}`).value.trim();
+        const notes = document.getElementById(`asyncNotes-${id}`).value.trim();
+        const now = new Date().toISOString();
+
+        const update = {
+            status,
+            response_text: responseText,
+            response_url: responseUrl,
+            internal_notes: notes,
+            updated_at: now
+        };
+
+        if (status === 'answered' && !current.answered_at) update.answered_at = now;
+
+        await db.collection('zlecenia').doc(id).update(update);
+        showToast('Zapisano sprawę async', 'success');
+    } catch (error) {
+        console.error('Async save error:', error);
+        showToast(error.message || 'Błąd zapisu sprawy async', 'error');
+    }
+}
+
+function copyOpenAsyncLinks() {
+    const links = allAsyncCases
+        .filter(item => !['answered', 'closed'].includes(item.status || 'new'))
+        .map(item => item.public_url)
+        .filter(Boolean);
+    if (!links.length) {
+        showToast('Brak otwartych linków async', 'info');
+        return;
+    }
+    copyText(links.join('\n'), 'Skopiowano otwarte linki async');
+}
+
+function getAsyncStatusBadge(status) {
+    const map = {
+        new: { label: 'Nowe', classes: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
+        triage: { label: 'W analizie', classes: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
+        waiting: { label: 'Czeka na dane', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
+        answered: { label: 'Odpowiedziane', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        closed: { label: 'Zamknięte', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
+    };
+    return map[status] || map.new;
+}
+
+function getAsyncPriorityBadge(priority) {
+    const map = {
+        high: { label: 'Pilne', classes: 'bg-red-500/20 text-red-300 border-red-500/30' },
+        medium: { label: '24-48h', classes: 'bg-brand-primary/20 text-brand-light border-brand-primary/30' },
+        normal: { label: 'Normalne', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' }
+    };
+    return map[priority] || map.medium;
+}
+
+function getAsyncCategoryLabel(category) {
+    const labels = {
+        meta_ads: 'Meta Ads',
+        landing: 'Strona / landing',
+        ai_system: 'AI w firmie',
+        crm: 'CRM / mini-system',
+        content: 'Content / newsletter',
+        decision: 'Decyzja biznesowa',
+        inne: 'Inne'
+    };
+    return labels[category] || category || 'Inne';
+}
+
+function setupNewsletterGroupTabs() {
+    document.querySelectorAll('.newsletter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.newsletter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentNewsletterGroup = tab.dataset.group;
+            renderNewsletter();
+        });
+    });
+    updateNewsletterTabStyles();
+}
+
+function updateNewsletterTabStyles() {
+    document.querySelectorAll('.newsletter-tab').forEach(tab => {
+        if (tab.classList.contains('active')) {
+            tab.style.background = '#f97316';
+            tab.style.color = 'white';
+        } else {
+            tab.style.background = 'rgba(255,255,255,0.05)';
+            tab.style.color = '#9ca3af';
+        }
+    });
+}
+
+async function listenToNewsletter() {
+    const loading = document.getElementById('newsletterLoading');
+    const errorEl = document.getElementById('newsletterError');
+
+    try {
+        loading.classList.remove('hidden');
+        errorEl.classList.add('hidden');
+
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        db.collection('newsletter_subscribers')
+            .orderBy('created_at', 'desc')
+            .onSnapshot(
+                (snapshot) => {
+                    allSubscribers = [];
+                    snapshot.forEach(doc => {
+                        allSubscribers.push({ id: doc.id, ...doc.data() });
+                    });
+                    loading.classList.add('hidden');
+                    errorEl.classList.add('hidden');
+                    updateNewsletterStats();
+                    renderNewsletter();
+                    renderLeads();
+                },
+                (error) => {
+                    console.error('Newsletter Firestore error:', error);
+                    loading.classList.add('hidden');
+                    errorEl.classList.remove('hidden');
+                    errorEl.textContent = 'Błąd ładowania newslettera: ' + error.message;
+                }
+            );
+    } catch (error) {
+        console.error('Newsletter list error:', error);
+        loading.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        errorEl.textContent = error.message || 'Błąd ładowania newslettera.';
+    }
+}
+
+function listenToNewsletterIssues() {
+    db.collection('newsletter_issues')
+        .orderBy('scheduled_at', 'desc')
+        .onSnapshot(
+            (snapshot) => {
+                const remoteIssues = [];
+                snapshot.forEach(doc => remoteIssues.push({ id: doc.id, ...doc.data() }));
+                allNewsletterIssues = mergeNewsletterIssues(remoteIssues, fallbackNewsletterIssues);
+                renderNewsletterIssues();
+            },
+            (error) => {
+                console.warn('Newsletter issues fallback:', error);
+                allNewsletterIssues = fallbackNewsletterIssues;
+                renderNewsletterIssues();
+            }
+        );
+}
+
+function mergeNewsletterIssues(remoteIssues, localIssues) {
+    const byId = new Map();
+    localIssues.forEach(issue => byId.set(issue.id, issue));
+    remoteIssues.forEach(issue => {
+        byId.set(issue.id, {
+            ...(byId.get(issue.id) || {}),
+            ...issue,
+            source: issue.source || 'firestore'
+        });
+    });
+    return Array.from(byId.values()).sort((a, b) => {
+        const aTime = Date.parse(a.scheduled_at || '') || 0;
+        const bTime = Date.parse(b.scheduled_at || '') || 0;
+        return bTime - aTime;
+    });
+}
+
+// ===== LEADY: kto, skad, co dostal, odpowiedzi =====
+const LEAD_SOURCES = {
+    'meta-lead-ad': { label: 'Reklama Meta', cls: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
+    'ai-radar':     { label: 'Strona',       cls: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
+    'mapa-ai':      { label: 'Mapa AI',      cls: 'bg-purple-500/20 text-purple-300 border-purple-500/30' },
+};
+
+function leadMaterialLabel(sub) {
+    const material = sub.utm?.delivery?.material || '';
+    const labels = {
+        'starter-wdrozen-ai': 'Starter Wdrożeń AI',
+        'system-ai-tygodnia-01': 'System AI tygodnia #01',
+        'system-ai-tygodnia': 'System AI tygodnia #01',
+        'ai-act-checklist': 'Checklista AI Act',
+        'ai-reset': 'AI RESET'
+    };
+    return labels[material] || material || 'materiał powitalny';
+}
+
+function leadDeliveryStatus(sub) {
+    const status = sub.utm?.delivery?.status;
+    const material = leadMaterialLabel(sub);
+    if (status === 'sent') {
+        return { label: `Wysłano: ${material}`, icon: 'check', cls: 'text-green-300' };
+    }
+    if (status === 'failed') {
+        return { label: `Nie udało się wysłać materiału: ${material}`, icon: 'circle-alert', cls: 'text-red-300' };
+    }
+    if (status === 'pending') {
+        return { label: `Oczekuje na wysyłkę materiału: ${material}`, icon: 'clock-3', cls: 'text-yellow-300' };
+    }
+    return { label: 'Brak potwierdzonego statusu dostawy', icon: 'circle-help', cls: 'text-gray-500' };
+}
+
+function leadOwnerNotificationStatus(sub) {
+    const status = sub.utm?.owner_notification?.status;
+    if (status === 'sent') {
+        return { label: 'Powiadomienie do Ciebie: wysłane', icon: 'mail-check', cls: 'text-green-300' };
+    }
+    if (status === 'failed') {
+        return { label: 'Powiadomienie do Ciebie: błąd', icon: 'mail-warning', cls: 'text-red-300' };
+    }
+    return { label: 'Powiadomienie do Ciebie: oczekuje', icon: 'mail-clock', cls: 'text-yellow-300' };
+}
+
+function leadAttribution(sub) {
+    const attribution = sub.utm?.attribution || {};
+    return [
+        ['Formularz', attribution?.form_name],
+        ['Kampania', attribution?.campaign_name],
+        ['Zestaw', attribution?.adset_name],
+        ['Reklama', attribution?.ad_name]
+    ].filter(([, value]) => value);
+}
+
+function renderLeads() {
+    const list = document.getElementById('leadsList');
+    if (!list) return;
+    const subs = (allSubscribers || []).slice().sort((a, b) =>
+        (Date.parse(b.created_at || '') || 0) - (Date.parse(a.created_at || '') || 0));
+
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById('leadsStatAll').textContent = subs.length;
+    document.getElementById('leadsStatMeta').textContent = subs.filter(s => s.source === 'meta-lead-ad').length;
+    document.getElementById('leadsStatOrganic').textContent = subs.filter(s => s.source !== 'meta-lead-ad').length;
+    document.getElementById('leadsStatToday').textContent = subs.filter(s => (s.created_at || '').slice(0, 10) === today).length;
+
+    list.innerHTML = subs.map(sub => {
+        const src = LEAD_SOURCES[sub.source] || { label: sub.source || 'inne', cls: 'bg-white/10 text-gray-300 border-white/20' };
+        const when = sub.created_at ? new Date(sub.created_at).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '?';
+        const statuses = [leadDeliveryStatus(sub), leadOwnerNotificationStatus(sub)];
+        const chips = statuses.map(item =>
+            `<span class="inline-flex items-center gap-1 text-xs ${item.cls}"><i data-lucide="${item.icon}" class="w-3 h-3"></i>${escHtml(item.label)}</span>`
+        ).join('');
+        const attribution = leadAttribution(sub).map(([label, value]) =>
+            `<span class="text-xs text-gray-500"><span class="text-gray-600">${label}:</span> ${escHtml(value)}</span>`
+        ).join('');
+        const testBadge = (sub.status || '') !== 'active' && (sub.status || '') !== ''
+            ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${sub.status}</span>` : '';
+        const gmail = `https://mail.google.com/mail/u/0/#search/${encodeURIComponent('from:' + (sub.email || ''))}`;
+        return `<div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-mono text-sm text-gray-200 break-all">${sub.email || sub.id}</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full border ${src.cls}">${src.label}</span>
+                    ${testBadge}
+                    <span class="text-xs text-gray-500">${when}</span>
+                </div>
+                <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">${chips}</div>
+                ${attribution ? `<div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">${attribution}</div>` : ''}
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="${gmail}" target="_blank" class="text-xs px-3 py-1.5 rounded-full border border-white/15 text-gray-300 hover:text-white hover:border-brand-primary transition flex items-center gap-1.5">
+                    <i data-lucide="mail-search" class="w-3.5 h-3.5"></i>odpowiedzi
+                </a>
+            </div>
+        </div>`;
+    }).join('');
+    if (window.lucide) lucide.createIcons();
+}
+
+// ===== NEWSLETTER =====
+function updateNewsletterStats() {
+    const active = allSubscribers.filter(s => (s.status || 'active') === 'active');
+    document.getElementById('newsletterStatAll').textContent = allSubscribers.length;
+    document.getElementById('newsletterStatActive').textContent = active.length;
+    document.getElementById('newsletterStatCrm').textContent = active.filter(s => s.group === 'crm').length;
+    document.getElementById('newsletterStatAutomation').textContent = active.filter(s => s.group === 'automatyzacje').length;
+}
+
+function getFilteredSubscribers() {
+    const filtered = currentNewsletterGroup === 'all'
+        ? allSubscribers
+        : allSubscribers.filter(s => s.group === currentNewsletterGroup || (s.groups || []).includes(currentNewsletterGroup));
+
+    return filtered.filter(s => (s.status || 'active') !== 'archived');
+}
+
+function renderNewsletter() {
+    const list = document.getElementById('newsletterList');
+    const empty = document.getElementById('newsletterEmpty');
+    const loading = document.getElementById('newsletterLoading');
+    const subscribers = getFilteredSubscribers();
+
+    loading.classList.add('hidden');
+
+    if (subscribers.length === 0) {
+        list.innerHTML = '';
+        empty.classList.remove('hidden');
+        updateNewsletterTabStyles();
+        lucide.createIcons();
+        return;
+    }
+
+    empty.classList.add('hidden');
+    list.innerHTML = subscribers.map(renderSubscriberCard).join('');
+    updateNewsletterTabStyles();
+    lucide.createIcons();
+}
+
+function renderNewsletterIssues() {
+    const list = document.getElementById('newsletterIssuesList');
+    if (!list) return;
+
+    list.innerHTML = allNewsletterIssues.map(renderNewsletterIssueCard).join('');
+    lucide.createIcons();
+}
+
+function renderNewsletterIssueCard(issue) {
+    const status = getIssueStatusBadge(issue.status || 'draft');
+    const scheduled = formatDate(issue.scheduled_at);
+    const previewUrl = issue.preview_url || '';
+    const group = getNewsletterGroupLabel(issue.group || 'ai-radar');
+    const sourceLabel = issue.source === 'local' || issue.source === 'local-file' ? 'plik lokalny' : 'baza';
+
+    return `
+    <div class="rounded-xl border border-white/10 bg-black/20 p-4 flex flex-col gap-4">
+        <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <span class="${status.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${status.label}</span>
+                    <span class="text-xs text-gray-500">${escHtml(group)}</span>
+                    <span class="text-xs text-gray-500">źródło: ${escHtml(sourceLabel)}</span>
+                </div>
+                <h4 class="font-heading font-semibold text-white text-lg truncate">${escHtml(issue.title || issue.name || 'AI Radar')}</h4>
+                <p class="text-sm text-gray-400 mt-1">Wysyłka: ${escHtml(scheduled)} · ${escHtml(issue.subject || '')}</p>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-2">${escHtml(issue.preheader || '')}</p>
+            </div>
+            <div class="text-right shrink-0">
+                <div class="text-2xl font-heading font-bold text-brand-light">#${escHtml(issue.number || '—')}</div>
+                <div class="text-xs text-gray-500">wydanie</div>
+            </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            <button onclick="openIssuePreview('${escJs(previewUrl)}', '${escJs(issue.title || issue.name || 'AI Radar')}')"
+                class="btn-orange px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                Podgląd HTML
+            </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'dry')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i data-lucide="list-checks" class="w-4 h-4"></i>
+                Sprawdź
+            </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'test')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Test do mnie
+            </button>
+            <button onclick="sendNewsletterIssue('${escJs(issue.id)}', 'send')"
+                class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:border-red-500 hover:text-red-300">
+                <i data-lucide="radio-tower" class="w-4 h-4"></i>
+                Wyślij teraz
+            </button>
+            <a href="${escAttr(previewUrl)}" target="_blank"
+               class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Otwórz w karcie
+            </a>
+        </div>
+    </div>`;
+}
+
+function getIssueStatusBadge(status) {
+    const map = {
+        draft: { label: 'Szkic', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' },
+        scheduled: { label: 'Zaplanowane', classes: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
+        sending: { label: 'Wysyłka', classes: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
+        partial: { label: 'Częściowo', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
+        sent: { label: 'Wysłane', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        paused: { label: 'Wstrzymane', classes: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' }
+    };
+    return map[status] || map.draft;
+}
+
+function openIssuePreview(url, title) {
+    if (!url) {
+        showToast('Brak adresu podglądu HTML', 'error');
+        return;
+    }
+
+    document.getElementById('issuePreviewTitle').textContent = title || 'AI Radar';
+    document.getElementById('issuePreviewOpen').href = url;
+    document.getElementById('issuePreviewFrame').src = url;
+    document.getElementById('issuePreviewModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    lucide.createIcons();
+}
+
+function closeIssuePreview() {
+    document.getElementById('issuePreviewFrame').src = 'about:blank';
+    document.getElementById('issuePreviewModal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+async function sendNewsletterIssue(issueId, mode) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Zaloguj się ponownie do panelu.');
+
+        const payload = { issueId };
+        if (mode === 'dry') {
+            payload.dryRun = true;
+        } else if (mode === 'test') {
+            const defaultEmail = user.email || 'darek@ai-team.pl';
+            const testTo = window.prompt('Na jaki adres wysłać test?', defaultEmail);
+            if (!testTo) return;
+            payload.dryRun = false;
+            payload.testTo = testTo.trim();
+            payload.limit = 1;
+        } else if (mode === 'send') {
+            const confirmed = window.confirm('To wyśle wydanie do aktywnych kontaktów z tej grupy. Kontynuować?');
+            if (!confirmed) return;
+            payload.mode = 'send';
+            payload.dryRun = false;
+        }
+
+        showToast(mode === 'dry' ? 'Sprawdzam wydanie...' : 'Uruchamiam wysyłkę...', 'info');
+
+        const token = await user.getIdToken();
+        const response = await fetch('/api/newsletter-send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok) {
+            throw new Error(data.error || 'Nie udało się uruchomić wysyłki.');
+        }
+
+        const summary = mode === 'dry'
+            ? `Gotowe: ${data.planned || 0} adresów do wysyłki.`
+            : `Wysłano: ${data.sent || 0}, błędy: ${data.failed || 0}.`;
+        showToast(summary, data.failed ? 'error' : 'success');
+    } catch (error) {
+        console.error('Newsletter send error:', error);
+        showToast(error.message || 'Błąd wysyłki newslettera', 'error');
+    }
+}
+
+function renderSubscriberCard(subscriber) {
+    const status = subscriber.status || 'active';
+    const statusBadge = getSubscriberStatusBadge(status);
+    const group = subscriber.group || 'ai-radar';
+    const date = formatDate(subscriber.created_at);
+    const name = subscriber.name || 'Bez imienia';
+    const source = subscriber.source || 'ai-radar';
+
+    return `
+    <div class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+            <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <span class="${statusBadge.classes} text-xs font-medium px-2.5 py-1 rounded-full border">${statusBadge.label}</span>
+                    <span class="text-xs text-brand-light bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">${getNewsletterGroupLabel(group)}</span>
+                    <span class="text-xs text-gray-500">${date}</span>
+                </div>
+                <div class="font-semibold text-white truncate">${escHtml(subscriber.email || '')}</div>
+                <div class="text-sm text-gray-400 mt-1">${escHtml(name)} · źródło: ${escHtml(source)}</div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-2 lg:w-[360px]">
+                <select onchange="updateNewsletterContact('${subscriber.id}', { group: this.value })"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    ${renderNewsletterGroupOptions(group)}
+                </select>
+                <select onchange="updateNewsletterContact('${subscriber.id}', { status: this.value })"
+                    class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-primary/50">
+                    <option value="active" ${status === 'active' ? 'selected' : ''}>Aktywny</option>
+                    <option value="unsubscribed" ${status === 'unsubscribed' ? 'selected' : ''}>Wypisany</option>
+                    <option value="do_not_contact" ${status === 'do_not_contact' ? 'selected' : ''}>Nie pisać</option>
+                    <option value="archived" ${status === 'archived' ? 'selected' : ''}>Archiwum</option>
+                </select>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderNewsletterGroupOptions(activeGroup) {
+    const groups = {
+        'ai-radar': 'AI Radar',
+        crm: 'CRM i sprzedaż',
+        automatyzacje: 'Automatyzacje',
+        narzedzia: 'Narzędzia AI',
+        warsztaty: 'Warsztaty'
+    };
+
+    return Object.keys(groups).map(key =>
+        `<option value="${key}" ${activeGroup === key ? 'selected' : ''}>${groups[key]}</option>`
+    ).join('');
+}
+
+function getNewsletterGroupLabel(group) {
+    const labels = {
+        'ai-radar': 'AI Radar',
+        crm: 'CRM i sprzedaż',
+        automatyzacje: 'Automatyzacje',
+        narzedzia: 'Narzędzia AI',
+        warsztaty: 'Warsztaty'
+    };
+    return labels[group] || 'AI Radar';
+}
+
+function getSubscriberStatusBadge(status) {
+    const map = {
+        active: { label: 'Aktywny', classes: 'bg-green-500/20 text-green-400 border-green-500/30' },
+        unsubscribed: { label: 'Wypisany', classes: 'bg-gray-500/20 text-gray-300 border-gray-500/30' },
+        do_not_contact: { label: 'Nie pisać', classes: 'bg-red-500/20 text-red-400 border-red-500/30' },
+        bounced: { label: 'Odbicie', classes: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
+        complained: { label: 'Skarga', classes: 'bg-red-500/20 text-red-400 border-red-500/30' },
+        archived: { label: 'Archiwum', classes: 'bg-gray-500/20 text-gray-400 border-gray-500/30' }
+    };
+    return map[status] || map.active;
+}
+
+async function updateNewsletterContact(id, changes) {
+    try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('Brak aktywnej sesji.');
+
+        const update = {
+            ...changes,
+            updated_at: new Date().toISOString()
+        };
+
+        if (changes.group) {
+            const current = allSubscribers.find(sub => sub.id === id);
+            update.groups = Array.from(new Set([...(current?.groups || []), 'ai-radar', changes.group]));
+        }
+
+        await db.collection('newsletter_subscribers').doc(id).update(update);
+        showToast('Zapisano kontakt newslettera', 'success');
+    } catch (error) {
+        console.error('Newsletter update error:', error);
+        showToast(error.message || 'Błąd zapisu newslettera', 'error');
+    }
+}
+
+function copyNewsletterEmails() {
+    const emails = getFilteredSubscribers()
+        .filter(s => (s.status || 'active') === 'active')
+        .map(s => s.email)
+        .filter(Boolean);
+
+    if (emails.length === 0) {
+        showToast('Brak aktywnych maili w tej grupie', 'info');
+        return;
+    }
+
+    const text = emails.join(', ');
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Skopiowano ' + emails.length + ' maili', 'success');
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Skopiowano ' + emails.length + ' maili', 'success');
+    });
+}
+
+function exportNewsletterCsv() {
+    const subscribers = getFilteredSubscribers().filter(s => (s.status || 'active') === 'active');
+
+    if (subscribers.length === 0) {
+        showToast('Brak aktywnych kontaktów do eksportu', 'info');
+        return;
+    }
+
+    const rows = [
+        ['email', 'name', 'group', 'status', 'source', 'created_at', 'consent_at'],
+        ...subscribers.map(s => [
+            s.email || '',
+            s.name || '',
+            getNewsletterGroupLabel(s.group),
+            s.status || 'active',
+            s.source || '',
+            s.created_at || '',
+            s.consent?.accepted_at || ''
+        ])
+    ];
+
+    const csv = rows.map(row => row.map(csvCell).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const group = currentNewsletterGroup === 'all' ? 'wszystkie' : currentNewsletterGroup;
+    link.href = url;
+    link.download = `ai-radar-${group}-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Wyeksportowano CSV', 'success');
+}
+
+function csvCell(value) {
+    return '"' + String(value || '').replace(/"/g, '""') + '"';
+}
+
+// ===== HELPERS =====
+
+function dateValue(ts) {
+    if (!ts) return 0;
+    if (ts.toDate) return ts.toDate().getTime();
+    if (ts.seconds) return ts.seconds * 1000;
+    const value = new Date(ts).getTime();
+    return isNaN(value) ? 0 : value;
+}
+
+function formatDate(ts) {
+    if (!ts) return '—';
+    let d;
+    if (ts.toDate) d = ts.toDate();
+    else if (ts.seconds) d = new Date(ts.seconds * 1000);
+    else d = new Date(ts);
+    if (isNaN(d)) return '—';
+    return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+function escHtml(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+}
+
+function escAttr(str) {
+    return escHtml(str).replace(/"/g, '&quot;');
+}
+
+function escJs(str) {
+    return String(str || '')
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/\r?\n/g, ' ');
+}
+
+function copyText(text, successMessage = 'Skopiowano') {
+    if (!text) {
+        showToast('Brak tekstu do skopiowania', 'info');
+        return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage, 'success');
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(successMessage, 'success');
+    });
+}
+
+// ===== TOAST =====
+function showToast(msg, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const colors = {
+        success: 'border-green-500/30 bg-green-500/10 text-green-400',
+        error: 'border-red-500/30 bg-red-500/10 text-red-400',
+        info: 'border-blue-500/30 bg-blue-500/10 text-blue-400'
+    };
+    const icons = { success: 'check-circle-2', error: 'alert-circle', info: 'info' };
+
+    const toast = document.createElement('div');
+    toast.className = `toast-enter flex items-center gap-2 px-4 py-3 rounded-xl border backdrop-blur-md text-sm ${colors[type] || colors.info}`;
+    toast.innerHTML = `<i data-lucide="${icons[type] || icons.info}" class="w-4 h-4"></i><span>${escHtml(msg)}</span>`;
+    container.appendChild(toast);
+    lucide.createIcons({ nodes: [toast] });
+
+    setTimeout(() => {
+        toast.classList.remove('toast-enter');
+        toast.classList.add('toast-exit');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// ===== INIT LUCIDE =====
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+});
+</script>
+</body>
+</html>
