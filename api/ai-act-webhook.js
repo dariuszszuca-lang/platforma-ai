@@ -35,7 +35,7 @@ const NEW_PRODUCTS = {
   plink_1U29jzC5TxNbsygYkcf1cKl9: {
     slug: "audyt-ai", amount: 29000,
     subject: "Audyt AI: pierwszy krok",
-    body: "dziękuję za zamówienie audytu AI. Żeby ruszyć, odpisz mi proszę w kilku zdaniach: czym zajmuje się Twoja firma i ile osób w niej pracuje, co dziś zabiera Wam najwięcej czasu oraz z jakich narzędzi korzystacie na co dzień. Raport z konkretnym planem dostaniesz do 48 godzin od Twojej odpowiedzi.",
+    body: "dziękuję za opłacenie audytu AI. Jeśli termin rozmowy już ustaliliśmy, do usłyszenia. Jeśli jeszcze nie, odpisz proszę z dwoma terminami, które Ci pasują, potwierdzę do 24 godzin. Raport z planem dostaniesz do 2 dni roboczych po rozmowie.",
   },
 };
 
