@@ -17,16 +17,6 @@ const PAKIET_URL = "https://ai-team.pl/ai-act/dziekujemy";
 // Pozostałe produkty cyfrowe (strona /produkty). Dopasowanie ZAWSZE po payment_link
 // + kwocie, nigdy po samej kwocie. CAPI (Meta) tylko dla AI Act.
 const NEW_PRODUCTS = {
-  plink_1U29jvC5TxNbsygYoYtIdk8h: {
-    slug: "monitor-opinii", amount: 9700,
-    subject: "Monitor Opinii Google: zaczynamy",
-    body: "dziękuję za zakup Monitora Opinii Google. W ciągu 24 godzin wyślę Ci na tego maila paczkę z monitorem i prostą instrukcją uruchomienia. Jeśli wolisz, żebym wdrożył go za Ciebie, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
-  },
-  plink_1U29jxC5TxNbsygYEYId1nLv: {
-    slug: "poranny-raport", amount: 9700,
-    subject: "Poranny Raport Firmowy: zaczynamy",
-    body: "dziękuję za zakup Porannego Raportu Firmowego. W ciągu 24 godzin wyślę Ci na tego maila paczkę z automatem i prostą instrukcją uruchomienia. Jeśli wolisz, żebym wdrożył go za Ciebie, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
-  },
   plink_1U29jzC5TxNbsygYkcf1cKl9: {
     slug: "audyt-ai", amount: 29000,
     subject: "Audyt AI: pierwszy krok",
