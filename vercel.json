@@ -79,6 +79,16 @@
       "source": "/playbooki.html",
       "destination": "/produkty",
       "permanent": true
+    },
+    {
+      "source": "/kokpit",
+      "destination": "/produkty",
+      "permanent": true
+    },
+    {
+      "source": "/dziekujemy-kokpit",
+      "destination": "/produkty",
+      "permanent": true
     }
   ]
 }
