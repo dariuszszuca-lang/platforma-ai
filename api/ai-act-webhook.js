@@ -17,6 +17,12 @@ const PAKIET_URL = "https://ai-team.pl/ai-act/dziekujemy";
 // Pozostałe produkty cyfrowe (strona /produkty). Dopasowanie ZAWSZE po payment_link
 // + kwocie, nigdy po samej kwocie. CAPI (Meta) tylko dla AI Act.
 const NEW_PRODUCTS = {
+  plink_1U2EPGC5TxNbsygY1xTqJdvI: {
+    slug: "zespol-ai-starter", amount: 14900,
+    subject: "Twój Zespół AI: paczka do pobrania",
+    body: "dziękuję za zakup Zespołu AI Starter. Twoja paczka jest gotowa do pobrania od razu, z tej strony: https://ai-team.pl/dziekujemy-zespol \n\nW środku są trzy role (Sprzedawca, Marketingowiec, Organizator), instalator, który przepyta Cię o firmę i przygotuje jej profil, oraz instrukcja dla Claude, ChatGPT i Gemini. Start zajmuje około 20 minut. Jeśli wolisz, żebym zbudował zespół z Tobą na krótkiej rozmowie, odpisz jednym słowem WDROŻENIE.",
+    bodyHtml: 'dziękuję za zakup Zespołu AI Starter. Twoja paczka jest gotowa do pobrania od razu, z tej strony:</p><p><a href="https://ai-team.pl/dziekujemy-zespol" style="color:#c8102e;font-weight:bold;text-decoration:none;">https://ai-team.pl/dziekujemy-zespol</a></p><p>W środku są trzy role (Sprzedawca, Marketingowiec, Organizator), instalator, który przepyta Cię o firmę i przygotuje jej profil, oraz instrukcja dla Claude, ChatGPT i Gemini. Start zajmuje około 20 minut. Jeśli wolisz, żebym zbudował zespół z Tobą na krótkiej rozmowie, odpisz jednym słowem WDROŻENIE.',
+  },
   plink_1U29jzC5TxNbsygYkcf1cKl9: {
     slug: "audyt-ai", amount: 29000,
     subject: "Audyt AI: pierwszy krok",
