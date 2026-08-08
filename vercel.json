@@ -69,6 +69,16 @@
       "source": "/roi-calculator",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/playbooki",
+      "destination": "/produkty",
+      "permanent": true
+    },
+    {
+      "source": "/playbooki.html",
+      "destination": "/produkty",
+      "permanent": true
     }
   ]
 }
