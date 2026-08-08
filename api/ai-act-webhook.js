@@ -30,8 +30,8 @@ const NEW_PRODUCTS = {
   plink_1U29jyC5TxNbsygYVyKo0Mu8: {
     slug: "kokpit-finansowy", amount: 14900,
     subject: "Twój Kokpit Finansowy: paczka do pobrania",
-    body: "dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony: https://ai-team.pl/dziekujemy-kokpit \n\nW środku jest kokpit i instrukcja uruchomienia w 30 minut. Jeśli wolisz, żebym uruchomił kokpit z Tobą i wypełnił go Twoimi danymi, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.",
-    bodyHtml: 'dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony:</p><p><a href="https://ai-team.pl/dziekujemy-kokpit" style="color:#c8102e;font-weight:bold;text-decoration:none;">https://ai-team.pl/dziekujemy-kokpit</a></p><p>W środku jest kokpit i instrukcja uruchomienia w 30 minut. Jeśli wolisz, żebym uruchomił kokpit z Tobą i wypełnił go Twoimi danymi, odpisz jednym słowem WDROŻENIE, a umówimy krótką rozmowę.',
+    body: "dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony: https://ai-team.pl/dziekujemy-kokpit \n\nW środku jest kokpit, krótka instrukcja i gotowy prompt: wrzucasz kokpit do Claude, Gemini albo ChatGPT, odpowiadasz na kilka prostych pytań po polsku i AI oddaje Ci kokpit wypełniony Twoimi danymi. Jeśli wolisz, żebym zrobił to z Tobą na krótkiej rozmowie, odpisz jednym słowem WDROŻENIE.",
+    bodyHtml: 'dziękuję za zakup Kokpitu Finansowego. Twoja paczka jest gotowa do pobrania od razu, z tej strony:</p><p><a href="https://ai-team.pl/dziekujemy-kokpit" style="color:#c8102e;font-weight:bold;text-decoration:none;">https://ai-team.pl/dziekujemy-kokpit</a></p><p>W środku jest kokpit, krótka instrukcja i gotowy prompt: wrzucasz kokpit do Claude, Gemini albo ChatGPT, odpowiadasz na kilka prostych pytań po polsku i AI oddaje Ci kokpit wypełniony Twoimi danymi. Jeśli wolisz, żebym zrobił to z Tobą na krótkiej rozmowie, odpisz jednym słowem WDROŻENIE.',
   },
   plink_1U29jzC5TxNbsygYkcf1cKl9: {
     slug: "audyt-ai", amount: 29000,
