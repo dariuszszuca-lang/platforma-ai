@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <title>Panel AI-Team — Newsletter i leady</title>
+    <title>Panel AI-Team — platforma</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +93,46 @@
             transform: scale(1.02);
         }
 
+        /* Sidebar nav */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #9ca3af;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        .nav-item:hover { color: white; background: rgba(255,255,255,0.05); }
+        .nav-item.active {
+            color: #fff;
+            background: rgba(249,115,22,0.14);
+            border-color: rgba(249,115,22,0.35);
+        }
+        .nav-item.active i { color: #fb923c; }
+        .nav-badge {
+            margin-left: auto;
+            font-size: 11px;
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            color: #d1d5db;
+        }
+        .nav-item.active .nav-badge { background: rgba(249,115,22,0.25); color: #ffedd5; }
+
+        /* Pages */
+        .page { display: none; }
+        .page.active { display: block; animation: page-in 0.25s ease-out; }
+        @keyframes page-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Shake animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -151,6 +191,13 @@
             pointer-events: none;
             z-index: 0;
         }
+
+        /* Sidebar drawer (mobile) */
+        #sidebar { transition: transform 0.25s ease; }
+        @media (max-width: 1023px) {
+            #sidebar { transform: translateX(-100%); }
+            #sidebar.open { transform: translateX(0); }
+        }
     </style>
 <link rel="canonical" href="https://ai-team.pl/panel">
 </head>
@@ -190,49 +237,125 @@
     </div>
 </div>
 
-<!-- ===== DASHBOARD ===== -->
+<!-- ===== PLATFORMA ===== -->
 <div id="dashboard" class="hidden relative z-10 min-h-screen">
 
-    <!-- Top bar -->
-    <header class="sticky top-0 z-40 glass-card border-t-0 border-l-0 border-r-0 rounded-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center">
-                    <i data-lucide="bot" class="w-5 h-5 text-brand-primary"></i>
-                </div>
-                <div>
-                    <span class="font-heading font-bold text-lg gradient-text">AI-Team</span>
-                    <span class="text-gray-400 text-sm ml-2 hidden sm:inline">Newsletter, leady i AI Radar</span>
-                </div>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-40 w-64 glass-card rounded-none border-t-0 border-b-0 border-l-0 flex flex-col">
+        <div class="px-5 py-5 flex items-center gap-3 border-b border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-brand-primary/20 flex items-center justify-center">
+                <i data-lucide="bot" class="w-5 h-5 text-brand-primary"></i>
             </div>
-            <div class="flex items-center gap-2 sm:gap-4">
-                <a href="#newsletterPanel"
-                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                    <i data-lucide="mail-check" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Newsletter</span>
-                </a>
-                <a href="#globalworthPanel"
-                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                    <i data-lucide="clipboard-check" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Globalworth</span>
-                </a>
-                <a href="https://ai-team.pl/ai-radar" target="_blank"
-                   class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                    <i data-lucide="radio" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">AI Radar</span>
-                </a>
-                <button onclick="logout()" class="btn-cosmic px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                    <i data-lucide="log-out" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Wyloguj</span>
-                </button>
+            <div>
+                <div class="font-heading font-bold text-lg gradient-text leading-tight">AI-Team</div>
+                <div class="text-[11px] text-gray-500 uppercase tracking-wider">Platforma</div>
             </div>
         </div>
-    </header>
+        <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+            <button class="nav-item" data-page="kokpit" onclick="switchPage('kokpit')">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i>Kokpit
+            </button>
+            <button class="nav-item" data-page="newsletter" onclick="switchPage('newsletter')">
+                <i data-lucide="mail-check" class="w-4 h-4"></i>Newsletter
+                <span class="nav-badge" id="navBadgeNewsletter">0</span>
+            </button>
+            <button class="nav-item" data-page="wydania" onclick="switchPage('wydania')">
+                <i data-lucide="calendar-clock" class="w-4 h-4"></i>Wydania i wysyłki
+                <span class="nav-badge" id="navBadgeWydania">0</span>
+            </button>
+            <button class="nav-item" data-page="leady" onclick="switchPage('leady')">
+                <i data-lucide="users" class="w-4 h-4"></i>Leady
+                <span class="nav-badge" id="navBadgeLeady">0</span>
+            </button>
+            <button class="nav-item" data-page="globalworth" onclick="switchPage('globalworth')">
+                <i data-lucide="building-2" class="w-4 h-4"></i>Globalworth
+                <span class="nav-badge" id="navBadgeGlobalworth">0</span>
+            </button>
+        </nav>
+        <div class="px-3 py-4 border-t border-white/10 space-y-1">
+            <a href="https://ai-team.pl/ai-radar" target="_blank" class="nav-item">
+                <i data-lucide="radio" class="w-4 h-4"></i>Strona AI Radar
+            </a>
+            <button onclick="logout()" class="nav-item">
+                <i data-lucide="log-out" class="w-4 h-4"></i>Wyloguj
+            </button>
+        </div>
+    </aside>
+    <div id="sidebarScrim" class="fixed inset-0 z-30 bg-black/60 hidden lg:hidden" onclick="toggleSidebar(false)"></div>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <!-- Main -->
+    <div class="lg:pl-64 min-h-screen flex flex-col">
+        <header class="sticky top-0 z-20 glass-card border-t-0 border-l-0 border-r-0 rounded-none">
+            <div class="px-4 sm:px-6 py-3 flex items-center gap-3">
+                <button class="lg:hidden btn-cosmic p-2 rounded-lg" onclick="toggleSidebar()">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                <div class="min-w-0">
+                    <h1 id="pageTitle" class="font-heading font-bold text-lg text-white truncate">Kokpit</h1>
+                    <p id="pageSubtitle" class="text-xs text-gray-500 truncate">Przegląd całej platformy</p>
+                </div>
+                <div class="ml-auto flex items-center gap-2">
+                    <span class="hidden sm:inline text-xs text-gray-500" id="topbarClock"></span>
+                </div>
+            </div>
+        </header>
 
-        <!-- Newsletter panel -->
-        <section id="newsletterPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+        <main class="flex-1 px-4 sm:px-6 py-6 max-w-6xl w-full mx-auto">
+
+        <!-- ============ STRONA: KOKPIT ============ -->
+        <section class="page" data-page="kokpit">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                <div class="glass-card rounded-2xl p-4">
+                    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2"><i data-lucide="mail-check" class="w-4 h-4 text-brand-light"></i>Subskrybenci</div>
+                    <div class="text-3xl font-bold font-heading" id="kokpitSubsActive">0</div>
+                    <div class="text-xs text-gray-500 mt-1"><span class="text-green-400" id="kokpitSubsNew7">+0</span> w 7 dni</div>
+                </div>
+                <div class="glass-card rounded-2xl p-4">
+                    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2"><i data-lucide="users" class="w-4 h-4 text-brand-light"></i>Leady</div>
+                    <div class="text-3xl font-bold font-heading" id="kokpitLeadsToday">0</div>
+                    <div class="text-xs text-gray-500 mt-1">dziś · <span id="kokpitLeads7">0</span> w 7 dni</div>
+                </div>
+                <div class="glass-card rounded-2xl p-4">
+                    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2"><i data-lucide="eye" class="w-4 h-4 text-brand-light"></i>Otwarcia ostatniego wydania</div>
+                    <div class="text-3xl font-bold font-heading" id="kokpitOpenRate">—</div>
+                    <div class="text-xs text-gray-500 mt-1" id="kokpitOpenMeta">brak wysłanych wydań</div>
+                </div>
+                <div class="glass-card rounded-2xl p-4">
+                    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2"><i data-lucide="sparkles" class="w-4 h-4 text-brand-light"></i>Sekwencja powitalna</div>
+                    <div class="text-3xl font-bold font-heading" id="kokpitWelcomeActive">0</div>
+                    <div class="text-xs text-gray-500 mt-1">osób w trakcie · <span id="kokpitWelcomeDone">0</span> skończyło</div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-4 mb-6">
+                <div class="glass-card rounded-2xl p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-heading font-semibold text-white flex items-center gap-2"><i data-lucide="user-plus" class="w-4 h-4 text-brand-light"></i>Ostatnie leady</h3>
+                        <button onclick="switchPage('leady')" class="text-xs text-brand-light hover:text-white transition">wszystkie ›</button>
+                    </div>
+                    <div id="kokpitRecentLeads" class="space-y-2 text-sm text-gray-400">Ładowanie…</div>
+                </div>
+                <div class="glass-card rounded-2xl p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-heading font-semibold text-white flex items-center gap-2"><i data-lucide="calendar-clock" class="w-4 h-4 text-brand-light"></i>Wydania AI Radar</h3>
+                        <button onclick="switchPage('wydania')" class="text-xs text-brand-light hover:text-white transition">wszystkie ›</button>
+                    </div>
+                    <div id="kokpitIssues" class="space-y-2 text-sm text-gray-400">Ładowanie…</div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-heading font-semibold text-white flex items-center gap-2"><i data-lucide="building-2" class="w-4 h-4 text-brand-light"></i>Globalworth</h3>
+                    <button onclick="switchPage('globalworth')" class="text-xs text-brand-light hover:text-white transition">szczegóły ›</button>
+                </div>
+                <div id="kokpitGlobalworth" class="text-sm text-gray-400">Ładowanie…</div>
+            </div>
+        </section>
+
+        <!-- ============ STRONA: NEWSLETTER (subskrybenci) ============ -->
+        <section class="page" data-page="newsletter" id="newsletterPanel">
+          <div class="glass-card rounded-2xl p-5 sm:p-6">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
                 <div>
                     <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
@@ -252,35 +375,6 @@
                         Eksport CSV
                     </button>
                 </div>
-            </div>
-
-            <div class="mb-6 rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:p-5">
-                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
-                    <div>
-                        <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
-                            <i data-lucide="calendar-clock" class="w-4 h-4"></i>
-                            Wydania
-                        </div>
-                        <h3 class="font-heading text-xl font-bold text-white">Plan AI Radar</h3>
-                        <p class="text-sm text-gray-400 mt-1">Tu sprawdzisz status, datę wysyłki i podgląd HTML każdego wydania.</p>
-                    </div>
-                    <a href="/newsletter/ai-radar-001-system-mailowy.html" target="_blank"
-                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 w-fit">
-                        <i data-lucide="eye" class="w-4 h-4"></i>
-                        Podgląd #001
-                    </a>
-                </div>
-                <div id="newsletterIssuesList" class="grid gap-3 lg:grid-cols-2"></div>
-            </div>
-
-            <div class="mb-6">
-                <div class="flex flex-wrap items-center gap-2 mb-3">
-                    <i data-lucide="mail-check" class="w-5 h-5 text-brand-light"></i>
-                    <h3 class="font-heading text-xl font-bold text-white">Sekwencja powitalna</h3>
-                    <span class="text-xs text-gray-500" id="welcomeSummary">automat: 4 maile, 1 na wieczór od dnia zapisu</span>
-                </div>
-                <div id="welcomeCards" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-4"></div>
-                <div id="welcomeLeads"></div>
             </div>
 
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -328,10 +422,45 @@
             </div>
             <div id="newsletterList" class="space-y-3"></div>
             <div id="newsletterPager" class="flex items-center justify-center gap-3 mt-5"></div>
+          </div>
         </section>
 
-        <!-- LEADY AI ACT: kto, skad, co dostal, odpowiedzi -->
-        <section id="leadsPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+        <!-- ============ STRONA: WYDANIA I WYSYŁKI ============ -->
+        <section class="page" data-page="wydania" id="wydaniaPanel">
+          <div class="glass-card rounded-2xl p-5 sm:p-6 mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
+                    <div>
+                        <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
+                            <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+                            Wydania
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white">Plan AI Radar</h3>
+                        <p class="text-sm text-gray-400 mt-1">Status, data wysyłki, statystyki otwarć i podgląd HTML każdego wydania.</p>
+                    </div>
+                    <a href="/newsletter/ai-radar-001-system-mailowy.html" target="_blank"
+                       class="btn-cosmic px-4 py-2 rounded-lg text-sm flex items-center gap-2 w-fit">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                        Podgląd #001
+                    </a>
+                </div>
+                <div id="newsletterIssuesList" class="grid gap-3 lg:grid-cols-2"></div>
+                <div id="issuesPager" class="flex items-center justify-center gap-3 mt-5"></div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <i data-lucide="mail-check" class="w-5 h-5 text-brand-light"></i>
+                    <h3 class="font-heading text-xl font-bold text-white">Sekwencja powitalna</h3>
+                    <span class="text-xs text-gray-500" id="welcomeSummary">automat: 4 maile, 1 na wieczór od dnia zapisu</span>
+                </div>
+                <div id="welcomeCards" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-4"></div>
+                <div id="welcomeLeads"></div>
+          </div>
+        </section>
+
+        <!-- ============ STRONA: LEADY ============ -->
+        <section class="page" data-page="leady" id="leadsPanel">
+          <div class="glass-card rounded-2xl p-5 sm:p-6">
             <div class="flex items-center justify-between mb-1">
                 <h2 class="font-heading font-bold text-lg flex items-center gap-2">
                     <i data-lucide="users" class="w-5 h-5 text-brand-light"></i>
@@ -365,10 +494,12 @@
             <div id="leadsGroupTabs" class="flex flex-wrap gap-2 mb-4"></div>
             <div id="leadsList" class="space-y-2"></div>
             <div id="leadsPager" class="flex items-center justify-center gap-3 mt-5"></div>
+          </div>
         </section>
 
-        <!-- GLOBALWORTH: finalne odpowiedzi działu IT -->
-        <section id="globalworthPanel" class="glass-card rounded-2xl p-5 sm:p-6">
+        <!-- ============ STRONA: GLOBALWORTH ============ -->
+        <section class="page" data-page="globalworth" id="globalworthPanel">
+          <div class="glass-card rounded-2xl p-5 sm:p-6">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
                 <div>
                     <div class="flex items-center gap-2 text-brand-light text-xs font-semibold uppercase tracking-wider mb-2">
@@ -415,9 +546,12 @@
                 <p class="text-sm text-gray-500 mt-1">Po wysłaniu formularza przez dział IT rekord pojawi się tutaj automatycznie.</p>
             </div>
             <div id="globalworthList" class="space-y-4"></div>
+            <div id="globalworthPager" class="flex items-center justify-center gap-3 mt-5"></div>
+          </div>
         </section>
 
-    </main>
+        </main>
+    </div>
 
 </div>
 
@@ -538,6 +672,42 @@ auth.onAuthStateChanged(function(user) {
     }
 });
 
+// ===== STRONY PLATFORMY =====
+const PAGES = {
+    kokpit:      { title: 'Kokpit',              subtitle: 'Przegląd całej platformy' },
+    newsletter:  { title: 'Newsletter',          subtitle: 'Subskrybenci AI Radar w grupach' },
+    wydania:     { title: 'Wydania i wysyłki',   subtitle: 'Plan AI Radar, statystyki otwarć, sekwencja powitalna' },
+    leady:       { title: 'Leady',               subtitle: 'Kto, skąd, co dostał' },
+    globalworth: { title: 'Globalworth',         subtitle: 'Odpowiedzi działu IT' }
+};
+let currentPage = 'kokpit';
+
+function switchPage(name) {
+    if (!PAGES[name]) name = 'kokpit';
+    currentPage = name;
+    document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.dataset.page === name));
+    document.querySelectorAll('.nav-item[data-page]').forEach(el => el.classList.toggle('active', el.dataset.page === name));
+    document.getElementById('pageTitle').textContent = PAGES[name].title;
+    document.getElementById('pageSubtitle').textContent = PAGES[name].subtitle;
+    if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+    toggleSidebar(false);
+    window.scrollTo({ top: 0 });
+    if (window.lucide) lucide.createIcons();
+}
+
+function toggleSidebar(force) {
+    const sb = document.getElementById('sidebar');
+    const scrim = document.getElementById('sidebarScrim');
+    const open = force !== undefined ? force : !sb.classList.contains('open');
+    sb.classList.toggle('open', open);
+    scrim.classList.toggle('hidden', !open);
+}
+
+window.addEventListener('hashchange', function() {
+    const name = (location.hash || '').replace('#', '');
+    if (PAGES[name] && name !== currentPage) switchPage(name);
+});
+
 // ===== STATE =====
 let allSubscribers = [];
 let welcomeSends = [];
@@ -546,8 +716,12 @@ let allNewsletterIssues = [];
 let globalworthResponses = [];
 let stopGlobalworthListener = null;
 const PER_PAGE = 20;
+const ISSUES_PER_PAGE = 6;
+const GW_PER_PAGE = 10;
 let leadsPage = 1, leadsSearch = '', leadsGroup = 'all';
 let newsletterPage = 1, newsletterSearch = '';
+let issuesPage = 1;
+let globalworthPage = 1;
 
 const fallbackNewsletterIssues = [
     {
@@ -614,11 +788,20 @@ const fallbackNewsletterIssues = [
 
 // ===== DASHBOARD INIT =====
 function initDashboard() {
+    const startPage = (location.hash || '').replace('#', '');
+    switchPage(PAGES[startPage] ? startPage : 'kokpit');
     setupNewsletterGroupTabs();
     listenToNewsletter();
     listenToNewsletterIssues();
     listenToWelcomeSends();
     listenToGlobalworthResponses();
+    updateTopbarClock();
+    setInterval(updateTopbarClock, 30000);
+}
+
+function updateTopbarClock() {
+    const el = document.getElementById('topbarClock');
+    if (el) el.textContent = new Date().toLocaleString('pl-PL', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
 function setupNewsletterGroupTabs() {
@@ -671,6 +854,7 @@ async function listenToNewsletter() {
                     renderNewsletter();
                     renderLeads();
                     renderWelcomeSequence();
+                    renderKokpit();
                 },
                 (error) => {
                     console.error('Newsletter Firestore error:', error);
@@ -696,11 +880,13 @@ function listenToNewsletterIssues() {
                 snapshot.forEach(doc => remoteIssues.push({ id: doc.id, ...doc.data() }));
                 allNewsletterIssues = mergeNewsletterIssues(remoteIssues, fallbackNewsletterIssues);
                 renderNewsletterIssues();
+                renderKokpit();
             },
             (error) => {
                 console.warn('Newsletter issues fallback:', error);
                 allNewsletterIssues = fallbackNewsletterIssues;
                 renderNewsletterIssues();
+                renderKokpit();
             }
         );
 }
@@ -720,6 +906,114 @@ function mergeNewsletterIssues(remoteIssues, localIssues) {
         const bTime = Date.parse(b.scheduled_at || '') || 0;
         return bTime - aTime;
     });
+}
+
+// ===== KOKPIT =====
+function renderKokpit() {
+    const now = Date.now();
+    const DAY = 86400000;
+    const subs = allSubscribers || [];
+    const active = subs.filter(s => (s.status || 'active') === 'active');
+    const new7 = subs.filter(s => now - (Date.parse(s.created_at || '') || 0) < 7 * DAY).length;
+    const today = new Date().toISOString().slice(0, 10);
+    const leadsToday = subs.filter(s => (s.created_at || '').slice(0, 10) === today).length;
+
+    setText('kokpitSubsActive', active.length);
+    setText('kokpitSubsNew7', '+' + new7);
+    setText('kokpitLeadsToday', leadsToday);
+    setText('kokpitLeads7', new7);
+
+    // Otwarcia ostatniego wysłanego wydania
+    const sentIssues = (allNewsletterIssues || []).filter(i => Number(i.sent_count || 0) > 0);
+    if (sentIssues.length) {
+        const last = sentIssues[0];
+        const sent = Number(last.sent_count || 0);
+        const opened = Number(last.opened_count || 0);
+        const rate = sent ? Math.round(opened / sent * 100) : 0;
+        setText('kokpitOpenRate', rate + '%');
+        setText('kokpitOpenMeta', `${escStripped(last.title || last.id)}: ${opened}/${sent} otwarć`);
+    } else {
+        setText('kokpitOpenRate', '—');
+        setText('kokpitOpenMeta', 'brak wysłanych wydań');
+    }
+
+    // Welcome
+    const inSeq = subs.filter(s => s.welcome_step !== undefined && Number(s.welcome_step) >= 1);
+    setText('kokpitWelcomeActive', inSeq.filter(s => Number(s.welcome_step) < 4).length);
+    setText('kokpitWelcomeDone', inSeq.filter(s => Number(s.welcome_step) >= 4).length);
+
+    // Ostatnie leady (5)
+    const recent = subs.slice()
+        .sort((a, b) => (Date.parse(b.created_at || '') || 0) - (Date.parse(a.created_at || '') || 0))
+        .slice(0, 5);
+    const recentEl = document.getElementById('kokpitRecentLeads');
+    if (recentEl) {
+        recentEl.innerHTML = recent.length ? recent.map(s => {
+            const when = s.created_at ? new Date(s.created_at).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—';
+            const grp = leadGroupLabel(leadGroupKey(s));
+            return `<div class="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0">
+                <span class="font-mono text-gray-200 truncate" style="flex:1 1 140px">${escHtml(s.email || '')}</span>
+                <span class="text-xs px-2 py-0.5 rounded-full border bg-brand-primary/10 text-brand-light border-brand-primary/20">${escHtml(grp)}</span>
+                <span class="text-xs text-gray-500 shrink-0">${when}</span>
+            </div>`;
+        }).join('') : '<div class="text-gray-500">Jeszcze nie ma leadów.</div>';
+    }
+
+    // Wydania: najbliższe zaplanowane + ostatnio wysłane
+    const issuesEl = document.getElementById('kokpitIssues');
+    if (issuesEl) {
+        const upcoming = (allNewsletterIssues || []).filter(i => ['scheduled', 'draft'].includes(i.status) && Date.parse(i.scheduled_at || '') > now)
+            .sort((a, b) => Date.parse(a.scheduled_at) - Date.parse(b.scheduled_at))[0];
+        const rows = [];
+        if (upcoming) {
+            rows.push(kokpitIssueRow(upcoming, 'najbliższe'));
+        }
+        sentIssues.slice(0, 2).forEach(i => rows.push(kokpitIssueRow(i, 'wysłane')));
+        issuesEl.innerHTML = rows.length ? rows.join('') : '<div class="text-gray-500">Brak wydań w bazie.</div>';
+    }
+
+    // Globalworth
+    const gwEl = document.getElementById('kokpitGlobalworth');
+    if (gwEl) {
+        const all = globalworthResponses || [];
+        const open = all.reduce((t, r) => t + Number((r.summary && r.summary.needsClarification) || 0), 0);
+        gwEl.innerHTML = all.length
+            ? `Formularzy: <b class="text-white">${all.length}</b> · otwarte ustalenia: <b class="${open ? 'text-yellow-300' : 'text-green-400'}">${open}</b>`
+            : 'Nie ma jeszcze finalnych odpowiedzi.';
+    }
+
+    updateSidebarBadges();
+    if (window.lucide) lucide.createIcons();
+}
+
+function kokpitIssueRow(issue, tag) {
+    const status = getIssueStatusBadge(issue.status || 'draft');
+    const sent = Number(issue.sent_count || 0);
+    const opened = Number(issue.opened_count || 0);
+    const stats = sent ? ` · ${opened}/${sent} otwarć (${Math.round(opened / sent * 100)}%)` : '';
+    return `<div class="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0">
+        <span class="text-xs text-gray-600 w-16 shrink-0">${tag}</span>
+        <span class="text-gray-200 truncate" style="flex:1">${escHtml(issue.title || issue.id)}</span>
+        <span class="${status.classes} text-[11px] px-2 py-0.5 rounded-full border shrink-0">${status.label}</span>
+        <span class="text-xs text-gray-500 shrink-0">${escHtml(formatDate(issue.scheduled_at))}${stats}</span>
+    </div>`;
+}
+
+function updateSidebarBadges() {
+    const subs = allSubscribers || [];
+    setText('navBadgeNewsletter', subs.filter(s => (s.status || 'active') === 'active').length);
+    setText('navBadgeLeady', subs.length);
+    setText('navBadgeWydania', (allNewsletterIssues || []).length);
+    setText('navBadgeGlobalworth', (globalworthResponses || []).length);
+}
+
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
+
+function escStripped(str) {
+    return String(str || '').slice(0, 60);
 }
 
 // ===== LEADY: kto, skad, co dostal, odpowiedzi =====
@@ -933,6 +1227,7 @@ function listenToGlobalworthResponses() {
             loading.classList.add('hidden');
             errorEl.classList.add('hidden');
             renderGlobalworthResponses();
+            renderKokpit();
         }, function(error) {
             console.error('Globalworth responses error:', error);
             loading.classList.add('hidden');
@@ -1031,6 +1326,8 @@ function renderGlobalworthResponse(response) {
     </details>`;
 }
 
+function setGlobalworthPage(n) { globalworthPage = n; renderGlobalworthResponses(); const el = document.getElementById('globalworthPanel'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
 function renderGlobalworthResponses() {
     const list = document.getElementById('globalworthList');
     const empty = document.getElementById('globalworthEmpty');
@@ -1042,7 +1339,13 @@ function renderGlobalworthResponses() {
     document.getElementById('globalworthStatNotApplicable').textContent = all.reduce(function(total, item) {
         return total + Number((item.summary && item.summary.notApplicable) || 0);
     }, 0);
-    list.innerHTML = all.map(renderGlobalworthResponse).join('');
+    const pages = Math.max(1, Math.ceil(all.length / GW_PER_PAGE));
+    if (globalworthPage > pages) globalworthPage = pages;
+    if (globalworthPage < 1) globalworthPage = 1;
+    const startI = (globalworthPage - 1) * GW_PER_PAGE;
+    list.innerHTML = all.slice(startI, startI + GW_PER_PAGE).map(renderGlobalworthResponse).join('');
+    const pager = document.getElementById('globalworthPager');
+    if (pager) pager.innerHTML = pagerHtml(globalworthPage, pages, 'setGlobalworthPage');
     empty.classList.toggle('hidden', all.length > 0);
     if (window.lucide) lucide.createIcons();
 }
@@ -1142,11 +1445,19 @@ function renderNewsletter() {
     lucide.createIcons();
 }
 
+function setIssuesPage(n) { issuesPage = n; renderNewsletterIssues(); const el = document.getElementById('wydaniaPanel'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
 function renderNewsletterIssues() {
     const list = document.getElementById('newsletterIssuesList');
     if (!list) return;
 
-    list.innerHTML = allNewsletterIssues.map(renderNewsletterIssueCard).join('');
+    const pages = Math.max(1, Math.ceil(allNewsletterIssues.length / ISSUES_PER_PAGE));
+    if (issuesPage > pages) issuesPage = pages;
+    if (issuesPage < 1) issuesPage = 1;
+    const startI = (issuesPage - 1) * ISSUES_PER_PAGE;
+    list.innerHTML = allNewsletterIssues.slice(startI, startI + ISSUES_PER_PAGE).map(renderNewsletterIssueCard).join('');
+    const pager = document.getElementById('issuesPager');
+    if (pager) pager.innerHTML = pagerHtml(issuesPage, pages, 'setIssuesPage');
     lucide.createIcons();
 }
 
@@ -1244,6 +1555,7 @@ function listenToWelcomeSends() {
                     welcomeSends = [];
                     snapshot.forEach(doc => welcomeSends.push({ id: doc.id, ...doc.data() }));
                     renderWelcomeSequence();
+                    renderKokpit();
                 },
                 (error) => { console.warn('welcome sends:', error && error.message); }
             );
