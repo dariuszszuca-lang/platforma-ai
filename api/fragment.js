@@ -54,6 +54,27 @@ const LEAD_MAGNET_EMAILS = {
     reply: "Jeśli chcesz podsunąć temat kolejnego systemu, odpisz jednym słowem: CRM, raport, newsletter, wiedza albo content.",
     productTag: "system_ai_tygodnia",
   },
+  "strona-checklista": {
+    subject: "Twoja checklista + plan strony w drodze",
+    preview: "12 rzeczy do sprawdzenia na stronie i bezpłatny plan w 24 godziny.",
+    heading: "Twoja checklista jest gotowa. Plan strony w drodze.",
+    intro: "W checkliście masz 12 rzeczy, przez które strony nie przynoszą klientów. Przejdź punkt po punkcie po swojej obecnej stronie, zajmie Ci to kwadrans. W środku:",
+    bullets: [
+      "test pierwszego wrażenia i wezwania do działania",
+      "sprawdzenie strony na telefonie i szybkości ładowania",
+      "punkty o zaufaniu: opinie, realizacje, aktualność",
+      "kontakt: formularz, telefon, nieodebrane połączenia",
+      "widoczność w Google i w wyszukiwarkach AI",
+      "wynik z trzema progami i co robić dalej",
+    ],
+    cta: "Otwórz checklistę online",
+    htmlUrl: "https://ai-team.pl/checklista-strony",
+    pdfUrl: "https://ai-team.pl/assets/checklista-strony.pdf",
+    pdfLabel: "Pobierz checklistę PDF",
+    firstStep: "Druga rzecz: przygotowuję teraz bezpłatny plan Twojej nowej strony na bazie tego, co napisałeś o firmie w formularzu. Wyślę go osobnym mailem w ciągu 24 godzin roboczych.",
+    reply: "Jeśli chcesz, żebym w planie zwrócił uwagę na coś konkretnego, odpisz jednym zdaniem na tego maila.",
+    productTag: "strona_w_3_dni",
+  },
 };
 const OWNER_EMAIL = "dariusz.szuca@gmail.com";
 function esc(s) { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
