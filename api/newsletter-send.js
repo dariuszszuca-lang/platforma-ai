@@ -11,6 +11,7 @@ const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID || "ai-team-zlecenia
 const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
 const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents`;
 const RESERVED_PLACEHOLDERS = new Set(["amazonSESUnsubscribeUrl"]);
+const SERVER_FIRESTORE_TOKEN_CACHE = { token: '', expiresAt: 0, pending: null };
 
 module.exports = async function handler(req, res) {
   setCors(res);
@@ -36,6 +37,9 @@ module.exports = async function handler(req, res) {
     }
 
     const body = parseBody(req);
+    if (Object.hasOwn(body, 'sesEvents')) {
+      return handleSesReconcileRequest(req, res, body);
+    }
     const token = await requirePanelOrServerToken(req);
     if (body.welcomeTest) {
       return sendJson(res, 200, await sendWelcomeTest(String(body.welcomeTest), Number(body.welcomeStep || 1)));
@@ -58,6 +62,22 @@ module.exports = async function handler(req, res) {
     return sendJson(res, status, { ok: false, error: error.publicMessage || error.message || "Błąd wysyłki." });
   }
 };
+
+async function handleSesReconcileRequest(req, res, body, dependencies = {}) {
+  const getToken = dependencies.requireToken || requireCronToken;
+  const reconcile = dependencies.reconcile || reconcileSesEvents;
+  const token = await getToken(req);
+  const events = Array.isArray(body?.sesEvents) ? body.sesEvents : [];
+
+  if (!events.length) {
+    return sendJson(res, 400, { ok: false, error: 'Brak zdarzeń SES.' });
+  }
+  if (events.length > 10) {
+    return sendJson(res, 400, { ok: false, error: 'Maksymalnie 10 zdarzeń SES w jednym wywołaniu.' });
+  }
+
+  return sendJson(res, 200, await reconcile(events, token));
+}
 
 async function sendDueIssues({ token }) {
   const allIssues = await listNewsletterIssues(token);
@@ -416,6 +436,200 @@ async function listIssueSends(issueId, token) {
   return sends.filter((send) => send.issue_id === issueId);
 }
 
+function planSesEventReconciliation(events, sends, subscribers, options = {}) {
+  const now = options.now || new Date().toISOString();
+  const sendByMessageId = new Map(
+    (sends || [])
+      .filter((send) => send?.ses_message_id)
+      .map((send) => [String(send.ses_message_id), send])
+  );
+  const subscriberById = new Map(
+    (subscribers || [])
+      .filter((subscriber) => subscriber?.id)
+      .map((subscriber) => [String(subscriber.id), subscriber])
+  );
+  const seen = new Set();
+  const sendUpdates = [];
+  const subscriberUpdates = [];
+  const summary = {
+    received: Array.isArray(events) ? events.length : 0,
+    matched: 0,
+    unmatched: 0,
+    ignored: 0,
+    suppressed: 0,
+  };
+
+  for (const event of events || []) {
+    const eventType = String(event?.eventType || event?.notificationType || "").trim().toLowerCase();
+    if (!['bounce', 'complaint'].includes(eventType)) {
+      summary.ignored += 1;
+      continue;
+    }
+
+    const messageId = String(event?.mail?.messageId || "").trim();
+    const dedupeKey = `${eventType}:${messageId}`;
+    if (!messageId || seen.has(dedupeKey)) {
+      summary.ignored += 1;
+      continue;
+    }
+    seen.add(dedupeKey);
+
+    const send = sendByMessageId.get(messageId);
+    if (!send?.id) {
+      summary.unmatched += 1;
+      continue;
+    }
+
+    const bounceType = eventType === 'bounce' ? String(event?.bounce?.bounceType || '') : '';
+    const bounceSubType = eventType === 'bounce' ? String(event?.bounce?.bounceSubType || '') : '';
+    const status = eventType === 'complaint' ? 'complained' : 'bounced';
+    const sendFields = {
+      status,
+      ses_event_type: eventType,
+      updated_at: now,
+    };
+    if (eventType === 'bounce') {
+      sendFields.bounce_type = bounceType;
+      sendFields.bounce_sub_type = bounceSubType;
+    } else {
+      sendFields.complaint_feedback_type = String(event?.complaint?.complaintFeedbackType || '');
+    }
+    sendUpdates.push({ id: send.id, fields: sendFields });
+    summary.matched += 1;
+
+    const shouldSuppress = eventType === 'complaint'
+      || bounceType.toLowerCase() === 'permanent';
+    if (!shouldSuppress) continue;
+
+    const subscriber = subscriberById.get(String(send.subscriber_id || ''));
+    if (!subscriber?.id) continue;
+    const subscriberFields = {
+      status,
+      suppression_status: status,
+      suppression_source: 'ses',
+      suppressed_at: now,
+    };
+    if (eventType === 'bounce') {
+      subscriberFields.bounce_type = bounceType;
+      subscriberFields.bounce_sub_type = bounceSubType;
+    } else {
+      subscriberFields.complaint_feedback_type = String(event?.complaint?.complaintFeedbackType || '');
+    }
+    subscriberUpdates.push({ id: subscriber.id, fields: subscriberFields });
+    summary.suppressed += 1;
+  }
+
+  return { sendUpdates, subscriberUpdates, summary };
+}
+
+async function applySesEventReconciliation(plan, token, dependencies = {}) {
+  const writeDoc = dependencies.setDoc || setDoc;
+  const sendUpdates = Array.isArray(plan?.sendUpdates) ? plan.sendUpdates : [];
+  const subscriberUpdates = Array.isArray(plan?.subscriberUpdates) ? plan.subscriberUpdates : [];
+
+  if (subscriberUpdates.length > 2) {
+    throw publicError(409, 'Bezpiecznik SES: maksymalnie 2 blokady kontaktów w jednym wywołaniu.');
+  }
+
+  for (const update of sendUpdates) {
+    if (!update?.id || !update?.fields) continue;
+    await writeDoc(
+      `newsletter_sends/${update.id}`,
+      update.fields,
+      token,
+      Object.keys(update.fields)
+    );
+  }
+
+  for (const update of subscriberUpdates) {
+    if (!update?.id || !update?.fields) continue;
+    await writeDoc(
+      `newsletter_subscribers/${update.id}`,
+      update.fields,
+      token,
+      Object.keys(update.fields)
+    );
+  }
+
+  return {
+    updatedSends: sendUpdates.length,
+    updatedSubscribers: subscriberUpdates.length,
+  };
+}
+
+async function reconcileSesEvents(events, token, dependencies = {}) {
+  let sends;
+  let subscribers;
+
+  if (dependencies.findSendByMessageId || !dependencies.listCollection) {
+    const findSend = dependencies.findSendByMessageId || findNewsletterSendByMessageId;
+    const getSubscriber = dependencies.getSubscriberById
+      || ((id, authToken) => getDoc(`newsletter_subscribers/${id}`, authToken));
+    sends = [];
+    const seenMessageIds = new Set();
+    for (const event of events || []) {
+      const eventType = String(event?.eventType || event?.notificationType || '').trim().toLowerCase();
+      const messageId = String(event?.mail?.messageId || '').trim();
+      if (!['bounce', 'complaint'].includes(eventType) || !messageId || seenMessageIds.has(messageId)) continue;
+      seenMessageIds.add(messageId);
+      const send = await findSend(messageId, token);
+      if (send) sends.push(send);
+    }
+
+    subscribers = [];
+    const seenSubscriberIds = new Set();
+    for (const send of sends) {
+      const subscriberId = String(send?.subscriber_id || '');
+      if (!subscriberId || seenSubscriberIds.has(subscriberId)) continue;
+      seenSubscriberIds.add(subscriberId);
+      const subscriber = await getSubscriber(subscriberId, token);
+      if (subscriber) subscribers.push(subscriber);
+    }
+  } else {
+    [sends, subscribers] = await Promise.all([
+      dependencies.listCollection('newsletter_sends', token),
+      dependencies.listCollection('newsletter_subscribers', token),
+    ]);
+  }
+
+  const plan = planSesEventReconciliation(events, sends, subscribers, {
+    now: dependencies.now,
+  });
+  const applied = await applySesEventReconciliation(plan, token, {
+    setDoc: dependencies.setDoc,
+  });
+
+  return {
+    ok: true,
+    ...plan.summary,
+    ...applied,
+  };
+}
+
+async function findNewsletterSendByMessageId(messageId, token) {
+  const rows = await firestoreRequest(`${FIRESTORE_BASE}:runQuery`, {
+    method: 'POST',
+    token,
+    body: {
+      structuredQuery: {
+        from: [{ collectionId: 'newsletter_sends' }],
+        where: {
+          fieldFilter: {
+            field: { fieldPath: 'ses_message_id' },
+            op: 'EQUAL',
+            value: { stringValue: String(messageId) },
+          },
+        },
+        limit: 1,
+      },
+    },
+  });
+  const match = Array.isArray(rows)
+    ? rows.find((row) => row?.document)?.document
+    : null;
+  return match ? decodeDocument(match) : null;
+}
+
 async function upsertNewsletterIssueMetadata(issue, token, extra = {}) {
   const metadata = {
     id: issue.id,
@@ -598,6 +812,32 @@ function getCronSecret() {
 }
 
 async function getServerFirestoreToken() {
+  return getCachedToken(
+    SERVER_FIRESTORE_TOKEN_CACHE,
+    loadServerFirestoreToken,
+    Date.now(),
+    50 * 60 * 1000
+  );
+}
+
+async function getCachedToken(cache, loader, now = Date.now(), ttlMs = 50 * 60 * 1000) {
+  if (cache.token && cache.expiresAt > now) return cache.token;
+  if (cache.pending) return cache.pending;
+
+  cache.pending = (async () => {
+    const token = await loader();
+    cache.token = token;
+    cache.expiresAt = now + ttlMs;
+    return token;
+  })();
+  try {
+    return await cache.pending;
+  } finally {
+    cache.pending = null;
+  }
+}
+
+async function loadServerFirestoreToken() {
   if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
     return getServiceAccountAccessToken(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
   }
@@ -1059,4 +1299,9 @@ Object.assign(module.exports, {
   renderIssueForSubscriber,
   buildSesPayload,
   isWarsawNewsletterHour,
+  planSesEventReconciliation,
+  applySesEventReconciliation,
+  reconcileSesEvents,
+  handleSesReconcileRequest,
+  getCachedToken,
 });

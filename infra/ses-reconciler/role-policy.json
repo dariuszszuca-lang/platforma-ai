@@ -1,0 +1,31 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "WriteOwnLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:eu-central-1:261965598943:log-group:/aws/lambda/ai-team-ses-reconciler:*"
+    },
+    {
+      "Sid": "ReadReconcileToken",
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:eu-central-1:261965598943:parameter/ai-team/newsletter/cron-secret"
+    },
+    {
+      "Sid": "ConsumeSesEvents",
+      "Effect": "Allow",
+      "Action": [
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:ChangeMessageVisibility"
+      ],
+      "Resource": "arn:aws:sqs:eu-central-1:261965598943:cloud-cso-ses-events"
+    }
+  ]
+}

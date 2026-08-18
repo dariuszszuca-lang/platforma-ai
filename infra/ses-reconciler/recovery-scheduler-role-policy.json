@@ -1,0 +1,11 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "EnableOnlySesReconcilerMapping",
+      "Effect": "Allow",
+      "Action": "lambda:UpdateEventSourceMapping",
+      "Resource": "arn:aws:lambda:eu-central-1:261965598943:event-source-mapping:0e7e1e58-1707-4fec-a531-ef1c41ba0c7b"
+    }
+  ]
+}
