@@ -44,6 +44,9 @@ module.exports = async function handler(req, res) {
     if (body.welcomeTest) {
       return sendJson(res, 200, await sendWelcomeTest(String(body.welcomeTest), Number(body.welcomeStep || 1)));
     }
+    if (body.welcomeRun === true) {
+      return sendJson(res, 200, await processWelcomeSequence({ token }));
+    }
     const issueId = String(body.issueId || body.id || "").trim();
     if (!issueId) return sendJson(res, 400, { ok: false, error: "Brak issueId." });
 
@@ -138,11 +141,12 @@ async function processWelcomeSequence({ token }) {
   const all = await listCollection("newsletter_subscribers", token);
   const aws = getAwsConfig();
   const now = Date.now(), DAY = 86400000, runStart = now;
-  const budgetMs = Number(process.env.WELCOME_TIME_BUDGET_MS || 20000);
+  const budgetMs = Number(process.env.WELCOME_TIME_BUDGET_MS || 150000);
   const maxRun = Number(process.env.WELCOME_MAX_PER_RUN || 300);
-  let checked = 0, sent = 0, failed = 0;
+  // Najpierw pełna lista kandydatów posortowana (najniższy krok, potem najstarsi) —
+  // iterowanie po surowej kolejności bazy głodziło subskrybentów z końca listy.
+  const candidates = [];
   for (const sub of all) {
-    if (Date.now() - runStart > budgetMs || sent >= maxRun) break;
     const email = cleanEmail(sub.email);
     if (!email) continue;
     if ((sub.status || "active") !== "active") continue;
@@ -154,9 +158,15 @@ async function processWelcomeSequence({ token }) {
     if (!createdMs || createdMs < startMs) continue; // tylko nowi leadzi od startu automatu
     const step = Number(sub.welcome_step || 0);
     if (step >= emails.length) continue; // sekwencja skończona
-    checked++;
     const daysSince = Math.floor((now - createdMs) / DAY);
     if (step >= Math.min(emails.length, daysSince + 1)) continue; // jeszcze nie czas na kolejny
+    candidates.push({ sub, email, step, createdMs });
+  }
+  candidates.sort((a, b) => (a.step - b.step) || (a.createdMs - b.createdMs));
+  const checked = candidates.length;
+  let sent = 0, failed = 0;
+  for (const { sub, email, step } of candidates) {
+    if (Date.now() - runStart > budgetMs || sent >= maxRun) break;
     const em = emails[step];
     const subId = sub.id || docIdFromEmail(email);
     const issueId = `welcome-${em.step || step + 1}`;
