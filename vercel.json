@@ -32,6 +32,10 @@
     {
       "source": "/playbooki",
       "destination": "/playbooki.html"
+    },
+    {
+      "source": "/centrum-operacji-mailowych",
+      "destination": "/centrum-operacji-mailowych.html"
     }
   ],
   "redirects": [
