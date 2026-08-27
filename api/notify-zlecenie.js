@@ -21,7 +21,7 @@ const CATEGORY_LABELS = {
   os: "System OS / dedykowana aplikacja", crm: "Mini-System / CRM",
   strona: "Strona z AI", opieka: "Opieka po wdrożeniu", audyt: "Audyt AI firmy",
   sprint: "Sprint Automatyzacji", retainer: "Zewnętrzny Dział AI", inne: "Inne / nie wiem",
-  konsultacja: "Konsultacja AI", automatyzacja: "Automatyzacja procesu", narzedzie: "Narzędzie / Aplikacja", wdrozenie: "Wdrożenie AI",
+  konsultacja: "Konsultacja AI", kontakt: "Wiadomość z /kontakt", automatyzacja: "Automatyzacja procesu", narzedzie: "Narzędzie / Aplikacja", wdrozenie: "Wdrożenie AI",
 };
 const BUDGET_LABELS = { "<1k": "Do 1 000 zł", "1-3k": "1 000-3 000 zł", "3-10k": "3 000-10 000 zł", "10-25k": "10 000-25 000 zł", ">25k": "Powyżej 25 000 zł", "nie-wiem": "Czeka na wycenę" };
 const TIMELINE_LABELS = { asap: "ASAP (w tym tygodniu)", "2tyg": "W ciągu 2 tygodni", miesiac: "W ciągu miesiąca", rozglada: "Rozgląda się / planuje" };
@@ -49,6 +49,7 @@ module.exports = async function handler(req, res) {
     const description = String(body.description || body.brief || "").trim().slice(0, 4000);
     const budget = String(body.budget || "").trim().slice(0, 40);
     const timeline = String(body.timeline || "").trim().slice(0, 40);
+    const source = String(body.source || "zlecenie").replace(/[^a-z0-9-]/gi, "").slice(0, 30) || "zlecenie";
 
     if (!name || !email || !description) {
       return lib.sendJson(res, 400, { ok: false, error: "Brakuje pól: imię, email i opis projektu." });
@@ -57,7 +58,7 @@ module.exports = async function handler(req, res) {
     const catLabel = CATEGORY_LABELS[category] || category || "Nie określono";
     const budgetLabel = BUDGET_LABELS[budget] || budget || "—";
     const timelineLabel = TIMELINE_LABELS[timeline] || timeline || "—";
-    const subject = `Nowe zlecenie: ${name} (${catLabel})`;
+    const subject = source === "kontakt" ? `Nowa wiadomość z /kontakt: ${name}` : `Nowe zlecenie: ${name} (${catLabel})`;
 
     const delivered = [];
     const errors = [];
@@ -67,7 +68,7 @@ module.exports = async function handler(req, res) {
     const chatId = process.env.TELEGRAM_CHAT_ID;
     if (botToken && chatId) {
       try {
-        let msg = `🔔 NOWE ZLECENIE\n\n👤 ${name}\n📧 ${email}\n📞 ${phone || "nie podano"}\n📂 ${catLabel}\n💰 ${budgetLabel}\n⏱ ${timelineLabel}\n\n📝 ${description.slice(0, 600)}`;
+        let msg = `🔔 ${source === "kontakt" ? "NOWA WIADOMOŚĆ /kontakt" : "NOWE ZLECENIE"}\n\n👤 ${name}\n📧 ${email}\n📞 ${phone || "nie podano"}\n📂 ${catLabel}\n💰 ${budgetLabel}\n⏱ ${timelineLabel}\n\n📝 ${description.slice(0, 600)}`;
         const tg = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -84,8 +85,8 @@ module.exports = async function handler(req, res) {
     const notifyTo = process.env.ZLECENIE_NOTIFY_TO || process.env.SES_REPLY_TO || process.env.SES_FROM;
     if (process.env.SES_FROM && notifyTo) {
       try {
-        const text = `Nowe zlecenie z /zlecenie\n\nImie: ${name}\nEmail: ${email}\nTelefon: ${phone || "nie podano"}\nKategoria: ${catLabel}\nBudzet: ${budgetLabel}\nTermin: ${timelineLabel}\n\nOpis:\n${description}`;
-        const html = `<h2 style="font-family:Arial">Nowe zlecenie z /zlecenie</h2>
+        const text = `Nowe zgłoszenie z /${source}\n\nImie: ${name}\nEmail: ${email}\nTelefon: ${phone || "nie podano"}\nKategoria: ${catLabel}\nBudzet: ${budgetLabel}\nTermin: ${timelineLabel}\n\nOpis:\n${description}`;
+        const html = `<h2 style="font-family:Arial">Nowe zgłoszenie z /${esc(source)}</h2>
 <table style="font-family:Arial;font-size:14px;border-collapse:collapse">
 <tr><td style="padding:4px 10px;color:#777">Imię</td><td style="padding:4px 10px"><b>${esc(name)}</b></td></tr>
 <tr><td style="padding:4px 10px;color:#777">Email</td><td style="padding:4px 10px"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>

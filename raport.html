@@ -11,7 +11,7 @@
     <title>Raport „15 sposobów wdrożenia AI w małej firmie". pobierz | AI-Team</title>
     <meta name="description" content="Pobierz darmowy raport: 15 sprawdzonych sposobów wdrożenia AI w małej firmie. Praktyczny przewodnik, zero teorii, gotowe do działania.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ai-team.pl/raport.html">
+    <meta property="og:url" content="https://ai-team.pl/raport">
     <meta property="og:title" content="Raport AI. 15 sposobów wdrożenia | AI-Team">
     <meta property="og:description" content="22 strony konkretnych pomysłów na wdrożenie AI. Każdy z opisem, narzędziem, czasem wdrożenia. Darmowe.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-image.png">
@@ -20,6 +20,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   <script src="/assets/meta-pixel.js"></script>
     <!-- Meta Pixel Code -->
     <script>
@@ -161,14 +163,16 @@
       <span class="label-mono">FORMULARZ · 30 SEKUND</span>
       <h3>Email i dostajesz PDF na maila</h3>
       <p>Bonus: zapis do AI Radar (cotygodniowy newsletter). Bez spamu.</p>
-      <form action="https://formspree.io/f/your-id" method="POST" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
-        <input type="email" name="email" placeholder="twoj@email.pl" required style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
-        <input type="text" name="name" placeholder="Imię (opcjonalnie)" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
+      <form id="raport-form" method="POST" novalidate style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
+        <input type="text" name="company" id="raportCompany" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
+        <input type="email" name="email" id="raportEmail" placeholder="twoj@email.pl" required autocomplete="email" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
+        <input type="text" name="name" id="raportName" placeholder="Imię (opcjonalnie)" autocomplete="given-name" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
         <label style="font-size: 12px; color: rgba(251,248,241,0.7); display: flex; align-items: flex-start; gap: 10px;">
-          <input type="checkbox" required style="margin-top: 4px;" />
-          <span>Zgadzam się na otrzymywanie raportu PDF i newslettera AI Radar. Mogę wypisać się w każdej chwili.</span>
+          <input type="checkbox" id="raportConsent" name="consent" required style="margin-top: 4px;" />
+          <span>Zgadzam się na otrzymanie raportu PDF i newslettera AI Radar od Dariusza Szucy / AI-Team (dwa razy w tygodniu). Mogę wypisać się w każdej chwili jednym klikiem.</span>
         </label>
-        <button type="submit" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Pobierz raport PDF →</button>
+        <div id="raport-status" role="alert" style="display:none; color:#ffb4a2; font-size:13px; line-height:1.5;"></div>
+        <button type="submit" id="raportButton" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Pobierz raport PDF →</button>
       </form>
     </div>
   </div>
@@ -224,7 +228,7 @@
       </div>
       <div class="footer-col"><h5>Oferta</h5><a href="/wdrozenie-ai.html">Wdrożenie AI</a><a href="/warsztaty-ai.html">Akademia AI</a><a href="/zlecenie.html">Mini-System / CRM</a><a href="/produkt1-tracker.html">Tracker Czasu</a></div>
       <div class="footer-col"><h5>O nas</h5><a href="/#about">O autorze</a><a href="/#case">Przykład MyWay</a><a href="/ai-radar.html">Newsletter AI Radar</a></div>
-      <div class="footer-col"><h5>Kontakt</h5><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
+      <div class="footer-col"><h5>Kontakt</h5><a href="/kontakt">Formularz kontaktowy</a><a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a><a href="tel:+48730600383">+48 730 600 383</a><a href="https://wa.me/48730600383">WhatsApp</a><a href="#">Warsztaty: Sopot, Pułaskiego 7</a></div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
@@ -233,6 +237,56 @@
   </div>
 </footer>
 
+<script>
+const RAPORT_CONSENT_TEXT = 'Zgoda na otrzymanie raportu „15 sposobów wdrożenia AI w małej firmie" (PDF) i newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu. Wypis w każdej chwili jednym klikiem.';
+const firebaseConfig = {
+  apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
+  authDomain: 'ai-team-zlecenia.firebaseapp.com',
+  projectId: 'ai-team-zlecenia',
+  storageBucket: 'ai-team-zlecenia.firebasestorage.app',
+  messagingSenderId: '715537035293',
+  appId: '1:715537035293:web:fe2978df1e20bfc3e0d6f4',
+  measurementId: 'G-N62YHVDCKC'
+};
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+const raportDb = firebase.firestore();
+const raportForm = document.getElementById('raport-form');
+const raportButton = document.getElementById('raportButton');
+const raportStatus = document.getElementById('raport-status');
+function raportMsg(text) { raportStatus.style.display = 'block'; raportStatus.textContent = text; }
+function raportSubscriberId(email) { return btoa(email).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, ''); }
+raportForm.addEventListener('submit', async function (event) {
+  event.preventDefault();
+  const email = document.getElementById('raportEmail').value.trim().toLowerCase();
+  const name = document.getElementById('raportName').value.trim();
+  const consent = document.getElementById('raportConsent').checked;
+  const honeypot = document.getElementById('raportCompany').value;
+  if (!email || !email.includes('@')) { raportMsg('Wpisz poprawny adres email.'); return; }
+  if (!consent) { raportMsg('Zaznacz zgodę. Bez niej nie mogę wysłać raportu ani zapisać adresu.'); return; }
+  raportButton.disabled = true; raportButton.textContent = 'Zapisuję...';
+  raportStatus.style.display = 'none'; raportStatus.textContent = '';
+  try {
+    if (honeypot) { window.location.href = '/raport-dziekuje'; return; }
+    const now = new Date().toISOString();
+    const id = raportSubscriberId(email);
+    await raportDb.collection('newsletter_subscribers').doc(id).set({
+      id, email, name, group: 'ai-radar',
+      groups: ['ai-radar', 'ai-radar-2x', 'raport-15-sposobow'],
+      status: 'active', source: 'raport',
+      page_url: window.location.href, referrer: document.referrer || '',
+      consent: { newsletter: true, text: RAPORT_CONSENT_TEXT, accepted_at: now, privacy_url: 'https://ai-team.pl/privacy', privacy_version: '2026-07-29', version: '2026-08-27-raport-v1', frequency: 'twice_weekly' },
+      created_at: now, updated_at: now, last_signup_at: now
+    }, { merge: true });
+    if (window.fbq) fbq('track', 'Lead');
+    if (window.gtag) gtag('event', 'generate_lead', { method: 'raport_form' });
+    window.location.href = '/raport-dziekuje';
+  } catch (error) {
+    raportMsg('Nie udało się zapisać. Spróbuj za chwilę albo napisz na darek@ai-team.pl, wyślę raport ręcznie.');
+  } finally {
+    raportButton.disabled = false; raportButton.textContent = 'Pobierz raport PDF →';
+  }
+});
+</script>
 <script src="assets/main.js" defer></script>
 </body>
 </html>
