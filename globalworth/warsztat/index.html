@@ -159,6 +159,15 @@
   .it ol{margin:10px 0 0;padding-left:18px;font-size:14.5px;color:var(--muted)}
   .it li{margin-top:4px}
 
+  /* Microsoft 365 */
+  .m365{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+  .m365 .card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:24px 24px 22px}
+  .m365 .card .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+  .m365 .card h3{font-family:var(--sans);font-size:18px;font-weight:600;margin-top:8px;letter-spacing:-.01em}
+  .m365 .card p{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.58}
+  .m365 .card p b{color:var(--navy);font-weight:600}
+  .m365 .card .eff{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--navy)}
+  .m365-foot{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}
   /* Wycena */
   .price{margin-top:44px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
   .price-head,.price-row{display:grid;grid-template-columns:minmax(170px,.75fr) minmax(240px,1.5fr) 175px 175px}
@@ -219,6 +228,8 @@
     .row .what{border-right:0}
     .assist-grid{grid-template-columns:repeat(2,1fr)}
     .pack{grid-template-columns:1fr}
+    .m365{grid-template-columns:1fr}
+    .m365-foot{grid-template-columns:1fr}
     .price-head{display:none}
     .price-row{grid-template-columns:1fr 1fr}
     .price-row .s{grid-column:1 / -1;padding-top:0}
@@ -285,6 +296,7 @@
       <a href="#dzien-2">Dzień 2</a>
       <a href="#asystenci">Asystenci</a>
       <a href="#pakiet">Pakiet</a>
+      <a href="#m365">Microsoft 365</a>
       <a href="#wycena">Wycena</a>
     </nav>
     <a class="btn btn-paper" href="../">Wstępna oferta <span aria-hidden="true">↗</span></a>
@@ -392,7 +404,7 @@
       <div class="row break"><div class="time">11:15</div><div class="what">Przerwa</div><div class="how"></div><div class="dur">30 min</div></div>
       <div class="row"><div class="time">11:45</div><div class="what"><div class="proc">Sprint 2 · procesy 2, 3, 5</div><div class="name">Rejestr obiektu</div><div class="tools"><span>/umowa</span><span>/sla</span><span>/budzet</span></div></div><div class="how">Z umów obiektu budujemy komplet: karty umów, rejestr SLA, pozycje budżetowe, kalendarz terminów, lista odchyleń. Test „zapytaj umowę" na 10 trudnych pytaniach, które uczestnicy przygotowali dla siebie nawzajem.</div><div class="dur">60 min</div></div>
       <div class="row"><div class="time">12:45</div><div class="what"><div class="proc">Sprint 3 · procesy 4 i 6</div><div class="name">Zapytanie i dostawcy</div><div class="tools"><span>/zapytanie</span><span>/dostawcy</span></div></div><div class="how">Realne zapytanie ofertowe z obiektu uczestnika: od parametrów, przez listę dostawców z researchu, do tabeli porównawczej. Weryfikacja kontaktów i pytania kwalifikujące na pierwszą rozmowę.</div><div class="dur">40 min</div></div>
-      <div class="row"><div class="time">13:25</div><div class="what"><div class="proc">Automatyzacje</div><div class="name">Zadania cykliczne i źródła</div><div class="tools"><span>eksport Outlook</span><span>SharePoint</span></div></div><div class="how">Raport co piątek, przegląd SLA co miesiąc, kalendarz terminów co poniedziałek. Foldery z eksportami z Outlooka i SharePointa jako źródło dla asystentów. Rozdzielamy: co zespół uruchamia sam, a co wymaga zgody IT.</div><div class="dur">35 min</div></div>
+      <div class="row"><div class="time">13:25</div><div class="what"><div class="proc">Automatyzacje</div><div class="name">Zadania cykliczne i źródła</div><div class="tools"><span>eksport Outlook</span><span>SharePoint</span></div></div><div class="how">Raport co piątek, przegląd SLA co miesiąc, kalendarz terminów co poniedziałek. Foldery z eksportami z Outlooka i SharePointa jako źródło dla asystentów. <b>Pokaz:</b> asystent na żywej skrzynce i SharePoincie przez łącznik Microsoft 365 oraz agent w Copilocie. Rozdzielamy: co zespół uruchamia sam, a co wymaga zgody IT.</div><div class="dur">35 min</div></div>
       <div class="row"><div class="time">14:00</div><div class="what"><div class="proc">Standard zespołu</div><div class="name">7 kart SOP</div><div class="tools"><span>karta SOP</span><span>styl zespołu</span></div></div><div class="how">Jedna strona na proces: kiedy używać asystenta, co sprawdzić, kto zatwierdza. Wspólny styl komunikacji z najemcami. Propozycje uczestników do biblioteki zespołu.</div><div class="dur">30 min</div></div>
       <div class="row"><div class="time">14:30</div><div class="what"><div class="proc">Zamknięcie</div><div class="name">Test praktyczny, certyfikat, plan 30 dni</div><div class="tools"><span>3 zadania na czas</span></div></div><div class="how">Mail od najemcy, pytanie do umowy, raport tygodniowy. Certyfikat AI-Team „AI w Property Management". Co każdy wdraża w pierwszym miesiącu, kanał wsparcia, termin sesji Q&amp;A, lista spraw dla IT.</div><div class="dur">30 min</div></div>
     </div>
@@ -455,6 +467,28 @@
   </div>
 </section>
 
+<section class="section paper" id="m365">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-head">
+        <span class="eyebrow">Połączenie z Microsoft 365 i Copilotem</span>
+        <h2>Asystenci mogą pracować na Waszej skrzynce, SharePoincie i Copilocie, bez eksportów.</h2>
+        <p class="lead">Na warsztacie zaczynamy od plików i eksportów, bo to działa od pierwszej minuty. Docelowo asystenci łączą się z Microsoft 365 trzema drogami. Wszystkie trzy istnieją dziś w oficjalnej dokumentacji Microsoft i Anthropic, wszystkie zachowują uprawnienia użytkownika i zostawiają dane w Waszym tenancie.</p>
+      </div>
+      <div class="sec-meta">pokaz na sali: dzień 2, blok 13:25<br>wdrożenie: po decyzji IT</div>
+    </div>
+    <div class="m365 reveal">
+      <div class="card"><div class="n">Droga 1 · dane</div><h3>Skrzynka i dokumenty na żywo</h3><p><b>Łącznik Microsoft 365</b> (Anthropic): asystent czyta Outlook, SharePoint, OneDrive i Teams z uprawnieniami zalogowanego użytkownika. Dane zostają w tenancie, nic nie jest kopiowane ani zapisywane po stronie dostawcy. Zapis (wysyłka maila, kalendarz, pliki) włącza się osobno albo wcale.</p><div class="eff">Efekt: AI SKRZYNKA na prawdziwej skrzynce, AI UMOWA na umowach z SharePointa, AI RAPORT z wątków Teams.</div></div>
+      <div class="card"><div class="n">Droga 2 · wiedza</div><h3>Copilot jako źródło odpowiedzi</h3><p><b>Microsoft 365 Copilot APIs</b> w Microsoft Graph: Retrieval API zwraca fragmenty dokumentów z SharePointa i OneDrive z indeksu, którego używa Copilot, z zachowaniem uprawnień i etykiet poufności. Chat API (podgląd) pozwala zadać Copilotowi pytanie z aplikacji.</p><div class="eff">Efekt: „zapytaj umowę" i FAQ obiektu bez budowania własnej bazy, na indeksie, który już macie.</div></div>
+      <div class="card"><div class="n">Droga 3 · Copilot</div><h3>Nasi asystenci wewnątrz Copilota</h3><p><b>Agenci w Microsoft 365 Copilot i Copilot Studio:</b> te same instrukcje (AI SKRZYNKA, AI UMOWA, AI RAPORT) jako agent, którego zespół otwiera w Copilocie, z wtyczkami do serwerów MCP i API. Modele Claude są dostępne w Microsoft 365 Copilot, Copilot Studio i Microsoft Foundry.</p><div class="eff">Efekt: jeden standard zespołu w dwóch miejscach, w terminalu i w Copilocie, z tą samą wiedzą o obiekcie.</div></div>
+    </div>
+    <div class="m365-foot reveal">
+      <div class="note"><h3>Co decyduje IT</h3><ul><li>Rejestracja aplikacji w Entra ID i zakres uprawnień: na start tylko odczyt skrzynki i wybranych bibliotek SharePoint.</li><li>Gdzie działa model: Microsoft Foundry (Azure), konto zespołowe Claude albo Amazon Bedrock we Frankfurcie.</li><li>Które biblioteki i skrzynki są w zakresie pilota, kto ma dostęp do zapisu.</li></ul></div>
+      <div class="note mint"><h3>Jak to wchodzi do warsztatu</h3><p>Dzień 2, blok „Automatyzacje": pokaz połączenia na koncie testowym (skrzynka i SharePoint na żywo) oraz agenta w Copilocie. Zespół widzi cel, IT dostaje listę wymagań. Wdrożenie połączenia to osobny krok po warsztacie, patrz opcje w wycenie.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="section cream" id="wycena">
   <div class="wrap">
     <div class="sec-top">
@@ -474,7 +508,7 @@
     <div class="price-foot reveal">
       <div class="note"><h3>Warunki</h3><p>50% po akceptacji oferty, 50% po dniu 2 drugiej grupy, faktura VAT z terminem 14 dni. Zmiana terminu bez kosztów do 7 dni przed. Na życzenie NDA i umowa powierzenia wg wzoru Globalworth.</p></div>
       <div class="note"><h3>Poza ceną</h3><p>Licencje AI po warsztacie (zależą od opcji wybranej przez IT, zestawienie po decyzji), sale i catering u Państwa.</p></div>
-      <div class="note"><h3>Opcje</h3><p>Trzecia grupa w tym samym cyklu: 7 900 zł. Sesja dla kierowników, 2 h online: 1 500 zł. Stała opieka nad pakietem po 30 dniach: od 2 500 zł miesięcznie.</p></div>
+      <div class="note"><h3>Opcje</h3><p>Połączenie asystentów z Microsoft 365 (skrzynka, SharePoint, agent w Copilocie): od 4 900 zł, zakres po decyzji IT. Trzecia grupa w tym samym cyklu: 7 900 zł. Sesja dla kierowników, 2 h online: 1 500 zł. Stała opieka nad pakietem po 30 dniach: od 2 500 zł miesięcznie.</p></div>
     </div>
   </div>
 </section>
