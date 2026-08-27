@@ -1,5 +1,20 @@
 # Changelog
 
+## [2026-08-27] commit 2446044, /kontakt + naprawa formularza raportu
+
+- Nowa strona `/kontakt` (telefon, darek@ai-team.pl, godziny, WhatsApp, formularz 4 pola)
+  wysyłająca przez istniejące `/api/notify-zlecenie` z `source: kontakt`; API dostało
+  etykietę „Wiadomość z /kontakt" i temat maila zależny od źródła. Test live 27.08: OK.
+- `raport.html`: formularz wysyłał na `formspree.io/f/your-id` (placeholder, zapisy ginęły).
+  Teraz zapis do Firestore `newsletter_subscribers` (`source: raport`, grupa
+  `raport-15-sposobow`, ta sama zgoda co AI Radar) i przekierowanie na nową stronę
+  `/raport-dziekuje` z bezpośrednim pobraniem `assets/raport-15-sposobow-ai-v2.pdf` (noindex).
+- Link „Formularz kontaktowy" w stopce 9 stron, `/kontakt` w `sitemap.xml`,
+  w `llms.txt` mail poprawiony z nieistniejącego kontakt@ na darek@ai-team.pl.
+- Bez nowej funkcji Vercel (limit 12/12 na Hobby). Rollback: `79b75df`.
+- Znalezione przez „test agenta" (@cmo, 27.08). Do zrobienia: mailto na stronie
+  głównej i w sekcji systemu dalej wskazuje gmail; „Umów rozmowę" bez linku do /kontakt.
+
 ## [2026-08-07] rozbudowane odpowiedzi Globalworth
 
 - Formularz wyjaśnia, że odpowiedzi IT mogą być długie, napisane własnym
