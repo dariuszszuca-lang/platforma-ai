@@ -170,7 +170,7 @@
   .m365-foot{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}
   /* Wycena */
   .price{margin-top:44px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
-  .price-head,.price-row{display:grid;grid-template-columns:minmax(170px,.75fr) minmax(240px,1.5fr) 175px 175px}
+  .price-head,.price-row{display:grid;grid-template-columns:minmax(170px,.75fr) minmax(220px,1.4fr) 175px 190px}
   .price-head{background:var(--navy);color:#fff;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase}
   .price-head > div{padding:15px 18px}
   .price-row{border-bottom:1px solid var(--line)}
@@ -180,7 +180,9 @@
   .price-row .v small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-top:5px;font-weight:500}
   .price-row .s{font-size:14.5px;color:var(--muted);line-height:1.58}
   .price-row .p{font-family:var(--serif);font-size:24px;color:var(--navy);text-align:right;line-height:1.1;white-space:nowrap}
-  .price-row .p small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;letter-spacing:.06em}
+  .price-row .p small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;letter-spacing:.06em;white-space:normal;line-height:1.5}
+  .lic-head{font-family:var(--sans);font-size:22px;font-weight:600;letter-spacing:-.015em;margin-top:44px}
+  .lic-lead{font-size:15px;color:var(--muted);margin-top:8px;max-width:76ch;line-height:1.6}
   .price-head .r{text-align:right}
   .price-row.hot{background:var(--mint)}
   .price-foot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:18px}
@@ -461,7 +463,7 @@
       </div>
       <div class="pack-side">
         <div class="it"><h3>Pierwsze uruchomienie, 9:00 dnia 1</h3><ol><li>Klik w <b>Start</b> i logowanie.</li><li>Wywiad: asystent pyta, odpowiadasz zwykłym językiem.</li><li>Asystent zapisuje profil, personę, ofertę i listę spraw.</li><li>Pierwsze zadanie: „przeanalizuj tego maila od najemcy".</li></ol></div>
-        <div class="it"><h3>Uzgodnienie z IT</h3><p>Dziś jedynym dopuszczonym narzędziem AI jest Microsoft 365 Copilot (odpowiedź IT z 18 sierpnia). Pakiet wymaga zgody na <b>jeden podpisany program</b>, <b>dostęp sieciowy do usługi AI</b> i <b>łącznik Microsoft 365</b> (aplikacja w Entra ID, uprawnienia użytkownika, tylko odczyt). Przekażę IT gotową listę: co się instaluje, z czym się łączy, gdzie są dane. Do wyboru: konto zespołowe Claude, Claude przez Microsoft Foundry (Azure) albo Amazon Bedrock we Frankfurcie (dane w UE).</p><p><b>Na czas warsztatu</b> dostęp do AI zapewnia AI-Team, ćwiczymy wyłącznie na materiałach zanonimizowanych. <b>Plan B:</b> ten sam pakiet w przeglądarce, bez instalacji, jeśli zgoda IT nie zdąży przed dniem 1.</p></div>
+        <div class="it"><h3>Uzgodnienie z IT</h3><p>Dziś jedynym dopuszczonym narzędziem AI jest Microsoft 365 Copilot (odpowiedź IT z 18 sierpnia). Pakiet wymaga zgody na <b>jeden podpisany program</b>, <b>dostęp sieciowy do usługi AI</b> i <b>łącznik Microsoft 365</b> (aplikacja w Entra ID, uprawnienia użytkownika, tylko odczyt). Przekażę IT gotową listę: co się instaluje, z czym się łączy, gdzie są dane. Do wyboru: konto zespołowe Claude, Claude przez Microsoft Foundry (Azure) albo Amazon Bedrock we Frankfurcie (dane w UE).</p><p><b>Licencje:</b> przed dniem 1 każdy uczestnik ma własne konto Claude w planie firmowym kupionym przez Globalworth (Team albo Enterprise, rekomendacja w sekcji Wycena). Pakiet loguje się na to konto, dane zespołu zostają na koncie firmy.</p></div>
       </div>
     </div>
   </div>
@@ -502,13 +504,27 @@
     <div class="price reveal">
       <div class="price-head"><div>Poziom</div><div>Dla kogo</div><div class="r">Cena netto</div><div class="r">Za osobę</div></div>
       <div class="price-row"><div class="v">Za osobę<small>od 6 osób</small></div><div class="s">Pojedyncze zgłoszenia do grupy w jednej lokalizacji. Pełny program i pakiet dla każdego uczestnika.</div><div class="p">890 zł<small>netto / osoba</small></div><div class="p">890 zł<small>bez rabatu</small></div></div>
-      <div class="price-row"><div class="v">Pełna grupa<small>do 15 osób · 1 lokalizacja</small></div><div class="s">Cały zespół z jednego miasta w jednym terminie. Ryczałt za grupę niezależnie od liczby osób do 15.</div><div class="p">9 900 zł<small>netto / grupa</small></div><div class="p">660 zł<small>przy 15 os. · rabat 26%</small></div></div>
-      <div class="price-row hot"><div class="v">Dwie lokalizacje<small>2 grupy · do 30 osób · rekomendowane</small></div><div class="s">Warszawa oraz Katowice lub Kraków, dwie grupy w jednym cyklu, wspólna sesja Q&amp;A i jeden pakiet zespołu dla całego działu.</div><div class="p">17 900 zł<small>netto / dwie grupy</small></div><div class="p">597 zł<small>przy 30 os. · rabat 33%</small></div></div>
+      <div class="price-row"><div class="v">Pełna grupa<small>do 15 osób · 1 lokalizacja</small></div><div class="s">Cały zespół z jednego miasta w jednym terminie. Ryczałt za grupę niezależnie od liczby osób do 15.</div><div class="p">9 900 zł<small>netto / grupa</small></div><div class="p">660 zł<small>przy 15 os.<br>rabat 26%</small></div></div>
+      <div class="price-row hot"><div class="v">Dwie lokalizacje<small>2 grupy · do 30 osób · rekomendowane</small></div><div class="s">Warszawa oraz Katowice lub Kraków, dwie grupy w jednym cyklu, wspólna sesja Q&amp;A i jeden pakiet zespołu dla całego działu.</div><div class="p">17 900 zł<small>netto / dwie grupy</small></div><div class="p">597 zł<small>przy 30 os.<br>rabat 33%</small></div></div>
     </div>
     <div class="price-foot reveal">
       <div class="note"><h3>Warunki</h3><p>50% po akceptacji oferty, 50% po dniu 2 drugiej grupy, faktura VAT z terminem 14 dni. Zmiana terminu bez kosztów do 7 dni przed. Na życzenie NDA i umowa powierzenia wg wzoru Globalworth.</p></div>
-      <div class="note"><h3>Poza ceną</h3><p>Licencje AI po warsztacie (zależą od opcji wybranej przez IT, zestawienie po decyzji), sale i catering u Państwa.</p></div>
+      <div class="note"><h3>Poza ceną</h3><p>Licencje Claude dla uczestników (kupuje Globalworth, zestawienie i rekomendacja niżej), sale i catering u Państwa.</p></div>
       <div class="note"><h3>Opcje</h3><p>Drogi 2 i 3: Copilot APIs i asystenci jako agenci w Copilocie: od 4 900 zł, zakres po decyzji IT. Trzecia grupa w tym samym cyklu: 7 900 zł. Sesja dla kierowników, 2 h online: 1 500 zł. Stała opieka nad pakietem po 30 dniach: od 2 500 zł miesięcznie.</p></div>
+    </div>
+
+    <h3 class="lic-head reveal">Licencje Claude: co kupuje Globalworth przed dniem 1</h3>
+    <p class="lic-lead reveal">Każdy uczestnik potrzebuje miejsca w planie firmowym Claude. Ceny netto w USD za osobę miesięcznie wg cennika claude.com z 28 sierpnia 2026. Claude Code (silnik pakietu) i łącznik Microsoft 365 są w każdym z tych planów.</p>
+    <div class="price reveal">
+      <div class="price-head"><div>Plan</div><div>Dla kogo</div><div class="r">Cena za osobę</div><div class="r">Co daje</div></div>
+      <div class="price-row hot"><div class="v">Team, miejsce Standard<small>rekomendowany na start</small></div><div class="s">Cały zespół Property Management. Zespoły od 2 do 150 osób, wspólna przestrzeń, SSO, centralna administracja, admin łączników, bez trenowania modeli na Waszych danych.</div><div class="p">20 USD<small>rocznie · 25 USD miesięcznie</small></div><div class="p" style="font-family:var(--sans);font-size:14px;font-weight:500;white-space:normal;line-height:1.5">Claude Code w każdym miejscu, limity użycia na codzienną pracę ze skrzynką</div></div>
+      <div class="price-row"><div class="v">Team, miejsce Premium<small>dla 5 do 6 osób</small></div><div class="s">Zarządcy największych obiektów i osoby, które przepuszczają przez asystentów najwięcej maili i umów. Ten sam plan, wyższy limit.</div><div class="p">100 USD<small>rocznie · 125 USD miesięcznie</small></div><div class="p" style="font-family:var(--sans);font-size:14px;font-weight:500;white-space:normal;line-height:1.5">5 razy większe limity użycia niż Standard, dokupienie dodatkowej puli dla zespołu</div></div>
+      <div class="price-row"><div class="v">Enterprise<small>gdy wymaga Compliance</small></div><div class="s">Jedno miejsce z Claude Code, do tego SCIM, logi audytowe, role i uprawnienia, własne zasady retencji danych, API zgodności, lista dozwolonych adresów IP.</div><div class="p">20 USD<small>+ użycie wg stawek API</small></div><div class="p" style="font-family:var(--sans);font-size:14px;font-weight:500;white-space:normal;line-height:1.5">Kontrola i audyt na poziomie spółki giełdowej, koszt zależy od użycia</div></div>
+    </div>
+    <div class="price-foot reveal">
+      <div class="note mint"><h3>Rekomendacja</h3><p>Start: <b>Team w rozliczeniu rocznym</b>, Standard dla wszystkich uczestników i Premium dla 5 do 6 osób najczęściej w skrzynce, SSO włączone od pierwszego dnia. Orientacyjnie dla 30 osób: 30 × Standard = 600 USD miesięcznie; 24 × Standard + 6 × Premium = 1 080 USD miesięcznie. Przejście na Enterprise, gdy Compliance zażąda SCIM, logów audytowych i własnej retencji danych. Miejsca można dokupować w trakcie.</p></div>
+      <div class="note"><h3>Alternatywa przez Azure</h3><p>Claude jest dostępny w Microsoft Foundry, a pakiet (Claude Code) może korzystać z Foundry jako dostawcy modelu: rozliczenie za użycie na istniejącej umowie Microsoft, bez miejsc per osoba. Do potwierdzenia z IT, czy w takim układzie łącznik Microsoft 365 i administracja kont są dla Was wystarczające.</p></div>
+      <div class="note"><h3>Kto to załatwia</h3><p>Zakup i przypisanie miejsc: IT Globalworth, minimum tydzień przed dniem 1. AI-Team dostarcza listę uczestników z podziałem Standard i Premium, instrukcję logowania i ustawień administracyjnych (łączniki, retencja, SSO).</p></div>
     </div>
   </div>
 </section>
