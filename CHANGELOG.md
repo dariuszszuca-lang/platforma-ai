@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-08-28] commit 1bb468b, /systemy: gość zaznacza, co już u niego działa
+
+- W karcie systemu (modal po kliknięciu kafla) ramka „To już działa u mnie w firmie" z checkboxem.
+  Zaznaczenie w `localStorage` (`aiteam_systemy_mine`), kafel dostaje znaczek „✓ U CIEBIE"
+  (mosiądz, osobno od zielonego „DZIAŁA" Darka), w karcie dopisek „✓ DZIAŁA U CIEBIE".
+- Licznik pod mapą: „12 działa u mnie · 44 systemy · 3 etapy · X u Ciebie · wyczyść".
+- Zdarzenie GA4 `system_mine_toggle` (system, on). Bez zmian w danych 44 systemów. Rollback: `83eb20f`.
+
 ## [2026-08-27] commit 2446044, /kontakt + naprawa formularza raportu
 
 - Nowa strona `/kontakt` (telefon, darek@ai-team.pl, godziny, WhatsApp, formularz 4 pola)
