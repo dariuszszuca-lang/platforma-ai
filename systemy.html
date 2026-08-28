@@ -84,6 +84,14 @@
 .b-dot.nx{background:#B85C2E}
 .b-st{font-size:7.5px;letter-spacing:.1em;color:#2D7A2D;font-weight:700}
 .b-st.nx{color:#B85C2E}
+.blk.mine{background:#FFF;border-color:#8B6B3D}
+.b-st.mine{color:#8B6B3D}
+.sys-count b.m{color:#8B6B3D}
+.sys-count .clr{margin-left:8px;font-size:11px;color:rgba(28,25,23,.45);cursor:pointer;text-decoration:underline}
+.sys-card .mine-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:12px 14px;border:1px dashed rgba(139,107,61,.6);border-radius:10px;background:#FFF;cursor:pointer;font-size:13.5px;color:#1C1917;line-height:1.35}
+.sys-card .mine-row input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:#2D7A2D;cursor:pointer}
+.sys-card .mine-row small{display:block;font-size:11px;color:rgba(28,25,23,.5);margin-top:3px}
+.sys-card .mine-row.on{border-style:solid;border-color:#2D7A2D;background:#F1F8F1}
 .b-organ{margin-left:auto;font-size:7.5px;letter-spacing:.1em;color:rgba(28,25,23,.4);font-weight:600}
 .b-name{font-size:13px;font-weight:600;margin:3px 0 3px;color:#1C1917}
 .b-desc{font-size:10px;line-height:1.35;color:rgba(28,25,23,.55)}
@@ -264,6 +272,7 @@
     <div class="rels" id="sm-src"></div>
     <h4>ODBLOKOWUJE → CO DZIĘKI NIEMU RUSZY</h4>
     <div class="rels" id="sm-dst"></div>
+    <label class="mine-row" id="sm-mine-row"><input type="checkbox" id="sm-mine"><span>To już działa u mnie w firmie<small>Zaznaczenie zostaje w Twojej przeglądarce. Licznik u góry pokaże, ile z 44 już masz.</small></span></label>
     <a class="card-cta" href="/#cta">Chcę taki system u siebie → Mapa AI · 0 zł</a>
   </div>
 </div>
@@ -456,13 +465,31 @@ const SYS_EDGES={
  const SOURCES={}, META={}, ORG={}, STEP={}, BLKS={};
  Object.keys(SYS_EDGES).forEach(a=>SYS_EDGES[a].forEach(b=>{(SOURCES[b]=SOURCES[b]||[]).push(a)}));
  let doneCount=0;
+ const MINE_KEY='aiteam_systemy_mine';
+ let MINE=new Set();
+ try{MINE=new Set(JSON.parse(localStorage.getItem(MINE_KEY)||'[]'))}catch(e){}
+ function saveMine(){try{localStorage.setItem(MINE_KEY,JSON.stringify([...MINE]))}catch(e){}}
+ function paintMine(n){
+   const el=BLKS[n];if(!el)return;
+   const on=MINE.has(n);
+   el.classList.toggle('mine',on);
+   const b=el.querySelector('.b-st.mine');
+   if(on&&!b)el.querySelector('.b-organ').insertAdjacentHTML('beforebegin','<span class="b-st mine">✓ U CIEBIE</span>');
+   if(!on&&b)b.remove();
+ }
+ function renderCount(){
+   const c=document.getElementById('sys-count');
+   c.innerHTML='<b class="g">'+doneCount+'</b> działa u mnie · <b>44</b> systemy · <b>3</b> etapy'+(MINE.size?' · <b class="m">'+MINE.size+'</b> u Ciebie<span class="clr" id="sys-mine-clear">wyczyść</span>':'');
+   const x=document.getElementById('sys-mine-clear');
+   if(x)x.addEventListener('click',()=>{if(!confirm('Wyczyścić Twoje zaznaczenia?'))return;MINE.clear();saveMine();Object.keys(BLKS).forEach(paintMine);renderCount()});
+ }
  SYS_GROUPS.forEach(g=>g.s.forEach(p=>{
    ORG[p[0]]={organ:g.n,r:g.r};
    META[p[0]]={desc:p[1],done:p[2]===1};
    if(p[2]===1)doneCount++;
  }));
  SYS_ORDER.kroki.forEach((k,i)=>{STEP[k[0]]={no:i+1,etap:k[1]}});
- document.getElementById('sys-count').innerHTML='<b class="g">'+doneCount+'</b> działa · <b>44</b> systemy · <b>3</b> etapy';
+ renderCount();
 
  const map=document.getElementById('sys-map'), grid=document.getElementById('sys-grid'), svg=document.getElementById('sys-lines');
  let lastEtap=0;
@@ -484,7 +511,7 @@ const SYS_EDGES={
    const badge=m.done?'<span class="b-st">DZIAŁA</span>':(isNext?'<span class="b-st nx">W BUDOWIE</span>':'');
    const dot=m.done?'done':(isNext?'nx':'wip');
    el.innerHTML='<div class="b-num"><span class="b-dot '+dot+'"></span>'+String(st.no).padStart(2,'0')+' '+badge+'<span class="b-organ">'+ORG[n].organ.toUpperCase()+'</span></div><div class="b-name">'+n+'</div><div class="b-desc">'+m.desc+'</div>';
-   BLKS[n]=el;grid.appendChild(el);
+   BLKS[n]=el;grid.appendChild(el);paintMine(n);
  });
  map.appendChild(svg);
 
@@ -524,16 +551,27 @@ const SYS_EDGES={
  function chip(n){return '<span class="rel-chip" data-n="'+n+'">'+String(STEP[n].no).padStart(2,'0')+' · '+n+'</span>'}
  function openCard(n){
    const st=STEP[n], e=SYS_ORDER.etapy[st.etap-1];
-   const status=META[n].done?' · <span class="g">● DZIAŁA U MNIE</span>':(n===SYS_ORDER.next?' · ◐ W BUDOWIE TERAZ':' · ○ W KOLEJCE');
+   const status=(META[n].done?' · <span class="g">● DZIAŁA U MNIE</span>':(n===SYS_ORDER.next?' · ◐ W BUDOWIE TERAZ':' · ○ W KOLEJCE'))+(MINE.has(n)?' · <span class="g">✓ DZIAŁA U CIEBIE</span>':'');
    document.getElementById('sm-area').innerHTML='KROK '+String(st.no).padStart(2,'0')+'/44 · ETAP '+st.etap+' '+e.name.toUpperCase()+' · ORGAN: '+ORG[n].organ.toUpperCase()+status;
    document.getElementById('sm-name').textContent=n;
    document.getElementById('sm-desc').textContent=META[n].desc.charAt(0).toUpperCase()+META[n].desc.slice(1)+'.';
    const src=SOURCES[n]||[], dst=SYS_EDGES[n]||[];
    document.getElementById('sm-src').innerHTML=src.length?src.map(chip).join(''):'<span class="none">start drogi, nie potrzebuje niczego przed sobą</span>';
    document.getElementById('sm-dst').innerHTML=dst.length?dst.map(chip).join(''):'<span class="none">koniec łańcucha, wynik trafia do Ciebie</span>';
+   const cb=document.getElementById('sm-mine');cb.checked=MINE.has(n);cb.dataset.n=n;
+   document.getElementById('sm-mine-row').classList.toggle('on',cb.checked);
    modal.classList.add('open');
    if(typeof gtag==='function')gtag('event','system_card_open',{system:n});
  }
+ document.getElementById('sm-mine').addEventListener('change',e=>{
+   const n=e.target.dataset.n;if(!n)return;
+   if(e.target.checked)MINE.add(n);else MINE.delete(n);
+   saveMine();paintMine(n);renderCount();
+   document.getElementById('sm-mine-row').classList.toggle('on',e.target.checked);
+   const st=document.getElementById('sm-area');
+   st.innerHTML=st.innerHTML.replace(' · <span class="g">✓ DZIAŁA U CIEBIE</span>','')+(e.target.checked?' · <span class="g">✓ DZIAŁA U CIEBIE</span>':'');
+   if(typeof gtag==='function')gtag('event','system_mine_toggle',{system:n,on:e.target.checked?1:0});
+ });
  modal.addEventListener('click',e=>{
    const c=e.target.closest('.rel-chip');
    if(c){openCard(c.dataset.n);select(c.dataset.n);return}
