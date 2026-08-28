@@ -184,6 +184,8 @@
   .lic-head{font-family:var(--sans);font-size:22px;font-weight:600;letter-spacing:-.015em;margin-top:44px}
   .lic-lead{font-size:15px;color:var(--muted);margin-top:8px;max-width:76ch;line-height:1.6}
   .price-head .r{text-align:right}
+  .save{display:inline-block;margin-top:8px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--green-dark);background:var(--mint);border:1px solid rgba(31,122,78,.3);border-radius:6px;padding:3px 8px;white-space:nowrap}
+  .price-row.hot .save{background:#fff}
   .price-row.hot{background:var(--mint)}
   .price-foot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:18px}
 
@@ -486,7 +488,7 @@
     </div>
     <div class="m365-foot reveal">
       <div class="note"><h3>Co decyduje IT</h3><ul><li>Przed dniem 1: zgoda na łącznik Microsoft 365 w Entra ID, uprawnienia użytkownika, tylko odczyt skrzynki i wybranych bibliotek SharePoint. Bez zgody warsztat idzie na eksportach, łącznik dołączamy, gdy zgoda będzie.</li><li>Gdzie działa model: Microsoft Foundry (Azure), konto zespołowe Claude albo Amazon Bedrock we Frankfurcie.</li><li>Które biblioteki i skrzynki są w zakresie pilota, kto ma dostęp do zapisu.</li></ul></div>
-      <div class="note mint"><h3>Jak to wchodzi do warsztatu</h3><p>Droga 1: dzień 1, 9:00, każdy loguje się swoim kontem Microsoft i od bloku AI SKRZYNKA pracuje na własnej skrzynce. Drogi 2 i 3: dzień 2, blok „Automatyzacje", pokaz agenta w Copilocie i pytania do indeksu Copilota. Zespół widzi cel, IT dostaje listę wymagań, wdrożenie po warsztacie, patrz opcje w wycenie.</p></div>
+      <div class="note mint"><h3>Jak to wchodzi do warsztatu</h3><p>Droga 1: dzień 1, 9:00, każdy loguje się swoim kontem Microsoft i od bloku AI SKRZYNKA pracuje na własnej skrzynce. Drogi 2 i 3: dzień 2, blok „Automatyzacje", pokaz agenta w Copilocie i pytania do indeksu Copilota. Zespół widzi cel, IT dostaje listę wymagań, wdrożenie po warsztacie jako osobny krok.</p></div>
     </div>
   </div>
 </section>
@@ -497,19 +499,18 @@
       <div class="sec-head">
         <span class="eyebrow">Wycena</span>
         <h2>Jeden program, dwa poziomy ceny.</h2>
-        <p class="lead">Zawsze ten sam zakres: dzień 1 i dzień 2 na sali (12 h, od instalacji pakietu), łącznik Microsoft 365 skonfigurowany na sali (po zgodzie IT), pakiet startowy z 9 asystentami, 7 kart SOP, certyfikat, materiały online 12 miesięcy, 30 dni wsparcia i sesja Q&amp;A. Ceny netto, do kwot doliczamy 23% VAT. Punkt odniesienia: cennik otwartych warsztatów AI-Team, 600 zł za osobę za dzień (1 200 zł za dwa dni). Dojazd, nocleg i materiały są w cenie, Globalworth nie dopłaca nic ponad kwotę z tabeli.</p>
+        <p class="lead">Zawsze ten sam zakres: dzień 1 i dzień 2 na sali (12 h, od instalacji pakietu), łącznik Microsoft 365 skonfigurowany na sali (po zgodzie IT), pakiet startowy z 9 asystentami, 7 kart SOP, certyfikat, materiały online 12 miesięcy, 30 dni wsparcia i sesja Q&amp;A. Ceny netto, do kwot doliczamy 23% VAT. <strong>Cena regularna warsztatów AI-Team: 1 200 zł za osobę za dwa dni.</strong> Oszczędność w tabeli liczona jest względem tej ceny. Dojazd, nocleg i materiały są w cenie, Globalworth nie dopłaca nic ponad kwotę z tabeli.</p>
       </div>
       <div class="sec-meta">oferta ważna 30 dni<br>start 2 do 3 tygodnie od akceptacji<br>jeden wyjazd na miasto: 2 dni pod rząd</div>
     </div>
     <div class="price reveal">
-      <div class="price-head"><div>Poziom</div><div>Dla kogo</div><div class="r">Za osobę</div><div class="r">Razem i oszczędność</div></div>
-      <div class="price-row"><div class="v">Pełna grupa<small>do 15 osób · 1 lokalizacja</small></div><div class="s">Cały zespół z jednego miasta w jednym terminie. Ryczałt za grupę niezależnie od liczby osób do 15.</div><div class="p">660 zł<small>przy 15 os.</small></div><div class="p">9 900 zł<small>ryczałt netto / grupa<br>oszczędność 8 100 zł (45%)<br>vs 1 200 zł/os w cenniku otwartym</small></div></div>
-      <div class="price-row hot"><div class="v">Dwie lokalizacje<small>2 grupy · 20 do 30 osób · rekomendowane</small></div><div class="s">Warszawa oraz Katowice lub Kraków, dwie grupy w jednym cyklu, wspólna sesja Q&amp;A i jeden pakiet zespołu dla całego działu. Stała cena za osobę, płatność za całość z góry.</div><div class="p">550 zł<small>netto / osoba<br>110 zł taniej na osobie</small></div><div class="p">16 500 zł<small>przy 30 os., całość z góry<br>oszczędność 3 300 zł vs 2 × pełna grupa<br>i 19 500 zł (54%) vs cennik otwarty</small></div></div>
+      <div class="price-head"><div>Poziom</div><div>Dla kogo</div><div class="r">Za osobę</div><div class="r">Razem</div></div>
+      <div class="price-row"><div class="v">Pełna grupa<small>do 15 osób · 1 lokalizacja</small></div><div class="s">Cały zespół z jednego miasta w jednym terminie. Ryczałt za grupę niezależnie od liczby osób do 15.</div><div class="p">660 zł<small>przy 15 os.<br>cena regularna 1 200 zł</small></div><div class="p">9 900 zł<small>ryczałt netto za grupę</small><span class="save">Oszczędzasz 8 100 zł (45%)</span></div></div>
+      <div class="price-row hot"><div class="v">Dwie lokalizacje<small>2 grupy · 20 do 30 osób · rekomendowane</small></div><div class="s">Warszawa oraz Katowice lub Kraków, dwie grupy w jednym cyklu, wspólna sesja Q&amp;A i jeden pakiet zespołu dla całego działu. Stała cena za osobę, płatność za całość z góry.</div><div class="p">550 zł<small>netto za osobę<br>cena regularna 1 200 zł</small></div><div class="p">16 500 zł<small>przy 30 osobach, całość z góry</small><span class="save">Oszczędzasz 19 500 zł (54%)</span></div></div>
     </div>
-    <div class="price-foot reveal">
+    <div class="price-foot reveal" style="grid-template-columns:1fr 1fr">
       <div class="note"><h3>Warunki</h3><p>Płatność na fakturę VAT przed szkoleniem: faktura po akceptacji oferty, termin 14 dni, zapłata przed dniem 1. Przy dwóch lokalizacjach jedna faktura za całość. Zmiana terminu bez kosztów do 7 dni przed. Na życzenie NDA i umowa powierzenia wg wzoru Globalworth.</p></div>
       <div class="note"><h3>Poza ceną i miejsce</h3><p>Tylko licencje Claude dla uczestników (kupuje Globalworth, zestawienie i rekomendacja niżej). <b>Miejsce do potwierdzenia:</b> czy warsztaty odbywają się u Państwa w biurze (Warszawa oraz Katowice lub Kraków)? Potrzebna sala z rzutnikiem i wi-fi dla grupy do 15 osób. Jeśli wolicie salę zewnętrzną, zorganizuję ją, koszt wynajmu po stronie Globalworth. Dojazd, nocleg i materiały prowadzącego są w cenie, bez dopłat.</p></div>
-      <div class="note"><h3>Opcje</h3><p>Drogi 2 i 3: Copilot APIs i asystenci jako agenci w Copilocie: od 4 900 zł, zakres po decyzji IT. Trzecia grupa w tym samym cyklu: 7 900 zł. Sesja dla kierowników, 2 h online: 1 500 zł. Stała opieka nad pakietem po 30 dniach: od 2 500 zł miesięcznie.</p></div>
     </div>
 
     <h3 class="lic-head reveal">Licencje Claude: co kupuje Globalworth przed dniem 1</h3>
