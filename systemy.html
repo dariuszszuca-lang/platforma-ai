@@ -84,9 +84,10 @@
 .b-dot.nx{background:#B85C2E}
 .b-st{font-size:7.5px;letter-spacing:.1em;color:#2D7A2D;font-weight:700}
 .b-st.nx{color:#B85C2E}
-.blk.mine{background:#FFF;border-color:#8B6B3D}
-.b-st.mine{color:#8B6B3D}
-.sys-count b.m{color:#8B6B3D}
+.blk.mine{border-left:3px solid #2D7A2D}
+.b-st.mine{color:#2D7A2D}
+.b-dot.mine{background:#2D7A2D;border-color:#2D7A2D}
+.sys-count b.m{color:#2D7A2D}
 .sys-count .clr{margin-left:8px;font-size:11px;color:rgba(28,25,23,.45);cursor:pointer;text-decoration:underline}
 .sys-card .mine-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:12px 14px;border:1px dashed rgba(139,107,61,.6);border-radius:10px;background:#FFF;cursor:pointer;font-size:13.5px;color:#1C1917;line-height:1.35}
 .sys-card .mine-row input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:#2D7A2D;cursor:pointer}
@@ -473,6 +474,7 @@ const SYS_EDGES={
    const el=BLKS[n];if(!el)return;
    const on=MINE.has(n);
    el.classList.toggle('mine',on);
+   const d=el.querySelector('.b-dot');if(d)d.classList.toggle('mine',on);
    const b=el.querySelector('.b-st.mine');
    if(on&&!b)el.querySelector('.b-organ').insertAdjacentHTML('beforebegin','<span class="b-st mine">✓ U CIEBIE</span>');
    if(!on&&b)b.remove();
