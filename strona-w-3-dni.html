@@ -309,6 +309,16 @@
 (function () {
   var form = document.getElementById('plan-form');
   var status = document.getElementById('plan-status');
+  // Token czasu (anty-bot): pobierany przy pierwszym dotknieciu formularza, serwer wymaga min. 4 s do wysylki.
+  var zlToken = '';
+  var zlTokenAsked = false;
+  function askToken() {
+    if (zlTokenAsked) return; zlTokenAsked = true;
+    fetch('/api/notify-zlecenie?token=1').then(function (r) { return r.json(); })
+      .then(function (d) { zlToken = (d && d.token) || ''; }).catch(function () {});
+  }
+  form.addEventListener('focusin', askToken, { once: true });
+  form.addEventListener('pointerdown', askToken, { once: true });
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     var btn = form.querySelector('button[type="submit"]');
@@ -320,7 +330,8 @@
       phone: form.phone.value,
       category: 'strona',
       description: (form.website.value ? 'Obecna strona: ' + form.website.value + '\n' : '') + form.description.value + '\n[Lead: bezpłatny plan strony + checklista, landing strona-w-3-dni]',
-      company: form.company.value
+      company: form.company.value,
+      token: zlToken
     };
     try {
       var r = await fetch('/api/notify-zlecenie', {
