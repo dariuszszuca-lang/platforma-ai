@@ -83,8 +83,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/mega.css?v=202609042330">
-<link rel="stylesheet" href="/assets/mega-fx.css?v=202609042330">
+<link rel="stylesheet" href="/assets/mega.css?v=202609042350">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609042350">
 <script src="/assets/meta-pixel.js"></script>
 </head>
 <body>
@@ -92,8 +92,8 @@
 <nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
-      <img src="/assets/ai-team-logo-256.png" alt="" width="34" height="34">
-      AI-Team <span class="tag">Gdańsk</span>
+      <span class="mark"><img src="/assets/ai-team-logo-256.png" alt="" width="40" height="40"><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
     </a>
     <div class="menu" id="menu">
       <a href="/systemy">Systemy i CRM</a>
@@ -297,15 +297,15 @@
       </div>
     </div>
     <div class="reviews">
-      <div class="card review rv">
+      <div class="card review rv"><span class="q" aria-hidden="true">„</span>
         <p>„Darek zrobił nam CRM w 12 dni. Agencja wcześniej chciała 35 tys. i 3 miesiące. Mamy lepszy system, własny kod, zero abonamentu."</p>
         <div class="who"><b>Krystian Nagaba</b>MyWay Kąpino, ośrodek terapii</div>
       </div>
-      <div class="card review rv">
+      <div class="card review rv"><span class="q" aria-hidden="true">„</span>
         <p>„Warsztat AI wartościowszy niż 3 lata kursów online. Wyszedłem z asystentem, który dziś sam pisze oferty z notatki głosowej."</p>
         <div class="who"><b>Wojtek M.</b>agent nieruchomości, Keller Williams</div>
       </div>
-      <div class="card review rv">
+      <div class="card review rv"><span class="q" aria-hidden="true">„</span>
         <p>„Mapa AI to było 30 minut, ale dało mi jasność, której nie miałam od roku. Wdrożyłam 3 z 5 rekomendacji. Zwrot w miesiąc."</p>
         <div class="who"><b>Sylwia W.</b>doradztwo, Trójmiasto</div>
       </div>
@@ -315,7 +315,7 @@
 
 <section class="sec about" id="autor">
   <div class="wrap grid">
-    <div class="photo rv"><img src="/assets/darek-szuca.jpg" alt="Darek Szuca" width="593" height="800" loading="lazy"></div>
+    <div class="photo rv"><div class="frame"><img src="/assets/darek-szuca.jpg" alt="Darek Szuca" width="593" height="800" loading="lazy"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><span class="chip ok live"><span class="dot"></span>Dział AI pracuje</span></div></div>
     <div class="txt rv">
       <span class="eyebrow">Kto to robi</span>
       <h2>Darek Szuca. Jedna osoba, cały dział.</h2>
@@ -332,6 +332,7 @@
 </section>
 
 <section class="sec" id="radar">
+  <div class="sweep" aria-hidden="true"><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><span class="beam"></span><span class="blip b1"></span><span class="blip b2"></span><span class="blip b3"></span></div>
   <div class="wrap radar">
     <div class="rv">
       <span class="eyebrow">AI Radar · poniedziałki</span>
@@ -341,9 +342,9 @@
     </div>
     <div class="card rv">
       <span class="mono">Ostatnie wydania</span>
-      <div class="issue"><a href="/newsletter/ai-radar-012-makieta-w-15-minut" style="text-decoration:none">Koniec z kodowaniem na ślepo: najpierw makieta</a><span>#012</span></div>
-      <div class="issue"><a href="/newsletter/ai-radar-011-nocny-lejek" style="text-decoration:none">Klient o 2:48 w nocy, czyli lejek, który nie śpi</a><span>#011</span></div>
-      <div class="issue"><a href="/newsletter/ai-radar-010-portal-monitoringu" style="text-decoration:none">Portal Monitoringu, czyli firma, która sama mówi, czy działa</a><span>#010</span></div>
+      <div class="issue"><span class="px"></span><a href="/newsletter/ai-radar-012-makieta-w-15-minut" style="text-decoration:none">Koniec z kodowaniem na ślepo: najpierw makieta</a><span>#012</span></div>
+      <div class="issue"><span class="px"></span><a href="/newsletter/ai-radar-011-nocny-lejek" style="text-decoration:none">Klient o 2:48 w nocy, czyli lejek, który nie śpi</a><span>#011</span></div>
+      <div class="issue"><span class="px"></span><a href="/newsletter/ai-radar-010-portal-monitoringu" style="text-decoration:none">Portal Monitoringu, czyli firma, która sama mówi, czy działa</a><span>#010</span></div>
       <a href="/ai-radar" class="link" style="justify-self:start;margin-top:8px">Zobacz AI Radar<span class="arr">→</span></a>
     </div>
   </div>
@@ -376,6 +377,7 @@
       <div class="cta" style="margin-top:26px"><a href="/kontakt" class="btn">Umów rozmowę <span class="arr">→</span></a></div>
     </div>
     <div class="ways rv">
+      <div class="now"><span class="k">Gdańsk, teraz</span><span class="clock num" id="clock">--:--</span><span class="chip" id="avail">sprawdzam godziny</span></div>
       <a class="way" href="tel:+48730600383"><span class="k">Telefon</span><span class="v">730 600 383</span></a>
       <a class="way" href="mailto:darek@ai-team.pl"><span class="k">Mail</span><span class="v">darek@ai-team.pl</span></a>
       <a class="way" href="https://wa.me/48730600383" rel="noopener"><span class="k">WhatsApp</span><span class="v">napisz</span></a>
@@ -385,10 +387,11 @@
 </section>
 
 <footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
       <div>
-        <a href="/" class="brand"><img src="/assets/ai-team-logo-256.png" alt="" width="34" height="34">AI-Team</a>
+        <a href="/" class="brand"><span class="mark"><img src="/assets/ai-team-logo-256.png" alt="" width="40" height="40"><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
         <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
       </div>
       <div>
@@ -427,7 +430,7 @@
   </div>
 </footer>
 
-<script src="/assets/mega.js?v=202609042330" defer></script>
-<script src="/assets/mega-fx.js?v=202609042330" defer></script>
+<script src="/assets/mega.js?v=202609042350" defer></script>
+<script src="/assets/mega-fx.js?v=202609042350" defer></script>
 </body>
 </html>

@@ -163,4 +163,20 @@
   if (steps && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { steps.classList.add('draw'); } }); }, { threshold: 0.4 }).observe(steps);
   } else if (steps) steps.classList.add('draw');
+
+  /* kontakt: zegar Gdańsk i dostępność (dni robocze 9 do 17 wg oferty) */
+  var clock = document.getElementById('clock'), avail = document.getElementById('avail');
+  if (clock) {
+    function tick() {
+      var now = new Date();
+      var f = new Intl.DateTimeFormat('pl-PL', { timeZone: 'Europe/Warsaw', hour: '2-digit', minute: '2-digit', weekday: 'short', hour12: false });
+      var parts = {}; f.formatToParts(now).forEach(function (p) { parts[p.type] = p.value; });
+      clock.textContent = parts.hour + ':' + parts.minute;
+      var wd = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Warsaw' })).getDay();
+      var hr = parseInt(parts.hour, 10);
+      var open = wd >= 1 && wd <= 5 && hr >= 9 && hr < 17;
+      if (avail) { avail.textContent = open ? 'odbieram' : 'poza godzinami, odpiszę'; avail.className = 'chip ' + (open ? 'ok' : ''); }
+    }
+    tick(); setInterval(tick, 30000);
+  }
 })();
