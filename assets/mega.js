@@ -146,6 +146,31 @@
     typeName(S[state.ind].name, function () { dlater(function () { cycle(k + 1); }, 3200); });
   }
 
+  /* stała wysokość planszy: mierzy najwyższy scenariusz i blokuje na nim wysokość,
+     żeby zmiana branży ani auto-demo nie ruszały całej strony (layout shift). Tylko desktop. */
+  function evHtml(e, f) {
+    return '<li class="ev in' + (e[3] === 'wait' ? ' wait' : '') + '"><span class="t">' + e[0] +
+      '</span><div><div class="who"><span class="role">' + esc(e[1]) + '</span>' +
+      (e[3] === 'wait' ? '<span class="chip wait">czeka na Twoje OK</span>' : '<span class="chip ok">zrobione</span>') +
+      '</div><div class="txt">' + e[2].replace(/\{f\}/g, f) + '</div></div></li>';
+  }
+  function lockHeight() {
+    if (!log) return;
+    if (window.innerWidth <= 960) { log.style.height = ''; return; }
+    var keep = log.innerHTML;
+    log.style.height = 'auto';
+    var probe = 'Przedsiębiorstwo Przykładowe XY';
+    var max = 0;
+    order.forEach(function (ind) {
+      log.innerHTML = S[ind].ev.map(function (e) { return evHtml(e, probe); }).join('');
+      if (log.scrollHeight > max) max = log.scrollHeight;
+    });
+    log.innerHTML = keep;
+    log.style.height = max + 'px';
+  }
+  var rzt;
+  window.addEventListener('resize', function () { clearTimeout(rzt); rzt = setTimeout(lockHeight, 150); }, { passive: true });
+
   if (input) {
     input.addEventListener('input', function () { stopDemo(); state.name = input.value.trim(); setName(); });
     input.addEventListener('focus', stopDemo);
@@ -161,6 +186,7 @@
   }
 
   if (demo.on) state.name = S.salon.name.slice(0, 1);
+  lockHeight();
   render(true);
   if (demo.on) dlater(function () { typeName(S.salon.name, function () { dlater(function () { cycle(1); }, 3200); }); }, 1400);
   else if (input) input.value = S.salon.name;
