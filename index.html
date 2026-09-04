@@ -83,7 +83,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/mega.css?v=202609042310">
+<link rel="stylesheet" href="/assets/mega.css?v=202609042330">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609042330">
 <script src="/assets/meta-pixel.js"></script>
 </head>
 <body>
@@ -157,6 +158,13 @@
   </div>
 </header>
 
+<section class="moc" id="moc" aria-label="Co robi Dział AI">
+  <div class="wrap">
+    <p class="big">Skrzynka. Posty. Umowy. Rezerwacje. Raport dnia. Codziennie, bez etatu.</p>
+    <div class="sub"><span class="bar"><i></i></span><span class="mono">tak wygląda praca Działu AI w małej firmie</span></div>
+  </div>
+</section>
+
 <section class="sec" id="cennik">
   <div class="wrap">
     <div class="sec-head rv">
@@ -225,7 +233,7 @@
   </div>
 </section>
 
-<section class="sec" id="dowod">
+<section class="sec dark" id="dowod">
   <div class="wrap">
     <div class="sec-head rv">
       <div class="t">
@@ -243,15 +251,16 @@
       </div>
       <div class="rv col-stat">
         <div class="stats">
-          <div><span class="n">12 h</span><span class="l">tygodniowo mniej pracy ręcznej</span></div>
-          <div><span class="n">8</span><span class="l">stron plus CRM i rezerwacje</span></div>
-          <div><span class="n">2 lata</span><span class="l">stałej opieki i rozwoju</span></div>
+          <div><span class="n" data-n="12" data-suf=" h">12 h</span><span class="l">tygodniowo mniej pracy ręcznej</span></div>
+          <div><span class="n" data-n="8" data-suf="">8</span><span class="l">stron plus CRM i rezerwacje</span></div>
+          <div><span class="n" data-n="2" data-suf=" lata">2 lata</span><span class="l">stałej opieki i rozwoju</span></div>
         </div>
         <blockquote class="quote">„Darek zrobił nam CRM w 12 dni. Agencja wcześniej chciała 35 tys. i 3 miesiące. Mamy lepszy system, własny kod, zero abonamentu."
           <cite>Krystian Nagaba, MyWay Kąpino</cite>
         </blockquote>
       </div>
     </div>
+    <div class="ticker" aria-hidden="true"><div class="track"><span class="it"><span class="t">07:00</span><span class="r">@KLON</span><span>skrzynka posortowana, 2 szkice odpowiedzi</span></span><span class="it"><span class="t">08:15</span><span class="r">REZERWACJE</span><span>3 wizyty z nocy zapisane</span></span><span class="it"><span class="t">08:30</span><span class="r">STRONA</span><span>nowa oferta z CRM na stronie i w social media</span></span><span class="it"><span class="t">09:00</span><span class="r">@MARKETING</span><span>post do akceptacji</span></span><span class="it"><span class="t">10:00</span><span class="r">@SPRZEDAŻ</span><span>oferta z notatki głosowej, PDF gotowy</span></span><span class="it"><span class="t">11:30</span><span class="r">CRM</span><span>klientka bez wizyty od 3 miesięcy, wiadomość gotowa</span></span><span class="it"><span class="t">12:30</span><span class="r">DOKUMENTY</span><span>umowa PDF z danych z CRM</span></span><span class="it"><span class="t">13:00</span><span class="r">@OPERACYJNY</span><span>kopia bazy i SSL sprawdzone</span></span><span class="it"><span class="t">14:30</span><span class="r">CRM</span><span>2 firmy bez odpowiedzi od 14 dni, przypomnienia</span></span><span class="it"><span class="t">16:00</span><span class="r">@STRATEGIA</span><span>raport dnia na Telegram</span></span><span class="it"><span class="t">07:00</span><span class="r">@KLON</span><span>skrzynka posortowana, 2 szkice odpowiedzi</span></span><span class="it"><span class="t">08:15</span><span class="r">REZERWACJE</span><span>3 wizyty z nocy zapisane</span></span><span class="it"><span class="t">08:30</span><span class="r">STRONA</span><span>nowa oferta z CRM na stronie i w social media</span></span><span class="it"><span class="t">09:00</span><span class="r">@MARKETING</span><span>post do akceptacji</span></span><span class="it"><span class="t">10:00</span><span class="r">@SPRZEDAŻ</span><span>oferta z notatki głosowej, PDF gotowy</span></span><span class="it"><span class="t">11:30</span><span class="r">CRM</span><span>klientka bez wizyty od 3 miesięcy, wiadomość gotowa</span></span><span class="it"><span class="t">12:30</span><span class="r">DOKUMENTY</span><span>umowa PDF z danych z CRM</span></span><span class="it"><span class="t">13:00</span><span class="r">@OPERACYJNY</span><span>kopia bazy i SSL sprawdzone</span></span><span class="it"><span class="t">14:30</span><span class="r">CRM</span><span>2 firmy bez odpowiedzi od 14 dni, przypomnienia</span></span><span class="it"><span class="t">16:00</span><span class="r">@STRATEGIA</span><span>raport dnia na Telegram</span></span></div></div>
   </div>
 </section>
 
@@ -264,13 +273,19 @@
       </div>
       <p class="lead">Bez zgłoszeń i pośredników. Rozmawiasz ze mną, podgląd dostajesz na każdym etapie.</p>
     </div>
-    <div class="steps">
+    <div class="steps"><svg class="line" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true"><path d="M0 1.5 H100" pathLength="1"/></svg>
       <div class="step rv"><span class="k">Krok 1 · 30 minut</span><h3>Rozmowa</h3><p>Telefon albo wideo. Mapuję Twój proces, znajdujemy największe wąskie gardło. Bez sprzedaży.</p></div>
       <div class="step rv"><span class="k">Krok 2 · PDF</span><h3>Mapa AI</h3><p>5 do 7 priorytetów: co automatyzować pierwsze, co zostawić, ile to daje. Dostajesz nawet, jeśli nie kupujesz.</p></div>
       <div class="step rv"><span class="k">Krok 3 · dni, nie miesiące</span><h3>Wdrożenie</h3><p>Buduję, łączę, testuję na Twoich danych. Link do podglądu na każdym etapie, do 2 rund poprawek.</p></div>
       <div class="step rv"><span class="k">Krok 4 · 30 dni</span><h3>Stabilizacja</h3><p>Pytania, drobne poprawki, wdrożenie Ciebie w obsługę. Potem opieka: 1 500 zł za rok albo 490 zł miesięcznie.</p></div>
     </div>
   </div>
+</section>
+
+<section class="band" aria-label="Zbudowane systemy">
+  <span class="mono lbl">Zbudowane i działa</span>
+  <div class="row"><span class="it">CRM MyWay Kąpino<small>od 2024</small></span><span class="it">rezerwacje online<small>ośrodek terapii</small></span><span class="it">automat postów Google<small>1 post dziennie</small></span><span class="it">AI Radar<small>12 wydań</small></span><span class="it">panel newslettera<small>własny</small></span><span class="it">kokpit finansowy<small>własny</small></span><span class="it">tracker czasu<small>0 zł</small></span><span class="it">platforma Akademii AI<small>13 narzędzi</small></span><span class="it">generator pism kadrowych<small>PDF</small></span><span class="it">strona dla agentów w 3 dni<small>1 500 zł</small></span><span class="it">CRM demo<small>crm.ai-team.pl</small></span><span class="it">CRM MyWay Kąpino<small>od 2024</small></span><span class="it">rezerwacje online<small>ośrodek terapii</small></span><span class="it">automat postów Google<small>1 post dziennie</small></span><span class="it">AI Radar<small>12 wydań</small></span><span class="it">panel newslettera<small>własny</small></span><span class="it">kokpit finansowy<small>własny</small></span><span class="it">tracker czasu<small>0 zł</small></span><span class="it">platforma Akademii AI<small>13 narzędzi</small></span><span class="it">generator pism kadrowych<small>PDF</small></span><span class="it">strona dla agentów w 3 dni<small>1 500 zł</small></span><span class="it">CRM demo<small>crm.ai-team.pl</small></span></div>
+  <div class="row rev"><span class="it">CRM MyWay Kąpino<small>od 2024</small></span><span class="it">rezerwacje online<small>ośrodek terapii</small></span><span class="it">automat postów Google<small>1 post dziennie</small></span><span class="it">AI Radar<small>12 wydań</small></span><span class="it">panel newslettera<small>własny</small></span><span class="it">kokpit finansowy<small>własny</small></span><span class="it">tracker czasu<small>0 zł</small></span><span class="it">platforma Akademii AI<small>13 narzędzi</small></span><span class="it">generator pism kadrowych<small>PDF</small></span><span class="it">strona dla agentów w 3 dni<small>1 500 zł</small></span><span class="it">CRM demo<small>crm.ai-team.pl</small></span><span class="it">CRM MyWay Kąpino<small>od 2024</small></span><span class="it">rezerwacje online<small>ośrodek terapii</small></span><span class="it">automat postów Google<small>1 post dziennie</small></span><span class="it">AI Radar<small>12 wydań</small></span><span class="it">panel newslettera<small>własny</small></span><span class="it">kokpit finansowy<small>własny</small></span><span class="it">tracker czasu<small>0 zł</small></span><span class="it">platforma Akademii AI<small>13 narzędzi</small></span><span class="it">generator pism kadrowych<small>PDF</small></span><span class="it">strona dla agentów w 3 dni<small>1 500 zł</small></span><span class="it">CRM demo<small>crm.ai-team.pl</small></span></div>
 </section>
 
 <section class="sec" id="opinie">
@@ -412,6 +427,7 @@
   </div>
 </footer>
 
-<script src="/assets/mega.js?v=202609042310" defer></script>
+<script src="/assets/mega.js?v=202609042330" defer></script>
+<script src="/assets/mega-fx.js?v=202609042330" defer></script>
 </body>
 </html>
