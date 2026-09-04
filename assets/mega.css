@@ -173,10 +173,10 @@ strong { font-weight: 600; }
 .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .price { display: flex; flex-direction: column; gap: 18px; }
 .price .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.price .amount { font-family: var(--f-head); font-weight: 600; font-size: 40px; letter-spacing: -0.03em; line-height: 1; }
-.price .amount small { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.02em; font-weight: 400; color: var(--mute); margin-left: 6px; }
+.price .amount, .price-wide .amount { font-family: var(--f-head); font-weight: 600; font-size: 40px; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
+.price .amount small, .price-wide .amount small { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.02em; font-weight: 400; color: var(--mute); margin-left: 6px; }
 .price .rows { margin-top: 4px; }
-.price .foot { margin-top: auto; padding-top: 6px; }
+.price .pfoot { margin-top: auto; padding-top: 6px; }
 .price-wide { margin-top: 24px; display: grid; grid-template-columns: 2fr 1.2fr auto; gap: 24px; align-items: center; }
 .price-note { margin-top: 20px; }
 @media (max-width: 960px) {
