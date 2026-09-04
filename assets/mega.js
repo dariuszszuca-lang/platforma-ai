@@ -111,13 +111,13 @@
       if (animate && !reduce) later(function () { li.classList.add('in'); if (e[3] === 'wait' && zap) zap(); }, 120 + i * 190);
       else li.classList.add('in');
     });
-    if (sub) sub.textContent = 'Przykładowy dzień firmy ' + firma() + '. Dane demo, scenariusz dla branży.';
+    if (sub) sub.textContent = 'Dzień demo firmy ' + firma() + '. Scenariusz dla branży.';
     if (tabs) tabs.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.ind === state.ind ? 'true' : 'false'); });
   }
   function setName() {
     var f = esc(firma());
     log.querySelectorAll('.txt').forEach(function (el, i) { el.innerHTML = S[state.ind].ev[i][2].replace(/\{f\}/g, f); });
-    if (sub) sub.textContent = 'Przykładowy dzień firmy ' + firma() + '. Dane demo, scenariusz dla branży.';
+    if (sub) sub.textContent = 'Dzień demo firmy ' + firma() + '. Scenariusz dla branży.';
   }
 
   /* demo na start: plansza sama wpisuje nazwę i zmienia branżę, do pierwszego ruchu użytkownika */
@@ -156,7 +156,6 @@
   }
   function lockHeight() {
     if (!log) return;
-    if (window.innerWidth <= 960) { log.style.height = ''; return; }
     var keep = log.innerHTML;
     log.style.height = 'auto';
     var probe = 'Przedsiębiorstwo Przykładowe XY';
@@ -170,6 +169,7 @@
   }
   var rzt;
   window.addEventListener('resize', function () { clearTimeout(rzt); rzt = setTimeout(lockHeight, 150); }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lockHeight(); });
 
   if (input) {
     input.addEventListener('input', function () { stopDemo(); state.name = input.value.trim(); setName(); });
