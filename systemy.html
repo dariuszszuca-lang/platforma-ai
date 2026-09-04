@@ -29,8 +29,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050030">
 
     <script src="/assets/meta-pixel.js"></script>
     <!-- Meta Pixel Code -->
@@ -52,9 +53,9 @@
 
 <style>
 .sys-wrap{max-width:1240px;margin:0 auto;padding:120px 40px 30px;position:relative}
-.sys-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#B85C2E}
-.sys-h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(30px,4.2vw,44px);margin:12px 0 8px;color:#1C1917;line-height:1.1}
-.sys-h1 em{font-style:italic;color:#B85C2E}
+.sys-kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;color:var(--copper)}
+.sys-h1{font-family:var(--f-head);font-weight:600;font-size:clamp(30px,4.2vw,44px);margin:12px 0 8px;color:var(--ink);line-height:1.1}
+.sys-h1 em{font-style:italic;color:var(--copper)}
 .sys-sub{font-size:15px;color:rgba(28,25,23,.65);max-width:800px;line-height:1.55}
 .sys-sub b{color:#2D7A2D}
 .sys-how{display:inline-block;font-size:12.5px;color:#8B4220;background:rgba(184,92,46,.08);border:1px solid rgba(184,92,46,.3);border-radius:8px;padding:7px 13px;margin-top:12px;line-height:1.5}
@@ -65,74 +66,74 @@
 #sys-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .etap-head{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:16px 0 4px;padding-top:16px;border-top:1px solid rgba(28,25,23,.12)}
 .etap-head:first-child{margin-top:0;padding-top:0;border-top:none}
-.e-no{width:38px;height:38px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600;color:#FBF8F1}
-.etap-head.e1 .e-no{background:#8B6B3D}.etap-head.e2 .e-no{background:#B85C2E}.etap-head.e3 .e-no{background:#2D7A2D}
-.e-name{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:500;color:#1C1917}
-.e-name em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;margin-left:10px;font-weight:600}
-.etap-head.e1 .e-name em{color:#8B6B3D}.etap-head.e2 .e-name em{color:#B85C2E}.etap-head.e3 .e-name em{color:#2D7A2D}
+.e-no{width:38px;height:38px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-family:var(--f-head);font-size:18px;font-weight:600;color:var(--cream)}
+.etap-head.e1 .e-no{background:#8B6B3D}.etap-head.e2 .e-no{background:var(--copper)}.etap-head.e3 .e-no{background:#2D7A2D}
+.e-name{font-family:var(--f-head);font-size:22px;font-weight:500;color:var(--ink)}
+.e-name em{font-style:normal;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;margin-left:10px;font-weight:600}
+.etap-head.e1 .e-name em{color:#8B6B3D}.etap-head.e2 .e-name em{color:var(--copper)}.etap-head.e3 .e-name em{color:#2D7A2D}
 .e-desc{font-size:12px;color:rgba(28,25,23,.55);line-height:1.45;max-width:720px}
-.e-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(28,25,23,.5);white-space:nowrap}
+.e-count{margin-left:auto;font-family:var(--f-mono);font-size:10px;color:rgba(28,25,23,.5);white-space:nowrap}
 .e-count b{color:#2D7A2D}
 .blk{position:relative;border:1px solid rgba(28,25,23,.16);background:#FDFAF3;border-radius:11px;padding:10px 12px;min-height:88px;cursor:pointer;transition:opacity .18s,box-shadow .18s;text-align:left}
-.blk:focus-visible{outline:2px solid #B85C2E;outline-offset:2px}
+.blk:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
 .blk.done{border-left:3px solid #2D7A2D}
-.b-num{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:rgba(28,25,23,.42);display:flex;align-items:center;gap:6px}
+.b-num{font-family:var(--f-mono);font-size:8.5px;color:rgba(28,25,23,.42);display:flex;align-items:center;gap:6px}
 .b-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex:0 0 auto}
 .b-dot.done{background:#2D7A2D}
 .b-dot.wip{background:transparent;border:1.5px solid rgba(28,25,23,.3)}
-.b-dot.nx{background:#B85C2E}
+.b-dot.nx{background:var(--copper)}
 .b-st{font-size:7.5px;letter-spacing:.1em;color:#2D7A2D;font-weight:700}
-.b-st.nx{color:#B85C2E}
+.b-st.nx{color:var(--copper)}
 .blk.mine{border-left:3px solid #2D7A2D}
 .b-st.mine{color:#2D7A2D}
 .b-dot.mine{background:#2D7A2D;border-color:#2D7A2D}
 .sys-count b.m{color:#2D7A2D}
 .sys-count .clr{margin-left:8px;font-size:11px;color:rgba(28,25,23,.45);cursor:pointer;text-decoration:underline}
-.sys-card .mine-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:12px 14px;border:1px dashed rgba(139,107,61,.6);border-radius:10px;background:#FFF;cursor:pointer;font-size:13.5px;color:#1C1917;line-height:1.35}
+.sys-card .mine-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;padding:12px 14px;border:1px dashed rgba(139,107,61,.6);border-radius:10px;background:#FFF;cursor:pointer;font-size:13.5px;color:var(--ink);line-height:1.35}
 .sys-card .mine-row input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:#2D7A2D;cursor:pointer}
 .sys-card .mine-row small{display:block;font-size:11px;color:rgba(28,25,23,.5);margin-top:3px}
 .sys-card .mine-row.on{border-style:solid;border-color:#2D7A2D;background:#F1F8F1}
 .b-organ{margin-left:auto;font-size:7.5px;letter-spacing:.1em;color:rgba(28,25,23,.4);font-weight:600}
-.b-name{font-size:13px;font-weight:600;margin:3px 0 3px;color:#1C1917}
+.b-name{font-size:13px;font-weight:600;margin:3px 0 3px;color:var(--ink)}
 .b-desc{font-size:10px;line-height:1.35;color:rgba(28,25,23,.55)}
 #sys-map.lit .blk{opacity:.15}
 #sys-map.lit .blk.on{opacity:1}
-.blk.active{background:#B85C2E;border-color:#B85C2E;box-shadow:0 6px 20px rgba(184,92,46,.35)}
-.blk.active .b-name{color:#FBF8F1}
+.blk.active{background:var(--copper);border-color:var(--copper);box-shadow:0 6px 20px rgba(184,92,46,.35)}
+.blk.active .b-name{color:var(--cream)}
 .blk.active .b-desc{color:rgba(251,248,241,.85)}
 .blk.active .b-num,.blk.active .b-organ{color:rgba(251,248,241,.7)}
 .blk.active .b-st{color:#4ADE80}
-.blk.rel{border:1.5px solid #B85C2E;background:#FFF}
-.b-tag{position:absolute;top:-9px;right:8px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.06em;background:#FBF8F1;border:1px solid #B85C2E;color:#8B4220;border-radius:999px;padding:2px 7px;font-weight:700;z-index:4}
+.blk.rel{border:1.5px solid var(--copper);background:#FFF}
+.b-tag{position:absolute;top:-9px;right:8px;font-family:var(--f-mono);font-size:8px;letter-spacing:.06em;background:var(--cream);border:1px solid var(--copper);color:#8B4220;border-radius:999px;padding:2px 7px;font-weight:700;z-index:4}
 #sys-lines{position:absolute;top:0;left:0;pointer-events:none;z-index:3}
 #sys-map.lit .etap-head{opacity:.25}
 /* STOPKA SEKCJI I CTA */
 .sys-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid rgba(28,25,23,.12);padding-top:16px;margin-top:22px;flex-wrap:wrap}
 .sys-legend{font-size:12.5px;color:rgba(28,25,23,.55)}
-.sys-count{font-family:Fraunces,Georgia,serif;font-size:14px;color:rgba(28,25,23,.55);white-space:nowrap}
-.sys-count b{color:#B85C2E;font-size:20px;font-weight:500}
+.sys-count{font-family:var(--f-head);font-size:14px;color:rgba(28,25,23,.55);white-space:nowrap}
+.sys-count b{color:var(--copper);font-size:20px;font-weight:500}
 .sys-count b.g{color:#2D7A2D}
-.sys-cta{background:#1C1917;border-radius:16px;margin:34px 0 60px;padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.sys-cta h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:26px;color:#FBF8F1;margin:0 0 6px}
+.sys-cta{background:var(--ink);border-radius:16px;margin:34px 0 60px;padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sys-cta h2{font-family:var(--f-head);font-weight:600;font-size:26px;color:var(--cream);margin:0 0 6px}
 .sys-cta h2 em{font-style:italic;color:#D97B4A}
 .sys-cta p{font-size:13.5px;color:rgba(251,248,241,.7);margin:0;max-width:560px;line-height:1.5}
-.sys-cta a{display:inline-block;background:#B85C2E;color:#FBF8F1;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap}
+.sys-cta a{display:inline-block;background:var(--copper);color:var(--cream);text-decoration:none;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:10px;white-space:nowrap}
 .sys-cta a:hover{background:#8B4220}
 /* MODAL */
 #sys-modal{position:fixed;inset:0;background:rgba(28,25,23,.45);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
 #sys-modal.open{display:flex}
-.sys-card{background:#FBF8F1;border-radius:16px;max-width:460px;width:100%;max-height:86vh;overflow:auto;padding:26px 28px;position:relative;border:1px solid rgba(28,25,23,.15)}
+.sys-card{background:var(--cream);border-radius:16px;max-width:460px;width:100%;max-height:86vh;overflow:auto;padding:26px 28px;position:relative;border:1px solid rgba(28,25,23,.15)}
 .sys-card .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:rgba(28,25,23,.5);cursor:pointer;line-height:1}
-.sys-card .area{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;color:#8B4220}
+.sys-card .area{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;color:#8B4220}
 .sys-card .area .g{color:#2D7A2D}
-.sys-card h3{font-family:Fraunces,Georgia,serif;font-size:26px;font-weight:500;margin:6px 0 8px;color:#1C1917}
+.sys-card h3{font-family:var(--f-head);font-size:26px;font-weight:500;margin:6px 0 8px;color:var(--ink)}
 .sys-card .desc{font-size:13.5px;line-height:1.55;color:rgba(28,25,23,.7);margin-bottom:16px}
-.sys-card h4{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:rgba(28,25,23,.5);margin:14px 0 7px;font-weight:600}
+.sys-card h4{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;color:rgba(28,25,23,.5);margin:14px 0 7px;font-weight:600}
 .sys-card .rels{display:flex;flex-wrap:wrap;gap:6px}
 .sys-card .rel-chip{font-size:11.5px;border:1px solid rgba(184,92,46,.5);color:#8B4220;background:#FDFAF3;border-radius:999px;padding:4px 11px;cursor:pointer}
-.sys-card .rel-chip:hover{background:#B85C2E;color:#FBF8F1}
+.sys-card .rel-chip:hover{background:var(--copper);color:var(--cream)}
 .sys-card .none{font-size:11.5px;color:rgba(28,25,23,.45)}
-.sys-card .card-cta{display:block;text-align:center;margin-top:18px;background:#B85C2E;color:#FBF8F1;text-decoration:none;font-weight:600;font-size:13.5px;padding:12px 18px;border-radius:10px}
+.sys-card .card-cta{display:block;text-align:center;margin-top:18px;background:var(--copper);color:var(--cream);text-decoration:none;font-weight:600;font-size:13.5px;padding:12px 18px;border-radius:10px}
 .sys-card .card-cta:hover{background:#8B4220}
 @media(max-width:1080px){#sys-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:960px){
@@ -214,29 +215,23 @@
 </head>
 <body>
 
-<nav class="top-nav">
-  <div class="inner">
-    <a href="/" class="brand" aria-label="AI Team | strona główna">
-      <img class="logo-mark" src="/assets/ai-team-logo-256.png" alt="AI-Team" width="42" height="42" style="border-radius:50%;display:block">
-      <span class="wordmark">
-        AI · <em>Team</em>
-        <span class="tagline-mini">EST · 2024 · POLSKA</span>
-      </span>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
     </a>
-    <div class="menu">
-      <a href="/produkty">Produkty</a>
-      <a href="/system-operacyjny-firmy.html">System firmy</a>
-      <a href="/wdrozenie-ai.html">Wdrożenie</a>
-      <a href="/warsztaty-ai.html">Akademia</a>
-      <a href="/ai-radar.html">AI Radar</a>
-      <a href="/#offer">Cennik</a>
-      <a href="/#about">O autorze</a>
+    <div class="menu" id="menu">
+      <a href="/systemy" aria-current="page">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/dzial-ai/">Dział AI</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
-    <button class="hamburger" aria-label="Menu" aria-expanded="false"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></button>
-    <a href="/ai-act/" class="nav-cta">
-      <span>AI Act · 67 zł</span>
-      <span class="arrow">→</span>
-    </a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
 
@@ -296,43 +291,46 @@
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="brand" style="margin-bottom: 18px;">
-          <img class="logo-mark" src="/assets/ai-team-logo-256.png" alt="AI-Team" width="42" height="42" style="border-radius:50%;display:block">
-          <span class="wordmark">AI · <em>Team</em></span>
-        </a>
-        <p class="body-sm">AI dla małych firm w Polsce. Buduję strony, systemy CRM i automatyzacje. Warsztaty stacjonarne: Trójmiasto lub online, miejsce do ustalenia. Klienci z całej Polski. Założone 2024.</p>
+<footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
       </div>
-      <div class="footer-col">
-        <h5>Oferta</h5>
-        <a href="/system-operacyjny-firmy.html">System Operacyjny Firmy</a>
-        <a href="/wdrozenie-ai.html">Wdrożenie AI</a>
-        <a href="/warsztaty-ai.html">Akademia AI</a>
-        <a href="/zlecenie.html">Mini-System / CRM</a>
-        <a href="/produkt1-tracker.html">Tracker Czasu</a>
-        <a href="/#cta">Mapa AI · 0 zł</a>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/dzial-ai/">Zewnętrzny Dział AI</a>
+        <a href="/produkty">Produkty cyfrowe</a>
       </div>
-      <div class="footer-col">
-        <h5>O nas</h5>
-        <a href="/#about">O autorze</a>
-        <a href="/#case">Przykład MyWay</a>
-        <a href="/ai-radar.html">Newsletter AI Radar</a>
-        <a href="/#quiz">Quiz „Ile tracisz"</a>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
       </div>
-      <div class="footer-col">
-        <h5>Kontakt</h5>
-        <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
-        <a href="tel:+48730600383">+48 730 600 383</a>
-        <a href="https://wa.me/48730600383">WhatsApp</a>
-        <a href="#">Warsztaty: Trójmiasto lub online</a>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 AI-Team · Darek Szuca · Wszystkie prawa zastrzeżone</span>
-      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
     </div>
   </div>
 </footer>
@@ -528,7 +526,7 @@ const SYS_EDGES={
    const bx=B.left-mr.left+B.width/2, by=B.top-mr.top+B.height/2;
    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
    p.setAttribute('d','M'+ax+','+ay+' Q'+((ax+bx)/2)+','+(Math.min(ay,by)-40)+' '+bx+','+by);
-   p.setAttribute('fill','none');p.setAttribute('stroke','#B85C2E');p.setAttribute('stroke-width','1.6');
+   p.setAttribute('fill','none');p.setAttribute('stroke','var(--copper)');p.setAttribute('stroke-width','1.6');
    p.setAttribute('stroke-dasharray','5 4');p.setAttribute('opacity','.75');
    svg.appendChild(p);
  }
@@ -586,5 +584,6 @@ const SYS_EDGES={
  if(h){const hit=Object.keys(BLKS).find(n=>norm(n)===norm(h));if(hit){setTimeout(()=>{select(hit);BLKS[hit].scrollIntoView({block:'center'})},150)}}
 })();
 </script>
+<script src="/assets/mega-skin.js?v=202609050030" defer></script>
 </body>
 </html>
