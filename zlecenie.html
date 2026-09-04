@@ -209,6 +209,16 @@
   var f = document.getElementById('zlecenie-form');
   if (!f) return;
   var statusEl = document.getElementById('zlecenie-status');
+  // Token czasu (anty-bot): pobierany przy pierwszym dotknieciu formularza, serwer wymaga min. 4 s do wysylki.
+  var zlToken = '';
+  var zlTokenAsked = false;
+  function askToken() {
+    if (zlTokenAsked) return; zlTokenAsked = true;
+    fetch('/api/notify-zlecenie?token=1').then(function (r) { return r.json(); })
+      .then(function (d) { zlToken = (d && d.token) || ''; }).catch(function () {});
+  }
+  f.addEventListener('focusin', askToken, { once: true });
+  f.addEventListener('pointerdown', askToken, { once: true });
   f.addEventListener('submit', async function (e) {
     e.preventDefault();
     var btn = f.querySelector('button[type=submit]');
@@ -219,7 +229,7 @@
     var payload = {
       name: fd.get('name'), email: fd.get('email'), phone: fd.get('phone'),
       category: fd.get('type'), description: fd.get('brief'),
-      budget: fd.get('budget'), timeline: fd.get('timeline'), company: fd.get('company')
+      budget: fd.get('budget'), timeline: fd.get('timeline'), company: fd.get('company'), token: zlToken
     };
     try {
       var r = await fetch('/api/notify-zlecenie', {
