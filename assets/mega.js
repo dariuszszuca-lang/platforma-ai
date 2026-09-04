@@ -108,7 +108,7 @@
         (e[3] === 'wait' ? '<span class="chip wait">czeka na Twoje OK</span>' : '<span class="chip ok">zrobione</span>') +
         '</div><div class="txt">' + e[2].replace(/\{f\}/g, f) + '</div></div>';
       log.appendChild(li);
-      if (animate && !reduce) later(function () { li.classList.add('in'); }, 120 + i * 190);
+      if (animate && !reduce) later(function () { li.classList.add('in'); if (e[3] === 'wait' && zap) zap(); }, 120 + i * 190);
       else li.classList.add('in');
     });
     if (sub) sub.textContent = 'Przykładowy dzień firmy ' + firma() + '. Dane demo, scenariusz dla branży.';
@@ -183,6 +183,89 @@
       state.ind = b.dataset.ind;
       render(true);
     });
+  }
+
+  /* błyskawice: wyładowania wokół planszy (canvas, tylko desktop, bez reduced-motion).
+     Uderzenie przy wpisie „czeka na Twoje OK" plus losowe co kilka sekund. */
+  var board = log.closest('.board');
+  var zap = null;
+  if (board && !reduce && window.innerWidth > 960 && window.matchMedia('(hover: hover)').matches) {
+    var wrap = board.parentElement;
+    var cv = document.createElement('canvas');
+    cv.className = 'zap';
+    cv.setAttribute('aria-hidden', 'true');
+    wrap.insertBefore(cv, board);
+    var ctx = cv.getContext('2d');
+    var PADZ = 70, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var bolts = [];
+    function sizeZap() {
+      var r = board.getBoundingClientRect();
+      cv.style.width = (r.width + PADZ * 2) + 'px';
+      cv.style.height = (r.height + PADZ * 2) + 'px';
+      cv.width = Math.round((r.width + PADZ * 2) * dpr);
+      cv.height = Math.round((r.height + PADZ * 2) * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function segs(x1, y1, x2, y2, jag) {
+      var pts = [[x1, y1]], n = 9;
+      for (var i = 1; i < n; i++) {
+        var t = i / n;
+        var nx = x1 + (x2 - x1) * t, ny = y1 + (y2 - y1) * t;
+        var off = (Math.random() - 0.5) * jag * (1 - Math.abs(t - 0.5) * 0.6);
+        pts.push([nx + off * ((y2 - y1) / (Math.abs(x2 - x1) + Math.abs(y2 - y1) || 1)), ny + off * ((x2 - x1) / (Math.abs(x2 - x1) + Math.abs(y2 - y1) || 1))]);
+      }
+      pts.push([x2, y2]);
+      return pts;
+    }
+    function strike() {
+      var w = cv.width / dpr, h = cv.height / dpr;
+      var corner = Math.floor(Math.random() * 4);
+      var tx = corner % 2 ? w - PADZ : PADZ;
+      var ty = corner < 2 ? PADZ : h - PADZ;
+      var sx = tx + (corner % 2 ? 1 : -1) * (35 + Math.random() * 30);
+      var sy = ty + (corner < 2 ? -1 : 1) * (45 + Math.random() * 22);
+      var main = segs(sx, sy, tx, ty, 34);
+      var k = 2 + Math.floor(Math.random() * 3);
+      var br = segs(main[k][0], main[k][1], main[k][0] + (Math.random() - 0.5) * 60, main[k][1] + (Math.random() - 0.5) * 60, 18);
+      /* po trafieniu w róg prąd biegnie kawałek po krawędzi planszy */
+      var along = Math.random() < 0.5;
+      var ex = along ? tx + (corner % 2 ? -1 : 1) * (60 + Math.random() * 90) : tx;
+      var ey = along ? ty : ty + (corner < 2 ? 1 : -1) * (50 + Math.random() * 70);
+      var edge = segs(tx, ty, ex, ey, 6);
+      bolts.push({ t: 0, paths: [main, br, edge] });
+      if (!raf) raf = requestAnimationFrame(draw);
+    }
+    var raf = 0;
+    function draw() {
+      ctx.clearRect(0, 0, cv.width / dpr, cv.height / dpr);
+      bolts = bolts.filter(function (b) { return b.t < 1; });
+      bolts.forEach(function (b) {
+        b.t += 0.045;
+        var a = b.t < 0.2 ? 1 : 1 - (b.t - 0.2) / 0.8;
+        var flick = 0.75 + Math.random() * 0.25;
+        b.paths.forEach(function (pts, i) {
+          ctx.beginPath();
+          pts.forEach(function (p, j) { j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); });
+          ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+          ctx.shadowColor = 'rgba(30,138,90,' + (0.7 * a) + ')';
+          ctx.shadowBlur = 12;
+          ctx.strokeStyle = 'rgba(30,138,90,' + (0.9 * a * flick) + ')';
+          ctx.lineWidth = i === 1 ? 1.8 : 2.8;
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+          ctx.strokeStyle = 'rgba(11,74,46,' + (0.95 * a * flick) + ')';
+          ctx.lineWidth = i === 1 ? 0.7 : 1.1;
+          ctx.stroke();
+        });
+      });
+      raf = bolts.length ? requestAnimationFrame(draw) : 0;
+    }
+    sizeZap();
+    window.addEventListener('resize', function () { clearTimeout(rzt2); rzt2 = setTimeout(sizeZap, 150); }, { passive: true });
+    var rzt2;
+    (function loop() { setTimeout(function () { if (document.visibilityState === 'visible') strike(); loop(); }, 2600 + Math.random() * 3400); })();
+    zap = strike;
+    window.__zap = strike;
   }
 
   if (demo.on) state.name = S.salon.name.slice(0, 1);
