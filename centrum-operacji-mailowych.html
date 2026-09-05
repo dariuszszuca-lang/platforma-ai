@@ -30,8 +30,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050215">
 
     <!-- Meta Pixel Code -->
     <script src="assets/meta-pixel.js"></script>
@@ -53,16 +54,16 @@
 
     <style>
       :root {
-        --system-accent: #B85C2E;
+        --system-accent: var(--copper);
         --system-accent-light: rgba(184, 92, 46, 0.08);
         --system-accent-glow: rgba(184, 92, 46, 0.25);
         --system-green: #2D7A2D;
         --system-green-light: rgba(45, 122, 45, 0.08);
         --system-dark: #141210;
         --system-card-bg: #FDFAF3;
-        --font-headline: 'Fraunces', Georgia, serif;
+        --font-headline: var(--f-head);
         --font-sub: 'Plus Jakarta Sans', 'Inter', sans-serif;
-        --font-mono: 'JetBrains Mono', monospace;
+        --font-mono: var(--f-mono);
       }
 
       /* HERO CUSTOM */
@@ -345,7 +346,7 @@
         width: 84px;
         height: 84px;
         border-radius: 50%;
-        background: #B85C2E;
+        background: var(--copper);
         color: #FFF;
         display: flex;
         align-items: center;
@@ -455,7 +456,7 @@
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        border: 2px solid #B85C2E;
+        border: 2px solid var(--copper);
         box-shadow: 0 8px 24px rgba(0,0,0,0.6);
         overflow: hidden;
         background: #25211D;
@@ -507,7 +508,7 @@
       .video-scrubber-fill {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #B85C2E, #E08253);
+        background: linear-gradient(90deg, var(--copper), #E08253);
         border-radius: 999px;
         transition: width 0.15s linear;
       }
@@ -542,7 +543,7 @@
       }
       .tab-chapter.active {
         background: rgba(184,92,46,0.18);
-        border-color: #B85C2E;
+        border-color: var(--copper);
         color: #FBF8F1;
       }
       .tab-chapter-num {
@@ -843,7 +844,7 @@
       .pricing-card.featured {
         background: #1C1917;
         color: #FBF8F1;
-        border-color: #B85C2E;
+        border-color: var(--copper);
         box-shadow: 0 20px 50px rgba(184,92,46,0.18);
       }
       .pricing-card.featured .pricing-price {
@@ -860,7 +861,7 @@
         position: absolute;
         top: -13px;
         right: 28px;
-        background: #B85C2E;
+        background: var(--copper);
         color: #FFF;
         font-family: var(--font-mono);
         font-size: 10px;
@@ -921,7 +922,7 @@
       }
 
       .btn-checkout-full {
-        background: #B85C2E;
+        background: var(--copper);
         color: #FBF8F1;
         text-align: center;
         text-decoration: none;
@@ -1013,30 +1014,23 @@
 </head>
 <body>
 
-<nav class="top-nav">
-  <div class="inner">
-    <a href="/" class="brand" aria-label="AI Team | strona główna">
-      <img class="logo-mark" src="assets/ai-team-logo-256.png" alt="AI-Team" width="42" height="42" style="border-radius:50%;display:block">
-      <span class="wordmark">
-        AI · <em>Team</em>
-        <span class="tagline-mini">EST · 2024 · POLSKA</span>
-      </span>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
     </a>
-    <div class="menu">
-      <a href="/systemy">44 Systemy</a>
-      <a href="/produkty">Produkty</a>
-      <a href="/system-operacyjny-firmy.html">System firmy</a>
-      <a href="/wdrozenie-ai.html">Wdrożenie</a>
-      <a href="/warsztaty-ai.html">Akademia</a>
-      <a href="/ai-radar.html">AI Radar</a>
-      <a href="#cennik">Cennik</a>
-      <a href="/#about">O autorze</a>
+    <div class="menu" id="menu">
+      <a href="/systemy">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/dzial-ai/">Dział AI</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
-    <button class="hamburger" aria-label="Menu" aria-expanded="false"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></button>
-    <a href="#cennik" class="nav-cta">
-      <span>Wdrożenie · 3 900 zł</span>
-      <span class="arrow">→</span>
-    </a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
 
@@ -1557,7 +1551,7 @@
             <span style="color: #4ADE80; font-weight:bold;">✓</span> <span>Warsztaty stacjonarne (Trójmiasto) lub indywidualne szkolenie online</span>
           </div>
         </div>
-        <a href="/warsztaty-ai.html" class="btn-stripe-primary" style="background: #B85C2E; border-color: #B85C2E;">
+        <a href="/warsztaty-ai.html" class="btn-stripe-primary" style="background: var(--copper); border-color: var(--copper);">
           <span>Zobacz Warsztaty AI i Akademię (od 600 zł)</span>
           <span>→</span>
         </a>
@@ -1656,42 +1650,46 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="brand" style="margin-bottom: 18px;">
-          <img class="logo-mark" src="assets/ai-team-logo-256.png" alt="AI-Team" width="42" height="42" style="border-radius:50%;display:block">
-          <span class="wordmark">AI · <em>Team</em></span>
-        </a>
-        <p class="body-sm">Dedykowane systemy operacyjne i automatyzacje AI dla małych firm w Polsce. Centrum wiedzy, wdrożenia, warsztaty i narzędzia. Założone 2024.</p>
+<footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
       </div>
-      <div class="footer-col">
-        <h5>Nawigacja</h5>
-        <a href="/systemy">44 Systemy Autonomicznej Firmy</a>
-        <a href="/system-operacyjny-firmy.html">System Operacyjny Firmy</a>
-        <a href="/wdrozenie-ai.html">Wdrożenie AI</a>
-        <a href="/warsztaty-ai.html">Akademia AI</a>
-        <a href="/zlecenie.html">Mini-System / CRM</a>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/dzial-ai/">Zewnętrzny Dział AI</a>
+        <a href="/produkty">Produkty cyfrowe</a>
       </div>
-      <div class="footer-col">
-        <h5>O nas</h5>
-        <a href="/#about">O autorze (Darek Szuca)</a>
-        <a href="/#case">Case studies</a>
-        <a href="/ai-radar.html">Newsletter AI Radar</a>
-        <a href="/systemy">Mapa 44 Systemów</a>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
       </div>
-      <div class="footer-col">
-        <h5>Kontakt & Wdrożenia</h5>
-        <a href="mailto:dariusz.szuca@gmail.com">dariusz.szuca@gmail.com</a>
-        <a href="tel:+48730600383">+48 730 600 383</a>
-        <a href="https://wa.me/48730600383">WhatsApp: +48 730 600 383</a>
-        <a href="#">Trójmiasto / Cała Polska</a>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 AI-Team · Dariusz Szuca · Wszelkie prawa zastrzeżone</span>
-      <a href="/privacy.html" style="color:var(--ink-mute); text-decoration:none;">Polityka prywatności</a>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
     </div>
   </div>
 </footer>
@@ -1796,7 +1794,7 @@ const VIDEO_CHAPTERS = [
           <div style="color:#4ADE80; font-weight:bold; font-size:12px;">💰 ODZYSKANY CZAS:</div>
           <div style="color: #FBF8F1; margin-top:2px;">35 do 45 godzin każdego miesiąca</div>
         </div>
-        <div style="background: rgba(184,92,46,0.18); border: 1px solid #B85C2E; padding: 10px 12px; border-radius: 8px;">
+        <div style="background: rgba(184,92,46,0.18); border: 1px solid var(--copper); padding: 10px 12px; border-radius: 8px;">
           <div style="color:#D97B4A; font-weight:bold; font-size:12px;">⚡ CZAS ODPOWIEDZI:</div>
           <div style="color: #FBF8F1; margin-top:2px;">Z 14 godzin do zaledwie 3 minut</div>
         </div>
@@ -1941,5 +1939,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script src="/assets/mega-skin.js?v=202609050215" defer></script>
 </body>
 </html>

@@ -59,6 +59,10 @@ html { scroll-behavior: smooth; }
 .sticky-cta.visible { transform: translateY(0); }
 @media (max-width: 640px) { .sticky-cta-text { display: none; } }
 </style>
+<style id="mega-tokens">body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}h1,h2,h3,h4{font-family:'Inter Tight','Inter',system-ui,sans-serif;letter-spacing:-0.02em}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega-chrome.css?v=202609050215">
+
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -76,8 +80,29 @@ html { scroll-behavior: smooth; }
 
   <script src="/assets/meta-pixel.js"></script>
 <link rel="canonical" href="https://ai-team.pl/produkt1-tracker">
+<style>.brand .ring{box-shadow:none!important;--tw-ring-shadow:0 0 #0000!important;--tw-ring-offset-shadow:0 0 #0000!important}</style>
 </head>
 <body class="bg-[#f0f0f0]">
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="/systemy">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/dzial-ai/">Dział AI</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+  </div>
+</nav>
+
 
 <main class="min-h-screen bg-[#f0f0f0]">
 
@@ -101,34 +126,7 @@ html { scroll-behavior: smooth; }
     <div class="relative z-10 w-full h-full flex flex-col items-center justify-start pt-32 md:pt-40 px-6 md:px-12 text-center">
 
       <!-- Navbar -->
-      <nav class="absolute top-0 left-0 right-0 flex items-center justify-between p-6 md:p-8">
-        <a href="/" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-[10px] flex items-center justify-center" style="background: linear-gradient(135deg, #0F1A33 0%, #1B2A4E 100%); box-shadow: 0 2px 8px rgba(15, 26, 51, 0.15);">
-            <span class="text-white" style="font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.02em;">AI</span>
-          </div>
-          <span class="hidden sm:inline" style="font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; color: #0F1A33;">ai team</span>
-        </a>
-
-        <div class="hidden md:flex items-center gap-6 bg-white/40 backdrop-blur-md border border-white/30 rounded-full px-6 py-2">
-          <a href="https://ai-team.pl/produkt1-tracker" class="text-sm text-[#0F1A33] font-semibold transition">Tracker P1</a>
-          <a href="https://ai-team.pl/" class="text-sm text-[#5E6470] hover:text-black transition flex items-center gap-1">Decoder P2 <span class="text-xs opacity-50">wkrótce</span></a>
-          <a href="https://ai-team.pl/" class="text-sm text-[#5E6470] hover:text-black transition">Pakiet P3 <span class="text-xs opacity-50">wkrótce</span></a>
-          <a href="https://ai-team.pl/warsztaty-ai.html" class="text-sm text-[#5E6470] hover:text-black transition">Warsztaty</a>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <a href="/app" class="hidden md:flex items-center gap-2 text-sm text-[#5E6470] hover:text-[#0F1A33] transition px-4 py-2 rounded-full border border-[#5E6470]/20 hover:border-[#0F1A33]">
-            <i data-lucide="user" class="w-4 h-4"></i>
-            <span>Zaloguj się</span>
-          </a>
-          <a href="/app?source=tracker-landing" class="group/btn bg-[#1B2A4E] hover:bg-[#0F1A33] text-white rounded-full pl-5 pr-2 py-2 flex items-center gap-2 transition-all">
-            <span class="text-sm font-medium">Uruchom za darmo</span>
-            <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover/btn:bg-white/30 transition">
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-            </span>
-          </a>
-        </div>
-      </nav>
+      
 
       <!-- Hero Badge -->
       <div class="fade-scale delay-100 mb-6 inline-flex items-center gap-2 bg-white/60 backdrop-blur-md border border-white/30 rounded-full px-4 py-2">
@@ -1038,53 +1036,46 @@ html { scroll-behavior: smooth; }
 <!-- ============================================================ -->
 <!-- 6. FOOTER                                                     -->
 <!-- ============================================================ -->
-<footer class="w-full max-w-[1536px] mx-auto px-6 md:px-12 py-16 border-t border-[rgba(30,50,90,0.1)]">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-
-    <div class="md:col-span-1">
-      <a href="/" class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #0F1A33 0%, #1B2A4E 100%); box-shadow: 0 2px 12px rgba(15, 26, 51, 0.18);">
-          <span class="text-white" style="font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em;">AI</span>
-        </div>
-        <span style="font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.03em; color: #0F1A33;">ai team</span>
-      </a>
-      <p class="text-sm text-[#5E6470] leading-relaxed max-w-xs">
-        Gotowe rozwiązania AI dla małych firm i freelancerów. Gdańsk · cała Polska.
-      </p>
+<footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
+      </div>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/dzial-ai/">Zewnętrzny Dział AI</a>
+        <a href="/produkty">Produkty cyfrowe</a>
+      </div>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
+      </div>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
+      </div>
     </div>
-
-    <div>
-      <div class="text-xs uppercase tracking-widest text-[#5E6470]/60 mb-4 font-semibold">Produkty</div>
-      <ul class="space-y-2 text-sm">
-        <li><a href="https://ai-team.pl/produkt1-tracker" class="text-[#5E6470] hover:text-[#1B2A4E] transition">Tracker P1 · 0 zł</a></li>
-        <li><span class="text-[#5E6470]/60">Decoder P2 · wkrótce</span></li>
-        <li><span class="text-[#5E6470]/60">Pakiet P3 · wkrótce</span></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="text-xs uppercase tracking-widest text-[#5E6470]/60 mb-4 font-semibold">Warsztaty</div>
-      <ul class="space-y-2 text-sm">
-        <li><a href="https://ai-team.pl/warsztaty-ai.html" class="text-[#5E6470] hover:text-[#1B2A4E] transition">Indywidualnie 1-na-1</a></li>
-        <li><a href="https://ai-team.pl/warsztaty-ai.html" class="text-[#5E6470] hover:text-[#1B2A4E] transition">Grupowe (Trójmiasto / online)</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="text-xs uppercase tracking-widest text-[#5E6470]/60 mb-4 font-semibold">Kontakt</div>
-      <ul class="space-y-2 text-sm">
-        <li><a href="mailto:darek@ai-team.pl" class="text-[#5E6470] hover:text-[#1B2A4E] transition">darek@ai-team.pl</a></li>
-        <li><a href="https://ai-team.pl/" class="text-[#5E6470] hover:text-[#1B2A4E] transition">ai-team.pl</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="mt-12 pt-8 border-t border-[rgba(30,50,90,0.1)] flex flex-wrap justify-between items-center gap-4 text-xs text-[#5E6470]/60">
-    <span>© 2026 AI Team · Dariusz Szuca</span>
-    <div class="flex gap-6">
-      <a href="https://ai-team.pl/privacy.html" class="hover:text-[#1B2A4E] transition">Polityka prywatności</a>
-      <a href="https://ai-team.pl/" class="hover:text-[#1B2A4E] transition">Regulamin</a>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
     </div>
   </div>
 </footer>
@@ -1159,5 +1150,6 @@ html { scroll-behavior: smooth; }
   });
 </script>
 
+<script src="/assets/mega-skin.js?v=202609050215" defer></script>
 </body>
 </html>
