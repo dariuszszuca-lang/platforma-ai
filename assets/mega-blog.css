@@ -1,0 +1,86 @@
+/* AI-Team „mega": blog (Tailwind) w jasnym systemie Pracownia. Ładowane PO mega-skin.css.
+   Nadpisuje klasy narzędziowe ciemnego motywu; treść wpisów bez zmian. */
+html { background: var(--paper); }
+body { background: var(--paper) !important; color: var(--ink) !important; font-family: var(--f-body) !important; }
+.font-display { font-family: var(--f-head) !important; }
+
+/* tło */
+.bg-\[\#020203\], .bg-brand-dark, .bg-black, .bg-black\/40, .bg-black\/50 { background-color: var(--paper) !important; }
+.bg-grid-pattern { background-image: linear-gradient(to right, rgba(27,27,27,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(27,27,27,.06) 1px, transparent 1px) !important; }
+.horizon-glow { display: none !important; }
+
+/* tekst */
+.text-white, .hover\:text-white:hover, .group:hover .group-hover\:text-white { color: var(--ink) !important; }
+.text-gray-100, .text-gray-200, .text-gray-300 { color: var(--ink-2) !important; }
+.text-gray-400, .text-gray-500 { color: var(--mute) !important; }
+.text-primary, .text-brand-primary, .text-secondary, .text-brand-secondary, .text-brand-light, .text-light, .text-brand-primary\/60, .hover\:text-primary:hover, .hover\:text-brand-primary:hover, .group:hover .group-hover\:text-primary, .group:hover .group-hover\:text-brand-primary { color: var(--green-ink) !important; }
+.text-green-400 { color: var(--green-ink) !important; }
+.text-red-400 { color: #B4322F !important; }
+.bg-clip-text.text-transparent, .text-transparent { background-image: none !important; color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
+
+/* karty i szkło */
+.glass, .bg-white\/5, .bg-white\/10, .bg-black\/40, .article-card { background: #fff !important; background-image: none !important; border: 1px solid var(--line) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
+.hover\:bg-white\/10:hover, .hover\:bg-white\/5:hover { background: var(--paper) !important; }
+.article-card:hover { border-color: var(--line-2) !important; box-shadow: 0 18px 50px rgba(27,27,27,.08) !important; }
+.article-image { background: var(--green-soft) !important; border-bottom: 1px solid var(--line) !important; }
+.border-white\/5, .border-white\/10, .border-white\/20, .border-gray-700, .border-gray-800, .border-brand-primary\/20, .border-brand-primary\/30 { border-color: var(--line) !important; }
+.bg-primary\/20, .bg-secondary\/20, .bg-brand-primary\/20, .bg-brand-secondary\/20, .bg-brand-primary\/10 { background-color: var(--green-soft) !important; color: var(--green-ink) !important; }
+.shadow-\[0_0_30px_rgba\(0\,0\,0\,0\.5\)\], [class*="hover\:shadow-\["]:hover { box-shadow: none !important; }
+
+/* przyciski */
+.bg-brand-primary, .bg-primary, .bg-gradient-to-r.from-primary, .bg-gradient-to-r.from-brand-primary { background-image: none !important; background-color: var(--ink) !important; color: #fff !important; }
+.bg-brand-primary.text-black, .bg-primary.text-black, .bg-gradient-to-r .text-black, .bg-gradient-to-r.text-black { color: #fff !important; }
+.bg-brand-primary:hover, .bg-primary:hover, .bg-gradient-to-r.from-primary:hover { background-color: #000 !important; }
+.hover\:scale-105:hover { transform: none !important; }
+
+/* treść wpisu */
+.prose-custom h2, .prose-custom h3 { color: var(--ink) !important; }
+.prose-custom p, .prose-custom ul, .prose-custom ol, .prose-custom li { color: var(--ink-2) !important; }
+.prose-custom strong { color: var(--ink) !important; }
+.prose-custom a { color: var(--green-ink); }
+.highlight-box { background: var(--green-soft) !important; border-left: 3px solid var(--green) !important; color: var(--ink-2); border-radius: 0 6px 6px 0 !important; }
+.highlight-box p { color: var(--ink) !important; }
+.cta-box { background: #fff !important; border: 1px solid var(--line) !important; box-shadow: 0 18px 50px rgba(27,27,27,.06); }
+.cta-box h3, .cta-box h2 { color: var(--ink) !important; }
+pre, code, .font-mono { font-family: var(--f-mono) !important; }
+pre { background: #121311 !important; color: #E8E7E0 !important; border-radius: 6px; }
+.prose-custom .bg-white\/5 p, .prose-custom .glass p { color: var(--ink-2) !important; }
+
+/* nawigacja mega zamiast pływającej pigułki */
+.pt-32 { padding-top: 56px !important; }
+.pt-40 { padding-top: 72px !important; }
+.nav .menu a { color: var(--ink-2) !important; }
+.nav .menu a:hover { color: var(--ink) !important; background: #fff !important; }
+.nav .btn, .foot .btn { color: #fff !important; }
+.foot a, .foot .brand { color: #C9C8C0 !important; }
+.foot .brand { color: #fff !important; }
+.foot a:hover { color: #fff !important; }
+.foot .small { color: #9C9B93 !important; }
+.foot h4 { color: #8F8E86 !important; font-size: 11px !important; }
+.foot .bottom span { color: #8F8E86 !important; }
+
+/* pierścień logo wymaga svg bez tailwindowego display:block wewnątrz flex */
+.brand .mark .lg { display: block; }
+
+/* tabele porównań */
+.comparison-table th, .comparison-table td, .prose-custom th, .prose-custom td { border-bottom: 1px solid var(--line) !important; color: var(--ink-2) !important; }
+.comparison-table th, .prose-custom th { color: var(--ink) !important; font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+@media (max-width: 960px) {
+  .comparison-table, .prose-custom table { display: block; overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+}
+
+/* klasy własne wpisów (ciemne pudełka → białe karty) */
+.prompt-box, .example-box, .tool-card, .chat-example, .automation-box, .time-card { background: #fff !important; border: 1px solid var(--line) !important; }
+.prompt-text { color: var(--ink) !important; font-family: var(--f-mono) !important; }
+.prompt-label { color: var(--green-ink) !important; }
+.chat-user { background: var(--green-soft) !important; color: var(--ink) !important; }
+.chat-bot { background: var(--paper) !important; border: 1px solid var(--line); color: var(--ink) !important; }
+.chat-user p, .chat-bot p { color: var(--ink) !important; }
+.category-badge, .category-tag { background: var(--green-soft) !important; color: var(--green-ink) !important; }
+.price-tag { background: var(--green-soft) !important; color: var(--green-ink) !important; }
+.step-number, .time-badge { background: var(--ink) !important; color: #fff !important; }
+.bad-prompt { border-color: rgba(180,50,47,.4) !important; }
+.good-prompt { border-color: rgba(30,138,90,.5) !important; }
+
+/* Tailwind ma własną klasę .ring (niebieski box-shadow); pierścień logo nie może jej dziedziczyć */
+.brand .ring { box-shadow: none !important; --tw-ring-shadow: 0 0 #0000 !important; --tw-ring-offset-shadow: 0 0 #0000 !important; }
