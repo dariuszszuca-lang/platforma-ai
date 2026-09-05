@@ -10,15 +10,15 @@
 <script src="/assets/venture03-tracking.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#1a2233;--ink2:#4a5568;--muted:#6b7687;--faint:#8a94a6;--or:#ff7a1a;--or-d:#e56a0f;--copper:#c2570f;--or-soft:#fff4ea;--bg:#faf9f7;--card:#fff;--line:#e8e4db;--soft:#f4f1ea}
+:root{--ink:#1a2233;--ink2:#4a5568;--muted:#6b7687;--faint:#8a94a6;--or:#1E8A5A;--or-d:#176B46;--copper:#176B46;--or-soft:#E7F3EC;--bg:#faf9f7;--card:#fff;--line:#e8e4db;--soft:#f4f1ea}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:680px;margin:0 auto;padding:0 24px}
 a{text-decoration:none;color:inherit}
-.nav{background:rgba(250,249,247,.9);border-bottom:1px solid var(--line);padding:13px 0}
-.nav .row{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:0 24px}
+.nav-old{background:rgba(250,249,247,.9);border-bottom:1px solid var(--line);padding:13px 0}
+.nav-old .row{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:0 24px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800}
 .brand img{width:34px;height:34px;border-radius:50%}
-.nav a.back{color:var(--ink2);font-size:.9rem;font-weight:600}
+.nav-old a.back{color:var(--ink2);font-size:.9rem;font-weight:600}
 .head{text-align:center;padding:40px 0 10px}
 .head h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:900;letter-spacing:-.01em}
 .head p{color:var(--muted);margin-top:8px}
@@ -62,16 +62,35 @@ a{text-decoration:none;color:inherit}
 .cta-box .minor a{color:var(--copper);font-weight:700}
 .again{margin-top:16px;font-size:.85rem;color:var(--faint);text-align:center}
 .again a{text-decoration:underline}
-footer{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;border-top:1px solid var(--line);background:#fff}
+footer.old-foot{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;border-top:1px solid var(--line);background:#fff}
 </style>
+<style id="mega-tokens">:root{--ink:#1B1B1B;--ink2:#45453F;--muted:#75756E;--faint:#9A9A93;--or:#1E8A5A;--or-d:#176B46;--copper:#176B46;--or-soft:#E7F3EC;--bg:#FAFAF7;--card:#fff;--line:#E4E2DA;--soft:#F1F1EC}body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}h1,h2,h3,h4{font-family:'Inter Tight','Inter',system-ui,sans-serif;letter-spacing:-0.02em}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega-chrome.css?v=202609050145">
+
 <link rel="canonical" href="https://ai-team.pl/mapa-wdrozenia-diagnoza">
 </head>
 <body>
 
-<nav class="nav"><div class="row">
-  <a class="brand" href="/mapa-wdrozenia"><img src="/assets/ai-team-logo-256.png" alt="AI Team"> AI Team</a>
-  <a class="back" href="/mapa-wdrozenia">← Wróć do Mapy</a>
-</div></nav>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="/systemy">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/dzial-ai/">Dział AI</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+  </div>
+</nav>
 
 <div class="head wrap">
   <h1>Na którym etapie wdrożenia AI jest Twoja firma?</h1>
@@ -120,7 +139,49 @@ footer{text-align:center;font-size:.8rem;color:var(--faint);padding:26px 0;borde
   </div>
 </div>
 
-<footer>AI Team · Dariusz Szuca · Wynik diagnozy ma charakter edukacyjno-organizacyjny, nie jest poradą prawną.</footer>
+<footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
+      </div>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/dzial-ai/">Zewnętrzny Dział AI</a>
+        <a href="/produkty">Produkty cyfrowe</a>
+      </div>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
+      </div>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 const QS=[
@@ -235,5 +296,6 @@ if(window.Venture03Tracking){
 }
 show();
 </script>
+<script src="/assets/mega-skin.js?v=202609050145" defer></script>
 </body>
 </html>

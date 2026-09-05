@@ -8,9 +8,9 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
 <style>
   :root {
-    --accent: #14708f;
-    --accent-bright: #1c88ab;
-    --nordic: #14708f;
+    --accent: #1E8A5A;
+    --accent-bright: #2FB77A;
+    --nordic: #1E8A5A;
     --salon: #a9803a;
     --good: #2f9e6f;
     --warn: #c17d1c;
@@ -133,9 +133,9 @@
   .cta-ghost { border: 1px solid var(--border-strong); color: var(--text-dim); }
   .cta-ghost:hover { color: var(--text); border-color: var(--accent); }
 
-  footer.foot { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  footer.foot a { color: var(--text-dim); text-decoration: none; font-weight: 600; }
-  footer.foot a:hover { color: var(--accent); }
+  footer.old-foot.foot { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer.old-foot.foot a { color: var(--text-dim); text-decoration: none; font-weight: 600; }
+  footer.old-foot.foot a:hover { color: var(--accent); }
 
   @media (max-width: 780px) {
     .steps { grid-template-columns: 1fr; }
@@ -147,9 +147,33 @@
     h1 { font-size: 26px; }
   }
 </style>
+<style id="mega-tokens">:root{--accent:#1E8A5A;--accent-bright:#2FB77A;--nordic:#1E8A5A;--bg:#FAFAF7;--surface:#fff;--surface-2:#F1F1EC;--surface-3:#EAEAE4;--border:#E4E2DA;--border-strong:#CFCDC4;--text:#1B1B1B;--text-dim:#45453F;--text-faint:#75756E;--sans:'Inter',system-ui,sans-serif}body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}h1,h2,h3,h4{font-family:'Inter Tight','Inter',system-ui,sans-serif;letter-spacing:-0.02em}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega-chrome.css?v=202609050145">
+
 <link rel="canonical" href="https://ai-team.pl/dzial-ai/">
 </head>
 <body>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="/systemy">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/dzial-ai/">Dział AI</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+  </div>
+</nav>
+
 <div class="wrap">
   <div class="brandbar">
     <a class="logo" href="https://ai-team.pl">AI<span>-</span>Team</a>
@@ -263,9 +287,49 @@
   </div>
 
   <footer class="foot">
-    <span>AI-Team · Dział AI dla małych firm</span>
-    <a href="https://ai-team.pl">ai-team.pl</a>
-  </footer>
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
+      </div>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/dzial-ai/">Zewnętrzny Dział AI</a>
+        <a href="/produkty">Produkty cyfrowe</a>
+      </div>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
+      </div>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
+    </div>
+  </div>
+</footer>
 </div>
+<script src="/assets/mega-skin.js?v=202609050145" defer></script>
 </body>
 </html>
