@@ -72,3 +72,7 @@
 - Wdrożenie wykonano z niezatwierdzonej jeszcze zmiany `firestore.rules` na bazie commita `bb71c418d77d21f2ae1fa1ba775a64af5cf67556`. Poprzedni stan reguł można odtworzyć z tego commita i ponownie wdrożyć wyłącznie `firestore:rules`.
 - Po bezpiecznej rotacji tokenu Meta kampania VENTURE-03, adset i reklamy A/B zostały aktywowane z budżetem 20 zł/dzień. Świeży odczyt Meta API o 21:37 CEST potwierdził `ACTIVE` na wszystkich poziomach.
 - Landing kampanii zwraca HTTP 200. Test w prawdziwym Chrome potwierdził `PageView`, `ViewContent`, `Lead` i `InitiateCheckout`, zachowanie UTM oraz brak PII w zdarzeniach Meta; `Purchase` czeka na pierwszą prawdziwą płatność w Stripe.
+
+## [2026-09-08] commit c02aecd, AI Radar 013 zaplanowany na pon 14.09 18:00
+
+- `newsletter/ai-radar-013-piec-botow.json` (status scheduled) + `.html` + `.md`, grafiki `assets/newsletter/ai-radar-013-a.jpg`, `-b.jpg`, wpis 013 w `fallbackNewsletterIssues` (`panel.html`). Temat: formularz kontra boty, 3 kroki Hormoziego, wizytówka Google, newsy z linkami. Pakiet W37 automatu tygodnia (etap 0).
