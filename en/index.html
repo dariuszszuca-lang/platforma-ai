@@ -60,7 +60,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/mega.css?v=202609050005">
+<link rel="stylesheet" href="/assets/mega.css?v=202609101800">
 <link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
 <style>
   .nav .menu .lang { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 9px; }
@@ -72,6 +72,9 @@
   .day .x { color: var(--ink-2); }
   @media (max-width: 560px) { .day li { grid-template-columns: 52px 1fr; } .day .r { grid-column: 2; } .day .x { grid-column: 2; } }
   @media (max-width: 960px) { .grid > .card { grid-column: 1 / -1 !important; } }
+  .hero .grid > * { min-width: 0; }
+  .hero .card { max-width: 100%; box-sizing: border-box; }
+  .day li > * { min-width: 0; overflow-wrap: anywhere; }
 </style>
 <script src="/assets/meta-pixel.js"></script>
 </head>
