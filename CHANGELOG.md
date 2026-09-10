@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-09-10] commity 76ddc6c..9b08b00, wersja angielska /en + produkty cyfrowe EN
+
+- `/en/`, `/en/systems`, `/en/ai-department`, `/en/contact`, `/en/products`: statyczne strony EN w tym samym designie, `lang="en"`, hreflang pl/en/x-default w parach PL↔EN (index, systemy-crm, zewnetrzny-dzial-ai, kontakt, produkty), 5 wpisów EN w `sitemap.xml`. Nawigacja PL bez zmian.
+- Formularz `/en/contact` wysyła `lang=en`; `api/notify-zlecenie.js` przy `lang=en` pomija kary antyspamowe za angielski opis i telefon spoza PL, temat maila z `[EN]`. Formularz PL bez zmian.
+- Produkty EN (Stripe LIVE, USD): chaos-audit 9, lead-queue-sheet 19, ai-team-starter 49, eu-ai-act-pack 19. Pliki w `downloads/en/*.zip`, strony pobrania `/en/get/<slug>` (noindex, poza sitemapą). `api/ai-act-webhook.js`: 4 wpisy EN w `NEW_PRODUCTS`, dopasowanie po payment_link + kwota + waluta, mail dostawy po angielsku. Zero nowych funkcji Vercel.
+- Rollback: `git revert` zakresu albo redeploy `93591fb` (stan sprzed /en); payment linki wyłącza się w Stripe (Deactivate).
+
 ## [2026-08-28] commit 1bb468b, /systemy: gość zaznacza, co już u niego działa
 
 - W karcie systemu (modal po kliknięciu kafla) ramka „To już działa u mnie w firmie" z checkboxem.
