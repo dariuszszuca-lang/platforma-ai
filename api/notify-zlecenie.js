@@ -47,22 +47,24 @@ function checkToken(token) {
 }
 
 // Punktacja: 0 = czlowiek z Polski, >= SPAM_DROP = bot. Zwraca { score, reasons }.
-function spamScore({ name, email, phone, category, description, budget, timeline, tokenState }) {
+function spamScore({ name, email, phone, category, description, budget, timeline, tokenState, lang }) {
   let score = 0;
   const reasons = [];
+  const en = lang === "en"; // formularz /en/contact: pomijamy kary jezykowe (angielski opis, telefon spoza PL)
   const digits = String(phone || "").replace(/\D/g, "");
   const p = String(phone || "").trim();
   if (digits) {
     const isPl = digits.length === 9 || (digits.length === 11 && digits.startsWith("48")) || /^0048\d{9}$/.test(digits);
-    if (!isPl) { score += 2; reasons.push("telefon-nie-pl"); }
-    else if (p.startsWith("+") && !p.startsWith("+48")) { score += 2; reasons.push("kierunkowy-nie-48"); }
+    if (!isPl) { if (!en) { score += 2; reasons.push("telefon-nie-pl"); } }
+    else if (p.startsWith("+") && !p.startsWith("+48")) { if (!en) { score += 2; reasons.push("kierunkowy-nie-48"); } }
   }
   const local = String(email || "").split("@")[0] || "";
   if (/\d{5,}$/.test(local)) { score += 1; reasons.push("mail-ogon-cyfr"); }
   const d = String(description || "");
   const words = d.trim().split(/\s+/).filter(Boolean).length;
-  if (words >= 3 && !PL_LETTERS.test(d) && !PL_WORDS.test(d) && EN_WORDS.test(d)) { score += 2; reasons.push("opis-angielski"); }
-  if (!PL_LETTERS.test(String(name || "")) && !PL_WORDS.test(d) && !PL_LETTERS.test(d) && words < 3) { score += 1; reasons.push("opis-pusty-bez-pl"); }
+  if (!en && words >= 3 && !PL_LETTERS.test(d) && !PL_WORDS.test(d) && EN_WORDS.test(d)) { score += 2; reasons.push("opis-angielski"); }
+  if (!en && !PL_LETTERS.test(String(name || "")) && !PL_WORDS.test(d) && !PL_LETTERS.test(d) && words < 3) { score += 1; reasons.push("opis-pusty-bez-pl"); }
+  if (en && words < 3) { score += 1; reasons.push("opis-pusty-en"); }
   if (category === "os" && budget === "<1k" && timeline === "asap") { score += 1; reasons.push("pierwsze-opcje"); }
   if (tokenState === "missing") { score += 1; reasons.push("token-brak"); }
   else if (tokenState === "invalid" || tokenState === "young") { score += 2; reasons.push("token-" + tokenState); }
@@ -139,13 +141,14 @@ module.exports = async function handler(req, res) {
     const budget = String(body.budget || "").trim().slice(0, 40);
     const timeline = String(body.timeline || "").trim().slice(0, 40);
     const source = String(body.source || "zlecenie").replace(/[^a-z0-9-]/gi, "").slice(0, 30) || "zlecenie";
+    const lang = String(body.lang || "pl").trim().toLowerCase().slice(0, 5);
 
     if (!name || !email || !description) {
       return lib.sendJson(res, 400, { ok: false, error: "Brakuje pól: imię, email i opis projektu." });
     }
 
     const tokenState = checkToken(body.token);
-    const spam = spamScore({ name, email, phone, category, description, budget, timeline, tokenState });
+    const spam = spamScore({ name, email, phone, category, description, budget, timeline, tokenState, lang });
     if (spam.score >= SPAM_DROP) {
       // Cicha blokada: bot widzi sukces, my nie dostajemy maila. W logu tylko powody i domena (bez PII).
       console.log("notify-zlecenie: spam-drop", JSON.stringify({ score: spam.score, reasons: spam.reasons, source, domain: email.split("@")[1] || "" }));
@@ -156,7 +159,7 @@ module.exports = async function handler(req, res) {
     const budgetLabel = BUDGET_LABELS[budget] || budget || "—";
     const timelineLabel = TIMELINE_LABELS[timeline] || timeline || "—";
     const flag = spam.score >= SPAM_FLAG ? "[?spam] " : "";
-    const subject = flag + (source === "kontakt" ? `Nowa wiadomość z /kontakt: ${name}` : `Nowe zlecenie: ${name} (${catLabel})`);
+    const subject = flag + (lang === "en" ? "[EN] " : "") + (source === "kontakt" ? `Nowa wiadomość z /kontakt: ${name}` : `Nowe zlecenie: ${name} (${catLabel})`);
 
     const delivered = [];
     const errors = [];
