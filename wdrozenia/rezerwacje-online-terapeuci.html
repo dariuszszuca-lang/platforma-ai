@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-MX6DBXQ66D');</script>
+<title>Rezerwacje konsultacji terapeutycznych online: MyWayPoint, system dla poradni | AI-Team</title>
+<meta name="description" content="Case study AI-Team: system rezerwacji konsultacji terapeutycznych mywaypoint.pl. Role admin, terapeuta, pacjent, sloty cykliczne, nadpisania per dzień, najmniejsze uprawnienia. React, Firebase, Vercel.">
+<link rel="canonical" href="https://ai-team.pl/wdrozenia/rezerwacje-online-terapeuci">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai-team.pl/wdrozenia/rezerwacje-online-terapeuci">
+<meta property="og:title" content="Rezerwacje konsultacji terapeutycznych online: MyWayPoint, system dla poradni | AI-Team">
+<meta property="og:description" content="Case study AI-Team: system rezerwacji konsultacji terapeutycznych mywaypoint.pl. Role admin, terapeuta, pacjent, sloty cykliczne, nadpisania per dzień, najmniejsze uprawnienia. React, Firebase, Vercel.">
+<meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=202609101800">
+<link rel="stylesheet" href="/assets/mega-chrome.css?v=202609050900">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rezerwacje konsultacji terapeutycznych online: MyWayPoint, system dla poradni", "description": "Case study AI-Team: system rezerwacji konsultacji terapeutycznych mywaypoint.pl. Role admin, terapeuta, pacjent, sloty cykliczne, nadpisania per dzień, najmniejsze uprawnienia. React, Firebase, Vercel.", "url": "https://ai-team.pl/wdrozenia/rezerwacje-online-terapeuci", "inLanguage": "pl", "author": {"@type": "Person", "name": "Dariusz Szuca", "url": "https://ai-team.pl"}, "publisher": {"@type": "Organization", "name": "AI-Team", "url": "https://ai-team.pl"}, "about": {"@type": "Organization", "name": "MyWayPoint (MyWay)"}, "datePublished": "2026-09-14"}</script>
+<style>
+  .page-hero { padding: 72px 0 48px; }
+  .page-hero h1 { max-width: 20ch; margin: 18px 0 22px; }
+  .page-hero .lead { max-width: 60ch; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { padding: 28px; }
+  .card h3 { margin-bottom: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .case-card { display: flex; flex-direction: column; gap: 12px; }
+  .case-card .who { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+  .case-card p { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .case-card .link { margin-top: auto; }
+  .stats.s4 { grid-template-columns: repeat(4, 1fr); }
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; font-family: var(--f-head); font-weight: 600; font-size: 17px; }
+  .faq p { margin-top: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .prose p { font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 66ch; margin-bottom: 14px; }
+  @media (max-width: 960px) { .two, .three, .stats.s4 { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } .stats div { border-left: 0; border-top: 1px solid var(--line); } .page-hero { padding: 40px 0 32px; } .grid > .card { grid-column: 1 / -1 !important; } }
+</style>
+<script src="/assets/meta-pixel.js"></script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="/systemy-crm">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/zewnetrzny-dzial-ai">Dział AI</a>
+      <a href="/wdrozenia">Wdrożenia</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/en/systems" class="lang" hreflang="en" lang="en">EN</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Wdrożenie · Poradnia terapii uzależnień, konsultacje online i stacjonarne</span>
+    <h1>Pacjent sam wybiera terapeutę i termin. Zespół widzi wszystko w jednym kalendarzu.</h1>
+    <p class="lead">Umawianie konsultacji przez telefon i wiadomości zjadało czas i generowało pomyłki. MyWayPoint to własny system rezerwacji, w którym pacjent widzi tylko wolne terminy, a terapeuta tylko swoje wizyty.</p>
+    <div class="proof">
+      <span><b>MyWayPoint (MyWay)</b> · Natalia Pucz i Krystian Nagaba</span>
+      <span><b>2025 do dziś</b></span>
+      <span><a href="/wdrozenia">Wszystkie wdrożenia</a></span>
+    </div>
+    <div class="stats"><div><span class="n">3 role</span><span class="l">admin, terapeuta, pacjent</span></div><div><span class="n">1 pole</span><span class="l">wyłącza terapeutę bez kasowania historii</span></div><div><span class="n">0</span><span class="l">telefonów potrzebnych do umówienia wizyty</span></div></div>
+  </div>
+</header>
+
+<section class="sec" id="problem">
+  <div class="wrap">
+    <div class="two">
+      <div class="rv prose">
+        <span class="eyebrow">Problem</span>
+        <h2>Jak było przed</h2>
+        <p style="margin-top:16px">Każda konsultacja wymagała wymiany kilku wiadomości: kto ma wolne, o której, czy termin jeszcze aktualny. Dostępność terapeutów pilnowano ręcznie. Gdy ktoś z zespołu odchodził albo szedł na urlop, trzeba było ręcznie odwoływać i przenosić wizyty.</p>
+      </div>
+      <div class="rv">
+        <span class="eyebrow">Co zbudowaliśmy</span>
+        <h2>Zakres wdrożenia</h2>
+        <ul class="rows" style="margin-top:16px"><li>Kalendarz rezerwacji na mywaypoint.pl: pacjent wybiera terapeutę i wolny slot, dostaje potwierdzenie.</li><li>Konto terapeuty: cykliczne sloty dostępności na dni tygodnia, nadpisania per data (urlop, inne godziny).</li><li>Panel administratora: wszyscy terapeuci, wszystkie wizyty, pacjenci.</li><li>Zasada najmniejszych uprawnień: terapeuta czyta tylko sesje przypisane do siebie i tylko dane kontaktowe potrzebne do wizyty, reguły egzekwowane w bazie, nie tylko w interfejsie.</li><li>Wyłączenie terapeuty jednym polem: znika z wyboru u pacjenta, historia wizyt zostaje.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="dzis">
+  <div class="wrap">
+    <div class="two">
+      <div class="rv prose">
+        <span class="eyebrow">Efekt</span>
+        <h2>Jak działa dziś</h2>
+        <p style="margin-top:16px">System działa od 2025 roku i przeszedł zmiany w zespole terapeutów bez utraty historii. Ten sam wzorzec (sloty, nadpisania, role) wdrażam w innych branżach: gabinety, doradcy, usługi z umawianiem wizyt.</p>
+      </div>
+      <div class="rv">
+        <span class="eyebrow">Technologie</span>
+        <h2>Z czego to jest zbudowane</h2>
+        <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Firebase Auth</span><span class="chip">Firestore</span><span class="chip">Vercel</span></div>
+        <h3 style="margin-top:28px">Powiązane wdrożenia</h3>
+        <ul class="rows" style="margin-top:8px"><li><a class="link" href="/wdrozenia/crm-osrodek-terapii">CRM ośrodka MyWay →</a></li><li><a class="link" href="/wdrozenia/aplikacja-pacjenta-terapia">Aplikacja pacjenta MyWay →</a></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="kontakt">
+  <div class="wrap contact">
+    <div class="rv">
+      <span class="eyebrow">Zacznijmy</span>
+      <h2>Masz podobny proces? Opowiedz o nim. 30 minut, bez sprzedaży.</h2>
+      <p class="lead" style="margin-top:18px">Powiesz, gdzie ucieka czas. Ja powiem, co da się zautomatyzować, ile to kosztuje i co zbudować pierwsze.</p>
+      <div class="cta" style="margin-top:26px"><a href="/kontakt" class="btn">Umów rozmowę <span class="arr">→</span></a> <a href="/wdrozenie-ai" class="btn ghost">Jak wygląda wdrożenie</a></div>
+    </div>
+    <div class="ways rv">
+      <a class="way" href="tel:+48730600383"><span class="k">Telefon</span><span class="v">730 600 383</span></a>
+      <a class="way" href="mailto:darek@ai-team.pl"><span class="k">Mail</span><span class="v">darek@ai-team.pl</span></a>
+      <a class="way" href="/kontakt"><span class="k">Formularz</span><span class="v">ai-team.pl/kontakt</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
+      </div>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy-crm">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/zewnetrzny-dzial-ai">Zewnętrzny Dział AI</a>
+        <a href="/wdrozenia">Wdrożenia</a>
+        <a href="/produkty">Produkty cyfrowe</a>
+      </div>
+      <div>
+        <h4>Wiedza</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
+      </div>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/mega.js?v=202609050900" defer></script>
+</body>
+</html>

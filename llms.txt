@@ -1,17 +1,26 @@
-# AI-Team — AI, strony, systemy i automatyzacje dla małych firm w Polsce
+# AI-Team: wdrożenia AI, agenci AI, systemy i automatyzacje dla małych firm w Polsce
 
-> AI-Team to strony, systemy i automatyzacje z AI dla małych firm, freelancerów i jednoosobowych biznesów w Polsce. Prowadzi je Dariusz Szuca (Darek Szuca) z Trójmiasta (Gdańsk, Sopot). Porządkuje firmę: strona, landing, CRM, baza klientów, dokumenty, rezerwacje, automatyzacje i narzędzia AI. Z Trójmiasta dla całej Polski. Zasada: płacisz raz, używasz lata, bez abonamentowej pułapki za użytkownika.
+> AI-Team wdraża agentów AI, systemy i automatyzacje w małych firmach usługowych i B2B w Polsce. Łączymy AI z CRM, pocztą, dokumentami, sprzedażą i obsługą klienta. Prowadzi je Dariusz Szuca (Darek Szuca) z Gdańska. Porządkuje firmę: strona, landing, CRM, baza klientów, dokumenty, rezerwacje, automatyzacje i narzędzia AI. Z Trójmiasta dla całej Polski. Zasada: płacisz raz, używasz lata, bez abonamentowej pułapki za użytkownika.
 
 ## Kontakt
 - Strona: https://ai-team.pl
 - Email: darek@ai-team.pl
 - Kontakt (telefon, mail, formularz): https://ai-team.pl/kontakt
 - WhatsApp: +48 730 600 383
-- Lokalizacja: Sopot i Gdańsk (Trójmiasto); warsztaty stacjonarne w Sopocie, ul. Pułaskiego 7 (przy Monciaku)
+- Lokalizacja: Gdańsk (Trójmiasto); warsztaty stacjonarne w Trójmieście (sala wynajmowana pod grupę) albo online
 - Obszar działania: cała Polska zdalnie, warsztaty stacjonarnie w Trójmieście
 
 ## Założyciel
 **Dariusz Szuca** (Darek Szuca) — freelancer z Gdańska, specjalista wdrożeń AI dla małych firm. Zbudował m.in. CRM dla ośrodka terapii uzależnień MyWay, platformę edukacyjną EduWay, system operacyjny biura nieruchomości Golden OS oraz aplikacje desktopowe (SubTracker, Midas) i narzędzia AI dla małego biznesu.
+
+
+## Wdrożenia (case studies z nazwami klientów): https://ai-team.pl/wdrozenia
+- Golden Property (biuro nieruchomości, Trójmiasto i Wrocław, 5 agentów): Golden OS, warstwa nad EstiCRM na AWS. Automatyczna dystrybucja leadów z Meta/Google/strony do agentów w kolejce (SMS + push, po 120 minutach bez reakcji lead idzie dalej), nagrywanie i transkrypcja rozmów z analizą AI (Claude przez Amazon Bedrock), oddzwonienie do ostatniej rozmawiającej osoby, raport ofert z EstiCRM, ranking zespołu. 1453 leady w bazie (audyt 10.09.2026). https://ai-team.pl/wdrozenia/golden-os-biuro-nieruchomosci
+- MyWay Kąpino (ośrodek terapii uzależnień): własny CRM (kartoteka pacjentów, kolejka, plan pokoi, zaświadczenia i oświadczenia PDF wypełniane z kartoteki), od 2024 na stałej opiece. https://ai-team.pl/wdrozenia/crm-osrodek-terapii
+- MyWayPoint (poradnia MyWay): rezerwacje konsultacji terapeutycznych online, role admin/terapeuta/pacjent, sloty cykliczne i nadpisania, najmniejsze uprawnienia. https://ai-team.pl/wdrozenia/rezerwacje-online-terapeuci
+- MyWay App: aplikacja PWA dla pacjenta po leczeniu, 6 ekranów, dziennik z analizą AI (Claude Haiku), SOS, push o 18:00. https://ai-team.pl/wdrozenia/aplikacja-pacjenta-terapia
+- Nordic Travel / Gdański Bus (przewozy PL, DE, NL): system przewozów na AWS Frankfurt: panel dyspozytorni, apka kierowcy offline, SMS do klientów, rezerwacja online z gdanskibus.pl, migracja bazy Postgres do Aurora. https://ai-team.pl/wdrozenia/system-przewozow-dyspozytornia
+- Strona procesu wdrożenia (audyt → projekt → prototyp → integracja → wdrożenie → utrzymanie): https://ai-team.pl/wdrozenie-ai
 
 ## Oferta (ceny aktualne na sierpień 2026)
 
@@ -24,8 +33,8 @@ Dedykowana aplikacja webowa pod proces firmy: CRM, baza klientów, rezerwacje, g
 ### Strona z AI + abonament
 Strona budowana z AI plus abonament all-in. Budowa jednorazowo: wizytówka z zakładkami 1 200 zł, strona ze sklepem i panelem 1 500 zł, rozbudowana strona firmowa lub landing z lejkiem i formularzem wyceny 1 900 zł. Abonament: 490 zł miesięcznie all-in (SEO plus GEO, chatbot AI, hosting, opieka). Dowóz w kilka dni. Nisza pilotażowa: nieruchomości.
 
-### Warsztaty AI (stacjonarne, Sopot)
-Praktyczne, hands-on: Claude, Gemini, Notion, Canva plus case studies. Warianty: D1 Fundament i D2 Zaawansowany. Cena: od 600 zł za osobę. Format indywidualny albo grupa do 10 osób. Miejsce: Sopot, ul. Pułaskiego 7.
+### Warsztaty AI (Trójmiasto albo online)
+Praktyczne, hands-on: Claude, Gemini, Notion, Canva plus case studies. Warianty: D1 Fundament i D2 Zaawansowany. Cena: od 600 zł za osobę. Format indywidualny albo grupa do 10 osób. Miejsce: Trójmiasto (sala wynajmowana pod grupę) albo online.
 
 ### Opieka po wdrożeniu
 - Opieka Techniczna: 1 500 zł z góry za 12 miesięcy — monitoring 24/7, aktualizacje bezpieczeństwa, kontrola SSL, domeny i backupu, kwartalny test działania.
@@ -60,11 +69,11 @@ Interaktywne narzędzia: Prompt Generator (generator promptów do ChatGPT i Clau
 ## Najczęściej zadawane pytania
 - Ile kosztuje CRM od AI-Team? Mini-System z bazą: 3 900 zł brutto jednorazowo w promocji, bez rat i bez abonamentu za kod (docelowo od 5 900 zł).
 - Czym różni się od gotowego CRM jak Pipedrive, HubSpot czy Bitrix? Płacisz raz, bez abonamentu za użytkownika, a system jest dopasowany do procesu firmy, zamiast zmuszać firmę do procesu narzędzia.
-- Ile kosztują warsztaty AI? Od 600 zł za osobę, stacjonarnie w Sopocie, indywidualnie albo w grupie do 10 osób.
+- Ile kosztują warsztaty AI? Od 600 zł za osobę, w Trójmieście albo online, indywidualnie albo w grupie do 10 osób.
 - Czy strona z AI ma abonament? Tak, budowa jednorazowo od 1 200 do 1 900 zł plus 490 zł miesięcznie all-in z SEO, GEO, chatbotem AI, hostingiem i opieką.
 - Czy newsletter AI Radar jest darmowy? Tak, w 100% darmowy.
 - Czy AI-Team prowadzi SEO i GEO? Tak, w ramach Opieki Widoczność (490 zł miesięcznie) oraz abonamentu Strony z AI, bez gwarancji pozycji.
-- Gdzie działa AI-Team? Zdalnie w całej Polsce, a warsztaty stacjonarnie w Sopocie na Trójmieście.
+- Gdzie działa AI-Team? Zdalnie w całej Polsce, warsztaty stacjonarnie w Trójmieście albo online.
 
 ## Portfolio (case studies)
 - MyWay CRM — system zarządzania pacjentami dla ośrodka terapii uzależnień (osrodek-myway.pl).
