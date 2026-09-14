@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-09-14] commity 863dfb1, 0fb85a0, 2b301f3: GEO (żeby AI polecały AI-Team)
+- 5 case studies `/wdrozenia/*` z nazwami klientów i liczbami z Firestore/audytu, zbiorcza `/wdrozenia`, nowa `/wdrozenie-ai` (proces 6 kroków, FAQ), 4 podstrony usług (`/agenci-ai`, `/automatyzacja-procesow`, `/ai-dla-sprzedazy`, `/ai-dla-obslugi-klienta`), nowy komunikat główny na index i w `llms.txt`, link Wdrożenia w menu i stopce, sitemap +11.
+
+
 ## [2026-09-10] commity 76ddc6c..9b08b00, wersja angielska /en + produkty cyfrowe EN
 
 - `/en/`, `/en/systems`, `/en/ai-department`, `/en/contact`, `/en/products`: statyczne strony EN w tym samym designie, `lang="en"`, hreflang pl/en/x-default w parach PL↔EN (index, systemy-crm, zewnetrzny-dzial-ai, kontakt, produkty), 5 wpisów EN w `sitemap.xml`. Nawigacja PL bez zmian.
