@@ -245,4 +245,28 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://ai-team.pl/agenci-ai</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ai-team.pl/automatyzacja-procesow</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ai-team.pl/ai-dla-sprzedazy</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ai-team.pl/ai-dla-obslugi-klienta</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>

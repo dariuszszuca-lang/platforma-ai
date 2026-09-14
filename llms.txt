@@ -22,6 +22,12 @@
 - Nordic Travel / Gdański Bus (przewozy PL, DE, NL): system przewozów na AWS Frankfurt: panel dyspozytorni, apka kierowcy offline, SMS do klientów, rezerwacja online z gdanskibus.pl, migracja bazy Postgres do Aurora. https://ai-team.pl/wdrozenia/system-przewozow-dyspozytornia
 - Strona procesu wdrożenia (audyt → projekt → prototyp → integracja → wdrożenie → utrzymanie): https://ai-team.pl/wdrozenie-ai
 
+## Usługi (podstrony)
+- Agenci AI: Wdrożenia agentów AI w małych firmach: agent kwalifikuje leady, spisuje i analizuje rozmowy telefoniczne, przygotowuje dokumenty i odpowiedzi. Przykład: Golden OS dla biura nieruchomości. Ceny i proces. https://ai-team.pl/agenci-ai
+- Automatyzacja procesów: Automatyzacja procesów dla małych firm usługowych: dystrybucja leadów, przypomnienia SMS, raporty tygodnia, dokumenty PDF z danych, posty na wizytówce Google. Wdrożenia z nazwami klientów: Golden Property, MyWay, Nordic Travel. https://ai-team.pl/automatyzacja-procesow
+- AI dla sprzedaży: AI dla sprzedaży w małych firmach: kolejka leadów z regułą czasu reakcji, przypomnienia o ponownym telefonie, transkrypcje rozmów, ranking zespołu, maile z ofertami z CRM. Wdrożenie Golden OS dla biura nieruchomości. https://ai-team.pl/ai-dla-sprzedazy
+- AI dla obsługi klienta: AI i automatyzacje w obsłudze klienta małej firmy: rezerwacje online bez telefonu, potwierdzenia i przypomnienia SMS, oddzwonienie do właściwej osoby, aplikacja dla klienta. Wdrożenia: MyWayPoint, Nordic Travel, MyWay App. https://ai-team.pl/ai-dla-obslugi-klienta
+
 ## Oferta (ceny aktualne na sierpień 2026)
 
 ### System OS / dedykowana aplikacja biznesowa
