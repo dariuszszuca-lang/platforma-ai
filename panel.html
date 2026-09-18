@@ -1078,7 +1078,13 @@ function leadDeliveryStatus(sub) {
 }
 
 function leadOwnerNotificationStatus(sub) {
-    if (sub.source === 'poranek-ai') return { label: 'Zapis w panelu · bez automatycznej wysyłki', icon: 'inbox', cls: 'text-gray-400' };
+    if (sub.source === 'poranek-ai') {
+      const notification = sub.owner_notification?.status;
+      if (notification === 'sent') return { label: 'Powiadomienie do Darka wysłane', icon: 'mail-check', cls: 'text-green-400' };
+      if (notification === 'failed') return { label: 'Zapis zachowany · błąd powiadomienia do Darka', icon: 'mail-warning', cls: 'text-orange-300' };
+      if (notification === 'pending') return { label: 'Zapis zachowany · sprawdź status powiadomienia', icon: 'clock', cls: 'text-orange-300' };
+      return { label: 'Zapis w panelu · bez wcześniejszego powiadomienia', icon: 'inbox', cls: 'text-gray-400' };
+    }
     const status = sub.utm?.owner_notification?.status;
     if (status === 'sent') {
         return { label: 'Powiadomienie do Ciebie: wysłane', icon: 'mail-check', cls: 'text-green-300' };

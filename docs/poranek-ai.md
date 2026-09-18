@@ -66,3 +66,22 @@ RECENZENT_CZLOWIEK: Darek — dostarczenie i wskazanie grafiki do publikacji
 FLAGA_PLATFORMY: NIE_DOTYCZY — własna strona
 REJESTR: NIE_DOTYCZY — wymiana materiału, bez nowego systemu AI
 UZASADNIENIE: Dostarczona syntetyczna grafika osoby i miejsca otrzymała widoczne oznaczenie przy pierwszym kontakcie.
+
+## 2026-09-18 — powiadomienia właściciela
+
+Mandat Darka: „podłącz” po informacji o braku powiadomień. Nowe zgłoszenie wysyła transakcyjne powiadomienie przez istniejący Amazon SES (helpery newsletter-send, te same env Vercel) wyłącznie do `dariusz.szuca@gmail.com`. Temat: „Poranki z AI — nowy zapis”, treść: email zgłaszającego, data i link do panelu. Bez wiadomości do uczestnika, bez dopisania do newslettera i bez zbiorczej wysyłki starych zgłoszeń.
+
+Atomiczny create Firestore z currentDocument.exists=false zabezpiecza przed dwoma powiadomieniami z równoległych zgłoszeń. Status owner_notification pending/sent/failed oraz SES message_id zapisują się na zgłoszeniu i są widoczne w panelu. Błąd maila nie cofa zapisu; brak automatycznej ponownej wysyłki na powtórzenie formularza (ochrona przed duplikatami, także przy niejednoznacznym błędzie sieci). Pending/failed wymagają sprawdzenia w panelu.
+
+32 testy PASS: formularz, idempotencja, współbieżność, błąd poczty i bazy, adres odbiorcy, atomowy insert, regresja panelu i SES. Integracyjny test nowego handlera z produkcyjnym Firestore i SES 18.09.2026 23:17 PL: zapis 200, status sent, MessageId obecny, powtórka bez kolejnej wysyłki. Rekord syntetyczny oznaczony test. Gmail potwierdził mail w INBOX do właściciela o 21:17:40Z, id 1a0b661d711f2ef5. Test wykonał nowy kod lokalnie z istniejącymi poświadczeniami serwerowymi; NIE dowodzi jeszcze wdrożenia nowego handlera na Vercel.
+
+AI_ACT_CHECK: NIE_DOTYCZY
+SYSTEM_I_WLASCICIEL: Poranki z AI / AI-Team
+ROLA: wykonawca techniczny
+KATEGORIA: deterministyczne powiadomienie transakcyjne
+OZNACZENIE_WIDOCZNE: NIE_DOTYCZY
+OZNACZENIE_TECHNICZNE: NIE_DOTYCZY
+RECENZENT_CZLOWIEK: Darek — zlecenie powiadomień na własny mail
+FLAGA_PLATFORMY: NIE_DOTYCZY
+REJESTR: NIE_DOTYCZY
+UZASADNIENIE: Stały szablon wiadomości i dane formularza, bez generowania treści przez model AI w czasie działania.

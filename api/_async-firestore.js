@@ -78,6 +78,19 @@ async function getDoc(docPath, token) {
   }
 }
 
+// Atomic insert: concurrent form submissions cannot both create a lead.
+async function createDoc(docPath, data, token) {
+  const url = new URL(`${FIRESTORE_BASE}/${docPath}`);
+  url.searchParams.set('currentDocument.exists', 'false');
+  try {
+    await firestoreRequest(url, { method: 'PATCH', token, body: { fields: encodeFields(data) } });
+    return true;
+  } catch (error) {
+    if (error.statusCode === 409 || error.statusCode === 412) return false;
+    throw error;
+  }
+}
+
 async function setDoc(docPath, data, token, updateFields = null) {
   const url = new URL(`${FIRESTORE_BASE}/${docPath}`);
   if (Array.isArray(updateFields) && updateFields.length) {
@@ -163,6 +176,7 @@ function publicError(statusCode, message) {
 }
 
 module.exports = {
+  createDoc,
   getDoc,
   getServerFirestoreToken,
   publicError,
