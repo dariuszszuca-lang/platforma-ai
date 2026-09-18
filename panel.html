@@ -819,6 +819,7 @@ function initDashboard() {
     listenToNewsletterIssues();
     listenToWelcomeSends();
     listenToGlobalworthResponses();
+    listenToPoranekSignups();
     updateTopbarClock();
     setInterval(updateTopbarClock, 30000);
 }
@@ -1042,6 +1043,7 @@ function escStripped(str) {
 
 // ===== LEADY: kto, skad, co dostal, odpowiedzi =====
 const LEAD_SOURCES = {
+    'poranek-ai': { label: 'Poranki z AI', cls: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
     'meta-lead-ad': { label: 'Reklama Meta', cls: 'bg-orange-500/20 text-orange-300 border-orange-500/30' },
     'ai-radar':     { label: 'Strona',       cls: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
     'mapa-ai':      { label: 'Mapa AI',      cls: 'bg-purple-500/20 text-purple-300 border-purple-500/30' },
@@ -1060,6 +1062,7 @@ function leadMaterialLabel(sub) {
 }
 
 function leadDeliveryStatus(sub) {
+    if (sub.source === 'poranek-ai') return { label: 'Zainteresowanie pierwszym spotkaniem', icon: 'coffee', cls: 'text-orange-300' };
     const status = sub.utm?.delivery?.status;
     const material = leadMaterialLabel(sub);
     if (status === 'sent') {
@@ -1075,6 +1078,7 @@ function leadDeliveryStatus(sub) {
 }
 
 function leadOwnerNotificationStatus(sub) {
+    if (sub.source === 'poranek-ai') return { label: 'Zapis w panelu · bez automatycznej wysyłki', icon: 'inbox', cls: 'text-gray-400' };
     const status = sub.utm?.owner_notification?.status;
     if (status === 'sent') {
         return { label: 'Powiadomienie do Ciebie: wysłane', icon: 'mail-check', cls: 'text-green-300' };
@@ -1115,7 +1119,7 @@ function leadGroupKey(sub) {
     return sub.group || sub.source || 'inne';
 }
 function leadGroupLabel(key) {
-    const known = { 'ai-radar': 'AI Radar', 'starter-wdrozen-ai': 'Starter', 'system-ai-tygodnia': 'System AI tygodnia', 'meta-lead-ad': 'Reklama Meta' };
+    const known = { 'poranek-ai': 'Poranki z AI', 'ai-radar': 'AI Radar', 'starter-wdrozen-ai': 'Starter', 'system-ai-tygodnia': 'System AI tygodnia', 'meta-lead-ad': 'Reklama Meta' };
     if (known[key]) return known[key];
     const k = String(key).toLowerCase();
     if (k.indexOf('ai-act') >= 0 || k.indexOf('ai act') >= 0 || k.indexOf('aiact') >= 0) return 'AI Act';
@@ -1151,12 +1155,12 @@ function renderLeadCard(sub) {
         `<span class="text-xs text-gray-500"><span class="text-gray-600">${label}:</span> ${escHtml(value)}</span>`
     ).join('');
     const testBadge = (sub.status || '') !== 'active' && (sub.status || '') !== ''
-        ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${sub.status}</span>` : '';
+        ? `<span class="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/10 text-yellow-300 border-yellow-500/30">${escHtml(sub.status)}</span>` : '';
     const gmail = `https://mail.google.com/mail/u/0/#search/${encodeURIComponent('from:' + (sub.email || ''))}`;
     return `<div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex flex-wrap items-center gap-x-4 gap-y-2">
             <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-2 flex-wrap">
-                    <span class="font-mono text-sm text-gray-200 break-all">${sub.email || sub.id}</span>
+                    <span class="font-mono text-sm text-gray-200 break-all">${escHtml(sub.email || sub.id)}</span>
                     <span class="text-xs px-2 py-0.5 rounded-full border bg-brand-primary/10 text-brand-light border-brand-primary/20">${escHtml(groupLabel)}</span>
                     <span class="text-xs px-2 py-0.5 rounded-full border ${src.cls}">${src.label}</span>
                     ${testBadge}
@@ -1173,10 +1177,27 @@ function renderLeadCard(sub) {
         </div>`;
 }
 
+let poranekSignups = [];
+let stopPoranekListener;
+function listenToPoranekSignups() {
+    if (stopPoranekListener) stopPoranekListener();
+    stopPoranekListener = db.collection('zlecenia').where('source', '==', 'poranek-ai').onSnapshot(snapshot => {
+        poranekSignups = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const errorEl = document.getElementById('poranekLoadError');
+        if (errorEl) errorEl.hidden = true;
+        renderLeads();
+    }, () => {
+        let errorEl = document.getElementById('poranekLoadError');
+        if (!errorEl) { errorEl = document.createElement('p'); errorEl.id = 'poranekLoadError'; errorEl.className = 'text-sm text-red-300 mb-4'; document.getElementById('leadsList').before(errorEl); }
+        errorEl.textContent = 'Nie udało się pobrać zapisów Poranki z AI. Odśwież panel.';
+        errorEl.hidden = false;
+    });
+}
+
 function renderLeads() {
     const list = document.getElementById('leadsList');
     if (!list) return;
-    const all = (allSubscribers || []).slice().sort((a, b) =>
+    const all = [...(allSubscribers || []), ...poranekSignups].sort((a, b) =>
         (Date.parse(b.created_at || '') || 0) - (Date.parse(a.created_at || '') || 0));
 
     const today = new Date().toISOString().slice(0, 10);
@@ -1185,6 +1206,7 @@ function renderLeads() {
     document.getElementById('leadsStatOrganic').textContent = all.filter(s => s.source !== 'meta-lead-ad').length;
     document.getElementById('leadsStatToday').textContent = all.filter(s => (s.created_at || '').slice(0, 10) === today).length;
 
+    setText('navBadgeLeady', all.length);
     buildLeadsGroupTabs(all);
 
     let subs = all;

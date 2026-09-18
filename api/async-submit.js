@@ -9,6 +9,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = parseBody(req);
+    if (body.form_type === "poranek-ai") return require("./_poranek-signup")(req, res);
     if (clean(body.website)) return sendJson(res, 200, { ok: true, skipped: true });
 
     const input = normalizeInput(body);
