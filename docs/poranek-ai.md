@@ -30,3 +30,7 @@ Obraz: gpt-image-2.5-flare, high, 1536×1024, 18.09.2026. Wideo: Higgsfield DoP 
 - Animacje wejścia sekcji, podkreślenia pytań i reakcje przycisków. Kontrolka zatrzymuje film, logo i ujawnianie sekcji; reduced-motion zachowany.
 - Box AI-Team rozwija prawdziwy zrzut strony głównej (18.09.2026) po najechaniu lub dotknięciu. Link otwiera stronę w nowej karcie. Escape i kliknięcie poza zamykają podgląd.
 - Test live formularza: HTTP 200, rekord odczytany z Firestore, zgodna zgoda event_notification=true i newsletter=false, powtórka bez duplikatu i zmiany created_at. Syntetyczny wpis poranek-ai-smoke-20260918@example.com oznaczony status=test / is_test=true. Zero wysłanych wiadomości.
+
+## Iteracja: para odsłania stronę
+
+Po korekcie Darka usunięto popup. Podgląd jest stale pod organiczną warstwą pary (CSS + filtr SVG); hover lub dotknięcie rozsuwa warstwy i odsłania zrzut strony. Kontrolka pozwala ponownie zasłonić podgląd, a osobny przycisk otwiera AI-Team. Reduced-motion i zatrzymanie animacji pomijają przejścia. Sekcja o spotkaniu ma trzy dostępne klawiaturą zakładki; pomarańczowa sekcja — interaktywne pytania z krótkim kontekstem. Bez zmian w zapisie, danych, cenach czy wysyłce. Sprawdzone 320/375/390/430/768/1440 px, hover, dotyk, przełączanie zakładek i tematów; bez overflow i błędów JS.
