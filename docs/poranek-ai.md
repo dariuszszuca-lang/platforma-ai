@@ -34,3 +34,20 @@ Obraz: gpt-image-2.5-flare, high, 1536×1024, 18.09.2026. Wideo: Higgsfield DoP 
 ## Iteracja: para odsłania stronę
 
 Po korekcie Darka usunięto popup. Podgląd jest stale pod organiczną warstwą pary (CSS + filtr SVG); hover lub dotknięcie rozsuwa warstwy i odsłania zrzut strony. Kontrolka pozwala ponownie zasłonić podgląd, a osobny przycisk otwiera AI-Team. Reduced-motion i zatrzymanie animacji pomijają przejścia. Sekcja o spotkaniu ma trzy dostępne klawiaturą zakładki; pomarańczowa sekcja — interaktywne pytania z krótkim kontekstem. Bez zmian w zapisie, danych, cenach czy wysyłce. Sprawdzone 320/375/390/430/768/1440 px, hover, dotyk, przełączanie zakładek i tematów; bez overflow i błędów JS.
+
+## 2026-09-18 — zaproszenie w kopercie
+
+Zatwierdzony przez Darka kierunek: kremowa karta wysuwa się z pomarańczowej koperty; formularz pozostaje w istniejącej sekcji. Pozostałe sekcje bez zmian. Stempel „Do zobaczenia!” wyświetla się dopiero po odpowiedzi API z ok=true; znika przy kolejnej próbie. Bez zmian API, zgód, bazy i wysyłek.
+
+Weryfikacja lokalna Chrome/Playwright: szerokości 320/390/768/1440, brak overflow i błędów JS. Symulowane odpowiedzi 503 i 200 potwierdzają brak stempla po błędzie oraz stempel po sukcesie. Testy nie wysyłały zgłoszeń do produkcji. Sprawdzone wizualnie desktop i mobile. Animacje respektują prefers-reduced-motion oraz przycisk zatrzymania ruchu.
+
+AI_ACT_CHECK: NIE_DOTYCZY
+SYSTEM_I_WLASCICIEL: Poranki z AI / AI-Team
+ROLA: wykonawca techniczny
+KATEGORIA: inna — standardowa edycja interfejsu
+OZNACZENIE_WIDOCZNE: NIE_DOTYCZY; istniejące oznaczenia mediów pozostają
+OZNACZENIE_TECHNICZNE: NIE_DOTYCZY
+RECENZENT_CZLOWIEK: Darek — akceptacja kierunku koperty
+FLAGA_PLATFORMY: NIE_DOTYCZY
+REJESTR: NIE_DOTYCZY
+UZASADNIENIE: Zmiana deterministycznego formularza i dekoracji CSS, bez nowej funkcji AI lub realistycznych mediów syntetycznych.
