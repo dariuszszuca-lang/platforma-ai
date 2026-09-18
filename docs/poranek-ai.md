@@ -51,3 +51,18 @@ RECENZENT_CZLOWIEK: Darek — akceptacja kierunku koperty
 FLAGA_PLATFORMY: NIE_DOTYCZY
 REJESTR: NIE_DOTYCZY
 UZASADNIENIE: Zmiana deterministycznego formularza i dekoracji CSS, bez nowej funkcji AI lub realistycznych mediów syntetycznych.
+
+## 2026-09-18 — grafika prowadzącego dostarczona przez Darka
+
+Podmieniono wyłącznie ilustrację w sekcji host na `assets/poranek-ai/darek-poranki-ai.webp`. Źródło: przekazany przez Darka plik `~/Downloads/ChatGPT Image 18 wrz 2026 o 23_05_16.png`, oryginał pozostaje bez zmian. Konwersja WebP q88 z `-metadata all`, pełny kwadrat bez kadrowania. Dokładny model i wersja nie zostały podane; nazwa pliku wskazuje eksport ChatGPT. Data otrzymania 18.09.2026.
+
+AI_ACT_CHECK: PASS
+SYSTEM_I_WLASCICIEL: Poranki z AI / AI-Team
+ROLA: podmiot stosujący / wykonawca techniczny
+KATEGORIA: realistyczna treść generatywna
+OZNACZENIE_WIDOCZNE: „wizualizacja AI” w podpisie bezpośrednio pod grafiką oraz w alt
+OZNACZENIE_TECHNICZNE: zachowanie dostępnych metadanych przez cwebp -metadata all; oryginał zachowany
+RECENZENT_CZLOWIEK: Darek — dostarczenie i wskazanie grafiki do publikacji
+FLAGA_PLATFORMY: NIE_DOTYCZY — własna strona
+REJESTR: NIE_DOTYCZY — wymiana materiału, bez nowego systemu AI
+UZASADNIENIE: Dostarczona syntetyczna grafika osoby i miejsca otrzymała widoczne oznaczenie przy pierwszym kontakcie.
