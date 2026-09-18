@@ -93,6 +93,11 @@
       "source": "/dziekujemy-kokpit",
       "destination": "/produkty",
       "permanent": true
+    },
+    {
+      "source": "/poranek-ai",
+      "destination": "/poranki-ai",
+      "permanent": true
     }
   ]
 }

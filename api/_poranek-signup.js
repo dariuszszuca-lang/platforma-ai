@@ -34,7 +34,7 @@ function createHandler(dependencies = {}) {
         await deps.setDoc(path, {
           id, email, source: 'poranek-ai', group: 'poranek-ai', case_type: 'event_interest',
           status: 'active', title: 'Poranki z AI — zainteresowanie pierwszym spotkaniem',
-          page_url: 'https://ai-team.pl/poranek-ai',
+          page_url: 'https://ai-team.pl/poranki-ai',
           consent: { event_notification: true, newsletter: false, text: CONSENT_TEXT, version: '2026-09-18', at: now },
           created_at: now, updated_at: now,
         }, token);

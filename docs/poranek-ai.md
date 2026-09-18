@@ -1,6 +1,6 @@
 # Poranki z AI — wdrożenie 18.09.2026
 
-- Publiczny adres: https://ai-team.pl/poranek-ai (Vercel cleanUrls).
+- Publiczny adres: https://ai-team.pl/poranki-ai (Vercel cleanUrls).
 - Mandat Darka: „Zrób już na stronie po /poranek-ai”, następnie test zapisu.
 - Animowane logo: identyczny znak SVG i pierścień z index.html / mega-fx.css. Paleta i skala nagłówków po akceptowanych iteracjach makiety; mobile od 320 px.
 - Formularz: POST /api/async-submit z form_type=poranek-ai; wydzielony helper _poranek-signup.js. Bez kolejnej funkcji Vercel, nowych sekretów lub zmian reguł bazy.
@@ -22,3 +22,11 @@ REJESTR: NIE_DOTYCZY — statyczny materiał, nie wdrożenie systemu generatywne
 UZASADNIENIE: Scena kawiarni jest widocznie oznaczona jako wizualizacja; nie przedstawia ustalonego lokalu lub rzeczywistego spotkania.
 
 Obraz: gpt-image-2.5-flare, high, 1536×1024, 18.09.2026. Wideo: Higgsfield DoP Standard, request 4cc2342b-2604-4950-a00a-ef6a2b240e46. Film internetowy H.264, 1080 px, 4,57 s, bez audio; przejście pętli 0,8 s. Poster WebP. prefers-reduced-motion wyłącza autoplay i obrót logo.
+
+## Korekty po pierwszej publikacji
+
+- Docelowy adres na polecenie Darka: `/poranki-ai`; `/poranek-ai` przekierowuje na niego.
+- Usunięty ozdobny krąg, nagłówek „Porozmawiajmy przy kawie”.
+- Animacje wejścia sekcji, podkreślenia pytań i reakcje przycisków. Kontrolka zatrzymuje film, logo i ujawnianie sekcji; reduced-motion zachowany.
+- Box AI-Team rozwija prawdziwy zrzut strony głównej (18.09.2026) po najechaniu lub dotknięciu. Link otwiera stronę w nowej karcie. Escape i kliknięcie poza zamykają podgląd.
+- Test live formularza: HTTP 200, rekord odczytany z Firestore, zgodna zgoda event_notification=true i newsletter=false, powtórka bez duplikatu i zmiany created_at. Syntetyczny wpis poranek-ai-smoke-20260918@example.com oznaczony status=test / is_test=true. Zero wysłanych wiadomości.
