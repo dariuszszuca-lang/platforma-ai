@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <title>Dział AI w firmie: etat czy zewnętrzny zespół? | AI-TEAM.PL</title>
+    <meta name="description" content="Kto w małej firmie ma zajmować się AI? Porównanie kosztów etatu, wolnego strzelca i zewnętrznego działu AI z danymi GUS i przykładami wdrożeń.">
+    <meta name="author" content="Dariusz Szuca">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://ai-team.pl/blog/dzial-ai-w-firmie">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dział AI w firmie: etat czy zewnętrzny zespół?">
+    <meta property="og:description" content="Kto w małej firmie ma zajmować się AI? Porównanie kosztów etatu, wolnego strzelca i zewnętrznego działu AI z danymi GUS i przykładami wdrożeń.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ai-team.pl/blog/dzial-ai-w-firmie">
+    <meta property="og:image" content="https://ai-team.pl/assets/blog/dzial-ai-w-firmie/hero.webp">
+    <meta property="og:image:width" content="1536">
+    <meta property="og:image:height" content="816">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="article:published_time" content="2026-09-26">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Dział AI w firmie: etat czy zewnętrzny zespół?",
+  "description": "Kto w małej firmie ma zajmować się AI? Porównanie kosztów etatu, wolnego strzelca i zewnętrznego działu AI z danymi GUS i przykładami wdrożeń.",
+  "datePublished": "2026-09-26",
+  "dateModified": "2026-09-26",
+  "inLanguage": "pl-PL",
+  "author": {
+    "@type": "Person",
+    "name": "Dariusz Szuca",
+    "url": "https://ai-team.pl"
+  },
+  "editor": {
+    "@type": "Person",
+    "name": "Dariusz Szuca"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI-Team",
+    "url": "https://ai-team.pl",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ai-team.pl/assets/ai-team-logo-256.png"
+    }
+  },
+  "image": "https://ai-team.pl/assets/blog/dzial-ai-w-firmie/hero.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ai-team.pl/blog/dzial-ai-w-firmie"
+  }
+}
+</script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ile firm w Polsce korzysta ze sztucznej inteligencji?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Według GUS w 2025 roku AI stosowało 8,7% małych, średnich i dużych firm w Polsce, rok wcześniej 5,9%. W dużych firmach to 42%, w średnich 15,6%, a w małych, od 10 do 49 osób, tylko 6,1%. Mikrofirm do 9 osób GUS w tym badaniu nie analizował."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ile zarabia specjalista od AI w Polsce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Według raportu o rynku pracy IT w Polsce AI Engineer zarabia od około 10 100 zł miesięcznie na początku kariery na umowie o pracę do 31 620 zł jako senior na kontrakcie B2B. Średni poziom to 20 148 do 23 115 zł, zależnie od formy zatrudnienia. Przy etacie pracodawca dopłaca około 22% składek."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy mała firma musi zatrudniać specjalistę od AI na etat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie musi. W małej firmie często nie ma dla specjalisty pracy na pełne 160 godzin miesięcznie, a koszt etatu z składkami zaczyna się od około 12 tys. zł przy pensji 10 tys. zł brutto. Jeden projekt można zlecić, a stały rozwój oddać zewnętrznemu działowi AI w abonamencie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym różni się opieka techniczna od zewnętrznego działu AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Opieka pilnuje, żeby to, co już działa, dalej działało: poprawki, monitoring, szybka reakcja. Zewnętrzny dział AI robi to samo, ale dodatkowo co miesiąc buduje nowe automatyzacje i sam proponuje kolejne usprawnienia. Opieka wystarczy, gdy chcesz spokoju, dział AI, gdy chcesz ciągłego rozwoju."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Na co uważać, wybierając firmę do wdrożenia AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Poproś o prawdziwe wdrożenia z liczbami i przykładem z podobnej branży. Zapytaj, jak firma testuje zmiany przed uruchomieniem, jak chroni dane Twoich klientów i co się stanie, gdy coś przestanie działać po godzinach. Sprawdź też, kto i za ile utrzymuje system po wdrożeniu."
+      }
+    }
+  ]
+}
+</script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Inter Tight', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#FAFAF7',
+                            primary: '#1E8A5A',
+                            secondary: '#176B46',
+                            light: '#2FB77A',
+                        },
+                        primary: '#1E8A5A',
+                        secondary: '#176B46',
+                        light: '#2FB77A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020203; min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .prose-custom h2 { color: #fb923c; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+        .prose-custom h3 { color: #fdba74; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .prose-custom p { color: #e2e8f0; line-height: 1.8; margin-bottom: 1rem; }
+        .prose-custom ul, .prose-custom ol { color: #e2e8f0; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .prose-custom li { margin-bottom: 0.5rem; }
+        .prose-custom strong { color: #f1f5f9; }
+        .highlight-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border-left: 4px solid #f97316; padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .cta-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; }
+        .bg-grid-pattern { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%); transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2); transform-origin: top center; }
+        .horizon-glow { position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%); filter: blur(100px); z-index: -1; opacity: 0.6; }
+    </style>
+    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
+    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
+</head>
+<body>
+    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+        <div class="horizon-glow"></div>
+    </div>
+    <!-- Navigation - same as main page -->
+    <nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="AI-Team, strona główna">
+      <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
+      <span class="word">AI-Team <span class="tag">Gdańsk</span></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="/systemy-crm">Systemy i CRM</a>
+      <a href="/strona-w-3-dni">Strona</a>
+      <a href="/warsztaty-ai">Warsztaty</a>
+      <a href="/zewnetrzny-dzial-ai">Dział AI</a>
+      <a href="/wdrozenia">Wdrożenia</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/ai-radar">AI Radar</a>
+      <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a href="/kontakt" class="btn sm">Umów rozmowę</a>
+  </div>
+</nav>
+
+    <!-- Article (blog-geo) -->
+    <article class="pt-32 pb-16">
+        <div class="max-w-3xl mx-auto px-4">
+
+            <div class="text-gray-400 text-sm mb-6">
+                <a href="/" class="hover:text-white">Strona główna</a>
+                <span class="mx-2">/</span>
+                <a href="/blog/" class="hover:text-white">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-300">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span>
+            </div>
+
+            <header class="mb-8">
+                <div class="flex gap-2 mb-4"><span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Poradnik</span><span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Wdrożenia AI</span></div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?
+                </h1>
+                <p class="redaktor text-sm text-gray-400 mb-4" data-akceptacja>Redaktor: Dariusz Szuca · zaakceptowano: 26.09.2026</p>
+                <p class="text-xl text-gray-300 mb-6">Tylko 6,1% małych firm w Polsce stosuje AI. Najczęściej nie brakuje chęci, tylko osoby, która się tym zajmie.</p>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                    <span>Darek | AI-TEAM.PL</span>
+                    <span>|</span>
+                    <span>26 września 2026</span>
+                    <span>|</span>
+                    <span>9 min czytania</span>
+                </div>
+            </header>
+
+            <figure class="mb-10">
+                <img src="/assets/blog/dzial-ai-w-firmie/hero.webp" alt="Właściciel małej firmy przy biurku planuje pracę z asystentem AI" width="1536" height="816" fetchpriority="high" decoding="async" class="w-full h-auto rounded-xl">
+            </figure>
+
+            <div class="prose-custom">
+<p>Według GUS w 2025 roku sztuczną inteligencję stosowało 8,7% firm w Polsce. Wśród małych firm, od 10 do 49 osób, tylko 6,1%. I to nie dlatego, że właściciele nie chcą. Słyszę to na każdej rozmowie: chcę, tylko nie mam kogo przy tym posadzić.</p>
+<p>Ten tekst jest o tym jednym pytaniu. Kto w Twojej firmie ma się zajmować AI? Ty, pracownik na etacie, wolny strzelec czy firma z zewnątrz? Policzymy koszty, porównamy warianty i pokażę, jak to wygląda u nas na prawdziwych wdrożeniach.</p>
+<p><img src="/assets/blog/dzial-ai-w-firmie/wykres1.webp" alt="Wykres: w 2025 roku AI stosowało 42% dużych firm, 8,7% wszystkich badanych firm i 6,1% małych firm w Polsce (GUS)" loading="lazy"></p>
+<h2>Czym jest dział AI w firmie i czy mała firma go potrzebuje?</h2>
+<p>Dział AI to osoba albo zespół, który w firmie wybiera, wdraża i pilnuje narzędzi AI. W małej firmie to nie jest pokój z pięcioma programistami. To ktoś, kto odpowiada za jedno: żeby AI co miesiąc przejmowało kolejny kawałek powtarzalnej pracy. Mała firma potrzebuje go wtedy, gdy AI ma działać na stałe, a nie od zrywu do zrywu.</p>
+<p>Znasz ten scenariusz?</p>
+<p>Właściciel wraca z konferencji albo warsztatu. Jest zapał. Przez dwa tygodnie ChatGPT pisze oferty, ktoś zakłada konto w nowym narzędziu. Potem przychodzi sezon, klienci, faktury. Po miesiącu nikt już nie pamięta hasła.</p>
+<p>To nie jest problem narzędzi. To problem odpowiedzialności. Nikt nie ma w zakresie obowiązków „AI”, więc AI robi się samo. Czyli wcale.</p>
+<p>Dane GUS dobrze to pokazują. W dużych firmach AI stosuje 42%, w małych 6,1%. Duże firmy mają działy IT, budżety i ludzi, którym się za to płaci. Małe mają właściciela, który robi wszystko naraz.</p>
+<p>Mikrofirm GUS w ogóle nie badał, więc o firmach do 9 osób urzędowych danych nie ma.</p>
+<p>Nie każda firma potrzebuje działu AI od razu. Jeśli masz jeden powtarzalny proces, wystarczy jedno wdrożenie i ktoś, kto je utrzyma. Dział AI ma sens, gdy procesów jest kilka, a Ty chcesz, żeby co miesiąc coś się przesuwało do przodu.</p>
+<h2>Kto w firmie ma zajmować się AI: właściciel, pracownik czy firma zewnętrzna?</h2>
+<p>Są cztery drogi. Robisz to sam, zatrudniasz specjalistę na etat, bierzesz wolnego strzelca do projektu albo zlecasz to firmie, która działa jak Twój dział AI. Każda droga ma sens w innej sytuacji. Decyduje liczba procesów do zautomatyzowania, Twój czas i to, czy potrzebujesz ciągłości, czy jednego projektu.</p>
+<p><strong>Sam, jako właściciel.</strong> Najtańsza droga na start. Uczysz się, testujesz, wdrażasz proste rzeczy. Działa, dopóki masz na to czas. U większości właścicieli małych firm czas kończy się po miesiącu. Jeśli chcesz iść tą drogą, zacznij od <a href="/blog/ai-dla-malej-firmy">poradnika AI dla małej firmy</a> i policz, <a href="/blog/oszczednosc-czasu-ai">ile czasu realnie odzyskasz</a>.</p>
+<p><strong>Pracownik na etacie.</strong> Masz kogoś na miejscu, kto zna firmę. Tyle że specjalista od AI kosztuje jak specjalista od AI. O tym za chwilę.</p>
+<p><strong>Wolny strzelec.</strong> Dobry do jednego, jasno opisanego projektu. Zrobi chatbota, automatyzację, integrację. Gorzej z tym, co po projekcie. Wolny strzelec ma innych klientów i nie siedzi w Twoich procesach na co dzień.</p>
+<p><strong>Firma zewnętrzna jako dział AI.</strong> Płacisz abonament, a firma co miesiąc buduje, utrzymuje i proponuje kolejne usprawnienia. Nie rekrutujesz i nie zarządzasz specjalistą.</p>
+<p>Aha. Jest jeszcze piąta droga, najczęstsza. Nikt się tym nie zajmuje. To też decyzja, tylko nikt jej świadomie nie podjął.</p>
+<h2>Ile kosztuje specjalista od AI na etat?</h2>
+<p>Specjalista od AI zarabia w Polsce od około 10 100 zł miesięcznie na początku kariery do ponad 31 600 zł na poziomie seniora. Średni poziom doświadczenia to 20 148 do 23 115 zł, zależnie od umowy. Do tego przy umowie o pracę dochodzą składki pracodawcy, czyli około 22% ponad pensję brutto.</p>
+<p>Rozłóżmy to na kawałki.</p>
+<p>Dane z raportu o rynku pracy IT w Polsce, przygotowanego na podstawie odpowiedzi 811 specjalistów, pokazują przedział od 10 100 zł (junior na umowie o pracę) do 31 620 zł (senior na kontrakcie B2B). Ogłoszenia z portalu justjoin.it, zebrane przez ITwiz, dają dla stanowiska AI Engineer 21 do 29 tys. zł netto. 62,1% tych ofert to kontrakty B2B, nie etat.</p>
+<p>Teraz koszt pracodawcy. Przy pensji 10 000 zł brutto na umowie o pracę całkowity koszt w 2026 roku to 12 198 zł. Składki emerytalne, rentowe, wypadkowe, Fundusz Pracy, FGŚP i PPK. Czyli około 22% ponad to, co widzisz w umowie.</p>
+<p><img src="/assets/blog/dzial-ai-w-firmie/wykres2.webp" alt="Wykres: pensja 10 000 zł brutto na umowie o pracę kosztuje pracodawcę 12 198 zł w 2026 roku" loading="lazy"></p>
+<p>I to jeszcze nie wszystko. Do pensji dochodzi rekrutacja, która trwa tygodnie. Sprzęt i licencje. Urlop, podczas którego nikt nie pilnuje automatyzacji. I pytanie, które mało kto zadaje na starcie: czy w małej firmie jest dla takiej osoby praca na pełne 160 godzin miesięcznie?</p>
+<p>Często nie ma. Jest praca na 20, może 40 godzin. Reszta to czekanie albo zajmowanie się czymś innym.</p>
+<p>Dlatego etat ma sens w firmie, która ma dużo procesów, stały budżet i kogoś, kto takim specjalistą pokieruje. W firmie na 10 osób to zwykle przepłacanie.</p>
+<h2>Ile kosztuje wdrożenie AI w firmie?</h2>
+<p>Pojedyncze wdrożenie AI w małej firmie to według rynkowych zestawień od 5 do 50 tys. zł jednorazowo, plus od 200 do 2 500 zł miesięcznie na narzędzia i utrzymanie. Proste rzeczy, jak chatbot czy automatyzacja maili, mieszczą się w dolnym przedziale. Integracje z systemami firmy są droższe.</p>
+<p>Przedziały z poradnika dla małych firm wyglądają tak.</p>
+<div class="table-wrap" style="margin:1.5rem 0">
+<table>
+<thead><tr><th>Poziom</th><th>Wdrożenie jednorazowo</th><th>Utrzymanie miesięcznie</th></tr></thead>
+<tbody>
+<tr><td>Podstawowy</td><td>5 000 do 10 000 zł</td><td>200 do 500 zł</td></tr>
+<tr><td>Średni</td><td>10 000 do 25 000 zł</td><td>500 do 1 000 zł</td></tr>
+<tr><td>Zaawansowany</td><td>25 000 do 50 000 zł</td><td>1 000 do 2 500 zł</td></tr>
+</tbody></table></div>
+<p>Źródło: akademiawywiadu.pl, zestawienie z kwietnia 2025.</p>
+<p>Uwaga na jedną rzecz. Te kwoty dotyczą jednego projektu. Po wdrożeniu zostajesz z działającym narzędziem i pytaniem: co dalej? Kto je poprawi, kiedy zmieni się proces? Kto zbuduje następne?</p>
+<p>Tu jest różnica między wdrożeniem a działem AI. Wdrożenie to jedna rzecz. Dział AI to rytm: co miesiąc coś nowego i co miesiąc pilnowanie tego, co już działa.</p>
+<h2>Etat, freelancer czy zewnętrzny dział AI: co wybrać?</h2>
+<p>Wybór zależy od trzech rzeczy: ile masz procesów do zautomatyzowania, czy potrzebujesz ciągłości i ile czasu możesz poświęcić na zarządzanie. Jeden projekt najlepiej zlecić. Wiele procesów i stały rozwój to etat albo zewnętrzny dział AI. W małej firmie usługowej zewnętrzny dział zwykle wygrywa, bo nie płacisz za godziny, w których nie ma pracy.</p>
+<div class="table-wrap" style="margin:1.5rem 0">
+<table>
+<thead><tr><th></th><th>Etat</th><th>Wolny strzelec</th><th>Zewnętrzny dział AI</th></tr></thead>
+<tbody>
+<tr><td>Koszt</td><td>pensja + ok. 22% składek, od ok. 10 tys. zł</td><td>stawka za projekt, zależna od zakresu</td><td>abonament miesięczny, wycena w rozmowie</td></tr>
+<tr><td>Rekrutacja</td><td>tygodnie</td><td>kilka dni</td><td>brak</td></tr>
+<tr><td>Ciągłość</td><td>tak, dopóki osoba nie odejdzie</td><td>do końca projektu</td><td>tak, umowa na minimum kilka miesięcy</td></tr>
+<tr><td>Zna Twoje procesy</td><td>tak, po czasie</td><td>tylko w zakresie projektu</td><td>tak, od pierwszego przeglądu procesów</td></tr>
+<tr><td>Urlop, choroba</td><td>przerwa</td><td>przerwa</td><td>zależy od firmy, zapytaj o zastępstwo</td></tr>
+<tr><td>Zarządzanie</td><td>Twoje</td><td>Twoje</td><td>po stronie firmy zewnętrznej</td></tr>
+<tr><td>Najlepsze dla</td><td>firmy z wieloma procesami i budżetem</td><td>jednego, jasnego projektu</td><td>małych firm usługowych, które chcą stałego rozwoju</td></tr>
+</tbody></table></div>
+<p>Najprościej.</p>
+<p>Masz jedną rzecz do zrobienia? Zleć projekt.</p>
+<p>Masz pięć procesów, które chcesz po kolei oddawać AI, i nie chcesz nikogo zatrudniać? Zewnętrzny dział AI.</p>
+<p>Masz firmę na 100 osób i budżet na zespół? Etat, może nawet dwa.</p>
+<h2>Co robi zewnętrzny dział AI w pierwszych 3 miesiącach?</h2>
+<p>Na początku poznaje Twoje procesy i wybiera ten, na którym AI da najszybszy efekt. Potem co miesiąc buduje nowe automatyzacje, utrzymuje to, co już działa, i robi przegląd: co zrobiliśmy, co dalej, gdzie AI da największy zysk. Po trzech miesiącach masz kilka działających rzeczy i plan na kolejne.</p>
+<p>U nas wygląda to tak.</p>
+<p>Nie sprzedajemy godzin. Sprzedajemy określoną moc wdrożeniową na miesiąc. W niej są nowe automatyzacje i integracje pod Twój proces, rozwój i utrzymanie systemów zbudowanych wcześniej, szybka reakcja na problemy i miesięczny przegląd.</p>
+<p>Nowe rzeczy budujemy z biblioteki gotowców. Automatyzacja zrobiona raz jest dopasowywana do kolejnej firmy, a nie pisana od zera. Dlatego jedna firma zewnętrzna potrafi dowieźć więcej niż jeden etat.</p>
+<p>Ważna różnica, o którą ludzie często pytają: opieka a dział AI. Opieka pilnuje, żeby działało. Dział AI cały czas buduje nowe. Jeśli masz system i chcesz spokoju, wystarczy opieka. Jeśli chcesz, żeby AI co miesiąc przejmowało kolejny kawałek roboty, to dział AI.</p>
+<p>Pełny opis, dla kogo to jest i co wchodzi w zakres, jest na stronie <a href="/zewnetrzny-dzial-ai">Zewnętrzny Dział AI</a>.</p>
+<h2>Jak wybrać firmę do wdrożenia AI i na co uważać?</h2>
+<p>Sprawdź trzy rzeczy: czy firma pokazuje prawdziwe wdrożenia z liczbami, czy testuje zmiany przed uruchomieniem i jak dba o dane Twoich klientów. Poproś o przykład z podobnej branży. Zapytaj, co się stanie, gdy coś przestanie działać w piątek wieczorem. Brak konkretnej odpowiedzi to sygnał ostrzegawczy.</p>
+<p><strong>Prawdziwe wdrożenia.</strong> Ładna strona i wielkie hasła nic nie znaczą. Poproś o opis: jaki był problem, co zbudowano, jakie są liczby. My nasze pokazujemy na stronie <a href="/wdrozenia">Wdrożenia</a>, z nazwami klientów i datą stanu.</p>
+<p><strong>Testy przed uruchomieniem.</strong> AI potrafi się pomylić. Automatyzacja też. Dobra firma sprawdza każdą zmianę, zanim trafi do Twoich klientów. Przy systemie przewozów dla Nordic Travel przed wdrożeniem przeszło 119 testów automatycznych. Bez tego jeden błąd w rezerwacji potrafi zepsuć klientowi weekend.</p>
+<p><strong>Dane i przepisy.</strong> Od sierpnia 2026 obowiązuje część przepisów AI Act, między innymi o oznaczaniu treści AI i informowaniu, że klient rozmawia z botem. Firma, która wdraża Ci AI, powinna to wiedzieć i powiedzieć Ci, co z tego wynika. Więcej w tekście o <a href="/blog/ai-act-mala-firma">AI Act w małej firmie</a>.</p>
+<p><strong>Co po wdrożeniu.</strong> Zapytaj wprost: kto utrzymuje, kto poprawia, ile to kosztuje. Wdrożenie bez planu utrzymania to narzędzie, które za pół roku przestanie pasować do Twojej firmy.</p>
+<h2>Jak to wygląda u nas na prawdziwych wdrożeniach?</h2>
+<p>Pracujemy z firmami usługowymi jak ich dział AI: budujemy system, potem co miesiąc go rozwijamy. Biuro nieruchomości Golden Property ma automatyczny rozdział zapytań od klientów. Ośrodek terapii MyWay ma CRM, rezerwacje online i aplikację dla pacjentów. Poniżej liczby z tych wdrożeń.</p>
+<p><strong>Golden OS, biuro nieruchomości, 5 agentów.</strong> Wcześniej zapytania od klientów rozdzielał ręcznie właściciel i nikt nie wiedział, kto oddzwonił. Teraz zapytanie trafia do agenta automatycznie. Jeśli przez 120 minut nikt nie zareaguje, idzie do następnego. W pierwszym tygodniu od startu, od 7 września 2026, system obsłużył 18 nowych zapytań i zrobił 21 automatycznych przydziałów. AI spisało i przeanalizowało 29 rozmów telefonicznych.</p>
+<p><strong>MyWay, ośrodek terapii.</strong> Tu widać, jak działa ciągłość. Zaczęło się od CRM. Dziś jest tam kartoteka 218 pacjentów, system rezerwacji konsultacji online z 93 rezerwacjami, aplikacja dla pacjentów, osiem stron i automat publikujący posty w wizytówce Google (stan na 14 września 2026). Nie jeden projekt, tylko kolejne kroki miesiąc po miesiącu.</p>
+<p><strong>Nasz własny dział AI.</strong> Sami pracujemy tak, jak doradzamy. Nasz dział AI sortuje skrzynkę, pisze szkice postów i newslettera i wysyła raporty na Telegram. Ten tekst też powstał w takim systemie, a na końcu przeczytał go i zaakceptował człowiek.</p>
+<h2>Od czego zacząć, jeśli dział AI to na razie za dużo?</h2>
+<p>Zacznij od jednego procesu, który zjada Ci najwięcej czasu. Możesz nauczyć się podstaw na warsztatach albo zlecić jedno wdrożenie, na przykład prosty CRM pod Twój proces. Dział AI ma sens dopiero wtedy, gdy wiesz, co chcesz oddać AI w kolejnych miesiącach.</p>
+<p>Dwie drogi na start.</p>
+<p>Chcesz to robić sam albo z zespołem? <a href="/warsztaty-ai">Warsztaty AI</a> od 600 zł za osobę. Wychodzisz z asystentami i planem wdrożenia dla swojej firmy.</p>
+<p>Chcesz od razu mieć działające narzędzie? <a href="/systemy-crm">Mini-System z bazą klientów</a> za 3 900 zł brutto w promocji, gotowy w 1 do 2 tygodni.</p>
+<p>A jeśli czujesz, że procesów jest więcej niż jeden i nie chcesz nikogo zatrudniać, porozmawiajmy. <a href="/zewnetrzny-dzial-ai">Umów rozmowę o Zewnętrznym Dziale AI</a>. Wycena po rozmowie, bo każda firma ma inny zakres.</p>
+<p>Jakbyś to zrobił u siebie? Etat, zlecenie czy dział z zewnątrz?</p>
+
+                <section id="faq" class="mt-12">
+                    <h2>Najczęściej zadawane pytania</h2>
+                    <h3>Ile firm w Polsce korzysta ze sztucznej inteligencji?</h3>
+                    <p>Według GUS w 2025 roku AI stosowało 8,7% małych, średnich i dużych firm w Polsce, rok wcześniej 5,9%. W dużych firmach to 42%, w średnich 15,6%, a w małych, od 10 do 49 osób, tylko 6,1%. Mikrofirm do 9 osób GUS w tym badaniu nie analizował.</p>
+                    <h3>Ile zarabia specjalista od AI w Polsce?</h3>
+                    <p>Według raportu o rynku pracy IT w Polsce AI Engineer zarabia od około 10 100 zł miesięcznie na początku kariery na umowie o pracę do 31 620 zł jako senior na kontrakcie B2B. Średni poziom to 20 148 do 23 115 zł, zależnie od formy zatrudnienia. Przy etacie pracodawca dopłaca około 22% składek.</p>
+                    <h3>Czy mała firma musi zatrudniać specjalistę od AI na etat?</h3>
+                    <p>Nie musi. W małej firmie często nie ma dla specjalisty pracy na pełne 160 godzin miesięcznie, a koszt etatu z składkami zaczyna się od około 12 tys. zł przy pensji 10 tys. zł brutto. Jeden projekt można zlecić, a stały rozwój oddać zewnętrznemu działowi AI w abonamencie.</p>
+                    <h3>Czym różni się opieka techniczna od zewnętrznego działu AI?</h3>
+                    <p>Opieka pilnuje, żeby to, co już działa, dalej działało: poprawki, monitoring, szybka reakcja. Zewnętrzny dział AI robi to samo, ale dodatkowo co miesiąc buduje nowe automatyzacje i sam proponuje kolejne usprawnienia. Opieka wystarczy, gdy chcesz spokoju, dział AI, gdy chcesz ciągłego rozwoju.</p>
+                    <h3>Na co uważać, wybierając firmę do wdrożenia AI?</h3>
+                    <p>Poproś o prawdziwe wdrożenia z liczbami i przykładem z podobnej branży. Zapytaj, jak firma testuje zmiany przed uruchomieniem, jak chroni dane Twoich klientów i co się stanie, gdy coś przestanie działać po godzinach. Sprawdź też, kto i za ile utrzymuje system po wdrożeniu.</p>
+                </section>
+
+                <p class="ai-label text-sm" style="color:#94a3b8;margin-top:2rem">Tekst przygotowany z pomocą AI. Grafika: AI.</p>
+            </div>
+
+            <div class="glass rounded-xl p-6 mt-10">
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">D</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Dariusz Szuca</h4>
+                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing i AI dla małych firm</p>
+                        <p class="text-gray-300 text-sm">Buduję systemy i wdrożenia AI dla małych firm z Trójmiasta i prowadzę firmę z zespołem agentów AI, dokładnie tak, jak uczę klientów.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="foot">
+  <div class="wm" aria-hidden="true">AI-Team</div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="/" class="brand"><span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span><span class="word">AI-Team</span></a>
+        <p class="small">Systemy, strony i asystenci AI dla małych firm. Gdańsk, klienci z całej Polski. Od 2024.</p>
+      </div>
+      <div>
+        <h4>Oferta</h4>
+        <a href="/systemy-crm">Systemy i CRM</a>
+        <a href="/strona-w-3-dni">Strona w 3 dni</a>
+        <a href="/warsztaty-ai">Warsztaty AI</a>
+        <a href="/zewnetrzny-dzial-ai">Zewnętrzny Dział AI</a>
+        <a href="/wdrozenia">Wdrożenia</a>
+        <a href="/produkty">Produkty cyfrowe</a>
+      </div>
+      <div>
+        <h4>Wiedza</h4>
+      <a href="/blog/">Blog</a>
+        <a href="/ai-radar">AI Radar</a>
+        <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
+        <a href="/ai-act/">AI Act dla małej firmy</a>
+      </div>
+      <div>
+        <h4>Narzędzia</h4>
+        <a href="/produkt1-tracker">Tracker czasu</a>
+        <a href="https://akademia-ai-nieruchomosci.pl" rel="noopener">Akademia AI</a>
+        <a href="/checklista-strony">Checklista strony</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="tel:+48730600383">730 600 383</a>
+        <a href="mailto:darek@ai-team.pl">darek@ai-team.pl</a>
+        <a href="/kontakt">Formularz</a>
+        <a href="/privacy">Polityka prywatności</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 AI-Team · Darek Szuca</span>
+      <span class="ai-note">Tekst przygotowany z pomocą AI. Grafika: AI. Sprawdził: Darek Szuca.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+</body>
+</html>
