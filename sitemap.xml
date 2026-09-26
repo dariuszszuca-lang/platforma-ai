@@ -61,12 +61,18 @@
     <!-- Blog - strona główna -->
     <url>
         <loc>https://ai-team.pl/blog/</loc>
-        <lastmod>2026-09-27</lastmod>
+        <lastmod>2026-09-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <!-- Artykuły blogowe -->
+    <url>
+        <loc>https://ai-team.pl/blog/crm-dla-malej-firmy</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
     <url>
         <loc>https://ai-team.pl/blog/dzial-ai-w-firmie</loc>
         <lastmod>2026-09-26</lastmod>

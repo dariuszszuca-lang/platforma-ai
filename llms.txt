@@ -95,6 +95,7 @@ Interaktywne narzędzia: Prompt Generator (generator promptów do ChatGPT i Clau
 
 ## Blog i kanały
 - Blog: https://ai-team.pl/blog/ — praktyczne AI dla małych firm, m.in. AI Act dla małej firmy, automatyzacja bez kodowania, prompty dla biznesu, chatbot w obsłudze klienta.
+- Wpis: Jaki CRM dla małej firmy wybrać? Koszty 2026: https://ai-team.pl/blog/crm-dla-malej-firmy
 - Wpis: Dział AI w firmie: etat czy zewnętrzny zespół? | AI-TEAM.PL: https://ai-team.pl/blog/dzial-ai-w-firmie
 - Newsletter: https://ai-team.pl/ai-radar.html
 - LinkedIn: https://linkedin.com/in/dariusz-szuca
