@@ -41,6 +41,12 @@
   .faq summary { cursor: pointer; font-family: var(--f-head); font-weight: 600; font-size: 17px; }
   .faq p { margin-top: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
   .prose p { font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 66ch; margin-bottom: 14px; }
+  .schemat { margin: 28px 0 0; }
+  .schemat-ramka { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--card); -webkit-overflow-scrolling: touch; }
+  .schemat-ramka img { display: block; width: 100%; height: auto; }
+  .schemat figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--mute); }
+  .schemat-przewin { display: none; }
+  @media (max-width: 960px) { .schemat-ramka img { width: 880px; max-width: none; } .schemat-przewin { display: inline; } }
   @media (max-width: 960px) { .two, .three, .stats.s4 { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } .stats div { border-left: 0; border-top: 1px solid var(--line); } .page-hero { padding: 40px 0 32px; } .grid > .card { grid-column: 1 / -1 !important; } }
 </style>
 <script src="/assets/meta-pixel.js"></script>
@@ -97,6 +103,25 @@
         <ul class="rows" style="margin-top:16px"><li>Wejście leadów: formularze Meta Lead Ads, webhook ze strony, cold calling, każdy lead jako zdarzenie w systemie.</li><li>Automatyczna dystrybucja: kolejka agentów, SMS i push do przypisanego, po 120 minutach bez reakcji lead idzie dalej, urlopy i oddziały (Wrocław prosto do agentki z Wrocławia) w regułach.</li><li>Nagrywanie i transkrypcja rozmów telefonicznych z analizą AI (Claude przez Amazon Bedrock), notatka przypięta do leada.</li><li>Oddzwonienie: klient dzwoni na numer biura, system łączy z ostatnią osobą, z którą rozmawiał; po 20 s bez odbioru wraca do właściciela.</li><li>Przypomnienie o ponownym telefonie z SMS-em do agenta 10 minut przed terminem, wpis w kalendarzu.</li><li>Raport tygodnia: oferty agenta pobierane z EstiCRM na żywo, trzy szablony maila do klientów, wysyłka jednym kliknięciem.</li><li>Panel właściciela z rankingiem i etapami, aplikacja na iPhone dla agentów w terenie.</li><li>Automat postów na wizytówce Google biura (seria co tydzień).</li></ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="schemat">
+  <div class="wrap">
+    <div class="rv prose">
+      <span class="eyebrow">Architektura</span>
+      <h2>Jak to jest połączone</h2>
+      <p style="margin-top:16px">Zgłoszenie z reklamy Meta, strony albo telefonu trafia do systemu, który zapisuje lead w bazie i przydziela go agentowi z kolejki, a SMSAPI wysyła mu SMS. Co 2 minuty system sprawdza przydziały: jeśli agent nie zareaguje w 120 minut, lead idzie do kolejnej osoby. Rozmowy z telefonu biura są spisywane i analizowane przez Claude, notatka trafia do leada, a właściciel widzi ranking w panelu.</p>
+    </div>
+    <figure class="schemat rv">
+      <div class="schemat-ramka">
+        <picture>
+          <source srcset="/assets/schematy/golden-os.webp" type="image/webp">
+          <img src="/assets/schematy/golden-os.png" width="1376" height="546" loading="lazy" decoding="async" alt="Schemat Golden OS. Źródła leadów (Meta, strona, cold calling) trafiają do Przyjęcia leadów na AWS Lambda. Dystrybucja przydziela lead agentowi i zapisuje go w Bazie leadów (DynamoDB). SMSAPI wysyła SMS do Aplikacji agenta (Expo, PWA na iPhone). Funkcja eskalacji i przypomnień, uruchamiana co 2 minuty przez EventBridge, po 120 minutach bez reakcji przekazuje lead kolejnemu agentowi i wysyła przypomnienie 10 minut przed telefonem. Telefon biura przekazuje nagrania do Analizy rozmów (transkrypcja i Claude w Amazon Bedrock), która dopisuje notatkę do bazy. Panel właściciela (Next.js na Vercel) pokazuje ranking z bazy. EstiCRM dostarcza oferty do Raportu tygodnia.">
+        </picture>
+      </div>
+      <figcaption><span>Schemat uproszczony, stan 14.09.2026.<span class="schemat-przewin"> Przesuń w bok, żeby zobaczyć całość.</span></span><a class="link" href="/wdrozenia/schematy/golden-os.html" target="_blank" rel="noopener">Otwórz interaktywny schemat →</a></figcaption>
+    </figure>
   </div>
 </section>
 
