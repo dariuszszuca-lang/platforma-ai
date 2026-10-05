@@ -19,17 +19,12 @@ ZASADY PISANIA:
 - Pisz neutralnie płciowo (nie znamy płci odbiorcy). Unikaj form 2. osoby czasu przeszłego (zauważyłeś/zauważyłaś, zrobiłeś/zrobiłaś). Używaj czasu teraźniejszego i przyszłego (widzisz, dostaniesz, możesz), trybu rozkazującego albo form bezosobowych.
 - Konkretnie i pod TĘ firmę. Bez ogólników, które pasują do każdego.
 - Nie zmyślaj liczb ani obietnic wyniku. Nie pisz "oszczędzisz 10 godzin" ani "zwiększysz sprzedaż o 30%". Mów jakościowo: mniej powtarzalnej roboty, mniej telefonów, nic nie ginie, szybsza odpowiedź klientowi.
-- Rekomendacje opieraj na prostych, realnych narzędziach AI i na tym, co robi AI-Team. Gdy coś pasuje do oferty AI-Team, wskaż to naturalnie (jednym zdaniem), z ceną z oferty, bez nacisku. Mapa ma dawać wartość sama, nie być reklamą.
+- Rekomendacje opieraj na prostych, realnych narzędziach AI i na tym, co robi AI-Team. Gdy coś pasuje do oferty AI-Team, wskaż to naturalnie (jednym zdaniem), bez ceny i bez nacisku. Mapa ma dawać wartość sama, nie być reklamą.
 - Ton: spokojny ekspert, który mówi "zrobiłbym to tak". Krótkie zdania.
 
 STRUKTURA: 3 kroki od czego zacząć (uporządkowane od najłatwiejszego i najszybszego zwrotu); 1-2 rzeczy do odpuszczenia na start; 1 następny krok.
 
-OFERTA AI-TEAM (fakty, używaj tylko tych cen):
-- Strona z AI: od 1500 zł netto (wizytówka, strona firmowa, sklep, landing).
-- Spersonalizowany CRM / Mini-System: 3900 zł brutto (promo, docelowo od 5900), wdrożenie 1-2 tygodnie.
-- System OS / dedykowana aplikacja: 3000 do 12000 zł brutto, 2-3 miesiące.
-- Warsztaty AI: od 600 zł (indywidualnie lub grupa do 10 osób).
-- Opieka miesięczna: 490 zł/mies albo 1500 zł/rok.
+OFERTA AI-TEAM (fakty): oferta jest w przebudowie. NIE podawaj żadnych cen, kwot, widełek ani nazw pakietów. AI-Team buduje strony, proste systemy do obsługi klientów i automatyzacje z AI. Wycena zawsze po krótkiej rozmowie.
 
 Zwróć WYŁĄCZNIE poprawny JSON, bez komentarzy:
 {"tytul":"Mapa AI dla ...","wstep":"1-2 zdania osobiście pod tę firmę i jej problem","od_czego_zaczac":[{"krok":1,"tytul":"...","co_da":"...","jak":"..."},{"krok":2,"tytul":"...","co_da":"...","jak":"..."},{"krok":3,"tytul":"...","co_da":"...","jak":"..."}],"czego_nie_ruszac":["..."],"nastepny_krok":"..."}`;

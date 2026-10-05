@@ -23,42 +23,13 @@
 - Strona procesu wdrożenia (audyt → projekt → prototyp → integracja → wdrożenie → utrzymanie): https://ai-team.pl/wdrozenie-ai
 
 ## Usługi (podstrony)
-- Agenci AI: Wdrożenia agentów AI w małych firmach: agent kwalifikuje leady, spisuje i analizuje rozmowy telefoniczne, przygotowuje dokumenty i odpowiedzi. Przykład: Golden OS dla biura nieruchomości. Ceny i proces. https://ai-team.pl/agenci-ai
+- Agenci AI: Wdrożenia agentów AI w małych firmach: agent kwalifikuje leady, spisuje i analizuje rozmowy telefoniczne, przygotowuje dokumenty i odpowiedzi. Przykład: Golden OS dla biura nieruchomości. Proces. https://ai-team.pl/agenci-ai
 - Automatyzacja procesów: Automatyzacja procesów dla małych firm usługowych: dystrybucja leadów, przypomnienia SMS, raporty tygodnia, dokumenty PDF z danych, posty na wizytówce Google. Wdrożenia z nazwami klientów: Golden Property, MyWay, Nordic Travel. https://ai-team.pl/automatyzacja-procesow
 - AI dla sprzedaży: AI dla sprzedaży w małych firmach: kolejka leadów z regułą czasu reakcji, przypomnienia o ponownym telefonie, transkrypcje rozmów, ranking zespołu, maile z ofertami z CRM. Wdrożenie Golden OS dla biura nieruchomości. https://ai-team.pl/ai-dla-sprzedazy
 - AI dla obsługi klienta: AI i automatyzacje w obsłudze klienta małej firmy: rezerwacje online bez telefonu, potwierdzenia i przypomnienia SMS, oddzwonienie do właściwej osoby, aplikacja dla klienta. Wdrożenia: MyWayPoint, Nordic Travel, MyWay App. https://ai-team.pl/ai-dla-obslugi-klienta
 
-## Oferta (ceny aktualne na sierpień 2026)
-
-### System OS / dedykowana aplikacja biznesowa
-Portal, baza danych, dokumenty, procesy, role i wspólny kontekst AI dla firm do około 10 osób. Cena: 3 000-12 000 PLN brutto zależnie od złożoności. Czas: 2-3 miesiące. Wzór wdrożenia: Golden OS. Strona: https://ai-team.pl/system-operacyjny-firmy.html
-
-### Mini-System z Bazą / CRM dla małej firmy
-Dedykowana aplikacja webowa pod proces firmy: CRM, baza klientów, rezerwacje, generator dokumentów PDF, panel administracyjny. Bez abonamentu za kod, dane po stronie klienta. Cena promocyjna: 3 900 PLN brutto jednorazowo, bez rozbijania na raty (docelowo od 5 900 PLN brutto). Czas: 1-2 tygodnie. W cenie 2 rundy poprawek i 30 dni stabilizacji. Wejście z reklam Meta: bezpłatny Audyt Chaosu w Firmie (nie sprzedaż, tylko rozmowa).
-
-### Strona z AI + abonament
-Strona budowana z AI plus abonament all-in. Budowa jednorazowo: wizytówka z zakładkami 1 200 zł, strona ze sklepem i panelem 1 500 zł, rozbudowana strona firmowa lub landing z lejkiem i formularzem wyceny 1 900 zł. Abonament: 490 zł miesięcznie all-in (SEO plus GEO, chatbot AI, hosting, opieka). Dowóz w kilka dni. Nisza pilotażowa: nieruchomości.
-
-### Warsztaty AI (Trójmiasto albo online)
-Praktyczne, hands-on: Claude, Gemini, Notion, Canva plus case studies. Warianty: D1 Fundament i D2 Zaawansowany. Cena: od 600 zł za osobę. Format indywidualny albo grupa do 10 osób. Miejsce: Trójmiasto (sala wynajmowana pod grupę) albo online.
-
-### Opieka po wdrożeniu
-- Opieka Techniczna: 1 500 zł z góry za 12 miesięcy — monitoring 24/7, aktualizacje bezpieczeństwa, kontrola SSL, domeny i backupu, kwartalny test działania.
-- Opieka Widoczność: 490 zł miesięcznie — Opieka Techniczna plus aktywne SEO i GEO, miesięczna optymalizacja, raport i priorytetowa pomoc.
-- Opieka Sklep, Portfolio, System AI: 490-1 500 zł miesięcznie po audycie — integracje, wiele domen, płatności, dane albo AI.
-Monitoring i przyjęcie zgłoszenia działają 24/7, obsługa człowieka w dni robocze. SEO i GEO bez gwarancji pozycji.
-
-### Produkty cyfrowe (samoobsługa, lifetime)
-- Tracker Czasu Freelancera: 0 zł (darmowy, lead magnet).
-- Decoder Stack AI: 97 zł.
-- System Asystenta AI: 297 zł.
-
-### Akademia AI
-- Nieruchomości I: 750 zł.
-- Nieruchomości I + II: 1 399 zł.
-
-### Zewnętrzny Dział AI (stała opieka wyższego poziomu)
-Abonament za zakres i dostęp do maszyny AI-Team, nie za godziny. Od 2 500 zł miesięcznie, wycena indywidualna. Rozliczenie miesięczne z góry, minimum 3 miesiące. Wejście przez rozmowę z właścicielem.
+## Oferta (stan na 5 października 2026)
+Oferta jest w przebudowie. Wcześniejsze pakiety i ceny są wycofane. Każdą pracę (strona, system do obsługi klientów, automatyzacja z AI, opieka) wyceniamy po krótkiej rozmowie o problemie firmy. Kontakt: https://ai-team.pl/kontakt
 
 ### Newsletter AI Radar
 Cotygodniowy newsletter (poniedziałek): gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. W 100% darmowy. Zapis: https://ai-team.pl/ai-radar.html. Lead magnet: raport „15 sposobów wdrożenia AI w małej firmie" (PDF do pobrania).
@@ -73,12 +44,10 @@ Interaktywne narzędzia: Prompt Generator (generator promptów do ChatGPT i Clau
 - Firmy z chaosem w Excelu, mailach, dokumentach i ręcznej obsłudze klientów.
 
 ## Najczęściej zadawane pytania
-- Ile kosztuje CRM od AI-Team? Mini-System z bazą: 3 900 zł brutto jednorazowo w promocji, bez rat i bez abonamentu za kod (docelowo od 5 900 zł).
-- Czym różni się od gotowego CRM jak Pipedrive, HubSpot czy Bitrix? Płacisz raz, bez abonamentu za użytkownika, a system jest dopasowany do procesu firmy, zamiast zmuszać firmę do procesu narzędzia.
-- Ile kosztują warsztaty AI? Od 600 zł za osobę, w Trójmieście albo online, indywidualnie albo w grupie do 10 osób.
-- Czy strona z AI ma abonament? Tak, budowa jednorazowo od 1 200 do 1 900 zł plus 490 zł miesięcznie all-in z SEO, GEO, chatbotem AI, hostingiem i opieką.
+- Ile kosztuje wdrożenie od AI-Team? Oferta jest w przebudowie. Cenę podajemy po krótkiej rozmowie o problemie firmy.
+- Czym różni się system od gotowego CRM jak Pipedrive, HubSpot czy Bitrix? System jest dopasowany do procesu firmy, zamiast zmuszać firmę do procesu narzędzia.
 - Czy newsletter AI Radar jest darmowy? Tak, w 100% darmowy.
-- Czy AI-Team prowadzi SEO i GEO? Tak, w ramach Opieki Widoczność (490 zł miesięcznie) oraz abonamentu Strony z AI, bez gwarancji pozycji.
+- Czy AI-Team prowadzi SEO i GEO? Tak, zakres i cenę ustalamy po rozmowie. Bez gwarancji pozycji.
 - Gdzie działa AI-Team? Zdalnie w całej Polsce, warsztaty stacjonarnie w Trójmieście albo online.
 
 ## Portfolio (case studies)
