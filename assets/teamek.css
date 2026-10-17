@@ -1,0 +1,39 @@
+/* Teamek, maskotka AI-Team, wpleciony w sekcje strony głównej (17.10.2026).
+   Ozdoba: alt="" i aria-hidden, ładowanie leniwe, ruch tylko bez prefers-reduced-motion. */
+.tk{display:block;height:auto;pointer-events:none;user-select:none;filter:drop-shadow(0 14px 16px rgba(60,40,20,.18))}
+.tk-anchor{position:relative}
+/* hero: stoi przy dolnym rogu panelu demo i wskazuje „Jak to działa” */
+.hero .side{position:relative}
+.tk-hero{position:absolute;right:-74px;bottom:-58px;width:auto;height:124px;z-index:3}
+/* pas „Skrzynka. Posty…”: siedzi z laptopem po prawej */
+#moc .wrap{position:relative}
+#moc .big{position:relative;z-index:1}
+.tk-moc{position:absolute;right:24px;bottom:-6px;height:250px;width:auto}
+/* kto to robi: stoi ze skrzynką narzędzi obok zdjęcia Darka */
+.about .frame{position:relative}
+.tk-autor{position:absolute;right:-92px;bottom:-12px;height:160px;width:auto;border:0!important;border-radius:0!important;z-index:2}
+/* opinie: klaszcze obok nagłówka */
+#opinie .sec-head{position:relative}
+.tk-opinie{position:absolute;right:8px;bottom:-10px;height:150px;width:auto}
+/* AI Radar: megafon obok przycisku zapisu */
+#radar .cta{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.tk-radar{height:118px;width:auto;margin-bottom:-8px}
+/* pytania: żarówka pod nagłówkiem */
+.tk-faq{height:210px;width:auto;margin-top:34px}
+/* kontakt: telefon obok przycisku */
+#kontakt .cta{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.tk-kontakt{height:128px;width:auto;margin-bottom:-6px}
+@media (prefers-reduced-motion:no-preference){
+  .tk-hero{animation:tk-unos 5.5s ease-in-out infinite}
+  .tk-moc,.tk-opinie{animation:tk-unos 7s ease-in-out infinite}
+  @keyframes tk-unos{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+}
+@media (max-width:1100px){.tk-hero{right:-12px;bottom:-56px;height:92px}.tk-moc{height:190px;right:8px}.tk-autor{height:130px;right:-70px}}
+@media (max-width:860px){
+  .tk-hero{display:none}
+  .tk-autor{height:120px;right:auto;left:250px}
+  .tk-moc{position:static;height:150px;margin:18px 0 0 auto}
+  .tk-opinie{height:104px;bottom:auto;top:-6px}
+  .tk-faq{display:none}
+  .tk-radar{height:92px}.tk-kontakt{height:96px}
+}
