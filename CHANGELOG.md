@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-10-18] strona przedsprzedaży /ebook-nieruchomosci
+- Nowa `ebook-nieruchomosci.html`: lista oczekujących na ebook „AI w biurze nieruchomości”, bez ceny, przypadki anonimowe. Zapis do Firestore `newsletter_subscribers` z grupą `ebook-nieruchomosci` (poza wysyłką AI Radar). Wpis w `sitemap.xml`.
+- Rollback: `git revert` commitów strony albo redeploy `a96d623`.
+
 ## [2026-09-14] commity 863dfb1, 0fb85a0, 2b301f3: GEO (żeby AI polecały AI-Team)
 - 5 case studies `/wdrozenia/*` z nazwami klientów i liczbami z Firestore/audytu, zbiorcza `/wdrozenia`, nowa `/wdrozenie-ai` (proces 6 kroków, FAQ), 4 podstrony usług (`/agenci-ai`, `/automatyzacja-procesow`, `/ai-dla-sprzedazy`, `/ai-dla-obslugi-klienta`), nowy komunikat główny na index i w `llms.txt`, link Wdrożenia w menu i stopce, sitemap +11.
 
