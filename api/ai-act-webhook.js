@@ -53,6 +53,13 @@ const NEW_PRODUCTS = {
     subject: "Audyt AI: pierwszy krok",
     body: "dziękuję za opłacenie audytu AI. Jeśli termin rozmowy już ustaliliśmy, do usłyszenia. Jeśli jeszcze nie, odpisz proszę z dwoma terminami, które Ci pasują, potwierdzę do 24 godzin. Raport z planem dostaniesz do 2 dni roboczych po rozmowie.",
   },
+  // VENTURE-04 (23.10.2026), cena 49 zł zatwierdzona przez Darka.
+  plink_1UTkZoC5TxNbsygYbyZ6f97r: {
+    slug: "asystent-firmy", amount: 4900,
+    subject: "Twój asystent AI: zestaw do pobrania",
+    body: "dziękuję za zakup zestawu Asystent AI, który zna Twoją firmę. Paczka jest gotowa do pobrania tutaj: https://ai-team.pl/asystent-firmy/dziekujemy \n\nZacznij od pliku 1-Zacznij-tutaj.pdf. Pięć kroków zajmie około 30 minut, a na końcu asystent odpowie na pytanie od Twojego prawdziwego klienta. Jeśli chcesz zespół asystentów ustawiony razem ze mną, odpisz jednym słowem WDROŻENIE.",
+    bodyHtml: 'dziękuję za zakup zestawu Asystent AI, który zna Twoją firmę. Paczka jest gotowa do pobrania tutaj:</p><p><a href="https://ai-team.pl/asystent-firmy/dziekujemy" style="color:#a7471f;font-weight:bold;text-decoration:none;">https://ai-team.pl/asystent-firmy/dziekujemy</a></p><p>Zacznij od pliku 1-Zacznij-tutaj.pdf. Pięć kroków zajmie około 30 minut, a na końcu asystent odpowie na pytanie od Twojego prawdziwego klienta. Jeśli chcesz zespół asystentów ustawiony razem ze mną, odpisz jednym słowem WDROŻENIE.',
+  },
 };
 
 module.exports.config = { api: { bodyParser: false } };
