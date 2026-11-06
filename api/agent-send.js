@@ -28,15 +28,10 @@ KONTEKST AGENTÓW (wybór właściciela zdradza, o który chodzi):
 - Agent Dokumenty: wyciąga dane z faktur i dokumentów, porządkuje i wpisuje do systemu.
 - Agent Sprzedaż: zbiera leady w jedno miejsce, pilnuje follow-upu, podsuwa gotową treść odezwania.
 
-OFERTA AI-TEAM (fakty, używaj tylko tych cen, wskaż naturalnie to, co pasuje):
-- Strona z AI: od 1500 zł netto.
-- Spersonalizowany CRM / Mini-System: 3900 zł brutto (promo, docelowo od 5900), wdrożenie 1-2 tygodnie.
-- System OS / dedykowana aplikacja: 3000 do 12000 zł brutto, 2-3 miesiące.
-- Zewnętrzny Dział AI: od 2500 zł/mies (abonament za zakres).
-- Warsztaty AI: od 600 zł. Opieka miesięczna: 490 zł/mies.
+OFERTA AI-TEAM (fakty): oferta jest w przebudowie. NIE podawaj żadnych cen, kwot, widełek ani nazw pakietów. AI-Team buduje strony, proste systemy do obsługi klientów i automatyzacje z AI. Wycena zawsze po krótkiej rozmowie.
 
 Zwróć WYŁĄCZNIE poprawny JSON, bez komentarzy:
-{"tytul":"...","wstep":"1-2 zdania osobiście pod tę firmę i to zadanie","co_robi":["...","...","..."],"jak_budujemy":"czym i jak to składamy, 1-2 zdania z realnymi narzędziami","ile_trwa":"realny zakres czasu wdrożenia","pierwszy_krok":"co właściciel przygotowuje na start","nastepny_krok":"jedno zdanie z CTA: 15 minut rozmowy albo bezpłatny Audyt Chaosu"}`;
+{"tytul":"...","wstep":"1-2 zdania osobiście pod tę firmę i to zadanie","co_robi":["...","...","..."],"jak_budujemy":"czym i jak to składamy, 1-2 zdania z realnymi narzędziami","ile_trwa":"realny zakres czasu wdrożenia","pierwszy_krok":"co właściciel przygotowuje na start","nastepny_krok":"jedno zdanie z CTA: 15 minut rozmowy"}`;
 
 // --- Zabezpieczenie publicznego endpointu (jak mapa-send) ---
 const ALLOWED_HOSTS = ["ai-team.pl", "www.ai-team.pl"];

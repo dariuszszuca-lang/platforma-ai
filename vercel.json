@@ -40,6 +40,131 @@
   ],
   "redirects": [
     {
+      "source": "/pakiet-startowy-ai",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/mapa-wdrozenia",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/mapa-wdrozenia-diagnoza",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/zlecenie",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/centrum-operacji-mailowych",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/produkt1-tracker",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/tracker",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/produkty",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/club",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/wdrozenie-ai",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/next-level",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/system-operacyjny-firmy",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/systemy-crm",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/strona-w-3-dni",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/starter-wdrozen-ai",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/warsztaty-ai",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/zewnetrzny-dzial-ai",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/architektura-nieruchomosci",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/ai-act",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/ai-act/",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/ai-act/audyt",
+      "destination": "/#cennik",
+      "permanent": false
+    },
+    {
+      "source": "/en/products",
+      "destination": "/en/contact",
+      "permanent": false
+    },
+    {
+      "source": "/en/systems",
+      "destination": "/en/contact",
+      "permanent": false
+    },
+    {
+      "source": "/en/ai-department",
+      "destination": "/en/contact",
+      "permanent": false
+    },
+    {
+      "source": "/en/get/:path*",
+      "destination": "/en/contact",
+      "permanent": false
+    },
+    {
       "source": "/narzedzia",
       "destination": "/",
       "permanent": true
@@ -76,22 +201,22 @@
     },
     {
       "source": "/playbooki",
-      "destination": "/produkty",
+      "destination": "/#cennik",
       "permanent": true
     },
     {
       "source": "/playbooki.html",
-      "destination": "/produkty",
+      "destination": "/#cennik",
       "permanent": true
     },
     {
       "source": "/kokpit",
-      "destination": "/produkty",
+      "destination": "/#cennik",
       "permanent": true
     },
     {
       "source": "/dziekujemy-kokpit",
-      "destination": "/produkty",
+      "destination": "/#cennik",
       "permanent": true
     },
     {
