@@ -2,26 +2,30 @@
    Nagłówki Inter Tight, tekst Inter, liczby i etykiety Geist Mono. Zero gradientów, cienkie linie, siatka 12. */
 
 :root {
-  --paper: #FAFAF7;
+  /* 15.11.2026 kierunek A „Warsztat z Teamkiem” (decyzja Darka), kolory i fonty z karty marki */
+  --paper: #FBF8F1;
   --card: #FFFFFF;
-  --ink: #1B1B1B;
-  --ink-2: #45453F;
-  --mute: #75756E;
-  --line: #E4E2DA;
-  --line-2: #CFCDC4;
-  --green: #1E8A5A;
-  --green-ink: #176B46;
-  --green-soft: #E7F3EC;
-  --blue-line: #C9D6E6;
-  --blue-soft: #EEF3F8;
+  --ink: #1C1917;
+  --ink-2: #44403B;
+  --mute: #78716C;
+  --line: #E9E1D2;
+  --line-2: #D8CCB8;
+  --green: #2D7A2D;
+  --green-ink: #236323;
+  --green-soft: #E6F1E3;
+  --blue-line: #E6D5C3;
+  --blue-soft: #F5EFE3;
   --warn-soft: #FBF1DC;
   --warn-ink: #8A5A0E;
-  --f-head: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --copper: #B85C2E;
+  --copper-deep: #8B4220;
+  --copper-soft: #F5E6DA;
+  --f-head: 'Fraunces', Georgia, 'Times New Roman', serif;
   --f-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --f-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --w: 1200px;
   --pad: 24px;
-  --r: 6px;
+  --r: 8px;
   --nav-h: 64px;
 }
 
@@ -44,7 +48,7 @@ a { color: inherit; }
 ::selection { background: var(--green-soft); }
 
 /* typografia */
-h1, h2, h3, h4 { font-family: var(--f-head); font-weight: 600; margin: 0; color: var(--ink); text-wrap: balance; }
+h1, h2, h3, h4 { font-family: var(--f-head); font-weight: 700; margin: 0; color: var(--ink); text-wrap: balance; }
 h1 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.12; letter-spacing: -0.02em; }
 h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.015em; }
 h3 { font-size: 22px; line-height: 1.25; letter-spacing: -0.015em; }
@@ -299,3 +303,20 @@ strong { font-weight: 600; }
 /* 15.11.2026: spokojniejszy hero (Darek: „za dużo się dzieje”) */
 .hero-calm canvas.field { display: none; }
 .hero-calm { padding: 56px 0 64px; }
+
+/* kierunek A: miedź jako akcent marki, Teamek z dymkiem */
+.eyebrow { color: var(--copper); }
+.eyebrow::before { background: var(--copper); }
+.btn { background: var(--copper); border-color: var(--copper); }
+.btn:hover { background: var(--copper-deep); border-color: var(--copper-deep); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.btn.ghost:hover { background: var(--copper-soft); border-color: var(--copper); color: var(--ink); }
+.tk-say { display: flex; gap: 14px; align-items: flex-end; }
+.tk-say img { width: 92px; height: auto; flex: none; }
+.tk-say .bub { position: relative; background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px; font-weight: 600; font-size: 15px; line-height: 1.4; box-shadow: 3px 3px 0 var(--ink); margin-bottom: 18px; max-width: 34ch; }
+.tk-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.tk-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+.tk-card img { height: 120px; width: auto; align-self: flex-start; margin-bottom: 4px; }
+.tk-card .k { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--copper); }
+.tk-card p { margin: 0; color: var(--ink-2); font-size: 16px; }
+@media (max-width: 900px) { .tk-grid { grid-template-columns: 1fr; } .tk-say img { width: 72px; } }
