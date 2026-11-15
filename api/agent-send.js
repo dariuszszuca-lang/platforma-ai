@@ -28,7 +28,7 @@ KONTEKST AGENTÓW (wybór właściciela zdradza, o który chodzi):
 - Agent Dokumenty: wyciąga dane z faktur i dokumentów, porządkuje i wpisuje do systemu.
 - Agent Sprzedaż: zbiera leady w jedno miejsce, pilnuje follow-upu, podsuwa gotową treść odezwania.
 
-OFERTA AI-TEAM (fakty): oferta jest w przebudowie. NIE podawaj żadnych cen, kwot, widełek ani nazw pakietów. AI-Team buduje strony, proste systemy do obsługi klientów i automatyzacje z AI. Wycena zawsze po krótkiej rozmowie.
+OFERTA AI-TEAM (fakty, ceny brutto, źródło oferta.md v3.1): Wdrożenie systemów AI online. Podstawy 1 500 zł (2 spotkania na start, zaliczane na pakiet w 30 dni). Wdrożenie 10 w grupie do 8 firm 2 970 zł (10 systemów, spotkanie co 2 tygodnie, start 11.01.2027, rok dostępu). Wdrożenie 1:1 4 970 zł (wszystkie 22 systemy i wejście do kolejnej edycji). Szczegóły: https://ai-team.pl/wdrozenie-systemow-ai. Strony i systemy na zamówienie: wycena po krótkiej rozmowie. Nie podawaj innych cen ani rabatów.
 
 Zwróć WYŁĄCZNIE poprawny JSON, bez komentarzy:
 {"tytul":"...","wstep":"1-2 zdania osobiście pod tę firmę i to zadanie","co_robi":["...","...","..."],"jak_budujemy":"czym i jak to składamy, 1-2 zdania z realnymi narzędziami","ile_trwa":"realny zakres czasu wdrożenia","pierwszy_krok":"co właściciel przygotowuje na start","nastepny_krok":"jedno zdanie z CTA: 15 minut rozmowy"}`;

@@ -65,14 +65,14 @@
 
   // Recommendations matrix — based on bottleneck + tools
   const RECOMMENDATIONS = {
-    'excel-clients': { title: 'Mini-System / CRM', desc: 'Dedykowany system dopasowany do Twoich procesów. Dane w jednym miejscu, bez Excela, automatyzacje powiadomień. Kod na Twoim GitHubie, płacisz raz.', price: '3 900 zł', roi: 'Promocja na pierwsze wdrożenia', cta: '/zlecenie.html' },
-    'paper-clients': { title: 'Mini-System / CRM', desc: 'Koniec karteczek i głowy. Dedykowany CRM, baza klientów, historia kontaktów, przypomnienia. Wszystko w jednym miejscu.', price: '3 900 zł', roi: 'Promocja na pierwsze wdrożenia', cta: '/zlecenie.html' },
+    'excel-clients': { title: 'Wdrożenie 10: baza klientów i 9 innych systemów', desc: 'Budujesz u siebie bazę klientów, przypomnienia, wyceny i 7 innych systemów AI. Online co dwa tygodnie, w grupie do 8 firm, rok dostępu do materiałów.', price: '2 970 zł', roi: 'Start 11 stycznia 2027', cta: '/wdrozenie-systemow-ai' },
+    'paper-clients': { title: 'Wdrożenie 10: baza klientów i 9 innych systemów', desc: 'Budujesz u siebie bazę klientów, przypomnienia, wyceny i 7 innych systemów AI. Online co dwa tygodnie, w grupie do 8 firm, rok dostępu do materiałów.', price: '2 970 zł', roi: 'Start 11 stycznia 2027', cta: '/wdrozenie-systemow-ai' },
     'emails': { title: 'Sprint Automatyzacji AI', desc: 'Wybieramy maile które się powtarzają, w 2 tygodnie wdrażam asystenta który odpisuje za Ciebie. Stripe + Make + GPT.', price: 'Wycena indywidualna', roi: 'Odzyskasz 8-15h tygodniowo', cta: '/wdrozenie-ai.html' },
     'docs': { title: 'Sprint Automatyzacji AI', desc: 'Generowanie dokumentów, umów, ofert na podstawie szablonu. Wypełniasz formularz, dostajesz gotowy PDF. Koniec ręcznego przerabiania.', price: 'Wycena indywidualna', roi: 'Skróci pracę nad dokumentami o 70%', cta: '/wdrozenie-ai.html' },
     'reports': { title: 'Audyt AI firmy', desc: 'Diagnoza procesów raportowania, mapa automatyzacji, ROI każdej zmiany. Wychodzisz z konkretnym planem na 5-7 wdrożeń.', price: 'Wycena indywidualna', roi: '2-5 dni roboczych', cta: '/wdrozenie-ai.html' },
-    'content': { title: 'Zewnętrzny Dział AI (retainer)', desc: 'Pełnoetatowe wsparcie produkcji contentu. Stała opieka, posty, artykuły, newsletter. Tak działa MyWay od 2 lat.', price: 'Wycena indywidualna', roi: 'Stała współpraca', cta: '/wdrozenie-ai.html' },
+    'content': { title: 'Wdrożenie 1:1', desc: 'Pracujemy tylko na Twojej firmie: wszystkie 22 gotowe systemy, w tym wpisy w sieci i marka, oraz wejście do kolejnej edycji.', price: '4 970 zł', roi: 'Najwyżej 3 firmy naraz', cta: '/wdrozenie-systemow-ai' },
     'planning': { title: 'Tracker Czasu Freelancera', desc: '7-dniowy audyt na czym tracisz czas. Darmowy panel + raport + zapis do AI Radar. Wiesz dokładnie co automatyzować w pierwszej kolejności.', price: '0 zł', roi: 'Darmowy dostęp', cta: '/produkt1-tracker.html' },
-    'default': { title: 'Mapa AI · konsultacja 0 zł', desc: '30-minutowa rozmowa diagnostyczna. Wychodzisz z konkretną listą 5-7 priorytetów dla swojej firmy. Bez zobowiązań.', price: '0 zł', roi: 'Bez zobowiązań', cta: '#cta' },
+    'default': { title: 'Mapa AI · konsultacja 0 zł', desc: '30-minutowa rozmowa diagnostyczna. Wychodzisz z konkretną listą 5-7 priorytetów dla swojej firmy. Bez zobowiązań.', price: '0 zł', roi: 'Bez zobowiązań', cta: '/kontakt' },
   };
 
   function pickRecommendation() {
