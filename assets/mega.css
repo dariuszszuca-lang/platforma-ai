@@ -45,8 +45,8 @@ a { color: inherit; }
 
 /* typografia */
 h1, h2, h3, h4 { font-family: var(--f-head); font-weight: 600; margin: 0; color: var(--ink); text-wrap: balance; }
-h1 { font-size: clamp(40px, 5.6vw, 66px); line-height: 1.02; letter-spacing: -0.028em; }
-h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.024em; }
+h1 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.12; letter-spacing: -0.02em; }
+h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.015em; }
 h3 { font-size: 22px; line-height: 1.25; letter-spacing: -0.015em; }
 h4 { font-size: 17px; line-height: 1.35; letter-spacing: -0.01em; }
 p { margin: 0; }
@@ -131,7 +131,7 @@ strong { font-weight: 600; }
 .hero .grid { align-items: center; }
 .hero .copy { grid-column: 1 / span 6; }
 .hero .side { grid-column: 7 / span 6; }
-.hero h1 { margin: 18px 0 22px; max-width: 12ch; }
+.hero h1 { margin: 16px 0 18px; max-width: 18ch; }
 .hero .lead { margin-bottom: 30px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .proof { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -295,3 +295,7 @@ strong { font-weight: 600; }
 
 /* przełącznik języka w menu (EN/PL) */
 .nav .menu .lang { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 9px; }
+
+/* 15.11.2026: spokojniejszy hero (Darek: „za dużo się dzieje”) */
+.hero-calm canvas.field { display: none; }
+.hero-calm { padding: 56px 0 64px; }
