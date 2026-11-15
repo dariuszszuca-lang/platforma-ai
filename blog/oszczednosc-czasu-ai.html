@@ -1,79 +1,32 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-    <title>Oszczędność czasu z AI - 10 sposobów | AI-Team</title>
-    <meta name="description" content="Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby automatyzacji codziennych zadań w małej firmie - maile, dokumenty, social media.">
-    <meta name="keywords" content="oszczędność czasu AI, automatyzacja czasu, AI produktywność, jak zaoszczędzić czas">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:title" content="Oszczędność czasu dzięki AI - 10 sposobów na więcej wolnego">
-    <meta property="og:description" content="Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ai-team.pl/blog/oszczednosc-czasu-ai.html">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: {
-                fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Inter Tight', 'Inter', 'sans-serif'] },
-                colors: { brand: { dark: '#FAFAF7', primary: '#1E8A5A', secondary: '#176B46', light: '#2FB77A' }, primary: '#1E8A5A', secondary: '#176B46', light: '#2FB77A' }
-            } }
-        }
-    </script>
-    <style>
-        body { background-color: #020203; min-height: 100vh; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .prose-custom h2 { color: #fb923c; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
-        .prose-custom h3 { color: #fdba74; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-        .prose-custom p { color: #e2e8f0; line-height: 1.8; margin-bottom: 1rem; }
-        .prose-custom ul, .prose-custom ol { color: #e2e8f0; margin-left: 1.5rem; margin-bottom: 1rem; }
-        .prose-custom li { margin-bottom: 0.5rem; }
-        .prose-custom strong { color: #f1f5f9; }
-        .highlight-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border-left: 4px solid #f97316; padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
-        .time-card { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; }
-        .time-badge { background: linear-gradient(135deg, #f97316, #ea580c); color: black; padding: 0.25rem 0.75rem; border-radius: 1rem; font-weight: bold; font-size: 0.875rem; }
-        .cta-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            width: 150%;
-            height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-    </style>
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
-    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
-    <meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://ai-team.pl/blog/oszczednosc-czasu-ai">
-    <script type="application/ld+json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+<title>Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego | Blog AI-Team</title>
+<meta name="description" content="Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby automatyzacji codziennych zadań w małej firmie - maile, dokumenty, social media.">
+<meta content="oszczędność czasu AI, automatyzacja czasu, AI produktywność, jak zaoszczędzić czas" name="keywords"/>
+<meta name="author" content="Dariusz Szuca, AI-Team">
+<meta name="robots" content="index, follow">
+<meta content="Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego" property="og:title"/>
+<meta content="Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://ai-team.pl/blog/oszczednosc-czasu-ai.html" property="og:url"/>
+<meta content="https://ai-team.pl/assets/og-ai-team-20260511.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<link href="https://ai-team.pl/blog/oszczednosc-czasu-ai" rel="canonical"/>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -106,7 +59,7 @@
   "description": "Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby automatyzacji codziennych zadań w małej firmie - maile, dokumenty, social media."
 }
     </script>
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -154,15 +107,17 @@
   ]
 }
     </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115a">
+<script src="/assets/meta-pixel.js"></script>
 </head>
-<body>
-    <!-- Grid Background -->
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow"></div>
-    </div>
-
-    <nav class="nav" id="nav">
+<body class="blog-post">
+<div class="czytam" aria-hidden="true"></div>
+<nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
       <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
@@ -174,350 +129,262 @@
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/" aria-current="page">Blog</a>
       <a href="/ai-radar">AI Radar</a>
+      <a href="/en/" class="lang" hreflang="en" lang="en">EN</a>
       <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
+<header class="bp-head">
+  <div class="wrap bp-grid">
+    <div class="bp-copy">
+      <nav class="okruszki" aria-label="Okruszki"><a href="/">Strona główna</a> / <a href="/blog/">Blog</a></nav>
+      <span class="eyebrow">Produktywność · Dla wszystkich</span>
+      <h1>Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</h1>
+      <p class="lead">Jak zaoszczędzić 10+ godzin tygodniowo dzięki sztucznej inteligencji. Konkretne zadania, konkretne narzędzia, konkretne oszczędności.</p>
+      <p class="bp-meta"><img src="/assets/darek-szuca.jpg" alt="" width="40" height="40">Darek Szuca · 26 grudnia 2025 · 10 min czytania</p>
+    </div>
+    <div class="bc c4 duza" aria-hidden="true"><span class="bc-tag">Produktywność</span><span class="bc-t">Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</span><img src="/assets/teamek/kawa.webp" alt="" width="360" height="400" loading="lazy"></div>
+  </div>
+</header>
+<div class="wrap bp-body">
+  <aside class="spis" aria-label="Spis treści"><p>W tym wpisie</p><ol id="spis"><li><a href="#s1">Gdzie tracisz czas? (audyt czasowy)</a></li><li><a href="#s2">10 sposobów na oszczędność czasu z AI</a></li><li><a href="#s3">Od czego zacząć? (plan 3 tygodni)</a></li><li><a href="#s4">Kalkulator oszczędności</a></li><li><a href="#s5">Case study: Konsultant biznesowy</a></li><li><a href="#s6">Narzędzia które polecam</a></li><li><a href="#s7">Najczęstsze błędy</a></li><li><a href="#s8">Twój następny krok</a></li><li><a href="#s9">Podsumowanie</a></li><li><a href="#s10">Najczęstsze pytania</a></li></ol>
+    <div class="spis-tk"><img src="/assets/teamek/kawa.webp" alt="" width="360" height="400" loading="lazy"><span>Kliknij rozdział, przeniosę Cię.</span></div></aside>
+  <article class="prose" id="tresc">
 
-    <article class="pt-32 pb-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="text-gray-400 text-sm mb-6">
-                <a href="../index.html" class="hover:text-white">Strona główna</a>
-                <span class="mx-2">/</span>
-                <a href="index.html" class="hover:text-white">Blog</a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-300">Oszczędność czasu AI</span>
-            </div>
-
-            <header class="mb-10">
-                <div class="flex gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Produktywność</span>
-                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Dla wszystkich</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Oszczędność czasu dzięki AI - 10 sposobów na więcej wolnego
-                </h1>
-                <p class="text-xl text-gray-300 mb-6">
-                    Jak zaoszczędzić 10+ godzin tygodniowo dzięki sztucznej inteligencji. Konkretne zadania, konkretne narzędzia, konkretne oszczędności.
-                </p>
-                <div class="flex items-center gap-4 text-gray-400 text-sm">
-                    <span>Darek | AI-TEAM.PL</span>
-                    <span>|</span>
-                    <span>Redaktor: Dariusz Szuca</span>
-                    <span>|</span>
-                    <span>Grudzień 2025</span>
-                    <span>|</span>
-                    <span>10 min czytania</span>
-                </div>
-            </header>
-
-            <div class="prose-custom">
-
-                <div class="highlight-box">
-                    <p class="text-lg mb-0"><strong>W skrócie:</strong> Przeciętny przedsiębiorca traci 15-20 godzin tygodniowo na zadania które AI może zrobić szybciej. W tym artykule pokażę Ci 10 konkretnych sposobów na odzyskanie tego czasu.</p>
-                </div>
-
-                <h2>Gdzie tracisz czas? (audyt czasowy)</h2>
-
-                <p>Zanim pokażę rozwiązania, zróbmy szybki audyt. Ile czasu tygodniowo spędzasz na:</p>
-
-                <ul>
-                    <li>Odpowiadanie na maile: ___ godzin</li>
-                    <li>Pisanie tekstów (oferty, posty, opisy): ___ godzin</li>
-                    <li>Szukanie informacji / research: ___ godzin</li>
-                    <li>Odpowiadanie na te same pytania klientów: ___ godzin</li>
-                    <li>Tworzenie dokumentów (raporty, prezentacje): ___ godzin</li>
-                    <li>Planowanie i organizacja: ___ godzin</li>
-                </ul>
-
-                <p>Jeśli suma przekracza 10 godzin - masz ogromny potencjał do oszczędności.</p>
-
-                <h2>10 sposobów na oszczędność czasu z AI</h2>
-
-                <h3>1. Odpowiedzi na maile</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 5-10 min / mail</p>
-                        <span class="time-badge">Oszczędność: 5h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 1-2 min / mail</p>
-                    <p class="text-gray-400 text-sm">Wklej maila do ChatGPT → dostań gotową odpowiedź → edytuj i wyślij.</p>
-                </div>
-
-                <h3>2. Pisanie postów na social media</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 30-60 min / post</p>
-                        <span class="time-badge">Oszczędność: 3h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 5-10 min / post</p>
-                    <p class="text-gray-400 text-sm">ChatGPT generuje draft → Ty dodajesz osobowość → Canva AI robi grafikę.</p>
-                </div>
-
-                <h3>3. Tworzenie ofert i wycen</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 1-2h / oferta</p>
-                        <span class="time-badge">Oszczędność: 4h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 15-20 min / oferta</p>
-                    <p class="text-gray-400 text-sm">Szablon + dane klienta → ChatGPT personalizuje → Ty sprawdzasz i wysyłasz.</p>
-                </div>
-
-                <h3>4. Odpowiadanie na FAQ klientów</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 2-3h / dzień</p>
-                        <span class="time-badge">Oszczędność: 10h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> Chatbot odpowiada 24/7</p>
-                    <p class="text-gray-400 text-sm"><a href="/blog/chatbot-obsluga-klienta" class="text-primary hover:underline">Tidio/Chatbase</a> obsługuje 80% pytań → Ty zajmujesz się tylko skomplikowanymi.</p>
-                </div>
-
-                <h3>5. Research i szukanie informacji</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 30-60 min / temat</p>
-                        <span class="time-badge">Oszczędność: 2h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 5-10 min / temat</p>
-                    <p class="text-gray-400 text-sm">ChatGPT lub Perplexity daje podsumowanie → Ty weryfikujesz kluczowe fakty.</p>
-                </div>
-
-                <h3>6. Podsumowywanie dokumentów</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 20-40 min / dokument</p>
-                        <span class="time-badge">Oszczędność: 2h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 2-3 min / dokument</p>
-                    <p class="text-gray-400 text-sm">Wklej tekst → ChatGPT daje streszczenie + kluczowe punkty + akcje do podjęcia.</p>
-                </div>
-
-                <h3>7. Pisanie opisów produktów/usług</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 30-60 min / opis</p>
-                        <span class="time-badge">Oszczędność: 2h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 5-10 min / opis</p>
-                    <p class="text-gray-400 text-sm">Podaj cechy → ChatGPT zamienia w korzyści → Ty dodajesz unikalne detale.</p>
-                </div>
-
-                <h3>8. Tworzenie prezentacji</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 2-4h / prezentacja</p>
-                        <span class="time-badge">Oszczędność: 3h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 30-60 min / prezentacja</p>
-                    <p class="text-gray-400 text-sm">ChatGPT tworzy strukturę i treść → Gamma/Canva AI formatuje slajdy.</p>
-                </div>
-
-                <h3>9. Planowanie contentu</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 2-3h / miesiąc</p>
-                        <span class="time-badge">Oszczędność: 2h/mies</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 20-30 min / miesiąc</p>
-                    <p class="text-gray-400 text-sm">ChatGPT generuje 20-30 tematów → Ty wybierasz najlepsze → kalendarz gotowy.</p>
-                </div>
-
-                <h3>10. Notatki ze spotkań</h3>
-
-                <div class="time-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <p class="text-primary font-semibold">Tradycyjnie: 15-30 min / spotkanie</p>
-                        <span class="time-badge">Oszczędność: 2h/tyg</span>
-                    </div>
-                    <p class="text-gray-300 mb-2"><strong>Z AI:</strong> 2-3 min / spotkanie</p>
-                    <p class="text-gray-400 text-sm">Otter.ai lub Fireflies nagrywa i transkrybuje → AI robi podsumowanie + akcje.</p>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>Łączna potencjalna oszczędność: 25-35 godzin tygodniowo.</strong> Nawet jeśli wdrożysz tylko połowę - to 10-15 godzin więcej na rozwój firmy lub życie prywatne.</p>
-                </div>
-
-                <h2>Od czego zacząć? (plan 3 tygodni)</h2>
-
-                <p><strong>Tydzień 1: Największy "złodziej czasu"</strong></p>
-                <p>Zidentyfikuj zadanie które zajmuje Ci najwięcej czasu. Dla większości to:</p>
-                <ul>
-                    <li>Maile → zacznij od ChatGPT do odpowiedzi</li>
-                    <li>Social media → zacznij od AI do postów</li>
-                    <li>Pytania klientów → zacznij od chatbota</li>
-                </ul>
-
-                <p><strong>Tydzień 2: Drugie zadanie</strong></p>
-                <p>Gdy pierwsze działa - dodaj następne. Nie próbuj wszystkiego naraz.</p>
-
-                <p><strong>Tydzień 3: Optymalizacja</strong></p>
-                <p>Stwórz szablony poleceń dla powtarzalnych zadań. Im lepsze polecenie - tym mniej edycji.</p>
-
-                <h2>Kalkulator oszczędności</h2>
-
-                <p>Policz ile warta jest Twoja godzina:</p>
-
-                <p><strong>Przykład:</strong></p>
-                <ul>
-                    <li>Przychód miesięczny: 15,000 zł</li>
-                    <li>Godziny pracy: 160h</li>
-                    <li>Wartość godziny: ~94 zł</li>
-                </ul>
-
-                <p><strong>Oszczędność 10h tygodniowo:</strong></p>
-                <ul>
-                    <li>10h × 4 tyg × 94 zł = <strong>3,760 zł miesięcznie</strong></li>
-                    <li>Koszt narzędzi AI: ~200-300 zł</li>
-                    <li>Zysk netto: ~3,500 zł (w czasie lub pieniądzach)</li>
-                </ul>
-
-                <h2>Case study: Konsultant biznesowy</h2>
-
-                <p>Marek prowadzi firmę konsultingową. Przed AI:</p>
-                <ul>
-                    <li>3h dziennie na maile</li>
-                    <li>4h tygodniowo na oferty</li>
-                    <li>2h tygodniowo na content</li>
-                    <li>Weekendy na "nadrabianie zaległości"</li>
-                </ul>
-
-                <p><strong>Co wdrożył:</strong></p>
-                <ol>
-                    <li>ChatGPT do maili i ofert</li>
-                    <li>AI do postów na LinkedIn</li>
-                    <li>Otter.ai do notatek ze spotkań</li>
-                    <li>Chatbot na stronie</li>
-                </ol>
-
-                <p><strong>Po 2 miesiącach:</strong></p>
-                <ul>
-                    <li>Maile: z 3h do 1h dziennie</li>
-                    <li>Oferty: z 4h do 1.5h tygodniowo</li>
-                    <li>Content: z 2h do 30 min tygodniowo</li>
-                    <li>Weekendy: wolne</li>
-                </ul>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>Oszczędność:</strong> ~15h tygodniowo. Marek wziął piątki wolne. Przychody nie spadły - wręcz wzrosły (więcej energii na klientów premium).</p>
-                </div>
-
-                <h2>Narzędzia które polecam</h2>
-
-                <p><strong>Podstawowe (0-150 zł/mies):</strong></p>
-                <ul>
-                    <li>ChatGPT (100 zł) - teksty, maile, oferty</li>
-                    <li>Canva AI (50 zł) - grafiki</li>
-                </ul>
-
-                <p><strong>Rozszerzone (150-400 zł/mies):</strong></p>
-                <ul>
-                    <li>Powyższe +</li>
-                    <li>Tidio (120 zł) - chatbot</li>
-                    <li>Otter.ai (50 zł) - transkrypcje</li>
-                    <li>Make.com (40 zł) - automatyzacje</li>
-                </ul>
-
-                <h2>Najczęstsze błędy</h2>
-
-                <h3>Błąd #1: Wszystko naraz</h3>
-                <p>Nie wdrażaj 10 narzędzi w tydzień. Jedno narzędzie, jedna zmiana, tydzień na oswojenie.</p>
-
-                <h3>Błąd #2: Brak szablonów</h3>
-                <p>Bez szablonów poleceń tracisz czas na pisanie instrukcji od zera. Stwórz bibliotekę poleceń.</p>
-
-                <h3>Błąd #3: Perfekcjonizm</h3>
-                <p>AI daje 80% rozwiązania w 20% czasu. Nie szlifuj każdego tekstu do perfekcji - wystarczy "wystarczająco dobre".</p>
-
-                <h2>Twój następny krok</h2>
-
-                <ol>
-                    <li>Zrób audyt czasu (gdzie tracisz najwięcej?)</li>
-                    <li>Wybierz JEDNO zadanie do automatyzacji</li>
-                    <li>Wdróż odpowiednie narzędzie</li>
-                    <li>Zmierz oszczędność po tygodniu</li>
-                    <li>Dodaj następne zadanie</li>
-                </ol>
-
-                <p>Za miesiąc będziesz miał 10+ dodatkowych godzin tygodniowo. Co z nimi zrobisz?</p>
-
-                <div class="cta-box">
-                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz więcej sposobów na oszczędność czasu?</h3>
-                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> co tydzień dzielę się praktycznym tipem który oszczędza czas. Dołącz i zacznij odzyskiwać godziny.</p>
-                    <a href="../ai-radar.html" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+<div class="callout">
+<p><strong>W skrócie:</strong> Przeciętny przedsiębiorca traci 15-20 godzin tygodniowo na zadania które AI może zrobić szybciej. W tym artykule pokażę Ci 10 konkretnych sposobów na odzyskanie tego czasu.</p>
+</div>
+<h2 id="s1">Gdzie tracisz czas? (audyt czasowy)</h2>
+<p>Zanim pokażę rozwiązania, zróbmy szybki audyt. Ile czasu tygodniowo spędzasz na:</p>
+<ul>
+<li>Odpowiadanie na maile: ___ godzin</li>
+<li>Pisanie tekstów (oferty, posty, opisy): ___ godzin</li>
+<li>Szukanie informacji / research: ___ godzin</li>
+<li>Odpowiadanie na te same pytania klientów: ___ godzin</li>
+<li>Tworzenie dokumentów (raporty, prezentacje): ___ godzin</li>
+<li>Planowanie i organizacja: ___ godzin</li>
+</ul>
+<p>Jeśli suma przekracza 10 godzin - masz ogromny potencjał do oszczędności.</p>
+<h2 id="s2">10 sposobów na oszczędność czasu z AI</h2>
+<h3>1. Odpowiedzi na maile</h3>
+<div>
+<div>
+<p>Tradycyjnie: 5-10 min / mail</p>
+<span>Oszczędność: 5h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 1-2 min / mail</p>
+<p>Wklej maila do ChatGPT → dostań gotową odpowiedź → edytuj i wyślij.</p>
+</div>
+<h3>2. Pisanie postów na social media</h3>
+<div>
+<div>
+<p>Tradycyjnie: 30-60 min / post</p>
+<span>Oszczędność: 3h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 5-10 min / post</p>
+<p>ChatGPT generuje draft → Ty dodajesz osobowość → Canva AI robi grafikę.</p>
+</div>
+<h3>3. Tworzenie ofert i wycen</h3>
+<div>
+<div>
+<p>Tradycyjnie: 1-2h / oferta</p>
+<span>Oszczędność: 4h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 15-20 min / oferta</p>
+<p>Szablon + dane klienta → ChatGPT personalizuje → Ty sprawdzasz i wysyłasz.</p>
+</div>
+<h3>4. Odpowiadanie na FAQ klientów</h3>
+<div>
+<div>
+<p>Tradycyjnie: 2-3h / dzień</p>
+<span>Oszczędność: 10h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> Chatbot odpowiada 24/7</p>
+<p><a href="/blog/chatbot-obsluga-klienta">Tidio/Chatbase</a> obsługuje 80% pytań → Ty zajmujesz się tylko skomplikowanymi.</p>
+</div>
+<h3>5. Research i szukanie informacji</h3>
+<div>
+<div>
+<p>Tradycyjnie: 30-60 min / temat</p>
+<span>Oszczędność: 2h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 5-10 min / temat</p>
+<p>ChatGPT lub Perplexity daje podsumowanie → Ty weryfikujesz kluczowe fakty.</p>
+</div>
+<h3>6. Podsumowywanie dokumentów</h3>
+<div>
+<div>
+<p>Tradycyjnie: 20-40 min / dokument</p>
+<span>Oszczędność: 2h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 2-3 min / dokument</p>
+<p>Wklej tekst → ChatGPT daje streszczenie + kluczowe punkty + akcje do podjęcia.</p>
+</div>
+<h3>7. Pisanie opisów produktów/usług</h3>
+<div>
+<div>
+<p>Tradycyjnie: 30-60 min / opis</p>
+<span>Oszczędność: 2h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 5-10 min / opis</p>
+<p>Podaj cechy → ChatGPT zamienia w korzyści → Ty dodajesz unikalne detale.</p>
+</div>
+<h3>8. Tworzenie prezentacji</h3>
+<div>
+<div>
+<p>Tradycyjnie: 2-4h / prezentacja</p>
+<span>Oszczędność: 3h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 30-60 min / prezentacja</p>
+<p>ChatGPT tworzy strukturę i treść → Gamma/Canva AI formatuje slajdy.</p>
+</div>
+<h3>9. Planowanie contentu</h3>
+<div>
+<div>
+<p>Tradycyjnie: 2-3h / miesiąc</p>
+<span>Oszczędność: 2h/mies</span>
+</div>
+<p><strong>Z AI:</strong> 20-30 min / miesiąc</p>
+<p>ChatGPT generuje 20-30 tematów → Ty wybierasz najlepsze → kalendarz gotowy.</p>
+</div>
+<h3>10. Notatki ze spotkań</h3>
+<div>
+<div>
+<p>Tradycyjnie: 15-30 min / spotkanie</p>
+<span>Oszczędność: 2h/tyg</span>
+</div>
+<p><strong>Z AI:</strong> 2-3 min / spotkanie</p>
+<p>Otter.ai lub Fireflies nagrywa i transkrybuje → AI robi podsumowanie + akcje.</p>
+</div>
+<div class="callout">
+<p><strong>Łączna potencjalna oszczędność: 25-35 godzin tygodniowo.</strong> Nawet jeśli wdrożysz tylko połowę - to 10-15 godzin więcej na rozwój firmy lub życie prywatne.</p>
+</div>
+<h2 id="s3">Od czego zacząć? (plan 3 tygodni)</h2>
+<p><strong>Tydzień 1: Największy "złodziej czasu"</strong></p>
+<p>Zidentyfikuj zadanie które zajmuje Ci najwięcej czasu. Dla większości to:</p>
+<ul>
+<li>Maile → zacznij od ChatGPT do odpowiedzi</li>
+<li>Social media → zacznij od AI do postów</li>
+<li>Pytania klientów → zacznij od chatbota</li>
+</ul>
+<p><strong>Tydzień 2: Drugie zadanie</strong></p>
+<p>Gdy pierwsze działa - dodaj następne. Nie próbuj wszystkiego naraz.</p>
+<p><strong>Tydzień 3: Optymalizacja</strong></p>
+<p>Stwórz szablony poleceń dla powtarzalnych zadań. Im lepsze polecenie - tym mniej edycji.</p>
+<h2 id="s4">Kalkulator oszczędności</h2>
+<p>Policz ile warta jest Twoja godzina:</p>
+<p><strong>Przykład:</strong></p>
+<ul>
+<li>Przychód miesięczny: 15,000 zł</li>
+<li>Godziny pracy: 160h</li>
+<li>Wartość godziny: ~94 zł</li>
+</ul>
+<p><strong>Oszczędność 10h tygodniowo:</strong></p>
+<ul>
+<li>10h × 4 tyg × 94 zł = <strong>3,760 zł miesięcznie</strong></li>
+<li>Koszt narzędzi AI: ~200-300 zł</li>
+<li>Zysk netto: ~3,500 zł (w czasie lub pieniądzach)</li>
+</ul>
+<h2 id="s5">Case study: Konsultant biznesowy</h2>
+<p>Marek prowadzi firmę konsultingową. Przed AI:</p>
+<ul>
+<li>3h dziennie na maile</li>
+<li>4h tygodniowo na oferty</li>
+<li>2h tygodniowo na content</li>
+<li>Weekendy na "nadrabianie zaległości"</li>
+</ul>
+<p><strong>Co wdrożył:</strong></p>
+<ol>
+<li>ChatGPT do maili i ofert</li>
+<li>AI do postów na LinkedIn</li>
+<li>Otter.ai do notatek ze spotkań</li>
+<li>Chatbot na stronie</li>
+</ol>
+<p><strong>Po 2 miesiącach:</strong></p>
+<ul>
+<li>Maile: z 3h do 1h dziennie</li>
+<li>Oferty: z 4h do 1.5h tygodniowo</li>
+<li>Content: z 2h do 30 min tygodniowo</li>
+<li>Weekendy: wolne</li>
+</ul>
+<div class="callout">
+<p><strong>Oszczędność:</strong> ~15h tygodniowo. Marek wziął piątki wolne. Przychody nie spadły - wręcz wzrosły (więcej energii na klientów premium).</p>
+</div>
+<h2 id="s6">Narzędzia które polecam</h2>
+<p><strong>Podstawowe (0-150 zł/mies):</strong></p>
+<ul>
+<li>ChatGPT (100 zł) - teksty, maile, oferty</li>
+<li>Canva AI (50 zł) - grafiki</li>
+</ul>
+<p><strong>Rozszerzone (150-400 zł/mies):</strong></p>
+<ul>
+<li>Powyższe +</li>
+<li>Tidio (120 zł) - chatbot</li>
+<li>Otter.ai (50 zł) - transkrypcje</li>
+<li>Make.com (40 zł) - automatyzacje</li>
+</ul>
+<h2 id="s7">Najczęstsze błędy</h2>
+<h3>Błąd #1: Wszystko naraz</h3>
+<p>Nie wdrażaj 10 narzędzi w tydzień. Jedno narzędzie, jedna zmiana, tydzień na oswojenie.</p>
+<h3>Błąd #2: Brak szablonów</h3>
+<p>Bez szablonów poleceń tracisz czas na pisanie instrukcji od zera. Stwórz bibliotekę poleceń.</p>
+<h3>Błąd #3: Perfekcjonizm</h3>
+<p>AI daje 80% rozwiązania w 20% czasu. Nie szlifuj każdego tekstu do perfekcji - wystarczy "wystarczająco dobre".</p>
+<h2 id="s8">Twój następny krok</h2>
+<ol>
+<li>Zrób audyt czasu (gdzie tracisz najwięcej?)</li>
+<li>Wybierz JEDNO zadanie do automatyzacji</li>
+<li>Wdróż odpowiednie narzędzie</li>
+<li>Zmierz oszczędność po tygodniu</li>
+<li>Dodaj następne zadanie</li>
+</ol>
+<p>Za miesiąc będziesz miał 10+ dodatkowych godzin tygodniowo. Co z nimi zrobisz?</p>
+<div class="callout cta">
+<h3>Chcesz więcej sposobów na oszczędność czasu?</h3>
+<p>W newsletterze <strong>AI Radar</strong> co tydzień dzielę się praktycznym tipem który oszczędza czas. Dołącz i zacznij odzyskiwać godziny.</p>
+<a href="../ai-radar.html">
                         Zapisz się do AI Radar
                     </a>
-                </div>
-
-                <h2>Podsumowanie</h2>
-
-                <ul>
-                    <li><strong>Audyt czasu</strong> - zidentyfikuj gdzie tracisz najwięcej</li>
-                    <li><strong>Jedno zadanie naraz</strong> - nie wszystko na raz</li>
-                    <li><strong>Szablony poleceń</strong> - klucz do szybkości</li>
-                    <li><strong>10-15h tygodniowo</strong> - realna oszczędność</li>
-                    <li><strong>200-400 zł/mies</strong> - zwraca się w pierwszym tygodniu</li>
-                </ul>
-
-                <p>Czas to jedyny zasób którego nie odzyskasz. AI pomaga go nie tracić. Sprawdź <a href="/blog/narzedzia-ai-2025" class="text-primary hover:underline">kompletny przewodnik po narzędziach AI na 2025</a>.</p>
-
-            </div>
-
-            <div class="glass rounded-xl p-6 mt-10">
-                <div class="flex items-start gap-4">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">D</div>
-                    <div>
-                        <h4 class="font-bold text-lg">Darek</h4>
-                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
-                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI dla małych firm z Trójmiasta.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-10">
-                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <a href="/blog/automatyzacja-bez-kodowania" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Automatyzacja</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">Make i Zapier dla małych firm</h4>
-                    </a>
-                    <a href="/blog/ai-dla-malej-firmy" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Podstawy</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">AI dla małej firmy - od czego zacząć</h4>
-                    </a>
-                </div>
-            </div>
-            <!-- FAQ -->
-            <section class="prose-custom mt-10" id="faq">
-                <h2>Najczęstsze pytania</h2>
-                <h3>Na jakich zadaniach AI pozwala zaoszczędzić najwięcej czasu?</h3>
-                <p>Wpis wskazuje dziesięć takich zadań: odpowiedzi na maile, posty w mediach społecznościowych, oferty i wyceny, odpowiedzi na częste pytania klientów, szukanie informacji, streszczanie dokumentów, opisy produktów, prezentacje, planowanie treści oraz notatki ze spotkań. Największą oszczędność daje według autora chatbot odpowiadający na powtarzalne pytania, nawet 10 godzin tygodniowo.</p>
-                <h3>Jak sprawdzić, na co w firmie tracę najwięcej czasu?</h3>
-                <p>Zrób krótki audyt czasu. Wypisz, ile godzin tygodniowo spędzasz na odpowiadaniu na maile, pisaniu tekstów, szukaniu informacji, odpowiadaniu na te same pytania klientów, tworzeniu dokumentów oraz planowaniu i organizacji. Jeśli suma przekracza 10 godzin, masz duże pole do oszczędności. Zacznij od zadania, które zabiera Ci najwięcej czasu.</p>
-                <h3>Jak policzyć, czy korzystanie z AI opłaca się mojej firmie?</h3>
-                <p>Policz wartość swojej godziny, dzieląc miesięczny przychód przez liczbę przepracowanych godzin. W przykładzie z wpisu 15 000 zł przychodu i 160 godzin pracy daje około 94 zł za godzinę. Oszczędność 10 godzin tygodniowo jest wtedy warta około 3 760 zł miesięcznie. Porównaj tę kwotę z kosztem narzędzi, których używasz.</p>
-                <h3>Jak wprowadzać AI w firmie, żeby naprawdę oszczędzać czas?</h3>
-                <p>Wprowadzaj zmiany po jednej. W pierwszym tygodniu zajmij się największym złodziejem czasu, w drugim dodaj kolejne zadanie, a w trzecim przygotuj szablony poleceń do powtarzalnych prac. Nie wdrażaj wielu narzędzi naraz, zbuduj własną bibliotekę poleceń i nie szlifuj każdego tekstu do perfekcji, bo wynik wystarczająco dobry zwykle wystarcza.</p>
-                <h3>Ile czasu tygodniowo może odzyskać konsultant dzięki AI?</h3>
-                <p>W przykładzie z wpisu właściciel firmy konsultingowej odzyskał około 15 godzin tygodniowo. Czas na maile spadł z 3 godzin do 1 godziny dziennie, na oferty z 4 do półtorej godziny tygodniowo, a na treści z 2 godzin do 30 minut. Pomogły ChatGPT, AI do postów, narzędzie do notatek ze spotkań i chatbot na stronie.</p>
-            </section>
-
-        </div>
-    </article>
-
-        <footer class="foot">
+</div>
+<h2 id="s9">Podsumowanie</h2>
+<ul>
+<li><strong>Audyt czasu</strong> - zidentyfikuj gdzie tracisz najwięcej</li>
+<li><strong>Jedno zadanie naraz</strong> - nie wszystko na raz</li>
+<li><strong>Szablony poleceń</strong> - klucz do szybkości</li>
+<li><strong>10-15h tygodniowo</strong> - realna oszczędność</li>
+<li><strong>200-400 zł/mies</strong> - zwraca się w pierwszym tygodniu</li>
+</ul>
+<p>Czas to jedyny zasób którego nie odzyskasz. AI pomaga go nie tracić. Sprawdź <a href="/blog/narzedzia-ai-2025">kompletny przewodnik po narzędziach AI na 2025</a>.</p>
+<section id="faq">
+<h2 id="s10">Najczęstsze pytania</h2>
+<h3>Na jakich zadaniach AI pozwala zaoszczędzić najwięcej czasu?</h3>
+<p>Wpis wskazuje dziesięć takich zadań: odpowiedzi na maile, posty w mediach społecznościowych, oferty i wyceny, odpowiedzi na częste pytania klientów, szukanie informacji, streszczanie dokumentów, opisy produktów, prezentacje, planowanie treści oraz notatki ze spotkań. Największą oszczędność daje według autora chatbot odpowiadający na powtarzalne pytania, nawet 10 godzin tygodniowo.</p>
+<h3>Jak sprawdzić, na co w firmie tracę najwięcej czasu?</h3>
+<p>Zrób krótki audyt czasu. Wypisz, ile godzin tygodniowo spędzasz na odpowiadaniu na maile, pisaniu tekstów, szukaniu informacji, odpowiadaniu na te same pytania klientów, tworzeniu dokumentów oraz planowaniu i organizacji. Jeśli suma przekracza 10 godzin, masz duże pole do oszczędności. Zacznij od zadania, które zabiera Ci najwięcej czasu.</p>
+<h3>Jak policzyć, czy korzystanie z AI opłaca się mojej firmie?</h3>
+<p>Policz wartość swojej godziny, dzieląc miesięczny przychód przez liczbę przepracowanych godzin. W przykładzie z wpisu 15 000 zł przychodu i 160 godzin pracy daje około 94 zł za godzinę. Oszczędność 10 godzin tygodniowo jest wtedy warta około 3 760 zł miesięcznie. Porównaj tę kwotę z kosztem narzędzi, których używasz.</p>
+<h3>Jak wprowadzać AI w firmie, żeby naprawdę oszczędzać czas?</h3>
+<p>Wprowadzaj zmiany po jednej. W pierwszym tygodniu zajmij się największym złodziejem czasu, w drugim dodaj kolejne zadanie, a w trzecim przygotuj szablony poleceń do powtarzalnych prac. Nie wdrażaj wielu narzędzi naraz, zbuduj własną bibliotekę poleceń i nie szlifuj każdego tekstu do perfekcji, bo wynik wystarczająco dobry zwykle wystarcza.</p>
+<h3>Ile czasu tygodniowo może odzyskać konsultant dzięki AI?</h3>
+<p>W przykładzie z wpisu właściciel firmy konsultingowej odzyskał około 15 godzin tygodniowo. Czas na maile spadł z 3 godzin do 1 godziny dziennie, na oferty z 4 do półtorej godziny tygodniowo, a na treści z 2 godzin do 30 minut. Pomogły ChatGPT, AI do postów, narzędzie do notatek ze spotkań i chatbot na stronie.</p>
+</section>
+  </article>
+</div>
+<section class="sec bp-end">
+  <div class="wrap">
+    <div class="oferta-box">
+      <img src="/assets/teamek/pokazuje.webp" alt="Teamek" width="382" height="520" loading="lazy">
+      <div><span class="eyebrow">Zbuduj to u siebie</span><h2>Wdrożenie 10 systemów AI w Twojej firmie</h2>
+        <p>Co drugi poniedziałek budujemy razem jeden system: maile, klienci, zadania, wyceny. Online, w grupie do 8 firm, start 11 stycznia 2027.</p>
+        <div class="cta"><a class="btn" href="/wdrozenie-systemow-ai">Zobacz program i ceny</a><a class="btn ghost" href="/ai-radar">Zapisz się na AI Radar</a></div></div>
+    </div>
+    <h2 class="pow-h">Czytaj dalej</h2>
+    <div class="pow"><a class="pc" href="/blog/prompty-dla-biznesu"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Praktyczne</span><span class="bc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><span class="pc-m">15 min czytania</span></a><a class="pc" href="/blog/crm-dla-malej-firmy"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</span><img src="/assets/teamek/paczka.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</span><span class="pc-m">9 min czytania</span></a><a class="pc" href="/blog/dzial-ai-w-firmie"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><img src="/assets/teamek/brawo.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><span class="pc-m">9 min czytania</span></a></div>
+  </div>
+</section>
+<footer class="foot">
   <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
@@ -534,7 +401,7 @@
       </div>
       <div>
         <h4>Wiedza</h4>
-      <a href="/blog/">Blog</a>
+        <a href="/blog/">Blog</a>
         <a href="/ai-radar">AI Radar</a>
         <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
         <a href="/ai-act/">AI Act dla małej firmy</a>
@@ -559,6 +426,7 @@
     </div>
   </div>
 </footer>
-<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/blog-teamek.js?v=20261115a" defer></script>
 </body>
 </html>

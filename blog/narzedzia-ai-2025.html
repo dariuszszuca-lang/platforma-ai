@@ -1,190 +1,32 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-    <title>Narzędzia AI dla małych firm 2025 | AI-TEAM.PL</title>
-    <meta name="description" content="Ranking najlepszych narzędzi AI dla małych firm w 2025. ChatGPT, Claude, Jasper, Make - porównanie cen, funkcji i zastosowań. Które wybrać?">
-    <meta name="keywords" content="narzędzia AI dla firm, AI tools 2025, ChatGPT dla biznesu, Claude AI, Jasper AI, automatyzacja firmy">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Narzędzia AI dla małych firm 2025 - kompletny przewodnik">
-    <meta property="og:description" content="Ranking najlepszych narzędzi AI dla małych firm. Porównanie cen, funkcji i zastosowań.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ai-team.pl/blog/narzedzia-ai-2025.html">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Inter Tight', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#FAFAF7',
-                            primary: '#1E8A5A',
-                            secondary: '#176B46',
-                            light: '#2FB77A',
-                        },
-                        primary: '#1E8A5A',
-                        secondary: '#176B46',
-                        light: '#2FB77A',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #020203;
-            min-height: 100vh;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .prose-custom h2 {
-            color: #fb923c;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .prose-custom h3 {
-            color: #f97316;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .prose-custom p {
-            color: #d1d5db;
-            margin-bottom: 1rem;
-            line-height: 1.75;
-        }
-        .prose-custom ul, .prose-custom ol {
-            color: #d1d5db;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-        .prose-custom li {
-            margin-bottom: 0.5rem;
-        }
-        .prose-custom strong {
-            color: #f9fafb;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
-            border-left: 4px solid #f97316;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 1.5rem 0;
-        }
-        .tool-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
-        }
-        .tool-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(249, 115, 22, 0.3);
-        }
-        .category-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(249, 115, 22, 0.2);
-            color: #fb923c;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-        .price-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(34, 197, 94, 0.2);
-            color: #4ade80;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .cta-box {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.2));
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 1.5rem 0;
-        }
-        .comparison-table th {
-            background: rgba(249, 115, 22, 0.2);
-            color: #fb923c;
-            padding: 0.75rem;
-            text-align: left;
-            font-weight: 600;
-        }
-        .comparison-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: #d1d5db;
-        }
-        .comparison-table tr:hover td {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            width: 150%;
-            height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-    </style>
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
-    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
-    <meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://ai-team.pl/blog/narzedzia-ai-2025">
-    <script type="application/ld+json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+<title>Narzędzia AI dla małych firm: kompletny przewodnik | Blog AI-Team</title>
+<meta name="description" content="Ranking najlepszych narzędzi AI dla małych firm w 2025. ChatGPT, Claude, Jasper, Make - porównanie cen, funkcji i zastosowań. Które wybrać?">
+<meta content="narzędzia AI dla firm, AI tools 2025, ChatGPT dla biznesu, Claude AI, Jasper AI, automatyzacja firmy" name="keywords"/>
+<meta name="author" content="Dariusz Szuca, AI-Team">
+<meta name="robots" content="index, follow">
+<meta content="Narzędzia AI dla małych firm: kompletny przewodnik" property="og:title"/>
+<meta content="Ranking najlepszych narzędzi AI dla małych firm. Porównanie cen, funkcji i zastosowań." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://ai-team.pl/blog/narzedzia-ai-2025.html" property="og:url"/>
+<meta content="https://ai-team.pl/assets/og-ai-team-20260511.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<link href="https://ai-team.pl/blog/narzedzia-ai-2025" rel="canonical"/>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -217,7 +59,7 @@
   "description": "Ranking najlepszych narzędzi AI dla małych firm w 2025. ChatGPT, Claude, Jasper, Make - porównanie cen, funkcji i zastosowań. Które wybrać?"
 }
     </script>
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -265,16 +107,17 @@
   ]
 }
     </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115a">
+<script src="/assets/meta-pixel.js"></script>
 </head>
-<body>
-    <!-- Grid Background -->
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
+<body class="blog-post">
+<div class="czytam" aria-hidden="true"></div>
+<nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
       <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
@@ -286,621 +129,529 @@
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/" aria-current="page">Blog</a>
       <a href="/ai-radar">AI Radar</a>
+      <a href="/en/" class="lang" hreflang="en" lang="en">EN</a>
       <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
+<header class="bp-head">
+  <div class="wrap bp-grid">
+    <div class="bp-copy">
+      <nav class="okruszki" aria-label="Okruszki"><a href="/">Strona główna</a> / <a href="/blog/">Blog</a></nav>
+      <span class="eyebrow">Przewodnik · Narzędzia</span>
+      <h1>Narzędzia AI dla małych firm: kompletny przewodnik</h1>
+      <p class="lead">Redaktor: Dariusz Szuca</p>
+      <p class="bp-meta"><img src="/assets/darek-szuca.jpg" alt="" width="40" height="40">Darek Szuca · 26 grudnia 2025 · 18 min czytania</p>
+    </div>
+    <div class="bc c2 duza" aria-hidden="true"><span class="bc-tag">Przewodnik</span><span class="bc-t">Narzędzia AI dla małych firm: kompletny przewodnik</span><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400" loading="lazy"></div>
+  </div>
+</header>
+<div class="wrap bp-body">
+  <aside class="spis" aria-label="Spis treści"><p>W tym wpisie</p><ol id="spis"><li><a href="#s1">Mapa narzędzi AI - co do czego służy</a></li><li><a href="#s2">Kategoria #1: Asystenci tekstowi (AI do wszystkiego)</a></li><li><a href="#s3">Kategoria #2: Tworzenie treści marketingowych</a></li><li><a href="#s4">Kategoria #3: Grafika i wideo z AI</a></li><li><a href="#s5">Kategoria #4: Automatyzacja (łączenie aplikacji)</a></li><li><a href="#s6">Kategoria #5: Obsługa klienta i chatboty</a></li><li><a href="#s7">Porównanie kosztów - zestaw AI dla małej firmy</a></li><li><a href="#s8">Jak wybrać narzędzia - checklist</a></li><li><a href="#s9">Mój rekomendowany stack na 2025</a></li><li><a href="#s10">Błędy których unikać</a></li><li><a href="#s11">Podsumowanie</a></li><li><a href="#s12">Najczęstsze pytania</a></li></ol>
+    <div class="spis-tk"><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400" loading="lazy"><span>Kliknij rozdział, przeniosę Cię.</span></div></aside>
+  <article class="prose" id="tresc">
 
-    <!-- Article -->
-    <article class="pt-32 pb-16 px-4">
-        <div class="max-w-3xl mx-auto">
-            <!-- Breadcrumb -->
-            <nav class="text-sm text-gray-400 mb-6">
-                <a href="index.html" class="hover:text-primary">Blog</a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-300">Narzędzia AI 2025</span>
-            </nav>
-
-            <!-- Header -->
-            <header class="mb-8">
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Przewodnik</span>
-                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">2025</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                    Narzędzia AI dla małych firm 2025 - kompletny przewodnik
-                </h1>
-                <p class="text-gray-400 text-sm mb-4">Redaktor: Dariusz Szuca</p>
-                <div class="flex items-center gap-4 text-gray-400 text-sm">
-                    <span>Grudzień 2025</span>
-                    <span>|</span>
-                    <span>18 min czytania</span>
-                </div>
-            </header>
-
-            <!-- Lead -->
-            <div class="glass rounded-xl p-6 mb-8">
-                <p class="text-lg text-gray-200 leading-relaxed">
-                    Rynek narzędzi AI eksplodował. W 2025 masz do wyboru setki aplikacji, ale <strong>jako mała firma potrzebujesz tylko 5-7 z nich</strong>. Ten przewodnik pomoże Ci wybrać te, które naprawdę zaoszczędzą czas i pieniądze.
-                </p>
-            </div>
-
-            <!-- Content -->
-            <div class="prose-custom">
-
-                <h2>Mapa narzędzi AI - co do czego służy</h2>
-
-                <p>Zanim przejdziemy do konkretów, zobaczmy jak podzielić narzędzia AI według zastosowań:</p>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-3">5 kategorii narzędzi AI dla małej firmy:</p>
-                    <ol class="text-gray-200">
-                        <li><strong>Asystenci tekstowi</strong> - ChatGPT, Claude, Gemini (pisanie, analiza, pomysły)</li>
-                        <li><strong>Tworzenie treści</strong> - Jasper, Copy.ai, Writesonic (marketing)</li>
-                        <li><strong>Grafika i wideo</strong> - Midjourney, DALL-E, Canva AI</li>
-                        <li><strong>Automatyzacja</strong> - Make, Zapier, n8n (łączenie aplikacji)</li>
-                        <li><strong>Obsługa klienta</strong> - Tidio, Chatbase, chatboty i automatyzacje DM</li>
-                    </ol>
-                </div>
-
-                <p>Teraz przejdźmy przez każdą kategorię i wybierzmy najlepsze narzędzia.</p>
-
-                <h2>Kategoria #1: Asystenci tekstowi (AI do wszystkiego)</h2>
-
-                <p>To Twój "szwajcarski scyzoryk" AI - jedno narzędzie do pisania, analizy, planowania i brainstormingu.</p>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Uniwersalny</span>
-                            <h3 class="text-xl font-bold text-white mt-2">ChatGPT (OpenAI)</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Najpopularniejszy asystent AI na świecie. 200+ milionów użytkowników.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Najlepszy do konwersacji po polsku</li>
-                                <li>+ Ogromna baza wiedzy</li>
-                                <li>+ Darmowa wersja wystarczająca na start</li>
-                                <li>+ GPTs - gotowe specjalizowane boty</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Wersja Pro droga (20$/mies.)</li>
-                                <li>- Czasem "halucynuje" fakty</li>
-                                <li>- Brak dostępu do internetu w free</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Każdy przedsiębiorca - to must-have na 2025.</p>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Analityczny</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Claude (Anthropic)</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Alternatywa od Anthropic. Specjalizuje się w długich dokumentach i analizie.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Najlepszy do długich tekstów</li>
-                                <li>+ Mniej halucynacji niż ChatGPT</li>
-                                <li>+ Świetny do kodowania</li>
-                                <li>+ Bardzo dobry po polsku</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Mniej "kreatywny" niż ChatGPT</li>
-                                <li>- Brak generowania grafik</li>
-                                <li>- Mniejsza baza GPT-sów</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Firmy pracujące z dokumentami, raportami, analizami.</p>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Google</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Gemini (Google)</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">AI od Google, zintegrowane z Gmail, Docs, Sheets.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Integracja z Google Workspace</li>
-                                <li>+ Dostęp do internetu w czasie rzeczywistym</li>
-                                <li>+ Bardzo dobry w researchingu</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Słabszy po polsku</li>
-                                <li>- Mniej dokładny w zadaniach twórczych</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Firmy mocno osadzone w ekosystemie Google.</p>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-2">Moja rekomendacja:</p>
-                    <p class="text-gray-200">Zacznij od <strong>ChatGPT Free</strong>. Jeśli potrzebujesz więcej - dodaj <strong>Claude Free</strong> do długich dokumentów. Nie płać za Pro dopóki nie wykorzystasz darmowych limitów.</p>
-                </div>
-
-                <h2>Kategoria #2: Tworzenie treści marketingowych</h2>
-
-                <p>Narzędzia specjalizowane w pisaniu postów, maili, reklam - z szablonami i frameworkami.</p>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Marketing</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Jasper AI</h3>
-                        </div>
-                        <span class="price-tag">od 49$/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Lider w AI dla marketingu. 50+ szablonów treści, Brand Voice.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Gotowe szablony (posty, maile, reklamy)</li>
-                                <li>+ Brand Voice - zachowuje Twój ton</li>
-                                <li>+ Integracja z Surfer SEO</li>
-                                <li>+ Bardzo dobry do copy</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Drogi (min. 49$/mies.)</li>
-                                <li>- Słabszy po polsku niż ChatGPT</li>
-                                <li>- Overkill dla małej firmy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Agencje marketingowe, firmy z dużą produkcją contentu.</p>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Budget-friendly</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Copy.ai</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Tańsza alternatywa Jaspera z darmowym planem.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Darmowy plan (2000 słów/mies.)</li>
-                                <li>+ 90+ szablonów</li>
-                                <li>+ Prosty interfejs</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Mniejszy limit w free</li>
-                                <li>- Mniej zaawansowany niż Jasper</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Małe firmy szukające taniego rozwiązania.</p>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-2">Moja rekomendacja:</p>
-                    <p class="text-gray-200">Dla małej firmy: <strong>ChatGPT + własne prompty</strong> > Jasper. Zaoszczędzisz 50$/mies. a efekty będą podobne. Jasper opłaca się dopiero przy 50+ postów miesięcznie.</p>
-                </div>
-
-                <h2>Kategoria #3: Grafika i wideo z AI</h2>
-
-                <p>Narzędzia do generowania obrazów, edycji zdjęć i tworzenia wideo.</p>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Grafika</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Midjourney</h3>
-                        </div>
-                        <span class="price-tag">od 10$/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Najlepsza jakość grafik AI. Idealne do social media i prezentacji.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Najwyższa jakość obrazów</li>
-                                <li>+ Świetne w stylach artystycznych</li>
-                                <li>+ Bardzo estetyczne wyniki</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Działa przez Discord</li>
-                                <li>- Krzywa uczenia się</li>
-                                <li>- Brak wersji darmowej</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Zintegrowane</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Canva AI (Magic Studio)</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">AI wbudowane w Canvę - generuj i edytuj w jednym miejscu.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ All-in-one (design + AI)</li>
-                                <li>+ Magic Write - tekst AI</li>
-                                <li>+ Magic Eraser - usuwanie tła</li>
-                                <li>+ Darmowe funkcje AI</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Jakość grafik słabsza niż Midjourney</li>
-                                <li>- Limity w wersji free</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> 90% małych firm - wystarczy do codziennej pracy.</p>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Wideo</span>
-                            <h3 class="text-xl font-bold text-white mt-2">CapCut</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Darmowy edytor wideo z funkcjami AI od TikTok.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Funkcje AI:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Auto-napisy (świetne po polsku!)</li>
-                                <li>+ Usuwanie tła z wideo</li>
-                                <li>+ Auto-kadrowanie na różne formaty</li>
-                                <li>+ Redukcja szumu audio</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Znak wodny w free</li>
-                                <li>- Wymaga nauki</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-2">Moja rekomendacja:</p>
-                    <p class="text-gray-200"><strong>Canva Pro</strong> (50 zł/mies.) załatwia 90% potrzeb graficznych małej firmy. Midjourney tylko jeśli potrzebujesz unikalnych, artystycznych grafik.</p>
-                </div>
-
-                <h2>Kategoria #4: Automatyzacja (łączenie aplikacji)</h2>
-
-                <p>Narzędzia no-code które łączą Twoje aplikacje i automatyzują powtarzalne zadania.</p>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">No-code</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Make (Integromat)</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Najpotężniejsze narzędzie do automatyzacji. 1500+ integracji.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Wizualny builder (drag & drop)</li>
-                                <li>+ 1000 operacji/mies. za darmo</li>
-                                <li>+ Integracja z ChatGPT</li>
-                                <li>+ Tańszy niż Zapier przy skalowaniu</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Krzywa uczenia się</li>
-                                <li>- Interfejs może przytłaczać</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <p class="text-sm text-gray-400"><strong>Dla kogo:</strong> Firmy szukające zaawansowanych automatyzacji.</p>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Prosty</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Zapier</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Najprostszy w obsłudze. 6000+ aplikacji.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Bardzo prosty interfejs</li>
-                                <li>+ Najwięcej integracji</li>
-                                <li>+ Gotowe szablony "Zaps"</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Drogi przy większej skali</li>
-                                <li>- Mniej elastyczny niż Make</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-2">Moja rekomendacja:</p>
-                    <p class="text-gray-200">Zacznij od <strong>Make Free</strong> (1000 operacji/mies.). Wystarczy na podstawowe automatyzacje. Zapier tylko jeśli potrzebujesz konkretnej integracji której Make nie ma.</p>
-                </div>
-
-                <h2>Kategoria #5: Obsługa klienta i chatboty</h2>
-
-                <p>Narzędzia do automatycznej odpowiedzi na pytania klientów 24/7.</p>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">All-in-one</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Tidio</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Polski produkt! Live chat + chatbot AI + email w jednym.</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Polski produkt, wsparcie po polsku</li>
-                                <li>+ Live chat + AI bot w jednym</li>
-                                <li>+ Darmowy plan (50 konwersacji)</li>
-                                <li>+ Łatwa integracja z WordPress/Shopify</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- AI ograniczone w free</li>
-                                <li>- Płatne za więcej botów</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span class="category-tag">Custom AI</span>
-                            <h3 class="text-xl font-bold text-white mt-2">Chatbase</h3>
-                        </div>
-                        <span class="price-tag">od 0 zł/mies.</span>
-                    </div>
-                    <p class="text-gray-300 mb-3">Stwórz chatbota wytrenowanego na swoich danych (cennik, FAQ).</p>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="text-primary font-medium mb-1">Zalety:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>+ Trenuje się na Twoich danych</li>
-                                <li>+ Odpowiada na specyficzne pytania</li>
-                                <li>+ Wgraj PDF/stronę jako bazę wiedzy</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="text-red-400 font-medium mb-1">Wady:</p>
-                            <ul class="text-gray-400 space-y-1">
-                                <li>- Wymaga przygotowania danych</li>
-                                <li>- Mniej funkcji niż Tidio</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>Porównanie kosztów - zestaw AI dla małej firmy</h2>
-
-                <p>Ile kosztuje kompletny "stack" narzędzi AI?</p>
-
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Zestaw</th>
-                            <th>Narzędzia</th>
-                            <th>Koszt/mies.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Startowy (Free)</strong></td>
-                            <td>ChatGPT Free + Canva Free + Make Free + Tidio Free</td>
-                            <td class="text-green-400 font-bold">0 zł</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Podstawowy</strong></td>
-                            <td>ChatGPT Plus + Canva Pro + Make Free + Tidio Free</td>
-                            <td class="text-primary font-bold">~130 zł</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Profesjonalny</strong></td>
-                            <td>ChatGPT Plus + Claude Pro + Canva Pro + Make Paid + Tidio AI</td>
-                            <td class="text-primary font-bold">~400 zł</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-2">Dla 90% małych firm:</p>
-                    <p class="text-gray-200"><strong>Zestaw Startowy (0 zł)</strong> wystarczy na pierwsze 3-6 miesięcy. Upgrade rób dopiero gdy darmowe limity Cię ograniczają.</p>
-                </div>
-
-                <h2>Jak wybrać narzędzia - checklist</h2>
-
-                <p>Zanim kupisz jakiekolwiek narzędzie AI, odpowiedz na pytania:</p>
-
-                <ol>
-                    <li><strong>Czy mam konkretny problem?</strong> - nie kupuj "bo fajne", tylko bo rozwiązuje Twój ból</li>
-                    <li><strong>Czy wykorzystałem darmowe wersje?</strong> - 90% narzędzi ma free tier</li>
-                    <li><strong>Ile czasu zaoszczędzę?</strong> - jeśli < 1h/tydzień, nie warto</li>
-                    <li><strong>Czy ChatGPT + prompt nie wystarczy?</strong> - często specjalistyczne narzędzie to po prostu ładny interfejs do GPT</li>
-                </ol>
-
-                <h2>Mój rekomendowany stack na 2025</h2>
-
-                <p>Gdybym dziś zakładał firmę, wybrałbym:</p>
-
-                <div class="highlight-box">
-                    <p class="text-white font-semibold mb-3">Stack AI dla małej firmy (koszt: 0-130 zł/mies.):</p>
-                    <ol class="text-gray-200 space-y-2">
-                        <li><strong>ChatGPT</strong> - asystent do wszystkiego (Free lub Plus)</li>
-                        <li><strong>Canva</strong> - grafika i proste wideo (Free lub Pro)</li>
-                        <li><strong>Make</strong> - automatyzacja (Free)</li>
-                        <li><strong>Tidio</strong> - chat na stronie (Free)</li>
-                        <li><strong>CapCut</strong> - edycja wideo (Free)</li>
-                    </ol>
-                    <p class="text-gray-300 mt-4">Te 5 narzędzi zastąpi pracę kilku osób i pozwoli Ci działać jak duża firma.</p>
-                </div>
-
-                <h2>Błędy których unikać</h2>
-
-                <ol>
-                    <li><strong>Kupowanie wszystkiego na raz</strong> - zacznij od jednego narzędzia, opanuj, dodaj kolejne</li>
-                    <li><strong>Płacenie za funkcje których nie używasz</strong> - 80% ludzi z ChatGPT Plus nie wykorzystuje połowy funkcji</li>
-                    <li><strong>Szukanie "idealnego" narzędzia</strong> - każde ma wady, ważne żeby rozwiązywało Twój problem</li>
-                    <li><strong>Pomijanie nauki</strong> - ChatGPT Free z dobrymi promptami > ChatGPT Plus z byle jakimi</li>
-                </ol>
-
-                <div class="cta-box">
-                    <h3 class="text-xl font-bold mb-3">Chcesz poznać najlepsze prompty do tych narzędzi?</h3>
-                    <p class="text-gray-300 mb-4">Dołącz do newslettera AI Radar - co tydzień praktyczny tip który zaoszczędzi Ci godziny.</p>
-                    <a href="../ai-radar.html" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg font-semibold hover:opacity-90 transition">
+<h2 id="s1">Mapa narzędzi AI - co do czego służy</h2>
+<p>Zanim przejdziemy do konkretów, zobaczmy jak podzielić narzędzia AI według zastosowań:</p>
+<div class="callout">
+<p>5 kategorii narzędzi AI dla małej firmy:</p>
+<ol>
+<li><strong>Asystenci tekstowi</strong> - ChatGPT, Claude, Gemini (pisanie, analiza, pomysły)</li>
+<li><strong>Tworzenie treści</strong> - Jasper, Copy.ai, Writesonic (marketing)</li>
+<li><strong>Grafika i wideo</strong> - Midjourney, DALL-E, Canva AI</li>
+<li><strong>Automatyzacja</strong> - Make, Zapier, n8n (łączenie aplikacji)</li>
+<li><strong>Obsługa klienta</strong> - Tidio, Chatbase, chatboty i automatyzacje DM</li>
+</ol>
+</div>
+<p>Teraz przejdźmy przez każdą kategorię i wybierzmy najlepsze narzędzia.</p>
+<h2 id="s2">Kategoria #1: Asystenci tekstowi (AI do wszystkiego)</h2>
+<p>To Twój "szwajcarski scyzoryk" AI - jedno narzędzie do pisania, analizy, planowania i brainstormingu.</p>
+<div>
+<div>
+<div>
+<span>Uniwersalny</span>
+<h3>ChatGPT (OpenAI)</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Najpopularniejszy asystent AI na świecie. 200+ milionów użytkowników.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Najlepszy do konwersacji po polsku</li>
+<li>+ Ogromna baza wiedzy</li>
+<li>+ Darmowa wersja wystarczająca na start</li>
+<li>+ GPTs - gotowe specjalizowane boty</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Wersja Pro droga (20$/mies.)</li>
+<li>- Czasem "halucynuje" fakty</li>
+<li>- Brak dostępu do internetu w free</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Każdy przedsiębiorca - to must-have na 2025.</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Analityczny</span>
+<h3>Claude (Anthropic)</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Alternatywa od Anthropic. Specjalizuje się w długich dokumentach i analizie.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Najlepszy do długich tekstów</li>
+<li>+ Mniej halucynacji niż ChatGPT</li>
+<li>+ Świetny do kodowania</li>
+<li>+ Bardzo dobry po polsku</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Mniej "kreatywny" niż ChatGPT</li>
+<li>- Brak generowania grafik</li>
+<li>- Mniejsza baza GPT-sów</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Firmy pracujące z dokumentami, raportami, analizami.</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Google</span>
+<h3>Gemini (Google)</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>AI od Google, zintegrowane z Gmail, Docs, Sheets.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Integracja z Google Workspace</li>
+<li>+ Dostęp do internetu w czasie rzeczywistym</li>
+<li>+ Bardzo dobry w researchingu</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Słabszy po polsku</li>
+<li>- Mniej dokładny w zadaniach twórczych</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Firmy mocno osadzone w ekosystemie Google.</p>
+</div>
+</div>
+<div class="callout">
+<p>Moja rekomendacja:</p>
+<p>Zacznij od <strong>ChatGPT Free</strong>. Jeśli potrzebujesz więcej - dodaj <strong>Claude Free</strong> do długich dokumentów. Nie płać za Pro dopóki nie wykorzystasz darmowych limitów.</p>
+</div>
+<h2 id="s3">Kategoria #2: Tworzenie treści marketingowych</h2>
+<p>Narzędzia specjalizowane w pisaniu postów, maili, reklam - z szablonami i frameworkami.</p>
+<div>
+<div>
+<div>
+<span>Marketing</span>
+<h3>Jasper AI</h3>
+</div>
+<span>od 49$/mies.</span>
+</div>
+<p>Lider w AI dla marketingu. 50+ szablonów treści, Brand Voice.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Gotowe szablony (posty, maile, reklamy)</li>
+<li>+ Brand Voice - zachowuje Twój ton</li>
+<li>+ Integracja z Surfer SEO</li>
+<li>+ Bardzo dobry do copy</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Drogi (min. 49$/mies.)</li>
+<li>- Słabszy po polsku niż ChatGPT</li>
+<li>- Overkill dla małej firmy</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Agencje marketingowe, firmy z dużą produkcją contentu.</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Budget-friendly</span>
+<h3>Copy.ai</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Tańsza alternatywa Jaspera z darmowym planem.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Darmowy plan (2000 słów/mies.)</li>
+<li>+ 90+ szablonów</li>
+<li>+ Prosty interfejs</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Mniejszy limit w free</li>
+<li>- Mniej zaawansowany niż Jasper</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Małe firmy szukające taniego rozwiązania.</p>
+</div>
+</div>
+<div class="callout">
+<p>Moja rekomendacja:</p>
+<p>Dla małej firmy: <strong>ChatGPT + własne prompty</strong> &gt; Jasper. Zaoszczędzisz 50$/mies. a efekty będą podobne. Jasper opłaca się dopiero przy 50+ postów miesięcznie.</p>
+</div>
+<h2 id="s4">Kategoria #3: Grafika i wideo z AI</h2>
+<p>Narzędzia do generowania obrazów, edycji zdjęć i tworzenia wideo.</p>
+<div>
+<div>
+<div>
+<span>Grafika</span>
+<h3>Midjourney</h3>
+</div>
+<span>od 10$/mies.</span>
+</div>
+<p>Najlepsza jakość grafik AI. Idealne do social media i prezentacji.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Najwyższa jakość obrazów</li>
+<li>+ Świetne w stylach artystycznych</li>
+<li>+ Bardzo estetyczne wyniki</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Działa przez Discord</li>
+<li>- Krzywa uczenia się</li>
+<li>- Brak wersji darmowej</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Zintegrowane</span>
+<h3>Canva AI (Magic Studio)</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>AI wbudowane w Canvę - generuj i edytuj w jednym miejscu.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ All-in-one (design + AI)</li>
+<li>+ Magic Write - tekst AI</li>
+<li>+ Magic Eraser - usuwanie tła</li>
+<li>+ Darmowe funkcje AI</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Jakość grafik słabsza niż Midjourney</li>
+<li>- Limity w wersji free</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> 90% małych firm - wystarczy do codziennej pracy.</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Wideo</span>
+<h3>CapCut</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Darmowy edytor wideo z funkcjami AI od TikTok.</p>
+<div>
+<div>
+<p>Funkcje AI:</p>
+<ul>
+<li>+ Auto-napisy (świetne po polsku!)</li>
+<li>+ Usuwanie tła z wideo</li>
+<li>+ Auto-kadrowanie na różne formaty</li>
+<li>+ Redukcja szumu audio</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Znak wodny w free</li>
+<li>- Wymaga nauki</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout">
+<p>Moja rekomendacja:</p>
+<p><strong>Canva Pro</strong> (50 zł/mies.) załatwia 90% potrzeb graficznych małej firmy. Midjourney tylko jeśli potrzebujesz unikalnych, artystycznych grafik.</p>
+</div>
+<h2 id="s5">Kategoria #4: Automatyzacja (łączenie aplikacji)</h2>
+<p>Narzędzia no-code które łączą Twoje aplikacje i automatyzują powtarzalne zadania.</p>
+<div>
+<div>
+<div>
+<span>No-code</span>
+<h3>Make (Integromat)</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Najpotężniejsze narzędzie do automatyzacji. 1500+ integracji.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Wizualny builder (drag &amp; drop)</li>
+<li>+ 1000 operacji/mies. za darmo</li>
+<li>+ Integracja z ChatGPT</li>
+<li>+ Tańszy niż Zapier przy skalowaniu</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Krzywa uczenia się</li>
+<li>- Interfejs może przytłaczać</li>
+</ul>
+</div>
+</div>
+<div>
+<p><strong>Dla kogo:</strong> Firmy szukające zaawansowanych automatyzacji.</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Prosty</span>
+<h3>Zapier</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Najprostszy w obsłudze. 6000+ aplikacji.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Bardzo prosty interfejs</li>
+<li>+ Najwięcej integracji</li>
+<li>+ Gotowe szablony "Zaps"</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Drogi przy większej skali</li>
+<li>- Mniej elastyczny niż Make</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout">
+<p>Moja rekomendacja:</p>
+<p>Zacznij od <strong>Make Free</strong> (1000 operacji/mies.). Wystarczy na podstawowe automatyzacje. Zapier tylko jeśli potrzebujesz konkretnej integracji której Make nie ma.</p>
+</div>
+<h2 id="s6">Kategoria #5: Obsługa klienta i chatboty</h2>
+<p>Narzędzia do automatycznej odpowiedzi na pytania klientów 24/7.</p>
+<div>
+<div>
+<div>
+<span>All-in-one</span>
+<h3>Tidio</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Polski produkt! Live chat + chatbot AI + email w jednym.</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Polski produkt, wsparcie po polsku</li>
+<li>+ Live chat + AI bot w jednym</li>
+<li>+ Darmowy plan (50 konwersacji)</li>
+<li>+ Łatwa integracja z WordPress/Shopify</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- AI ograniczone w free</li>
+<li>- Płatne za więcej botów</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<span>Custom AI</span>
+<h3>Chatbase</h3>
+</div>
+<span>od 0 zł/mies.</span>
+</div>
+<p>Stwórz chatbota wytrenowanego na swoich danych (cennik, FAQ).</p>
+<div>
+<div>
+<p>Zalety:</p>
+<ul>
+<li>+ Trenuje się na Twoich danych</li>
+<li>+ Odpowiada na specyficzne pytania</li>
+<li>+ Wgraj PDF/stronę jako bazę wiedzy</li>
+</ul>
+</div>
+<div>
+<p>Wady:</p>
+<ul>
+<li>- Wymaga przygotowania danych</li>
+<li>- Mniej funkcji niż Tidio</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="s7">Porównanie kosztów - zestaw AI dla małej firmy</h2>
+<p>Ile kosztuje kompletny "stack" narzędzi AI?</p>
+<table>
+<thead>
+<tr>
+<th>Zestaw</th>
+<th>Narzędzia</th>
+<th>Koszt/mies.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Startowy (Free)</strong></td>
+<td>ChatGPT Free + Canva Free + Make Free + Tidio Free</td>
+<td>0 zł</td>
+</tr>
+<tr>
+<td><strong>Podstawowy</strong></td>
+<td>ChatGPT Plus + Canva Pro + Make Free + Tidio Free</td>
+<td>~130 zł</td>
+</tr>
+<tr>
+<td><strong>Profesjonalny</strong></td>
+<td>ChatGPT Plus + Claude Pro + Canva Pro + Make Paid + Tidio AI</td>
+<td>~400 zł</td>
+</tr>
+</tbody>
+</table>
+<div class="callout">
+<p>Dla 90% małych firm:</p>
+<p><strong>Zestaw Startowy (0 zł)</strong> wystarczy na pierwsze 3-6 miesięcy. Upgrade rób dopiero gdy darmowe limity Cię ograniczają.</p>
+</div>
+<h2 id="s8">Jak wybrać narzędzia - checklist</h2>
+<p>Zanim kupisz jakiekolwiek narzędzie AI, odpowiedz na pytania:</p>
+<ol>
+<li><strong>Czy mam konkretny problem?</strong> - nie kupuj "bo fajne", tylko bo rozwiązuje Twój ból</li>
+<li><strong>Czy wykorzystałem darmowe wersje?</strong> - 90% narzędzi ma free tier</li>
+<li><strong>Ile czasu zaoszczędzę?</strong> - jeśli &lt; 1h/tydzień, nie warto</li>
+<li><strong>Czy ChatGPT + prompt nie wystarczy?</strong> - często specjalistyczne narzędzie to po prostu ładny interfejs do GPT</li>
+</ol>
+<h2 id="s9">Mój rekomendowany stack na 2025</h2>
+<p>Gdybym dziś zakładał firmę, wybrałbym:</p>
+<div class="callout">
+<p>Stack AI dla małej firmy (koszt: 0-130 zł/mies.):</p>
+<ol>
+<li><strong>ChatGPT</strong> - asystent do wszystkiego (Free lub Plus)</li>
+<li><strong>Canva</strong> - grafika i proste wideo (Free lub Pro)</li>
+<li><strong>Make</strong> - automatyzacja (Free)</li>
+<li><strong>Tidio</strong> - chat na stronie (Free)</li>
+<li><strong>CapCut</strong> - edycja wideo (Free)</li>
+</ol>
+<p>Te 5 narzędzi zastąpi pracę kilku osób i pozwoli Ci działać jak duża firma.</p>
+</div>
+<h2 id="s10">Błędy których unikać</h2>
+<ol>
+<li><strong>Kupowanie wszystkiego na raz</strong> - zacznij od jednego narzędzia, opanuj, dodaj kolejne</li>
+<li><strong>Płacenie za funkcje których nie używasz</strong> - 80% ludzi z ChatGPT Plus nie wykorzystuje połowy funkcji</li>
+<li><strong>Szukanie "idealnego" narzędzia</strong> - każde ma wady, ważne żeby rozwiązywało Twój problem</li>
+<li><strong>Pomijanie nauki</strong> - ChatGPT Free z dobrymi promptami &gt; ChatGPT Plus z byle jakimi</li>
+</ol>
+<div class="callout cta">
+<h3>Chcesz poznać najlepsze prompty do tych narzędzi?</h3>
+<p>Dołącz do newslettera AI Radar - co tydzień praktyczny tip który zaoszczędzi Ci godziny.</p>
+<a href="../ai-radar.html">
                         Dołącz do AI Radar
                     </a>
-                </div>
-
-                <h2>Podsumowanie</h2>
-
-                <p>W 2025 nie potrzebujesz dziesiątek narzędzi AI. Wystarczy:</p>
-
-                <ul>
-                    <li><strong>1 asystent tekstowy</strong> (ChatGPT)</li>
-                    <li><strong>1 narzędzie graficzne</strong> (Canva)</li>
-                    <li><strong>1 platforma automatyzacji</strong> (Make)</li>
-                    <li><strong>1 chatbot</strong> (Tidio)</li>
-                </ul>
-
-                <p>Zacznij od darmowych wersji. Upgrade rób dopiero gdy limity Cię blokują. I pamiętaj - <strong>narzędzie jest tak dobre jak osoba która go używa</strong>. Lepiej opanować jedno narzędzie niż byle jak używać dziesięciu. Przeczytaj też <a href="/blog/ai-dla-malej-firmy" class="text-primary hover:underline">od czego zacząć z AI w małej firmie</a>.</p>
-
-            </div>
-
-
-            <!-- FAQ -->
-            <section class="prose-custom mt-10" id="faq">
-                <h2>Najczęstsze pytania</h2>
-                <h3>Ile narzędzi AI naprawdę potrzebuje mała firma?</h3>
-                <p>Mała firma nie potrzebuje dziesiątek narzędzi. Wystarczy jeden asystent tekstowy, jedno narzędzie graficzne, jedna platforma do automatyzacji i jeden chatbot, a w zestawie polecanym przez autora dochodzi jeszcze edytor wideo. Lepiej dobrze opanować jedno narzędzie niż byle jak używać dziesięciu, bo narzędzie jest tak dobre jak osoba, która go używa.</p>
-                <h3>Jakie rodzaje narzędzi AI przydają się w małej firmie?</h3>
-                <p>Wpis dzieli je na pięć grup: asystentów tekstowych do pisania i analizy, takich jak ChatGPT, Claude czy Gemini, narzędzia do treści marketingowych, narzędzia do grafiki i wideo, platformy do automatyzacji łączące aplikacje, na przykład Make i Zapier, oraz narzędzia do obsługi klienta, czyli chatboty na stronie i w wiadomościach prywatnych.</p>
-                <h3>Czy warto od razu płacić za narzędzia AI w małej firmie?</h3>
-                <p>Nie, zacznij od darmowych wersji i przechodź na płatne dopiero wtedy, gdy darmowe limity naprawdę Cię blokują. Według autora darmowy zestaw wystarczy większości małych firm na pierwsze 3 do 6 miesięcy. Pamiętaj też, że darmowa wersja z dobrymi poleceniami daje więcej niż płatna wersja używana z byle jakimi poleceniami.</p>
-                <h3>Jak wybrać narzędzie AI dla firmy, żeby nie przepłacić?</h3>
-                <p>Przed zakupem odpowiedz sobie na kilka pytań. Czy masz konkretny problem, który narzędzie rozwiązuje, a nie kupujesz go tylko dlatego, że jest fajne? Czy wykorzystałeś już darmowe wersje? Ile czasu zaoszczędzisz? I czy ChatGPT z dobrym poleceniem nie wystarczy, bo specjalistyczne narzędzie bywa po prostu ładnym interfejsem do tego samego modelu?</p>
-                <h3>Czy specjalistyczne narzędzie do tekstów marketingowych jest lepsze od ChatGPT?</h3>
-                <p>Dla małej firmy zwykle nie. Autor uważa, że ChatGPT z własnymi poleceniami daje podobne efekty jak płatne narzędzia marketingowe, a te opłacają się dopiero przy ponad 50 postach miesięcznie. Takie narzędzia mają gotowe szablony i funkcję zachowania tonu marki, ale najlepiej sprawdzają się w agencjach i firmach z dużą produkcją treści.</p>
-            </section>
-
-            <!-- Author Box -->
-            <div class="glass rounded-xl p-6 mt-12">
-                <div class="flex items-start gap-4">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">
-                        AI
-                    </div>
-                    <div>
-                        <p class="font-bold text-lg">AI-TEAM.PL</p>
-                        <p class="text-gray-400 text-sm mb-2">Praktyczna wiedza o AI dla małych firm</p>
-                        <p class="text-gray-300 text-sm">Od 2023 pomagamy przedsiębiorcom wdrażać AI bez technicznego żargonu. Wdrożenia systemów AI online, audyty - wszystko co potrzebujesz żeby AI pracowało dla Ciebie.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Related Posts -->
-            <div class="mt-12">
-                <h3 class="text-xl font-bold mb-6">Powiązane artykuły</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <a href="/blog/chatgpt-dla-poczatkujacych" class="glass rounded-lg p-4 hover:bg-white/10 transition">
-                        <span class="text-primary text-sm">Poradnik</span>
-                        <h4 class="font-semibold mt-1">ChatGPT dla początkujących</h4>
-                        <p class="text-gray-400 text-sm mt-1">Formuła ROLA + KONTEKST + ZADANIE + FORMAT</p>
-                    </a>
-                    <a href="/blog/automatyzacja-bez-kodowania" class="glass rounded-lg p-4 hover:bg-white/10 transition">
-                        <span class="text-primary text-sm">Automatyzacja</span>
-                        <h4 class="font-semibold mt-1">Make i Zapier - automatyzacja bez kodu</h4>
-                        <p class="text-gray-400 text-sm mt-1">5 gotowych automatyzacji do wdrożenia</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </article>
-
-    <!-- Footer -->
-        <footer class="foot">
+</div>
+<h2 id="s11">Podsumowanie</h2>
+<p>W 2025 nie potrzebujesz dziesiątek narzędzi AI. Wystarczy:</p>
+<ul>
+<li><strong>1 asystent tekstowy</strong> (ChatGPT)</li>
+<li><strong>1 narzędzie graficzne</strong> (Canva)</li>
+<li><strong>1 platforma automatyzacji</strong> (Make)</li>
+<li><strong>1 chatbot</strong> (Tidio)</li>
+</ul>
+<p>Zacznij od darmowych wersji. Upgrade rób dopiero gdy limity Cię blokują. I pamiętaj - <strong>narzędzie jest tak dobre jak osoba która go używa</strong>. Lepiej opanować jedno narzędzie niż byle jak używać dziesięciu. Przeczytaj też <a href="/blog/ai-dla-malej-firmy">od czego zacząć z AI w małej firmie</a>.</p>
+<section id="faq">
+<h2 id="s12">Najczęstsze pytania</h2>
+<h3>Ile narzędzi AI naprawdę potrzebuje mała firma?</h3>
+<p>Mała firma nie potrzebuje dziesiątek narzędzi. Wystarczy jeden asystent tekstowy, jedno narzędzie graficzne, jedna platforma do automatyzacji i jeden chatbot, a w zestawie polecanym przez autora dochodzi jeszcze edytor wideo. Lepiej dobrze opanować jedno narzędzie niż byle jak używać dziesięciu, bo narzędzie jest tak dobre jak osoba, która go używa.</p>
+<h3>Jakie rodzaje narzędzi AI przydają się w małej firmie?</h3>
+<p>Wpis dzieli je na pięć grup: asystentów tekstowych do pisania i analizy, takich jak ChatGPT, Claude czy Gemini, narzędzia do treści marketingowych, narzędzia do grafiki i wideo, platformy do automatyzacji łączące aplikacje, na przykład Make i Zapier, oraz narzędzia do obsługi klienta, czyli chatboty na stronie i w wiadomościach prywatnych.</p>
+<h3>Czy warto od razu płacić za narzędzia AI w małej firmie?</h3>
+<p>Nie, zacznij od darmowych wersji i przechodź na płatne dopiero wtedy, gdy darmowe limity naprawdę Cię blokują. Według autora darmowy zestaw wystarczy większości małych firm na pierwsze 3 do 6 miesięcy. Pamiętaj też, że darmowa wersja z dobrymi poleceniami daje więcej niż płatna wersja używana z byle jakimi poleceniami.</p>
+<h3>Jak wybrać narzędzie AI dla firmy, żeby nie przepłacić?</h3>
+<p>Przed zakupem odpowiedz sobie na kilka pytań. Czy masz konkretny problem, który narzędzie rozwiązuje, a nie kupujesz go tylko dlatego, że jest fajne? Czy wykorzystałeś już darmowe wersje? Ile czasu zaoszczędzisz? I czy ChatGPT z dobrym poleceniem nie wystarczy, bo specjalistyczne narzędzie bywa po prostu ładnym interfejsem do tego samego modelu?</p>
+<h3>Czy specjalistyczne narzędzie do tekstów marketingowych jest lepsze od ChatGPT?</h3>
+<p>Dla małej firmy zwykle nie. Autor uważa, że ChatGPT z własnymi poleceniami daje podobne efekty jak płatne narzędzia marketingowe, a te opłacają się dopiero przy ponad 50 postach miesięcznie. Takie narzędzia mają gotowe szablony i funkcję zachowania tonu marki, ale najlepiej sprawdzają się w agencjach i firmach z dużą produkcją treści.</p>
+</section>
+  </article>
+</div>
+<section class="sec bp-end">
+  <div class="wrap">
+    <div class="oferta-box">
+      <img src="/assets/teamek/pokazuje.webp" alt="Teamek" width="382" height="520" loading="lazy">
+      <div><span class="eyebrow">Zbuduj to u siebie</span><h2>Wdrożenie 10 systemów AI w Twojej firmie</h2>
+        <p>Co drugi poniedziałek budujemy razem jeden system: maile, klienci, zadania, wyceny. Online, w grupie do 8 firm, start 11 stycznia 2027.</p>
+        <div class="cta"><a class="btn" href="/wdrozenie-systemow-ai">Zobacz program i ceny</a><a class="btn ghost" href="/ai-radar">Zapisz się na AI Radar</a></div></div>
+    </div>
+    <h2 class="pow-h">Czytaj dalej</h2>
+    <div class="pow"><a class="pc" href="/blog/oferta-chatgpt"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Sprzedaż</span><span class="bc-t">Jak napisać ofertę z ChatGPT: gotowe polecenia i przykłady</span><img src="/assets/teamek/lista.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Jak napisać ofertę z ChatGPT: gotowe polecenia i przykłady</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/oszczednosc-czasu-ai"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Produktywność</span><span class="bc-t">Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</span><img src="/assets/teamek/kawa.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/prompty-dla-biznesu"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Praktyczne</span><span class="bc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><span class="pc-m">15 min czytania</span></a></div>
+  </div>
+</section>
+<footer class="foot">
   <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
@@ -917,7 +668,7 @@
       </div>
       <div>
         <h4>Wiedza</h4>
-      <a href="/blog/">Blog</a>
+        <a href="/blog/">Blog</a>
         <a href="/ai-radar">AI Radar</a>
         <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
         <a href="/ai-act/">AI Act dla małej firmy</a>
@@ -942,7 +693,7 @@
     </div>
   </div>
 </footer>
-
-<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/blog-teamek.js?v=20261115a" defer></script>
 </body>
 </html>

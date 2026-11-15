@@ -8,8 +8,8 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MX6DBXQ66D');</script>
 
-    <title>AI Radar. newsletter o AI dla małych firm | AI-Team</title>
-    <meta name="description" content="AI Radar to krótki newsletter Darka Szucy o tym, co realnie warto testować i wdrażać w AI, automatyzacjach, CRM i sprzedaży.">
+    <title>AI Radar: newsletter o AI dla małych firm | AI-Team</title>
+    <meta name="description" content="AI Radar: krótki newsletter Darka Szucy dla właścicieli małych firm. Jeden konkret z AI, który sam sprawdziłem, systemy krok po kroku i rzeczy do odpuszczenia.">
     <link rel="canonical" href="https://ai-team.pl/ai-radar">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/ai-radar">
@@ -27,490 +27,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/main.css">
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050030">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115b">
+<link rel="stylesheet" href="/assets/radar-teamek.css?v=20261115a">
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <style>
-      :root {
-        --radar-bg: #070706;
-        --radar-card: rgba(255,255,255,.075);
-        --radar-line: rgba(255,255,255,.16);
-        --radar-muted: rgba(255,255,255,.68);
-        --radar-soft: rgba(255,255,255,.09);
-        --radar-orange: #ff7a1a;
-        --radar-orange-2: #ffb26a;
-      }
 
-      body {
-        background:
-          radial-gradient(circle at 78% 16%, rgba(255,122,26,.2), transparent 31rem),
-          radial-gradient(circle at 12% 78%, rgba(255,178,106,.12), transparent 26rem),
-          linear-gradient(135deg, #060606 0%, #0d0d0b 52%, #15100b 100%);
-        color: #fffaf1;
-        overflow-x: hidden;
-      }
-
-      .radar-page *,
-      .radar-page *::before,
-      .radar-page *::after {
-        box-sizing: border-box;
-      }
-
-      .radar-page {
-        min-height: calc(100dvh - 90px);
-        padding: 48px 0 72px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .radar-page::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-        background-size: 54px 54px;
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.22));
-        pointer-events: none;
-      }
-
-      .radar-shell {
-        width: min(1120px, calc(100% - 32px));
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-      }
-
-      .radar-card {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
-        gap: 22px;
-        min-height: 628px;
-        border: 1px solid var(--radar-line);
-        background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.035));
-        border-radius: 28px;
-        box-shadow: 0 32px 120px rgba(0,0,0,.42);
-        overflow: hidden;
-        backdrop-filter: blur(20px);
-      }
-
-      .radar-copy,
-      .radar-side {
-        padding: clamp(30px, 4vw, 50px);
-        min-width: 0;
-      }
-
-      .radar-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: clamp(22px, 2.6vw, 34px);
-      }
-
-      .radar-badge {
-        width: fit-content;
-        display: inline-flex;
-        align-items: center;
-        gap: 11px;
-        padding: 7px 13px 7px 7px;
-        border: 1px solid rgba(255,122,26,.38);
-        border-radius: 999px;
-        color: var(--radar-orange-2);
-        background:
-          linear-gradient(145deg, rgba(255,122,26,.18), rgba(255,122,26,.055)),
-          rgba(0,0,0,.2);
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-        line-height: 1;
-        letter-spacing: 0;
-        box-shadow: 0 18px 44px rgba(255,122,26,.13);
-      }
-
-      .radar-badge-mark {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        place-items: center;
-        border-radius: 999px;
-        background: #ff7a1a;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
-      }
-
-      .radar-badge-mark svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .radar-title {
-        max-width: 690px;
-        margin: 26px 0 20px;
-        font-family: "Inter", sans-serif;
-        font-size: clamp(44px, 5.2vw, 72px);
-        line-height: 1.02;
-        letter-spacing: 0;
-        font-weight: 800;
-        color: #fffaf1;
-        overflow-wrap: break-word;
-      }
-
-      .radar-title em {
-        color: var(--radar-orange);
-        font-style: normal;
-      }
-
-      .radar-lead {
-        max-width: 620px;
-        margin: 0;
-        color: rgba(255,250,241,.78);
-        font-size: clamp(17px, 1.55vw, 20px);
-        line-height: 1.48;
-      }
-
-      .radar-value {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        max-width: 620px;
-        margin: 30px 0 0;
-      }
-
-      .radar-value span {
-        min-height: 72px;
-        display: flex;
-        align-items: center;
-        padding: 14px;
-        border: 1px solid var(--radar-line);
-        border-radius: 16px;
-        background: rgba(0,0,0,.18);
-        color: rgba(255,250,241,.82);
-        font-size: 13.5px;
-        line-height: 1.35;
-      }
-
-      .radar-format {
-        max-width: 620px;
-        margin-top: 24px;
-        border: 1px solid rgba(255,255,255,.14);
-        border-radius: 18px;
-        background:
-          linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
-          rgba(0,0,0,.18);
-        overflow: hidden;
-      }
-
-      .radar-format-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        padding: 15px 16px 13px;
-        border-bottom: 1px solid rgba(255,255,255,.1);
-      }
-
-      .radar-format-head span {
-        color: var(--radar-orange-2);
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        line-height: 1;
-      }
-
-      .radar-format-head strong {
-        color: rgba(255,250,241,.9);
-        font-size: 14px;
-        line-height: 1.2;
-      }
-
-      .radar-format-list {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .radar-format-list span {
-        min-height: 82px;
-        display: flex;
-        align-items: center;
-        padding: 15px 16px;
-        color: rgba(255,250,241,.74);
-        font-size: 13.5px;
-        line-height: 1.35;
-      }
-
-      .radar-format-list span + span {
-        border-left: 1px solid rgba(255,255,255,.1);
-      }
-
-      .radar-schedule {
-        max-width: 620px;
-        margin: auto 0 0;
-        padding-top: 22px;
-        color: rgba(255,250,241,.54);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
-      .radar-schedule strong {
-        display: block;
-        margin-bottom: 3px;
-        color: rgba(255,250,241,.82);
-        font-size: 14px;
-      }
-
-      .radar-side {
-        border-left: 1px solid var(--radar-line);
-        background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(0,0,0,.1));
-      }
-
-      .radar-photo {
-        position: relative;
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid rgba(255,255,255,.2);
-        background: #111;
-        aspect-ratio: 4 / 5;
-      }
-
-      .radar-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 54% 50%;
-        display: block;
-      }
-
-      .radar-photo::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,.48), transparent 38%);
-      }
-
-      .radar-author {
-        position: absolute;
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-        z-index: 1;
-      }
-
-      .radar-author strong {
-        display: block;
-        font-size: 18px;
-      }
-
-      .radar-author span {
-        display: block;
-        margin-top: 4px;
-        color: rgba(255,255,255,.72);
-        font-size: 13px;
-      }
-
-      .radar-form {
-        margin-top: 18px;
-        display: grid;
-        gap: 12px;
-      }
-
-      .radar-field {
-        display: grid;
-        gap: 7px;
-      }
-
-      .radar-field label {
-        color: rgba(255,250,241,.78);
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .radar-field input,
-      .radar-field select {
-        width: 100%;
-        min-height: 52px;
-        border: 1px solid rgba(255,255,255,.16);
-        border-radius: 14px;
-        background: rgba(0,0,0,.28);
-        color: #fffaf1;
-        font: inherit;
-        font-size: 15px;
-        padding: 0 15px;
-        outline: none;
-      }
-
-      .radar-field select {
-        color-scheme: dark;
-      }
-
-      .radar-field input:focus,
-      .radar-field select:focus {
-        border-color: rgba(255,122,26,.82);
-        box-shadow: 0 0 0 4px rgba(255,122,26,.16);
-      }
-
-      .radar-consent {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        margin-top: 2px;
-        color: rgba(255,250,241,.66);
-        font-size: 12px;
-        line-height: 1.45;
-      }
-
-      .radar-consent input {
-        width: 18px;
-        height: 18px;
-        margin-top: 1px;
-        accent-color: var(--radar-orange);
-        flex: 0 0 auto;
-      }
-
-      .radar-consent a,
-      .radar-note a {
-        color: #ffd2ad;
-      }
-
-      .radar-button {
-        min-height: 54px;
-        border: 0;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #fff7ed, #ff8a2b);
-        color: #100904;
-        font: inherit;
-        font-weight: 800;
-        cursor: pointer;
-        transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      }
-
-      .radar-button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 18px 48px rgba(255,122,26,.28);
-      }
-
-      .radar-button:disabled {
-        cursor: not-allowed;
-        opacity: .72;
-        transform: none;
-      }
-
-      .radar-note {
-        margin: 10px 0 0;
-        color: rgba(255,250,241,.56);
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      .radar-message {
-        display: none;
-        margin-top: 10px;
-        padding: 12px 14px;
-        border-radius: 14px;
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .radar-message.is-visible {
-        display: block;
-      }
-
-      .radar-message.success {
-        border: 1px solid rgba(34,197,94,.35);
-        color: #bbf7d0;
-        background: rgba(34,197,94,.13);
-      }
-
-      .radar-message.error {
-        border: 1px solid rgba(248,113,113,.35);
-        color: #fecaca;
-        background: rgba(248,113,113,.13);
-      }
-
-      .radar-foot {
-        margin: 22px auto 0;
-        color: rgba(255,250,241,.48);
-        text-align: center;
-        font-size: 13px;
-      }
-
-      @media (max-width: 900px) {
-        .radar-card {
-          grid-template-columns: 1fr;
-          min-height: 0;
-        }
-
-        .radar-side {
-          border-left: 0;
-          border-top: 1px solid var(--radar-line);
-        }
-
-        .radar-photo {
-          aspect-ratio: 16 / 11;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .radar-page {
-          padding: 26px 0 48px;
-        }
-
-        .radar-shell {
-          width: calc(100vw - 64px);
-          max-width: 1180px;
-        }
-
-        .radar-card {
-          border-radius: 22px;
-        }
-
-        .radar-copy,
-        .radar-side {
-          padding: 20px;
-        }
-
-        .radar-title {
-          font-size: clamp(32px, 8.7vw, 36px);
-          line-height: 1.04;
-        }
-
-        .radar-lead {
-          font-size: 17px;
-        }
-
-        .radar-title em {
-          display: block;
-        }
-
-        .radar-value span {
-          overflow-wrap: anywhere;
-        }
-
-        .radar-value {
-          grid-template-columns: 1fr;
-        }
-
-        .radar-value span {
-          min-height: 0;
-        }
-
-        .radar-schedule {
-          margin-top: 18px;
-          padding-top: 0;
-        }
-
-        .radar-format-list {
-          grid-template-columns: 1fr;
-        }
-
-        .radar-format-list span {
-          min-height: 0;
-        }
-
-        .radar-format-list span + span {
-          border-left: 0;
-          border-top: 1px solid rgba(255,255,255,.1);
-        }
-      }
-    </style>
   <script src="/assets/meta-pixel.js"></script>
     <!-- Meta Pixel Code -->
     <script>
@@ -571,48 +94,23 @@
   </div>
 </nav>
 
-<main class="radar-page" id="zapis">
-  <div class="radar-shell">
-    <section class="radar-card" aria-labelledby="radar-title">
-      <div class="radar-copy">
-        <div class="radar-badge">
-          <span class="radar-badge-mark" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none">
-              <path d="M17.4 5.8 9.2 17h6.1l-1 9.2L22.8 14h-6.3l.9-8.2Z" fill="#fffaf1"/>
-            </svg>
-          </span>
-          <span>AI RADAR · NEWSLETTER DARKA</span>
-        </div>
-        <h1 class="radar-title" id="radar-title">Jeden mail o AI, który przeczytasz <em>przy kawie.</em></h1>
-        <p class="radar-lead">Piszę o tym, co sam testuję: agenci, automatyzacje, CRM, narzędzia i konkretne wnioski z pracy AI-Team. Bez newsowego szumu i obietnic z kosmosu.</p>
-        <div class="radar-value" aria-label="Co dostaniesz po zapisie">
-          <span>Co warto sprawdzić, zanim zniknie Ci pół dnia.</span>
-          <span>Jak używać AI w sprzedaży, treściach i obsłudze klientów.</span>
-          <span>Co omijać, bo wygląda dobrze tylko na prezentacji.</span>
-        </div>
-        <div class="radar-format" aria-label="Stały układ newslettera">
-          <div class="radar-format-head">
-            <span>STAŁY UKŁAD</span>
-            <strong>Krótko, praktycznie, bez szumu</strong>
-          </div>
-          <div class="radar-format-list">
-            <span>Jedna rzecz z AI, którą realnie warto sprawdzić.</span>
-            <span>Jeden wniosek z pracy nad stronami, CRM albo automatyzacją.</span>
-            <span>Jedna rzecz do odpuszczenia, zanim zabierze czas.</span>
-          </div>
-        </div>
-        <p class="radar-schedule"><strong>W każdy poniedziałek i czwartek o 18:00.</strong> AI Radar planujemy z wyprzedzeniem, więc możesz zapisać się raz i dostawać kolejne wydania bez pilnowania premier.</p>
-      </div>
-
-      <aside class="radar-side" aria-label="Formularz zapisu">
-        <div class="radar-photo">
-          <img src="assets/dariusz-szuca.png" width="1080" height="1350" alt="Dariusz Szuca, autor newslettera AI Radar" fetchpriority="high">
-          <div class="radar-author">
-            <strong>Darek Szuca</strong>
-            <span>AI-Team. Strony, CRM i automatyzacje dla małych firm.</span>
-          </div>
-        </div>
-
+<main class="rd" id="zapis">
+  <div class="wrap rd-grid">
+    <div class="rd-copy">
+      <span class="eyebrow">AI Radar · newsletter Darka</span>
+      <h1>Jeden mail o AI, który przeczytasz przy kawie</h1>
+      <p class="lead">Piszę o tym, co sam zbudowałem i sprawdziłem w swojej firmie: systemy, automatyzacje, maile, klienci. Bez newsowego szumu i obietnic z kosmosu.</p>
+      <div class="tk-say rd-tk"><img src="/assets/teamek/megafon.webp" width="360" height="400" alt="Teamek z megafonem"><span class="bub">Zapisz się raz. Resztę przyniosę Ci sam.</span></div>
+      <ul class="rd-co">
+        <li><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400"><div><b>Jedna rzecz, którą warto sprawdzić</b><span>Narzędzie albo sposób, który sam przetestowałem.</span></div></li>
+        <li><img src="/assets/teamek/laptop.webp" alt="" width="351" height="520"><div><b>Jeden system krok po kroku</b><span>Z mojej mapy systemów, na przykładzie prawdziwej firmy.</span></div></li>
+        <li><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400"><div><b>Jedna rzecz do odpuszczenia</b><span>Co dobrze wygląda tylko na prezentacji.</span></div></li>
+      </ul>
+      <p class="radar-schedule"><strong>W każdy poniedziałek i czwartek o 18:00.</strong> Wydania planuję z wyprzedzeniem, więc zapisujesz się raz i nie pilnujesz premier.</p>
+    </div>
+    <aside class="rd-side" aria-label="Formularz zapisu">
+      <div class="rd-card">
+        <div class="rd-who"><img src="/assets/darek-szuca.jpg" alt="Darek Szuca" width="56" height="56"><div><b>Darek Szuca</b><span>AI-Team, Gdańsk i online</span></div></div>
         <form class="radar-form" id="newsletterForm" novalidate>
           <input type="text" name="company" id="newsletterCompany" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
           <div class="radar-field">
@@ -620,7 +118,7 @@
             <input type="email" id="newsletterEmail" name="email" autocomplete="email" placeholder="twoj@email.pl" required>
           </div>
           <div class="radar-field">
-            <label for="newsletterName">Imię <span style="font-weight:500;color:rgba(255,250,241,.48);">(opcjonalnie)</span></label>
+            <label for="newsletterName">Imię <span class="rd-opt">(opcjonalnie)</span></label>
             <input type="text" id="newsletterName" name="name" autocomplete="given-name" placeholder="Darek">
           </div>
           <div class="radar-field">
@@ -640,11 +138,15 @@
           <button class="radar-button" id="newsletterButton" type="submit">Zapisz mnie na AI Radar</button>
           <div class="radar-message" id="newsletterMessage" role="status" aria-live="polite"></div>
         </form>
-
         <p class="radar-note">Administratorem danych jest Dariusz Szuca. Wysyłka idzie przez własny system AI-Team. Nie sprzedaję listy i nie wysyłam codziennych wiadomości.</p>
-      </aside>
-    </section>
-    <p class="radar-foot">Dwa razy w tygodniu. Krótko. Po polsku. Dla ludzi, którzy chcą używać AI w pracy, a nie tylko czytać o premierach modeli.</p>
+      </div>
+      <div class="rd-mail" aria-label="Tak wygląda wydanie">
+        <div class="rd-mail-top"><span>Od: Darek, AI-Team</span><span>18:00</span></div>
+        <b>AI Radar 014: zbudujesz u siebie 10 systemów AI</b>
+        <p>Cześć, dawno mnie tu nie było. Przez ostatnie tygodnie zbudowałem u siebie 22 systemy z mapy…</p>
+        <img src="/assets/oferta/warsztat-teamek.webp" alt="" width="1400" height="933" loading="lazy">
+      </div>
+    </aside>
   </div>
 </main>
 
@@ -790,6 +292,6 @@ newsletterForm.addEventListener('submit', async function(event) {
 });
 </script>
 <script src="assets/main.js" defer></script>
-<script src="/assets/mega-skin.js?v=202609050030" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
 </body>
 </html>

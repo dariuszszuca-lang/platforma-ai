@@ -1,162 +1,32 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-    <title>Automatyzacja bez kodowania - Make i Zapier | AI-Team</title>
-    <meta name="description" content="Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik po Make.com i Zapier z przykładami automatyzacji które oszczędzą Ci godziny.">
-    <meta name="keywords" content="automatyzacja bez kodowania, Make.com, Zapier, automatyzacja procesów, no-code automatyzacja">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Automatyzacja bez kodowania - Make i Zapier dla małych firm">
-    <meta property="og:description" content="Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik z przykładami.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ai-team.pl/blog/automatyzacja-bez-kodowania.html">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Inter Tight', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#FAFAF7',
-                            primary: '#1E8A5A',
-                            secondary: '#176B46',
-                            light: '#2FB77A',
-                        },
-                        primary: '#1E8A5A',
-                        secondary: '#176B46',
-                        light: '#2FB77A',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #020203;
-            min-height: 100vh;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .prose-custom h2 {
-            color: #fb923c;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        .prose-custom h3 {
-            color: #fdba74;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .prose-custom p {
-            color: #e2e8f0;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        .prose-custom ul, .prose-custom ol {
-            color: #e2e8f0;
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .prose-custom li {
-            margin-bottom: 0.5rem;
-        }
-        .prose-custom strong {
-            color: #f1f5f9;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
-            border-left: 4px solid #f97316;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 0.5rem 0.5rem 0;
-        }
-        .automation-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            margin: 1.5rem 0;
-        }
-        .step-number {
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            color: black;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 0.75rem;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-        .comparison-table th, .comparison-table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .comparison-table th {
-            color: #fb923c;
-            font-weight: 600;
-        }
-        .cta-box {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15));
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            margin: 2rem 0;
-        }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute; bottom: -200px; left: 50%; width: 150%; height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px); z-index: -1; opacity: 0.6;
-        }
-    </style>
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
-    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
-    <meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://ai-team.pl/blog/automatyzacja-bez-kodowania">
-    <script type="application/ld+json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+<title>Automatyzacja bez kodowania: Make i Zapier dla małych firm | Blog AI-Team</title>
+<meta name="description" content="Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik po Make.com i Zapier z przykładami automatyzacji które oszczędzą Ci godziny.">
+<meta content="automatyzacja bez kodowania, Make.com, Zapier, automatyzacja procesów, no-code automatyzacja" name="keywords"/>
+<meta name="author" content="Dariusz Szuca, AI-Team">
+<meta name="robots" content="index, follow">
+<meta content="Automatyzacja bez kodowania: Make i Zapier dla małych firm" property="og:title"/>
+<meta content="Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik z przykładami." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://ai-team.pl/blog/automatyzacja-bez-kodowania.html" property="og:url"/>
+<meta content="https://ai-team.pl/assets/og-ai-team-20260511.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<link href="https://ai-team.pl/blog/automatyzacja-bez-kodowania" rel="canonical"/>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -189,7 +59,7 @@
   "description": "Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik po Make.com i Zapier z przykładami automatyzacji które oszczędzą Ci godziny."
 }
     </script>
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -237,14 +107,17 @@
   ]
 }
     </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115a">
+<script src="/assets/meta-pixel.js"></script>
 </head>
-<body>
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow"></div>
-    </div>
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
+<body class="blog-post">
+<div class="czytam" aria-hidden="true"></div>
+<nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
       <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
@@ -256,379 +129,271 @@
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/" aria-current="page">Blog</a>
       <a href="/ai-radar">AI Radar</a>
+      <a href="/en/" class="lang" hreflang="en" lang="en">EN</a>
       <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
+<header class="bp-head">
+  <div class="wrap bp-grid">
+    <div class="bp-copy">
+      <nav class="okruszki" aria-label="Okruszki"><a href="/">Strona główna</a> / <a href="/blog/">Blog</a></nav>
+      <span class="eyebrow">Poradnik · Średniozaawansowany</span>
+      <h1>Automatyzacja bez kodowania: Make i Zapier dla małych firm</h1>
+      <p class="lead">Jak połączyć aplikacje i zaoszczędzić godziny na powtarzalnych zadaniach. Bez programowania, bez budżetu na programistę.</p>
+      <p class="bp-meta"><img src="/assets/darek-szuca.jpg" alt="" width="40" height="40">Darek Szuca · 26 grudnia 2025 · 12 min czytania</p>
+    </div>
+    <div class="bc c3 duza" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Automatyzacja bez kodowania: Make i Zapier dla małych firm</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div>
+  </div>
+</header>
+<div class="wrap bp-body">
+  <aside class="spis" aria-label="Spis treści"><p>W tym wpisie</p><ol id="spis"><li><a href="#s1">Co to jest automatyzacja no-code?</a></li><li><a href="#s2">Make vs Zapier - które wybrać?</a></li><li><a href="#s3">5 automatyzacji, które wdrożysz dziś</a></li><li><a href="#s4">Jak zbudować pierwszą automatyzację (krok po kroku)</a></li><li><a href="#s5">Błędy, których unikniesz</a></li><li><a href="#s6">Case study: Firma remontowa</a></li><li><a href="#s7">Ile to kosztuje? (realne liczby)</a></li><li><a href="#s8">Następny krok: Twoja pierwsza automatyzacja</a></li><li><a href="#s9">Podsumowanie</a></li><li><a href="#s10">Najczęstsze pytania</a></li></ol>
+    <div class="spis-tk"><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"><span>Kliknij rozdział, przeniosę Cię.</span></div></aside>
+  <article class="prose" id="tresc">
 
-    <!-- Article -->
-    <article class="pt-32 pb-16">
-        <div class="max-w-3xl mx-auto px-4">
-
-            <!-- Breadcrumb -->
-            <div class="text-gray-400 text-sm mb-6">
-                <a href="../index.html" class="hover:text-white">Strona główna</a>
-                <span class="mx-2">/</span>
-                <a href="index.html" class="hover:text-white">Blog</a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-300">Automatyzacja bez kodowania</span>
-            </div>
-
-            <!-- Header -->
-            <header class="mb-10">
-                <div class="flex gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Poradnik</span>
-                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Średniozaawansowany</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Automatyzacja bez kodowania - Make i Zapier dla małych firm
-                </h1>
-                <p class="text-xl text-gray-300 mb-6">
-                    Jak połączyć aplikacje i zaoszczędzić godziny na powtarzalnych zadaniach. Bez programowania, bez budżetu na programistę.
-                </p>
-                <div class="flex items-center gap-4 text-gray-400 text-sm">
-                    <span>Darek | AI-TEAM.PL</span>
-                    <span>|</span>
-                    <span>Redaktor: Dariusz Szuca</span>
-                    <span>|</span>
-                    <span>Grudzień 2025</span>
-                    <span>|</span>
-                    <span>12 min czytania</span>
-                </div>
-            </header>
-
-            <!-- Content -->
-            <div class="prose-custom">
-
-                <div class="highlight-box">
-                    <p class="text-lg mb-0"><strong>W skrócie:</strong> Make.com i Zapier to narzędzia, które pozwalają łączyć aplikacje i automatyzować zadania - bez pisania kodu. W tym artykule pokażę Ci 5 konkretnych automatyzacji, które możesz wdrożyć w swojej firmie dziś.</p>
-                </div>
-
-                <h2>Co to jest automatyzacja no-code?</h2>
-
-                <p>Wyobraź sobie, że za każdym razem gdy ktoś wypełni formularz na Twojej stronie:</p>
-                <ul>
-                    <li>Automatycznie trafia do Twojego arkusza Google</li>
-                    <li>Dostajesz powiadomienie na telefon</li>
-                    <li>Klient otrzymuje email powitalny</li>
-                    <li>Tworzy się karta w Trello z zadaniami follow-up</li>
-                </ul>
-
-                <p>Wszystko <strong>bez Twojego udziału</strong>. To właśnie robi automatyzacja no-code. Jeśli dopiero zaczynasz z AI, przeczytaj najpierw <a href="/blog/ai-dla-malej-firmy" class="text-primary hover:underline">AI dla małej firmy - od czego zacząć</a>.</p>
-
-                <p>Narzędzia takie jak <strong>Make.com</strong> (dawniej Integromat) i <strong>Zapier</strong> działają jak "klej" między aplikacjami. Łączą je ze sobą i sprawiają, że "rozmawiają".</p>
-
-                <h2>Make vs Zapier - które wybrać?</h2>
-
-                <table class="comparison-table">
-                    <tr>
-                        <th>Cecha</th>
-                        <th>Make.com</th>
-                        <th>Zapier</th>
-                    </tr>
-                    <tr>
-                        <td>Darmowy plan</td>
-                        <td>1000 operacji/mies</td>
-                        <td>100 zadań/mies</td>
-                    </tr>
-                    <tr>
-                        <td>Cena (podstawowy)</td>
-                        <td>~40 zł/mies</td>
-                        <td>~80 zł/mies</td>
-                    </tr>
-                    <tr>
-                        <td>Złożoność</td>
-                        <td>Bardziej elastyczny</td>
-                        <td>Prostszy</td>
-                    </tr>
-                    <tr>
-                        <td>Dla kogo</td>
-                        <td>Gdy potrzebujesz więcej</td>
-                        <td>Na szybki start</td>
-                    </tr>
-                </table>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>Moja rekomendacja:</strong> Zacznij od Make.com - więcej darmowych operacji, niższa cena, większa elastyczność. Zapier jest prostszy, ale szybko robi się drogi.</p>
-                </div>
-
-                <h2>5 automatyzacji, które wdrożysz dziś</h2>
-
-                <p>Oto konkretne przykłady automatyzacji dla małych firm. Każda oszczędza minimum 30 minut tygodniowo.</p>
-
-                <h3><span class="step-number">1</span>Automatyczne zapisywanie leadów z formularzy</h3>
-
-                <div class="automation-box">
-                    <p class="text-primary font-semibold mb-2">Trigger (wyzwalacz):</p>
-                    <p class="text-gray-300 mb-3">Ktoś wypełnia formularz kontaktowy</p>
-
-                    <p class="text-primary font-semibold mb-2">Akcje:</p>
-                    <ul class="text-gray-300 mb-0">
-                        <li>Dodaj wiersz do Google Sheets</li>
-                        <li>Wyślij powiadomienie na Slack/email</li>
-                        <li>Wyślij email powitalny do klienta</li>
-                    </ul>
-                </div>
-
-                <p><strong>Oszczędność:</strong> ~1h tygodniowo (przepisywanie danych, wysyłanie maili powitalnych)</p>
-                <p><strong>Koszt:</strong> 0 zł (mieści się w darmowym planie)</p>
-
-                <h3><span class="step-number">2</span>Automatyczne faktury po płatności</h3>
-
-                <div class="automation-box">
-                    <p class="text-primary font-semibold mb-2">Trigger:</p>
-                    <p class="text-gray-300 mb-3">Przychodzi płatność (Stripe, PayPal, Przelewy24)</p>
-
-                    <p class="text-primary font-semibold mb-2">Akcje:</p>
-                    <ul class="text-gray-300 mb-0">
-                        <li>Utwórz fakturę w Fakturowni/inFakt</li>
-                        <li>Wyślij fakturę do klienta</li>
-                        <li>Dodaj rekord do CRM</li>
-                    </ul>
-                </div>
-
-                <p><strong>Oszczędność:</strong> ~2h tygodniowo (ręczne wystawianie faktur)</p>
-                <p><strong>Koszt:</strong> ~40 zł/mies (podstawowy plan Make)</p>
-
-                <h3><span class="step-number">3</span>Automatyczne przypomnienia o follow-upie</h3>
-
-                <div class="automation-box">
-                    <p class="text-primary font-semibold mb-2">Trigger:</p>
-                    <p class="text-gray-300 mb-3">Minęły 3 dni od wysłania oferty (sprawdzanie codziennie)</p>
-
-                    <p class="text-primary font-semibold mb-2">Akcje:</p>
-                    <ul class="text-gray-300 mb-0">
-                        <li>Wyślij przypomnienie email</li>
-                        <li>Utwórz zadanie w Twojej aplikacji</li>
-                        <li>Powiadom Cię przez SMS</li>
-                    </ul>
-                </div>
-
-                <p><strong>Oszczędność:</strong> Niemierzalna - zwiększa konwersję o 20-30%</p>
-                <p><strong>Koszt:</strong> 0-40 zł/mies</p>
-
-                <h3><span class="step-number">4</span>Automatyczna publikacja w social media</h3>
-
-                <div class="automation-box">
-                    <p class="text-primary font-semibold mb-2">Trigger:</p>
-                    <p class="text-gray-300 mb-3">Nowy wpis na blogu / nowy produkt</p>
-
-                    <p class="text-primary font-semibold mb-2">Akcje:</p>
-                    <ul class="text-gray-300 mb-0">
-                        <li>Opublikuj post na LinkedIn</li>
-                        <li>Opublikuj na Facebooku</li>
-                        <li>Wyślij do newslettera</li>
-                    </ul>
-                </div>
-
-                <p><strong>Oszczędność:</strong> ~1h tygodniowo (ręczne crosspostowanie)</p>
-                <p><strong>Koszt:</strong> 0-40 zł/mies</p>
-
-                <h3><span class="step-number">5</span>Automatyczne onboarding nowego klienta</h3>
-
-                <div class="automation-box">
-                    <p class="text-primary font-semibold mb-2">Trigger:</p>
-                    <p class="text-gray-300 mb-3">Nowy klient w CRM / zamknięta sprzedaż</p>
-
-                    <p class="text-primary font-semibold mb-2">Akcje:</p>
-                    <ul class="text-gray-300 mb-0">
-                        <li>Wyślij welcome email z materiałami</li>
-                        <li>Dodaj do grupy/kanału komunikacji</li>
-                        <li>Utwórz folder w Google Drive</li>
-                        <li>Wyślij link do Calendly (umów spotkanie)</li>
-                    </ul>
-                </div>
-
-                <p><strong>Oszczędność:</strong> ~2h na klienta (setup, wysyłki, organizacja)</p>
-                <p><strong>Koszt:</strong> ~40 zł/mies</p>
-
-                <h2>Jak zbudować pierwszą automatyzację (krok po kroku)</h2>
-
-                <p>Pokażę Ci na przykładzie automatyzacji #1 (zapisywanie leadów).</p>
-
-                <h3>Krok 1: Załóż konto na Make.com</h3>
-                <p>Wejdź na <strong>make.com</strong> i załóż darmowe konto. Darmowy plan daje 1000 operacji miesięcznie - w zupełności wystarczy na start.</p>
-
-                <h3>Krok 2: Utwórz nowy "Scenario"</h3>
-                <p>Scenario to po prostu przepływ automatyzacji. Kliknij "Create a new scenario".</p>
-
-                <h3>Krok 3: Dodaj trigger (wyzwalacz)</h3>
-                <p>Kliknij "+" i wybierz źródło danych. Na przykład:</p>
-                <ul>
-                    <li><strong>Google Forms</strong> - jeśli używasz formularzy Google</li>
-                    <li><strong>Typeform</strong> - jeśli masz Typeform</li>
-                    <li><strong>Webhook</strong> - jeśli masz własny formularz na stronie</li>
-                </ul>
-
-                <h3>Krok 4: Dodaj akcje</h3>
-                <p>Po triggerze kliknij "+" i dodaj kolejne kroki:</p>
-                <ul>
-                    <li><strong>Google Sheets → Add a Row</strong> - zapisuje dane do arkusza</li>
-                    <li><strong>Gmail → Send an Email</strong> - wysyła maila do Ciebie</li>
-                    <li><strong>Gmail → Send an Email</strong> - wysyła maila do klienta</li>
-                </ul>
-
-                <h3>Krok 5: Połącz dane</h3>
-                <p>Przeciągnij pola z formularza do odpowiednich miejsc. Na przykład pole "Email" z formularza do pola "Odbiorca" w Gmailu.</p>
-
-                <h3>Krok 6: Włącz i testuj</h3>
-                <p>Kliknij "Run once" aby przetestować. Jeśli działa - włącz automatyzację (przełącznik "ON").</p>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>Pro tip:</strong> Pierwsza automatyzacja zajmie Ci ~30 minut. Druga - 10 minut. Po trzeciej będziesz budował je w 5 minut.</p>
-                </div>
-
-                <h2>Błędy, których unikniesz</h2>
-
-                <h3>Błąd #1: Zbyt skomplikowane automatyzacje na start</h3>
-                <p>Zacznij od 2-3 kroków. Dopiero gdy działają - rozbudowuj.</p>
-
-                <h3>Błąd #2: Brak testowania</h3>
-                <p>ZAWSZE testuj przed włączeniem. Jeden błąd może wysłać setki niechcianych maili.</p>
-
-                <h3>Błąd #3: Automatyzacja wszystkiego naraz</h3>
-                <p>Wybierz JEDNO zadanie, które zajmuje Ci najwięcej czasu. Zautomatyzuj je. Potem następne.</p>
-
-                <h3>Błąd #4: Ignorowanie błędów</h3>
-                <p>Make wysyła powiadomienia o błędach. Sprawdzaj je i naprawiaj - inaczej automatyzacja przestaje działać.</p>
-
-                <h2>Case study: Firma remontowa</h2>
-
-                <p>Tomek prowadzi firmę remontową w Gdańsku. Przed automatyzacją:</p>
-                <ul>
-                    <li>3h tygodniowo na przepisywanie zapytań do arkusza</li>
-                    <li>2h tygodniowo na wysyłanie maili powitalnych</li>
-                    <li>Gubił leady (zapomniał odpowiedzieć)</li>
-                </ul>
-
-                <p><strong>Co zautomatyzowaliśmy:</strong></p>
-                <ol>
-                    <li>Formularz na stronie → automatycznie do Google Sheets</li>
-                    <li>Automatyczny mail powitalny z cennikiem</li>
-                    <li>Powiadomienie SMS do Tomka o nowym leadzie</li>
-                    <li>Przypomnienie po 2 dniach jeśli brak odpowiedzi</li>
-                </ol>
-
-                <p><strong>Efekt:</strong></p>
-                <ul>
-                    <li>Oszczędność: 5h tygodniowo</li>
-                    <li>Zero zgubionych leadów</li>
-                    <li>Konwersja: +25% (szybsza odpowiedź = lepsza konwersja)</li>
-                </ul>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>ROI:</strong> Koszt 40 zł/mies. Oszczędność 5h × 4 tyg × 100 zł/h = 2000 zł. Zwrot: 50x.</p>
-                </div>
-
-                <h2>Ile to kosztuje? (realne liczby)</h2>
-
-                <p><strong>Make.com:</strong></p>
-                <ul>
-                    <li>Darmowy: 1000 operacji/mies (wystarczy na 1-2 proste automatyzacje)</li>
-                    <li>Core: ~40 zł/mies (10 000 operacji)</li>
-                    <li>Pro: ~70 zł/mies (więcej opcji)</li>
-                </ul>
-
-                <p><strong>Zapier:</strong></p>
-                <ul>
-                    <li>Darmowy: 100 zadań/mies (bardzo mało)</li>
-                    <li>Starter: ~80 zł/mies (750 zadań)</li>
-                    <li>Professional: ~200 zł/mies</li>
-                </ul>
-
-                <p><strong>Wniosek:</strong> Make.com jest 2x tańszy przy podobnych możliwościach.</p>
-
-                <h2>Następny krok: Twoja pierwsza automatyzacja</h2>
-
-                <p>Nie czekaj. Zrób to dziś.</p>
-
-                <p><strong>Plan na 30 minut:</strong></p>
-                <ol>
-                    <li>Załóż konto na make.com (5 min)</li>
-                    <li>Wybierz JEDNO zadanie do automatyzacji</li>
-                    <li>Zbuduj prostą automatyzację 2-3 kroki (20 min)</li>
-                    <li>Przetestuj i włącz (5 min)</li>
-                </ol>
-
-                <p>Jutro rano obudzisz się z działającą automatyzacją. A za tydzień nie będziesz pamiętał jak żyłeś bez niej.</p>
-
-                <!-- CTA Box -->
-                <div class="cta-box">
-                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz pomoc z automatyzacją?</h3>
-                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> co tydzień dzielę się konkretną automatyzacją do wdrożenia. Plus dostajesz dostęp do gotowych szablonów Make.com.</p>
-                    <a href="../ai-radar.html" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+<div class="callout">
+<p><strong>W skrócie:</strong> Make.com i Zapier to narzędzia, które pozwalają łączyć aplikacje i automatyzować zadania - bez pisania kodu. W tym artykule pokażę Ci 5 konkretnych automatyzacji, które możesz wdrożyć w swojej firmie dziś.</p>
+</div>
+<h2 id="s1">Co to jest automatyzacja no-code?</h2>
+<p>Wyobraź sobie, że za każdym razem gdy ktoś wypełni formularz na Twojej stronie:</p>
+<ul>
+<li>Automatycznie trafia do Twojego arkusza Google</li>
+<li>Dostajesz powiadomienie na telefon</li>
+<li>Klient otrzymuje email powitalny</li>
+<li>Tworzy się karta w Trello z zadaniami follow-up</li>
+</ul>
+<p>Wszystko <strong>bez Twojego udziału</strong>. To właśnie robi automatyzacja no-code. Jeśli dopiero zaczynasz z AI, przeczytaj najpierw <a href="/blog/ai-dla-malej-firmy">AI dla małej firmy - od czego zacząć</a>.</p>
+<p>Narzędzia takie jak <strong>Make.com</strong> (dawniej Integromat) i <strong>Zapier</strong> działają jak "klej" między aplikacjami. Łączą je ze sobą i sprawiają, że "rozmawiają".</p>
+<h2 id="s2">Make vs Zapier - które wybrać?</h2>
+<table>
+<tr>
+<th>Cecha</th>
+<th>Make.com</th>
+<th>Zapier</th>
+</tr>
+<tr>
+<td>Darmowy plan</td>
+<td>1000 operacji/mies</td>
+<td>100 zadań/mies</td>
+</tr>
+<tr>
+<td>Cena (podstawowy)</td>
+<td>~40 zł/mies</td>
+<td>~80 zł/mies</td>
+</tr>
+<tr>
+<td>Złożoność</td>
+<td>Bardziej elastyczny</td>
+<td>Prostszy</td>
+</tr>
+<tr>
+<td>Dla kogo</td>
+<td>Gdy potrzebujesz więcej</td>
+<td>Na szybki start</td>
+</tr>
+</table>
+<div class="callout">
+<p><strong>Moja rekomendacja:</strong> Zacznij od Make.com - więcej darmowych operacji, niższa cena, większa elastyczność. Zapier jest prostszy, ale szybko robi się drogi.</p>
+</div>
+<h2 id="s3">5 automatyzacji, które wdrożysz dziś</h2>
+<p>Oto konkretne przykłady automatyzacji dla małych firm. Każda oszczędza minimum 30 minut tygodniowo.</p>
+<h3><span>1</span>Automatyczne zapisywanie leadów z formularzy</h3>
+<div>
+<p>Trigger (wyzwalacz):</p>
+<p>Ktoś wypełnia formularz kontaktowy</p>
+<p>Akcje:</p>
+<ul>
+<li>Dodaj wiersz do Google Sheets</li>
+<li>Wyślij powiadomienie na Slack/email</li>
+<li>Wyślij email powitalny do klienta</li>
+</ul>
+</div>
+<p><strong>Oszczędność:</strong> ~1h tygodniowo (przepisywanie danych, wysyłanie maili powitalnych)</p>
+<p><strong>Koszt:</strong> 0 zł (mieści się w darmowym planie)</p>
+<h3><span>2</span>Automatyczne faktury po płatności</h3>
+<div>
+<p>Trigger:</p>
+<p>Przychodzi płatność (Stripe, PayPal, Przelewy24)</p>
+<p>Akcje:</p>
+<ul>
+<li>Utwórz fakturę w Fakturowni/inFakt</li>
+<li>Wyślij fakturę do klienta</li>
+<li>Dodaj rekord do CRM</li>
+</ul>
+</div>
+<p><strong>Oszczędność:</strong> ~2h tygodniowo (ręczne wystawianie faktur)</p>
+<p><strong>Koszt:</strong> ~40 zł/mies (podstawowy plan Make)</p>
+<h3><span>3</span>Automatyczne przypomnienia o follow-upie</h3>
+<div>
+<p>Trigger:</p>
+<p>Minęły 3 dni od wysłania oferty (sprawdzanie codziennie)</p>
+<p>Akcje:</p>
+<ul>
+<li>Wyślij przypomnienie email</li>
+<li>Utwórz zadanie w Twojej aplikacji</li>
+<li>Powiadom Cię przez SMS</li>
+</ul>
+</div>
+<p><strong>Oszczędność:</strong> Niemierzalna - zwiększa konwersję o 20-30%</p>
+<p><strong>Koszt:</strong> 0-40 zł/mies</p>
+<h3><span>4</span>Automatyczna publikacja w social media</h3>
+<div>
+<p>Trigger:</p>
+<p>Nowy wpis na blogu / nowy produkt</p>
+<p>Akcje:</p>
+<ul>
+<li>Opublikuj post na LinkedIn</li>
+<li>Opublikuj na Facebooku</li>
+<li>Wyślij do newslettera</li>
+</ul>
+</div>
+<p><strong>Oszczędność:</strong> ~1h tygodniowo (ręczne crosspostowanie)</p>
+<p><strong>Koszt:</strong> 0-40 zł/mies</p>
+<h3><span>5</span>Automatyczne onboarding nowego klienta</h3>
+<div>
+<p>Trigger:</p>
+<p>Nowy klient w CRM / zamknięta sprzedaż</p>
+<p>Akcje:</p>
+<ul>
+<li>Wyślij welcome email z materiałami</li>
+<li>Dodaj do grupy/kanału komunikacji</li>
+<li>Utwórz folder w Google Drive</li>
+<li>Wyślij link do Calendly (umów spotkanie)</li>
+</ul>
+</div>
+<p><strong>Oszczędność:</strong> ~2h na klienta (setup, wysyłki, organizacja)</p>
+<p><strong>Koszt:</strong> ~40 zł/mies</p>
+<h2 id="s4">Jak zbudować pierwszą automatyzację (krok po kroku)</h2>
+<p>Pokażę Ci na przykładzie automatyzacji #1 (zapisywanie leadów).</p>
+<h3>Krok 1: Załóż konto na Make.com</h3>
+<p>Wejdź na <strong>make.com</strong> i załóż darmowe konto. Darmowy plan daje 1000 operacji miesięcznie - w zupełności wystarczy na start.</p>
+<h3>Krok 2: Utwórz nowy "Scenario"</h3>
+<p>Scenario to po prostu przepływ automatyzacji. Kliknij "Create a new scenario".</p>
+<h3>Krok 3: Dodaj trigger (wyzwalacz)</h3>
+<p>Kliknij "+" i wybierz źródło danych. Na przykład:</p>
+<ul>
+<li><strong>Google Forms</strong> - jeśli używasz formularzy Google</li>
+<li><strong>Typeform</strong> - jeśli masz Typeform</li>
+<li><strong>Webhook</strong> - jeśli masz własny formularz na stronie</li>
+</ul>
+<h3>Krok 4: Dodaj akcje</h3>
+<p>Po triggerze kliknij "+" i dodaj kolejne kroki:</p>
+<ul>
+<li><strong>Google Sheets → Add a Row</strong> - zapisuje dane do arkusza</li>
+<li><strong>Gmail → Send an Email</strong> - wysyła maila do Ciebie</li>
+<li><strong>Gmail → Send an Email</strong> - wysyła maila do klienta</li>
+</ul>
+<h3>Krok 5: Połącz dane</h3>
+<p>Przeciągnij pola z formularza do odpowiednich miejsc. Na przykład pole "Email" z formularza do pola "Odbiorca" w Gmailu.</p>
+<h3>Krok 6: Włącz i testuj</h3>
+<p>Kliknij "Run once" aby przetestować. Jeśli działa - włącz automatyzację (przełącznik "ON").</p>
+<div class="callout">
+<p><strong>Pro tip:</strong> Pierwsza automatyzacja zajmie Ci ~30 minut. Druga - 10 minut. Po trzeciej będziesz budował je w 5 minut.</p>
+</div>
+<h2 id="s5">Błędy, których unikniesz</h2>
+<h3>Błąd #1: Zbyt skomplikowane automatyzacje na start</h3>
+<p>Zacznij od 2-3 kroków. Dopiero gdy działają - rozbudowuj.</p>
+<h3>Błąd #2: Brak testowania</h3>
+<p>ZAWSZE testuj przed włączeniem. Jeden błąd może wysłać setki niechcianych maili.</p>
+<h3>Błąd #3: Automatyzacja wszystkiego naraz</h3>
+<p>Wybierz JEDNO zadanie, które zajmuje Ci najwięcej czasu. Zautomatyzuj je. Potem następne.</p>
+<h3>Błąd #4: Ignorowanie błędów</h3>
+<p>Make wysyła powiadomienia o błędach. Sprawdzaj je i naprawiaj - inaczej automatyzacja przestaje działać.</p>
+<h2 id="s6">Case study: Firma remontowa</h2>
+<p>Tomek prowadzi firmę remontową w Gdańsku. Przed automatyzacją:</p>
+<ul>
+<li>3h tygodniowo na przepisywanie zapytań do arkusza</li>
+<li>2h tygodniowo na wysyłanie maili powitalnych</li>
+<li>Gubił leady (zapomniał odpowiedzieć)</li>
+</ul>
+<p><strong>Co zautomatyzowaliśmy:</strong></p>
+<ol>
+<li>Formularz na stronie → automatycznie do Google Sheets</li>
+<li>Automatyczny mail powitalny z cennikiem</li>
+<li>Powiadomienie SMS do Tomka o nowym leadzie</li>
+<li>Przypomnienie po 2 dniach jeśli brak odpowiedzi</li>
+</ol>
+<p><strong>Efekt:</strong></p>
+<ul>
+<li>Oszczędność: 5h tygodniowo</li>
+<li>Zero zgubionych leadów</li>
+<li>Konwersja: +25% (szybsza odpowiedź = lepsza konwersja)</li>
+</ul>
+<div class="callout">
+<p><strong>ROI:</strong> Koszt 40 zł/mies. Oszczędność 5h × 4 tyg × 100 zł/h = 2000 zł. Zwrot: 50x.</p>
+</div>
+<h2 id="s7">Ile to kosztuje? (realne liczby)</h2>
+<p><strong>Make.com:</strong></p>
+<ul>
+<li>Darmowy: 1000 operacji/mies (wystarczy na 1-2 proste automatyzacje)</li>
+<li>Core: ~40 zł/mies (10 000 operacji)</li>
+<li>Pro: ~70 zł/mies (więcej opcji)</li>
+</ul>
+<p><strong>Zapier:</strong></p>
+<ul>
+<li>Darmowy: 100 zadań/mies (bardzo mało)</li>
+<li>Starter: ~80 zł/mies (750 zadań)</li>
+<li>Professional: ~200 zł/mies</li>
+</ul>
+<p><strong>Wniosek:</strong> Make.com jest 2x tańszy przy podobnych możliwościach.</p>
+<h2 id="s8">Następny krok: Twoja pierwsza automatyzacja</h2>
+<p>Nie czekaj. Zrób to dziś.</p>
+<p><strong>Plan na 30 minut:</strong></p>
+<ol>
+<li>Załóż konto na make.com (5 min)</li>
+<li>Wybierz JEDNO zadanie do automatyzacji</li>
+<li>Zbuduj prostą automatyzację 2-3 kroki (20 min)</li>
+<li>Przetestuj i włącz (5 min)</li>
+</ol>
+<p>Jutro rano obudzisz się z działającą automatyzacją. A za tydzień nie będziesz pamiętał jak żyłeś bez niej.</p>
+ CTA Box 
+<div class="callout cta">
+<h3>Chcesz pomoc z automatyzacją?</h3>
+<p>W newsletterze <strong>AI Radar</strong> co tydzień dzielę się konkretną automatyzacją do wdrożenia. Plus dostajesz dostęp do gotowych szablonów Make.com.</p>
+<a href="../ai-radar.html">
                         Zapisz się do AI Radar
                     </a>
-                </div>
-
-                <h2>Podsumowanie</h2>
-
-                <p>Automatyzacja no-code to najprostszy sposób na odzyskanie czasu w małej firmie. Kluczowe zasady:</p>
-
-                <ul>
-                    <li><strong>Zacznij od Make.com</strong> - tańszy i elastyczniejszy niż Zapier</li>
-                    <li><strong>Wybierz JEDNO zadanie</strong> - to które zajmuje Ci najwięcej czasu</li>
-                    <li><strong>Buduj proste automatyzacje</strong> - 2-3 kroki na start</li>
-                    <li><strong>Testuj przed włączeniem</strong> - unikniesz problemów</li>
-                    <li><strong>Rozbudowuj stopniowo</strong> - nowe kroki dodawaj po sprawdzeniu</li>
-                </ul>
-
-                <p>Jedna dobra automatyzacja może zaoszczędzić Ci 5-10 godzin miesięcznie. Przy koszcie kawy.</p>
-
-            </div>
-
-
-            <!-- FAQ -->
-            <section class="prose-custom mt-10" id="faq">
-                <h2>Najczęstsze pytania</h2>
-                <h3>Na czym polega automatyzacja w firmie bez pisania kodu?</h3>
-                <p>Automatyzacja bez kodowania łączy Twoje aplikacje tak, żeby same wykonywały powtarzalne zadania. Na przykład po wypełnieniu formularza dane trafiają do arkusza Google, Ty dostajesz powiadomienie na telefon, a klient mail powitalny. Narzędzia takie jak Make i Zapier działają jak klej między aplikacjami i sprawiają, że te aplikacje ze sobą rozmawiają.</p>
-                <h3>Co wybrać do automatyzacji w małej firmie, Make czy Zapier?</h3>
-                <p>Autor poleca zacząć od Make, bo daje więcej darmowych operacji, jest tańszy i bardziej elastyczny. Zapier jest prostszy w obsłudze i nadaje się na szybki start, ale szybko robi się drogi. Niezależnie od wyboru zacznij od jednego zadania, które zabiera Ci najwięcej czasu, i zbuduj dla niego prostą automatyzację z 2 do 3 kroków.</p>
-                <h3>Jakie zadania w małej firmie najłatwiej zautomatyzować?</h3>
-                <p>Wpis pokazuje pięć przykładów: zapisywanie zapytań z formularzy do arkusza, wystawianie faktur po płatności, przypomnienia o ofertach bez odpowiedzi, publikowanie nowych wpisów w mediach społecznościowych oraz powitanie nowego klienta z materiałami, folderem i linkiem do umówienia spotkania. Według autora każda z tych automatyzacji oszczędza co najmniej 30 minut tygodniowo.</p>
-                <h3>Ile czasu zajmuje ustawienie pierwszej automatyzacji w Make i jak to zrobić?</h3>
-                <p>Załóż darmowe konto, utwórz nowy scenariusz i dodaj wyzwalacz, na przykład formularz Google albo własny formularz na stronie. Potem dodaj akcje, takie jak zapis wiersza w arkuszu i wysłanie maila, i połącz pola formularza z odpowiednimi miejscami. Uruchom test, a dopiero gdy działa, włącz automatyzację. Pierwsza zajmie około 30 minut.</p>
-                <h3>Jakich błędów unikać przy automatyzacji zadań w firmie?</h3>
-                <p>Nie zaczynaj od skomplikowanych scenariuszy, tylko od 2 do 3 kroków. Zawsze testuj przed włączeniem, bo jeden błąd może wysłać setki niechcianych maili. Nie automatyzuj wszystkiego naraz, wybierz jedno zadanie zabierające najwięcej czasu. Sprawdzaj też powiadomienia o błędach i naprawiaj je na bieżąco, inaczej automatyzacja przestanie działać.</p>
-            </section>
-
-            <!-- Author Box -->
-            <div class="glass rounded-xl p-6 mt-10">
-                <div class="flex items-start gap-4">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">
-                        D
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg">Darek</h4>
-                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
-                        <p class="text-gray-300 text-sm">8 lat w marketingu, od 2023 specjalizuję się we wdrożeniach AI i automatyzacji dla małych firm z Trójmiasta. Prowadzę online wdrożenia systemów AI dla małych firm, w grupie i 1:1.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Related Articles -->
-            <div class="mt-10">
-                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <a href="/blog/chatgpt-dla-poczatkujacych" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Poprzedni artykuł</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">ChatGPT dla początkujących - pierwsze polecenie</h4>
-                    </a>
-                    <a href="/blog/ai-dla-malej-firmy" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Popularne</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">AI dla małej firmy - od czego zacząć</h4>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </article>
-
-    <!-- Footer -->
-        <footer class="foot">
+</div>
+<h2 id="s9">Podsumowanie</h2>
+<p>Automatyzacja no-code to najprostszy sposób na odzyskanie czasu w małej firmie. Kluczowe zasady:</p>
+<ul>
+<li><strong>Zacznij od Make.com</strong> - tańszy i elastyczniejszy niż Zapier</li>
+<li><strong>Wybierz JEDNO zadanie</strong> - to które zajmuje Ci najwięcej czasu</li>
+<li><strong>Buduj proste automatyzacje</strong> - 2-3 kroki na start</li>
+<li><strong>Testuj przed włączeniem</strong> - unikniesz problemów</li>
+<li><strong>Rozbudowuj stopniowo</strong> - nowe kroki dodawaj po sprawdzeniu</li>
+</ul>
+<p>Jedna dobra automatyzacja może zaoszczędzić Ci 5-10 godzin miesięcznie. Przy koszcie kawy.</p>
+<section id="faq">
+<h2 id="s10">Najczęstsze pytania</h2>
+<h3>Na czym polega automatyzacja w firmie bez pisania kodu?</h3>
+<p>Automatyzacja bez kodowania łączy Twoje aplikacje tak, żeby same wykonywały powtarzalne zadania. Na przykład po wypełnieniu formularza dane trafiają do arkusza Google, Ty dostajesz powiadomienie na telefon, a klient mail powitalny. Narzędzia takie jak Make i Zapier działają jak klej między aplikacjami i sprawiają, że te aplikacje ze sobą rozmawiają.</p>
+<h3>Co wybrać do automatyzacji w małej firmie, Make czy Zapier?</h3>
+<p>Autor poleca zacząć od Make, bo daje więcej darmowych operacji, jest tańszy i bardziej elastyczny. Zapier jest prostszy w obsłudze i nadaje się na szybki start, ale szybko robi się drogi. Niezależnie od wyboru zacznij od jednego zadania, które zabiera Ci najwięcej czasu, i zbuduj dla niego prostą automatyzację z 2 do 3 kroków.</p>
+<h3>Jakie zadania w małej firmie najłatwiej zautomatyzować?</h3>
+<p>Wpis pokazuje pięć przykładów: zapisywanie zapytań z formularzy do arkusza, wystawianie faktur po płatności, przypomnienia o ofertach bez odpowiedzi, publikowanie nowych wpisów w mediach społecznościowych oraz powitanie nowego klienta z materiałami, folderem i linkiem do umówienia spotkania. Według autora każda z tych automatyzacji oszczędza co najmniej 30 minut tygodniowo.</p>
+<h3>Ile czasu zajmuje ustawienie pierwszej automatyzacji w Make i jak to zrobić?</h3>
+<p>Załóż darmowe konto, utwórz nowy scenariusz i dodaj wyzwalacz, na przykład formularz Google albo własny formularz na stronie. Potem dodaj akcje, takie jak zapis wiersza w arkuszu i wysłanie maila, i połącz pola formularza z odpowiednimi miejscami. Uruchom test, a dopiero gdy działa, włącz automatyzację. Pierwsza zajmie około 30 minut.</p>
+<h3>Jakich błędów unikać przy automatyzacji zadań w firmie?</h3>
+<p>Nie zaczynaj od skomplikowanych scenariuszy, tylko od 2 do 3 kroków. Zawsze testuj przed włączeniem, bo jeden błąd może wysłać setki niechcianych maili. Nie automatyzuj wszystkiego naraz, wybierz jedno zadanie zabierające najwięcej czasu. Sprawdzaj też powiadomienia o błędach i naprawiaj je na bieżąco, inaczej automatyzacja przestanie działać.</p>
+</section>
+  </article>
+</div>
+<section class="sec bp-end">
+  <div class="wrap">
+    <div class="oferta-box">
+      <img src="/assets/teamek/pokazuje.webp" alt="Teamek" width="382" height="520" loading="lazy">
+      <div><span class="eyebrow">Zbuduj to u siebie</span><h2>Wdrożenie 10 systemów AI w Twojej firmie</h2>
+        <p>Co drugi poniedziałek budujemy razem jeden system: maile, klienci, zadania, wyceny. Online, w grupie do 8 firm, start 11 stycznia 2027.</p>
+        <div class="cta"><a class="btn" href="/wdrozenie-systemow-ai">Zobacz program i ceny</a><a class="btn ghost" href="/ai-radar">Zapisz się na AI Radar</a></div></div>
+    </div>
+    <h2 class="pow-h">Czytaj dalej</h2>
+    <div class="pow"><a class="pc" href="/blog/chatbot-obsluga-klienta"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Automatyzacja</span><span class="bc-t">Obsługa klienta z AI: chatboty dla małych firm</span><img src="/assets/teamek/zegar.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Obsługa klienta z AI: chatboty dla małych firm</span><span class="pc-m">12 min czytania</span></a><a class="pc" href="/blog/chatgpt-dla-poczatkujacych"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">ChatGPT dla początkujących: pierwsze polecenie krok po kroku</span><img src="/assets/teamek/pomysl.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">ChatGPT dla początkujących: pierwsze polecenie krok po kroku</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/narzedzia-ai-2025"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Przewodnik</span><span class="bc-t">Narzędzia AI dla małych firm: kompletny przewodnik</span><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Narzędzia AI dla małych firm: kompletny przewodnik</span><span class="pc-m">18 min czytania</span></a></div>
+  </div>
+</section>
+<footer class="foot">
   <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
@@ -645,7 +410,7 @@
       </div>
       <div>
         <h4>Wiedza</h4>
-      <a href="/blog/">Blog</a>
+        <a href="/blog/">Blog</a>
         <a href="/ai-radar">AI Radar</a>
         <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
         <a href="/ai-act/">AI Act dla małej firmy</a>
@@ -670,7 +435,7 @@
     </div>
   </div>
 </footer>
-
-<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/blog-teamek.js?v=20261115a" defer></script>
 </body>
 </html>

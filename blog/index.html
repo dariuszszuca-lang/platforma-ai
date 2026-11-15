@@ -1,123 +1,37 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-    <title>Blog - AI dla małych firm | AI-Team</title>
-    <meta name="description" content="Praktyczne porady o AI dla małych firm. Bez żargonu, bez przesady - same konkrety które możesz wdrożyć dziś. Chatboty, automatyzacja, ChatGPT i więcej.">
-    <meta name="keywords" content="blog AI, sztuczna inteligencja biznes, ChatGPT poradnik, automatyzacja firma">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Blog - AI dla małych firm | AI-Team">
-    <meta property="og:description" content="Praktyczne porady o AI dla małych firm. Same konkrety.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ai-team.pl/blog/">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Inter Tight', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#FAFAF7',
-                            primary: '#1E8A5A',
-                            secondary: '#176B46',
-                            light: '#2FB77A',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #020203;
-            min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .article-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-        .article-card:hover {
-            transform: translateY(-6px);
-            background: linear-gradient(145deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,0.04) 100%);
-            border-color: rgba(249, 115, 22, 0.3);
-            box-shadow: 0 20px 40px -10px rgba(249,115,22,0.15);
-        }
-        .article-image {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.1) 100%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        /* Grid background */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            width: 150%;
-            height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.6;
-            animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.4; }
-        }
-    </style>
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
-    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+<title>Blog AI-Team: AI w małej firmie krok po kroku</title>
+<meta name="description" content="Praktyczne wpisy o AI dla właścicieli małych firm: od czego zacząć, maile, klienci, wyceny, automatyzacje i AI Act. Prosto, na przykładach z prawdziwych firm.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Blog AI-Team: AI w małej firmie krok po kroku">
+<meta property="og:description" content="Praktyczne wpisy o AI dla właścicieli małych firm. Prosto, na przykładach.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ai-team.pl/blog/">
 <link rel="canonical" href="https://ai-team.pl/blog/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "name": "Blog AI-Team", "url": "https://ai-team.pl/blog/", "inLanguage": "pl-PL", "publisher": {"@type": "Organization", "name": "AI-Team", "url": "https://ai-team.pl"}, "blogPost": [{"@type": "BlogPosting", "headline": "Jaki CRM dla małej firmy? Abonament, darmowy czy własny system", "url": "https://ai-team.pl/blog/crm-dla-malej-firmy", "datePublished": "2026-09-26"}, {"@type": "BlogPosting", "headline": "Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?", "url": "https://ai-team.pl/blog/dzial-ai-w-firmie", "datePublished": "2026-09-26"}, {"@type": "BlogPosting", "headline": "AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026", "url": "https://ai-team.pl/blog/ai-act-mala-firma", "datePublished": "2026-07-18"}, {"@type": "BlogPosting", "headline": "AI dla małej firmy: od czego zacząć", "url": "https://ai-team.pl/blog/ai-dla-malej-firmy", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "AI dla salonu beauty: praktyczny przewodnik dla kosmetyczek", "url": "https://ai-team.pl/blog/ai-salon-beauty", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "AI w marketingu małej firmy: praktyczny przewodnik", "url": "https://ai-team.pl/blog/ai-w-marketingu", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Automatyzacja bez kodowania: Make i Zapier dla małych firm", "url": "https://ai-team.pl/blog/automatyzacja-bez-kodowania", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Obsługa klienta z AI: chatboty dla małych firm", "url": "https://ai-team.pl/blog/chatbot-obsluga-klienta", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "ChatGPT dla początkujących: pierwsze polecenie krok po kroku", "url": "https://ai-team.pl/blog/chatgpt-dla-poczatkujacych", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Narzędzia AI dla małych firm: kompletny przewodnik", "url": "https://ai-team.pl/blog/narzedzia-ai-2025", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Jak napisać ofertę z ChatGPT: gotowe polecenia i przykłady", "url": "https://ai-team.pl/blog/oferta-chatgpt", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego", "url": "https://ai-team.pl/blog/oszczednosc-czasu-ai", "datePublished": "2025-12-26"}, {"@type": "BlogPosting", "headline": "Polecenia dla przedsiębiorców: 20 gotowych szablonów", "url": "https://ai-team.pl/blog/prompty-dla-biznesu", "datePublished": "2025-12-26"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115a">
+<script src="/assets/meta-pixel.js"></script>
 </head>
 <body>
-
-    <!-- Background Grid -->
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow"></div>
-    </div>
-
-    <!-- Navigation - same as main page -->
-    <nav class="nav" id="nav">
+<nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
       <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
@@ -129,257 +43,27 @@
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/" aria-current="page">Blog</a>
       <a href="/ai-radar">AI Radar</a>
+      <a href="/en/" class="lang" hreflang="en" lang="en">EN</a>
       <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
-
-    <!-- Header -->
-    <header class="pt-32 pb-12 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full glass text-xs font-mono tracking-wider border border-brand-primary/30">
-                <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-                <span>PRAKTYCZNA WIEDZA O AI</span>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">
-                Blog AI-Team
-            </h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                Bez żargonu, bez przesady - same konkrety które możesz wdrożyć dziś.
-            </p>
-        </div>
-    </header>
-
-    <!-- Blog Posts Grid -->
-    <main class="pb-16 px-4">
-        <div class="max-w-6xl mx-auto">
-
-            <!-- Articles Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- blog-geo:crm-dla-malej-firmy -->
-                <a href="/blog/crm-dla-malej-firmy" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 overflow-hidden">
-                        <img src="/assets/blog/crm-dla-malej-firmy/hero.webp" alt="" width="1536" height="816" loading="lazy" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Poradnik</span>
-                            <span class="px-2 py-0.5 bg-brand-secondary/20 text-brand-secondary rounded text-xs">Nowy</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Ile kosztuje CRM dla małej firmy na 5 osób przez 3 lata? Porównanie: darmowy CRM, abonament i własny prosty system. Uczciwie, kiedy co się opłaca.</p>
-                        <div class="text-gray-500 text-xs">9 min czytania</div>
-                    </div>
-                </a>
-<!-- /blog-geo:crm-dla-malej-firmy -->
-
-
-                <!-- blog-geo:dzial-ai-w-firmie -->
-                <a href="/blog/dzial-ai-w-firmie" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 overflow-hidden">
-                        <img src="/assets/blog/dzial-ai-w-firmie/hero.webp" alt="" width="1536" height="816" loading="lazy" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Poradnik</span>
-                            <span class="px-2 py-0.5 bg-brand-secondary/20 text-brand-secondary rounded text-xs">Nowy</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Kto w małej firmie ma zajmować się AI? Porównanie kosztów etatu, wolnego strzelca i zewnętrznego działu AI z danymi GUS i przykładami wdrożeń.</p>
-                        <div class="text-gray-500 text-xs">9 min czytania</div>
-                    </div>
-                </a>
-<!-- /blog-geo:dzial-ai-w-firmie -->
-
-
-                <!-- Article 1 -->
-                <a href="/blog/ai-act-mala-firma" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="shield-check" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">AI Act</span>
-                            <span class="px-2 py-0.5 bg-brand-secondary/20 text-brand-secondary rounded text-xs">Nowy</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Daty, prawdziwe progi kar i rejestr narzędzi AI w 30 minut. Bez straszenia</p>
-                        <div class="text-gray-500 text-xs">6 min czytania</div>
-                    </div>
-                </a>
-
-                <a href="/blog/ai-dla-malej-firmy" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="rocket" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Poradnik</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">AI dla małej firmy - od czego zacząć w 2025</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">3 kroki do wdrożenia AI + case study salonu beauty</p>
-                        <div class="text-gray-500 text-xs">8 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 2 -->
-                <a href="/blog/chatgpt-dla-poczatkujacych" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="message-square" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Poradnik</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">ChatGPT dla początkujących - pierwsze polecenie</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Formuła ROLA + KONTEKST + ZADANIE + FORMAT</p>
-                        <div class="text-gray-500 text-xs">10 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 3 -->
-                <a href="/blog/automatyzacja-bez-kodowania" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="settings" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Automatyzacja</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Automatyzacja bez kodowania - Make i Zapier</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">5 gotowych automatyzacji do wdrożenia</p>
-                        <div class="text-gray-500 text-xs">12 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 4 -->
-                <a href="/blog/ai-w-marketingu" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="megaphone" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Marketing</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">AI w marketingu małej firmy - przewodnik</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Content, social media, email, SEO z AI</p>
-                        <div class="text-gray-500 text-xs">15 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 5 -->
-                <a href="/blog/oferta-chatgpt" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="file-text" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Sprzedaż</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Jak napisać ofertę z ChatGPT - polecenia</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Struktura PASTOR i mega-polecenie do ofert</p>
-                        <div class="text-gray-500 text-xs">10 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 6 -->
-                <a href="/blog/chatbot-obsluga-klienta" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="bot" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Automatyzacja</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Obsługa klienta z AI - chatboty</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Tidio, Chatbase i chatboty AI - porównanie</p>
-                        <div class="text-gray-500 text-xs">12 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 7 -->
-                <a href="/blog/ai-salon-beauty" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="sparkles" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Case Study</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">AI dla salonu beauty - praktyczny przewodnik</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Jak salon kosmetyczny oszczędza 15h tygodniowo</p>
-                        <div class="text-gray-500 text-xs">14 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 8 -->
-                <a href="/blog/oszczednosc-czasu-ai" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="clock" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Produktywność</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Oszczędność czasu dzięki AI - 10 sposobów</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Gdzie AI oszczędza najwięcej czasu w firmie</p>
-                        <div class="text-gray-500 text-xs">12 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 9 -->
-                <a href="/blog/prompty-dla-biznesu" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="terminal" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Polecenia</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">20 poleceń dla przedsiębiorców - gotowe</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Kopiuj-wklej polecenia do codziennej pracy</p>
-                        <div class="text-gray-500 text-xs">15 min czytania</div>
-                    </div>
-                </a>
-
-                <!-- Article 10 -->
-                <a href="/blog/narzedzia-ai-2025" class="article-card rounded-xl overflow-hidden block">
-                    <div class="article-image h-44 flex items-center justify-center">
-                        <i data-lucide="wrench" class="w-16 h-16 text-brand-primary/60"></i>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex gap-2 mb-3">
-                            <span class="px-2 py-0.5 bg-brand-primary/20 text-brand-primary rounded text-xs">Przewodnik</span>
-                            <span class="px-2 py-0.5 bg-brand-secondary/20 text-brand-secondary rounded text-xs">2025</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Narzędzia AI dla małych firm 2025</h3>
-                        <p class="text-gray-400 text-sm line-clamp-2 mb-3">Kompletny ranking i porównanie kosztów</p>
-                        <div class="text-gray-500 text-xs">18 min czytania</div>
-                    </div>
-                </a>
-
-            </div>
-
-            <!-- Newsletter CTA -->
-            <section class="mt-16 glass rounded-2xl p-8 md:p-12 text-center border border-brand-primary/20">
-                <div class="max-w-2xl mx-auto">
-                    <i data-lucide="mail" class="w-12 h-12 text-brand-primary mx-auto mb-4"></i>
-                    <h2 class="text-2xl md:text-3xl font-display font-bold mb-3">Nie przegap nowych artykułów</h2>
-                    <p class="text-gray-400 mb-6">Dołącz do newslettera AI Radar - co tydzień praktyczny tip o AI, który wdrożysz w 10 minut.</p>
-                    <a href="../ai-radar.html" class="inline-block px-8 py-4 bg-brand-primary text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition transform hover:-translate-y-1">
-                        Zapisz się do AI Radar
-                    </a>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-        <footer class="foot">
+<header class="bl-hero">
+  <div class="wrap grid2">
+    <div><span class="eyebrow">Blog AI-Team</span><h1>AI w małej firmie, krok po kroku</h1>
+    <p class="lead">Piszę o tym, co sam zbudowałem i sprawdziłem: maile, klienci, wyceny, automatyzacje i przepisy. Bez żargonu, na przykładach z prawdziwych firm.</p></div>
+    <div class="tk-say"><img src="/assets/teamek/lupa.webp" width="360" height="400" alt="Teamek"><span class="bub">Wybierz temat. Każdy wpis czytasz w kilka minut.</span></div>
+  </div>
+</header>
+<main class="wrap" style="padding-bottom:56px">
+  <a class="bl-feat" href="/blog/crm-dla-malej-firmy"><div class="bc c1 duza" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</span><img src="/assets/teamek/paczka.webp" alt="" width="360" height="400" loading="lazy"></div><div><span class="eyebrow">Najnowszy wpis</span><h2>Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</h2><p>Ile kosztuje CRM dla małej firmy na 5 osób przez 3 lata? Porównanie: darmowy CRM, abonament i własny prosty system. Uczciwie, kiedy co się opłaca.</p><span class="pc-m">9 min czytania</span></div></a>
+  <div class="chips bl-chips" role="group" aria-label="Kategorie wpisów"><button type="button" class="chip" data-f="Wszystkie" aria-pressed="true">Wszystkie</button><button type="button" class="chip" data-f="Poradnik" aria-pressed="false">Poradnik</button><button type="button" class="chip" data-f="Branżowy" aria-pressed="false">Branżowy</button><button type="button" class="chip" data-f="Marketing" aria-pressed="false">Marketing</button><button type="button" class="chip" data-f="Automatyzacja" aria-pressed="false">Automatyzacja</button><button type="button" class="chip" data-f="Przewodnik" aria-pressed="false">Przewodnik</button><button type="button" class="chip" data-f="Sprzedaż" aria-pressed="false">Sprzedaż</button><button type="button" class="chip" data-f="Produktywność" aria-pressed="false">Produktywność</button><button type="button" class="chip" data-f="Praktyczne" aria-pressed="false">Praktyczne</button></div>
+  <div class="bl-grid"><a class="pc" href="/blog/dzial-ai-w-firmie" data-t="Poradnik|Wdrożenia AI"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><img src="/assets/teamek/brawo.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><span class="pc-o">Kto w małej firmie ma zajmować się AI? Porównanie kosztów etatu, wolnego strzelca i zewnętrznego działu AI z danymi GUS i przykładami wdrożeń.</span><span class="pc-m">9 min czytania</span></a><a class="pc" href="/blog/ai-act-mala-firma" data-t="Poradnik|AI Act"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026</span><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026</span><span class="pc-o">AI Act w małej firmie bez paniki: co obowiązuje od 2 sierpnia 2026, co już od lutego 2025, jakie są naprawdę kary i jak zrobić porządek w 30 minut. Konkretne liczby i plan.</span><span class="pc-m">6 min czytania</span></a><a class="pc" href="/blog/ai-dla-malej-firmy" data-t="Poradnik|Dla początkujących"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">AI dla małej firmy: od czego zacząć</span><img src="/assets/teamek/pokazuje.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">AI dla małej firmy: od czego zacząć</span><span class="pc-o">Praktyczny przewodnik wdrożenia AI w małej firmie. Dowiedz się od czego zacząć, jakie narzędzia wybrać i jak zaoszczędzić 10+ godzin tygodniowo.</span><span class="pc-m">8 min czytania</span></a><a class="pc" href="/blog/ai-salon-beauty" data-t="Branżowy|Beauty"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Branżowy</span><span class="bc-t">AI dla salonu beauty: praktyczny przewodnik dla kosmetyczek</span><img src="/assets/teamek/telefon.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">AI dla salonu beauty: praktyczny przewodnik dla kosmetyczek</span><span class="pc-o">Jak wykorzystać AI w salonie kosmetycznym. Automatyzacja rezerwacji, marketing w social media, obsługa klienta - konkretne narzędzia i przykłady.</span><span class="pc-m">12 min czytania</span></a><a class="pc" href="/blog/ai-w-marketingu" data-t="Marketing|Dla średniozaawansowanych"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Marketing</span><span class="bc-t">AI w marketingu małej firmy: praktyczny przewodnik</span><img src="/assets/teamek/megafon.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">AI w marketingu małej firmy: praktyczny przewodnik</span><span class="pc-o">Jak wykorzystać AI w marketingu małej firmy. Praktyczne narzędzia i strategie: content, social media, email marketing, SEO - bez dużego budżetu.</span><span class="pc-m">15 min czytania</span></a><a class="pc" href="/blog/automatyzacja-bez-kodowania" data-t="Poradnik|Średniozaawansowany"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Automatyzacja bez kodowania: Make i Zapier dla małych firm</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Automatyzacja bez kodowania: Make i Zapier dla małych firm</span><span class="pc-o">Jak automatyzować procesy w firmie bez programowania. Praktyczny przewodnik po Make.com i Zapier z przykładami automatyzacji które oszczędzą Ci godziny.</span><span class="pc-m">12 min czytania</span></a><a class="pc" href="/blog/chatbot-obsluga-klienta" data-t="Automatyzacja|Średniozaawansowany"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Automatyzacja</span><span class="bc-t">Obsługa klienta z AI: chatboty dla małych firm</span><img src="/assets/teamek/zegar.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Obsługa klienta z AI: chatboty dla małych firm</span><span class="pc-o">Jak wdrożyć chatbota AI do obsługi klienta w małej firmie. Przegląd narzędzi, koszty, praktyczne przykłady i krok po kroku instrukcja.</span><span class="pc-m">12 min czytania</span></a><a class="pc" href="/blog/chatgpt-dla-poczatkujacych" data-t="Poradnik|Dla początkujących"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">ChatGPT dla początkujących: pierwsze polecenie krok po kroku</span><img src="/assets/teamek/pomysl.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">ChatGPT dla początkujących: pierwsze polecenie krok po kroku</span><span class="pc-o">Praktyczny poradnik jak zacząć korzystać z ChatGPT. Dowiedz się jak pisać skuteczne polecenia i unikać typowych błędów początkujących.</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/narzedzia-ai-2025" data-t="Przewodnik|Narzędzia"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Przewodnik</span><span class="bc-t">Narzędzia AI dla małych firm: kompletny przewodnik</span><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Narzędzia AI dla małych firm: kompletny przewodnik</span><span class="pc-o">Ranking najlepszych narzędzi AI dla małych firm w 2025. ChatGPT, Claude, Jasper, Make - porównanie cen, funkcji i zastosowań. Które wybrać?</span><span class="pc-m">18 min czytania</span></a><a class="pc" href="/blog/oferta-chatgpt" data-t="Sprzedaż|Dla początkujących"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Sprzedaż</span><span class="bc-t">Jak napisać ofertę z ChatGPT: gotowe polecenia i przykłady</span><img src="/assets/teamek/lista.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Jak napisać ofertę z ChatGPT: gotowe polecenia i przykłady</span><span class="pc-o">Jak napisać profesjonalną ofertę handlową z pomocą ChatGPT. Gotowe prompty, struktura oferty i przykłady dla różnych branż.</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/oszczednosc-czasu-ai" data-t="Produktywność|Dla wszystkich"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Produktywność</span><span class="bc-t">Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</span><img src="/assets/teamek/kawa.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Oszczędność czasu dzięki AI: 10 sposobów na więcej wolnego</span><span class="pc-o">Jak zaoszczędzić 10+ godzin tygodniowo dzięki AI. Praktyczne sposoby automatyzacji codziennych zadań w małej firmie - maile, dokumenty, social media.</span><span class="pc-m">10 min czytania</span></a><a class="pc" href="/blog/prompty-dla-biznesu" data-t="Praktyczne|Szablony"><div class="bc c1" aria-hidden="true"><span class="bc-tag">Praktyczne</span><span class="bc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><span class="pc-o">20 gotowych poleceń dla przedsiębiorców. Maile, oferty, posty, opisy produktów - skopiuj, wklej, używaj. Bez nauki, same konkrety.</span><span class="pc-m">15 min czytania</span></a></div>
+  <div class="radar-band"><img src="/assets/teamek/megafon.webp" alt="" width="360" height="400"><div><h2>Nowe wpisy prosto na maila</h2><p>AI Radar: jeden konkret z AI w małej firmie, prosto na Twoją skrzynkę. Wypisujesz się jednym kliknięciem.</p></div><a class="btn" href="/ai-radar">Zapisz się na AI Radar</a></div>
+</main>
+<footer class="foot">
   <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
@@ -396,7 +80,7 @@
       </div>
       <div>
         <h4>Wiedza</h4>
-      <a href="/blog/">Blog</a>
+        <a href="/blog/">Blog</a>
         <a href="/ai-radar">AI Radar</a>
         <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
         <a href="/ai-act/">AI Act dla małej firmy</a>
@@ -421,11 +105,7 @@
     </div>
   </div>
 </footer>
-
-    <script>
-        lucide.createIcons();
-    </script>
-
-<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/blog-teamek.js?v=20261115a" defer></script>
 </body>
 </html>

@@ -1,81 +1,32 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-    <title>Polecenia dla biznesu - 20 gotowych szablonów | AI-Team</title>
-    <meta name="description" content="20 gotowych poleceń dla przedsiębiorców. Maile, oferty, posty, opisy produktów - skopiuj, wklej, używaj. Bez nauki, same konkrety.">
-    <meta name="keywords" content="prompty dla biznesu, prompty ChatGPT, szablony promptów, prompty dla przedsiębiorców">
-    <meta name="author" content="AI-TEAM.PL">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:title" content="Polecenia dla przedsiębiorców - 20 gotowych szablonów do biznesu">
-    <meta property="og:description" content="20 gotowych poleceń dla przedsiębiorców. Skopiuj, wklej, używaj.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ai-team.pl/blog/prompty-dla-biznesu.html">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: {
-                fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Inter Tight', 'Inter', 'sans-serif'] },
-                colors: { brand: { dark: '#FAFAF7', primary: '#1E8A5A', secondary: '#176B46', light: '#2FB77A' }, primary: '#1E8A5A', secondary: '#176B46', light: '#2FB77A' }
-            } }
-        }
-    </script>
-    <style>
-        body { background-color: #020203; min-height: 100vh; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .prose-custom h2 { color: #fb923c; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
-        .prose-custom h3 { color: #fdba74; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-        .prose-custom p { color: #e2e8f0; line-height: 1.8; margin-bottom: 1rem; }
-        .prose-custom ul, .prose-custom ol { color: #e2e8f0; margin-left: 1.5rem; margin-bottom: 1rem; }
-        .prose-custom li { margin-bottom: 0.5rem; }
-        .prose-custom strong { color: #f1f5f9; }
-        .highlight-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border-left: 4px solid #f97316; padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
-        .prompt-box { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; }
-        .prompt-label { color: #f97316; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .prompt-text { color: #e2e8f0; font-size: 0.9rem; line-height: 1.6; font-family: 'Monaco', 'Menlo', monospace; white-space: pre-wrap; }
-        .category-badge { background: rgba(249, 115, 22, 0.2); color: #f97316; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; }
-        .cta-box { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
-            transform-origin: top center;
-        }
-        .horizon-glow {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            width: 150%;
-            height: 500px;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 255, 0.05) 40%, transparent 80%);
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-    </style>
-    <link rel="stylesheet" href="/assets/mega-skin.css?v=202609050115">
-    <link rel="stylesheet" href="/assets/mega-blog.css?v=202609050115">
-    <meta property="og:image" content="https://ai-team.pl/assets/og-ai-team-20260511.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://ai-team.pl/blog/prompty-dla-biznesu">
-    <script type="application/ld+json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MX6DBXQ66D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MX6DBXQ66D');
+</script>
+<title>Polecenia dla przedsiębiorców: 20 gotowych szablonów | Blog AI-Team</title>
+<meta name="description" content="20 gotowych poleceń dla przedsiębiorców. Maile, oferty, posty, opisy produktów - skopiuj, wklej, używaj. Bez nauki, same konkrety.">
+<meta content="prompty dla biznesu, prompty ChatGPT, szablony promptów, prompty dla przedsiębiorców" name="keywords"/>
+<meta name="author" content="Dariusz Szuca, AI-Team">
+<meta name="robots" content="index, follow">
+<meta content="Polecenia dla przedsiębiorców - 20 gotowych szablonów do biznesu" property="og:title"/>
+<meta content="20 gotowych poleceń dla przedsiębiorców. Skopiuj, wklej, używaj." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://ai-team.pl/blog/prompty-dla-biznesu.html" property="og:url"/>
+<meta content="https://ai-team.pl/assets/og-ai-team-20260511.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<link href="https://ai-team.pl/blog/prompty-dla-biznesu" rel="canonical"/>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -108,7 +59,7 @@
   "description": "20 gotowych promptów dla przedsiębiorców. Maile, oferty, posty, opisy produktów - skopiuj, wklej, używaj. Bez nauki, same konkrety."
 }
     </script>
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -156,15 +107,17 @@
   ]
 }
     </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mega.css?v=20261115e">
+<link rel="stylesheet" href="/assets/mega-fx.css?v=202609050005">
+<link rel="stylesheet" href="/assets/blog-teamek.css?v=20261115a">
+<script src="/assets/meta-pixel.js"></script>
 </head>
-<body>
-    <!-- Grid Background -->
-    <div class="fixed inset-0 z-[-1] bg-[#020203] overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-grid-pattern"></div>
-        <div class="horizon-glow"></div>
-    </div>
-
-    <nav class="nav" id="nav">
+<body class="blog-post">
+<div class="czytam" aria-hidden="true"></div>
+<nav class="nav" id="nav">
   <div class="wrap">
     <a href="/" class="brand" aria-label="AI-Team, strona główna">
       <span class="mark"><svg class="lg" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#151515"/><text x="24" y="24.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#D9955A" letter-spacing="-0.5">AI</text><text x="24" y="35.5" text-anchor="middle" font-family="Inter Tight, Inter, system-ui, sans-serif" font-size="8.6" font-weight="700" fill="#F6F2E8" letter-spacing="1.9">TEAM</text></svg><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="base" cx="26" cy="26" r="24"/><circle class="arc" cx="26" cy="26" r="24" pathLength="1"/></svg></span>
@@ -176,57 +129,38 @@
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/" aria-current="page">Blog</a>
       <a href="/ai-radar">AI Radar</a>
+      <a href="/en/" class="lang" hreflang="en" lang="en">EN</a>
       <a href="/kontakt" class="btn sm">Umów rozmowę</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <a href="/kontakt" class="btn sm">Umów rozmowę</a>
   </div>
 </nav>
+<header class="bp-head">
+  <div class="wrap bp-grid">
+    <div class="bp-copy">
+      <nav class="okruszki" aria-label="Okruszki"><a href="/">Strona główna</a> / <a href="/blog/">Blog</a></nav>
+      <span class="eyebrow">Praktyczne · Szablony</span>
+      <h1>Polecenia dla przedsiębiorców: 20 gotowych szablonów</h1>
+      <p class="lead">Gotowe polecenia do skopiowania i użycia. Maile, oferty, posty, opisy - wszystko czego potrzebujesz w codziennej pracy.</p>
+      <p class="bp-meta"><img src="/assets/darek-szuca.jpg" alt="" width="40" height="40">Darek Szuca · 26 grudnia 2025 · 15 min czytania</p>
+    </div>
+    <div class="bc c1 duza" aria-hidden="true"><span class="bc-tag">Praktyczne</span><span class="bc-t">Polecenia dla przedsiębiorców: 20 gotowych szablonów</span><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"></div>
+  </div>
+</header>
+<div class="wrap bp-body">
+  <aside class="spis" aria-label="Spis treści"><p>W tym wpisie</p><ol id="spis"><li><a href="#s1">MAILE I KOMUNIKACJA</a></li><li><a href="#s2">SOCIAL MEDIA</a></li><li><a href="#s3">OFERTY I SPRZEDAŻ</a></li><li><a href="#s4">CONTENT I MARKETING</a></li><li><a href="#s5">PRODUKTYWNOŚĆ</a></li><li><a href="#s6">OBSŁUGA KLIENTA</a></li><li><a href="#s7">ANALIZA I STRATEGIA</a></li><li><a href="#s8">Jak dostosować polecenia do siebie?</a></li><li><a href="#s9">Najczęstsze pytania</a></li></ol>
+    <div class="spis-tk"><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"><span>Kliknij rozdział, przeniosę Cię.</span></div></aside>
+  <article class="prose" id="tresc">
 
-    <article class="pt-32 pb-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="text-gray-400 text-sm mb-6">
-                <a href="../index.html" class="hover:text-white">Strona główna</a>
-                <span class="mx-2">/</span>
-                <a href="index.html" class="hover:text-white">Blog</a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-300">Prompty dla biznesu</span>
-            </div>
-
-            <header class="mb-10">
-                <div class="flex gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Praktyczne</span>
-                    <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Szablony</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Polecenia dla przedsiębiorców - 20 gotowych szablonów
-                </h1>
-                <p class="text-xl text-gray-300 mb-6">
-                    Gotowe polecenia do skopiowania i użycia. Maile, oferty, posty, opisy - wszystko czego potrzebujesz w codziennej pracy.
-                </p>
-                <div class="flex items-center gap-4 text-gray-400 text-sm">
-                    <span>Darek | AI-TEAM.PL</span>
-                    <span>|</span>
-                    <span>Redaktor: Dariusz Szuca</span>
-                    <span>|</span>
-                    <span>Grudzień 2025</span>
-                    <span>|</span>
-                    <span>15 min czytania</span>
-                </div>
-            </header>
-
-            <div class="prose-custom">
-
-                <div class="highlight-box">
-                    <p class="text-lg mb-0"><strong>Jak używać:</strong> Skopiuj polecenie → wklej do <a href="/blog/chatgpt-dla-poczatkujacych" class="text-primary hover:underline">ChatGPT</a> → uzupełnij [pola w nawiasach] → gotowe. Każdy prompt testowany na dziesiątkach przypadków.</p>
-                </div>
-
-                <h2>MAILE I KOMUNIKACJA</h2>
-
-                <h3>1. Odpowiedź na maila od klienta</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>MAIL</span><span class="category-badge">Komunikacja</span></div>
-                    <p class="prompt-text">Jestem [Twoja rola/firma]. Klient napisał:
+<div class="callout">
+<p><strong>Jak używać:</strong> Skopiuj polecenie → wklej do <a href="/blog/chatgpt-dla-poczatkujacych">ChatGPT</a> → uzupełnij [pola w nawiasach] → gotowe. Każdy prompt testowany na dziesiątkach przypadków.</p>
+</div>
+<h2 id="s1">MAILE I KOMUNIKACJA</h2>
+<h3>1. Odpowiedź na maila od klienta</h3>
+<div>
+<div><span>MAIL</span><span>Komunikacja</span></div>
+<p>Jestem [Twoja rola/firma]. Klient napisał:
 "[wklej treść maila]"
 
 Napisz profesjonalną odpowiedź która:
@@ -235,12 +169,11 @@ Napisz profesjonalną odpowiedź która:
 - Proponuje następny krok
 
 Styl: bezpośredni, pomocny, bez korporacyjnego żargonu. Max 100 słów.</p>
-                </div>
-
-                <h3>2. Mail z propozycją współpracy</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>MAIL</span><span class="category-badge">Sprzedaż</span></div>
-                    <p class="prompt-text">Napisz cold email do [typ firmy/osoby].
+</div>
+<h3>2. Mail z propozycją współpracy</h3>
+<div>
+<div><span>MAIL</span><span>Sprzedaż</span></div>
+<p>Napisz cold email do [typ firmy/osoby].
 
 Kontekst: Oferuję [Twoja usługa/produkt] która pomaga [główna korzyść].
 
@@ -251,12 +184,11 @@ Email musi:
 - Być max 80 słów
 
 Ton: profesjonalny, pewny siebie, bez nachalności.</p>
-                </div>
-
-                <h3>3. Follow-up po ofercie</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>MAIL</span><span class="category-badge">Sprzedaż</span></div>
-                    <p class="prompt-text">Napisz follow-up do oferty wysłanej [X dni] temu.
+</div>
+<h3>3. Follow-up po ofercie</h3>
+<div>
+<div><span>MAIL</span><span>Sprzedaż</span></div>
+<p>Napisz follow-up do oferty wysłanej [X dni] temu.
 
 Kontekst: Wysłałem ofertę na [usługa] za [cena]. Brak odpowiedzi.
 
@@ -267,12 +199,11 @@ Email musi:
 - Nie brzmieć desperacko
 
 Max 60 słów.</p>
-                </div>
-
-                <h3>4. Odpowiedź na reklamację</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>MAIL</span><span class="category-badge">Obsługa</span></div>
-                    <p class="prompt-text">Klient złożył reklamację:
+</div>
+<h3>4. Odpowiedź na reklamację</h3>
+<div>
+<div><span>MAIL</span><span>Obsługa</span></div>
+<p>Klient złożył reklamację:
 "[treść reklamacji]"
 
 Napisz odpowiedź która:
@@ -282,14 +213,12 @@ Napisz odpowiedź która:
 - Zostawia drzwi otwarte
 
 Ton: empatyczny, konkretny, rozwiązujący problem. Max 80 słów.</p>
-                </div>
-
-                <h2>SOCIAL MEDIA</h2>
-
-                <h3>5. Post na LinkedIn</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>POST</span><span class="category-badge">LinkedIn</span></div>
-                    <p class="prompt-text">Jestem [Twoja rola] pomagającym [komu] w [czym].
+</div>
+<h2 id="s2">SOCIAL MEDIA</h2>
+<h3>5. Post na LinkedIn</h3>
+<div>
+<div><span>POST</span><span>LinkedIn</span></div>
+<p>Jestem [Twoja rola] pomagającym [komu] w [czym].
 
 Napisz post na LinkedIn o [temat].
 
@@ -299,12 +228,11 @@ Format:
 - Konkluzja z pytaniem do czytelników
 
 Styl: profesjonalny ale ludzki, pokazujący ekspertyzę. Max 150 słów. Dodaj 3-5 hashtagów.</p>
-                </div>
-
-                <h3>6. Post na Instagram</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>POST</span><span class="category-badge">Instagram</span></div>
-                    <p class="prompt-text">Prowadzę [typ biznesu] dla [grupa docelowa].
+</div>
+<h3>6. Post na Instagram</h3>
+<div>
+<div><span>POST</span><span>Instagram</span></div>
+<p>Prowadzę [typ biznesu] dla [grupa docelowa].
 
 Napisz post na Instagram o [temat].
 
@@ -315,12 +243,11 @@ Format:
 - 5-7 hashtagów
 
 Styl: przyjazny, jak rozmowa z koleżanką. Używaj emoji (2-3). Max 120 słów.</p>
-                </div>
-
-                <h3>7. Post "behind the scenes"</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>POST</span><span class="category-badge">Social</span></div>
-                    <p class="prompt-text">Napisz post pokazujący kulisy mojej pracy jako [Twoja rola].
+</div>
+<h3>7. Post "behind the scenes"</h3>
+<div>
+<div><span>POST</span><span>Social</span></div>
+<p>Napisz post pokazujący kulisy mojej pracy jako [Twoja rola].
 
 Temat: [np. "jak przygotowuję się do spotkania z klientem"]
 
@@ -330,14 +257,12 @@ Post ma:
 - Zachęcić do interakcji
 
 Ton: autentyczny, bez "sprzedawania". Max 100 słów.</p>
-                </div>
-
-                <h2>OFERTY I SPRZEDAŻ</h2>
-
-                <h3>8. Krótka oferta (email)</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>OFERTA</span><span class="category-badge">Sprzedaż</span></div>
-                    <p class="prompt-text">Napisz krótką ofertę email na [usługa/produkt].
+</div>
+<h2 id="s3">OFERTY I SPRZEDAŻ</h2>
+<h3>8. Krótka oferta (email)</h3>
+<div>
+<div><span>OFERTA</span><span>Sprzedaż</span></div>
+<p>Napisz krótką ofertę email na [usługa/produkt].
 
 Klient: [opis klienta i jego problemu]
 Rozwiązanie: [co oferujesz]
@@ -347,12 +272,11 @@ Termin: [kiedy możesz zrealizować]
 Struktura: Problem → Rozwiązanie → Co zawiera → Cena → CTA
 
 Max 150 słów. Ton: konkretny, bez "lania wody".</p>
-                </div>
-
-                <h3>9. Opis usługi na stronę</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>TEKST</span><span class="category-badge">WWW</span></div>
-                    <p class="prompt-text">Napisz opis usługi [nazwa] na stronę www.
+</div>
+<h3>9. Opis usługi na stronę</h3>
+<div>
+<div><span>TEKST</span><span>WWW</span></div>
+<p>Napisz opis usługi [nazwa] na stronę www.
 
 Dla kogo: [grupa docelowa]
 Problem który rozwiązuje: [główny ból klienta]
@@ -367,12 +291,11 @@ Struktura:
 5. CTA
 
 Max 250 słów.</p>
-                </div>
-
-                <h3>10. Wycena/kosztorys</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>DOKUMENT</span><span class="category-badge">Sprzedaż</span></div>
-                    <p class="prompt-text">Przygotuj wycenę na [projekt/usługę].
+</div>
+<h3>10. Wycena/kosztorys</h3>
+<div>
+<div><span>DOKUMENT</span><span>Sprzedaż</span></div>
+<p>Przygotuj wycenę na [projekt/usługę].
 
 Zakres prac: [co ma być zrobione]
 Mój cennik: [stawki]
@@ -385,14 +308,12 @@ Format:
 4. Harmonogram
 5. Warunki (płatność, ważność oferty)
 6. Następne kroki</p>
-                </div>
-
-                <h2>CONTENT I MARKETING</h2>
-
-                <h3>11. Artykuł na blog (struktura)</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>CONTENT</span><span class="category-badge">Blog</span></div>
-                    <p class="prompt-text">Stwórz strukturę artykułu na temat "[tytuł]".
+</div>
+<h2 id="s4">CONTENT I MARKETING</h2>
+<h3>11. Artykuł na blog (struktura)</h3>
+<div>
+<div><span>CONTENT</span><span>Blog</span></div>
+<p>Stwórz strukturę artykułu na temat "[tytuł]".
 
 Słowo kluczowe: [fraza SEO]
 Czytelnik: [kto to czyta i czego szuka]
@@ -404,12 +325,11 @@ Podaj:
 3. Nagłówki H2 i H3
 4. Główne punkty każdej sekcji
 5. CTA na końcu</p>
-                </div>
-
-                <h3>12. Newsletter</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>MAIL</span><span class="category-badge">Marketing</span></div>
-                    <p class="prompt-text">Napisz newsletter o [temat].
+</div>
+<h3>12. Newsletter</h3>
+<div>
+<div><span>MAIL</span><span>Marketing</span></div>
+<p>Napisz newsletter o [temat].
 
 Moja lista: [kto czyta]
 Cel: [czego mają się dowiedzieć/zrobić]
@@ -421,12 +341,11 @@ Struktura:
 - CTA (jeden, konkretny)
 
 Ton: [formalny/luźny]. Max 300 słów.</p>
-                </div>
-
-                <h3>13. Case study</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>CONTENT</span><span class="category-badge">Marketing</span></div>
-                    <p class="prompt-text">Napisz case study projektu dla [klient/branża].
+</div>
+<h3>13. Case study</h3>
+<div>
+<div><span>CONTENT</span><span>Marketing</span></div>
+<p>Napisz case study projektu dla [klient/branża].
 
 Sytuacja przed: [problem klienta]
 Co zrobiliśmy: [nasze działania]
@@ -440,14 +359,12 @@ Format:
 5. Podsumowanie + CTA
 
 Max 400 słów.</p>
-                </div>
-
-                <h2>PRODUKTYWNOŚĆ</h2>
-
-                <h3>14. Podsumowanie dokumentu</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>ANALIZA</span><span class="category-badge">Produktywność</span></div>
-                    <p class="prompt-text">Przeczytaj poniższy tekst i podaj:
+</div>
+<h2 id="s5">PRODUKTYWNOŚĆ</h2>
+<h3>14. Podsumowanie dokumentu</h3>
+<div>
+<div><span>ANALIZA</span><span>Produktywność</span></div>
+<p>Przeczytaj poniższy tekst i podaj:
 
 1. Streszczenie w 3 zdaniach
 2. 5 kluczowych punktów (bullet points)
@@ -456,12 +373,11 @@ Max 400 słów.</p>
 
 Tekst:
 "[wklej tekst]"</p>
-                </div>
-
-                <h3>15. Plan działania</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>PLAN</span><span class="category-badge">Produktywność</span></div>
-                    <p class="prompt-text">Stwórz plan działania dla: [cel/projekt]
+</div>
+<h3>15. Plan działania</h3>
+<div>
+<div><span>PLAN</span><span>Produktywność</span></div>
+<p>Stwórz plan działania dla: [cel/projekt]
 
 Kontekst: [obecna sytuacja]
 Zasoby: [czas, budżet, ludzie]
@@ -473,12 +389,11 @@ Plan musi zawierać:
 3. Konkretne zadania dla każdego
 4. Potencjalne ryzyka
 5. Mierniki sukcesu</p>
-                </div>
-
-                <h3>16. Notatki ze spotkania</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>NOTATKI</span><span class="category-badge">Produktywność</span></div>
-                    <p class="prompt-text">Na podstawie transkrypcji spotkania stwórz:
+</div>
+<h3>16. Notatki ze spotkania</h3>
+<div>
+<div><span>NOTATKI</span><span>Produktywność</span></div>
+<p>Na podstawie transkrypcji spotkania stwórz:
 
 1. Podsumowanie (3-5 zdań)
 2. Kluczowe decyzje
@@ -488,14 +403,12 @@ Plan musi zawierać:
 
 Transkrypcja:
 "[wklej transkrypcję]"</p>
-                </div>
-
-                <h2>OBSŁUGA KLIENTA</h2>
-
-                <h3>17. FAQ (pytania i odpowiedzi)</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>CONTENT</span><span class="category-badge">Obsługa</span></div>
-                    <p class="prompt-text">Napisz FAQ dla [produkt/usługa].
+</div>
+<h2 id="s6">OBSŁUGA KLIENTA</h2>
+<h3>17. FAQ (pytania i odpowiedzi)</h3>
+<div>
+<div><span>CONTENT</span><span>Obsługa</span></div>
+<p>Napisz FAQ dla [produkt/usługa].
 
 Główne obawy klientów: [lista]
 Najczęstsze pytania: [lista]
@@ -506,12 +419,11 @@ Dla każdego pytania napisz odpowiedź która:
 - Kończy się rozwianiem obiekcji
 
 Format: Pytanie + Odpowiedź (5-10 par)</p>
-                </div>
-
-                <h3>18. Odpowiedź na opinię</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>ODPOWIEDŹ</span><span class="category-badge">Reputacja</span></div>
-                    <p class="prompt-text">Klient zostawił opinię [pozytywną/negatywną]:
+</div>
+<h3>18. Odpowiedź na opinię</h3>
+<div>
+<div><span>ODPOWIEDŹ</span><span>Reputacja</span></div>
+<p>Klient zostawił opinię [pozytywną/negatywną]:
 "[treść opinii]"
 
 Napisz odpowiedź która:
@@ -521,14 +433,12 @@ Napisz odpowiedź która:
 - [Dla pozytywnej: wzmacnia i zaprasza ponownie]
 
 Max 50 słów. Podpisz: [Twoje imię, rola]</p>
-                </div>
-
-                <h2>ANALIZA I STRATEGIA</h2>
-
-                <h3>19. Analiza konkurencji</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>ANALIZA</span><span class="category-badge">Strategia</span></div>
-                    <p class="prompt-text">Przeanalizuj konkurenta: [nazwa/URL]
+</div>
+<h2 id="s7">ANALIZA I STRATEGIA</h2>
+<h3>19. Analiza konkurencji</h3>
+<div>
+<div><span>ANALIZA</span><span>Strategia</span></div>
+<p>Przeanalizuj konkurenta: [nazwa/URL]
 
 Moja firma: [krótki opis]
 
@@ -538,12 +448,11 @@ Oceń:
 3. Komunikacja (jak mówią do klientów)
 4. Ceny (jeśli widoczne)
 5. Rekomendacje dla mnie (3-5 konkretnych)</p>
-                </div>
-
-                <h3>20. Pomysły na content</h3>
-                <div class="prompt-box">
-                    <div class="prompt-label"><span>CONTENT</span><span class="category-badge">Marketing</span></div>
-                    <p class="prompt-text">Jestem [Twoja rola] dla [grupa docelowa].
+</div>
+<h3>20. Pomysły na content</h3>
+<div>
+<div><span>CONTENT</span><span>Marketing</span></div>
+<p>Jestem [Twoja rola] dla [grupa docelowa].
 
 Podaj 20 tematów na content które:
 1. Odpowiadają na pytania moich klientów
@@ -552,76 +461,53 @@ Podaj 20 tematów na content które:
 4. Rozwiązują konkretne problemy
 
 Dla każdego: tytuł + 1 zdanie opisu + główne słowo kluczowe</p>
-                </div>
-
-                <div class="highlight-box">
-                    <p class="mb-0"><strong>Pro tip:</strong> Zapisz te polecenia w dokumencie lub Notion. Gdy potrzebujesz - kopiuj, uzupełniaj pola i działaj. Z czasem dostosujesz je do swojego stylu.</p>
-                </div>
-
-                <h2>Jak dostosować polecenia do siebie?</h2>
-
-                <ol>
-                    <li><strong>Dodaj swój styl</strong> - "Pisz jak [opis Twojego stylu]"</li>
-                    <li><strong>Określ branżę</strong> - "Dla firmy z branży [X]"</li>
-                    <li><strong>Podaj przykład</strong> - "Podobnie do: [przykład]"</li>
-                    <li><strong>Iteruj</strong> - "Zmień ton na bardziej [X]"</li>
-                </ol>
-
-                <p>Jeśli chcesz nauczyć się więcej o AI dla biznesu, zapisz się do newslettera AI Radar.</p>
-
-                <div class="cta-box">
-                    <h3 class="text-xl font-bold text-primary mb-3">Chcesz więcej poleceń?</h3>
-                    <p class="text-gray-300 mb-4">W newsletterze <strong>AI Radar</strong> co tydzień wysyłam nowy, przetestowane polecenie + przykład użycia. Dołącz i buduj bibliotekę poleceń.</p>
-                    <a href="../ai-radar.html" class="inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-lg font-semibold hover:opacity-90 transition">
+</div>
+<div class="callout">
+<p><strong>Pro tip:</strong> Zapisz te polecenia w dokumencie lub Notion. Gdy potrzebujesz - kopiuj, uzupełniaj pola i działaj. Z czasem dostosujesz je do swojego stylu.</p>
+</div>
+<h2 id="s8">Jak dostosować polecenia do siebie?</h2>
+<ol>
+<li><strong>Dodaj swój styl</strong> - "Pisz jak [opis Twojego stylu]"</li>
+<li><strong>Określ branżę</strong> - "Dla firmy z branży [X]"</li>
+<li><strong>Podaj przykład</strong> - "Podobnie do: [przykład]"</li>
+<li><strong>Iteruj</strong> - "Zmień ton na bardziej [X]"</li>
+</ol>
+<p>Jeśli chcesz nauczyć się więcej o AI dla biznesu, zapisz się do newslettera AI Radar.</p>
+<div class="callout cta">
+<h3>Chcesz więcej poleceń?</h3>
+<p>W newsletterze <strong>AI Radar</strong> co tydzień wysyłam nowy, przetestowane polecenie + przykład użycia. Dołącz i buduj bibliotekę poleceń.</p>
+<a href="../ai-radar.html">
                         Zapisz się do AI Radar
                     </a>
-                </div>
-
-            </div>
-
-            <div class="glass rounded-xl p-6 mt-10">
-                <div class="flex items-start gap-4">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-2xl font-bold">D</div>
-                    <div>
-                        <h4 class="font-bold text-lg">Darek</h4>
-                        <p class="text-gray-400 text-sm mb-2">AI-TEAM.PL | Marketing & AI dla małych firm</p>
-                        <p class="text-gray-300 text-sm">8 lat w marketingu. Testuję polecenia codziennie i dzielę się najlepszymi.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-10">
-                <h3 class="text-xl font-bold mb-4">Czytaj dalej:</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <a href="/blog/chatgpt-dla-poczatkujacych" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Podstawy</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">ChatGPT dla początkujących</h4>
-                    </a>
-                    <a href="/blog/oferta-chatgpt" class="glass rounded-lg p-4 hover:bg-white/10 transition group">
-                        <span class="text-primary text-sm">Sprzedaż</span>
-                        <h4 class="font-semibold group-hover:text-primary transition">Jak napisać ofertę z ChatGPT</h4>
-                    </a>
-                </div>
-            </div>
-            <!-- FAQ -->
-            <section class="prose-custom mt-10" id="faq">
-                <h2>Najczęstsze pytania</h2>
-                <h3>Jak korzystać z gotowych szablonów poleceń w codziennej pracy?</h3>
-                <p>Skopiuj szablon, wklej go do ChatGPT, uzupełnij pola w nawiasach kwadratowych danymi swojej firmy i klienta, a potem wyślij. Najlepiej zapisz ulubione szablony w jednym dokumencie, żeby mieć je zawsze pod ręką. Z czasem dopasujesz je do swojego stylu i branży, a codzienne teksty będą powstawać dużo szybciej.</p>
-                <h3>Do jakich zadań w firmie przydają się gotowe polecenia dla ChatGPT?</h3>
-                <p>Zbiór obejmuje 20 szablonów w siedmiu grupach: maile i komunikacja, media społecznościowe, oferty i sprzedaż, treści i marketing, produktywność, obsługa klienta oraz analiza i strategia. Znajdziesz tam między innymi odpowiedź na reklamację, mail z propozycją współpracy, wycenę, newsletter, notatki ze spotkania i odpowiedź na opinię klienta.</p>
-                <h3>Jak dopasować gotowe polecenie do stylu mojej firmy?</h3>
-                <p>Dopisz do polecenia opis swojego stylu i wskaż branżę, dla której ma powstać tekst. Pomaga też podanie przykładu, na którym AI ma się wzorować. Jeśli wynik nie pasuje, poprawiaj go w kolejnych wiadomościach, na przykład prosząc o zmianę tonu. W ten sposób z ogólnego szablonu stopniowo robi się Twój własny, sprawdzone polecenie.</p>
-                <h3>Jak poprosić ChatGPT o odpowiedź na reklamację klienta?</h3>
-                <p>Wklej treść reklamacji i poproś o odpowiedź, która przeprasza za niedogodność bez tłumaczenia się, proponuje konkretne rozwiązanie, daje coś ekstra, na przykład rabat albo bonus, i zostawia drzwi otwarte. Ustal ton empatyczny i konkretny oraz limit około 80 słów. Szablon z wpisu zaczyna się od słów „Klient złożył reklamację”.</p>
-                <h3>Jak napisać mail z propozycją współpracy przy pomocy AI?</h3>
-                <p>Poproś AI o krótki mail do wybranego typu firmy, w którym opisujesz swoją usługę i jej główną korzyść. Mail ma zaczynać się od czegoś o odbiorcy, a nie o Tobie, pokazać, że rozumiesz jego problem, i zaproponować krótką rozmowę. Szablon z wpisu zakłada do 80 słów i ton pewny siebie, ale bez nachalności.</p>
-            </section>
-
-        </div>
-    </article>
-
-        <footer class="foot">
+</div>
+<section id="faq">
+<h2 id="s9">Najczęstsze pytania</h2>
+<h3>Jak korzystać z gotowych szablonów poleceń w codziennej pracy?</h3>
+<p>Skopiuj szablon, wklej go do ChatGPT, uzupełnij pola w nawiasach kwadratowych danymi swojej firmy i klienta, a potem wyślij. Najlepiej zapisz ulubione szablony w jednym dokumencie, żeby mieć je zawsze pod ręką. Z czasem dopasujesz je do swojego stylu i branży, a codzienne teksty będą powstawać dużo szybciej.</p>
+<h3>Do jakich zadań w firmie przydają się gotowe polecenia dla ChatGPT?</h3>
+<p>Zbiór obejmuje 20 szablonów w siedmiu grupach: maile i komunikacja, media społecznościowe, oferty i sprzedaż, treści i marketing, produktywność, obsługa klienta oraz analiza i strategia. Znajdziesz tam między innymi odpowiedź na reklamację, mail z propozycją współpracy, wycenę, newsletter, notatki ze spotkania i odpowiedź na opinię klienta.</p>
+<h3>Jak dopasować gotowe polecenie do stylu mojej firmy?</h3>
+<p>Dopisz do polecenia opis swojego stylu i wskaż branżę, dla której ma powstać tekst. Pomaga też podanie przykładu, na którym AI ma się wzorować. Jeśli wynik nie pasuje, poprawiaj go w kolejnych wiadomościach, na przykład prosząc o zmianę tonu. W ten sposób z ogólnego szablonu stopniowo robi się Twój własny, sprawdzone polecenie.</p>
+<h3>Jak poprosić ChatGPT o odpowiedź na reklamację klienta?</h3>
+<p>Wklej treść reklamacji i poproś o odpowiedź, która przeprasza za niedogodność bez tłumaczenia się, proponuje konkretne rozwiązanie, daje coś ekstra, na przykład rabat albo bonus, i zostawia drzwi otwarte. Ustal ton empatyczny i konkretny oraz limit około 80 słów. Szablon z wpisu zaczyna się od słów „Klient złożył reklamację”.</p>
+<h3>Jak napisać mail z propozycją współpracy przy pomocy AI?</h3>
+<p>Poproś AI o krótki mail do wybranego typu firmy, w którym opisujesz swoją usługę i jej główną korzyść. Mail ma zaczynać się od czegoś o odbiorcy, a nie o Tobie, pokazać, że rozumiesz jego problem, i zaproponować krótką rozmowę. Szablon z wpisu zakłada do 80 słów i ton pewny siebie, ale bez nachalności.</p>
+</section>
+  </article>
+</div>
+<section class="sec bp-end">
+  <div class="wrap">
+    <div class="oferta-box">
+      <img src="/assets/teamek/pokazuje.webp" alt="Teamek" width="382" height="520" loading="lazy">
+      <div><span class="eyebrow">Zbuduj to u siebie</span><h2>Wdrożenie 10 systemów AI w Twojej firmie</h2>
+        <p>Co drugi poniedziałek budujemy razem jeden system: maile, klienci, zadania, wyceny. Online, w grupie do 8 firm, start 11 stycznia 2027.</p>
+        <div class="cta"><a class="btn" href="/wdrozenie-systemow-ai">Zobacz program i ceny</a><a class="btn ghost" href="/ai-radar">Zapisz się na AI Radar</a></div></div>
+    </div>
+    <h2 class="pow-h">Czytaj dalej</h2>
+    <div class="pow"><a class="pc" href="/blog/crm-dla-malej-firmy"><div class="bc c2" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</span><img src="/assets/teamek/paczka.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Jaki CRM dla małej firmy? Abonament, darmowy czy własny system</span><span class="pc-m">9 min czytania</span></a><a class="pc" href="/blog/dzial-ai-w-firmie"><div class="bc c3" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><img src="/assets/teamek/brawo.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">Dział AI w firmie: zatrudnić, zlecić czy zrobić samemu?</span><span class="pc-m">9 min czytania</span></a><a class="pc" href="/blog/ai-act-mala-firma"><div class="bc c4" aria-hidden="true"><span class="bc-tag">Poradnik</span><span class="bc-t">AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026</span><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400" loading="lazy"></div><span class="pc-t">AI Act dla małej firmy: co zrobić przed 2 sierpnia 2026</span><span class="pc-m">6 min czytania</span></a></div>
+  </div>
+</section>
+<footer class="foot">
   <div class="wm" aria-hidden="true">AI-Team</div>
   <div class="wrap">
     <div class="cols">
@@ -638,7 +524,7 @@ Dla każdego: tytuł + 1 zdanie opisu + główne słowo kluczowe</p>
       </div>
       <div>
         <h4>Wiedza</h4>
-      <a href="/blog/">Blog</a>
+        <a href="/blog/">Blog</a>
         <a href="/ai-radar">AI Radar</a>
         <a href="/mapa-wdrozenia">Mapa wdrożenia AI</a>
         <a href="/ai-act/">AI Act dla małej firmy</a>
@@ -663,6 +549,7 @@ Dla każdego: tytuł + 1 zdanie opisu + główne słowo kluczowe</p>
     </div>
   </div>
 </footer>
-<script src="/assets/mega-skin.js?v=202609050115" defer></script>
+<script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/blog-teamek.js?v=20261115a" defer></script>
 </body>
 </html>
