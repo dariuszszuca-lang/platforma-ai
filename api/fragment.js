@@ -303,7 +303,7 @@ function buildLeadMagnetEmail(type, name = "") {
     <p style="font-size:14px;line-height:1.55;margin:0 0 22px">Wolisz zachować materiał na komputerze? <a href="${email.pdfUrl}" style="color:#1d4ed8;font-weight:700">${email.pdfLabel}</a>.</p>
     <p style="font-size:15px;line-height:1.65;margin:0 0 16px">${email.firstStep}</p>
     <div style="background:#fff0e5;border-left:4px solid #ff761a;border-radius:0 10px 10px 0;padding:14px 16px;margin:22px 0">
-      <p style="font-size:14px;line-height:1.6;margin:0"><b>AI Radar:</b> poniedziałek o 18:00 to praktyczne AI, narzędzie, prompt albo ruch do wykonania. W czwartek o 18:00 pokazuję jeden system AI od środka.</p>
+      <p style="font-size:14px;line-height:1.6;margin:0"><b>AI Radar:</b> w każdą środę o 18:00 jeden konkret z AI i jeden system pokazany od środka.</p>
     </div>
     <p style="font-size:15px;line-height:1.65;margin:0 0 20px">${email.reply}</p>
     <p style="font-size:14px;line-height:1.5;margin:0">Darek<br>AI-Team</p>
@@ -323,7 +323,7 @@ function buildLeadMagnetEmail(type, name = "") {
     "",
     email.firstStep,
     "",
-    "AI Radar: poniedziałek 18:00 i czwartek 18:00.",
+    "AI Radar: w każdą środę o 18:00.",
     "",
     email.reply,
     "",

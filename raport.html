@@ -164,7 +164,7 @@
         <input type="text" name="name" id="raportName" placeholder="Imię (opcjonalnie)" autocomplete="given-name" style="padding: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cream); font-family: inherit; font-size: 15px;" />
         <label style="font-size: 12px; color: rgba(251,248,241,0.7); display: flex; align-items: flex-start; gap: 10px;">
           <input type="checkbox" id="raportConsent" name="consent" required style="margin-top: 4px;" />
-          <span>Zgadzam się na otrzymanie raportu PDF i newslettera AI Radar od Dariusza Szucy / AI-Team (dwa razy w tygodniu). Mogę wypisać się w każdej chwili jednym klikiem.</span>
+          <span>Zgadzam się na otrzymanie raportu PDF i newslettera AI Radar od Dariusza Szucy / AI-Team (raz w tygodniu, w środy). Mogę wypisać się w każdej chwili jednym klikiem.</span>
         </label>
         <div id="raport-status" role="alert" style="display:none; color:#ffb4a2; font-size:13px; line-height:1.5;"></div>
         <button type="submit" id="raportButton" class="cta-primary" style="background: var(--cream); color: var(--ink); margin-top: 8px;">Pobierz raport PDF →</button>
@@ -255,7 +255,7 @@
 </footer>
 
 <script>
-const RAPORT_CONSENT_TEXT = 'Zgoda na otrzymanie raportu „15 sposobów wdrożenia AI w małej firmie" (PDF) i newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu. Wypis w każdej chwili jednym klikiem.';
+const RAPORT_CONSENT_TEXT = 'Zgoda na otrzymanie raportu „15 sposobów wdrożenia AI w małej firmie" (PDF) i newslettera AI Radar od Dariusza Szucy / AI-Team raz w tygodniu, w środy. Wypis w każdej chwili jednym klikiem.';
 const firebaseConfig = {
   apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
   authDomain: 'ai-team-zlecenia.firebaseapp.com',
@@ -288,7 +288,7 @@ raportForm.addEventListener('submit', async function (event) {
     const id = raportSubscriberId(email);
     await raportDb.collection('newsletter_subscribers').doc(id).set({
       id, email, name, group: 'ai-radar',
-      groups: ['ai-radar', 'ai-radar-2x', 'raport-15-sposobow'],
+      groups: ['ai-radar', 'ai-radar-sroda', 'raport-15-sposobow'],
       status: 'active', source: 'raport',
       page_url: window.location.href, referrer: document.referrer || '',
       consent: { newsletter: true, text: RAPORT_CONSENT_TEXT, accepted_at: now, privacy_url: 'https://ai-team.pl/privacy', privacy_version: '2026-07-29', version: '2026-08-27-raport-v1', frequency: 'twice_weekly' },

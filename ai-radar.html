@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-team.pl/ai-radar">
     <meta property="og:title" content="AI Radar. krótki newsletter o AI | AI-Team">
-    <meta property="og:description" content="W poniedziałki i czwartki: narzędzia, agenci, automatyzacje i konkretne wnioski z pracy AI-Team. Bez szumu.">
+    <meta property="og:description" content="W każdą środę o 18:00: jeden konkret z AI dla małej firmy, system krok po kroku i rzecz do odpuszczenia. Bez szumu.">
     <meta property="og:image" content="https://ai-team.pl/assets/og-ai-radar-20260511.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -106,7 +106,7 @@
         <li><img src="/assets/teamek/laptop.webp" alt="" width="351" height="520"><div><b>Jeden system krok po kroku</b><span>Z mojej mapy systemów, na przykładzie prawdziwej firmy.</span></div></li>
         <li><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400"><div><b>Jedna rzecz do odpuszczenia</b><span>Co dobrze wygląda tylko na prezentacji.</span></div></li>
       </ul>
-      <p class="radar-schedule"><strong>W każdy poniedziałek i czwartek o 18:00.</strong> Wydania planuję z wyprzedzeniem, więc zapisujesz się raz i nie pilnujesz premier.</p>
+      <p class="radar-schedule"><strong>W każdą środę o 18:00.</strong> Raz w tygodniu, nie częściej. Zapisujesz się raz i nie pilnujesz premier.</p>
     </div>
     <aside class="rd-side" aria-label="Formularz zapisu">
       <div class="rd-card">
@@ -133,7 +133,7 @@
           </div>
           <label class="radar-consent">
             <input type="checkbox" id="newsletterConsent" name="consent" required>
-            <span>Zgadzam się na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu, w poniedziałki i czwartki o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Wiem, że mogę wycofać zgodę w każdej chwili. Szczegóły są w <a href="/privacy.html">polityce prywatności</a>.</span>
+            <span>Zgadzam się na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team raz w tygodniu, w środy o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Wiem, że mogę wycofać zgodę w każdej chwili. Szczegóły są w <a href="/privacy.html">polityce prywatności</a>.</span>
           </label>
           <button class="radar-button" id="newsletterButton" type="submit">Zapisz mnie na AI Radar</button>
           <div class="radar-message" id="newsletterMessage" role="status" aria-live="polite"></div>
@@ -194,7 +194,7 @@
 </footer>
 
 <script>
-const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team dwa razy w tygodniu, w poniedziałki i czwartki o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Zgodę można wycofać w każdej chwili przez link wypisu.';
+const NEWSLETTER_CONSENT_TEXT = 'Zgoda na otrzymywanie newslettera AI Radar od Dariusza Szucy / AI-Team raz w tygodniu, w środy o 18:00. Wiadomości zawierają treści edukacyjne i okazjonalne informacje o usługach. Zgodę można wycofać w każdej chwili przez link wypisu.';
 const firebaseConfig = {
   apiKey: ['AIzaSyDKmfXRkX', 'BhYa6yk9idY4QFZdRRhU5eV9I'].join(''),
   authDomain: 'ai-team-zlecenia.firebaseapp.com',
@@ -261,7 +261,7 @@ newsletterForm.addEventListener('submit', async function(event) {
       email,
       name,
       group,
-      groups: Array.from(new Set(['ai-radar', 'ai-radar-2x', group])),
+      groups: Array.from(new Set(['ai-radar', 'ai-radar-sroda', group])),
       status: 'active',
       source: 'ai-radar',
       page_url: window.location.href,
@@ -272,7 +272,7 @@ newsletterForm.addEventListener('submit', async function(event) {
         accepted_at: now,
         privacy_url: 'https://ai-team.pl/privacy',
         privacy_version: '2026-07-29',
-        version: '2026-07-29-ai-radar-2x-v1',
+        version: '2026-11-15-ai-radar-sroda-v1',
         frequency: 'twice_weekly'
       },
       created_at: now,

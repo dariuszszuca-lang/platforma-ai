@@ -6,12 +6,13 @@ const newsletterHandler = require('../api/newsletter-send');
 
 const root = path.join(__dirname, '..');
 
-test('nowe zapisy AI Radar mają jawną zgodę na poniedziałki i czwartki', () => {
+test('nowe zapisy AI Radar mają jawną zgodę na środy', () => {
   const html = fs.readFileSync(path.join(root, 'ai-radar.html'), 'utf8');
 
-  assert.match(html, /poniedziałek i czwartek o 18:00/i);
-  assert.match(html, /ai-radar-2x/);
-  assert.match(html, /2026-07-29-ai-radar-2x-v1/);
+  assert.match(html, /środę o 18:00/i);
+  assert.match(html, /raz w tygodniu, w środy o 18:00/i);
+  assert.match(html, /ai-radar-sroda/);
+  assert.match(html, /2026-11-15-ai-radar-sroda-v1/);
   assert.match(html, /okazjonalne informacje o usługach/i);
 });
 
