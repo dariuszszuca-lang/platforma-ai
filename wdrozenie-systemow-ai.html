@@ -128,10 +128,28 @@
 </section>
 
 <section class="sec" id="skill">
-  <div class="wrap">
-    <div class="sec-head rv"><div class="t"><span class="eyebrow">Twój asystent między spotkaniami</span><h2>Skill /procesy: instrukcja, która pracuje z Tobą</h2></div>
-    <div class="tk-say"><img src="/assets/teamek/laptop.webp" width="351" height="520" alt="Teamek" loading="lazy"><span class="bub">Wpisujesz /procesy maile, a ja prowadzę Cię krok po kroku.</span></div>
-    <p class="lead">Skill to pakiet instrukcji dla Twojego asystenta w Claude Code. Instalujesz go jednym poleceniem na starcie. Wpisujesz na przykład <b>/procesy maile</b>, a asystent wie, który system budujesz, prowadzi Cię krok po kroku, sprawdza, czy system działa, i przez rok pobiera aktualizacje. W Wdrożeniu 10 odblokowuje 10 systemów edycji, w Wdrożeniu 1:1 wszystkie 22 i kolejne.</p></div>
+  <div class="wrap sk">
+    <div class="sk-l">
+      <span class="eyebrow">Twój asystent między spotkaniami</span>
+      <h2>Skill /procesy prowadzi Cię krok po kroku</h2>
+      <p class="lead">Instalujesz go jednym poleceniem. Potem wpisujesz nazwę systemu, a asystent pracuje z Tobą na Twojej firmie. Kliknij krok i zobacz, jak to wygląda.</p>
+      <ol class="sk-steps" id="sk-steps">
+        <li><button type="button" data-i="0" aria-pressed="true"><b>Pyta o firmę</b><span>Kilka pytań, zero formularzy</span></button></li>
+        <li><button type="button" data-i="1" aria-pressed="false"><b>Buduje system</b><span>Tworzy pliki i ustawienia</span></button></li>
+        <li><button type="button" data-i="2" aria-pressed="false"><b>Czeka na Twoje „tak”</b><span>Ty decydujesz o każdym skutku</span></button></li>
+        <li><button type="button" data-i="3" aria-pressed="false"><b>Sprawdza, czy działa</b><span>Test na Twoich danych</span></button></li>
+        <li><button type="button" data-i="4" aria-pressed="false"><b>Pobiera aktualizacje</b><span>Przez cały rok</span></button></li>
+      </ol>
+      <p class="small">W Wdrożeniu 10 skill odblokowuje 10 systemów edycji, w Wdrożeniu 1:1 wszystkie 22 i kolejne.</p>
+    </div>
+    <div class="sk-r">
+      <div class="ws-win sk-win">
+        <div class="ws-bar"><span></span><span></span><span></span><b>Claude Code · /procesy maile</b></div>
+        <div class="sk-prog"><i id="sk-bar"></i></div>
+        <div class="sk-chat" id="sk-chat" aria-live="polite"></div>
+      </div>
+      <div class="ws-tk sk-tk"><span class="ws-bub" id="sk-bub">Kliknij krok po lewej.</span><img id="sk-img" src="/assets/teamek/laptop.webp" width="351" height="520" alt="Teamek"></div>
+    </div>
   </div>
 </section>
 
@@ -139,6 +157,15 @@
   <div class="wrap">
     <div class="sec-head rv"><div class="t"><span class="eyebrow">Program</span><h2>10 systemów w 20 tygodni</h2></div>
     <p class="lead">Najpierw porządek w firmie, potem sprzedaż i nowi klienci. Każdy system należy do jednego z procesów firmy. Pełna mapa 44 systemów: <a href="/systemy">ai-team.pl/systemy</a>.</p></div>
+    <div class="tl-box" id="tl">
+      <div class="tl-top"><label for="tl-r"><b>Przesuń suwak:</b> zobacz swoją firmę w kolejnych tygodniach</label><output id="tl-out">Tydzień 0</output></div>
+      <input type="range" id="tl-r" min="0" max="20" step="2" value="6" aria-describedby="tl-now">
+      <div class="tl-body">
+        <div class="tl-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="tl-bg"/><circle cx="60" cy="60" r="52" class="tl-fg" id="tl-fg" pathLength="10"/></svg><span id="tl-n">3/10</span><small>systemów działa</small></div>
+        <div class="tl-txt"><p id="tl-now" class="tl-now"></p><ul class="tl-have" id="tl-have"></ul></div>
+        <img id="tl-img" src="/assets/teamek/laptop.webp" width="351" height="520" alt="Teamek">
+      </div>
+    </div>
     <div class="of-grid of-5">
       <div class="of-card"><div class="of-n">01 · tydz. 1-2<span class="of-tag">Obsługa</span></div><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400"><h3>Wiedza firmy</h3><p>Oferta, częste pytania i ustalenia z klientami w jednym zbiorze.</p><p class="ef">Asystent odpowiada z Twoich plików.</p></div>
       <div class="of-card"><div class="of-n">02 · tydz. 3-4<span class="of-tag">Zarządzanie</span></div><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400"><h3>Twoja zgoda</h3><p>Ustalamy, co asystent robi sam, a co czeka na Ciebie.</p><p class="ef">Nic ważnego nie wychodzi bez Ciebie.</p></div>
@@ -232,7 +259,7 @@
 </footer>
 
 <script src="/assets/mega.js?v=202609050005" defer></script>
-<script src="/assets/warsztat-demo.js?v=20261115c" defer></script>
+<script src="/assets/warsztat-demo.js?v=20261115d" defer></script>
 <script src="/assets/mega-fx.js?v=202609050005" defer></script>
 </body>
 </html>
