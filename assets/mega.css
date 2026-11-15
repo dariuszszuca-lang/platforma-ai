@@ -370,3 +370,39 @@ strong { font-weight: 600; }
   }
 }
 .ws-done[hidden], .ws-drafts[hidden] { display: none; }
+/* 15.11.2026 „niech sekcje żyją”: światło pod kursorem, Teamek oddycha, linie rysowane przewijaniem */
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.tk-card, .sy, .of-card, .step { position: relative; isolation: isolate; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.tk-card::after, .sy::after, .of-card::after, .step::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1; opacity: 0; transition: opacity .3s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(184,92,46,.16), transparent 70%); }
+.tk-card:hover, .sy:hover, .of-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(139,66,32,.45); border-color: rgba(184,92,46,.45); }
+.tk-card:hover::after, .sy:hover::after, .of-card:hover::after, .step:hover::after { opacity: 1; }
+.tk-card img, .sy img, .of-card img { transition: transform .35s cubic-bezier(.3,1.5,.5,1); transform-origin: 50% 90%; }
+.tk-card:hover img, .sy:hover img, .of-card:hover img { transform: rotate(-6deg) scale(1.06); }
+/* karta wyróżniona: obracająca się miedziana krawędź */
+.of-card.hi { border: 1px solid transparent; background: linear-gradient(var(--ink), var(--ink)) padding-box, conic-gradient(from var(--ang), #B85C2E, #e6a07a, #1C1917 40%, #1C1917 60%, #B85C2E) border-box; animation: krawedz 6s linear infinite; }
+@keyframes krawedz { to { --ang: 360deg; } }
+/* Teamek oddycha */
+.tk-say img, .ws-tk img { animation: oddech 4.5s ease-in-out infinite; }
+@keyframes oddech { 0%,100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+/* kursor w terminalu */
+.ws-log li.on:last-child::after { content: "▍"; margin-left: 4px; animation: kursor 1s steps(1) infinite; color: #9fd49a; }
+@keyframes kursor { 50% { opacity: 0; } }
+.ws-win { position: relative; }
+.ws-win::before { content: ""; position: absolute; inset: -18px; z-index: -1; border-radius: 24px; background: radial-gradient(60% 60% at 70% 60%, rgba(184,92,46,.28), transparent 70%); filter: blur(8px); animation: poswiata 5s ease-in-out infinite; }
+@keyframes poswiata { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+.chip { transition: background .2s, color .2s, border-color .2s, transform .15s; }
+.chip:active { transform: scale(.96); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* miedziana kreska pod nagłówkiem sekcji rysuje się przy przewijaniu */
+    .sec-head h2 { background: linear-gradient(var(--copper), var(--copper)) no-repeat 0 100% / 0 3px; padding-bottom: 8px; animation: kreska linear both; animation-timeline: view(); animation-range: entry 20% cover 40%; }
+    @keyframes kreska { to { background-size: 72px 3px; } }
+    /* karty kroków wchodzą lekko z dołu, ale nigdy nie są ukryte */
+    .tk-card, .step, .of-card { animation: wejscie linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
+    @keyframes wejscie { from { opacity: .5; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tk-say img, .ws-tk img, .of-card.hi, .ws-win::before, .ws-log li.on:last-child::after { animation: none; }
+  .tk-card, .sy, .of-card { transition: none; }
+}

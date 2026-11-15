@@ -48,3 +48,14 @@
   chips.forEach(function (c) { c.addEventListener('click', function () { set(c.dataset.f); }); });
   set('Wszystkie');
 })();
+/* światło pod kursorem na kartach */
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.addEventListener('pointermove', function (e) {
+    var c = e.target.closest && e.target.closest('.tk-card, .sy, .of-card, .step');
+    if (!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+})();
