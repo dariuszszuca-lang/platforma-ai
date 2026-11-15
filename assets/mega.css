@@ -452,3 +452,6 @@ strong { font-weight: 600; }
 @media (max-width: 900px) { .sk { grid-template-columns: 1fr; } .tl-body { grid-template-columns: 100px minmax(0,1fr); } .tl-body img { display: none; } .tl-ring { width: 100px; height: 100px; } .tk-say .bub { max-width: none; } }
 @media (prefers-reduced-motion: reduce) { .sk-chat p { animation: none; } .tl-body img { animation: none; } }
 .tk-say .bub { max-width: 38ch; min-width: 220px; }
+.tl-c { position: relative; display: grid; justify-items: center; gap: 2px; }
+.tl-ring small { margin-top: 0; }
+.of-n { flex-wrap: wrap; gap: 6px; }
