@@ -95,7 +95,7 @@
     </a>
     <div class="menu" id="menu">
       <a href="/wdrozenie-systemow-ai">Wdrożenie AI</a>
-      <a href="/systemy">Mapa 44 systemów</a>
+      <a href="/systemy">Mapa systemów</a>
       <a href="/wdrozenia">Wdrożenia</a>
       <a href="/blog/">Blog</a>
       <a href="/ai-radar">AI Radar</a>
@@ -110,20 +110,43 @@
 <header class="hero hero-calm" id="top">
   <div class="wrap grid">
     <div class="copy">
-      <span class="eyebrow">AI-Team · Gdańsk i online</span>
+      <span class="eyebrow">Wdrożenie systemów AI online</span>
       <h1>Systemy AI, które pracują w małej firmie</h1>
-      <p class="lead">Zbudowałem u siebie 22 systemy AI: maile, klienci, zadania, wyceny. Od stycznia pokażę Ci, jak zbudować je w Twojej firmie, krok po kroku.</p>
+      <p class="lead">Zbudowałem u siebie 22 systemy AI: maile, klienci, zadania, wyceny. Od 11 stycznia pokażę Ci, jak zbudować je w Twojej firmie, krok po kroku.</p>
       <div class="cta">
-        <a href="/wdrozenie-systemow-ai" class="btn">Zobacz, jak to działa <span class="arr">→</span></a>
+        <a href="/wdrozenie-systemow-ai" class="btn">Zobacz program i ceny</a>
         <a href="/kontakt" class="btn ghost">Umów rozmowę</a>
       </div>
-      <div class="proof">
-        <span><b>Start 11.01.2027</b> · grupa do 8 firm</span>
-        <span><b>Od 2 970 zł</b> brutto</span>
-      </div>
+      <p class="proof-line">Grupa do 8 firm · spotkanie co drugi poniedziałek o 8:00 · od 2 970 zł brutto</p>
     </div>
     <div class="side">
-      <img src="/assets/oferta/warsztat-teamek.webp" width="1400" height="933" alt="Teamek w warsztacie pokazuje listę kroków na laptopie" style="border-radius:10px;border:1px solid var(--line)" decoding="async">
+      <div class="ws" id="ws" aria-label="Pokaz: asystent porządkuje poniedziałkowe maile">
+        <div class="ws-win">
+          <div class="ws-bar"><span></span><span></span><span></span><b>Terminal · Twoja firma</b></div>
+          <ol class="ws-log" id="ws-log" aria-live="polite">
+            <li data-say="Wpisujesz jedno polecenie.">› /procesy maile</li>
+            <li data-say="Czytam pocztę z weekendu.">Czytam skrzynkę: 23 nowe maile</li>
+            <li data-say="Dzielę na pilne i resztę.">Pilne: 3 · do przeczytania: 8 · reklamy: 12</li>
+            <li data-say="Piszę szkice Twoim językiem.">Szkice odpowiedzi: 3 gotowe, z Twojej oferty</li>
+            <li data-say="Bez Ciebie nic nie wysyłam.">Czekam na Twoją decyzję</li>
+          </ol>
+          <div class="ws-ask" id="ws-ask">
+            <p><b>3 szkice gotowe.</b> Wysłać klientom?</p>
+            <div class="ws-btns"><button type="button" class="btn" id="ws-tak">Tak, wyślij</button><button type="button" class="btn ghost" id="ws-pop">Pokaż szkice</button></div>
+          </div>
+          <div class="ws-done" id="ws-done" hidden><p><b>Wysłane po Twoim „tak”.</b> Jest 8:07, a skrzynka jest pusta.</p><button type="button" class="ws-again" id="ws-again">Pokaż jeszcze raz</button></div>
+          <div class="ws-drafts" id="ws-drafts" hidden>
+            <p><b>Pani Ola, gabinet:</b> „Dzień dobry, termin w czwartek o 10:00 jest wolny. Potwierdzam rezerwację…”</p>
+            <p><b>Hurtownia Bałtyk:</b> „Dziękuję za zapytanie. Wycenę wyślę jutro do 12:00…”</p>
+            <p><b>Pan Marek:</b> „Faktura poprawiona, w załączniku nowa wersja…”</p>
+          </div>
+        </div>
+        <div class="ws-tk">
+          <span class="ws-bub" id="ws-bub">Poniedziałek, 8:00. Patrz.</span>
+          <img id="ws-img" src="/assets/teamek/pokazuje.webp" width="382" height="520" alt="Teamek, pomocnik AI-Team">
+        </div>
+      </div>
+      <p class="ws-note">Pokaz na przykładowych danych. Tak działa trzeci system z programu.</p>
     </div>
   </div>
 </header>
@@ -139,6 +162,18 @@
       <div class="tk-card rv"><img src="/assets/teamek/lista.webp" width="360" height="400" alt="" loading="lazy"><span class="k">Krok 2 · co dwa tygodnie</span><h3>Budujesz</h3><p>Godzina pokazu, godzina pracy u siebie. Między spotkaniami prowadzi Cię skill /procesy.</p></div>
       <div class="tk-card rv"><img src="/assets/teamek/klucz.webp" width="360" height="400" alt="" loading="lazy"><span class="k">Krok 3 · zawsze</span><h3>Ty decydujesz</h3><p>Asystent przygotowuje maile, wyceny i wpisy. Nic ważnego nie wychodzi bez Twojego „tak”.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="systemy-10">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="t"><span class="eyebrow">Program</span><h2>10 systemów, które zbudujesz w 20 tygodni</h2></div>
+      <p class="lead">Najpierw porządek w firmie, potem sprzedaż i nowi klienci. Wybierz proces, żeby zobaczyć, co porządkuje.</p>
+    </div>
+    <div class="chips" role="group" aria-label="Filtr procesów"><button type="button" class="chip" data-f="Wszystkie" aria-pressed="false">Wszystkie</button><button type="button" class="chip" data-f="Obsługa" aria-pressed="false">Obsługa</button><button type="button" class="chip" data-f="Sprzedaż" aria-pressed="false">Sprzedaż</button><button type="button" class="chip" data-f="Pozyskanie" aria-pressed="false">Pozyskanie</button><button type="button" class="chip" data-f="Finanse" aria-pressed="false">Finanse</button><button type="button" class="chip" data-f="Zarządzanie" aria-pressed="false">Zarządzanie</button></div>
+    <ol class="sy-row" id="sy-row"><li class="sy" data-p="Obsługa"><img src="/assets/teamek/lupa.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">1</span><span class="sy-p">Obsługa</span><h3>Wiedza firmy</h3><p>Asystent odpowiada z Twoich plików, a nie z internetu.</p></li><li class="sy" data-p="Zarządzanie"><img src="/assets/teamek/klucz.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">2</span><span class="sy-p">Zarządzanie</span><h3>Twoja zgoda</h3><p>Nic ważnego nie wychodzi bez Twojego „tak”.</p></li><li class="sy" data-p="Obsługa"><img src="/assets/teamek/laptop.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">3</span><span class="sy-p">Obsługa</span><h3>Skrzynka maili</h3><p>Rano masz gotowe szkice odpowiedzi.</p></li><li class="sy" data-p="Sprzedaż"><img src="/assets/teamek/paczka.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">4</span><span class="sy-p">Sprzedaż</span><h3>Baza klientów</h3><p>Przed telefonem wiesz, co komu obiecałeś.</p></li><li class="sy" data-p="Obsługa"><img src="/assets/teamek/lista.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">5</span><span class="sy-p">Obsługa</span><h3>Lista zadań</h3><p>Rano wiesz, co dziś najważniejsze.</p></li><li class="sy" data-p="Sprzedaż"><img src="/assets/teamek/zegar.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">6</span><span class="sy-p">Sprzedaż</span><h3>Przypomnienia</h3><p>Żadne zapytanie nie przepada.</p></li><li class="sy" data-p="Sprzedaż"><img src="/assets/teamek/telefon.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">7</span><span class="sy-p">Sprzedaż</span><h3>Rozmowa do decyzji</h3><p>Odpowiedzi na obiekcje w Twoim stylu.</p></li><li class="sy" data-p="Finanse"><img src="/assets/teamek/pomysl.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">8</span><span class="sy-p">Finanse</span><h3>Wycena</h3><p>Wycena w kilka minut, według Twoich zasad.</p></li><li class="sy" data-p="Pozyskanie"><img src="/assets/teamek/megafon.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">9</span><span class="sy-p">Pozyskanie</span><h3>Wpisy w sieci</h3><p>Asystent proponuje, Ty zatwierdzasz.</p></li><li class="sy" data-p="Pozyskanie"><img src="/assets/teamek/brawo.webp" alt="" width="360" height="400" loading="lazy"><span class="sy-n">10</span><span class="sy-p">Pozyskanie</span><h3>Reklamy pod kontrolą</h3><p>Wiesz, ile kosztuje klient z reklamy.</p></li></ol>
+    <p class="small" style="margin-top:14px">W Wdrożeniu 1:1 dostajesz wszystkie 22 gotowe systemy. <a href="/systemy">Zobacz mapę systemów</a>.</p>
   </div>
 </section>
 
@@ -324,7 +359,7 @@
         <h4>Oferta</h4>
         <a href="/wdrozenie-systemow-ai">Wdrożenie systemów AI</a>
         <a href="/wdrozenie-systemow-ai#cennik">Pakiety i ceny</a>
-        <a href="/systemy">Mapa 44 systemów</a>
+        <a href="/systemy">Mapa systemów</a>
         <a href="/wdrozenia">Wdrożenia</a>
       </div>
       <div>
@@ -356,6 +391,7 @@
 </footer>
 
 <script src="/assets/mega.js?v=202609050005" defer></script>
+<script src="/assets/warsztat-demo.js?v=20261115b" defer></script>
 <script src="/assets/mega-fx.js?v=202609050005" defer></script>
 </body>
 </html>
