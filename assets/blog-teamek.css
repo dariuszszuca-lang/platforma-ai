@@ -80,3 +80,13 @@ a:hover .bc img, .bc.duza:hover img { transform: rotate(-5deg) scale(1.05); }
 }
 @media (prefers-reduced-motion: reduce) { .spis-tk img, .oferta-box img { animation: none; } .bc img { transition: none; } }
 .pc .bc-t, .bp-head .bc-t { display: none; }
+/* okładki ze sceną (generowane z Teamkiem, 15.11.2026) */
+.bc.ma-scene { padding: 16px; }
+.bc.ma-scene::before { display: none; }
+.bc img.scena { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; right: auto; bottom: auto; z-index: -1; transform: none; transition: transform .6s ease; }
+a:hover .bc img.scena, .bc.duza:hover img.scena { transform: scale(1.04); }
+.bl-hero .grid2 { grid-template-columns: minmax(0,1fr) minmax(0,.9fr); }
+.bl-hero-img { position: relative; }
+.bl-hero-img img { border-radius: 16px; box-shadow: 0 30px 60px -34px rgba(139,66,32,.55); }
+.bl-hero-img .bub { position: absolute; left: -18px; bottom: 18px; background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 8px 12px; font-weight: 600; font-size: 14px; box-shadow: 3px 3px 0 var(--ink); max-width: 230px; }
+.bl-feat .bc-t { display: none; }
