@@ -36,7 +36,7 @@ Wdrożenie systemów AI online: https://ai-team.pl/wdrozenie-systemow-ai
 Strony i systemy na zamówienie wyceniamy po krótkiej rozmowie. Mapa 44 systemów: https://ai-team.pl/systemy. Kontakt: https://ai-team.pl/kontakt
 
 ### Newsletter AI Radar
-Cotygodniowy newsletter (środa, 18:00): gorące newsy AI, narzędzie tygodnia, prompt dnia, 3 szybkie tipy, automatyzacja tygodnia. W 100% darmowy. Zapis: https://ai-team.pl/ai-radar.html. Lead magnet: raport „15 sposobów wdrożenia AI w małej firmie" (PDF do pobrania).
+Cotygodniowy newsletter (środa, 18:00): jeden konkret z AI dla małej firmy, jeden system krok po kroku i jedna rzecz do odpuszczenia. Bezpłatny. Zapis: https://ai-team.pl/ai-radar
 
 ### Darmowe narzędzia AI online
 Interaktywne narzędzia: Prompt Generator (generator promptów do ChatGPT i Claude), ROI Calculator AI (kalkulator zwrotu z wdrożenia AI), Quiz gotowości firmy na AI i inne.
