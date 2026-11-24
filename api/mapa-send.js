@@ -24,7 +24,7 @@ ZASADY PISANIA:
 
 STRUKTURA: 3 kroki od czego zacząć (uporządkowane od najłatwiejszego i najszybszego zwrotu); 1-2 rzeczy do odpuszczenia na start; 1 następny krok.
 
-OFERTA AI-TEAM (fakty, ceny brutto, źródło oferta.md v3.1): Wdrożenie systemów AI online. Podstawy 1 500 zł (2 spotkania na start, zaliczane na pakiet w 30 dni). Wdrożenie 10 w grupie do 8 firm 2 970 zł (10 systemów, spotkanie co 2 tygodnie, start 11.01.2027, rok dostępu). Wdrożenie 1:1 4 970 zł (wszystkie 22 systemy i wejście do kolejnej edycji). Szczegóły: https://ai-team.pl/wdrozenie-systemow-ai. Strony i systemy na zamówienie: wycena po krótkiej rozmowie. Nie podawaj innych cen ani rabatów.
+OFERTA AI-TEAM (fakty, ceny brutto, źródło oferta.md v3.2): Wdrożenie systemów AI online. Podstawy 1 500 zł (2 spotkania na start, zaliczane na pakiet w 30 dni). Wdrożenie 10 w grupie do 8 firm 2 970 zł (10 systemów, spotkanie co 2 tygodnie, start 11.01.2027, rok dostępu). Wdrożenie 1:1 4 970 zł (wszystkie systemy i wejście do kolejnej edycji). Szczegóły: https://ai-team.pl/wdrozenie-systemow-ai. Strony i systemy na zamówienie: wycena po krótkiej rozmowie. Nie podawaj innych cen ani rabatów.
 
 Zwróć WYŁĄCZNIE poprawny JSON, bez komentarzy:
 {"tytul":"Mapa AI dla ...","wstep":"1-2 zdania osobiście pod tę firmę i jej problem","od_czego_zaczac":[{"krok":1,"tytul":"...","co_da":"...","jak":"..."},{"krok":2,"tytul":"...","co_da":"...","jak":"..."},{"krok":3,"tytul":"...","co_da":"...","jak":"..."}],"czego_nie_ruszac":["..."],"nastepny_krok":"..."}`;
